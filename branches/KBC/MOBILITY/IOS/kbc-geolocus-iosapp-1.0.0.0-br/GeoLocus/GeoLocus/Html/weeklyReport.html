@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html>
+<head>  
+ 
+ <script src="canvasjs.min.js"></script>
+ 
+  
+</head>
+  <body>
+  
+  <script type="text/javascript">
+      
+      function getUrlVar(param) {
+          var vars , hash;
+          var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+          for(var i = 0; i < hashes.length; i++) {
+              hash = hashes[i].split('=');
+              if(param==hash[0]) {
+                  vars=hash[1];
+              }
+          }
+          return vars;
+      }
+  
+      window.onload = function () {
+          
+          var accelerate = getUrlVar("weeklyAcceleration");
+          var brake = getUrlVar("weeklyBraking");
+          var speed = getUrlVar("weeklySpeeding");
+          var time = getUrlVar("weeklyTiming");
+          
+          var decodedAcceleration = decodeURIComponent(accelerate);
+          var decodedBraking = decodeURIComponent(brake);
+          var decodedSpeeding = decodeURIComponent(speed);
+          var decodedTiming = decodeURIComponent(time);
+          
+          var accelerationCount = decodedAcceleration.split(",").length;
+          var brakingCount = decodedBraking.split(",").length;
+          var speedingCount = decodedSpeeding.split(",").length;
+          var timingCount = decodedTiming.split(",").length;
+          
+          var accelerationData = decodedAcceleration.split(",");
+          var brakingData = decodedBraking.split(",");
+          var speedingData = decodedSpeeding.split(",");
+          var timingData = decodedTiming.split(",");
+          
+
+          if (accelerationCount == 8) {
+            
+              var w1 = parseInt(accelerationData[0]);
+              var w2 = parseInt(accelerationData[1]);
+              var w3 = parseInt(accelerationData[2]);
+              var w4 = parseInt(accelerationData[3]);
+              var w5 = parseInt(accelerationData[4]);
+              var w6 = parseInt(accelerationData[5]);
+              var w7 = parseInt(accelerationData[6]);
+              var w8 = parseInt(accelerationData[7]);
+          }
+          else if (brakingCount == 8) {
+              
+              var w1 = parseInt(brakingData[0]);
+              var w2 = parseInt(brakingData[1]);
+              var w3 = parseInt(brakingData[2]);
+              var w4 = parseInt(brakingData[3]);
+              var w5 = parseInt(brakingData[4]);
+              var w6 = parseInt(brakingData[5]);
+              var w7 = parseInt(brakingData[6]);
+              var w8 = parseInt(brakingData[7]);
+
+          }
+          else if (speedingCount == 8) {
+              
+              var w1 = parseInt(speedingData[0]);
+              var w2 = parseInt(speedingData[1]);
+              var w3 = parseInt(speedingData[2]);
+              var w4 = parseInt(speedingData[3]);
+              var w5 = parseInt(speedingData[4]);
+              var w6 = parseInt(speedingData[5]);
+              var w7 = parseInt(speedingData[6]);
+              var w8 = parseInt(speedingData[7]);
+              
+          }
+          else if (timingCount == 8) {
+              
+              var w1 = parseInt(timingData[0]);
+              var w2 = parseInt(timingData[1]);
+              var w3 = parseInt(timingData[2]);
+              var w4 = parseInt(timingData[3]);
+              var w5 = parseInt(timingData[4]);
+              var w6 = parseInt(timingData[5]);
+              var w7 = parseInt(timingData[6]);
+              var w8 = parseInt(timingData[7]);
+              
+          }
+
+          
+          CanvasJS.addColorSet("greenShades",
+                               [
+                                "#00E5FF",
+                                "#00C853",
+                                "#FFC400",
+                                "#D50000"
+                                ]);
+                                var chart = new CanvasJS.Chart("chartContainer",
+                                                               {
+                                                               colorSet: "greenShades",
+                                                               axisX:{
+                                                               title: "Weeks",
+                                                               tickLength: 10,
+                                                               labelFontColor : "#FFFFFF",
+                                                               titleFontColor  : "#FFFFFF",
+                                                               lineColor: "#FFFFFF",
+                                                               tickColor: "#FFFFFF"
+                                                               
+                                                               },
+                                                               title:{
+                                                               fontColor : "#FFFFFF",
+                                                               text: "Weekly Report"    
+                                                               },
+                                                               animationEnabled: true,
+                                                               animationDuration: 5000,
+                                                               axisY: {
+                                                               minimum : 0,
+                                                               maximum : 150,
+                                                               interval : 30,
+                                                               labelFontColor : "#FFFFFF", 
+                                                               lineColor: "#FFFFFF",
+                                                               tickColor: "#FFFFFF"
+                                                               },
+                                                               legend: {
+                                                               verticalAlign: "bottom",
+                                                               horizontalAlign: "center",
+                                                               fontColor: "#FFFFFF"
+                                                               },
+                                                               backgroundColor: "transparent",
+                                                               theme: "theme5",
+                                                               data: [
+                                                                      {        
+                                                                      type: "column",  
+                                                                      showInLegend: false, 
+                                                                      bevelEnabled: true,
+                                                                      legendMarkerColor: "#FFFFFF",
+                                                                      dataPoints: [      
+                                                                                   {y: w1,  label: "w1"},
+                                                                                   {y: w2,  label: "w2"},
+                                                                                   {y: w3,  label: "w3"},
+                                                                                   {y: w4,  label: "w4"},
+                                                                                   {y: w5,  label: "w5"},
+                                                                                   {y: w6,  label: "w6"},
+                                                                                   {y: w7,  label: "w7"},
+                                                                                   {y: w8,  label: "w8"}
+                                                                                   ]
+                                                                      }   
+                                                                      ]
+                                                               });
+                                                               
+                                                               chart.render();
+      }
+  </script>
+  
+  <div id="chartContainer" style="height: 290px; width: 100%;"></div>
+  
+  </body>
+</html>

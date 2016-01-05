@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="DASHBOARD_PARAMETER" representedClassName="DASHBOARD_PARAMETER" syncable="YES">
+        <attribute name="aCCELERATION" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="bRAKING" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="cORNERING" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="dATE" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iD" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rEWARDSAVAILABLE" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="sCORE" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="sPEEDING" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="tIMEOFDAY" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="tIMESTAMP" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uSEDMILES" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="TRIP_SUMMARY_COLLECTDATA" representedClassName="TRIP_SUMMARY_COLLECTDATA" syncable="YES">
+        <attribute name="aCCELERATION" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bRAKING" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cURRENT_DATE" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dEVICE_NUMBER" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iD" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iNCOMING_CALL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="oUTGOING_CALL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="oVERSPEED" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tOTAL_DISTANCE_COVERED" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tOTAL_DURATION" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="DASHBOARD_PARAMETER" positionX="-63" positionY="54" width="128" height="210"/>
+        <element name="TRIP_SUMMARY_COLLECTDATA" positionX="-63" positionY="-18" width="128" height="195"/>
+    </elements>
+</model>

@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <script src="jquery1.7.2.min.js"></script>
+        <script src="brake.js"></script>
+        
+        
+        <style>
+            #topLoader {
+                width: 80px;
+                height: 85px;
+                margin: 10px 20px;
+                background-color:transparent;
+            }
+            #divBrake {
+                color: aqua;
+                margin-left: 40px;
+                font-family : Roboto-Black;
+                font-size : 10px;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        <div id="topLoader"> </div>
+                        <div id="divBrake"> Braking </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <script>
+            $(function() {
+              
+              function getUrlVar(param) {
+              var vars , hash;
+              var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+              for(var i = 0; i < hashes.length; i++) {
+              hash = hashes[i].split('=');
+              if(param==hash[0]) {
+              vars=hash[1];
+              }
+              }
+              return vars;
+              }
+              
+              var brake = getUrlVar("Braking");
+              
+              var $topLoader = $("#topLoader").percentageLoader({width:80, height: 80, controllable : true, progress : 0.5, onProgressUpdate : function(val) {
+                  $topLoader.setValue(Math.round(val * 50.0));
+                  }});
+              
+              var topLoaderRunning = false;
+              
+              
+              var animateProgress = function(val){
+              if (topLoaderRunning) {
+              return;
+              }
+              topLoaderRunning = true;
+              $topLoader.setProgress(0);
+              $topLoader.setValue(' ');
+              var kb = 0;
+              var totalKb = 100;
+              
+              var animateFunc = function() {
+              
+              if (val != 0) {
+                kb += 1;
+              }
+              
+              $topLoader.setProgress(kb / totalKb);
+              $topLoader.setValue(' ');
+              
+              if (kb < val) {
+              setTimeout(animateFunc, 25);
+              } else {
+              topLoaderRunning = false;
+              }
+              }
+              
+              setTimeout(animateFunc, 25);
+              }
+              
+              //var brake = 78
+              animateProgress(brake);
+              
+              });
+            </script>
+        
+        
+    </body>
+</html>

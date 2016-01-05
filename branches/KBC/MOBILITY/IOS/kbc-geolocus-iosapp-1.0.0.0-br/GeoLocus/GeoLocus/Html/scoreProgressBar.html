@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+            <link href="jquery-ui.css" rel="stylesheet">
+                <script src="jquery-1.10.2.js"></script>
+                <script src="jquery-ui.js"></script>
+                <style>
+                    .ui-widget-header {
+                        background: #00ffff;
+                        border: 1px solid #FFFFFF;
+                        color: #FFFFFF;
+                        font-weight: bold;
+                    }
+                #progressbar {
+                    color : #FFFFFF;
+                    margin-top:-8px;
+                    height:20px !important;
+                }
+                .progress-label {
+                    position: absolute;
+                    left: 40%;
+                    color : #FFFFFF;
+                    top:2px;
+                    text-shadow: 1px 1px 0 #fff;
+                    font-family : digital-7;
+                    font-size : 18px;
+                }
+                </style>
+                <script>
+                    function getUrlVar(param) {
+                        var vars , hash;
+                        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                        for(var i = 0; i < hashes.length; i++) {
+                            hash = hashes[i].split('=');
+                            if(param==hash[0]) {
+                                vars=hash[1];
+                            }
+                        }
+                        return vars;
+                    }
+                
+                var score = getUrlVar("Score");
+                var alteredScore = parseInt(score) - 1;
+                    
+                    $(function() {
+                      var progressbar = $( "#progressbar");
+                      progressLabel = $( ".progress-label");
+                      $( "#progressbar" ).progressbar({
+                                                        value: false,
+                                                        change: function() {
+                                                            progressLabel.text("SCORE " + progressbar.progressbar( "value" ) );
+                                                        },
+                                                        complete: function() {
+                                                             progressLabel.text(progressbar.progressbar( "value" ) );
+                                                        }
+                                                        });
+                      function progress() {
+                      
+                            var val = progressbar.progressbar( "value" ) || 0;
+                      if (alteredScore != -1) {
+                            progressbar.progressbar( "value", val + 1 );
+                      } else {
+                            progressbar.progressbar( "value", val + 0 );
+                      }
+                                if ( val < parseInt(alteredScore) ) {
+                      
+                                    setTimeout( progress, 30 );
+                      
+                                }
+                      }
+                      
+                      setTimeout( progress, 30 );
+                      
+                    });
+            </script>
+    </head>
+    <body> 
+        <div id="progressbar"></div>
+        <div class="progress-label">
+            SCORE Value
+        </div>
+    </body>
+</html>
