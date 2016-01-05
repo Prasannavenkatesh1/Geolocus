@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<script href="analytics.js"></script>
+<link rel="stylesheet" href="font.css" />
+<script src="jquery.1.11.0.js"></script>
+<script src="jquery.classyloader.min.js"></script>
+</head>
+<body>
+<div id="page-container">
+<div id="main-container">
+<div id="page-content">
+
+<div class="row">
+<div class="col-md-6">
+<div class="block">
+
+<div class="clearfix">
+
+<canvas class="loader5"></canvas>
+<script>
+$(document).ready(function() {
+  $('.loader5').ClassyLoader({
+    speed: 20,
+    diameter: 80,
+    fontSize: '30px',
+    fontFamily: 'Courier',
+    fontColor: 'rgba(0,0,0,0.4)',
+    lineColor: 'rgba(255,0,0,0.7)',
+    percentage: 80,
+    lineWidth: 20,
+    showText: true,
+    remainingLineColor: 'rgba(200,200,200,0.1)'
+  });
+});
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+   ga.src = "analytics.js";
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>
