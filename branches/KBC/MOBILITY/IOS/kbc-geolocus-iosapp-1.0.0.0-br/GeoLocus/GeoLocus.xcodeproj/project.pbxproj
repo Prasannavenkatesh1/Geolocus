@@ -193,6 +193,18 @@
 		A6D52F881B6F454900855DDB /* TripSummaryDB.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D52F871B6F454900855DDB /* TripSummaryDB.m */; };
 		A6DB81441B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DB81431B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m */; };
 		A6DB81471B7346AF008D3F33 /* DASHBOARD_PARAMETER.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DB81461B7346AF008D3F33 /* DASHBOARD_PARAMETER.m */; };
+		BF4F8D981C43845000895640 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D971C43845000895640 /* CategoryCell.swift */; };
+		BF4F8D9A1C43CA8D00895640 /* Httpclient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D991C43CA8D00895640 /* Httpclient.swift */; };
+		BF4F8D9C1C43CA9D00895640 /* DatabaseActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */; };
+		BF7336FD1C3F929A006094C0 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF7336FC1C3F929A006094C0 /* Storyboard.storyboard */; };
+		BF7337021C3F9387006094C0 /* FacadeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7337011C3F9387006094C0 /* FacadeLayer.swift */; };
+		BF7337081C3F94A1006094C0 /* Geomodel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF7337061C3F94A1006094C0 /* Geomodel.xcdatamodeld */; };
+		BF7337491C3FBCF4006094C0 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7337481C3FBCF4006094C0 /* RootViewController.swift */; };
+		BF73374B1C3FBD9E006094C0 /* Pageviewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF73374A1C3FBD9E006094C0 /* Pageviewcontroller.swift */; };
+		BF73374D1C3FC278006094C0 /* ContractPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF73374C1C3FC278006094C0 /* ContractPage.swift */; };
+		BF73374F1C3FC29A006094C0 /* DashboardPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF73374E1C3FC29A006094C0 /* DashboardPage.swift */; };
+		BF7337511C3FC2AE006094C0 /* HistoryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7337501C3FC2AE006094C0 /* HistoryPage.swift */; };
+		BF7337531C3FC2BF006094C0 /* HistoryScorePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7337521C3FC2BF006094C0 /* HistoryScorePage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -440,6 +452,18 @@
 		A6DB81431B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRIP_SUMMARY_COLLECTDATA.m; sourceTree = "<group>"; };
 		A6DB81451B7346AF008D3F33 /* DASHBOARD_PARAMETER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DASHBOARD_PARAMETER.h; sourceTree = "<group>"; };
 		A6DB81461B7346AF008D3F33 /* DASHBOARD_PARAMETER.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DASHBOARD_PARAMETER.m; sourceTree = "<group>"; };
+		BF4F8D971C43845000895640 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		BF4F8D991C43CA8D00895640 /* Httpclient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Httpclient.swift; sourceTree = "<group>"; };
+		BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseActions.swift; sourceTree = "<group>"; };
+		BF7336FC1C3F929A006094C0 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		BF7337011C3F9387006094C0 /* FacadeLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacadeLayer.swift; sourceTree = "<group>"; };
+		BF7337071C3F94A1006094C0 /* Geomodel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Geomodel.xcdatamodel; sourceTree = "<group>"; };
+		BF7337481C3FBCF4006094C0 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		BF73374A1C3FBD9E006094C0 /* Pageviewcontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pageviewcontroller.swift; sourceTree = "<group>"; };
+		BF73374C1C3FC278006094C0 /* ContractPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractPage.swift; sourceTree = "<group>"; };
+		BF73374E1C3FC29A006094C0 /* DashboardPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardPage.swift; sourceTree = "<group>"; };
+		BF7337501C3FC2AE006094C0 /* HistoryPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryPage.swift; sourceTree = "<group>"; };
+		BF7337521C3FC2BF006094C0 /* HistoryScorePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryScorePage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -537,19 +561,9 @@
 		635194731AD3AAC7002ED1D0 /* GeoLocus */ = {
 			isa = PBXGroup;
 			children = (
+				BF7336F81C3F9243006094C0 /* New */,
+				BF7336F61C3F9142006094C0 /* Old */,
 				6351947D1AD3AAC7002ED1D0 /* Images.xcassets */,
-				6352C3FA1AD694A500E11D3A /* All Icons */,
-				63955CA21AD7A5A2006A1B04 /* css */,
-				6352C4511AD6AA8100E11D3A /* Html */,
-				6352C4501AD6AA6F00E11D3A /* JS */,
-				6351947F1AD3AAC7002ED1D0 /* LaunchScreen.xib */,
-				6351947A1AD3AAC7002ED1D0 /* Main.storyboard */,
-				A6C6C2461B1869C200C9C470 /* Main4s.storyboard */,
-				6391CF981B4A4C7F002E940E /* Main6.storyboard */,
-				638451DA1B032B6700E895F7 /* Objective C */,
-				63AD3BC31B722EA100E2CAAE /* Core Data */,
-				6389B2571B1C9B1500F2A18C /* Settings */,
-				638451DB1B032B7800E895F7 /* Swift */,
 			);
 			path = GeoLocus;
 			sourceTree = "<group>";
@@ -770,7 +784,6 @@
 			isa = PBXGroup;
 			children = (
 				63A93D5D1B8B24A10081C526 /* arcProgressView.swift */,
-				63C2094E1B0B0BF8009DF880 /* AppDelegateSwift.swift */,
 				6304FC1B1AD54B0D00734AEF /* DashboardViewController.swift */,
 				630C19D61AE7B2A8000B32CA /* Drawings.swift */,
 				63AAE5D21AE90C470013987F /* EmergencyViewController.swift */,
@@ -853,6 +866,109 @@
 			name = "Core Data";
 			sourceTree = "<group>";
 		};
+		BF4F8D961C43840500895640 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				BF4F8D971C43845000895640 /* CategoryCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		BF7336F61C3F9142006094C0 /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				6352C3FA1AD694A500E11D3A /* All Icons */,
+				63955CA21AD7A5A2006A1B04 /* css */,
+				6352C4511AD6AA8100E11D3A /* Html */,
+				6352C4501AD6AA6F00E11D3A /* JS */,
+				638451DA1B032B6700E895F7 /* Objective C */,
+				63AD3BC31B722EA100E2CAAE /* Core Data */,
+				6389B2571B1C9B1500F2A18C /* Settings */,
+				638451DB1B032B7800E895F7 /* Swift */,
+				BF7336F71C3F914C006094C0 /* Storyboards */,
+			);
+			name = Old;
+			sourceTree = "<group>";
+		};
+		BF7336F71C3F914C006094C0 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				6351947F1AD3AAC7002ED1D0 /* LaunchScreen.xib */,
+				6351947A1AD3AAC7002ED1D0 /* Main.storyboard */,
+				A6C6C2461B1869C200C9C470 /* Main4s.storyboard */,
+				6391CF981B4A4C7F002E940E /* Main6.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		BF7336F81C3F9243006094C0 /* New */ = {
+			isa = PBXGroup;
+			children = (
+				63C2094E1B0B0BF8009DF880 /* AppDelegateSwift.swift */,
+				BF7336F91C3F9250006094C0 /* Model */,
+				BF7336FA1C3F925F006094C0 /* View */,
+				BF7336FB1C3F9266006094C0 /* Controller */,
+				BF7337001C3F92DE006094C0 /* Facade_Pattern */,
+			);
+			name = New;
+			sourceTree = "<group>";
+		};
+		BF7336F91C3F9250006094C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		BF7336FA1C3F925F006094C0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BF7336FC1C3F929A006094C0 /* Storyboard.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		BF7336FB1C3F9266006094C0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BF4F8D961C43840500895640 /* Cells */,
+				BF7337481C3FBCF4006094C0 /* RootViewController.swift */,
+				BF73374A1C3FBD9E006094C0 /* Pageviewcontroller.swift */,
+				BF73374C1C3FC278006094C0 /* ContractPage.swift */,
+				BF73374E1C3FC29A006094C0 /* DashboardPage.swift */,
+				BF7337501C3FC2AE006094C0 /* HistoryPage.swift */,
+				BF7337521C3FC2BF006094C0 /* HistoryScorePage.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		BF7336FE1C3F92BC006094C0 /* DatabaseActions */ = {
+			isa = PBXGroup;
+			children = (
+				BF7337061C3F94A1006094C0 /* Geomodel.xcdatamodeld */,
+				BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */,
+			);
+			name = DatabaseActions;
+			sourceTree = "<group>";
+		};
+		BF7336FF1C3F92CA006094C0 /* HttpClient */ = {
+			isa = PBXGroup;
+			children = (
+				BF4F8D991C43CA8D00895640 /* Httpclient.swift */,
+			);
+			name = HttpClient;
+			sourceTree = "<group>";
+		};
+		BF7337001C3F92DE006094C0 /* Facade_Pattern */ = {
+			isa = PBXGroup;
+			children = (
+				BF7337011C3F9387006094C0 /* FacadeLayer.swift */,
+				BF7336FF1C3F92CA006094C0 /* HttpClient */,
+				BF7336FE1C3F92BC006094C0 /* DatabaseActions */,
+			);
+			name = Facade_Pattern;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -897,6 +1013,8 @@
 		635194691AD3AAC7002ED1D0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0720;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = Cognizant;
 				TargetAttributes = {
@@ -954,6 +1072,7 @@
 				A6A5AB2B1B16F54400D359C6 /* Selected.png in Resources */,
 				6352C41D1AD694A500E11D3A /* emergency_fuel_map.png in Resources */,
 				A6A5AB2E1B16F54400D359C6 /* Unselected.png in Resources */,
+				BF7336FD1C3F929A006094C0 /* Storyboard.storyboard in Resources */,
 				6352C4231AD694A500E11D3A /* emergency_towing_map.png in Resources */,
 				63955CAA1AD7D244006A1B04 /* jquery-1.10.2.js in Resources */,
 				A6C6C2481B1869C200C9C470 /* Main4s.storyboard in Resources */,
@@ -1052,6 +1171,7 @@
 				6384522A1B0353AE00E895F7 /* LeaderBoardEntity.m in Sources */,
 				630C19D71AE7B2A8000B32CA /* Drawings.swift in Sources */,
 				63EA2C661B70DA4400ECC0E9 /* DashboardDB.m in Sources */,
+				BF73374B1C3FBD9E006094C0 /* Pageviewcontroller.swift in Sources */,
 				638452361B0353AE00E895F7 /* GetQuoteDatabase.m in Sources */,
 				A6DB81471B7346AF008D3F33 /* DASHBOARD_PARAMETER.m in Sources */,
 				A6DB81441B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m in Sources */,
@@ -1064,26 +1184,34 @@
 				638452321B0353AE00E895F7 /* DashboardEntity.m in Sources */,
 				63FC53681AFCE8D300D60D57 /* SettingsViewController.swift in Sources */,
 				6384522E1B0353AE00E895F7 /* SettingsEntity.m in Sources */,
+				BF4F8D9A1C43CA8D00895640 /* Httpclient.swift in Sources */,
 				6384522D1B0353AE00E895F7 /* ScoringEntity.m in Sources */,
 				638452381B0353AE00E895F7 /* GetQuoteController.m in Sources */,
+				BF7337081C3F94A1006094C0 /* Geomodel.xcdatamodeld in Sources */,
 				63A93D5E1B8B24A10081C526 /* arcProgressView.swift in Sources */,
 				638452341B0353AE00E895F7 /* TripSummaryDatabase.m in Sources */,
+				BF73374F1C3FC29A006094C0 /* DashboardPage.swift in Sources */,
 				6389B24F1B1C9AA600F2A18C /* DataTransmissionController.m in Sources */,
 				635194791AD3AAC7002ED1D0 /* ViewController.swift in Sources */,
 				638451F31B0353A000E895F7 /* FMDatabaseQueue.m in Sources */,
 				6304FC1C1AD54B0D00734AEF /* DashboardViewController.swift in Sources */,
 				63014BB01B15C5290022FCC6 /* AppDelegate.m in Sources */,
 				638452371B0353AE00E895F7 /* LeaderBoardController.m in Sources */,
+				BF7337531C3FC2BF006094C0 /* HistoryScorePage.swift in Sources */,
 				638451F51B0353A000E895F7 /* GeoLocusViewController.m in Sources */,
 				638451F01B0353A000E895F7 /* FMResultSet.m in Sources */,
 				636EF44C1B062B67007AA706 /* RegistrationDatabase.m in Sources */,
+				BF4F8D9C1C43CA9D00895640 /* DatabaseActions.swift in Sources */,
 				6384522C1B0353AE00E895F7 /* ScoringPageDatabase.m in Sources */,
 				A68F05AF1B143EF9003D1D22 /* LBCustomCell.swift in Sources */,
+				BF7337511C3FC2AE006094C0 /* HistoryPage.swift in Sources */,
 				638452331B0353AE00E895F7 /* DashboardDatabase.m in Sources */,
 				63B554481B4A8590007B4434 /* LBCustomCellPh6.swift in Sources */,
 				6384522F1B0353AE00E895F7 /* TripSummaryEntity.m in Sources */,
 				638452281B0353AE00E895F7 /* Reachability.m in Sources */,
+				BF4F8D981C43845000895640 /* CategoryCell.swift in Sources */,
 				A6D52F771B6F381300855DDB /* GeoLocusModel.xcdatamodeld in Sources */,
+				BF7337021C3F9387006094C0 /* FacadeLayer.swift in Sources */,
 				638452351B0353AE00E895F7 /* GetQuoteEntity.m in Sources */,
 				638451F11B0353A000E895F7 /* FMDatabaseAdditions.m in Sources */,
 				635B88661ADBD90E00891EDE /* LeaderBoardViewController.swift in Sources */,
@@ -1091,7 +1219,9 @@
 				6384523A1B0353AE00E895F7 /* DashboardController.m in Sources */,
 				63A0FE791AFA377E00EE7C46 /* LastTripViewController.swift in Sources */,
 				A68F05B31B147A73003D1D22 /* SettingsCustomCell.swift in Sources */,
+				BF73374D1C3FC278006094C0 /* ContractPage.swift in Sources */,
 				6389B2551B1C9AA600F2A18C /* SchedularViewController.m in Sources */,
+				BF7337491C3FBCF4006094C0 /* RootViewController.swift in Sources */,
 				6389B2511B1C9AA600F2A18C /* ListenerViewController.m in Sources */,
 				A6D52F881B6F454900855DDB /* TripSummaryDB.m in Sources */,
 				63C2094F1B0B0BF8009DF880 /* AppDelegateSwift.swift in Sources */,
@@ -1255,6 +1385,7 @@
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = GeoLocus/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = NO;
@@ -1262,7 +1393,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0d8d2903-6043-4fde-9a2a-ff1bd966cf6c";
 				SWIFT_OBJC_BRIDGING_HEADER = "GeoLocus/GeoLocus-Bridging-Header.h";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
@@ -1277,13 +1408,14 @@
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = GeoLocus/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2fe72868-89b1-4ffb-b084-9da95607c189";
 				SWIFT_OBJC_BRIDGING_HEADER = "GeoLocus/GeoLocus-Bridging-Header.h";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
@@ -1368,6 +1500,16 @@
 			);
 			currentVersion = A6D52F761B6F381300855DDB /* GeoLocusModel.xcdatamodel */;
 			path = GeoLocusModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		BF7337061C3F94A1006094C0 /* Geomodel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BF7337071C3F94A1006094C0 /* Geomodel.xcdatamodel */,
+			);
+			currentVersion = BF7337071C3F94A1006094C0 /* Geomodel.xcdatamodel */;
+			path = Geomodel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

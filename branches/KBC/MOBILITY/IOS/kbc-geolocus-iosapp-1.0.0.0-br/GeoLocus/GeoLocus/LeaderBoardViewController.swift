@@ -205,7 +205,7 @@ class LeaderBoardView: UIViewController, UITableViewDelegate, UITableViewDataSou
             
             var modifiedCount : Int = historyDataCount! - 1
             
-            println("modifiedCount : \(modifiedCount)")
+            print("modifiedCount : \(modifiedCount)")
             
             insuredRank = historyData? [modifiedCount] ["historyCurrentRank"] as? NSString
             
@@ -232,10 +232,10 @@ class LeaderBoardView: UIViewController, UITableViewDelegate, UITableViewDataSou
         //Dynamic Loaders LB Score
         let path = NSBundle.mainBundle().pathForResource("LBScore", ofType: "html")
         let targetURL = NSURL(fileURLWithPath: path!)
-        let targetURLString = targetURL!.absoluteString
+        let targetURLString = targetURL.absoluteString
         let param = NSString(format:"?LBScore=\(lbScore)")
-        let finalURLString = targetURLString?.stringByAppendingString(param as String)
-        let finalURL = NSURL(string: finalURLString!)
+        let finalURLString = targetURLString.stringByAppendingString(param as String)
+        let finalURL = NSURL(string: finalURLString)
         
         let request = NSURLRequest(URL: finalURL!)
         leaderBoardScoreWebView.loadRequest(request)
@@ -255,8 +255,8 @@ class LeaderBoardView: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         let mainDelegate = UIApplication.sharedApplication().delegate as! AppDelegateSwift
         
-        var iPhoneSize = mainDelegate.iPhoneSize
-        println("iPhoneSize : \(iPhoneSize)")
+        let iPhoneSize = mainDelegate.iPhoneSize
+        print("iPhoneSize : \(iPhoneSize)")
         
         if (iPhoneSize == "iPhone6") {
 

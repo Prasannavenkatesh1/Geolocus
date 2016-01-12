@@ -121,7 +121,7 @@ class ScorePageView: UIViewController, UIWebViewDelegate {
         var speeding = dashboardData.speeding
         var timeOfDay = dashboardData.timeOfDay
         
-        println("Score : \(score) Acceleration : \(acceleration) Braking : \(braking) Speeding : \(speeding) Time Of Day : \(timeOfDay) ")
+        print("Score : \(score) Acceleration : \(acceleration) Braking : \(braking) Speeding : \(speeding) Time Of Day : \(timeOfDay) ")
         
         //Weekly Scoring Details
         var geolocusDashboard : GeolocusDashboard = GeolocusDashboard()
@@ -132,43 +132,43 @@ class ScorePageView: UIViewController, UIWebViewDelegate {
         var weeklySpeeding = weeklyScoring.valueForKey("weeklySpeeding") as? String
         var weeklyTimeOfDay = weeklyScoring.valueForKey("weeklyTimeOfDay") as? String
         
-        weeklyAcceleration = weeklyAcceleration?.stringByReplacingOccurrencesOfString("\n", withString: "", options: nil, range: nil)
-        weeklyAcceleration = weeklyAcceleration?.stringByReplacingOccurrencesOfString("(", withString: "", options: nil, range: nil)
-        weeklyAcceleration = weeklyAcceleration?.stringByReplacingOccurrencesOfString(")", withString: "", options: nil, range: nil)
-        weeklyAcceleration = weeklyAcceleration?.stringByReplacingOccurrencesOfString(" ", withString: "", options: nil, range: nil)
+        weeklyAcceleration = weeklyAcceleration?.stringByReplacingOccurrencesOfString("\n", withString: "", options: [], range: nil)
+        weeklyAcceleration = weeklyAcceleration?.stringByReplacingOccurrencesOfString("(", withString: "", options: [], range: nil)
+        weeklyAcceleration = weeklyAcceleration?.stringByReplacingOccurrencesOfString(")", withString: "", options: [], range: nil)
+        weeklyAcceleration = weeklyAcceleration?.stringByReplacingOccurrencesOfString(" ", withString: "", options: [], range: nil)
         
-        weeklyBraking = weeklyBraking?.stringByReplacingOccurrencesOfString("\n", withString: "", options: nil, range: nil)
-        weeklyBraking = weeklyBraking?.stringByReplacingOccurrencesOfString("(", withString: "", options: nil, range: nil)
-        weeklyBraking = weeklyBraking?.stringByReplacingOccurrencesOfString(")", withString: "", options: nil, range: nil)
-        weeklyBraking = weeklyBraking?.stringByReplacingOccurrencesOfString(" ", withString: "", options: nil, range: nil)
+        weeklyBraking = weeklyBraking?.stringByReplacingOccurrencesOfString("\n", withString: "", options: [], range: nil)
+        weeklyBraking = weeklyBraking?.stringByReplacingOccurrencesOfString("(", withString: "", options: [], range: nil)
+        weeklyBraking = weeklyBraking?.stringByReplacingOccurrencesOfString(")", withString: "", options: [], range: nil)
+        weeklyBraking = weeklyBraking?.stringByReplacingOccurrencesOfString(" ", withString: "", options: [], range: nil)
         
-        weeklySpeeding = weeklySpeeding?.stringByReplacingOccurrencesOfString("\n", withString: "", options: nil, range: nil)
-        weeklySpeeding = weeklySpeeding?.stringByReplacingOccurrencesOfString("(", withString: "", options: nil, range: nil)
-        weeklySpeeding = weeklySpeeding?.stringByReplacingOccurrencesOfString(")", withString: "", options: nil, range: nil)
-        weeklySpeeding = weeklySpeeding?.stringByReplacingOccurrencesOfString(" ", withString: "", options: nil, range: nil)
+        weeklySpeeding = weeklySpeeding?.stringByReplacingOccurrencesOfString("\n", withString: "", options: [], range: nil)
+        weeklySpeeding = weeklySpeeding?.stringByReplacingOccurrencesOfString("(", withString: "", options: [], range: nil)
+        weeklySpeeding = weeklySpeeding?.stringByReplacingOccurrencesOfString(")", withString: "", options: [], range: nil)
+        weeklySpeeding = weeklySpeeding?.stringByReplacingOccurrencesOfString(" ", withString: "", options: [], range: nil)
         
-        weeklyTimeOfDay = weeklyTimeOfDay?.stringByReplacingOccurrencesOfString("\n", withString: "", options: nil, range: nil)
-        weeklyTimeOfDay = weeklyTimeOfDay?.stringByReplacingOccurrencesOfString("(", withString: "", options: nil, range: nil)
-        weeklyTimeOfDay = weeklyTimeOfDay?.stringByReplacingOccurrencesOfString(")", withString: "", options: nil, range: nil)
-        weeklyTimeOfDay = weeklyTimeOfDay?.stringByReplacingOccurrencesOfString(" ", withString: "", options: nil, range: nil)
+        weeklyTimeOfDay = weeklyTimeOfDay?.stringByReplacingOccurrencesOfString("\n", withString: "", options: [], range: nil)
+        weeklyTimeOfDay = weeklyTimeOfDay?.stringByReplacingOccurrencesOfString("(", withString: "", options: [], range: nil)
+        weeklyTimeOfDay = weeklyTimeOfDay?.stringByReplacingOccurrencesOfString(")", withString: "", options: [], range: nil)
+        weeklyTimeOfDay = weeklyTimeOfDay?.stringByReplacingOccurrencesOfString(" ", withString: "", options: [], range: nil)
         
         var weeklyAccelerationArray : Array = weeklyAcceleration!.componentsSeparatedByString(",")
         var weeklyBrakingArray : Array = weeklyBraking!.componentsSeparatedByString(",")
         var weeklySpeedingArray : Array = weeklySpeeding!.componentsSeparatedByString(",")
         var weeklyTimeOfDayArray : Array = weeklyTimeOfDay!.componentsSeparatedByString(",")
         
-        println("weeklyAccelerationArray is : \(weeklyAccelerationArray)")
-        println("weeklyBrakingArray is : \(weeklyBrakingArray)")
-        println("weeklySpeedingArray is : \(weeklySpeedingArray)")
-        println("weeklyTimeOfDayArray is : \(weeklyTimeOfDayArray)")
+        print("weeklyAccelerationArray is : \(weeklyAccelerationArray)")
+        print("weeklyBrakingArray is : \(weeklyBrakingArray)")
+        print("weeklySpeedingArray is : \(weeklySpeedingArray)")
+        print("weeklyTimeOfDayArray is : \(weeklyTimeOfDayArray)")
         
         //Dynamic Loaders
         let pathAccelerate = NSBundle.mainBundle().pathForResource("AccelerationIndiactor", ofType: "html")
         var targetURLAccelerate = NSURL(fileURLWithPath: pathAccelerate!)
-        let targetURLStringAccelerate = targetURLAccelerate!.absoluteString
+        let targetURLStringAccelerate = targetURLAccelerate.absoluteString
         let paramAccelerate = NSString(format:"?Acceleration=\(acceleration)")
-        let finalURLStringAccelerate = targetURLStringAccelerate?.stringByAppendingString(paramAccelerate as String)
-        let finalURLAccelerate = NSURL(string: finalURLStringAccelerate!)
+        let finalURLStringAccelerate = targetURLStringAccelerate.stringByAppendingString(paramAccelerate as String)
+        let finalURLAccelerate = NSURL(string: finalURLStringAccelerate)
         
         requestAccelerate = NSURLRequest(URL: finalURLAccelerate!)
         accelerateWebView.loadRequest(requestAccelerate!)
@@ -177,40 +177,40 @@ class ScorePageView: UIViewController, UIWebViewDelegate {
         
         let pathBrake = NSBundle.mainBundle().pathForResource("BrakingIndicator", ofType: "html")
         var targetURLBrake = NSURL(fileURLWithPath: pathBrake!)
-        let targetURLStringBrake = targetURLBrake!.absoluteString
+        let targetURLStringBrake = targetURLBrake.absoluteString
         let paramBrake = NSString(format:"?Braking=\(braking)")
-        let finalURLStringBrake = targetURLStringBrake?.stringByAppendingString(paramBrake as String)
-        let finalURLBrake = NSURL(string: finalURLStringBrake!)
+        let finalURLStringBrake = targetURLStringBrake.stringByAppendingString(paramBrake as String)
+        let finalURLBrake = NSURL(string: finalURLStringBrake)
         
         var requestBrake = NSURLRequest(URL: finalURLBrake!)
         brakeWebView.loadRequest(requestBrake)
         
         let pathSpeed = NSBundle.mainBundle().pathForResource("SpeedingIndicator", ofType: "html")
         var targetURLSpeed = NSURL(fileURLWithPath: pathSpeed!)
-        let targetURLStringSpeed = targetURLSpeed!.absoluteString
+        let targetURLStringSpeed = targetURLSpeed.absoluteString
         let paramSpeed = NSString(format:"?Speeding=\(speeding)")
-        let finalURLStringSpeed = targetURLStringSpeed?.stringByAppendingString(paramSpeed as String)
-        let finalURLSpeed = NSURL(string: finalURLStringSpeed!)
+        let finalURLStringSpeed = targetURLStringSpeed.stringByAppendingString(paramSpeed as String)
+        let finalURLSpeed = NSURL(string: finalURLStringSpeed)
         
         var requestSpeed = NSURLRequest(URL: finalURLSpeed!)
         speedWebView.loadRequest(requestSpeed)
         
         let pathTime = NSBundle.mainBundle().pathForResource("TimeIndicator", ofType: "html")
         var targetURLTime = NSURL(fileURLWithPath: pathTime!)
-        let targetURLStringTime = targetURLTime!.absoluteString
+        let targetURLStringTime = targetURLTime.absoluteString
         let paramTime = NSString(format:"?TimeOfDay=\(timeOfDay)")
-        let finalURLStringTime = targetURLStringTime?.stringByAppendingString(paramTime as String)
-        let finalURLTime = NSURL(string: finalURLStringTime!)
+        let finalURLStringTime = targetURLStringTime.stringByAppendingString(paramTime as String)
+        let finalURLTime = NSURL(string: finalURLStringTime)
         
         var requestTime = NSURLRequest(URL: finalURLTime!)
         timeWebView.loadRequest(requestTime)
         
         let pathScoreProgress = NSBundle.mainBundle().pathForResource("scoreProgressBar", ofType: "html")
         var targetURLScoreProgress = NSURL(fileURLWithPath: pathScoreProgress!)
-        let targetURLStringScoreProgress = targetURLScoreProgress!.absoluteString
+        let targetURLStringScoreProgress = targetURLScoreProgress.absoluteString
         let paramScoreProgress = NSString(format:"?Score=\(score)")
-        let finalURLStringScoreProgress = targetURLStringScoreProgress?.stringByAppendingString(paramScoreProgress as String)
-        let finalURLScoreProgress = NSURL(string: finalURLStringScoreProgress!)
+        let finalURLStringScoreProgress = targetURLStringScoreProgress.stringByAppendingString(paramScoreProgress as String)
+        let finalURLScoreProgress = NSURL(string: finalURLStringScoreProgress)
         
         var requestScoreProgress = NSURLRequest(URL: finalURLScoreProgress!)
         scoreProgress.loadRequest(requestScoreProgress)
@@ -219,45 +219,45 @@ class ScorePageView: UIViewController, UIWebViewDelegate {
         //URL
         let pathWeekly = NSBundle.mainBundle().pathForResource("weeklyReport", ofType: "html")
         var targetURLWeekly = NSURL(fileURLWithPath: pathWeekly!)
-        let targetURLStringWeekly = targetURLWeekly!.absoluteString
+        let targetURLStringWeekly = targetURLWeekly.absoluteString
 
         //Fetching the right values to append
         let accelerationString = NSString(format:"\(weeklyAccelerationArray)") as String
-        var accelrationValue = accelerationString.stringByReplacingOccurrencesOfString("[", withString: "", options: nil, range: nil)
-        accelrationValue = accelrationValue.stringByReplacingOccurrencesOfString("]", withString: "", options: nil, range: nil)
+        var accelrationValue = accelerationString.stringByReplacingOccurrencesOfString("[", withString: "", options: [], range: nil)
+        accelrationValue = accelrationValue.stringByReplacingOccurrencesOfString("]", withString: "", options: [], range: nil)
         
         let brakingString = NSString(format:"\(weeklyBrakingArray)") as String
-        var brakingValue = brakingString.stringByReplacingOccurrencesOfString("[", withString: "", options: nil, range: nil)
-        brakingValue = brakingValue.stringByReplacingOccurrencesOfString("]", withString: "", options: nil, range: nil)
+        var brakingValue = brakingString.stringByReplacingOccurrencesOfString("[", withString: "", options: [], range: nil)
+        brakingValue = brakingValue.stringByReplacingOccurrencesOfString("]", withString: "", options: [], range: nil)
         
         let speedingString = NSString(format:"\(weeklySpeedingArray)") as String
-        var speedingValue = speedingString.stringByReplacingOccurrencesOfString("[", withString: "", options: nil, range: nil)
-        speedingValue = speedingValue.stringByReplacingOccurrencesOfString("]", withString: "", options: nil, range: nil)
+        var speedingValue = speedingString.stringByReplacingOccurrencesOfString("[", withString: "", options: [], range: nil)
+        speedingValue = speedingValue.stringByReplacingOccurrencesOfString("]", withString: "", options: [], range: nil)
         
         let timeString = NSString(format:"\(weeklyTimeOfDayArray)") as String
-        var timingValue = timeString.stringByReplacingOccurrencesOfString("[", withString: "", options: nil, range: nil)
-        timingValue = timingValue.stringByReplacingOccurrencesOfString("]", withString: "", options: nil, range: nil)
+        var timingValue = timeString.stringByReplacingOccurrencesOfString("[", withString: "", options: [], range: nil)
+        timingValue = timingValue.stringByReplacingOccurrencesOfString("]", withString: "", options: [], range: nil)
         
         
         //Framing the URL for each event
         let paramAcceleration = NSString(format: "?weeklyAcceleration= %@", accelrationValue)
-        let paramAccelerationString = targetURLStringWeekly?.stringByAppendingString(paramAcceleration as String)
-        let accelerationEncoding = paramAccelerationString?.stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
+        let paramAccelerationString = targetURLStringWeekly.stringByAppendingString(paramAcceleration as String)
+        let accelerationEncoding = paramAccelerationString.stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
         let weeklyAccelerateURL = NSURL(string: accelerationEncoding!)
         
         let paramBraking = NSString(format: "?weeklyBraking= %@", brakingValue)
-        let paramBrakingString = targetURLStringWeekly?.stringByAppendingString(paramBraking as String)
-        let brakingEncoding = paramBrakingString?.stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
+        let paramBrakingString = targetURLStringWeekly.stringByAppendingString(paramBraking as String)
+        let brakingEncoding = paramBrakingString.stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
         let weeklyBrakeURL = NSURL(string: brakingEncoding!)
         
         let paramSpeeding = NSString(format: "?weeklySpeeding= %@", speedingValue)
-        let paramSpeedingString = targetURLStringWeekly?.stringByAppendingString(paramSpeeding as String)
-        let speedingEncoding = paramSpeedingString?.stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
+        let paramSpeedingString = targetURLStringWeekly.stringByAppendingString(paramSpeeding as String)
+        let speedingEncoding = paramSpeedingString.stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
         let weeklySpeedURL = NSURL(string: speedingEncoding!)
         
         let paramTiming = NSString(format: "?weeklyTiming= %@", timingValue)
-        let paramTimingString = targetURLStringWeekly?.stringByAppendingString(paramTiming as String)
-        let timingEncoding = paramTimingString?.stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
+        let paramTimingString = targetURLStringWeekly.stringByAppendingString(paramTiming as String)
+        let timingEncoding = paramTimingString.stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
         let weeklyTimeURL = NSURL(string: timingEncoding!)
 
         
@@ -280,7 +280,7 @@ class ScorePageView: UIViewController, UIWebViewDelegate {
     
     @IBAction func weeklyAcceleration(sender: AnyObject) {
 
-        var subview = weeklyGraph!
+        let subview = weeklyGraph!
         subview.loadRequest(requestWeeklyAcceleration!)
         subview.hidden = false
         view.addSubview(subview)
@@ -292,7 +292,7 @@ class ScorePageView: UIViewController, UIWebViewDelegate {
     
     @IBAction func weeklyBraking(sender: AnyObject) {
         
-        var subview = weeklyGraph!
+        let subview = weeklyGraph!
         subview.loadRequest(requestWeeklyBraking!)
         subview.hidden = false
         view.addSubview(subview)
@@ -304,7 +304,7 @@ class ScorePageView: UIViewController, UIWebViewDelegate {
     
     @IBAction func weeklySpeeding(sender: AnyObject) {
         
-        var subview = weeklyGraph!
+        let subview = weeklyGraph!
         subview.loadRequest(requestWeeklySpeeding!)
         subview.hidden = false
         view.addSubview(subview)
@@ -317,7 +317,7 @@ class ScorePageView: UIViewController, UIWebViewDelegate {
 
     @IBAction func weeklyTiming(sender: AnyObject) {
         
-        var subview = weeklyGraph!
+        let subview = weeklyGraph!
         subview.loadRequest(requestWeeklyTiming!)
         subview.hidden = false
         view.addSubview(subview)
@@ -328,7 +328,7 @@ class ScorePageView: UIViewController, UIWebViewDelegate {
     }
     
     func closeTapped() {
-        var subview = weeklyGraph!
+        let subview = weeklyGraph!
         subview.hidden = true
         closeGraph.hidden = true
     }
