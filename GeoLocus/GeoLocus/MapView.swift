@@ -36,43 +36,43 @@ class MapView : UIViewController, CLLocationManagerDelegate {
         locMgr.startMonitoringSignificantLocationChanges()
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        
-        CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error) -> Void in
-            
-            if (error != nil) {
-                println("ERROR:" + error.localizedDescription)
-                return
-            }
-            
-            if placemarks.count > 0 {
-                let pm = placemarks[0] as! CLPlacemark
-                self.displayLocationInfo(pm)
-            } else {
-                println("Error with data")
-            }
-        })
-        
-    }
+  func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     
+    CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {(placemarks, error) -> Void in
+      
+      if (error != nil) {
+        print("ERROR:" + error!.localizedDescription)
+        return
+      }
+      
+      if placemarks!.count > 0 {
+        let pm = placemarks![0] as! CLPlacemark
+        self.displayLocationInfo(pm)
+      } else {
+        print("Error with data")
+      }
+    })
+    
+  }
+  
     func displayLocationInfo(placemark: CLPlacemark) {
         locMgr.stopUpdatingLocation()
-        
+      
 //        println(placemark.locality)
 //        println(placemark.postalCode)
 //        println(placemark.administrativeArea)
 //        println(placemark.country)
 //        println(placemark.location)
         
-        latitude = placemark.location.coordinate.latitude
-        longitude = placemark.location.coordinate.longitude
-        
+      latitude = placemark.location?.coordinate.latitude
+      longitude = placemark.location?.coordinate.longitude
+      
         self.mapDisplay()
     }
     
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         
-         println("Error:" + error.localizedDescription)
+         print("Error:" + error.localizedDescription)
     }
     
     @IBAction func bkBtn(sender: AnyObject) {
@@ -85,7 +85,7 @@ class MapView : UIViewController, CLLocationManagerDelegate {
 
         //Locate the User in Map
         var location = CLLocationCoordinate2DMake(latitude, longitude)
-        println(location)
+        print(location)
         
         var mapSpan = MKCoordinateSpanMake(0.04,0.04)
         var region = MKCoordinateRegionMake(location, mapSpan)
@@ -105,30 +105,30 @@ class MapView : UIViewController, CLLocationManagerDelegate {
         
         let search = MKLocalSearch(request: request)
         
-        search.startWithCompletionHandler({(response: MKLocalSearchResponse!, error: NSError!) -> Void in
-            
-            if (error != nil) {
-                println("Error occured in search: \(error.localizedDescription)")
-            } else if response.mapItems.count == 0 {
-                println("No matches found")
-            } else {
-                println("Matches found")
-                
-                for item in response.mapItems as! [MKMapItem] {
-                    println("Name = \(item.name)")
-                    println("Phone = \(item.phoneNumber)")
-                    
-                    self.matchingItems.append(item as MKMapItem)
-                    println("Matching items = \(self.matchingItems.count)")
-                    
-                    var annotations = MKPointAnnotation()
-                    annotations.coordinate = item.placemark.coordinate
-                    annotations.title = item.name
-                    self.map.addAnnotation(annotations)
-                }
-            }
-        })
+      search.startWithCompletionHandler({(response: MKLocalSearchResponse?, error: NSError?) -> Void in
         
+        if (error != nil) {
+          print("Error occured in search: \(error!.localizedDescription)")
+        } else if response!.mapItems.count == 0 {
+          print("No matches found")
+        } else {
+          print("Matches found")
+          
+          for item in response!.mapItems as [MKMapItem] {
+            print("Name = \(item.name)")
+            print("Phone = \(item.phoneNumber)")
+            
+            self.matchingItems.append(item as MKMapItem)
+            print("Matching items = \(self.matchingItems.count)")
+            
+            var annotations = MKPointAnnotation()
+            annotations.coordinate = item.placemark.coordinate
+            annotations.title = item.name
+            self.map.addAnnotation(annotations)
+          }
+        }
+      })
+      
     }
-    
+  
 }

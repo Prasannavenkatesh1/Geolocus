@@ -29,12 +29,13 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         iPhoneSize = "iPhone5"
 //        autoButtonChange = "Disabled"
         
-        println("Global Auto Trip : \(globalAutoTrip)")
-        var settings : GeolocusDashboard = GeolocusDashboard()
+        print("Global Auto Trip : \(globalAutoTrip)")
+        let settings : GeolocusDashboard = GeolocusDashboard()
         settings.setSettingsData()
         
         var settingsData = settings.getSettingsData() as NSDictionary
     }
+  
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -43,8 +44,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         
         // Override point for customization after application launch.
         
-        self.checkStoryBoard()
-        
+//        self.checkStoryBoard()
+      
         return true
     }
 
@@ -74,9 +75,9 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         
         let screenSize = UIScreen.mainScreen().bounds.size
         
-        var isiPhone4 = CGSizeEqualToSize(screenSize, CGSizeMake(320, 480))
-        var isiPhone5 = CGSizeEqualToSize(screenSize, CGSizeMake(320, 568))
-        var isiPhone6 = CGSizeEqualToSize(screenSize, CGSizeMake(375, 667))
+        let isiPhone4 = CGSizeEqualToSize(screenSize, CGSizeMake(320, 480))
+        let isiPhone5 = CGSizeEqualToSize(screenSize, CGSizeMake(320, 568))
+        let isiPhone6 = CGSizeEqualToSize(screenSize, CGSizeMake(375, 667))
         var isiPhone6P = CGSizeEqualToSize(screenSize, CGSizeMake(414, 736))
         
         if (isiPhone4) {
@@ -85,25 +86,25 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
             
             let storyboard = UIStoryboard(name: "Main4s", bundle: nil)
             
-            var geolocusDashboard : GeolocusDashboard = GeolocusDashboard()
-            var checkUser : Bool = geolocusDashboard.checkUserDetails()
+            let geolocusDashboard : GeolocusDashboard = GeolocusDashboard()
+            let checkUser : Bool = geolocusDashboard.checkUserDetails()
             
-            println("checkUser :\(checkUser)")
+            print("checkUser :\(checkUser)")
 
             
             let firstLaunch = NSUserDefaults.standardUserDefaults().boolForKey("FirstLaunch")
             
             if (firstLaunch && checkUser)  {
-                println("Not first launch.")
-                var dashboardPage = storyboard.instantiateViewControllerWithIdentifier("Dashboard") as! DashBoardView
+                print("Not first launch.")
+                let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("Dashboard") as! DashBoardView
                 self.window?.rootViewController = dashboardPage
                 self.window?.makeKeyAndVisible()
                 
             }
             else if (!checkUser) {
-                println("First launch, setting NSUserDefault.")
+                print("First launch, setting NSUserDefault.")
                 NSUserDefaults.standardUserDefaults().setBool(true, forKey: "FirstLaunch")
-                var loginPage = storyboard.instantiateViewControllerWithIdentifier("Login") as! ViewController
+                let loginPage = storyboard.instantiateViewControllerWithIdentifier("Login") as! ViewController
                 self.window?.rootViewController = loginPage
                 self.window?.makeKeyAndVisible()
             }
@@ -115,10 +116,10 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
             self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            var geolocusDashboard : GeolocusDashboard = GeolocusDashboard()
-            var checkUser : Bool = geolocusDashboard.checkUserDetails()
+            let geolocusDashboard : GeolocusDashboard = GeolocusDashboard()
+            let checkUser : Bool = geolocusDashboard.checkUserDetails()
 
-            println("checkUser :\(checkUser)")
+            print("checkUser :\(checkUser)")
             
 //            if(checkUser){
 //                
@@ -137,16 +138,16 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
             let firstLaunch = NSUserDefaults.standardUserDefaults().boolForKey("FirstLaunch")
             
             if (firstLaunch && checkUser)  {
-                println("Not first launch.")
-                var dashboardPage = storyboard.instantiateViewControllerWithIdentifier("Dashboard") as! DashBoardView
+                print("Not first launch.")
+                let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("Dashboard") as! DashBoardView
                 self.window?.rootViewController = dashboardPage
                 self.window?.makeKeyAndVisible()
                 
             }
             else if (!checkUser) {
-                println("First launch, setting NSUserDefault.")
+                print("First launch, setting NSUserDefault.")
                 NSUserDefaults.standardUserDefaults().setBool(true, forKey: "FirstLaunch")
-                var loginPage = storyboard.instantiateViewControllerWithIdentifier("Login") as! ViewController
+                let loginPage = storyboard.instantiateViewControllerWithIdentifier("Login") as! ViewController
                 self.window?.rootViewController = loginPage
                 self.window?.makeKeyAndVisible()
             }
@@ -159,24 +160,24 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
             self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
             
             let storyboard = UIStoryboard(name: "Main6", bundle: nil)
-            var geolocusDashboard : GeolocusDashboard = GeolocusDashboard()
-            var checkUser : Bool = geolocusDashboard.checkUserDetails()
+            let geolocusDashboard : GeolocusDashboard = GeolocusDashboard()
+            let checkUser : Bool = geolocusDashboard.checkUserDetails()
             
-            println("checkUser :\(checkUser)")
+            print("checkUser :\(checkUser)")
             
             let firstLaunch = NSUserDefaults.standardUserDefaults().boolForKey("FirstLaunch")
             
             if (firstLaunch && checkUser)  {
-                println("Not first launch.")
-                var dashboardPage = storyboard.instantiateViewControllerWithIdentifier("Dashboard") as! DashBoardView
+                print("Not first launch.")
+                let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("Dashboard") as! DashBoardView
                 self.window?.rootViewController = dashboardPage
                 self.window?.makeKeyAndVisible()
                 
             }
             else if (!checkUser) {
-                println("First launch, setting NSUserDefault.")
+                print("First launch, setting NSUserDefault.")
                 NSUserDefaults.standardUserDefaults().setBool(true, forKey: "FirstLaunch")
-                var loginPage = storyboard.instantiateViewControllerWithIdentifier("Login") as! ViewController
+                let loginPage = storyboard.instantiateViewControllerWithIdentifier("Login") as! ViewController
                 self.window?.rootViewController = loginPage
                 self.window?.makeKeyAndVisible()
             }
@@ -191,24 +192,24 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            var geolocusDashboard : GeolocusDashboard = GeolocusDashboard()
-            var checkUser : Bool = geolocusDashboard.checkUserDetails()
+            let geolocusDashboard : GeolocusDashboard = GeolocusDashboard()
+            let checkUser : Bool = geolocusDashboard.checkUserDetails()
             
-            println("checkUser :\(checkUser)")
+            print("checkUser :\(checkUser)")
 
             let firstLaunch = NSUserDefaults.standardUserDefaults().boolForKey("FirstLaunch")
    
             if (firstLaunch && checkUser)  {
-                println("Not first launch.")
-                var dashboardPage = storyboard.instantiateViewControllerWithIdentifier("Dashboard") as! DashBoardView
+                print("Not first launch.")
+                let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("Dashboard") as! DashBoardView
                 self.window?.rootViewController = dashboardPage
                 self.window?.makeKeyAndVisible()
                 
             }
             else if (!checkUser) {
-                println("First launch, setting NSUserDefault.")
+                print("First launch, setting NSUserDefault.")
                 NSUserDefaults.standardUserDefaults().setBool(true, forKey: "FirstLaunch")
-                var loginPage = storyboard.instantiateViewControllerWithIdentifier("Login") as! ViewController
+                let loginPage = storyboard.instantiateViewControllerWithIdentifier("Login") as! ViewController
                 self.window?.rootViewController = loginPage
                 self.window?.makeKeyAndVisible()
             }
@@ -216,7 +217,6 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
             iPhoneSize = "iPhone5"
             
         }
-        
     }
     
     // MARK: - Core Data stack
@@ -224,7 +224,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.cognizantenterprisemobility.DemoSwiftApp1.IPL_Alarm" in the application's documents Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return urls[urls.count-1] as! NSURL
+        return urls[urls.count-1] 
         }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
@@ -240,7 +240,10 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("GeoLocusModel.sqlite")
         var error: NSError? = nil
         var failureReason = "There was an error creating or loading the application's saved data."
-        if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
+        do {
+            try coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+        } catch var error1 as NSError {
+            error = error1
             coordinator = nil
             // Report any error we got.
             var dict = [String: AnyObject]()
@@ -252,6 +255,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog("Unresolved error \(error), \(error!.userInfo)")
             abort()
+        } catch {
+            fatalError()
         }
         
         return coordinator
@@ -273,11 +278,16 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     func saveContext () {
         if let moc = self.managedObjectContext {
             var error: NSError? = nil
-            if moc.hasChanges && !moc.save(&error) {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                NSLog("Unresolved error \(error), \(error!.userInfo)")
-                abort()
+            if moc.hasChanges {
+                do {
+                    try moc.save()
+                } catch let error1 as NSError {
+                    error = error1
+                    // Replace this implementation with code to handle the error appropriately.
+                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                    NSLog("Unresolved error \(error), \(error!.userInfo)")
+                    abort()
+                }
             }
         }
     }

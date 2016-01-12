@@ -49,7 +49,7 @@ class arcProgressView : UIView {
         layer.addSublayer(innerloader)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         //        fatalError("init(coder:) has not been implemented")
         let viewController : ViewController = ViewController()
         super.init(coder: aDecoder)
@@ -61,7 +61,7 @@ class arcProgressView : UIView {
         var dbValue : UILabel?
         
         let screenSize = UIScreen.mainScreen().bounds.size
-        var isiPhone6 = CGSizeEqualToSize(screenSize, CGSizeMake(375, 667))
+        let isiPhone6 = CGSizeEqualToSize(screenSize, CGSizeMake(375, 667))
         
         if (isiPhone6) {
             
@@ -87,11 +87,11 @@ class arcProgressView : UIView {
         animation.duration = 2
         
         //Calculate the value to be loaded
-        var score = scoreValue as NSString
-        println("The score is : \(score)")
-        var param = score.doubleValue
-        var loaderValue = param / 100
-        println("The loaderValue is : \(loaderValue)")
+        let score = scoreValue as NSString
+        print("The score is : \(score)")
+        let param = score.doubleValue
+        let loaderValue = param / 100
+        print("The loaderValue is : \(loaderValue)")
         
         // Animate from 0 (no circle) to 1 (full circle)
         animation.fromValue = 0

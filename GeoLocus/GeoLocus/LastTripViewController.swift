@@ -42,7 +42,7 @@ class LastTripView : UIViewController {
         settingsButton.frame = CGRectMake(0,0,20,20)
         settingsButton.addTarget(self, action: "pushSettingsView", forControlEvents: .TouchUpInside)
         
-        var settingsRightItem:UIBarButtonItem = UIBarButtonItem()
+        let settingsRightItem:UIBarButtonItem = UIBarButtonItem()
         settingsRightItem.customView = settingsButton
         
         let callButton = UIButton()
@@ -51,7 +51,7 @@ class LastTripView : UIViewController {
 //        callButton.targetForAction(nil, withSender: self)
         callButton.addTarget(self, action: "makeCall", forControlEvents: .TouchUpInside)
         
-        var callRightItem:UIBarButtonItem = UIBarButtonItem()
+        let callRightItem:UIBarButtonItem = UIBarButtonItem()
         callRightItem.customView = callButton
         
         let geoLogo = UIButton()
@@ -59,7 +59,7 @@ class LastTripView : UIViewController {
         geoLogo.frame = CGRectMake(0, 0, 80, 20)
         geoLogo.targetForAction(nil, withSender: self)
         
-        var leftBarItem:UIBarButtonItem = UIBarButtonItem()
+        let leftBarItem:UIBarButtonItem = UIBarButtonItem()
         leftBarItem.customView = geoLogo
         
         LastTripNav.topItem?.setLeftBarButtonItem(leftBarItem, animated: true)
@@ -67,7 +67,7 @@ class LastTripView : UIViewController {
         LastTripNav.topItem?.setRightBarButtonItems([settingsRightItem, callRightItem], animated: true)
         
         //Service Calls
-        var registrationDatabase: RegistrationDatabase = RegistrationDatabase()
+        let registrationDatabase: RegistrationDatabase = RegistrationDatabase()
         self.insuredId = registrationDatabase.fetchLastInsuredID()
         
         deviceId = registrationDatabase.fetchLastDeviceID()
@@ -83,21 +83,21 @@ class LastTripView : UIViewController {
         
 //        dashboardEntity = dashboardController.displayDashboard(insuredId, token, countryCode, accountId, accountCode)
         
-        var geolocusDashboard : GeolocusDashboard = GeolocusDashboard()
-        var tripSummaryResult = geolocusDashboard.tripSummaryDetails() as NSDictionary
+        let geolocusDashboard : GeolocusDashboard = GeolocusDashboard()
+        let tripSummaryResult = geolocusDashboard.tripSummaryDetails() as NSDictionary
         
-        var acceleration = tripSummaryResult.valueForKey("tripAcceleration") as! NSString
-        var braking = tripSummaryResult.valueForKey("tripBraking") as! NSString
-        var speeding = tripSummaryResult.valueForKey("tripOverspeed") as! NSString
-        var incomingCall = tripSummaryResult.valueForKey("tripIncomingCall") as! NSString
-        var outgoingCall = tripSummaryResult.valueForKey("tripOutgoingCall") as! NSString
-        var totalDistanceDriven = tripSummaryResult.valueForKey("tripTotalDistCovered") as! NSString
-        var tripDuration = tripSummaryResult.valueForKey("tripTotalDuration") as! NSString
+        let acceleration = tripSummaryResult.valueForKey("tripAcceleration") as! NSString
+        let braking = tripSummaryResult.valueForKey("tripBraking") as! NSString
+        let speeding = tripSummaryResult.valueForKey("tripOverspeed") as! NSString
+        let incomingCall = tripSummaryResult.valueForKey("tripIncomingCall") as! NSString
+        let outgoingCall = tripSummaryResult.valueForKey("tripOutgoingCall") as! NSString
+        let totalDistanceDriven = tripSummaryResult.valueForKey("tripTotalDistCovered") as! NSString
+        let tripDuration = tripSummaryResult.valueForKey("tripTotalDuration") as! NSString
 
-        println("Acceleration : \(acceleration) Braking : \(braking) Speeding : \(speeding) Incoming : \(incomingCall) Outgoing : \(outgoingCall) Distance Covered : \(totalDistanceDriven) Duration : \(tripDuration)")
+        print("Acceleration : \(acceleration) Braking : \(braking) Speeding : \(speeding) Incoming : \(incomingCall) Outgoing : \(outgoingCall) Distance Covered : \(totalDistanceDriven) Duration : \(tripDuration)")
 
-        var tripDistanceFinal = self.getDistanceWithUnits(totalDistanceDriven, countryName : countryCode!) as NSString
-        var tripDurationFinal = self.getTimeFormatted(tripDuration) as NSString
+        let tripDistanceFinal = self.getDistanceWithUnits(totalDistanceDriven, countryName : countryCode!) as NSString
+        let tripDurationFinal = self.getTimeFormatted(tripDuration) as NSString
         
         self.getDistanceWithUnits(totalDistanceDriven, countryName : countryCode!)
         
@@ -153,9 +153,9 @@ class LastTripView : UIViewController {
     
         let resultantDuration : NSString?
         
-        var seconds = (totalDuration.integerValue) % 60
-        var minutes = ((totalDuration.integerValue) / 60) % 60
-        var hours = (totalDuration.integerValue) / 3600
+        let seconds = (totalDuration.integerValue) % 60
+        let minutes = ((totalDuration.integerValue) / 60) % 60
+        let hours = (totalDuration.integerValue) / 3600
         
         resultantDuration = NSString (format: "%02d:%02d:%02d", hours, minutes, seconds)
         

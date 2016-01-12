@@ -25,12 +25,12 @@ class ViewController: UIViewController {
     
     @IBAction func loginPressed(sender: AnyObject) {
         
-        var username:NSString = usernameTextField.text
-        var password:NSString = passwordTextField.text
+        let username:NSString = usernameTextField.text!
+        let password:NSString = passwordTextField.text!
         
         if (username.isEqualToString("") || password.isEqualToString("") ) {
             
-            var alertView:UIAlertView = UIAlertView()
+            let alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign in Failed!"
             alertView.message = "Please enter Username and Password"
             alertView.delegate = self
@@ -41,98 +41,98 @@ class ViewController: UIViewController {
             passwordNew = password
             usernameNew = username
             
-            var post:NSString = "j_password=\(password)&j_username=\(username)&_spring_security_remember_me=on"
+            let post:NSString = "j_password=\(password)&j_username=\(username)&_spring_security_remember_me=on"
             
             
             NSLog("PostData: %@",post);
             
             
-            var url:NSURL = NSURL(string:"https://54.193.31.22/sei/j_spring_security_check")!
+            let url:NSURL = NSURL(string:"https://54.193.31.22/sei/j_spring_security_check")!
             
-            var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
+            let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
             
-            var postLength:NSString = String( postData.length )
+            let postLength:NSString = String( postData.length )
             
-            var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
+            let request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
             request.HTTPMethod = "POST"
             request.HTTPBody = postData
             request.setValue(postLength as String, forHTTPHeaderField: "Content-Length")
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
             request.setValue("application/json", forHTTPHeaderField: "Accept")
             
-            println(request)
-            var connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: true)!
+            print(request)
+            let connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: true)!
             connection.start()
         }
     }
     
     func connection(connection: NSURLConnection!, didReceiveResponse response: NSURLResponse!){
-        println("response = %@", response)
+        print("response = %@", response)
         
         if let httpUrlResponse = response as? NSHTTPURLResponse
         {
-            var statusResponse = httpUrlResponse.statusCode
+            let statusResponse = httpUrlResponse.statusCode
             
             statusCode = statusResponse
             
-            println("The value of Status Code is : \(statusCode)")
+            print("The value of Status Code is : \(statusCode)")
             
             if (statusCode == 200){
                 
-                println("\(httpUrlResponse.allHeaderFields)") // Error
+                print("\(httpUrlResponse.allHeaderFields)") // Error
                 
-                var jsonResponse: NSDictionary = httpUrlResponse.allHeaderFields
+                let jsonResponse: NSDictionary = httpUrlResponse.allHeaderFields
                 
                 token = jsonResponse.valueForKey("SPRING_SECURITY_REMEMBER_ME_COOKIE") as! NSString
                 
-                println(token)
+                print(token)
                 
             } else{
-                println("Error Occurred")
+                print("Error Occurred")
             }
         }
     }
     
-    func connection(connection: NSURLConnection,
-        willSendRequestForAuthenticationChallenge challenge: NSURLAuthenticationChallenge!)
-    {
-        challenge.sender.useCredential(NSURLCredential(forTrust: challenge.protectionSpace.serverTrust), forAuthenticationChallenge: challenge)
-        
-    }
+  func connection(connection: NSURLConnection,
+    willSendRequestForAuthenticationChallenge challenge: NSURLAuthenticationChallenge)
+  {
+    challenge.sender!.useCredential(NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!), forAuthenticationChallenge: challenge)
     
+  }
+  
     func connection(connection: NSURLConnection!, didReceiveData data: NSData!){
         NSLog("Response data ==> %@", data);
         
         var err: NSError
         // throwing an error on the line below (can't figure out where the error message is)
-        var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
+        let jsonResult: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)) as! NSDictionary
         
         NSLog("jsonResult = %@", jsonResult);
         
-        println(jsonResult.valueForKey("accountCd"))
-        println(jsonResult.valueForKey("accountId"))
+        print(jsonResult.valueForKey("accountCd"))
+        print(jsonResult.valueForKey("accountId"))
         
-        var registrationEntity: RegistrationEntity = RegistrationEntity()
+        let registrationEntity: RegistrationEntity = RegistrationEntity()
         
         if data != nil {
             
-            var accountID : NSInteger = jsonResult.valueForKey("accountId") as! NSInteger
-            var isActive : NSInteger = jsonResult.valueForKey("active") as! NSInteger
-            var agreementNumber : NSString = jsonResult.valueForKey("agreementNo") as! NSString
-            var countryCode : NSString = jsonResult.valueForKey("countryCode") as! NSString
-            var isDeleted : NSInteger = jsonResult.valueForKey("deleted") as! NSInteger
-            var deviceID : NSString = jsonResult.valueForKey("deviceNumber") as! NSString
-            var endDate : NSInteger = jsonResult.valueForKey("endDate") as! NSInteger
-            var insuredID : NSInteger = jsonResult.valueForKey("insuredId") as! NSInteger
-            var insuredType : NSString = jsonResult.valueForKey("insuredType") as! NSString
-            var issueDate : NSInteger = jsonResult.valueForKey("issueDate") as! NSInteger
-            var languageCode : NSString = jsonResult.valueForKey("languageCode") as! NSString
-            var phoneNumber : NSString = jsonResult.valueForKey("phone") as! NSString
-            var profileName : NSString = jsonResult.valueForKey("profileName") as! NSString
-            var uomCategoryID : NSInteger = jsonResult.valueForKey("uomCategoryId") as! NSInteger
-            var userID : NSInteger = jsonResult.valueForKey("userId") as! NSInteger
+            let accountID : NSInteger = jsonResult.valueForKey("accountId") as! NSInteger
+            let isActive : NSInteger = jsonResult.valueForKey("active") as! NSInteger
+            let agreementNumber : NSString = jsonResult.valueForKey("agreementNo") as! NSString
+            let countryCode : NSString = jsonResult.valueForKey("countryCode") as! NSString
+            let isDeleted : NSInteger = jsonResult.valueForKey("deleted") as! NSInteger
+            let deviceID : NSString = jsonResult.valueForKey("deviceNumber") as! NSString
+            let endDate : NSInteger = jsonResult.valueForKey("endDate") as! NSInteger
+            let insuredID : NSInteger = jsonResult.valueForKey("insuredId") as! NSInteger
+            let insuredType : NSString = jsonResult.valueForKey("insuredType") as! NSString
+            let issueDate : NSInteger = jsonResult.valueForKey("issueDate") as! NSInteger
+            let languageCode : NSString = jsonResult.valueForKey("languageCode") as! NSString
+            let phoneNumber : NSString = jsonResult.valueForKey("phone") as! NSString
+            let profileName : NSString = jsonResult.valueForKey("profileName") as! NSString
+            let uomCategoryID : NSInteger = jsonResult.valueForKey("uomCategoryId") as! NSInteger
+            let userID : NSInteger = jsonResult.valueForKey("userId") as! NSInteger
             var userName : NSString = jsonResult.valueForKey("userName") as! NSString
-            var accountCode : NSString = jsonResult.valueForKey("accountCd") as! NSString
+            let accountCode : NSString = jsonResult.valueForKey("accountCd") as! NSString
             
             
             
@@ -156,7 +156,7 @@ class ViewController: UIViewController {
             registrationEntity.serviceToken = token as String
             registrationEntity.accountCode = accountCode as String
             
-            var registrationDatabase: RegistrationDatabase = RegistrationDatabase()
+            let registrationDatabase: RegistrationDatabase = RegistrationDatabase()
             registrationDatabase.insertLoginDatabase(registrationEntity)
             
         }
@@ -164,16 +164,16 @@ class ViewController: UIViewController {
     
     func connectionDidFinishLoading(connection: NSURLConnection!)
     {
-        println("The value of Status Code is : \(statusCode)")
+        print("The value of Status Code is : \(statusCode)")
         
         if (statusCode == 200) {
             
             NSLog("Response : connectionDidFinishLoading ");
             
             
-            println("Login SUCCESS")
+            print("Login SUCCESS")
             
-            var credentials:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+            let credentials:NSUserDefaults = NSUserDefaults.standardUserDefaults()
             credentials.setObject(usernameNew, forKey: "USERNAME")
             credentials.setObject(passwordNew, forKey: "PASSWORD")
             credentials.setInteger(1, forKey: "ISLOGGEDIN")
@@ -183,7 +183,7 @@ class ViewController: UIViewController {
             
         } else {
             
-            var alertView:UIAlertView = UIAlertView()
+            let alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign in Failed!"
             alertView.message = "Please enter a valid Username and Password"
             alertView.delegate = self
@@ -200,7 +200,7 @@ class ViewController: UIViewController {
     
     func connection(connection: NSURLConnection!, didFailWithError error: NSError!){
         
-        println("Connection failed with error: \(error.localizedDescription)")
+        print("Connection failed with error: \(error.localizedDescription)")
     
     }
 

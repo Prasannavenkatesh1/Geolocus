@@ -23,7 +23,7 @@ class EmergencyView: UIViewController {
         //settingsButton.targetForAction(nil, withSender: self)
         settingsButton.addTarget(self, action: "pushSettingsView", forControlEvents: .TouchUpInside)
         
-        var settingsRightItem:UIBarButtonItem = UIBarButtonItem()
+        let settingsRightItem:UIBarButtonItem = UIBarButtonItem()
         settingsRightItem.customView = settingsButton
         
         let callButton = UIButton()
@@ -32,7 +32,7 @@ class EmergencyView: UIViewController {
 //        callButton.targetForAction(nil, withSender: self)
         callButton.addTarget(self, action: "makeCall", forControlEvents: .TouchUpInside)
         
-        var callRightItem:UIBarButtonItem = UIBarButtonItem()
+        let callRightItem:UIBarButtonItem = UIBarButtonItem()
         callRightItem.customView = callButton
         
 //        let towButton = UIButton()
@@ -44,7 +44,7 @@ class EmergencyView: UIViewController {
         geoLogo.frame = CGRectMake(0, 0, 80, 20)
         geoLogo.targetForAction(nil, withSender: self)
         
-        var leftBarItem:UIBarButtonItem = UIBarButtonItem()
+        let leftBarItem:UIBarButtonItem = UIBarButtonItem()
         leftBarItem.customView = geoLogo
         
         EmergencyNav.topItem?.setLeftBarButtonItem(leftBarItem, animated: true)
@@ -65,7 +65,7 @@ class EmergencyView: UIViewController {
     
     func makeCall() {
         
-        println("Calling")
+        print("Calling")
         let phone = "tel://123456789"
         let url:NSURL = NSURL(string:phone)!
         UIApplication.sharedApplication().openURL(url)
@@ -73,7 +73,7 @@ class EmergencyView: UIViewController {
     
     @IBAction func headsetCall(sender: AnyObject) {
         
-        println("Calling Care")
+        print("Calling Care")
         let phone = "tel://123456789"
         let url:NSURL = NSURL(string:phone)!
         UIApplication.sharedApplication().openURL(url)
@@ -81,7 +81,7 @@ class EmergencyView: UIViewController {
     
     @IBAction func hospitalCall(sender: AnyObject) {
         
-        println("Calling Hospital")
+        print("Calling Hospital")
         let phone = "tel://123456789"
         let url:NSURL = NSURL(string:phone)!
         UIApplication.sharedApplication().openURL(url)
@@ -89,7 +89,7 @@ class EmergencyView: UIViewController {
     
     @IBAction func mechanicCall(sender: AnyObject) {
         
-        println("Calling Mechanic")
+        print("Calling Mechanic")
         let phone = "tel://123456789"
         let url:NSURL = NSURL(string:phone)!
         UIApplication.sharedApplication().openURL(url)
@@ -97,7 +97,7 @@ class EmergencyView: UIViewController {
     
     @IBAction func towCall(sender: AnyObject) {
         
-        println("Calling Tow")
+        print("Calling Tow")
         let phone = "tel://123456789"
         let url:NSURL = NSURL(string:phone)!
         UIApplication.sharedApplication().openURL(url)
@@ -105,7 +105,7 @@ class EmergencyView: UIViewController {
     
     @IBAction func fuelCall(sender: AnyObject) {
         
-        println("Calling Fuel Station")
+        print("Calling Fuel Station")
         let phone = "tel://123456789"
         let url:NSURL = NSURL(string:phone)!
         UIApplication.sharedApplication().openURL(url)
