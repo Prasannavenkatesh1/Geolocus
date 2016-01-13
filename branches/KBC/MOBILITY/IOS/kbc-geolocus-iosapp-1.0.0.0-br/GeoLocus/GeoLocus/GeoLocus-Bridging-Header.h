@@ -25,5 +25,6 @@
 #import "CoreLocationController.h"
 #import "SettingsEntity.h"
 #import "DashboardDB.h"
+#import "SWRevealViewController.h"
 
 //

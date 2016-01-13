@@ -12,6 +12,7 @@ class RootViewController: UIViewController {
   
   var categories = [String]()
 
+    @IBOutlet var sidemenuButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,16 @@ class RootViewController: UIViewController {
         selector: "getSelectedIndex:",
         name: "pageviewcontrollerindexchanged",
         object: nil)
+        
+        
+        //attributes for SWrevealController framework
+        if revealViewController() != nil {
+            //            revealViewController().rearViewRevealWidth = 62
+            sidemenuButton.target = revealViewController()
+            sidemenuButton.action = "rightRevealToggle:"
+            view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
