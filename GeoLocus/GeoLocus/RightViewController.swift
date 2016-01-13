@@ -1,16 +1,15 @@
 //
-//  DashboardPage.swift
+//  RightViewController.swift
 //  GeoLocus
 //
-//  Created by Wearables Mac Mini on 08/01/16.
+//  Created by khan on 12/01/16.
 //  Copyright © 2016 Cognizant. All rights reserved.
 //
 
 import UIKit
 
-class DashboardPage: UIViewController {
+class RightViewController: UIViewController {
 
-    @IBOutlet var needle: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
 

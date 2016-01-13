@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oE0-da-mdV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CQm-hi-RzJ">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--Pageviewcontroller-->
@@ -13,7 +13,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adR-8K-b48" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="900" y="-177"/>
+            <point key="canvasLocation" x="884" y="-147"/>
         </scene>
         <!--History Score Page-->
         <scene sceneID="U8J-2T-ARB">
@@ -44,12 +44,51 @@
                     <view key="view" contentMode="scaleToFill" id="efh-nm-d15">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="needle0" translatesAutoresizingMaskIntoConstraints="NO" id="8xs-JP-gDf">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="105" y="211" width="115" height="34"/>
+                                </variation>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="0.14117647059999999" green="0.61568627450000002" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="8xs-JP-gDf"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="8xs-JP-gDf"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="needle" destination="8xs-JP-gDf" id="lvL-qt-2wg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eF6-dj-zJH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3151.5" y="-177"/>
+        </scene>
+        <!--Right View Controller-->
+        <scene sceneID="2C4-jk-GLl">
+            <objects>
+                <viewController storyboardIdentifier="sw_rear" id="PeF-nR-1ew" customClass="RightViewController" customModule="GeoLocus" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Sqx-tO-ous"/>
+                        <viewControllerLayoutGuide type="bottom" id="rMA-4H-EAX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="17C-Kw-0eR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i4P-pj-CV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="954" y="-822"/>
         </scene>
         <!--Contract Page-->
         <scene sceneID="k9w-sS-8cQ">
@@ -72,13 +111,13 @@
         <!--Root View Controller-->
         <scene sceneID="k47-ep-CrO">
             <objects>
-                <viewController id="gbb-ju-gE6" customClass="RootViewController" customModule="GeoLocus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RootViewController" id="gbb-ju-gE6" customClass="RootViewController" customModule="GeoLocus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3NA-S4-x5j"/>
                         <viewControllerLayoutGuide type="bottom" id="dzq-EY-7OI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CyA-gu-262">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zkb-ef-cXj">
@@ -159,11 +198,16 @@
                         </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" id="BSm-jy-Fp7"/>
+                    <navigationItem key="navigationItem" id="BSm-jy-Fp7">
+                        <barButtonItem key="rightBarButtonItem" title="Menu" id="tdp-wg-rfA"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="sidemenuButton" destination="tdp-wg-rfA" id="BTb-lv-kx9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sUc-gK-xSx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-43.5" y="-177"/>
+            <point key="canvasLocation" x="206" y="-85"/>
         </scene>
         <!--History Page-->
         <scene sceneID="hbb-ck-vGp">
@@ -183,10 +227,10 @@
             </objects>
             <point key="canvasLocation" x="4279.5" y="-171.75"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Root Navigation Controller-->
         <scene sceneID="qid-4o-fk1">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oE0-da-mdV" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oE0-da-mdV" customClass="RootNavigationController" customModule="GeoLocus" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9zZ-t6-s3t">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -199,7 +243,32 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P6M-63-ZD5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-961.5" y="-177"/>
+            <point key="canvasLocation" x="-550" y="-107"/>
+        </scene>
+        <!--Reveal View Controller-->
+        <scene sceneID="Hkz-Zq-LIU">
+            <objects>
+                <viewController id="CQm-hi-RzJ" customClass="SWRevealViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FdB-7F-SRN"/>
+                        <viewControllerLayoutGuide type="bottom" id="lej-r5-EDa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="H6o-UX-Cjp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="oE0-da-mdV" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="Z2A-s2-krn"/>
+                        <segue destination="PeF-nR-1ew" kind="custom" identifier="sw_right" customClass="SWRevealViewControllerSegueSetController" id="uMp-sc-jj3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="48x-Q2-eph" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-390" y="-990"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="needle0" width="306" height="93"/>
+    </resources>
 </document>
