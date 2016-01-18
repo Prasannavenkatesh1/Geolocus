@@ -16,6 +16,9 @@ class RootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       
+          var a = {print("aaa")}
+      a()
+      
       
       categories.append("Contract")
       categories.append("Dashboard")
