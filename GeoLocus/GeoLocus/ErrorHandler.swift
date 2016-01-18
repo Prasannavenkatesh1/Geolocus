@@ -6,6 +6,10 @@
 //  Copyright © 2016 Cognizant. All rights reserved.
 //
 
+
+
+//DECLARE ALL ERROR PATTERN MATCHINGS HERE
+
 import Foundation
 
 enum LoginError: ErrorType {
@@ -14,7 +18,7 @@ enum LoginError: ErrorType {
     var description: String {
         switch self {
         case .InvalidLoginCredentials:
-                return "Invalid login credentials"
+                return "Invalid login credentials"  // PLEASE USE GLOBAL CONSTANTS FOR STRING DECLARATION
         }
     }
 }
