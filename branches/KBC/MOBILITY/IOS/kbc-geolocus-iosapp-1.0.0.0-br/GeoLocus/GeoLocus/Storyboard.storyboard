@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CQm-hi-RzJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oE0-da-mdV">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Pageviewcontroller-->
@@ -13,7 +14,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adR-8K-b48" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="884" y="-147"/>
+            <point key="canvasLocation" x="1207.5" y="-115.5"/>
         </scene>
         <!--History Score Page-->
         <scene sceneID="U8J-2T-ARB">
@@ -88,7 +89,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i4P-pj-CV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="954" y="-822"/>
+            <point key="canvasLocation" x="1326" y="-1380"/>
         </scene>
         <!--Contract Page-->
         <scene sceneID="k9w-sS-8cQ">
@@ -101,7 +102,48 @@
                     <view key="view" contentMode="scaleToFill" id="ULd-Gd-hhY">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixN-X2-jZa">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="xVv-Vz-kbA"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="xVv-Vz-kbA"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="xVv-Vz-kbA"/>
+                                    </mask>
+                                </variation>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="0.19452720009999999" blue="0.98097525720000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ixN-X2-jZa" firstAttribute="leading" secondItem="ULd-Gd-hhY" secondAttribute="leadingMargin" id="u1B-2T-Wmd"/>
+                            <constraint firstItem="ixN-X2-jZa" firstAttribute="top" secondItem="liM-Nc-WYJ" secondAttribute="bottom" constant="8" id="xCk-CQ-QJM"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="ixN-X2-jZa"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="u1B-2T-Wmd"/>
+                                <exclude reference="xCk-CQ-QJM"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="ixN-X2-jZa"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="u1B-2T-Wmd"/>
+                                <include reference="xCk-CQ-QJM"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Mk-ed-Pyx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -149,7 +191,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gC8-DT-ut6">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                                         <rect key="frame" x="8" y="11" width="134" height="21"/>
@@ -201,13 +243,10 @@
                     <navigationItem key="navigationItem" id="BSm-jy-Fp7">
                         <barButtonItem key="rightBarButtonItem" title="Menu" id="tdp-wg-rfA"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="sidemenuButton" destination="tdp-wg-rfA" id="BTb-lv-kx9"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sUc-gK-xSx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="206" y="-85"/>
+            <point key="canvasLocation" x="301.5" y="-115.5"/>
         </scene>
         <!--History Page-->
         <scene sceneID="hbb-ck-vGp">
@@ -259,7 +298,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="oE0-da-mdV" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="Z2A-s2-krn"/>
                         <segue destination="PeF-nR-1ew" kind="custom" identifier="sw_right" customClass="SWRevealViewControllerSegueSetController" id="uMp-sc-jj3"/>
                     </connections>
                 </viewController>
