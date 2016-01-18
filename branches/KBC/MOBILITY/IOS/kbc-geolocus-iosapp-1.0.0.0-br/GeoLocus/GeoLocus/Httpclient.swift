@@ -7,7 +7,21 @@
 //
 
 import UIKit
+import Foundation
 
 class Httpclient: NSObject {
 
-}
+  /*
+  {(parameters) -> returntype in
+  
+  }
+*/
+  
+  
+
+  
+  }
+
+
+
+

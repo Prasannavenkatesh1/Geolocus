@@ -12,10 +12,10 @@ class RootViewController: UIViewController {
   
   var categories = [String]()
 
-    @IBOutlet var sidemenuButton: UIBarButtonItem!
-
+  
     override func viewDidLoad() {
         super.viewDidLoad()
+      
       
       categories.append("Contract")
       categories.append("Dashboard")
@@ -28,17 +28,6 @@ class RootViewController: UIViewController {
         selector: "getSelectedIndex:",
         name: "pageviewcontrollerindexchanged",
         object: nil)
-        
-        
-        //attributes for SWrevealController framework
-        if revealViewController() != nil {
-            //            revealViewController().rearViewRevealWidth = 62
-            sidemenuButton.target = revealViewController()
-            sidemenuButton.action = "rightRevealToggle:"
-            view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-            
-        }
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,10 +53,6 @@ class RootViewController: UIViewController {
 //    print("index \(vcindex.userInfo)")
     var getindex = vcindex.userInfo!["getindex"]
     print(getindex);
-    
-//    if let val = vcindex.userInfo!["getindex"] as? String {
-//      
-//    }
 
   }
 
