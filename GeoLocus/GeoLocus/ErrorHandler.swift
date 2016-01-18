@@ -10,6 +10,7 @@
 
 //DECLARE ALL ERROR PATTERN MATCHINGS HERE
 
+
 import Foundation
 
 enum LoginError: ErrorType {
