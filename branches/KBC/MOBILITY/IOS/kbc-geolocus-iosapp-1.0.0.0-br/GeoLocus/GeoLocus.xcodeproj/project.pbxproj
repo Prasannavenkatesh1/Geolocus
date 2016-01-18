@@ -176,8 +176,8 @@
 		63D086CB1B049E1C00BDD656 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635194AF1AD3D4CC002ED1D0 /* NotificationCenter.framework */; };
 		63EA2C661B70DA4400ECC0E9 /* DashboardDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 63EA2C651B70DA4400ECC0E9 /* DashboardDB.m */; };
 		63FC53681AFCE8D300D60D57 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FC53671AFCE8D300D60D57 /* SettingsViewController.swift */; };
-		6C03B5CE1C4CF6F000C938C6 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C03B5CD1C4CF6F000C938C6 /* ErrorHandler.swift */; };
 		6C03B5D11C4CF70700C938C6 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C03B5D01C4CF70700C938C6 /* SWRevealViewController.m */; };
+		6C03B5D31C4CFB3600C938C6 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C03B5D21C4CFB3600C938C6 /* ErrorHandler.swift */; };
 		A61E44CC1B32C133001D3461 /* weeklyReport.html in Resources */ = {isa = PBXBuildFile; fileRef = A61E44CB1B32C133001D3461 /* weeklyReport.html */; };
 		A61E44CE1B32C145001D3461 /* canvasjs.min.js in Resources */ = {isa = PBXBuildFile; fileRef = A61E44CD1B32C144001D3461 /* canvasjs.min.js */; };
 		A681B4BA1B3AD73100313629 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = A681B4B91B3AD73100313629 /* test.html */; };
@@ -434,9 +434,9 @@
 		63EA2C641B70DA4400ECC0E9 /* DashboardDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardDB.h; sourceTree = "<group>"; };
 		63EA2C651B70DA4400ECC0E9 /* DashboardDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardDB.m; sourceTree = "<group>"; };
 		63FC53671AFCE8D300D60D57 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		6C03B5CD1C4CF6F000C938C6 /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorHandler.swift; path = "../../../../backup/kbc-geolocus-iosapp-1.0.0.0-br/GeoLocus/GeoLocus/ErrorHandler.swift"; sourceTree = "<group>"; };
 		6C03B5CF1C4CF70700C938C6 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../../../backup/kbc-geolocus-iosapp-1.0.0.0-br/GeoLocus/GeoLocus/SWRevealViewController.h"; sourceTree = "<group>"; };
 		6C03B5D01C4CF70700C938C6 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = "../../../../backup/kbc-geolocus-iosapp-1.0.0.0-br/GeoLocus/GeoLocus/SWRevealViewController.m"; sourceTree = "<group>"; };
+		6C03B5D21C4CFB3600C938C6 /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		A61E44CB1B32C133001D3461 /* weeklyReport.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = weeklyReport.html; path = Html/weeklyReport.html; sourceTree = "<group>"; };
 		A61E44CD1B32C144001D3461 /* canvasjs.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = canvasjs.min.js; path = JS/canvasjs.min.js; sourceTree = "<group>"; };
 		A681B4B91B3AD73100313629 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = test.html; path = Html/test.html; sourceTree = "<group>"; };
@@ -929,7 +929,7 @@
 		BF7336F91C3F9250006094C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6C03B5CD1C4CF6F000C938C6 /* ErrorHandler.swift */,
+				6C03B5D21C4CFB3600C938C6 /* ErrorHandler.swift */,
 				638451EB1B0353A000E895F7 /* CoreLocationController.h */,
 				638451EE1B0353A000E895F7 /* CoreLocationController.m */,
 			);
@@ -1217,6 +1217,7 @@
 				BF7337531C3FC2BF006094C0 /* HistoryScorePage.swift in Sources */,
 				638451F51B0353A000E895F7 /* GeoLocusViewController.m in Sources */,
 				638451F01B0353A000E895F7 /* FMResultSet.m in Sources */,
+				6C03B5D31C4CFB3600C938C6 /* ErrorHandler.swift in Sources */,
 				636EF44C1B062B67007AA706 /* RegistrationDatabase.m in Sources */,
 				BF4F8D9C1C43CA9D00895640 /* DatabaseActions.swift in Sources */,
 				6384522C1B0353AE00E895F7 /* ScoringPageDatabase.m in Sources */,
@@ -1242,7 +1243,6 @@
 				6389B2511B1C9AA600F2A18C /* ListenerViewController.m in Sources */,
 				A6D52F881B6F454900855DDB /* TripSummaryDB.m in Sources */,
 				63C2094F1B0B0BF8009DF880 /* AppDelegateSwift.swift in Sources */,
-				6C03B5CE1C4CF6F000C938C6 /* ErrorHandler.swift in Sources */,
 				6384523D1B0353AE00E895F7 /* RegistrationController.m in Sources */,
 				638451F21B0353A000E895F7 /* FMDatabasePool.m in Sources */,
 				6384523F1B0353AE00E895F7 /* SendingEmergencyInfo.m in Sources */,
