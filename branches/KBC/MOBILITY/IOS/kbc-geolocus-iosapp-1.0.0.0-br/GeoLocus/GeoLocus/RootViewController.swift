@@ -36,6 +36,7 @@ class RootViewController: UIViewController {
             sidemenuButton.target = revealViewController()
             sidemenuButton.action = "rightRevealToggle:"
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            
         }
 
     }
