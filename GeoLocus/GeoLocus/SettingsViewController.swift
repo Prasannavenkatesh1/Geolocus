@@ -20,18 +20,28 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     var checkboxArray:[String] = ["Enabled"]
     
+    @IBAction func backButtonTapped(sender: AnyObject) {
+        
+        let storyBoard = UIStoryboard(name: StringConstants.StoryBoardIdentifier, bundle: nil)
+        let rootView = storyBoard.instantiateViewControllerWithIdentifier(StringConstants.RootViewController)
+        let navigationView = UINavigationController(rootViewController: rootView)
+        self.revealViewController().setFrontViewController(navigationView, animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        settingsNav.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+
+
         
-        bkBtn.addTarget(self, action: "backBtnTapped", forControlEvents: .TouchUpInside)
-        
-        settingsTable.backgroundColor = UIColor.clearColor()
-        settingsTable.opaque = false
-        
-        let mainDelegate = UIApplication.sharedApplication().delegate as! AppDelegateSwift
-        checkboxArray[0] = (mainDelegate.vAlert as! String)
+//        settingsNav.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+//        
+//        bkBtn.addTarget(self, action: "backBtnTapped", forControlEvents: .TouchUpInside)
+//        
+//        settingsTable.backgroundColor = UIColor.clearColor()
+//        settingsTable.opaque = false
+//        
+//        let mainDelegate = UIApplication.sharedApplication().delegate as! AppDelegateSwift
+//        checkboxArray[0] = (mainDelegate.vAlert as! String)
 
     }
     

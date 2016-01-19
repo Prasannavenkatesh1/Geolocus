@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CQm-hi-RzJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CQm-hi-RzJ">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -91,8 +91,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Default" rowHeight="31" id="juE-2v-sqV">
+                                        <rect key="frame" x="0.0" y="28" width="240" height="31"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="juE-2v-sqV" id="Ece-3f-EMB">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="30"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -120,12 +122,13 @@
         <!--Badges View Controller-->
         <scene sceneID="yOl-De-DHX">
             <objects>
-                <viewController id="Ve5-we-luI" customClass="BadgesViewController" customModule="GeoLocus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BadgesViewController" id="Ve5-we-luI" customClass="BadgesViewController" customModule="GeoLocus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AUY-Kw-OFZ"/>
                         <viewControllerLayoutGuide type="bottom" id="L98-Fr-ddg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GuC-Tb-MBv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Badges view" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H8F-id-ZMz">
@@ -137,33 +140,51 @@
                                     <rect key="frame" x="100" y="254" width="201" height="21"/>
                                 </variation>
                             </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D9J-fc-pKd">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Badges View" id="mXy-Xi-2Bp">
+                                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="eIM-n2-dTG">
+                                            <connections>
+                                                <action selector="backButtonTapped:" destination="Ve5-we-luI" id="75L-o5-Ncc"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
+                                </variation>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="H8F-id-ZMz"/>
+                                <exclude reference="D9J-fc-pKd"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="H8F-id-ZMz"/>
+                                <include reference="D9J-fc-pKd"/>
                             </mask>
                         </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3c5-O9-ZQW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2067" y="-1568"/>
+            <point key="canvasLocation" x="2061" y="-1582"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="Gvn-52-ODI">
             <objects>
-                <viewController id="MIa-CY-pp0" customClass="SettingsViewController" customModule="GeoLocus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" id="MIa-CY-pp0" customClass="SettingsViewController" customModule="GeoLocus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sfv-nH-s2x"/>
                         <viewControllerLayoutGuide type="bottom" id="tkU-j0-W5G"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="q5i-n5-tTf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings view" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g6L-jg-tfD">
@@ -175,16 +196,33 @@
                                     <rect key="frame" x="134" y="270" width="201" height="21"/>
                                 </variation>
                             </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bmq-7J-Piq">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="Na7-8O-hBG">
+                                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="Nta-Mv-U9J">
+                                            <connections>
+                                                <action selector="backButtonTapped:" destination="MIa-CY-pp0" id="tHr-Xa-zXX"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
+                                </variation>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="g6L-jg-tfD"/>
+                                <exclude reference="bmq-7J-Piq"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="g6L-jg-tfD"/>
+                                <include reference="bmq-7J-Piq"/>
                             </mask>
                         </variation>
                     </view>
@@ -196,12 +234,13 @@
         <!--Reports View Controller-->
         <scene sceneID="RgT-KB-VTQ">
             <objects>
-                <viewController id="R7i-qv-H7W" customClass="ReportsViewController" customModule="GeoLocus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReportsViewController" id="R7i-qv-H7W" customClass="ReportsViewController" customModule="GeoLocus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WsD-3n-6Fe"/>
                         <viewControllerLayoutGuide type="bottom" id="gw9-ct-hau"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="i0v-xX-QIf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reports view" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwA-TH-8nl">
@@ -213,16 +252,33 @@
                                     <rect key="frame" x="97" y="263" width="201" height="21"/>
                                 </variation>
                             </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KAA-OH-6Do">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Reports View" id="a6w-CC-Jvh">
+                                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="4n3-Ba-gKS">
+                                            <connections>
+                                                <action selector="backButtonTapped:" destination="R7i-qv-H7W" id="0NZ-E7-dQk"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
+                                </variation>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="hwA-TH-8nl"/>
+                                <exclude reference="KAA-OH-6Do"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="hwA-TH-8nl"/>
+                                <include reference="KAA-OH-6Do"/>
                             </mask>
                         </variation>
                     </view>
@@ -234,12 +290,13 @@
         <!--Terms And Condition View Controller-->
         <scene sceneID="hP6-YR-axs">
             <objects>
-                <viewController id="bHj-zP-I9Q" customClass="TermsAndConditionViewController" customModule="GeoLocus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TermsAndConditionViewController" id="bHj-zP-I9Q" customClass="TermsAndConditionViewController" customModule="GeoLocus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZMO-rI-fqe"/>
                         <viewControllerLayoutGuide type="bottom" id="IoF-HO-Lz5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Sll-OP-7AU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms &amp; condition view" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z3b-RV-4oh">
@@ -251,16 +308,33 @@
                                     <rect key="frame" x="131" y="285" width="201" height="21"/>
                                 </variation>
                             </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KGB-1q-jmO">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Terms &amp; Condition" id="8a3-Cr-WDv">
+                                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="gPF-U2-MVd">
+                                            <connections>
+                                                <action selector="backButtonTapped:" destination="bHj-zP-I9Q" id="wLQ-s7-7rf"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
+                                </variation>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="z3b-RV-4oh"/>
+                                <exclude reference="KGB-1q-jmO"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="z3b-RV-4oh"/>
+                                <include reference="KGB-1q-jmO"/>
                             </mask>
                         </variation>
                     </view>
@@ -363,7 +437,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="40"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gC8-DT-ut6">

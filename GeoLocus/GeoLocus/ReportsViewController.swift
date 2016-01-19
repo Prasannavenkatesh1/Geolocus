@@ -9,5 +9,15 @@
 import UIKit
 
 class ReportsViewController: UIViewController {
+    
+    
+    @IBAction func backButtonTapped(sender: AnyObject) {
+        let storyBoard = UIStoryboard(name: StringConstants.StoryBoardIdentifier, bundle: nil)
+        let rootView = storyBoard.instantiateViewControllerWithIdentifier(StringConstants.RootViewController)
+        let navigationView = UINavigationController(rootViewController: rootView)
+        self.revealViewController().setFrontViewController(navigationView, animated: true)
+    }
+ 
+
 
 }
