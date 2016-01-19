@@ -13,12 +13,9 @@
 
 import Foundation
 
-
-
 enum LoginError: ErrorType {
     
     case InvalidLoginCredentials
-    
     var description: String {
         switch self {
         case .InvalidLoginCredentials:
