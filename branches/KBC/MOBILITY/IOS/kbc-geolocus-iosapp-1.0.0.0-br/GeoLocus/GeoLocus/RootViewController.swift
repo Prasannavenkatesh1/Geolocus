@@ -17,9 +17,14 @@ class RootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       
-          var a = {print("aaa")}
+      let a = {print("aaa")}
       a()
-      
+//
+      let multiply = {(val1: Int, val2:Int) -> Int in
+        return val1+val2
+      }
+      let ggg = multiply(10,20)
+      print("ggg\(ggg)")
       
       categories.append("Contract")
       categories.append("Dashboard")
