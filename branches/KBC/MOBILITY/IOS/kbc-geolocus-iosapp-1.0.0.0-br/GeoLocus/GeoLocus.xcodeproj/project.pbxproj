@@ -179,6 +179,9 @@
 		6C03B5D31C4CFB3600C938C6 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C03B5D21C4CFB3600C938C6 /* ErrorHandler.swift */; };
 		6C03B5D61C4D025500C938C6 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C03B5D51C4D025500C938C6 /* SWRevealViewController.m */; };
 		6CCAF9041C4E036200484056 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAF9031C4E036200484056 /* GlobalConstants.swift */; };
+		6CCAF9061C4E05A300484056 /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAF9051C4E05A300484056 /* BadgesViewController.swift */; };
+		6CCAF9081C4E062700484056 /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAF9071C4E062700484056 /* ReportsViewController.swift */; };
+		6CCAF90A1C4E064D00484056 /* TermsAndConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAF9091C4E064D00484056 /* TermsAndConditionViewController.swift */; };
 		A61E44CC1B32C133001D3461 /* weeklyReport.html in Resources */ = {isa = PBXBuildFile; fileRef = A61E44CB1B32C133001D3461 /* weeklyReport.html */; };
 		A61E44CE1B32C145001D3461 /* canvasjs.min.js in Resources */ = {isa = PBXBuildFile; fileRef = A61E44CD1B32C144001D3461 /* canvasjs.min.js */; };
 		A681B4BA1B3AD73100313629 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = A681B4B91B3AD73100313629 /* test.html */; };
@@ -439,6 +442,9 @@
 		6C03B5D41C4D025500C938C6 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		6C03B5D51C4D025500C938C6 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		6CCAF9031C4E036200484056 /* GlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
+		6CCAF9051C4E05A300484056 /* BadgesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgesViewController.swift; sourceTree = "<group>"; };
+		6CCAF9071C4E062700484056 /* ReportsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportsViewController.swift; sourceTree = "<group>"; };
+		6CCAF9091C4E064D00484056 /* TermsAndConditionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndConditionViewController.swift; sourceTree = "<group>"; };
 		A61E44CB1B32C133001D3461 /* weeklyReport.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = weeklyReport.html; path = Html/weeklyReport.html; sourceTree = "<group>"; };
 		A61E44CD1B32C144001D3461 /* canvasjs.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = canvasjs.min.js; path = JS/canvasjs.min.js; sourceTree = "<group>"; };
 		A681B4B91B3AD73100313629 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = test.html; path = Html/test.html; sourceTree = "<group>"; };
@@ -795,7 +801,6 @@
 				63A0FE781AFA377E00EE7C46 /* LastTripViewController.swift */,
 				635B88651ADBD90E00891EDE /* LeaderBoardViewController.swift */,
 				630C1E891AD6653000C98857 /* ScorePageViewController.swift */,
-				63FC53671AFCE8D300D60D57 /* SettingsViewController.swift */,
 				63061B501BA03CD3006BF223 /* MapView.swift */,
 				A68F05B11B147A73003D1D22 /* SettingsCustomCell.swift */,
 				A68F05B21B147A73003D1D22 /* SettingsCustomCell.xib */,
@@ -957,6 +962,10 @@
 				BF73374E1C3FC29A006094C0 /* DashboardPage.swift */,
 				BF7337501C3FC2AE006094C0 /* HistoryPage.swift */,
 				BF7337521C3FC2BF006094C0 /* HistoryScorePage.swift */,
+				6CCAF9051C4E05A300484056 /* BadgesViewController.swift */,
+				63FC53671AFCE8D300D60D57 /* SettingsViewController.swift */,
+				6CCAF9071C4E062700484056 /* ReportsViewController.swift */,
+				6CCAF9091C4E064D00484056 /* TermsAndConditionViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1191,12 +1200,14 @@
 				630C19D71AE7B2A8000B32CA /* Drawings.swift in Sources */,
 				63EA2C661B70DA4400ECC0E9 /* DashboardDB.m in Sources */,
 				BF73374B1C3FBD9E006094C0 /* Pageviewcontroller.swift in Sources */,
+				6CCAF9081C4E062700484056 /* ReportsViewController.swift in Sources */,
 				638452361B0353AE00E895F7 /* GetQuoteDatabase.m in Sources */,
 				A6DB81471B7346AF008D3F33 /* DASHBOARD_PARAMETER.m in Sources */,
 				A6DB81441B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m in Sources */,
 				6389B2531B1C9AA600F2A18C /* NetworkViewController.m in Sources */,
 				6384523C1B0353AE00E895F7 /* ScoringPageController.m in Sources */,
 				6389B24D1B1C9AA600F2A18C /* CollectionIntervalController.m in Sources */,
+				6CCAF9061C4E05A300484056 /* BadgesViewController.swift in Sources */,
 				638452391B0353AE00E895F7 /* RegistrationEntity.m in Sources */,
 				638452301B0353AE00E895F7 /* LeaderBoardDatabase.m in Sources */,
 				630C1E8A1AD6653000C98857 /* ScorePageViewController.swift in Sources */,
@@ -1236,6 +1247,7 @@
 				BF7337021C3F9387006094C0 /* FacadeLayer.swift in Sources */,
 				638452351B0353AE00E895F7 /* GetQuoteEntity.m in Sources */,
 				638451F11B0353A000E895F7 /* FMDatabaseAdditions.m in Sources */,
+				6CCAF90A1C4E064D00484056 /* TermsAndConditionViewController.swift in Sources */,
 				635B88661ADBD90E00891EDE /* LeaderBoardViewController.swift in Sources */,
 				63D086AF1B0478B700BDD656 /* HeadphonesDetector.m in Sources */,
 				6384523A1B0353AE00E895F7 /* DashboardController.m in Sources */,
