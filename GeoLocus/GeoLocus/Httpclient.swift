@@ -18,9 +18,7 @@ class Httpclient: NSObject {
 */
   
   
-
-  
-  }
+}
 
 
 

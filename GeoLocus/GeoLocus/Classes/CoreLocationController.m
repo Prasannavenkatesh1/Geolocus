@@ -11,6 +11,7 @@
 #import "GeolocusDashboard.h"
 #import "Constant.h"
 #import "GeoLocus-Swift.h"
+#import "Datausage.h"
 
 #define kRequiredAccuracy 70.0 //meters
 #define kMaxAge 20.0 //seconds
@@ -175,6 +176,13 @@ NSString *headingDirection = nil;
 
 #pragma mark location services
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+  
+  
+  NSDictionary *datausagedict = [Datausage getDatas];
+  NSLog(@"Timestamp :%@",newLocation.timestamp);
+  NSLog(@"datausagedict :%@",datausagedict);
+  
+  
 	if([self.delegate conformsToProtocol:@protocol(CoreLocationControllerDelegate)]) {
         
 
