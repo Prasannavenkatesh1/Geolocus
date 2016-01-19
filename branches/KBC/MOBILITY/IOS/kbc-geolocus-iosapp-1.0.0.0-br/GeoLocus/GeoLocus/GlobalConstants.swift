@@ -17,6 +17,17 @@ struct StringConstants {
     
     static let MenuCellIdentifier = "Default"
     
+    
+    
+    //Storyboard and Controllers
+    static let StoryBoardIdentifier = "Storyboard"
+    static let BadgesViewController = "BadgesViewController"
+    static let RootNavigationController = "RootNavigationController"
+    static let RootViewController = "RootViewController"
+    static let ReportsViewController = "ReportsViewController"
+    static let TermsAndConditionViewController = "TermsAndConditionViewController"
+    static let SettingsViewController = "SettingsViewController"
+    
 }
 
 
@@ -36,13 +47,13 @@ struct ArrayConstants {
     
     //Need more elegant way to return array of enum type
     
-    static let MenuList = [MenuItems.Badges.rawValue, MenuItems.Settings.rawValue, MenuItems.Reports.rawValue, MenuItems.Terms.rawValue, MenuItems.Exit.rawValue]
+    static let MenuList: [String]? = [MenuItems.Badges.rawValue, MenuItems.Settings.rawValue, MenuItems.Reports.rawValue, MenuItems.Terms.rawValue, MenuItems.Exit.rawValue] 
     
     static let MenuSection = ["Default"]
 }
 
 struct ErrorConstants {
-    static let InvalidLogin = "Invalid login credentials"
+    static let InvalidLogin = NSLocalizedString("Invalid login credentials", comment: "Login Error")
     
 }
 
