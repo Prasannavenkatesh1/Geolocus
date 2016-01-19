@@ -12,6 +12,7 @@ class RightViewController: UIViewController {
 
     @IBOutlet var menuTableView: UITableView!
     
+    
 
     
 }
@@ -22,6 +23,7 @@ extension RightViewController {
     
 func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ArrayConstants.MenuList.count
+
     }
     
   
@@ -38,6 +40,7 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+      
     }
     
 }

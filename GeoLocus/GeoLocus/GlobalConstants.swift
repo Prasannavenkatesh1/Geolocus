@@ -22,8 +22,22 @@ struct StringConstants {
 
 struct ArrayConstants {
     
-     //Side Menu List Array constants
-    static let MenuList = ["Badges", "Settings", "Reports", "Terms & Condition", "Exit"]
+     //Side Menu Constants
+    
+    enum MenuItems: String {
+        
+        case Badges     = "Badges"
+        case Settings   = "Settings"
+        case Reports    = "Reports"
+        case Terms      = "Terms & Condition"
+        case Exit       = "Exit"
+        
+    }
+    
+    //Need more elegant way to return array of enum type
+    
+    static let MenuList = [MenuItems.Badges.rawValue, MenuItems.Settings.rawValue, MenuItems.Reports.rawValue, MenuItems.Terms.rawValue, MenuItems.Exit.rawValue]
+    
     static let MenuSection = ["Default"]
 }
 
