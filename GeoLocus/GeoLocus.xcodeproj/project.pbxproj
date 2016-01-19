@@ -182,6 +182,7 @@
 		6CCAF9061C4E05A300484056 /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAF9051C4E05A300484056 /* BadgesViewController.swift */; };
 		6CCAF9081C4E062700484056 /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAF9071C4E062700484056 /* ReportsViewController.swift */; };
 		6CCAF90A1C4E064D00484056 /* TermsAndConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAF9091C4E064D00484056 /* TermsAndConditionViewController.swift */; };
+		6CCAF90C1C4E0A7B00484056 /* RightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAF90B1C4E0A7B00484056 /* RightViewController.swift */; };
 		A61E44CC1B32C133001D3461 /* weeklyReport.html in Resources */ = {isa = PBXBuildFile; fileRef = A61E44CB1B32C133001D3461 /* weeklyReport.html */; };
 		A61E44CE1B32C145001D3461 /* canvasjs.min.js in Resources */ = {isa = PBXBuildFile; fileRef = A61E44CD1B32C144001D3461 /* canvasjs.min.js */; };
 		A681B4BA1B3AD73100313629 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = A681B4B91B3AD73100313629 /* test.html */; };
@@ -445,6 +446,7 @@
 		6CCAF9051C4E05A300484056 /* BadgesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgesViewController.swift; sourceTree = "<group>"; };
 		6CCAF9071C4E062700484056 /* ReportsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportsViewController.swift; sourceTree = "<group>"; };
 		6CCAF9091C4E064D00484056 /* TermsAndConditionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndConditionViewController.swift; sourceTree = "<group>"; };
+		6CCAF90B1C4E0A7B00484056 /* RightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightViewController.swift; sourceTree = "<group>"; };
 		A61E44CB1B32C133001D3461 /* weeklyReport.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = weeklyReport.html; path = Html/weeklyReport.html; sourceTree = "<group>"; };
 		A61E44CD1B32C144001D3461 /* canvasjs.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = canvasjs.min.js; path = JS/canvasjs.min.js; sourceTree = "<group>"; };
 		A681B4B91B3AD73100313629 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = test.html; path = Html/test.html; sourceTree = "<group>"; };
@@ -966,6 +968,7 @@
 				63FC53671AFCE8D300D60D57 /* SettingsViewController.swift */,
 				6CCAF9071C4E062700484056 /* ReportsViewController.swift */,
 				6CCAF9091C4E064D00484056 /* TermsAndConditionViewController.swift */,
+				6CCAF90B1C4E0A7B00484056 /* RightViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1211,6 +1214,7 @@
 				638452391B0353AE00E895F7 /* RegistrationEntity.m in Sources */,
 				638452301B0353AE00E895F7 /* LeaderBoardDatabase.m in Sources */,
 				630C1E8A1AD6653000C98857 /* ScorePageViewController.swift in Sources */,
+				6CCAF90C1C4E0A7B00484056 /* RightViewController.swift in Sources */,
 				638452321B0353AE00E895F7 /* DashboardEntity.m in Sources */,
 				63FC53681AFCE8D300D60D57 /* SettingsViewController.swift in Sources */,
 				6384522E1B0353AE00E895F7 /* SettingsEntity.m in Sources */,

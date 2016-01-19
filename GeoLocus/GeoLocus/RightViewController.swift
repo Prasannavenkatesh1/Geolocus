@@ -2,7 +2,7 @@
 //  RightViewController.swift
 //  GeoLocus
 //
-//  Created by khan on 12/01/16.
+//  Created by khan on 19/01/16.
 //  Copyright © 2016 Cognizant. All rights reserved.
 //
 
@@ -10,26 +10,30 @@ import UIKit
 
 class RightViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    @IBOutlet var menuTableView: UITableView!
     
 
-    /*
-    // MARK: - Navigation
+    
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+
+//Code for Delegates and Data Source
+extension RightViewController {
+    
+func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return ArrayConstants.MenuList.count
     }
-    */
-
+    
+  
+    
+func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let identifier = StringConstants.MenuCellIdentifier
+        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
+        cell.textLabel?.text = ArrayConstants.MenuList[indexPath.row]
+        cell.textLabel?.textAlignment = .Center
+        return cell
+        
+    }
+    
 }
