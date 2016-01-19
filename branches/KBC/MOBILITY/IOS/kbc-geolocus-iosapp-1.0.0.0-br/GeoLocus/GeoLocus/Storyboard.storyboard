@@ -85,12 +85,37 @@
                     <view key="view" contentMode="scaleToFill" id="17C-Kw-0eR">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="31" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vy9-OO-GpR">
+                                <rect key="frame" x="120" y="125" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Default" rowHeight="31" id="juE-2v-sqV">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="juE-2v-sqV" id="Ece-3f-EMB">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="33" width="400" height="567"/>
+                                </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="PeF-nR-1ew" id="KkQ-9w-WGD"/>
+                                    <outlet property="delegate" destination="PeF-nR-1ew" id="SC4-nj-hkQ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="1vY-uA-7Rp"/>
+                    <connections>
+                        <outlet property="menuTableView" destination="Vy9-OO-GpR" id="0f4-01-QtM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i4P-pj-CV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1326" y="-1380"/>
+            <point key="canvasLocation" x="1281" y="-1382"/>
         </scene>
         <!--Contract Page-->
         <scene sceneID="k9w-sS-8cQ">
@@ -302,13 +327,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="PeF-nR-1ew" kind="custom" identifier="sw_right" customClass="SWRevealViewControllerSegueSetController" id="uMp-sc-jj3"/>
                         <segue destination="oE0-da-mdV" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="bIq-rz-O1X"/>
+                        <segue destination="PeF-nR-1ew" kind="custom" identifier="sw_right" customClass="SWRevealViewControllerSegueSetController" id="jL9-m4-cNR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="48x-Q2-eph" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-390" y="-990"/>
+            <point key="canvasLocation" x="-39" y="-1195"/>
         </scene>
     </scenes>
     <resources>

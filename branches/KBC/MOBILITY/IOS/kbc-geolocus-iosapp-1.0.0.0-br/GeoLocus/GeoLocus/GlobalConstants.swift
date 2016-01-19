@@ -13,6 +13,17 @@ import Foundation
 
 struct StringConstants {
     
+    //Menu List constants
+    
+    static let MenuCellIdentifier = "Default"
+    
+}
+
+
+struct ArrayConstants {
+    
+    static let MenuList = ["Badges", "Settings", "Reports", "Terms & Condition", "Exit"]
+    static let MenuSection = ["Default"]
 }
 
 struct ErrorConstants {
