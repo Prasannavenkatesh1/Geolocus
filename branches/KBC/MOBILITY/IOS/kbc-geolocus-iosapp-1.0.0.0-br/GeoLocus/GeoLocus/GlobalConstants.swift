@@ -13,7 +13,7 @@ import Foundation
 
 struct StringConstants {
     
-    //Menu List constants
+    //Side Menu List constants
     
     static let MenuCellIdentifier = "Default"
     
@@ -22,6 +22,7 @@ struct StringConstants {
 
 struct ArrayConstants {
     
+     //Side Menu List Array constants
     static let MenuList = ["Badges", "Settings", "Reports", "Terms & Condition", "Exit"]
     static let MenuSection = ["Default"]
 }
