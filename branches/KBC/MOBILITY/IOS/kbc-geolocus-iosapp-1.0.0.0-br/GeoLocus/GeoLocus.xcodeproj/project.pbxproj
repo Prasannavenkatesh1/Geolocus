@@ -178,6 +178,7 @@
 		63FC53681AFCE8D300D60D57 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FC53671AFCE8D300D60D57 /* SettingsViewController.swift */; };
 		6C03B5D31C4CFB3600C938C6 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C03B5D21C4CFB3600C938C6 /* ErrorHandler.swift */; };
 		6C03B5D61C4D025500C938C6 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C03B5D51C4D025500C938C6 /* SWRevealViewController.m */; };
+		6CCAF9041C4E036200484056 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAF9031C4E036200484056 /* GlobalConstants.swift */; };
 		A61E44CC1B32C133001D3461 /* weeklyReport.html in Resources */ = {isa = PBXBuildFile; fileRef = A61E44CB1B32C133001D3461 /* weeklyReport.html */; };
 		A61E44CE1B32C145001D3461 /* canvasjs.min.js in Resources */ = {isa = PBXBuildFile; fileRef = A61E44CD1B32C144001D3461 /* canvasjs.min.js */; };
 		A681B4BA1B3AD73100313629 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = A681B4B91B3AD73100313629 /* test.html */; };
@@ -437,6 +438,7 @@
 		6C03B5D21C4CFB3600C938C6 /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		6C03B5D41C4D025500C938C6 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		6C03B5D51C4D025500C938C6 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		6CCAF9031C4E036200484056 /* GlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		A61E44CB1B32C133001D3461 /* weeklyReport.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = weeklyReport.html; path = Html/weeklyReport.html; sourceTree = "<group>"; };
 		A61E44CD1B32C144001D3461 /* canvasjs.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = canvasjs.min.js; path = JS/canvasjs.min.js; sourceTree = "<group>"; };
 		A681B4B91B3AD73100313629 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = test.html; path = Html/test.html; sourceTree = "<group>"; };
@@ -932,6 +934,7 @@
 				6C03B5D21C4CFB3600C938C6 /* ErrorHandler.swift */,
 				638451EB1B0353A000E895F7 /* CoreLocationController.h */,
 				638451EE1B0353A000E895F7 /* CoreLocationController.m */,
+				6CCAF9031C4E036200484056 /* GlobalConstants.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1216,6 +1219,7 @@
 				638452371B0353AE00E895F7 /* LeaderBoardController.m in Sources */,
 				BF7337531C3FC2BF006094C0 /* HistoryScorePage.swift in Sources */,
 				638451F51B0353A000E895F7 /* GeoLocusViewController.m in Sources */,
+				6CCAF9041C4E036200484056 /* GlobalConstants.swift in Sources */,
 				638451F01B0353A000E895F7 /* FMResultSet.m in Sources */,
 				6C03B5D31C4CFB3600C938C6 /* ErrorHandler.swift in Sources */,
 				636EF44C1B062B67007AA706 /* RegistrationDatabase.m in Sources */,

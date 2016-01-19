@@ -21,7 +21,7 @@ enum LoginError: ErrorType {
     var description: String {
         switch self {
         case .InvalidLoginCredentials:
-                return "Invalid login credentials"  // PLEASE USE GLOBAL CONSTANTS FOR STRING DECLARATION
+                return ErrorConstants.InvalidLogin  // PLEASE USE GLOBAL CONSTANTS FOR STRING DECLARATION
         }
     }
 }
