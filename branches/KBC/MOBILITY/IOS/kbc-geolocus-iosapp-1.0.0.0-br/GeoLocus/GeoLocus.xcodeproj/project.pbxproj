@@ -176,7 +176,6 @@
 		63D086CB1B049E1C00BDD656 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635194AF1AD3D4CC002ED1D0 /* NotificationCenter.framework */; };
 		63EA2C661B70DA4400ECC0E9 /* DashboardDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 63EA2C651B70DA4400ECC0E9 /* DashboardDB.m */; };
 		63FC53681AFCE8D300D60D57 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FC53671AFCE8D300D60D57 /* SettingsViewController.swift */; };
-		6C03B5D31C4CFB3600C938C6 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C03B5D21C4CFB3600C938C6 /* ErrorHandler.swift */; };
 		6C03B5D61C4D025500C938C6 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C03B5D51C4D025500C938C6 /* SWRevealViewController.m */; };
 		6CCAF9041C4E036200484056 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAF9031C4E036200484056 /* GlobalConstants.swift */; };
 		6CCAF9061C4E05A300484056 /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAF9051C4E05A300484056 /* BadgesViewController.swift */; };
@@ -203,6 +202,7 @@
 		BF4F8D981C43845000895640 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D971C43845000895640 /* CategoryCell.swift */; };
 		BF4F8D9A1C43CA8D00895640 /* Httpclient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D991C43CA8D00895640 /* Httpclient.swift */; };
 		BF4F8D9C1C43CA9D00895640 /* DatabaseActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */; };
+		BF5D3AAD1C4E1E3000DDFDC1 /* Datausage.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */; };
 		BF7336FD1C3F929A006094C0 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF7336FC1C3F929A006094C0 /* Storyboard.storyboard */; };
 		BF7337021C3F9387006094C0 /* FacadeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7337011C3F9387006094C0 /* FacadeLayer.swift */; };
 		BF7337081C3F94A1006094C0 /* Geomodel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF7337061C3F94A1006094C0 /* Geomodel.xcdatamodeld */; };
@@ -439,7 +439,6 @@
 		63EA2C641B70DA4400ECC0E9 /* DashboardDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardDB.h; sourceTree = "<group>"; };
 		63EA2C651B70DA4400ECC0E9 /* DashboardDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardDB.m; sourceTree = "<group>"; };
 		63FC53671AFCE8D300D60D57 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		6C03B5D21C4CFB3600C938C6 /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		6C03B5D41C4D025500C938C6 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		6C03B5D51C4D025500C938C6 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		6CCAF9031C4E036200484056 /* GlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
@@ -470,6 +469,8 @@
 		BF4F8D971C43845000895640 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		BF4F8D991C43CA8D00895640 /* Httpclient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Httpclient.swift; sourceTree = "<group>"; };
 		BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseActions.swift; sourceTree = "<group>"; };
+		BF5D3AAB1C4E1E3000DDFDC1 /* Datausage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Datausage.h; sourceTree = "<group>"; };
+		BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Datausage.m; sourceTree = "<group>"; };
 		BF7336FC1C3F929A006094C0 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		BF7337011C3F9387006094C0 /* FacadeLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacadeLayer.swift; sourceTree = "<group>"; };
 		BF7337071C3F94A1006094C0 /* Geomodel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Geomodel.xcdatamodel; sourceTree = "<group>"; };
@@ -938,7 +939,8 @@
 		BF7336F91C3F9250006094C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6C03B5D21C4CFB3600C938C6 /* ErrorHandler.swift */,
+				BF5D3AAB1C4E1E3000DDFDC1 /* Datausage.h */,
+				BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */,
 				638451EB1B0353A000E895F7 /* CoreLocationController.h */,
 				638451EE1B0353A000E895F7 /* CoreLocationController.m */,
 				6CCAF9031C4E036200484056 /* GlobalConstants.swift */,
@@ -1226,6 +1228,7 @@
 				638452341B0353AE00E895F7 /* TripSummaryDatabase.m in Sources */,
 				BF73374F1C3FC29A006094C0 /* DashboardPage.swift in Sources */,
 				6389B24F1B1C9AA600F2A18C /* DataTransmissionController.m in Sources */,
+				BF5D3AAD1C4E1E3000DDFDC1 /* Datausage.m in Sources */,
 				635194791AD3AAC7002ED1D0 /* ViewController.swift in Sources */,
 				638451F31B0353A000E895F7 /* FMDatabaseQueue.m in Sources */,
 				6C03B5D61C4D025500C938C6 /* SWRevealViewController.m in Sources */,
@@ -1236,7 +1239,6 @@
 				638451F51B0353A000E895F7 /* GeoLocusViewController.m in Sources */,
 				6CCAF9041C4E036200484056 /* GlobalConstants.swift in Sources */,
 				638451F01B0353A000E895F7 /* FMResultSet.m in Sources */,
-				6C03B5D31C4CFB3600C938C6 /* ErrorHandler.swift in Sources */,
 				636EF44C1B062B67007AA706 /* RegistrationDatabase.m in Sources */,
 				BF4F8D9C1C43CA9D00895640 /* DatabaseActions.swift in Sources */,
 				6384522C1B0353AE00E895F7 /* ScoringPageDatabase.m in Sources */,
