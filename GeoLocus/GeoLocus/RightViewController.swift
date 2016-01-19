@@ -36,4 +36,8 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
         
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
 }
