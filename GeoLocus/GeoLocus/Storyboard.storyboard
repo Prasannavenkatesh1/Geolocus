@@ -46,33 +46,12 @@
                     <view key="view" contentMode="scaleToFill" id="efh-nm-d15">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="needle0" translatesAutoresizingMaskIntoConstraints="NO" id="8xs-JP-gDf">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="105" y="211" width="115" height="34"/>
-                                </variation>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" red="0.14117647059999999" green="0.61568627450000002" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="8xs-JP-gDf"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="8xs-JP-gDf"/>
-                            </mask>
-                        </variation>
                     </view>
-                    <connections>
-                        <outlet property="needle" destination="8xs-JP-gDf" id="lvL-qt-2wg"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eF6-dj-zJH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3151.5" y="-177"/>
+            <point key="canvasLocation" x="3508.5" y="-199"/>
         </scene>
         <!--Right View Controller-->
         <scene sceneID="2C4-jk-GLl">
@@ -562,7 +541,4 @@
             <point key="canvasLocation" x="-39" y="-1195"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="needle0" width="306" height="93"/>
-    </resources>
 </document>
