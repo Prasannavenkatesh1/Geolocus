@@ -19,6 +19,9 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
 //    var autoButtonChange : NSString?
     
     override init() {
+      
+      let dbaction:DatabaseActions = DatabaseActions()
+      dbaction.tempsave()
         
         vAlert = "Enabled"
         globalAutoTrip = false
@@ -28,12 +31,15 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         setSettings = "0"
         iPhoneSize = "iPhone5"
 //        autoButtonChange = "Disabled"
+      
+      let det = NSLocalizedString("hello", comment: "hello comment")
+      print("qwqwq \(det)")
         
         print("Global Auto Trip : \(globalAutoTrip)")
         let settings : GeolocusDashboard = GeolocusDashboard()
         settings.setSettingsData()
         
-        var settingsData = settings.getSettingsData() as NSDictionary
+//        var settingsData = settings.getSettingsData() as NSDictionary
     }
   
     

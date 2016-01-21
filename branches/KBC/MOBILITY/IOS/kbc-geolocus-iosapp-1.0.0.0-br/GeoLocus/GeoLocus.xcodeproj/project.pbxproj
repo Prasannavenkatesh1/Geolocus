@@ -201,10 +201,13 @@
 		A6D52F881B6F454900855DDB /* TripSummaryDB.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D52F871B6F454900855DDB /* TripSummaryDB.m */; };
 		A6DB81441B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DB81431B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m */; };
 		A6DB81471B7346AF008D3F33 /* DASHBOARD_PARAMETER.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DB81461B7346AF008D3F33 /* DASHBOARD_PARAMETER.m */; };
+		BF4E0D581C4F756700BF53FB /* Trip_timeseries+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4E0D561C4F756700BF53FB /* Trip_timeseries+CoreDataProperties.swift */; };
+		BF4E0D591C4F756700BF53FB /* Trip_timeseries.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4E0D571C4F756700BF53FB /* Trip_timeseries.swift */; };
 		BF4F8D981C43845000895640 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D971C43845000895640 /* CategoryCell.swift */; };
 		BF4F8D9A1C43CA8D00895640 /* Httpclient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D991C43CA8D00895640 /* Httpclient.swift */; };
 		BF4F8D9C1C43CA9D00895640 /* DatabaseActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */; };
 		BF5D3AAD1C4E1E3000DDFDC1 /* Datausage.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */; };
+		BF5D3AB51C4E4F6500DDFDC1 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF5D3AB71C4E4F6500DDFDC1 /* Localized.strings */; };
 		BF7336FD1C3F929A006094C0 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF7336FC1C3F929A006094C0 /* Storyboard.storyboard */; };
 		BF7337021C3F9387006094C0 /* FacadeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7337011C3F9387006094C0 /* FacadeLayer.swift */; };
 		BF7337081C3F94A1006094C0 /* Geomodel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF7337061C3F94A1006094C0 /* Geomodel.xcdatamodeld */; };
@@ -470,11 +473,17 @@
 		A6DB81431B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRIP_SUMMARY_COLLECTDATA.m; sourceTree = "<group>"; };
 		A6DB81451B7346AF008D3F33 /* DASHBOARD_PARAMETER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DASHBOARD_PARAMETER.h; sourceTree = "<group>"; };
 		A6DB81461B7346AF008D3F33 /* DASHBOARD_PARAMETER.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DASHBOARD_PARAMETER.m; sourceTree = "<group>"; };
+		BF4E0D561C4F756700BF53FB /* Trip_timeseries+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Trip_timeseries+CoreDataProperties.swift"; path = "../Trip_timeseries+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BF4E0D571C4F756700BF53FB /* Trip_timeseries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Trip_timeseries.swift; path = ../Trip_timeseries.swift; sourceTree = "<group>"; };
 		BF4F8D971C43845000895640 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		BF4F8D991C43CA8D00895640 /* Httpclient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Httpclient.swift; sourceTree = "<group>"; };
 		BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseActions.swift; sourceTree = "<group>"; };
 		BF5D3AAB1C4E1E3000DDFDC1 /* Datausage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Datausage.h; sourceTree = "<group>"; };
 		BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Datausage.m; sourceTree = "<group>"; };
+		BF5D3AB11C4E4E9600DDFDC1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		BF5D3AB21C4E4E9600DDFDC1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main4s.strings; sourceTree = "<group>"; };
+		BF5D3AB61C4E4F6500DDFDC1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localized.strings; sourceTree = "<group>"; };
+		BF5D3AB81C4E4F7200DDFDC1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localized.strings; sourceTree = "<group>"; };
 		BF7336FC1C3F929A006094C0 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		BF7337011C3F9387006094C0 /* FacadeLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacadeLayer.swift; sourceTree = "<group>"; };
 		BF7337071C3F94A1006094C0 /* Geomodel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Geomodel.xcdatamodel; sourceTree = "<group>"; };
@@ -892,6 +901,15 @@
 			name = "External frameworks";
 			sourceTree = "<group>";
 		};
+		BF4E0D391C4F701E00BF53FB /* DBModels */ = {
+			isa = PBXGroup;
+			children = (
+				BF4E0D561C4F756700BF53FB /* Trip_timeseries+CoreDataProperties.swift */,
+				BF4E0D571C4F756700BF53FB /* Trip_timeseries.swift */,
+			);
+			name = DBModels;
+			sourceTree = "<group>";
+		};
 		BF4F8D961C43840500895640 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -930,6 +948,7 @@
 		BF7336F81C3F9243006094C0 /* New */ = {
 			isa = PBXGroup;
 			children = (
+				BF5D3AB71C4E4F6500DDFDC1 /* Localized.strings */,
 				6C03B5C71C4CF16C00C938C6 /* External frameworks */,
 				63C2094E1B0B0BF8009DF880 /* AppDelegateSwift.swift */,
 				BF7336F91C3F9250006094C0 /* Model */,
@@ -984,6 +1003,7 @@
 		BF7336FE1C3F92BC006094C0 /* DatabaseActions */ = {
 			isa = PBXGroup;
 			children = (
+				BF4E0D391C4F701E00BF53FB /* DBModels */,
 				BF7337061C3F94A1006094C0 /* Geomodel.xcdatamodeld */,
 				BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */,
 			);
@@ -1075,6 +1095,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 635194681AD3AAC6002ED1D0;
 			productRefGroup = 635194721AD3AAC7002ED1D0 /* Products */;
@@ -1161,6 +1182,7 @@
 				63955CAB1AD7D244006A1B04 /* jquery-ui.js in Resources */,
 				633764E21AE53DE9005D6597 /* Roboto-Black.ttf in Resources */,
 				63B554461B4A8477007B4434 /* LBCustomCellPh6.xib in Resources */,
+				BF5D3AB51C4E4F6500DDFDC1 /* Localized.strings in Resources */,
 				6352C4201AD694A500E11D3A /* emergency_repair.png in Resources */,
 				63955C871AD7A581006A1B04 /* TimeIndicator.html in Resources */,
 				6352C42D1AD694A500E11D3A /* ic_user.png in Resources */,
@@ -1265,6 +1287,7 @@
 				63D086AF1B0478B700BDD656 /* HeadphonesDetector.m in Sources */,
 				6384523A1B0353AE00E895F7 /* DashboardController.m in Sources */,
 				63A0FE791AFA377E00EE7C46 /* LastTripViewController.swift in Sources */,
+				BF4E0D591C4F756700BF53FB /* Trip_timeseries.swift in Sources */,
 				A68F05B31B147A73003D1D22 /* SettingsCustomCell.swift in Sources */,
 				BF73374D1C3FC278006094C0 /* ContractPage.swift in Sources */,
 				6389B2551B1C9AA600F2A18C /* SchedularViewController.m in Sources */,
@@ -1282,6 +1305,7 @@
 				638451F61B0353A000E895F7 /* CoreLocationController.m in Sources */,
 				638451EF1B0353A000E895F7 /* FMDatabase.m in Sources */,
 				63AAE5D31AE90C470013987F /* EmergencyViewController.swift in Sources */,
+				BF4E0D581C4F756700BF53FB /* Trip_timeseries+CoreDataProperties.swift in Sources */,
 				6384523E1B0353AE00E895F7 /* GeolocusDashboard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1309,6 +1333,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				6351947B1AD3AAC7002ED1D0 /* Base */,
+				BF5D3AB11C4E4E9600DDFDC1 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1325,8 +1350,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				A6C6C2471B1869C200C9C470 /* Base */,
+				BF5D3AB21C4E4E9600DDFDC1 /* fr */,
 			);
 			name = Main4s.storyboard;
+			sourceTree = "<group>";
+		};
+		BF5D3AB71C4E4F6500DDFDC1 /* Localized.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF5D3AB61C4E4F6500DDFDC1 /* en */,
+				BF5D3AB81C4E4F7200DDFDC1 /* fr */,
+			);
+			name = Localized.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
