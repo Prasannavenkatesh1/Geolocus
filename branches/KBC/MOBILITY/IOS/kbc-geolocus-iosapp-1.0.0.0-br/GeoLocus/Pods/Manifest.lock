@@ -1,0 +1,21 @@
+PODS:
+  - Alamofire (3.1.5)
+  - Charts (2.1.6)
+  - SDWebImage (3.7.4):
+    - SDWebImage/Core (= 3.7.4)
+  - SDWebImage/Core (3.7.4)
+  - TextFieldEffects (1.1.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.0)
+  - Charts
+  - SDWebImage (~> 3.7)
+  - TextFieldEffects
+
+SPEC CHECKSUMS:
+  Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
+  Charts: 5e1e5ac23898e5b09d226a2fc3e9d86bc281937e
+  SDWebImage: 247edd7dd80dd6124197b0d6a17846fe9d1df968
+  TextFieldEffects: 8e43fea8836e97be80fc4db27a1596c9e98a26ba
+
+COCOAPODS: 0.39.0
