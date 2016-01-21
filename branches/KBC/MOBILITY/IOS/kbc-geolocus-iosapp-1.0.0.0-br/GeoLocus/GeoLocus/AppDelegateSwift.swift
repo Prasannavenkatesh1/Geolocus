@@ -20,9 +20,16 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     
     override init() {
       
-      let dbaction:DatabaseActions = DatabaseActions()
-      dbaction.tempsave()
-        
+      let tseries:Timeseries = Timeseries.init(ctime: "10",
+        lat: 101,
+        longt: 102,
+        speedval: 103,
+        tzone: "IST",
+        iseventval: 1,
+        evetype: 2,
+        eveval: 3)
+      FacadeLayer.sharedinstance.dbactions.tempsave(tseries)
+      
         vAlert = "Enabled"
         globalAutoTrip = false
         speedLimit = 0.0
