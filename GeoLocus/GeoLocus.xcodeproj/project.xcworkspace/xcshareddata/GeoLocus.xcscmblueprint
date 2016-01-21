@@ -1,0 +1,25 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "de9f4c7e-3401-0010-9731-c9be0b0bd99b++4398",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "de9f4c7e-3401-0010-9731-c9be0b0bd99b++4398" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "de9f4c7e-3401-0010-9731-c9be0b0bd99b++4398" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "68F58AEA-982A-4F40-A7CD-5D6C6A7D2BA3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "de9f4c7e-3401-0010-9731-c9be0b0bd99b++4398" : "kbc-geolocus-iosapp-1.0.0.0-br\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "GeoLocus",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "GeoLocus\/GeoLocus.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/c2p.cognizant.com\/repository\/KG-INS-ISG-Offshore",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "de9f4c7e-3401-0010-9731-c9be0b0bd99b++4398"
+    }
+  ]
+}

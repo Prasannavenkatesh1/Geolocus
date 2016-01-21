@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>68F58AEA-982A-4F40-A7CD-5D6C6A7D2BA3</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>de9f4c7e-3401-0010-9731-c9be0b0bd99b++4398</key>
+		<string>https://c2p.cognizant.com/repository/KG-INS-ISG-Offshore/branches/KBC/MOBILITY/IOS/kbc-geolocus-iosapp-1.0.0.0-br</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>GeoLocus/GeoLocus.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>de9f4c7e-3401-0010-9731-c9be0b0bd99b++4398</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>de9f4c7e-3401-0010-9731-c9be0b0bd99b++4398</key>
+		<string>https://c2p.cognizant.com/repository/KG-INS-ISG-Offshore</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://c2p.cognizant.com/repository/KG-INS-ISG-Offshore/branches/KBC/MOBILITY/IOS/kbc-geolocus-iosapp-1.0.0.0-br/GeoLocus/GeoLocus.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>de9f4c7e-3401-0010-9731-c9be0b0bd99b++4398</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>de9f4c7e-3401-0010-9731-c9be0b0bd99b++4398</string>
+			<key>IDESourceControlWCCName</key>
+			<string>kbc-geolocus-iosapp-1.0.0.0-br</string>
+		</dict>
+	</array>
+</dict>
+</plist>
