@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DashboardPage: UIViewController {
+ class DashboardPage: UIViewController {
 
     @IBOutlet var needle: UIImageView!
     override func viewDidLoad() {

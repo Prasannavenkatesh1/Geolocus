@@ -17,7 +17,5 @@ class BadgesViewController: UIViewController {
         let navigationView = UINavigationController(rootViewController: rootView)
         self.revealViewController().setFrontViewController(navigationView, animated: true)
          
-        
-    
     }
 }
