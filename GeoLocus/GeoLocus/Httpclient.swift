@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import Alamofire
 
 class Httpclient: NSObject {
 
@@ -16,6 +17,9 @@ class Httpclient: NSObject {
   
   }
 */
+  func tmp() {
+//  Alamofire.request(<#T##method: Method##Method#>, <#T##URLString: URLStringConvertible##URLStringConvertible#>)
+  }
   
   
 }

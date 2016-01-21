@@ -82,8 +82,9 @@ class DatabaseActions: NSObject {
   
   func tempsave(){
     let timeseries = NSEntityDescription.insertNewObjectForEntityForName("Trip_timeseries",inManagedObjectContext: self.managedObjectContext) as! Trip_timeseries
-   timeseries.acceleration = 101
-    timeseries.breaking = 101
+    timeseries.isEvent = 0
+    timeseries.eventtype = 0
+    timeseries.eventvalue = 1000
     timeseries.speed = 101
     timeseries.latitude = 101
     timeseries.longitude = 101
