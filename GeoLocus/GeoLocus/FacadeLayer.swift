@@ -8,8 +8,14 @@
 
 import UIKit
 
-class FacadeLayer: NSObject {
-    
-    var currentIndex: Int?
+class FacadeLayer{
+  
+  static let sharedinstance = FacadeLayer()
+  var dbactions:DatabaseActions
+  
+  init(){
+    dbactions = DatabaseActions()
+    print(__FUNCTION__)
+  }
 
 }

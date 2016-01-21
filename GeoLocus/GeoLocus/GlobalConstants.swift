@@ -65,3 +65,25 @@ struct Path {
     
 }
 
+struct Timeseries {
+   var currenttime: String
+   var latitude: NSNumber
+   var longitude: NSNumber
+   var speed: NSNumber
+   var timezone: String
+   var isEvent: NSNumber
+   var eventtype: NSNumber
+   var eventvalue: NSNumber
+  
+  init(ctime:String, lat:NSNumber, longt:NSNumber, speedval:NSNumber, tzone:String, iseventval:NSNumber, evetype:NSNumber, eveval:NSNumber){
+    self.currenttime = ctime
+    self.latitude = lat
+    self.longitude = longt
+    self.speed = speedval
+    self.timezone = tzone
+    self.isEvent = iseventval
+    self.eventtype = evetype
+    self.eventvalue = eveval
+  }
+}
+
