@@ -1,0 +1,177 @@
+
+/* Class = "UILabel"; text = "0"; ObjectID = "0EC-Ej-oAv"; */
+"0EC-Ej-oAv.text" = "0";
+
+/* Class = "UILabel"; text = "DISTANCE DRIVEN"; ObjectID = "17q-zH-pct"; */
+"17q-zH-pct.text" = "DISTANCE DRIVEN";
+
+/* Class = "UINavigationItem"; title = "GeoLocus Login"; ObjectID = "3Ie-63-hpC"; */
+"3Ie-63-hpC.title" = "GeoLocus Login";
+
+/* Class = "UINavigationItem"; title = "Last Trip"; ObjectID = "4nX-Tl-QeQ"; */
+"4nX-Tl-QeQ.title" = "Last Trip";
+
+/* Class = "UINavigationItem"; title = "Emergency"; ObjectID = "5eY-y0-GI5"; */
+"5eY-y0-GI5.title" = "Emergency";
+
+/* Class = "UILabel"; text = "11"; ObjectID = "7Rf-aj-dmP"; */
+"7Rf-aj-dmP.text" = "11";
+
+/* Class = "UILabel"; text = "POINTS"; ObjectID = "87N-Ks-zPn"; */
+"87N-Ks-zPn.text" = "POINTS";
+
+/* Class = "UIButton"; normalTitle = "Sign In"; ObjectID = "8Bo-mp-fQJ"; */
+"8Bo-mp-fQJ.normalTitle" = "Sign In";
+
+/* Class = "UILabel"; text = "SCORE"; ObjectID = "9Pm-Eq-79B"; */
+"9Pm-Eq-79B.text" = "SCORE";
+
+/* Class = "UILabel"; text = "Process Date"; ObjectID = "9is-07-Rur"; */
+"9is-07-Rur.text" = "Process Date";
+
+/* Class = "UILabel"; text = "Still 1625 points to reach intermediate level"; ObjectID = "CQa-16-5xc"; */
+"CQa-16-5xc.text" = "Still 1625 points to reach intermediate level";
+
+/* Class = "UILabel"; text = "KM"; ObjectID = "CRk-56-5jw"; */
+"CRk-56-5jw.text" = "KM";
+
+/* Class = "UITextView"; text = "Your Mobile Usage while Driving slightly increasing in recent trips, Avoid Mobile Usage while Driving not only improves your Overall Score but also avoids accident"; ObjectID = "EQ8-uB-aob"; */
+"EQ8-uB-aob.text" = "Your Mobile Usage while Driving slightly increasing in recent trips, Avoid Mobile Usage while Driving not only improves your Overall Score but also avoids accident";
+
+/* Class = "UINavigationItem"; title = "Dashboard"; ObjectID = "Es8-qk-Qlk"; */
+"Es8-qk-Qlk.title" = "Dashboard";
+
+/* Class = "UILabel"; text = "Outgoing"; ObjectID = "Fls-qs-0la"; */
+"Fls-qs-0la.text" = "Outgoing";
+
+/* Class = "UIViewController"; title = "Dashboard Page"; ObjectID = "Hqf-PD-e0X"; */
+"Hqf-PD-e0X.title" = "Dashboard Page";
+
+/* Class = "UIViewController"; title = "Emergency Page"; ObjectID = "Jf6-jJ-3Fh"; */
+"Jf6-jJ-3Fh.title" = "Emergency Page";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "Jvj-IJ-Yjm"; */
+"Jvj-IJ-Yjm.placeholder" = "Email";
+
+/* Class = "UILabel"; text = "Trip Duration (HH:MM:SS)"; ObjectID = "KJ2-67-Nnq"; */
+"KJ2-67-Nnq.text" = "Trip Duration (HH:MM:SS)";
+
+/* Class = "UITextField"; text = "0"; ObjectID = "KJE-9b-Hyr"; */
+"KJE-9b-Hyr.text" = "0";
+
+/* Class = "UITextField"; text = "0"; ObjectID = "KhW-fQ-igk"; */
+"KhW-fQ-igk.text" = "0";
+
+/* Class = "UITextField"; text = "0.0"; ObjectID = "L6D-Ls-u08"; */
+"L6D-Ls-u08.text" = "0.0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "L86-RP-Zyt"; */
+"L86-RP-Zyt.text" = "0";
+
+/* Class = "UINavigationItem"; title = "Dashboard"; ObjectID = "MlB-IX-XMN"; */
+"MlB-IX-XMN.title" = "Dashboard";
+
+/* Class = "UILabel"; text = "00:00:00"; ObjectID = "NlY-wv-vqs"; */
+"NlY-wv-vqs.text" = "00:00:00";
+
+/* Class = "UILabel"; text = "Your Rank"; ObjectID = "OVT-Re-jXI"; */
+"OVT-Re-jXI.text" = "Your Rank";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "Q0H-2j-Cdr"; */
+"Q0H-2j-Cdr.title" = "Settings";
+
+/* Class = "UILabel"; text = "33"; ObjectID = "RdB-Wt-Gar"; */
+"RdB-Wt-Gar.text" = "33";
+
+/* Class = "UILabel"; text = "Incoming"; ObjectID = "SEW-pP-efd"; */
+"SEW-pP-efd.text" = "Incoming";
+
+/* Class = "UILabel"; text = "Speeding"; ObjectID = "SRq-Nw-CnO"; */
+"SRq-Nw-CnO.text" = "Speeding";
+
+/* Class = "UILabel"; text = "22"; ObjectID = "V1s-Wk-hWU"; */
+"V1s-Wk-hWU.text" = "22";
+
+/* Class = "UINavigationItem"; title = "Map"; ObjectID = "Vca-cA-hnU"; */
+"Vca-cA-hnU.title" = "Map";
+
+/* Class = "UILabel"; text = "Customer Settings"; ObjectID = "XNX-YS-Q8H"; */
+"XNX-YS-Q8H.text" = "Customer Settings";
+
+/* Class = "UILabel"; text = "Distance Covered"; ObjectID = "YLL-Gj-lne"; */
+"YLL-Gj-lne.text" = "Distance Covered";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "YTB-DE-GVD"; */
+"YTB-DE-GVD.placeholder" = "Password";
+
+/* Class = "UIViewController"; title = "Login Page"; ObjectID = "YbS-kk-Te7"; */
+"YbS-kk-Te7.title" = "Login Page";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Yuj-Hj-B9M"; */
+"Yuj-Hj-B9M.text" = "0";
+
+/* Class = "UILabel"; text = "Lap"; ObjectID = "ZTi-Qa-74d"; */
+"ZTi-Qa-74d.text" = "Lap";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "bia-9T-YDM"; */
+"bia-9T-YDM.text" = "Location";
+
+/* Class = "UILabel"; text = "Distance Driven"; ObjectID = "ceb-e8-bl3"; */
+"ceb-e8-bl3.text" = "Distance Driven";
+
+/* Class = "UILabel"; text = "Braking"; ObjectID = "feb-oa-JYd"; */
+"feb-oa-JYd.text" = "Braking";
+
+/* Class = "UIViewController"; title = "Leader Board Page"; ObjectID = "jCN-BT-Ia0"; */
+"jCN-BT-Ia0.title" = "Leader Board Page";
+
+/* Class = "UILabel"; text = "KM"; ObjectID = "k8h-oN-dcx"; */
+"k8h-oN-dcx.text" = "KM";
+
+/* Class = "UILabel"; text = "BEGINNER LEVEL"; ObjectID = "kNp-Zb-eHQ"; */
+"kNp-Zb-eHQ.text" = "BEGINNER LEVEL";
+
+/* Class = "UIViewController"; title = "Last Trip Page"; ObjectID = "l9C-fp-Gjo"; */
+"l9C-fp-Gjo.title" = "Last Trip Page";
+
+/* Class = "UITextField"; text = "0"; ObjectID = "lsQ-vM-aKR"; */
+"lsQ-vM-aKR.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "nfo-Eb-iIq"; */
+"nfo-Eb-iIq.normalTitle" = "Start";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "o2S-9g-zHq"; */
+"o2S-9g-zHq.text" = "0";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "oq2-xV-wDc"; */
+"oq2-xV-wDc.text" = "0";
+
+/* Class = "UIViewController"; title = "Settings Page"; ObjectID = "pVc-gc-D6J"; */
+"pVc-gc-D6J.title" = "Settings Page";
+
+/* Class = "UIViewController"; title = "Score Page"; ObjectID = "poa-21-tGs"; */
+"poa-21-tGs.title" = "Score Page";
+
+/* Class = "UILabel"; text = "Total Distance"; ObjectID = "pvq-MQ-8M6"; */
+"pvq-MQ-8M6.text" = "Total Distance";
+
+/* Class = "UILabel"; text = "Rank"; ObjectID = "qsP-XO-4XE"; */
+"qsP-XO-4XE.text" = "Rank";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "rRy-qo-at3"; */
+"rRy-qo-at3.title" = "Back";
+
+/* Class = "UILabel"; text = "Acceleration"; ObjectID = "rgg-XQ-p6W"; */
+"rgg-XQ-p6W.text" = "Acceleration";
+
+/* Class = "UINavigationItem"; title = "Score Page"; ObjectID = "t11-4L-dMz"; */
+"t11-4L-dMz.title" = "Score Page";
+
+/* Class = "UIButton"; normalTitle = "Back"; ObjectID = "t6U-dK-FNZ"; */
+"t6U-dK-FNZ.normalTitle" = "Back";
+
+/* Class = "UINavigationItem"; title = "Leader Board"; ObjectID = "tI8-DJ-oOL"; */
+"tI8-DJ-oOL.title" = "Leader Board";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "u9Y-1b-Q1p"; */
+"u9Y-1b-Q1p.text" = "0";

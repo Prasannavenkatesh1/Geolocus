@@ -27,10 +27,15 @@ class DashBoardView: UIViewController {
     var token : String?
     var accountId : String?
     var accountCode : String?
+  
+ 
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
+     
+      
         //Navigation Bar
         DashBoardNav.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         
