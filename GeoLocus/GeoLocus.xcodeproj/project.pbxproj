@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A9D9F90C552EA717EE57041 /* Pods_GeoLocus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44319C4E7A14E359CCBE50F0 /* Pods_GeoLocus.framework */; };
 		63014BB01B15C5290022FCC6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63014BAF1B15C5290022FCC6 /* AppDelegate.m */; };
 		6304FC1C1AD54B0D00734AEF /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6304FC1B1AD54B0D00734AEF /* DashboardViewController.swift */; };
 		63061B511BA03CD3006BF223 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63061B501BA03CD3006BF223 /* MapView.swift */; };
@@ -230,6 +231,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10F13FC629960E9EB8E54E0C /* Pods-GeoLocus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoLocus.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus.release.xcconfig"; sourceTree = "<group>"; };
+		44319C4E7A14E359CCBE50F0 /* Pods_GeoLocus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoLocus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63014BAE1B15C5290022FCC6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		63014BAF1B15C5290022FCC6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		6304FC1B1AD54B0D00734AEF /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -473,6 +476,7 @@
 		A6DB81431B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRIP_SUMMARY_COLLECTDATA.m; sourceTree = "<group>"; };
 		A6DB81451B7346AF008D3F33 /* DASHBOARD_PARAMETER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DASHBOARD_PARAMETER.h; sourceTree = "<group>"; };
 		A6DB81461B7346AF008D3F33 /* DASHBOARD_PARAMETER.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DASHBOARD_PARAMETER.m; sourceTree = "<group>"; };
+		AA7811FEA1962DE3E4724EB8 /* Pods-GeoLocus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoLocus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus.debug.xcconfig"; sourceTree = "<group>"; };
 		BF4E0D561C4F756700BF53FB /* Trip_timeseries+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Trip_timeseries+CoreDataProperties.swift"; path = "../Trip_timeseries+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BF4E0D571C4F756700BF53FB /* Trip_timeseries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Trip_timeseries.swift; path = ../Trip_timeseries.swift; sourceTree = "<group>"; };
 		BF4F8D971C43845000895640 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
@@ -532,6 +536,7 @@
 				635194CD1AD3D4CC002ED1D0 /* QuartzCore.framework in Frameworks */,
 				635194CE1AD3D4CC002ED1D0 /* SystemConfiguration.framework in Frameworks */,
 				635194CF1AD3D4CC002ED1D0 /* UIKit.framework in Frameworks */,
+				0A9D9F90C552EA717EE57041 /* Pods_GeoLocus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,6 +580,7 @@
 				635194891AD3AAC7002ED1D0 /* GeoLocusTests */,
 				635194721AD3AAC7002ED1D0 /* Products */,
 				6384524A1B03547900E895F7 /* Supporting Files */,
+				7BE7DB25C02160633E313C7C /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -648,6 +654,7 @@
 				635194B11AD3D4CC002ED1D0 /* QuartzCore.framework */,
 				635194B21AD3D4CC002ED1D0 /* SystemConfiguration.framework */,
 				635194B31AD3D4CC002ED1D0 /* UIKit.framework */,
+				44319C4E7A14E359CCBE50F0 /* Pods_GeoLocus.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -901,6 +908,15 @@
 			name = "External frameworks";
 			sourceTree = "<group>";
 		};
+		7BE7DB25C02160633E313C7C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AA7811FEA1962DE3E4724EB8 /* Pods-GeoLocus.debug.xcconfig */,
+				10F13FC629960E9EB8E54E0C /* Pods-GeoLocus.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BF4E0D391C4F701E00BF53FB /* DBModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -1035,9 +1051,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 635194901AD3AAC7002ED1D0 /* Build configuration list for PBXNativeTarget "GeoLocus" */;
 			buildPhases = (
+				9AD36CB7911583CAAB11C8FD /* Check Pods Manifest.lock */,
 				6351946D1AD3AAC7002ED1D0 /* Sources */,
 				6351946E1AD3AAC7002ED1D0 /* Frameworks */,
 				6351946F1AD3AAC7002ED1D0 /* Resources */,
+				081C610416C170EC300EE004 /* Embed Pods Frameworks */,
+				F01764DC08C11E3D371882F2 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1223,6 +1242,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		081C610416C170EC300EE004 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9AD36CB7911583CAAB11C8FD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F01764DC08C11E3D371882F2 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6351946D1AD3AAC7002ED1D0 /* Sources */ = {
@@ -1460,6 +1527,7 @@
 		};
 		635194911AD3AAC7002ED1D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA7811FEA1962DE3E4724EB8 /* Pods-GeoLocus.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1483,6 +1551,7 @@
 		};
 		635194921AD3AAC7002ED1D0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 10F13FC629960E9EB8E54E0C /* Pods-GeoLocus.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
