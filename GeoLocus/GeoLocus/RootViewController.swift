@@ -74,4 +74,22 @@ class RootViewController: UIViewController {
 
   }
 
+    @IBAction func pushToNotificationScreen(sender: AnyObject) {
+        
+        print("got it")
+        //        let notificationViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("NotificationIdentifier"))! as UIViewController
+        //        self.navigationController?.pushViewController(notificationViewController, animated: true)
+        
+        self.performSegueWithIdentifier("Notificationsegue", sender: self);
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "Notificationsegue") {
+            // pass data to next view
+            let notify:NotificationViewController = segue.destinationViewController as! NotificationViewController
+            //notify.razorSharpTeeth
+        }
+        
+    }
 }
