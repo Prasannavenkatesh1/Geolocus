@@ -202,6 +202,8 @@
 		A6D52F881B6F454900855DDB /* TripSummaryDB.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D52F871B6F454900855DDB /* TripSummaryDB.m */; };
 		A6DB81441B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DB81431B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m */; };
 		A6DB81471B7346AF008D3F33 /* DASHBOARD_PARAMETER.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DB81461B7346AF008D3F33 /* DASHBOARD_PARAMETER.m */; };
+		B63F53ED1C51EAFA0070002E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63F53EB1C51EAFA0070002E /* LoginViewController.swift */; };
+		B63F53EE1C51EAFA0070002E /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63F53EC1C51EAFA0070002E /* LanguageSelectionViewController.swift */; };
 		BF4E0D581C4F756700BF53FB /* Trip_timeseries+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4E0D561C4F756700BF53FB /* Trip_timeseries+CoreDataProperties.swift */; };
 		BF4E0D591C4F756700BF53FB /* Trip_timeseries.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4E0D571C4F756700BF53FB /* Trip_timeseries.swift */; };
 		BF4F8D981C43845000895640 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D971C43845000895640 /* CategoryCell.swift */; };
@@ -477,6 +479,8 @@
 		A6DB81451B7346AF008D3F33 /* DASHBOARD_PARAMETER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DASHBOARD_PARAMETER.h; sourceTree = "<group>"; };
 		A6DB81461B7346AF008D3F33 /* DASHBOARD_PARAMETER.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DASHBOARD_PARAMETER.m; sourceTree = "<group>"; };
 		AA7811FEA1962DE3E4724EB8 /* Pods-GeoLocus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoLocus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus.debug.xcconfig"; sourceTree = "<group>"; };
+		B63F53EB1C51EAFA0070002E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B63F53EC1C51EAFA0070002E /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
 		BF4E0D561C4F756700BF53FB /* Trip_timeseries+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Trip_timeseries+CoreDataProperties.swift"; path = "../Trip_timeseries+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BF4E0D571C4F756700BF53FB /* Trip_timeseries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Trip_timeseries.swift; path = ../Trip_timeseries.swift; sourceTree = "<group>"; };
 		BF4F8D971C43845000895640 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
@@ -1012,6 +1016,8 @@
 				6CCAF9091C4E064D00484056 /* TermsAndConditionViewController.swift */,
 				6CCAF90B1C4E0A7B00484056 /* RightViewController.swift */,
 				6CEAF3241C4FBB2100F13379 /* ArcGraphicsController.swift */,
+				B63F53EB1C51EAFA0070002E /* LoginViewController.swift */,
+				B63F53EC1C51EAFA0070002E /* LanguageSelectionViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1305,6 +1311,7 @@
 				A6DB81471B7346AF008D3F33 /* DASHBOARD_PARAMETER.m in Sources */,
 				A6DB81441B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m in Sources */,
 				6389B2531B1C9AA600F2A18C /* NetworkViewController.m in Sources */,
+				B63F53EE1C51EAFA0070002E /* LanguageSelectionViewController.swift in Sources */,
 				6384523C1B0353AE00E895F7 /* ScoringPageController.m in Sources */,
 				6389B24D1B1C9AA600F2A18C /* CollectionIntervalController.m in Sources */,
 				6CCAF9061C4E05A300484056 /* BadgesViewController.swift in Sources */,
@@ -1328,6 +1335,7 @@
 				635194791AD3AAC7002ED1D0 /* ViewController.swift in Sources */,
 				638451F31B0353A000E895F7 /* FMDatabaseQueue.m in Sources */,
 				6C03B5D61C4D025500C938C6 /* SWRevealViewController.m in Sources */,
+				B63F53ED1C51EAFA0070002E /* LoginViewController.swift in Sources */,
 				6304FC1C1AD54B0D00734AEF /* DashboardViewController.swift in Sources */,
 				63014BB01B15C5290022FCC6 /* AppDelegate.m in Sources */,
 				638452371B0353AE00E895F7 /* LeaderBoardController.m in Sources */,
