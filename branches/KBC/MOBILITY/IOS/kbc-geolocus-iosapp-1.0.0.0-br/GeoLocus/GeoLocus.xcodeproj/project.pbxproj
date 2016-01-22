@@ -220,6 +220,8 @@
 		BF73374F1C3FC29A006094C0 /* DashboardPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF73374E1C3FC29A006094C0 /* DashboardPage.swift */; };
 		BF7337511C3FC2AE006094C0 /* HistoryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7337501C3FC2AE006094C0 /* HistoryPage.swift */; };
 		BF7337531C3FC2BF006094C0 /* HistoryScorePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7337521C3FC2BF006094C0 /* HistoryScorePage.swift */; };
+		F55265641C522F3E002362F5 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55265631C522F3E002362F5 /* NotificationViewController.swift */; };
+		F55265661C522FD0002362F5 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55265651C522FD0002362F5 /* NotificationTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -501,6 +503,8 @@
 		BF73374E1C3FC29A006094C0 /* DashboardPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardPage.swift; sourceTree = "<group>"; };
 		BF7337501C3FC2AE006094C0 /* HistoryPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryPage.swift; sourceTree = "<group>"; };
 		BF7337521C3FC2BF006094C0 /* HistoryScorePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryScorePage.swift; sourceTree = "<group>"; };
+		F55265631C522F3E002362F5 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		F55265651C522FD0002362F5 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1018,6 +1022,8 @@
 				6CEAF3241C4FBB2100F13379 /* ArcGraphicsController.swift */,
 				B63F53EB1C51EAFA0070002E /* LoginViewController.swift */,
 				B63F53EC1C51EAFA0070002E /* LanguageSelectionViewController.swift */,
+				F55265631C522F3E002362F5 /* NotificationViewController.swift */,
+				F55265651C522FD0002362F5 /* NotificationTableViewCell.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1326,6 +1332,7 @@
 				BF4F8D9A1C43CA8D00895640 /* Httpclient.swift in Sources */,
 				6384522D1B0353AE00E895F7 /* ScoringEntity.m in Sources */,
 				638452381B0353AE00E895F7 /* GetQuoteController.m in Sources */,
+				F55265661C522FD0002362F5 /* NotificationTableViewCell.swift in Sources */,
 				BF7337081C3F94A1006094C0 /* Geomodel.xcdatamodeld in Sources */,
 				63A93D5E1B8B24A10081C526 /* arcProgressView.swift in Sources */,
 				638452341B0353AE00E895F7 /* TripSummaryDatabase.m in Sources */,
@@ -1352,6 +1359,7 @@
 				63B554481B4A8590007B4434 /* LBCustomCellPh6.swift in Sources */,
 				6384522F1B0353AE00E895F7 /* TripSummaryEntity.m in Sources */,
 				638452281B0353AE00E895F7 /* Reachability.m in Sources */,
+				F55265641C522F3E002362F5 /* NotificationViewController.swift in Sources */,
 				BF4F8D981C43845000895640 /* CategoryCell.swift in Sources */,
 				A6D52F771B6F381300855DDB /* GeoLocusModel.xcdatamodeld in Sources */,
 				BF7337021C3F9387006094C0 /* FacadeLayer.swift in Sources */,
