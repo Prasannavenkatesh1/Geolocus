@@ -67,23 +67,29 @@ class DatabaseActions: NSObject {
   private func saveManagedObjectContext() {
     do {
       try self.managedObjectContext.save()
-    
+      
+      var tb: UITableView = {
+        let gg:UITableView = UITableView()
+        gg.allowsMultipleSelection = true
+         return gg
+        
+      }()
     } catch {
       let saveError = error as NSError
       print("\(saveError), \(saveError.userInfo)")
     }
   }
   
-  func tempsave(tseries:Timeseries){
+  func tempsave(){
     let timeseries = NSEntityDescription.insertNewObjectForEntityForName("Trip_timeseries",inManagedObjectContext: self.managedObjectContext) as! Trip_timeseries
-    timeseries.isEvent = tseries.isEvent
-    timeseries.eventtype = tseries.eventtype
-    timeseries.eventvalue = tseries.eventvalue
-    timeseries.speed = tseries.speed
-    timeseries.latitude = tseries.latitude
-    timeseries.longitude = tseries.longitude
-    timeseries.timezone = tseries.timezone
-    timeseries.currenttime = tseries.currenttime
+//    timeseries.isEvent = 0
+//    timeseries.eventtype = 0
+    timeseries.eventvalue = 1000
+    timeseries.speed = 101
+    timeseries.latitude = 101
+    timeseries.longitude = 101
+    timeseries.timezone = "IST1"
+    timeseries.currenttime = "11113"
     
     do{
       try self.managedObjectContext.save()

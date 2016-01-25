@@ -28,8 +28,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         iseventval: 1,
         evetype: 2,
         eveval: 3)
-      FacadeLayer.sharedinstance.dbactions.tempsave(tseries)
-      
+//      FacadeLayer.sharedinstance.dbactions.tempsave(tseries)
+//      
         vAlert = "Enabled"
         globalAutoTrip = false
         speedLimit = 0.0
