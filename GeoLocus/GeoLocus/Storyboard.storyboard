@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CQm-hi-RzJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CQm-hi-RzJ">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -49,12 +49,24 @@
                     <view key="view" contentMode="scaleToFill" id="efh-nm-d15">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ij6-R8-zbg" customClass="ArcGraphicsController" customModule="GeoLocus" customModuleProvider="target">
+                                <rect key="frame" x="180" y="99" width="240" height="128"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColour">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="backgroundImage" value="FEZ-04-256.png"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="0.14117647059999999" green="0.61568627450000002" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eF6-dj-zJH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3508.5" y="-199"/>
+            <point key="canvasLocation" x="4506" y="-555"/>
         </scene>
         <!--Right View Controller-->
         <scene sceneID="2C4-jk-GLl">
@@ -509,7 +521,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="62R-Nk-Kas" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4279.5" y="-171.75"/>
+            <point key="canvasLocation" x="4777.5" y="-527.25"/>
         </scene>
         <!--Root Navigation Controller-->
         <scene sceneID="qid-4o-fk1">
@@ -1159,7 +1171,8 @@
                                                             <exclude reference="6zX-VT-uW8"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="18" y="36" width="48" height="48"/>
                                                         <mask key="constraints">
                                                             <include reference="6zX-VT-uW8"/>
                                                         </mask>
@@ -1171,6 +1184,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="93" y="20" width="139" height="21"/>
+                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/12/2015 Tuesday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="2In-4e-N8r">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -1179,7 +1195,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="125" y="49" width="267" height="21"/>
+                                                        <rect key="frame" x="93" y="49" width="139" height="16"/>
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you apply for a new insurance before 4/12/2015 you will get" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JmT-Pd-7yr">
@@ -1189,7 +1205,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="125" y="78" width="267" height="34"/>
+                                                        <rect key="frame" x="93" y="73" width="139" height="33"/>
                                                     </variation>
                                                 </label>
                                             </subviews>
@@ -1219,18 +1235,18 @@
                                                     <exclude reference="JmT-Pd-7yr"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="6pY-dQ-HbF"/>
-                                                    <exclude reference="fbJ-fz-qfv"/>
-                                                    <exclude reference="sfP-d3-z6z"/>
-                                                    <exclude reference="00G-0y-Mfv"/>
-                                                    <exclude reference="3YD-hb-tsu"/>
-                                                    <exclude reference="AHx-7R-OZ0"/>
                                                     <exclude reference="G3X-R6-ynw"/>
                                                     <exclude reference="dNs-Ok-TCD"/>
                                                     <exclude reference="puM-ix-JAh"/>
                                                     <exclude reference="5QX-4N-pT8"/>
                                                     <exclude reference="8uX-3t-74X"/>
                                                     <exclude reference="zHU-5R-dFS"/>
+                                                    <exclude reference="00G-0y-Mfv"/>
+                                                    <exclude reference="3YD-hb-tsu"/>
+                                                    <exclude reference="AHx-7R-OZ0"/>
+                                                    <exclude reference="6pY-dQ-HbF"/>
+                                                    <exclude reference="fbJ-fz-qfv"/>
+                                                    <exclude reference="sfP-d3-z6z"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -1241,18 +1257,18 @@
                                                     <include reference="JmT-Pd-7yr"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="6pY-dQ-HbF"/>
-                                                    <include reference="fbJ-fz-qfv"/>
-                                                    <include reference="sfP-d3-z6z"/>
-                                                    <include reference="00G-0y-Mfv"/>
-                                                    <include reference="3YD-hb-tsu"/>
-                                                    <include reference="AHx-7R-OZ0"/>
                                                     <include reference="G3X-R6-ynw"/>
                                                     <include reference="dNs-Ok-TCD"/>
                                                     <include reference="puM-ix-JAh"/>
                                                     <include reference="5QX-4N-pT8"/>
                                                     <include reference="8uX-3t-74X"/>
                                                     <include reference="zHU-5R-dFS"/>
+                                                    <include reference="00G-0y-Mfv"/>
+                                                    <include reference="3YD-hb-tsu"/>
+                                                    <include reference="AHx-7R-OZ0"/>
+                                                    <include reference="6pY-dQ-HbF"/>
+                                                    <include reference="fbJ-fz-qfv"/>
+                                                    <include reference="sfP-d3-z6z"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -1276,10 +1292,10 @@
                                 <exclude reference="7eg-uT-sjX"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="a1b-yv-yOA"/>
                                 <exclude reference="2o3-mh-li6"/>
                                 <exclude reference="ieI-iI-kRb"/>
                                 <exclude reference="jSt-Wg-im5"/>
-                                <exclude reference="a1b-yv-yOA"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -1287,10 +1303,10 @@
                                 <include reference="7eg-uT-sjX"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="a1b-yv-yOA"/>
                                 <include reference="2o3-mh-li6"/>
                                 <include reference="ieI-iI-kRb"/>
                                 <include reference="jSt-Wg-im5"/>
-                                <include reference="a1b-yv-yOA"/>
                             </mask>
                         </variation>
                     </view>
@@ -1301,6 +1317,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="FEZ-04-256.png" width="256" height="256"/>
         <image name="Selected.png" width="249" height="299"/>
     </resources>
 </document>
