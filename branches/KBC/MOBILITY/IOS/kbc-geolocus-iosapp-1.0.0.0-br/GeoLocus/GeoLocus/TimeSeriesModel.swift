@@ -1,14 +1,14 @@
 //
-//  Timeseries.swift
+//  TimeSeriesModel.swift
 //  GeoLocus
 //
-//  Created by Wearables Mac Mini on 25/01/16.
+//  Created by Wearables Mac Mini on 27/01/16.
 //  Copyright © 2016 Cognizant. All rights reserved.
 //
 
 import Foundation
 
-struct Timeseries {
+struct TimeSeriesModel {
   let currenttime: String
   let latitude: NSNumber
   let longitude: NSNumber

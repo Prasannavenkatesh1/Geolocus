@@ -80,16 +80,16 @@ class DatabaseActions: NSObject {
     }
   }
   
-  func tempsave(){
+  func tempsave(timeseriesmodel:TimeSeriesModel){
     let timeseries = NSEntityDescription.insertNewObjectForEntityForName("Trip_timeseries",inManagedObjectContext: self.managedObjectContext) as! Trip_timeseries
-//    timeseries.isEvent = 0
-//    timeseries.eventtype = 0
-    timeseries.eventvalue = 1000
-    timeseries.speed = 101
-    timeseries.latitude = 101
-    timeseries.longitude = 101
-    timeseries.timezone = "IST1"
-    timeseries.currenttime = "11113"
+    timeseries.isEvent = timeseriesmodel.isEvent
+    timeseries.eventtype = timeseriesmodel.eventtype
+    timeseries.eventvalue = timeseriesmodel.eventvalue
+    timeseries.speed = timeseriesmodel.speed
+    timeseries.latitude = timeseriesmodel.latitude
+    timeseries.longitude = timeseriesmodel.longitude
+    timeseries.timezone = timeseriesmodel.timezone
+    timeseries.currenttime = timeseriesmodel.currenttime
     
     do{
       try self.managedObjectContext.save()

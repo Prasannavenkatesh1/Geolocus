@@ -593,11 +593,6 @@ NSString *headingDirection = nil;
     
 //        [dataCollectDb close];
     
-    /*
-     
-     
-     
-     */
     
     
     NSString *str = [NSString stringWithFormat:@"Latitude: %@   Logitude: %@   Speed: %.2f   Timestamp: %@   Acceleration: %.2f   Braking: %.2f \r\n",latitude,longitude,newLocation.speed*3.6f,newLocation.timestamp,acceleration,brakingValue];

@@ -17,6 +17,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   var brakAlert:Bool!
   var acclAlert:Bool!
   var fltDistanceTravelled,distance:Double!
+  var creationTime:Double!
   
   func initLocationManager() {
     locationmanager = CLLocationManager()
@@ -199,18 +200,35 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     }
   
     //Calculate distance
-//    if(newLocation && oldLocation){
-//      fltDistanceTravelled? += self.getDistanceInKm(newLocation, oldLocation: oldLocation)
-//      distance = 0
-//    }
-    
-    //Direction
-    
-    //Battery level
+    if(newLocation != nil && oldLocation != nil){
+      fltDistanceTravelled? += self.getDistanceInKm(newLocation, oldLocation: oldLocation)
+      distance = 0
+      
+      var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+      defaults.setDouble(fltDistanceTravelled, forKey: "distanceTravelled")
+    }else
+    {
+      distance = 0.0;
+    }
     
     //Data creation time
     
+    creationTime = 1000.0 * NSDate().timeIntervalSince1970 //[[NSDate date] timeIntervalSince1970];
+    var dataCreatTime:String = String(format: "%f", creationTime) //[NSString stringWithFormat:@"%f",creationTime];
+//    NSArray* getUptoDecimal = [dataCreatTime componentsSeparatedByString: @"."];
+    
     //Update to DB
+    
+      let tseries:TimeSeriesModel = TimeSeriesModel.init(ctime: "10",
+        lat: 101,
+        longt: 102,
+        speedval: 103,
+        tzone: "IST",
+        iseventval: 1,
+        evetype: 2,
+        eveval: 3)
+      FacadeLayer.sharedinstance.dbactions.tempsave(tseries)
+
   }
   
   func locationManager(manager: CLLocationManager,
