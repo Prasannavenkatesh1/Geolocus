@@ -1,3 +1,4 @@
+
 //Created by Insurance H3 Team
 //
 //GeoLocus App
@@ -12,6 +13,7 @@
 #import "Constant.h"
 #import "GeoLocus-Swift.h"
 #import "Datausage.h"
+@class GlobalConstants;
 
 #define kRequiredAccuracy 70.0 //meters
 #define kMaxAge 20.0 //seconds
@@ -190,8 +192,7 @@ NSString *headingDirection = nil;
         AppDelegateSwift *mainDelegate = [[UIApplication sharedApplication] delegate];
         
         audioSession = [AVAudioSession sharedInstance];
-
-        
+    
         //get voice alert state
         voicsStatus = mainDelegate.vAlert;
         
@@ -215,8 +216,7 @@ NSString *headingDirection = nil;
         double accur = 0.0;
         accur = newLocation.horizontalAccuracy;
         NSString *accuracy = [NSString stringWithFormat:@"%g",accur];
-        
-        
+    
         //******************** Calculate autotrip detection
         
         //store speed into locSpeedArray;
@@ -389,7 +389,6 @@ NSString *headingDirection = nil;
                     
                     braking = [NSString stringWithFormat:@"%f",brakingValue];
 
-
                     //create new utterance
                     if ([voicsStatus isEqualToString:@"Enabled"]) {
                         
@@ -559,7 +558,6 @@ NSString *headingDirection = nil;
         NSString *heading = [[direction componentsSeparatedByCharactersInSet: [[NSCharacterSet letterCharacterSet] invertedSet]] componentsJoinedByString:@""];
 //        NSLog(@"direction:%@",heading);
         
-        
         //Battery level
         UIDevice *myDevice = [UIDevice currentDevice];
         [myDevice setBatteryMonitoringEnabled:YES];
@@ -581,21 +579,31 @@ NSString *headingDirection = nil;
         dataCreatTime = [getUptoDecimal objectAtIndex: 0];
         
         // update db
-        dataCollectDb = [FMDatabase databaseWithPath:databasePath];
-        [dataCollectDb open];
-        
+//        dataCollectDb = [FMDatabase databaseWithPath:databasePath];
+//        [dataCollectDb open];
+    
         latitude = [NSString stringWithFormat:@"%.14f",lat];
         longitude = [NSString stringWithFormat:@"%.14f",lon];
         
         
-        if ([longitude length]!=0 && [latitude length]!=0) {
-            [dataCollectDb executeUpdate:@"INSERT INTO collectData (dataSource,msgType,provider,creationTime,dataReceivedTimestamp,gpsAge,totalDistCovered,rawdata,lbl,ck,longitude,latitude,deviceNumber,accuracy,speed,altitude,acceleration,braking,heading,deviceType) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);",@"Mobile",@"timeseries",@"gps",dataCreatTime,@"0",@"0",distance,@"0",batteryLbl,@"0",longitude,latitude,mainDelegate.deviceId,accuracy,speedValue,altitude,accele,braking,heading,@"Mobile", nil];
-        }
-        
-        [dataCollectDb close];
-        
+//        if ([longitude length]!=0 && [latitude length]!=0) {
+//            [dataCollectDb executeUpdate:@"INSERT INTO collectData (dataSource,msgType,provider,creationTime,dataReceivedTimestamp,gpsAge,totalDistCovered,rawdata,lbl,ck,longitude,latitude,deviceNumber,accuracy,speed,altitude,acceleration,braking,heading,deviceType) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);",@"Mobile",@"timeseries",@"gps",dataCreatTime,@"0",@"0",distance,@"0",batteryLbl,@"0",longitude,latitude,mainDelegate.deviceId,accuracy,speedValue,altitude,accele,braking,heading,@"Mobile", nil];
+//          
+//        }
+    
+//        [dataCollectDb close];
+    
+    /*
+     
+     
+     
+     */
+    
+    
+    NSString *str = [NSString stringWithFormat:@"Latitude: %@   Logitude: %@   Speed: %.2f   Timestamp: %@   Acceleration: %.2f   Braking: %.2f \r\n",latitude,longitude,newLocation.speed*3.6f,newLocation.timestamp,acceleration,brakingValue];
         //write data to file for ref
-        [self writeToTextFile:[NSString stringWithFormat:@"Latitude: %@   Logitude: %@   Speed: %.2f   Timestamp: %@   Acceleration: %.2f   Braking: %.2f \r\n",latitude,longitude,newLocation.speed*3.6f,newLocation.timestamp,acceleration,brakingValue]];
+    NSLog(@"str :%@",str);
+        [self writeToTextFile:str];
 
     }
     
@@ -603,7 +611,7 @@ NSString *headingDirection = nil;
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
-    NSLog(@"%d",status);
+     NSLog(@"%d",status);
 }
 
 
