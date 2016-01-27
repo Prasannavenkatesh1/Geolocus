@@ -211,6 +211,8 @@
 		BF4F8D9C1C43CA9D00895640 /* DatabaseActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */; };
 		BF5D3AAD1C4E1E3000DDFDC1 /* Datausage.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */; };
 		BF5D3AB51C4E4F6500DDFDC1 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF5D3AB71C4E4F6500DDFDC1 /* Localized.strings */; };
+		BF6FA2A11C55F6880038DBDF /* CoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6FA2A01C55F6880038DBDF /* CoreLocation.swift */; };
+		BF6FA2A31C5621610038DBDF /* Timeseries.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6FA2A21C5621610038DBDF /* Timeseries.swift */; };
 		BF7336FD1C3F929A006094C0 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF7336FC1C3F929A006094C0 /* Storyboard.storyboard */; };
 		BF7337021C3F9387006094C0 /* FacadeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7337011C3F9387006094C0 /* FacadeLayer.swift */; };
 		BF7337081C3F94A1006094C0 /* Geomodel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF7337061C3F94A1006094C0 /* Geomodel.xcdatamodeld */; };
@@ -494,6 +496,8 @@
 		BF5D3AB21C4E4E9600DDFDC1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main4s.strings; sourceTree = "<group>"; };
 		BF5D3AB61C4E4F6500DDFDC1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localized.strings; sourceTree = "<group>"; };
 		BF5D3AB81C4E4F7200DDFDC1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localized.strings; sourceTree = "<group>"; };
+		BF6FA2A01C55F6880038DBDF /* CoreLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreLocation.swift; sourceTree = "<group>"; };
+		BF6FA2A21C5621610038DBDF /* Timeseries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timeseries.swift; sourceTree = "<group>"; };
 		BF7336FC1C3F929A006094C0 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		BF7337011C3F9387006094C0 /* FacadeLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacadeLayer.swift; sourceTree = "<group>"; };
 		BF7337071C3F94A1006094C0 /* Geomodel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Geomodel.xcdatamodel; sourceTree = "<group>"; };
@@ -992,6 +996,8 @@
 				638451EB1B0353A000E895F7 /* CoreLocationController.h */,
 				638451EE1B0353A000E895F7 /* CoreLocationController.m */,
 				6CCAF9031C4E036200484056 /* GlobalConstants.swift */,
+				BF6FA2A01C55F6880038DBDF /* CoreLocation.swift */,
+				BF6FA2A21C5621610038DBDF /* Timeseries.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1325,6 +1331,7 @@
 				638452391B0353AE00E895F7 /* RegistrationEntity.m in Sources */,
 				638452301B0353AE00E895F7 /* LeaderBoardDatabase.m in Sources */,
 				630C1E8A1AD6653000C98857 /* ScorePageViewController.swift in Sources */,
+				BF6FA2A11C55F6880038DBDF /* CoreLocation.swift in Sources */,
 				6CCAF90C1C4E0A7B00484056 /* RightViewController.swift in Sources */,
 				638452321B0353AE00E895F7 /* DashboardEntity.m in Sources */,
 				63FC53681AFCE8D300D60D57 /* SettingsViewController.swift in Sources */,
@@ -1376,6 +1383,7 @@
 				6389B2551B1C9AA600F2A18C /* SchedularViewController.m in Sources */,
 				6CEAF3251C4FBB2100F13379 /* ArcGraphicsController.swift in Sources */,
 				BF7337491C3FBCF4006094C0 /* RootViewController.swift in Sources */,
+				BF6FA2A31C5621610038DBDF /* Timeseries.swift in Sources */,
 				6389B2511B1C9AA600F2A18C /* ListenerViewController.m in Sources */,
 				A6D52F881B6F454900855DDB /* TripSummaryDB.m in Sources */,
 				63C2094F1B0B0BF8009DF880 /* AppDelegateSwift.swift in Sources */,

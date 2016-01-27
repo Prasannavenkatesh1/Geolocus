@@ -544,7 +544,7 @@
         <!--Reveal View Controller-->
         <scene sceneID="Hkz-Zq-LIU">
             <objects>
-                <viewController id="CQm-hi-RzJ" customClass="SWRevealViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SWRevealViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CQm-hi-RzJ" customClass="SWRevealViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FdB-7F-SRN"/>
                         <viewControllerLayoutGuide type="bottom" id="lej-r5-EDa"/>
@@ -566,7 +566,7 @@
         <!--Language Selection View Controller-->
         <scene sceneID="yHK-wl-7p4">
             <objects>
-                <viewController id="EDY-1L-EKK" customClass="LanguageSelectionViewController" customModule="GeoLocus" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LanguageSelectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EDY-1L-EKK" customClass="LanguageSelectionViewController" customModule="GeoLocus" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OoE-nM-6o0"/>
                         <viewControllerLayoutGuide type="bottom" id="143-8T-LQk"/>
