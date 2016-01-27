@@ -20,16 +20,32 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     
     override init() {
       
-      let tseries:Timeseries = Timeseries.init(ctime: "10",
-        lat: 101,
-        longt: 102,
-        speedval: 103,
-        tzone: "IST",
-        iseventval: 1,
-        evetype: 2,
-        eveval: 3)
-//      FacadeLayer.sharedinstance.dbactions.tempsave(tseries)
+      
+//      // get your storyboard
+//      let storyboard = UIStoryboard(name: "Storyboard", bundle: nil)
 //      
+//      // instantiate your desired ViewController
+//      let rootController = storyboard.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
+//      
+//      // instantiate your desired ViewController
+//      let languagecontroller = storyboard.instantiateViewControllerWithIdentifier("LanguageSelectionViewController") as! LanguageSelectionViewController
+//      
+//      // Because self.window is an optional you should check it's value first and assign your rootViewController
+//      if let window = self.window {
+//        window.rootViewController = languagecontroller
+//      }
+      
+      
+//      let tseries:Timeseries = Timeseries.init(ctime: "10",
+//        lat: 101,
+//        longt: 102,
+//        speedval: 103,
+//        tzone: "IST",
+//        iseventval: 1,
+//        evetype: 2,
+//        eveval: 3)
+//      FacadeLayer.sharedinstance.dbactions.tempsave(tseries)
+      
         vAlert = "Enabled"
         globalAutoTrip = false
         speedLimit = 0.0
@@ -39,9 +55,9 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         iPhoneSize = "iPhone5"
 //        autoButtonChange = "Disabled"
       
-      let det = NSLocalizedString("hello", comment: "hello comment")
-      print("qwqwq \(det)")
-        
+//      let det = NSLocalizedString("hello", comment: "hello comment")
+//      print("qwqwq \(det)")
+      
         print("Global Auto Trip : \(globalAutoTrip)")
         let settings : GeolocusDashboard = GeolocusDashboard()
         settings.setSettingsData()

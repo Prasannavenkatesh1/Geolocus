@@ -18,7 +18,7 @@ class Httpclient: NSObject {
   }
 */
   func tmp() {
-//  Al amofire.request(<#T##method: Method##Method#>, <#T##URLString: URLStringConvertible##URLStringConvertible#>)
+//  Alamofire.request(<#T##method: Method##Method#>, <#T##URLString: URLStringConvertible##URLStringConvertible#>)
   }
   
   

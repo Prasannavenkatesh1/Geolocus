@@ -15,6 +15,8 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   var autoStartState:Bool!
   var speedArray:[String]!
   var brakAlert:Bool!
+  var acclAlert:Bool!
+  var fltDistanceTravelled,distance:Double!
   
   func initLocationManager() {
     locationmanager = CLLocationManager()
@@ -173,13 +175,42 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         sum += Float(speedArray[i])!
       }
       
-//      avgSpeed = sum / speedArray.count
+      avgSpeed = Float(sum)/Float(speedArray.count)
+      print("average speed\(avgSpeed)")
       
+      if (acceleration > 5.0) {
+        if (avgSpeed > 35.0 && acclAlert == true){
+          accele = String(format: "%f", acceleration)
+          acclAlert = false
+        }
+      }
+    }else
+    {
+      acclAlert = true
     }
     
+    //Calculate Over Speed
+    var speedValue = "0.0"
     
+    if (newLocation.speed * 3.6 >=  Double(mainDelegate.speedLimit)) {
+//      speedValue = [NSString stringWithFormat:@"%.1f", newLocation.speed*3.6f];
+      speedValue = String(format: "%.1", newLocation.speed*3.6)
+
+    }
+  
+    //Calculate distance
+//    if(newLocation && oldLocation){
+//      fltDistanceTravelled? += self.getDistanceInKm(newLocation, oldLocation: oldLocation)
+//      distance = 0
+//    }
     
+    //Direction
     
+    //Battery level
+    
+    //Data creation time
+    
+    //Update to DB
   }
   
   func locationManager(manager: CLLocationManager,
@@ -256,4 +287,61 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     locationmanager.startUpdatingHeading()
   }
   
+  
+  func getDistanceInKm(newLocation:CLLocation,oldLocation:CLLocation) -> Double{
+    var lat1,lon1,lat2,lon2: Double;
+    
+    lat1 = newLocation.coordinate.latitude  * M_PI / 180;
+    lon1 = newLocation.coordinate.longitude * M_PI / 180;
+    
+    lat2 = oldLocation.coordinate.latitude  * M_PI / 180;
+    lon2 = oldLocation.coordinate.longitude * M_PI / 180;
+    
+    let R:Double = 6371; // km
+    let dLat:Double = lat2-lat1;
+    let dLon:Double = lon2-lon1;
+    
+    let a:Double = sin(dLat/2) * sin(dLat/2) + cos(lat1) * cos(lat2) * sin(dLon/2) * sin(dLon/2);
+    let c:Double = 2 * atan2(sqrt(a), sqrt(1-a));
+    let d:Double = R * c;
+    
+    return d;
+  }
+  
+  func getDistanceInMiles(newLocation:CLLocation,oldLocation:CLLocation) -> Double{
+    var lat1,lon1,lat2,lon2: Double;
+    lat1 = newLocation.coordinate.latitude  * M_PI / 180;
+    lon1 = newLocation.coordinate.longitude * M_PI / 180;
+    
+    lat2 = oldLocation.coordinate.latitude  * M_PI / 180;
+    lon2 = oldLocation.coordinate.longitude * M_PI / 180;
+    
+    let R:Double = 3963; // km
+    let dLat:Double = lat2-lat1;
+    let dLon:Double = lon2-lon1;
+    
+    let a:Double = sin(dLat/2) * sin(dLat/2) + cos(lat1) * cos(lat2) * sin(dLon/2) * sin(dLon/2);
+    let c:Double = 2 * atan2(sqrt(a), sqrt(1-a));
+    let d:Double = R * c;
+    
+    return d
+  }
+  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
