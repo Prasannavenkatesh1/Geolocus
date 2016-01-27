@@ -12,9 +12,11 @@ class FacadeLayer{
   
   static let sharedinstance = FacadeLayer()
   var dbactions:DatabaseActions
+  var httpclient:Httpclient
   
   init(){
     dbactions = DatabaseActions()
+    httpclient = Httpclient()
     print(__FUNCTION__)
   }
 
