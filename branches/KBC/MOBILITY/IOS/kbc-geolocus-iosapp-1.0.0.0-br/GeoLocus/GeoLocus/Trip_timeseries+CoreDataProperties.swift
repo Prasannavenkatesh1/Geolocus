@@ -15,13 +15,13 @@ import CoreData
 extension Trip_timeseries {
 
     @NSManaged var currenttime: String?
-    @NSManaged var datausage: Double
+    @NSManaged var datausage: NSNumber?
     @NSManaged var distance: String?
-    @NSManaged var eventtype: Int16
-    @NSManaged var eventvalue: Double
-    @NSManaged var isEvent: Bool
-    @NSManaged var latitude: Double
-    @NSManaged var longitude: Double
-    @NSManaged var speed: Double
+    @NSManaged var eventtype: NSNumber?
+    @NSManaged var eventvalue: NSNumber?
+    @NSManaged var isEvent: NSNumber?
+    @NSManaged var latitude: NSNumber?
+    @NSManaged var longitude: NSNumber?
+    @NSManaged var speed: NSNumber?
 
 }
