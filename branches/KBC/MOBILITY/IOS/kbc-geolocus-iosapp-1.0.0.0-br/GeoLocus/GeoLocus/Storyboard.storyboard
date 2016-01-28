@@ -535,11 +535,6 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="BSm-jy-Fp7">
                         <barButtonItem key="leftBarButtonItem" title="Menu" id="tdp-wg-rfA"/>
-                        <barButtonItem key="rightBarButtonItem" title="Notify" id="2me-kH-hdM">
-                            <connections>
-                                <action selector="pushToNotificationScreen:" destination="gbb-ju-gE6" id="LBu-B2-GfV"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="sideMenuButton" destination="tdp-wg-rfA" id="7wb-Wu-gaf"/>
