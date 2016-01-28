@@ -58,8 +58,8 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     
     let latitude:Double = coord.latitude
     let longitude:Double = coord.longitude
-    let altitude:Double = newLocation.altitude
-    let accuracy:Double = newLocation.horizontalAccuracy
+//    let altitude:Double = newLocation.altitude
+//    let accuracy:Double = newLocation.horizontalAccuracy
     
     //Calculation for autotrip detection
     locSpeedArray.append(String(format:"%.2f", newLocation.speed * 3.6))
