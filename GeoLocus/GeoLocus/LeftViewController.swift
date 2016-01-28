@@ -2,34 +2,82 @@
 //  LeftViewController.swift
 //  GeoLocus
 //
-//  Created by khan on 12/01/16.
+//  Created by khan on 28/01/16.
 //  Copyright © 2016 Cognizant. All rights reserved.
 //
 
 import UIKit
 
+
 class LeftViewController: UIViewController {
-
+    
+    @IBOutlet var menuTableView: UITableView!
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+}
+
+//Code for Delegates and Data Source
+extension LeftViewController {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        guard let rowCount = ArrayConstants.MenuList?.count else {
+            return 1
+        }
+        return rowCount
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let identifier = StringConstants.MenuCellIdentifier
+        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
+        
+        guard let menuText = ArrayConstants.MenuList?[indexPath.row] else {
+            cell.textLabel?.text = StringConstants.MenuCellIdentifier
+            return cell
+        }
+        cell.textLabel?.text = NSLocalizedString(menuText, comment: "Text for menu item")
+        cell.textLabel?.textAlignment = .Left
+        return cell
+        
     }
-    */
-
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        guard let selectedMenuItem = ArrayConstants.MenuList?[indexPath.row] else {
+            return
+        }
+        
+        guard let item = ArrayConstants.MenuItems(rawValue: selectedMenuItem) else {
+            return
+        }
+        let storyBoard = UIStoryboard(name: StringConstants.StoryBoardIdentifier, bundle: nil)
+        
+        switch  item {
+            
+        case .Badges:
+            let badgesView = storyBoard.instantiateViewControllerWithIdentifier(StringConstants.BadgesViewController)
+            self.revealViewController().pushFrontViewController(badgesView, animated: true)
+        case .Settings:
+            let settingsView = storyBoard.instantiateViewControllerWithIdentifier(StringConstants.SettingsViewController)
+            self.revealViewController().pushFrontViewController(settingsView, animated: true)
+        case .Reports:
+            let reportsView = storyBoard.instantiateViewControllerWithIdentifier(StringConstants.ReportsViewController)
+            self.revealViewController().pushFrontViewController(reportsView, animated: true)
+        case .Terms:
+            let termsView = storyBoard.instantiateViewControllerWithIdentifier(StringConstants.TermsAndConditionViewController)
+            self.revealViewController().pushFrontViewController(termsView, animated: true)
+        case .Exit:
+            print("Logout or kill Application?")
+            
+        }
+        
+    }
+    
 }

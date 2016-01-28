@@ -42,7 +42,7 @@ class RootViewController: UIViewController {
         if revealViewController() != nil {
             //            revealViewController().rearViewRevealWidth = 62
             sideMenuButton.target = revealViewController()
-            sideMenuButton.action = "rightRevealToggle:"
+            sideMenuButton.action = "revealToggle:"
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
             
         }
