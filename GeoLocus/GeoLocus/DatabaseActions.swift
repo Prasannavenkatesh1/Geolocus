@@ -89,8 +89,8 @@ class DatabaseActions: NSObject {
     timeseries.latitude = timeseriesmodel.latitude
     timeseries.longitude = timeseriesmodel.longitude
     timeseries.datausage = timeseriesmodel.datausage
-    timeseries.distance = "10"//timeseriesmodel.distance
-    timeseries.currenttime = "342342342" //timeseriesmodel.currenttime
+    timeseries.distance = timeseriesmodel.distance
+    timeseries.currenttime = timeseriesmodel.currenttime
     
     do{
       try self.managedObjectContext.save()

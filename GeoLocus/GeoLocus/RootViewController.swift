@@ -11,12 +11,41 @@ import UIKit
 class RootViewController: UIViewController {
   
     @IBOutlet var sideMenuButton: UIBarButtonItem!
+    var labelNotificationCount:UILabel!
   var categories = [String]()
 
   
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
+        let notifyfullView=UIView(frame: CGRectMake(0, 0, 50, 40))
+        notifyfullView.backgroundColor=UIColor.yellowColor()
+        
+        let redView=UIView(frame: CGRectMake(0, 0, 25, 25))
+        redView.backgroundColor=UIColor.redColor()
+        redView.layer.cornerRadius=12.5
+        redView.layer.masksToBounds=true
+        //DynamicView.layer.borderWidth=2
+        
+        labelNotificationCount = UILabel()
+        labelNotificationCount.frame = CGRectMake(2, 0, 20, 20)
+        labelNotificationCount.textAlignment = NSTextAlignment.Center;
+        labelNotificationCount.text = "1"
+        redView.addSubview(labelNotificationCount)
+        
+        let button: UIButton = UIButton()
+        button.setImage(UIImage(named: "Selected"), forState: .Normal)
+        button.frame = CGRectMake(0, 0, 45, 45)
+        button.addTarget(self, action: "pushToNotificationScreen:", forControlEvents: .TouchUpInside)
+        
+        notifyfullView.addSubview(redView)
+        notifyfullView.addSubview(button)
+        
+        let rightItem:UIBarButtonItem = UIBarButtonItem()
+        rightItem.customView = notifyfullView
+        self.navigationItem.rightBarButtonItem = rightItem
+        
+        
       let a = {print("aaa")}
       a()
 //
@@ -73,16 +102,19 @@ class RootViewController: UIViewController {
     print(getindex);
 
   }
+ func  pushToNotificationScreen(sender: UIButton!) {
+    self.performSegueWithIdentifier("Notificationsegue", sender: self);
 
-    @IBAction func pushToNotificationScreen(sender: AnyObject) {
-        
-        print("got it")
-        //        let notificationViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("NotificationIdentifier"))! as UIViewController
-        //        self.navigationController?.pushViewController(notificationViewController, animated: true)
-        
-        self.performSegueWithIdentifier("Notificationsegue", sender: self);
-        
     }
+//    @IBAction func pushToNotificationScreen(sender: AnyObject) {
+//        
+//        print("got it")
+//        //        let notificationViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("NotificationIdentifier"))! as UIViewController
+//        //        self.navigationController?.pushViewController(notificationViewController, animated: true)
+//        
+//        self.performSegueWithIdentifier("Notificationsegue", sender: self);
+//        
+//    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "Notificationsegue") {
