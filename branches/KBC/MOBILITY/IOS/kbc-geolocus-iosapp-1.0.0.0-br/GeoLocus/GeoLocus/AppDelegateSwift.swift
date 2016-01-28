@@ -71,6 +71,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setBool(false, forKey: "isStarted")
         
+        self.loadInitialViewController()
+        
         // Override point for customization after application launch.
         
 //        self.checkStoryBoard()
@@ -100,6 +102,28 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    /* function to navigate to respective view controller on first launch/succesive login */
+    func loadInitialViewController(){
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: "Storyboard", bundle: NSBundle.mainBundle())
+        let geoLocusDashboard : LoginViewController = LoginViewController()
+        let checkUserLogin : Bool = geoLocusDashboard.checkUserDetails()
+        
+        if(!checkUserLogin){
+            print("Not first launch.")
+            let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
+            self.window?.rootViewController = dashboardPage
+            self.window?.makeKeyAndVisible()
+        }
+        else{
+            print("First launch, setting NSUserDefault.")
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "FirstLaunch")
+            let languageSelectionPage = storyboard.instantiateViewControllerWithIdentifier("LanguageSelectionViewController") as! LanguageSelectionViewController
+            self.window?.rootViewController = languageSelectionPage
+            self.window?.makeKeyAndVisible()
+        }
+    }
+
     func checkStoryBoard() {
         
         let screenSize = UIScreen.mainScreen().bounds.size
