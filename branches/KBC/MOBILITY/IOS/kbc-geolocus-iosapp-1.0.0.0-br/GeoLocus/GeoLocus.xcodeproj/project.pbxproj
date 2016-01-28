@@ -207,8 +207,8 @@
 		B63F53EE1C51EAFA0070002E /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63F53EC1C51EAFA0070002E /* LanguageSelectionViewController.swift */; };
 		B648C20D1C58B83000EE52C3 /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B648C20B1C58B83000EE52C3 /* PageContentViewController.swift */; };
 		B648C20E1C58B83000EE52C3 /* WelcomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B648C20C1C58B83000EE52C3 /* WelcomePageViewController.swift */; };
-		BF4D23741C59ECD700230355 /* Trip_timeseries+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4D23721C59ECD700230355 /* Trip_timeseries+CoreDataProperties.swift */; };
-		BF4D23751C59ECD700230355 /* Trip_timeseries.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4D23731C59ECD700230355 /* Trip_timeseries.swift */; };
+		BF4D23781C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4D23761C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift */; };
+		BF4D23791C5A0A8F00230355 /* Trip_timeseries.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4D23771C5A0A8F00230355 /* Trip_timeseries.swift */; };
 		BF4F8D981C43845000895640 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D971C43845000895640 /* CategoryCell.swift */; };
 		BF4F8D9A1C43CA8D00895640 /* Httpclient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D991C43CA8D00895640 /* Httpclient.swift */; };
 		BF4F8D9C1C43CA9D00895640 /* DatabaseActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */; };
@@ -491,8 +491,8 @@
 		B63F53EC1C51EAFA0070002E /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
 		B648C20B1C58B83000EE52C3 /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
 		B648C20C1C58B83000EE52C3 /* WelcomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomePageViewController.swift; sourceTree = "<group>"; };
-		BF4D23721C59ECD700230355 /* Trip_timeseries+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_timeseries+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		BF4D23731C59ECD700230355 /* Trip_timeseries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_timeseries.swift; sourceTree = "<group>"; };
+		BF4D23761C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_timeseries+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BF4D23771C5A0A8F00230355 /* Trip_timeseries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_timeseries.swift; sourceTree = "<group>"; };
 		BF4F8D971C43845000895640 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		BF4F8D991C43CA8D00895640 /* Httpclient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Httpclient.swift; sourceTree = "<group>"; };
 		BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseActions.swift; sourceTree = "<group>"; };
@@ -1046,8 +1046,8 @@
 			children = (
 				BF4E0D391C4F701E00BF53FB /* DBModels */,
 				BF7337061C3F94A1006094C0 /* Geomodel.xcdatamodeld */,
-				BF4D23721C59ECD700230355 /* Trip_timeseries+CoreDataProperties.swift */,
-				BF4D23731C59ECD700230355 /* Trip_timeseries.swift */,
+				BF4D23761C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift */,
+				BF4D23771C5A0A8F00230355 /* Trip_timeseries.swift */,
 				BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */,
 			);
 			name = DatabaseActions;
@@ -1361,7 +1361,7 @@
 				638451F31B0353A000E895F7 /* FMDatabaseQueue.m in Sources */,
 				6C03B5D61C4D025500C938C6 /* SWRevealViewController.m in Sources */,
 				B63F53ED1C51EAFA0070002E /* LoginViewController.swift in Sources */,
-				BF4D23741C59ECD700230355 /* Trip_timeseries+CoreDataProperties.swift in Sources */,
+				BF4D23781C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift in Sources */,
 				6304FC1C1AD54B0D00734AEF /* DashboardViewController.swift in Sources */,
 				63014BB01B15C5290022FCC6 /* AppDelegate.m in Sources */,
 				638452371B0353AE00E895F7 /* LeaderBoardController.m in Sources */,
@@ -1408,7 +1408,7 @@
 				638451F61B0353A000E895F7 /* CoreLocationController.m in Sources */,
 				638451EF1B0353A000E895F7 /* FMDatabase.m in Sources */,
 				63AAE5D31AE90C470013987F /* EmergencyViewController.swift in Sources */,
-				BF4D23751C59ECD700230355 /* Trip_timeseries.swift in Sources */,
+				BF4D23791C5A0A8F00230355 /* Trip_timeseries.swift in Sources */,
 				6384523E1B0353AE00E895F7 /* GeolocusDashboard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

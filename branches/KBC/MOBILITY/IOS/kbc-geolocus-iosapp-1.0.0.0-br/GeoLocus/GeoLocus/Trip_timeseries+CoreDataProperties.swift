@@ -14,9 +14,9 @@ import CoreData
 
 extension Trip_timeseries {
 
-    @NSManaged var currenttime: String?
+    @NSManaged var currenttime: NSDate?
     @NSManaged var datausage: NSNumber?
-    @NSManaged var distance: String?
+    @NSManaged var distance: NSNumber?
     @NSManaged var eventtype: NSNumber?
     @NSManaged var eventvalue: NSNumber?
     @NSManaged var isEvent: NSNumber?
