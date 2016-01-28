@@ -80,23 +80,24 @@ class DatabaseActions: NSObject {
     }
   }
   
-  func tempsave(timeseriesmodel:TimeSeriesModel){
-//    let timeseries = NSEntityDescription.insertNewObjectForEntityForName("Trip_timeseries",inManagedObjectContext: self.managedObjectContext) as! Trip_timeseries
-//    timeseries.isEvent = timeseriesmodel.isEvent
-//    timeseries.eventtype = timeseriesmodel.eventtype
-//    timeseries.eventvalue = timeseriesmodel.eventvalue
-//    timeseries.speed = timeseriesmodel.speed
-//    timeseries.latitude = timeseriesmodel.latitude
-//    timeseries.longitude = timeseriesmodel.longitude
-//    timeseries.timezone = timeseriesmodel.timezone
-//    timeseries.currenttime = timeseriesmodel.currenttime
+  func saveTimeSeries(timeseriesmodel:TimeSeriesModel){
+    let timeseries = NSEntityDescription.insertNewObjectForEntityForName("Trip_timeseries",inManagedObjectContext: self.managedObjectContext) as! Trip_timeseries
+    timeseries.isEvent = timeseriesmodel.isEvent
+    timeseries.eventtype = timeseriesmodel.eventtype
+    timeseries.eventvalue = timeseriesmodel.eventvalue
+    timeseries.speed = timeseriesmodel.speed
+    timeseries.latitude = timeseriesmodel.latitude
+    timeseries.longitude = timeseriesmodel.longitude
+    timeseries.datausage = timeseriesmodel.datausage
+    timeseries.distance = "10"//timeseriesmodel.distance
+    timeseries.currenttime = "342342342" //timeseriesmodel.currenttime
     
-//    do{
-//      try self.managedObjectContext.save()
-//      self.reterive()
-//    }catch{
-//      fatalError("not iserted")
-//    }
+    do{
+      try self.managedObjectContext.save()
+      self.reterive()
+    }catch{
+      fatalError("not iserted")
+    }
  }
   
   func reterive(){

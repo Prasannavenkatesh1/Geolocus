@@ -229,7 +229,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       eveval: 1,
       distance: distance)
     
-      FacadeLayer.sharedinstance.dbactions.tempsave(tseries)
+      FacadeLayer.sharedinstance.dbactions.saveTimeSeries(tseries)
 
   }
   
