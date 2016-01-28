@@ -219,14 +219,16 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     
     //Update to DB
     
-      let tseries:TimeSeriesModel = TimeSeriesModel.init(ctime: "10",
-        lat: 101,
-        longt: 102,
-        speedval: 103,
-        tzone: "IST",
-        iseventval: 1,
-        evetype: 2,
-        eveval: 3)
+     let tseries:TimeSeriesModel = TimeSeriesModel.init(ctime: newLocation.timestamp,
+      lat: latitude,
+      longt: longitude,
+      speedval: newLocation.speed*3.6,
+      datausage: 0,
+      iseventval: 1,
+      evetype: 1,
+      eveval: 1,
+      distance: distance)
+    
       FacadeLayer.sharedinstance.dbactions.tempsave(tseries)
 
   }
