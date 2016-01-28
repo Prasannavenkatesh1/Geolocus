@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CQm-hi-RzJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CQm-hi-RzJ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -7,7 +7,6 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Pageviewcontroller-->
@@ -68,10 +67,10 @@
             </objects>
             <point key="canvasLocation" x="4506" y="-555"/>
         </scene>
-        <!--Right View Controller-->
+        <!--Left View Controller-->
         <scene sceneID="2C4-jk-GLl">
             <objects>
-                <viewController storyboardIdentifier="sw_rear" id="PeF-nR-1ew" customClass="RightViewController" customModule="GeoLocus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="sw_rear" id="PeF-nR-1ew" customClass="LeftViewController" customModule="GeoLocus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Sqx-tO-ous"/>
                         <viewControllerLayoutGuide type="bottom" id="rMA-4H-EAX"/>
@@ -106,12 +105,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="1vY-uA-7Rp"/>
                     <connections>
-                        <outlet property="menuTableView" destination="Vy9-OO-GpR" id="0f4-01-QtM"/>
+                        <outlet property="menuTableView" destination="Vy9-OO-GpR" id="evk-SJ-ZNO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i4P-pj-CV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1207.5" y="-1450"/>
+            <point key="canvasLocation" x="1207.5" y="-1454.25"/>
         </scene>
         <!--Badges View Controller-->
         <scene sceneID="yOl-De-DHX">
@@ -487,14 +486,12 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="BSm-jy-Fp7">
-                        <rightBarButtonItems>
-                            <barButtonItem title="Menu" id="tdp-wg-rfA"/>
-                            <barButtonItem title="Notify" id="2me-kH-hdM">
-                                <connections>
-                                    <action selector="pushToNotificationScreen:" destination="gbb-ju-gE6" id="LBu-B2-GfV"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="tdp-wg-rfA"/>
+                        <barButtonItem key="rightBarButtonItem" title="Notify" id="2me-kH-hdM">
+                            <connections>
+                                <action selector="pushToNotificationScreen:" destination="gbb-ju-gE6" id="LBu-B2-GfV"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="sideMenuButton" destination="tdp-wg-rfA" id="7wb-Wu-gaf"/>
@@ -556,12 +553,12 @@
                     </view>
                     <connections>
                         <segue destination="oE0-da-mdV" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="bIq-rz-O1X"/>
-                        <segue destination="PeF-nR-1ew" kind="custom" identifier="sw_right" customClass="SWRevealViewControllerSegueSetController" id="jL9-m4-cNR"/>
+                        <segue destination="PeF-nR-1ew" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="jL9-m4-cNR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="48x-Q2-eph" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-39" y="-1195"/>
+            <point key="canvasLocation" x="-357" y="-1245"/>
         </scene>
         <!--Language Selection View Controller-->
         <scene sceneID="yHK-wl-7p4">
@@ -1404,8 +1401,8 @@
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="7n6-jp-QsD"/>
-                                <exclude reference="WNx-8P-Em5"/>
                                 <exclude reference="Ma8-Ys-Hdw"/>
+                                <exclude reference="WNx-8P-Em5"/>
                                 <exclude reference="3M9-3b-Y3h"/>
                                 <exclude reference="FYQ-zR-vaW"/>
                                 <exclude reference="YKe-mr-cSI"/>
@@ -1419,8 +1416,8 @@
                             </mask>
                             <mask key="constraints">
                                 <include reference="7n6-jp-QsD"/>
-                                <include reference="WNx-8P-Em5"/>
                                 <include reference="Ma8-Ys-Hdw"/>
+                                <include reference="WNx-8P-Em5"/>
                                 <include reference="3M9-3b-Y3h"/>
                                 <exclude reference="FYQ-zR-vaW"/>
                                 <include reference="YKe-mr-cSI"/>
