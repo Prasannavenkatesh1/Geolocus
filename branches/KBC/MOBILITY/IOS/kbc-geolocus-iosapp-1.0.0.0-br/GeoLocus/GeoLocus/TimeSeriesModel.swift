@@ -31,3 +31,5 @@ struct TimeSeriesModel {
     self.eventvalue = eveval
   }
 }
+
+
