@@ -85,13 +85,13 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-GeoLocus/Alamofire.framework"
-  install_framework "Pods-GeoLocus/Charts.framework"
   install_framework "Pods-GeoLocus/SDWebImage.framework"
+  install_framework "Pods-GeoLocus/SwiftCharts.framework"
   install_framework "Pods-GeoLocus/TextFieldEffects.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-GeoLocus/Alamofire.framework"
-  install_framework "Pods-GeoLocus/Charts.framework"
   install_framework "Pods-GeoLocus/SDWebImage.framework"
+  install_framework "Pods-GeoLocus/SwiftCharts.framework"
   install_framework "Pods-GeoLocus/TextFieldEffects.framework"
 fi
