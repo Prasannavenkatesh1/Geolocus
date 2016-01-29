@@ -67,14 +67,7 @@ class DatabaseActions: NSObject {
   private func saveManagedObjectContext() {
     do {
       try self.managedObjectContext.save()
-      
-      var tb: UITableView = {
-        let gg:UITableView = UITableView()
-        gg.allowsMultipleSelection = true
-         return gg
-        
-      }()
-    } catch {
+      } catch {
       let saveError = error as NSError
       print("\(saveError), \(saveError.userInfo)")
     }
