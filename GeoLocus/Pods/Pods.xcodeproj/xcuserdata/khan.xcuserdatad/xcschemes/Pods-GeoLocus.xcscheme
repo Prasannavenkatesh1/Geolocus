@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '4C179A3CEBD2B2510BB716EF'
+               BlueprintIdentifier = '001FA88568BAE2124E1D4F92'
                BlueprintName = 'Pods-GeoLocus'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods_GeoLocus.framework'>
