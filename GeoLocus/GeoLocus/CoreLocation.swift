@@ -202,7 +202,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     //Calculate distance
     if(newLocation != nil && oldLocation != nil){
       fltDistanceTravelled? += self.getDistanceInKm(newLocation, oldLocation: oldLocation)
-      distance = 0
+      distance = fltDistanceTravelled
       
       var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
       defaults.setDouble(fltDistanceTravelled, forKey: "distanceTravelled")

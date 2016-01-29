@@ -569,7 +569,6 @@ NSString *headingDirection = nil;
         
         NSString *batteryLbl = [NSString stringWithFormat:@"%f",batinfo];
         
-        
         // Data creation time
         creationTime = 1000.0 * [[NSDate date] timeIntervalSince1970];
         

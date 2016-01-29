@@ -8,7 +8,7 @@
 
 import UIKit
 import Foundation
-import Alamofire
+//import Alamofire
 
 class Httpclient: NSObject {
 
