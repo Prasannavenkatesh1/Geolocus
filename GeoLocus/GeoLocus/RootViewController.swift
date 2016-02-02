@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import CoreMotion
 
 class RootViewController: UIViewController {
   
+  
     @IBOutlet var sideMenuButton: UIBarButtonItem!
     var labelNotificationCount:UILabel!
-  var categories = [String]()
+    var categories = [String]()
+    let activitymanager = CMMotionActivityManager()
 
   
     override func viewDidLoad() {
@@ -76,6 +79,9 @@ class RootViewController: UIViewController {
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
             
         }
+      
+      //Motion detect
+      
     }
 
     override func didReceiveMemoryWarning() {

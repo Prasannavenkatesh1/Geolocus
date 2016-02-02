@@ -274,6 +274,10 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
 
   }
   
+  func notMoving(){
+    //Interactive notifications
+  }
+  
   func locationManager(manager: CLLocationManager,
     didChangeAuthorizationStatus status: CLAuthorizationStatus) {
       var shouldIAllow = false

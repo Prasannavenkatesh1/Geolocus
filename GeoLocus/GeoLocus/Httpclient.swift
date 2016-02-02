@@ -18,8 +18,7 @@ class Httpclient: NSObject {
   }
 */
   func tmp() {
-  Alamofire.request(.GET, "asa")
-
+    Alamofire.request(.GET, "asa")
   }
   
   
