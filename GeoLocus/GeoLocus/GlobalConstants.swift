@@ -33,6 +33,21 @@ struct StringConstants {
     static let MOTIONTYPE_AUTOMOTIVE = "Automotive"
   
     
+    /* Language Selection View Controller Constants */
+    
+    static let LOGINVIEW_STORYBOARD_SEGUE = "loginView"
+    static let SELECTED_LANGUAGE_USERDEFAULT_KEY = "selectedLanguage"
+    
+    /* Login View Controller */
+    static let USERNAME_IMAGE = "username.png"
+    static let PASSWORD_IMAGE = "password.png"
+    static let CHECK_BOX_UNSELECTED = "check_box.png"
+    static let CHECK_BOX_SELECTED = "checked_box.png"
+    
+    static let REGISTER_NOW_URL = "http://www.google.com"
+    static let NEED_HELP_URL = "http://www.google.com"
+    static let LOGIN_URL = ""
+    static let TERMS_AND_CONDITIONS_URL = ""
 }
 
 
@@ -82,4 +97,3 @@ struct NotificationKey {
 struct Path {
     
 }
-
