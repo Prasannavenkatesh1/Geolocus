@@ -185,6 +185,7 @@
 		6CCAF90A1C4E064D00484056 /* TermsAndConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAF9091C4E064D00484056 /* TermsAndConditionViewController.swift */; };
 		6CCAF90C1C4E0A7B00484056 /* RightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAF90B1C4E0A7B00484056 /* RightViewController.swift */; };
 		6CCAF9101C4E20D500484056 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAF90F1C4E20D500484056 /* ErrorHandler.swift */; };
+		6CE2E8761C60D3590078991F /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE2E8751C60D3590078991F /* BaseModel.swift */; };
 		6CEAF3251C4FBB2100F13379 /* ArcGraphicsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEAF3241C4FBB2100F13379 /* ArcGraphicsController.swift */; };
 		A61E44CC1B32C133001D3461 /* weeklyReport.html in Resources */ = {isa = PBXBuildFile; fileRef = A61E44CB1B32C133001D3461 /* weeklyReport.html */; };
 		A61E44CE1B32C145001D3461 /* canvasjs.min.js in Resources */ = {isa = PBXBuildFile; fileRef = A61E44CD1B32C144001D3461 /* canvasjs.min.js */; };
@@ -466,6 +467,7 @@
 		6CCAF9091C4E064D00484056 /* TermsAndConditionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndConditionViewController.swift; sourceTree = "<group>"; };
 		6CCAF90B1C4E0A7B00484056 /* RightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightViewController.swift; sourceTree = "<group>"; };
 		6CCAF90F1C4E20D500484056 /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		6CE2E8751C60D3590078991F /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		6CEAF3241C4FBB2100F13379 /* ArcGraphicsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcGraphicsController.swift; sourceTree = "<group>"; };
 		A61E44CB1B32C133001D3461 /* weeklyReport.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = weeklyReport.html; path = Html/weeklyReport.html; sourceTree = "<group>"; };
 		A61E44CD1B32C144001D3461 /* canvasjs.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = canvasjs.min.js; path = JS/canvasjs.min.js; sourceTree = "<group>"; };
@@ -996,6 +998,7 @@
 		BF7336F91C3F9250006094C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6CE2E8751C60D3590078991F /* BaseModel.swift */,
 				6CCAF90F1C4E20D500484056 /* ErrorHandler.swift */,
 				BF5D3AAB1C4E1E3000DDFDC1 /* Datausage.h */,
 				BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */,
@@ -1410,6 +1413,7 @@
 				B63EDB881C5F7F6B00807C0E /* CALayer+UIColor.swift in Sources */,
 				B648C20D1C58B83000EE52C3 /* PageContentViewController.swift in Sources */,
 				638451F61B0353A000E895F7 /* CoreLocationController.m in Sources */,
+				6CE2E8761C60D3590078991F /* BaseModel.swift in Sources */,
 				638451EF1B0353A000E895F7 /* FMDatabase.m in Sources */,
 				63AAE5D31AE90C470013987F /* EmergencyViewController.swift in Sources */,
 				BF4D23791C5A0A8F00230355 /* Trip_timeseries.swift in Sources */,
