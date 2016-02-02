@@ -103,14 +103,6 @@ class DatabaseActions: NSObject {
     }catch{
       fatalError("reterive error")
     }
-    
-
-//    if self.managedObjectContext.save(&e) {
-//      print("insert error: \(e.localizedDescription)")
-//      abort()
-//    }
-  }
-
-  
+  }  
 
 }

@@ -18,7 +18,7 @@ class Httpclient: NSObject {
   }
 */
   func tmp() {
-// Alamofire.request(.GET, "sdfsf")
+
 
   }
   
