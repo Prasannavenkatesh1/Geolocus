@@ -99,8 +99,12 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     if(newlocspeed >= 7.0){
       // motion ype automotive
       self.motiontype = StringConstants.MOTIONTYPE_AUTOMOTIVE
+      if (!hasBeenRun) // hasBeenRun is a boolean intance variable
+      {
+        NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: "notMoving", object: nil)
+        hasBeenRun = true;
+      }
     }
-    
     
     //Auto trip start
     if(self.motiontype == StringConstants.MOTIONTYPE_AUTOMOTIVE && self.autoStartState == false && mainDelegate.globalAutoTrip == true) {
@@ -111,17 +115,16 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     //Auto trip stop
     if(self.motiontype == StringConstants.MOTIONTYPE_NOTMOVING){
       // stop the trip
-//      if (hasBeenRun) // hasBeenRun is a boolean instance variable
-//      {
-//        hasBeenRun = false;
-////        [self performSelector:@selector(notMoving) withObject:nil afterDelay:600.0];
-//      }
-
+      if (hasBeenRun == true) // hasBeenRun is a boolean instance variable
+      {
+        hasBeenRun = false;
+        self.performSelector("notMoving", withObject: nil, afterDelay: 900)
+      }
     }
     
     //********************End auto trip detection
     
-    //Calculate time intrval based on location change
+    //Calculate time interval based on location change
     var timeElapsed:NSTimeInterval!
     
     if(oldLocation != nil){

@@ -17,7 +17,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     var setSettings : String
     var iPhoneSize : String
 //    var autoButtonChange : NSString?
-    
+  
+  
     override init() {
       
       
