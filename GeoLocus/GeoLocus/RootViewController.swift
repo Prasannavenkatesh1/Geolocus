@@ -17,7 +17,8 @@ class RootViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
+      
         let notifyfullView=UIView(frame: CGRectMake(0, 0, 50, 40))
         notifyfullView.backgroundColor=UIColor.yellowColor()
         
