@@ -9,15 +9,18 @@
 import Foundation
 
 class CoreLocation: NSObject,CLLocationManagerDelegate {
+  
+  var autoStartState:Bool!
+  var brakAlert:Bool!
+  var acclAlert:Bool!
+  var hasBeenRun:Bool!
   var locationmanager:CLLocationManager!
   var locSpeedArray:[String]!
   var motiontype:String!
-  var autoStartState:Bool!
   var speedArray:[String]!
-  var brakAlert:Bool!
-  var acclAlert:Bool!
   var fltDistanceTravelled,distance:Double!
   var creationTime:Double!
+  var eventtypes:Events.EventType!
   
   func initLocationManager() {
     locationmanager = CLLocationManager()
@@ -26,6 +29,15 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     locationmanager.requestAlwaysAuthorization() // for use in background
     locationmanager.requestWhenInUseAuthorization() // for use in foreground
     locSpeedArray = [String]()
+    eventtypes = Events.EventType.NONE
+  }
+  
+  func startLocationupdate() {
+    self.locationmanager.startUpdatingLocation()
+  }
+  
+  func stopLocationupdate() {
+    self.locationmanager.stopUpdatingLocation()
   }
   
   func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
@@ -89,24 +101,22 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       self.motiontype = StringConstants.MOTIONTYPE_AUTOMOTIVE
     }
     
+    
     //Auto trip start
     if(self.motiontype == StringConstants.MOTIONTYPE_AUTOMOTIVE && self.autoStartState == false && mainDelegate.globalAutoTrip == true) {
         self.autoStartState = true
         mainDelegate.globalAutoTrip = false
-      
-      // Post a notification for autostart
-//      [[NSNotificationCenter defaultCenter] postNotificationName:@"autoStart" object:nil];
-      
-      //start the trip
-//      autoStopController = [[GeoLocusViewController alloc] init];
-//      [autoStopController enabledStateChanged];
-      
     }
     
     //Auto trip stop
     if(self.motiontype == StringConstants.MOTIONTYPE_NOTMOVING){
-      // stop the  trip
-      //        [self performSelector:@selector(notMoving) withObject:nil afterDelay:600.0];
+      // stop the trip
+//      if (hasBeenRun) // hasBeenRun is a boolean instance variable
+//      {
+//        hasBeenRun = false;
+////        [self performSelector:@selector(notMoving) withObject:nil afterDelay:600.0];
+//      }
+
     }
     
     //********************End auto trip detection
@@ -130,6 +140,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       speedDifference = (newSpeed - oldSpeed) * 3.6;
     }
     
+    var eventval:Double = 0.0
     //Calculate Braking
     var brakingvalue:Double = 0.0
     var braking:String = String(format:"%.1f",0.0) as String
@@ -144,6 +155,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     var avgSum:Float = 0.0
     if (speedDifference < 0)
     {
+      
       var sumForBraking:Float = 0.0
       for i in 0..<speedArray.count{
         sumForBraking += Float(speedArray[i])!
@@ -152,10 +164,14 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       avgSum = Float(sumForBraking) / Float(speedArray.count);
       
       if (brakingvalue > 7.0) {
-        if (avgSum > 30.0 && brakAlert == true) {
+//        if (avgSum > 30.0 && brakAlert == true) {
+        
+          eventtypes = Events.EventType.BRAKING
+          eventval = brakingvalue
           braking = String(format: "%f", brakingvalue)
           brakAlert = false;
-        }
+          
+//        }
       }
     }else{
       brakAlert = true
@@ -163,12 +179,12 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     
 
     // Calculate Acceleration
-    var acceleration:Float = 0.0
+    var acceleration:Double = 0.0
     var accele:String = ""
     accele = String(format: "%.1f", 0.0)
     
     if(speedDifference > 0){
-      acceleration = Float(speedDifference) / Float(timeElapsed)
+      acceleration = Double(speedDifference) / Double(timeElapsed)
       
       var avgSpeed:Float = 0.0;
       var sum:Float = 0;
@@ -180,10 +196,14 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       print("average speed\(avgSpeed)")
       
       if (acceleration > 5.0) {
-        if (avgSpeed > 35.0 && acclAlert == true){
+//        if (avgSpeed > 35.0 && acclAlert == true){
+        
+          eventtypes = Events.EventType.ACCELERATION
+          eventval = acceleration
           accele = String(format: "%f", acceleration)
           acclAlert = false
-        }
+          
+//        }
       }
     }else
     {
@@ -218,18 +238,36 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
 //    NSArray* getUptoDecimal = [dataCreatTime componentsSeparatedByString: @"."];
     
     //Update to DB
-    
+    var iseventval:Int = 0
+    if(eventtypes ==  Events.EventType.ACCELERATION || eventtypes == Events.EventType.STARTTRIP || eventtypes == Events.EventType.BRAKING){
+      iseventval = 1
+    }else{
+      iseventval = 0
+    }
+  
      let tseries:TimeSeriesModel = TimeSeriesModel.init(ctime: newLocation.timestamp,
       lat: latitude,
       longt: longitude,
       speedval: newLocation.speed*3.6,
       datausage: 0,
-      iseventval: 1,
-      evetype: 1,
-      eveval: 1,
+      iseventval: NSNumber(integer: iseventval),
+      evetype: NSNumber(integer: eventtypes.rawValue),
+      eveval: NSNumber(double: eventval),
       distance: distance)
     
       FacadeLayer.sharedinstance.dbactions.saveTimeSeries(tseries)
+    
+//    let jsonObject: [String: AnyObject] = [
+//      "latitude": 1,
+//      "longitude": 1,
+//      "speed": 1,
+//      "isevent": 1,
+//      "eventtype":3,
+//      "eventval":2,
+//      "distance":12121
+//    ]
+//    
+//    let valid = NSJSONSerialization.isValidJSONObject(jsonObject) // true
 
   }
   

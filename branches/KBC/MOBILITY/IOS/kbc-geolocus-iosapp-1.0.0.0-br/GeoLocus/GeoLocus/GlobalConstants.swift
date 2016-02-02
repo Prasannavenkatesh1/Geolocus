@@ -36,6 +36,19 @@ struct StringConstants {
 }
 
 
+struct Events {
+    
+  enum EventType: Int {
+    case BRAKING = 1
+    case ACCELERATION
+    case TIMESERIES
+    case STARTTRIP
+    case NONE
+  }
+  
+}
+
+
 struct ArrayConstants {
     
      //Side Menu Constants

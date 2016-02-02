@@ -207,6 +207,8 @@
 		B63F53EE1C51EAFA0070002E /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63F53EC1C51EAFA0070002E /* LanguageSelectionViewController.swift */; };
 		B648C20D1C58B83000EE52C3 /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B648C20B1C58B83000EE52C3 /* PageContentViewController.swift */; };
 		B648C20E1C58B83000EE52C3 /* WelcomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B648C20C1C58B83000EE52C3 /* WelcomePageViewController.swift */; };
+		BF4BA0E21C5F661F0028D79B /* Thresholds.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4BA0E11C5F661F0028D79B /* Thresholds.swift */; };
+		BF4BA0E41C5F6CC70028D79B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4BA0E31C5F6CC70028D79B /* Config.swift */; };
 		BF4D23781C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4D23761C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift */; };
 		BF4D23791C5A0A8F00230355 /* Trip_timeseries.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4D23771C5A0A8F00230355 /* Trip_timeseries.swift */; };
 		BF4F8D981C43845000895640 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D971C43845000895640 /* CategoryCell.swift */; };
@@ -491,6 +493,8 @@
 		B63F53EC1C51EAFA0070002E /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
 		B648C20B1C58B83000EE52C3 /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
 		B648C20C1C58B83000EE52C3 /* WelcomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomePageViewController.swift; sourceTree = "<group>"; };
+		BF4BA0E11C5F661F0028D79B /* Thresholds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thresholds.swift; sourceTree = "<group>"; };
+		BF4BA0E31C5F6CC70028D79B /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		BF4D23761C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_timeseries+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BF4D23771C5A0A8F00230355 /* Trip_timeseries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_timeseries.swift; sourceTree = "<group>"; };
 		BF4F8D971C43845000895640 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
@@ -1002,6 +1006,7 @@
 				6CCAF9031C4E036200484056 /* GlobalConstants.swift */,
 				BF6FA2A01C55F6880038DBDF /* CoreLocation.swift */,
 				BF5437B61C58FEA7009D2343 /* TimeSeriesModel.swift */,
+				BF4BA0E11C5F661F0028D79B /* Thresholds.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1064,6 +1069,7 @@
 		BF7337001C3F92DE006094C0 /* Facade_Pattern */ = {
 			isa = PBXGroup;
 			children = (
+				BF4BA0E31C5F6CC70028D79B /* Config.swift */,
 				BF7337011C3F9387006094C0 /* FacadeLayer.swift */,
 				BF7336FF1C3F92CA006094C0 /* HttpClient */,
 				BF7336FE1C3F92BC006094C0 /* DatabaseActions */,
@@ -1366,8 +1372,10 @@
 				63014BB01B15C5290022FCC6 /* AppDelegate.m in Sources */,
 				638452371B0353AE00E895F7 /* LeaderBoardController.m in Sources */,
 				BF7337531C3FC2BF006094C0 /* HistoryScorePage.swift in Sources */,
+				BF4BA0E21C5F661F0028D79B /* Thresholds.swift in Sources */,
 				638451F51B0353A000E895F7 /* GeoLocusViewController.m in Sources */,
 				6CCAF9041C4E036200484056 /* GlobalConstants.swift in Sources */,
+				BF4BA0E41C5F6CC70028D79B /* Config.swift in Sources */,
 				638451F01B0353A000E895F7 /* FMResultSet.m in Sources */,
 				636EF44C1B062B67007AA706 /* RegistrationDatabase.m in Sources */,
 				BF4F8D9C1C43CA9D00895640 /* DatabaseActions.swift in Sources */,
