@@ -23,7 +23,8 @@ let π: CGFloat = CGFloat(M_PI)
     @IBInspectable var highLevelColor: UIColor = UIColor.greenColor()
     @IBInspectable var foreGroundArcWidth: CGFloat = 20
     @IBInspectable var backGroundArcWidth: CGFloat = 5
-   
+    var arcMargin: CGFloat = 10
+    var animateScale = 0.0      //must be between [0,1]
     let ringLayer = CAShapeLayer()
     let imageView = UIImageView()
 
@@ -40,32 +41,32 @@ let π: CGFloat = CGFloat(M_PI)
         drawCenterImage()
         
         let center = CGPoint(x: bounds.width/2, y: bounds.height/2)
-        let radius: CGFloat = max(bounds.width - 20, bounds.height - 20)
+        let radius: CGFloat = max(bounds.width - arcMargin, bounds.height - arcMargin)
         
         let startAngle: CGFloat = 2 * π / 3
-        let endAngle: CGFloat = 5 * π / 3
+        let endAngle: CGFloat = π / 3
         
         let path = UIBezierPath(
             arcCenter: center,
-            radius: radius/2 - foreGroundArcWidth/2,
+            radius: radius/2 - backGroundArcWidth/2,                    //changed here
             startAngle: startAngle,
             endAngle: endAngle,
             clockwise: true)
         ringLayer.path = path.CGPath
-        ringLayer.strokeColor = ringForegroundColour.CGColor
+        //ringLayer.strokeColor = ringForegroundColour.CGColor
         ringLayer.fillColor = UIColor.clearColor().CGColor
         ringLayer.lineWidth = foreGroundArcWidth
         ringLayer.strokeEnd = 0.0
         layer.addSublayer(ringLayer)
-        animateArc(56.0)
+        animateArc(CGFloat(self.animateScale))                //changed here
         
     }
     
     private func backgroundArc() {
         
-        backGroundArcWidth = 5
+        //backGroundArcWidth = 5
         let center = CGPoint(x: bounds.width/2, y: bounds.height/2)
-        let radius: CGFloat = max(bounds.width - 45, bounds.height - 45)
+        let radius: CGFloat = max(bounds.width - arcMargin, bounds.height - arcMargin)
         
         let startAngle: CGFloat = 2 * π / 3
         let endAngle: CGFloat = π / 3
@@ -85,7 +86,7 @@ let π: CGFloat = CGFloat(M_PI)
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.duration = 2
         animation.fromValue = 0
-        animation.toValue = 1.0
+        animation.toValue = loaderValue                //changed here
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         ringLayer.strokeEnd = loaderValue
         ringLayer.addAnimation(animation, forKey: "animateArc")

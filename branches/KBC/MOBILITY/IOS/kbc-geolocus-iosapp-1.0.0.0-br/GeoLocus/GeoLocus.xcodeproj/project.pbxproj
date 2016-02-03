@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		0A9D9F90C552EA717EE57041 /* Pods_GeoLocus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44319C4E7A14E359CCBE50F0 /* Pods_GeoLocus.framework */; };
+		28F38A0B1C61EB3900A02E93 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F38A091C61EB3900A02E93 /* Badge.swift */; };
+		28F38A0C1C61EB3900A02E93 /* HistoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F38A0A1C61EB3900A02E93 /* HistoryData.swift */; };
+		28F38A121C61EBB300A02E93 /* BadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F38A0D1C61EBB300A02E93 /* BadgeCell.swift */; };
+		28F38A131C61EBB300A02E93 /* HistoryMapViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F38A0E1C61EBB300A02E93 /* HistoryMapViewCell.swift */; };
+		28F38A141C61EBB300A02E93 /* HistoryTripDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F38A0F1C61EBB300A02E93 /* HistoryTripDetailCell.swift */; };
+		28F38A151C61EBB300A02E93 /* HistoryTripScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F38A101C61EBB300A02E93 /* HistoryTripScoreCell.swift */; };
+		28F38A161C61EBB300A02E93 /* HistoryZoneViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F38A111C61EBB300A02E93 /* HistoryZoneViewCell.swift */; };
 		63014BB01B15C5290022FCC6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63014BAF1B15C5290022FCC6 /* AppDelegate.m */; };
 		6304FC1C1AD54B0D00734AEF /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6304FC1B1AD54B0D00734AEF /* DashboardViewController.swift */; };
 		63061B511BA03CD3006BF223 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63061B501BA03CD3006BF223 /* MapView.swift */; };
@@ -245,6 +252,13 @@
 
 /* Begin PBXFileReference section */
 		10F13FC629960E9EB8E54E0C /* Pods-GeoLocus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoLocus.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus.release.xcconfig"; sourceTree = "<group>"; };
+		28F38A091C61EB3900A02E93 /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		28F38A0A1C61EB3900A02E93 /* HistoryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryData.swift; sourceTree = "<group>"; };
+		28F38A0D1C61EBB300A02E93 /* BadgeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeCell.swift; sourceTree = "<group>"; };
+		28F38A0E1C61EBB300A02E93 /* HistoryMapViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryMapViewCell.swift; sourceTree = "<group>"; };
+		28F38A0F1C61EBB300A02E93 /* HistoryTripDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTripDetailCell.swift; sourceTree = "<group>"; };
+		28F38A101C61EBB300A02E93 /* HistoryTripScoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTripScoreCell.swift; sourceTree = "<group>"; };
+		28F38A111C61EBB300A02E93 /* HistoryZoneViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryZoneViewCell.swift; sourceTree = "<group>"; };
 		44319C4E7A14E359CCBE50F0 /* Pods_GeoLocus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoLocus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63014BAE1B15C5290022FCC6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		63014BAF1B15C5290022FCC6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
@@ -953,6 +967,11 @@
 		BF4F8D961C43840500895640 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				28F38A0D1C61EBB300A02E93 /* BadgeCell.swift */,
+				28F38A0E1C61EBB300A02E93 /* HistoryMapViewCell.swift */,
+				28F38A0F1C61EBB300A02E93 /* HistoryTripDetailCell.swift */,
+				28F38A101C61EBB300A02E93 /* HistoryTripScoreCell.swift */,
+				28F38A111C61EBB300A02E93 /* HistoryZoneViewCell.swift */,
 				BF4F8D971C43845000895640 /* CategoryCell.swift */,
 			);
 			name = Cells;
@@ -1002,6 +1021,8 @@
 		BF7336F91C3F9250006094C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				28F38A091C61EB3900A02E93 /* Badge.swift */,
+				28F38A0A1C61EB3900A02E93 /* HistoryData.swift */,
 				6CCAF90F1C4E20D500484056 /* ErrorHandler.swift */,
 				BF5D3AAB1C4E1E3000DDFDC1 /* Datausage.h */,
 				BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */,
@@ -1336,6 +1357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6384522A1B0353AE00E895F7 /* LeaderBoardEntity.m in Sources */,
+				28F38A121C61EBB300A02E93 /* BadgeCell.swift in Sources */,
 				630C19D71AE7B2A8000B32CA /* Drawings.swift in Sources */,
 				63EA2C661B70DA4400ECC0E9 /* DashboardDB.m in Sources */,
 				BF73374B1C3FBD9E006094C0 /* Pageviewcontroller.swift in Sources */,
@@ -1353,6 +1375,7 @@
 				638452301B0353AE00E895F7 /* LeaderBoardDatabase.m in Sources */,
 				630C1E8A1AD6653000C98857 /* ScorePageViewController.swift in Sources */,
 				BF5437B71C58FEA7009D2343 /* TimeSeriesModel.swift in Sources */,
+				28F38A151C61EBB300A02E93 /* HistoryTripScoreCell.swift in Sources */,
 				BF6FA2A11C55F6880038DBDF /* CoreLocation.swift in Sources */,
 				6CCAF90C1C4E0A7B00484056 /* RightViewController.swift in Sources */,
 				638452321B0353AE00E895F7 /* DashboardEntity.m in Sources */,
@@ -1360,6 +1383,7 @@
 				6384522E1B0353AE00E895F7 /* SettingsEntity.m in Sources */,
 				BF4F8D9A1C43CA8D00895640 /* Httpclient.swift in Sources */,
 				B648C20E1C58B83000EE52C3 /* WelcomePageViewController.swift in Sources */,
+				28F38A161C61EBB300A02E93 /* HistoryZoneViewCell.swift in Sources */,
 				6384522D1B0353AE00E895F7 /* ScoringEntity.m in Sources */,
 				638452381B0353AE00E895F7 /* GetQuoteController.m in Sources */,
 				F55265661C522FD0002362F5 /* NotificationTableViewCell.swift in Sources */,
@@ -1367,6 +1391,7 @@
 				63A93D5E1B8B24A10081C526 /* arcProgressView.swift in Sources */,
 				638452341B0353AE00E895F7 /* TripSummaryDatabase.m in Sources */,
 				BF73374F1C3FC29A006094C0 /* DashboardPage.swift in Sources */,
+				28F38A0C1C61EB3900A02E93 /* HistoryData.swift in Sources */,
 				6389B24F1B1C9AA600F2A18C /* DataTransmissionController.m in Sources */,
 				BF5D3AAD1C4E1E3000DDFDC1 /* Datausage.m in Sources */,
 				635194791AD3AAC7002ED1D0 /* ViewController.swift in Sources */,
@@ -1384,6 +1409,7 @@
 				F5B020451C60AA4B006C97E5 /* NotificationDetailsViewController.swift in Sources */,
 				BF4BA0E41C5F6CC70028D79B /* Config.swift in Sources */,
 				638451F01B0353A000E895F7 /* FMResultSet.m in Sources */,
+				28F38A0B1C61EB3900A02E93 /* Badge.swift in Sources */,
 				636EF44C1B062B67007AA706 /* RegistrationDatabase.m in Sources */,
 				BF4F8D9C1C43CA9D00895640 /* DatabaseActions.swift in Sources */,
 				6384522C1B0353AE00E895F7 /* ScoringPageDatabase.m in Sources */,
@@ -1411,6 +1437,7 @@
 				6CEAF3251C4FBB2100F13379 /* ArcGraphicsController.swift in Sources */,
 				BF7337491C3FBCF4006094C0 /* RootViewController.swift in Sources */,
 				6389B2511B1C9AA600F2A18C /* ListenerViewController.m in Sources */,
+				28F38A131C61EBB300A02E93 /* HistoryMapViewCell.swift in Sources */,
 				A6D52F881B6F454900855DDB /* TripSummaryDB.m in Sources */,
 				63C2094F1B0B0BF8009DF880 /* AppDelegateSwift.swift in Sources */,
 				6384523D1B0353AE00E895F7 /* RegistrationController.m in Sources */,
@@ -1421,6 +1448,7 @@
 				63D086BE1B047D2A00BDD656 /* MLTableAlert.m in Sources */,
 				BF43B3501C61D25900710E22 /* TripNotify.swift in Sources */,
 				B648C20D1C58B83000EE52C3 /* PageContentViewController.swift in Sources */,
+				28F38A141C61EBB300A02E93 /* HistoryTripDetailCell.swift in Sources */,
 				638451F61B0353A000E895F7 /* CoreLocationController.m in Sources */,
 				638451EF1B0353A000E895F7 /* FMDatabase.m in Sources */,
 				63AAE5D31AE90C470013987F /* EmergencyViewController.swift in Sources */,
