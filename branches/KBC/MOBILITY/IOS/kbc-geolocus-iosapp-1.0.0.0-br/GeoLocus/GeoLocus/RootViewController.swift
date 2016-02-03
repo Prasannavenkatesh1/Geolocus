@@ -23,27 +23,27 @@ class RootViewController: UIViewController {
       
       
         let notifyfullView=UIView(frame: CGRectMake(0, 0, 50, 40))
-        notifyfullView.backgroundColor=UIColor.yellowColor()
+        notifyfullView.backgroundColor=UIColor.clearColor()
         
-        let redView=UIView(frame: CGRectMake(0, 0, 25, 25))
+        let redView=UIView(frame: CGRectMake(0, 0, 20, 20))
         redView.backgroundColor=UIColor.redColor()
-        redView.layer.cornerRadius=12.5
+        redView.layer.cornerRadius=10
         redView.layer.masksToBounds=true
         //DynamicView.layer.borderWidth=2
         
         labelNotificationCount = UILabel()
-        labelNotificationCount.frame = CGRectMake(2, 0, 20, 20)
+        labelNotificationCount.frame = CGRectMake(2, 2, 10, 10)
         labelNotificationCount.textAlignment = NSTextAlignment.Center;
         labelNotificationCount.text = "1"
         redView.addSubview(labelNotificationCount)
         
         let button: UIButton = UIButton()
-        button.setImage(UIImage(named: "Selected"), forState: .Normal)
-        button.frame = CGRectMake(0, 0, 45, 45)
+        button.setImage(UIImage(named: "NotificationIcon"), forState: .Normal)
+        button.frame = CGRectMake(10, 10, 30, 22)
         button.addTarget(self, action: "pushToNotificationScreen:", forControlEvents: .TouchUpInside)
         
-        notifyfullView.addSubview(redView)
         notifyfullView.addSubview(button)
+        notifyfullView.addSubview(redView)
         
         let rightItem:UIBarButtonItem = UIBarButtonItem()
         rightItem.customView = notifyfullView

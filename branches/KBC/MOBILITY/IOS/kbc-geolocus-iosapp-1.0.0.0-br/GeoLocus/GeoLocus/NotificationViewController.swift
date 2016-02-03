@@ -9,10 +9,15 @@
 import UIKit
 
 class NotificationViewController: UIViewController,UITableViewDataSource, UITableViewDelegate{
-
+    var notificationListDict = [String: String]()
+    var notificationListArray = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        notificationListDict = ["key1": "value1", "key2": "value2"]
+        notificationListArray.append("hello")
+        notificationListArray.append("hello")
+        notificationListArray.append("hello")
+        notificationListArray.append("hello")
         // Do any additional setup after loading the view.
     }
 
@@ -24,7 +29,7 @@ class NotificationViewController: UIViewController,UITableViewDataSource, UITabl
     //MARK: - Tableview Delegate & Datasource
     func tableView(tableView:UITableView, numberOfRowsInSection section:Int) -> Int
     {
-        return 10
+        return notificationListArray.count
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -41,9 +46,20 @@ class NotificationViewController: UIViewController,UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
+        self.performSegueWithIdentifier("NotificationDetailssegue", sender: self)
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "NotificationDetailssegue") {
+            // pass data to next view
+            //let notify:NotificationViewController = segue.destinationViewController as! NotificationViewController
+            //notify.razorSharpTeeth
+        }
         
     }
-
+    func  pushToNotificationScreen(sender: UIButton!) {
+        self.performSegueWithIdentifier("Notificationsegue", sender: self);
+        
+    }
     /*
     // MARK: - Navigation
 
