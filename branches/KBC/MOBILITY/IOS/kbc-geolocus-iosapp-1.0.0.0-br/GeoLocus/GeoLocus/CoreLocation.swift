@@ -59,7 +59,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   
     let coord = newLocation.coordinate
     
-    var mainDelegate:AppDelegateSwift = UIApplication.sharedApplication().delegate as! AppDelegateSwift
+    let mainDelegate:AppDelegateSwift = UIApplication.sharedApplication().delegate as! AppDelegateSwift
     
     print(coord.latitude)
     print(coord.longitude)
@@ -260,18 +260,6 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     
       FacadeLayer.sharedinstance.dbactions.saveTimeSeries(tseries)
     
-//    let jsonObject: [String: AnyObject] = [
-//      "latitude": 1,
-//      "longitude": 1,
-//      "speed": 1,
-//      "isevent": 1,
-//      "eventtype":3,
-//      "eventval":2,
-//      "distance":12121
-//    ]
-//    
-//    let valid = NSJSONSerialization.isValidJSONObject(jsonObject) // true
-
   }
   
   func notMoving(){
