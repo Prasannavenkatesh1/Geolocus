@@ -207,6 +207,7 @@
 		B63F53EE1C51EAFA0070002E /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63F53EC1C51EAFA0070002E /* LanguageSelectionViewController.swift */; };
 		B648C20D1C58B83000EE52C3 /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B648C20B1C58B83000EE52C3 /* PageContentViewController.swift */; };
 		B648C20E1C58B83000EE52C3 /* WelcomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B648C20C1C58B83000EE52C3 /* WelcomePageViewController.swift */; };
+		BF43B3501C61D25900710E22 /* TripNotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF43B34F1C61D25900710E22 /* TripNotify.swift */; };
 		BF4BA0E21C5F661F0028D79B /* Thresholds.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4BA0E11C5F661F0028D79B /* Thresholds.swift */; };
 		BF4BA0E41C5F6CC70028D79B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4BA0E31C5F6CC70028D79B /* Config.swift */; };
 		BF4D23781C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4D23761C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift */; };
@@ -494,6 +495,7 @@
 		B63F53EC1C51EAFA0070002E /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
 		B648C20B1C58B83000EE52C3 /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
 		B648C20C1C58B83000EE52C3 /* WelcomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomePageViewController.swift; sourceTree = "<group>"; };
+		BF43B34F1C61D25900710E22 /* TripNotify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripNotify.swift; sourceTree = "<group>"; };
 		BF4BA0E11C5F661F0028D79B /* Thresholds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thresholds.swift; sourceTree = "<group>"; };
 		BF4BA0E31C5F6CC70028D79B /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		BF4D23761C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_timeseries+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -1008,6 +1010,7 @@
 				6CCAF9031C4E036200484056 /* GlobalConstants.swift */,
 				BF6FA2A01C55F6880038DBDF /* CoreLocation.swift */,
 				BF5437B61C58FEA7009D2343 /* TimeSeriesModel.swift */,
+				BF43B34F1C61D25900710E22 /* TripNotify.swift */,
 				BF4BA0E11C5F661F0028D79B /* Thresholds.swift */,
 			);
 			name = Model;
@@ -1416,6 +1419,7 @@
 				63061B511BA03CD3006BF223 /* MapView.swift in Sources */,
 				638451F41B0353A000E895F7 /* GeoLocusAppDelegate.m in Sources */,
 				63D086BE1B047D2A00BDD656 /* MLTableAlert.m in Sources */,
+				BF43B3501C61D25900710E22 /* TripNotify.swift in Sources */,
 				B648C20D1C58B83000EE52C3 /* PageContentViewController.swift in Sources */,
 				638451F61B0353A000E895F7 /* CoreLocationController.m in Sources */,
 				638451EF1B0353A000E895F7 /* FMDatabase.m in Sources */,
@@ -1500,8 +1504,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
 				COPY_PHASE_STRIP = NO;
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -1524,7 +1528,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_MODULE_NAME = "";
-				PROVISIONING_PROFILE = "0d8d2903-6043-4fde-9a2a-ff1bd966cf6c";
+				PROVISIONING_PROFILE = "a18e379c-24f0-4596-bb0d-04cac6586511";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1549,8 +1553,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
 				COPY_PHASE_STRIP = YES;
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -1566,7 +1570,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_MODULE_NAME = "";
-				PROVISIONING_PROFILE = "2fe72868-89b1-4ffb-b084-9da95607c189";
+				PROVISIONING_PROFILE = "a18e379c-24f0-4596-bb0d-04cac6586511";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1579,8 +1583,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1592,10 +1596,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cts.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cognizant.kbcgeolocus;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0d8d2903-6043-4fde-9a2a-ff1bd966cf6c";
+				PROVISIONING_PROFILE = "a18e379c-24f0-4596-bb0d-04cac6586511";
 				SWIFT_OBJC_BRIDGING_HEADER = "GeoLocus/GeoLocus-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1608,8 +1612,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1621,10 +1625,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cts.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cognizant.kbcgeolocus;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2fe72868-89b1-4ffb-b084-9da95607c189";
+				PROVISIONING_PROFILE = "a18e379c-24f0-4596-bb0d-04cac6586511";
 				SWIFT_OBJC_BRIDGING_HEADER = "GeoLocus/GeoLocus-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";
