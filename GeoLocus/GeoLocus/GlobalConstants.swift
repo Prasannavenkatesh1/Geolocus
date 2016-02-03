@@ -97,3 +97,41 @@ struct NotificationKey {
 struct Path {
     
 }
+
+struct Timeseries {
+   var currenttime: String
+   var latitude: NSNumber
+   var longitude: NSNumber
+   var speed: NSNumber
+   var timezone: String
+   var isEvent: NSNumber
+   var eventtype: NSNumber
+   var eventvalue: NSNumber
+  
+  init(ctime:String, lat:NSNumber, longt:NSNumber, speedval:NSNumber, tzone:String, iseventval:NSNumber, evetype:NSNumber, eveval:NSNumber){
+    self.currenttime = ctime
+    self.latitude = lat
+    self.longitude = longt
+    self.speed = speedval
+    self.timezone = tzone
+    self.isEvent = iseventval
+    self.eventtype = evetype
+    self.eventvalue = eveval
+  }
+}
+
+
+//MARK: - Extensions
+//shift to helper class
+public extension NSDate {
+    
+    convenience
+    init(dateString:String) {
+        let dateStringFormatter = NSDateFormatter()
+        dateStringFormatter.dateFormat = "dd-MM-yyyy"         //TO DO : check the format
+        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")  //TO DO : check the locale if it changes dynamically
+        let d = dateStringFormatter.dateFromString(dateString)!
+        self.init(timeInterval:0, sinceDate:d)
+    }
+}
+

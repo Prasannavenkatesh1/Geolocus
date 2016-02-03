@@ -82,11 +82,14 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setBool(false, forKey: "isStarted")
         
-        self.loadInitialViewController()
+     //   self.loadInitialViewController()
         
         // Override point for customization after application launch.
         
 //        self.checkStoryBoard()
+        
+        
+        print("screen height: \(UIScreen.mainScreen().bounds.size.height)")
       
         return true
     }
