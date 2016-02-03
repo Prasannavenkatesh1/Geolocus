@@ -21,7 +21,16 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
   
     override init() {
       
+      let date = NSDate()
+      let calendar = NSCalendar.currentCalendar()
+      let components = calendar.components([.Hour, .Minute], fromDate: date)
+      let hour = components.hour
+      let minutes = components.minute
       
+      
+      
+      let ttt:TripNotify = TripNotify.init(title: "asas", UUID: "asasqw", schedule: NSDate())
+      ttt.addItem()
       
 //      // get your storyboard
 //      let storyboard = UIStoryboard(name: "Storyboard", bundle: nil)
