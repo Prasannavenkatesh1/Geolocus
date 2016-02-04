@@ -5,8 +5,11 @@
 import UIKit
 import CoreData
 
+
+
 @UIApplicationMain
 class AppDelegateSwift: UIResponder, UIApplicationDelegate {
+  
 
     var window: UIWindow?
     var vAlert : NSString?
@@ -16,46 +19,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     var countryCode : NSString?
     var setSettings : String
     var iPhoneSize : String
-//    var autoButtonChange : NSString?
-  
   
     override init() {
-      
-      let date = NSDate()
-      let calendar = NSCalendar.currentCalendar()
-      let components = calendar.components([.Hour, .Minute], fromDate: date)
-      let hour = components.hour
-      let minutes = components.minute
-      
-      
-      
-      let ttt:TripNotify = TripNotify.init(title: "asas", UUID: "asasqw", schedule: NSDate())
-      ttt.addItem()
-      
-//      // get your storyboard
-//      let storyboard = UIStoryboard(name: "Storyboard", bundle: nil)
-//      
-//      // instantiate your desired ViewController
-//      let rootController = storyboard.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
-//      
-//      // instantiate your desired ViewController
-//      let languagecontroller = storyboard.instantiateViewControllerWithIdentifier("LanguageSelectionViewController") as! LanguageSelectionViewController
-//      
-//      // Because self.window is an optional you should check it's value first and assign your rootViewController
-//      if let window = self.window {
-//        window.rootViewController = languagecontroller
-//      }
-      
-      
-//      let tseries:Timeseries = Timeseries.init(ctime: "10",
-//        lat: 101,
-//        longt: 102,
-//        speedval: 103,
-//        tzone: "IST",
-//        iseventval: 1,
-//        evetype: 2,
-//        eveval: 3)
-//      FacadeLayer.sharedinstance.dbactions.tempsave(tseries)
       
         vAlert = "Enabled"
         globalAutoTrip = false
@@ -66,56 +31,104 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         iPhoneSize = "iPhone5"
 //        autoButtonChange = "Disabled"
       
-//      let det = NSLocalizedString("hello", comment: "hello comment")
-//      print("qwqwq \(det)")
-      
-        print("Global Auto Trip : \(globalAutoTrip)")
-        let settings : GeolocusDashboard = GeolocusDashboard()
-        settings.setSettingsData()
-        
-//        var settingsData = settings.getSettingsData() as NSDictionary
+//        let settings : GeolocusDashboard = GeolocusDashboard()
+//        settings.setSettingsData()
     }
   
-    
+  
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
+      
+        //      UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert , .Sound, .Badge], categories: nil))
+
+        registerNotification()
+
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setBool(false, forKey: "isStarted")
-        
+
+    
         self.loadInitialViewController()
-        
-        // Override point for customization after application launch.
-        
-//        self.checkStoryBoard()
-        
-        
-        print("screen height: \(UIScreen.mainScreen().bounds.size.height)")
       
         return true
     }
 
-    func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
+  
+  
+  // Register notification settings
+  func registerNotification() {
     
+    // 1. Create the actions **************************************************
+    
+    // yes Action
+    let yesAction = UIMutableUserNotificationAction()
+    yesAction.identifier = Actions.yes.rawValue
+    yesAction.title = "YES"
+    yesAction.activationMode = UIUserNotificationActivationMode.Background
+    yesAction.authenticationRequired = true
+    yesAction.destructive = false
+    
+    // no Action
+    let noAction = UIMutableUserNotificationAction()
+    noAction.identifier = Actions.no.rawValue
+    noAction.title = "NO"
+    noAction.activationMode = UIUserNotificationActivationMode.Background
+    noAction.authenticationRequired = true
+    noAction.destructive = false
+    
+    
+    // 2. Create the category ***********************************************
+    
+    // Category
+    let counterCategory = UIMutableUserNotificationCategory()
+    counterCategory.identifier = categoryID
+    
+    // A. Set actions for the default context
+    counterCategory.setActions([yesAction, noAction],
+      forContext: UIUserNotificationActionContext.Default)
+    
+    // B. Set actions for the minimal context
+    counterCategory.setActions([yesAction, noAction],
+      forContext: UIUserNotificationActionContext.Minimal)
+    
+    
+    // 3. Notification Registration *****************************************
+    
+    let types: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Sound]
+    let settings = UIUserNotificationSettings(forTypes: types, categories: NSSet(object: counterCategory) as? Set<UIUserNotificationCategory>)
+    UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+  }
+  
+  func application(application: UIApplication,
+    handleActionWithIdentifier identifier: String?,
+    forLocalNotification notification: UILocalNotification,
+    completionHandler: () -> Void) {
+      
+      // Handle notification action *****************************************
+      if notification.category == categoryID {
+        
+        let action:Actions = Actions(rawValue: identifier!)!
+        
+      
+        switch action{
+          
+        case Actions.yes:
+          print("yes")
+          if let userinfo = notification.userInfo {
+            let triptype = userinfo["triptype"] as! Bool
+            if(triptype == false){
+              print("trip stoped")
+            }
+          }
+          
+        case Actions.no:
+          print("no")
+          
+        }
+      }
+      
+      completionHandler()
+  }
+  
+  
     /* function to navigate to respective view controller on first launch/succesive login */
     func loadInitialViewController(){
         
@@ -125,12 +138,16 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         
         if(!checkUserLogin){
             print("Not first launch.")
+          
+          let loc:CoreLocation = CoreLocation()
+          loc.initLocationManager()
+          
             let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
             self.window?.rootViewController = dashboardPage
             self.window?.makeKeyAndVisible()
         }
         else{
-            print("First launch, setting NSUserDefault.")
+//            print("First launch, setting NSUserDefault.")
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "FirstLaunch")
             let languageSelectionPage = storyboard.instantiateViewControllerWithIdentifier("LanguageSelectionViewController") as! LanguageSelectionViewController
             self.window?.rootViewController = languageSelectionPage
@@ -138,153 +155,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         }
     }
 
-    func checkStoryBoard() {
-        
-        let screenSize = UIScreen.mainScreen().bounds.size
-        
-        let isiPhone4 = CGSizeEqualToSize(screenSize, CGSizeMake(320, 480))
-        let isiPhone5 = CGSizeEqualToSize(screenSize, CGSizeMake(320, 568))
-        let isiPhone6 = CGSizeEqualToSize(screenSize, CGSizeMake(375, 667))
-        var isiPhone6P = CGSizeEqualToSize(screenSize, CGSizeMake(414, 736))
-        
-        if (isiPhone4) {
-            
-            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-            
-            let storyboard = UIStoryboard(name: "Main4s", bundle: nil)
-            
-            let geolocusDashboard : GeolocusDashboard = GeolocusDashboard()
-            let checkUser : Bool = geolocusDashboard.checkUserDetails()
-            
-            print("checkUser :\(checkUser)")
-
-            
-            let firstLaunch = NSUserDefaults.standardUserDefaults().boolForKey("FirstLaunch")
-            
-            if (firstLaunch && checkUser)  {
-                print("Not first launch.")
-                let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("Dashboard") as! DashBoardView
-                self.window?.rootViewController = dashboardPage
-                self.window?.makeKeyAndVisible()
-                
-            }
-            else if (!checkUser) {
-                print("First launch, setting NSUserDefault.")
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "FirstLaunch")
-                let loginPage = storyboard.instantiateViewControllerWithIdentifier("Login") as! ViewController
-                self.window?.rootViewController = loginPage
-                self.window?.makeKeyAndVisible()
-            }
-            
-            iPhoneSize = "iPhone4"
-        }
-        else if (isiPhone5){
-            
-            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let geolocusDashboard : GeolocusDashboard = GeolocusDashboard()
-            let checkUser : Bool = geolocusDashboard.checkUserDetails()
-
-            print("checkUser :\(checkUser)")
-            
-//            if(checkUser){
-//                
-//                var dashboardPage = storyboard.instantiateViewControllerWithIdentifier("Dashboard") as! DashBoardView
-//                self.window?.rootViewController = dashboardPage
-//                self.window?.makeKeyAndVisible()
-//                
-//            }else{
-//                
-//                var loginPage = storyboard.instantiateViewControllerWithIdentifier("Login") as! ViewController
-//                self.window?.rootViewController = loginPage
-//                self.window?.makeKeyAndVisible()
-//                
-//            }
-            
-            let firstLaunch = NSUserDefaults.standardUserDefaults().boolForKey("FirstLaunch")
-            
-            if (firstLaunch && checkUser)  {
-                print("Not first launch.")
-                let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("Dashboard") as! DashBoardView
-                self.window?.rootViewController = dashboardPage
-                self.window?.makeKeyAndVisible()
-                
-            }
-            else if (!checkUser) {
-                print("First launch, setting NSUserDefault.")
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "FirstLaunch")
-                let loginPage = storyboard.instantiateViewControllerWithIdentifier("Login") as! ViewController
-                self.window?.rootViewController = loginPage
-                self.window?.makeKeyAndVisible()
-            }
-
-            iPhoneSize = "iPhone5"
-            
-        }
-        else if (isiPhone6){
-            
-            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-            
-            let storyboard = UIStoryboard(name: "Main6", bundle: nil)
-            let geolocusDashboard : GeolocusDashboard = GeolocusDashboard()
-            let checkUser : Bool = geolocusDashboard.checkUserDetails()
-            
-            print("checkUser :\(checkUser)")
-            
-            let firstLaunch = NSUserDefaults.standardUserDefaults().boolForKey("FirstLaunch")
-            
-            if (firstLaunch && checkUser)  {
-                print("Not first launch.")
-                let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("Dashboard") as! DashBoardView
-                self.window?.rootViewController = dashboardPage
-                self.window?.makeKeyAndVisible()
-                
-            }
-            else if (!checkUser) {
-                print("First launch, setting NSUserDefault.")
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "FirstLaunch")
-                let loginPage = storyboard.instantiateViewControllerWithIdentifier("Login") as! ViewController
-                self.window?.rootViewController = loginPage
-                self.window?.makeKeyAndVisible()
-            }
-
-            iPhoneSize = "iPhone6"
-            
-        }
-        
-        else {
-            
-            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
-            let geolocusDashboard : GeolocusDashboard = GeolocusDashboard()
-            let checkUser : Bool = geolocusDashboard.checkUserDetails()
-            
-            print("checkUser :\(checkUser)")
-
-            let firstLaunch = NSUserDefaults.standardUserDefaults().boolForKey("FirstLaunch")
    
-            if (firstLaunch && checkUser)  {
-                print("Not first launch.")
-                let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("Dashboard") as! DashBoardView
-                self.window?.rootViewController = dashboardPage
-                self.window?.makeKeyAndVisible()
-                
-            }
-            else if (!checkUser) {
-                print("First launch, setting NSUserDefault.")
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "FirstLaunch")
-                let loginPage = storyboard.instantiateViewControllerWithIdentifier("Login") as! ViewController
-                self.window?.rootViewController = loginPage
-                self.window?.makeKeyAndVisible()
-            }
-            
-            iPhoneSize = "iPhone5"
-            
-        }
-    }
     
     // MARK: - Core Data stack
     
@@ -358,6 +229,5 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }
 

@@ -41,7 +41,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     }
     
     /* Login button action */
-    @IBAction func loginTapped(sender: UIButton) {
+    @IBAction func loginTapped(sender: UIButton) {     
         loginButton.backgroundColor = UIColor(red: 83.0/255.0, green: 178.0/255.0, blue: 98.0/255.0, alpha: 1.0)
         loginButton.setTitleColor(UIColor(red: 174.0/255.0, green: 174.0/255.0, blue: 174.0/255.0, alpha: 1.0),forState: UIControlState.Normal)
     }

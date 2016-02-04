@@ -14,7 +14,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   var brakAlert:Bool!
   var acclAlert:Bool!
   var hasBeenRun:Bool!
-  var locationmanager:CLLocationManager!
+  var locationmanager:CLLocationManager?
   var locSpeedArray:[String]!
   var motiontype:String!
   var speedArray:[String]!
@@ -23,21 +23,26 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   var eventtypes:Events.EventType!
   
   func initLocationManager() {
-    locationmanager = CLLocationManager()
-    locationmanager?.delegate = self
-    locationmanager.desiredAccuracy = kCLLocationAccuracyBest
-    locationmanager.requestAlwaysAuthorization() // for use in background
-    locationmanager.requestWhenInUseAuthorization() // for use in foreground
+    print("location update")
+    self.locationmanager = CLLocationManager()
+    self.locationmanager!.delegate = self
+    self.locationmanager!.desiredAccuracy = kCLLocationAccuracyBest
+    startLocationupdate()
+    
+//    self.locationmanager!.locationServicesEnabled()
+//    locationmanager!.requestAlwaysAuthorization() // for use in background
+//    locationmanager!.requestWhenInUseAuthorization() // for use in foreground
+
     locSpeedArray = [String]()
     eventtypes = Events.EventType.NONE
   }
   
   func startLocationupdate() {
-    self.locationmanager.startUpdatingLocation()
+    self.locationmanager!.startUpdatingLocation()
   }
   
   func stopLocationupdate() {
-    self.locationmanager.stopUpdatingLocation()
+    self.locationmanager!.stopUpdatingLocation()
   }
   
   func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
@@ -110,6 +115,11 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     if(self.motiontype == StringConstants.MOTIONTYPE_AUTOMOTIVE && self.autoStartState == false && mainDelegate.globalAutoTrip == true) {
         self.autoStartState = true
         mainDelegate.globalAutoTrip = false
+      TripNotify.init(title: "Do you want to start the trip",
+        UUID: NSUUID().UUIDString,
+        schedule: NSDate(),
+        tripstatus: true)
+
     }
     
     //Auto trip stop
@@ -264,6 +274,10 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   
   func notMoving(){
     //Interactive notifications
+    TripNotify.init(title: "Do you want to stop the trip",
+      UUID: NSUUID().UUIDString,
+      schedule: NSDate(),
+      tripstatus: false)
   }
   
   func locationManager(manager: CLLocationManager,
@@ -336,8 +350,8 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   }
   
   func startReadingLocation(){
-    locationmanager.startUpdatingLocation()
-    locationmanager.startUpdatingHeading()
+    locationmanager!.startUpdatingLocation()
+    locationmanager!.startUpdatingHeading()
   }
   
   

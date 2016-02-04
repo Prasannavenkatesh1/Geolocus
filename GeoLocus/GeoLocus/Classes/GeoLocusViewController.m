@@ -511,19 +511,19 @@ NSComparator sortingBlock = ^(id call1, id call2) {
     
     FMResultSet *rs = [db executeQuery:[NSString stringWithFormat:@"SELECT * From geoLocus"]];
     
-    NSLog(@"Settings hostname: %@",settingsEntity.hostname);
-    NSLog(@"Settings port: %@",settingsEntity.port);
-    NSLog(@"Settings frequency: %@",settingsEntity.frequency);
-    NSLog(@"Settings protocols: %@",settingsEntity.protocols);
-    NSLog(@"Settings datauploadtype: %@",settingsEntity.datauploadtype);
-    NSLog(@"Settings transmissioninterval: %@",settingsEntity.transmissioninterval);
-    NSLog(@"Settings collectioninterval: %@",settingsEntity.collectioninterval);
-    NSLog(@"Settings provider: %@",settingsEntity.provider);
-    NSLog(@"Settings notifydistance: %@",settingsEntity.notifydistance);
-    NSLog(@"Settings notifytime: %@",settingsEntity.notifytime);
-    NSLog(@"Settings providervalue: %@",settingsEntity.providervalue);
-    NSLog(@"Settings voiceAlert: %@",settingsEntity.voiceAlert);
-    
+//    NSLog(@"Settings hostname: %@",settingsEntity.hostname);
+//    NSLog(@"Settings port: %@",settingsEntity.port);
+//    NSLog(@"Settings frequency: %@",settingsEntity.frequency);
+//    NSLog(@"Settings protocols: %@",settingsEntity.protocols);
+//    NSLog(@"Settings datauploadtype: %@",settingsEntity.datauploadtype);
+//    NSLog(@"Settings transmissioninterval: %@",settingsEntity.transmissioninterval);
+//    NSLog(@"Settings collectioninterval: %@",settingsEntity.collectioninterval);
+//    NSLog(@"Settings provider: %@",settingsEntity.provider);
+//    NSLog(@"Settings notifydistance: %@",settingsEntity.notifydistance);
+//    NSLog(@"Settings notifytime: %@",settingsEntity.notifytime);
+//    NSLog(@"Settings providervalue: %@",settingsEntity.providervalue);
+//    NSLog(@"Settings voiceAlert: %@",settingsEntity.voiceAlert);
+  
     if ([rs next]) {
         
         isInserted=[db executeUpdate:@"UPDATE geoLocus SET hostname = ?,port = ?,frequency = ?,protocols = ?,datauploadtype = ?,transmissioninterval = ?,collectioninterval = ?,provider = ?,notifydistance = ?,notifytime = ?,providervalue = ?,voicealert = ?",settingsEntity.hostname,settingsEntity.port,settingsEntity.frequency,settingsEntity.protocols,settingsEntity.datauploadtype,settingsEntity.transmissioninterval,settingsEntity.collectioninterval,settingsEntity.provider,settingsEntity.notifydistance,settingsEntity.notifytime,settingsEntity.providervalue,settingsEntity.voiceAlert, nil];
