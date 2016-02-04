@@ -33,8 +33,6 @@
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>The current location is always logged by the app, even in the background</string>
-	<key>NSLocationUsageDescription</key>
-	<string>prevention</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Loc update</string>
 	<key>UIAppFonts</key>

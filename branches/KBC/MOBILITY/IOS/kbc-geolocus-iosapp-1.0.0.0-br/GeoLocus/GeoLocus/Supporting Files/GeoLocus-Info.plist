@@ -43,6 +43,8 @@
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>The current location is always logged by the app, even in the background</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>App is in foreground</string>
 	<key>NSMainNibFile</key>
 	<string></string>
 	<key>NSMainNibFile~ipad</key>

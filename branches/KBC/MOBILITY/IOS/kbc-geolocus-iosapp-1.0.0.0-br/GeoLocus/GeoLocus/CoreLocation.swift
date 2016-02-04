@@ -10,45 +10,55 @@ import Foundation
 
 class CoreLocation: NSObject,CLLocationManagerDelegate {
   
-  var autoStartState:Bool!
-  var brakAlert:Bool!
-  var acclAlert:Bool!
-  var hasBeenRun:Bool!
-  var locationmanager:CLLocationManager?
-  var locSpeedArray:[String]!
-  var motiontype:String!
-  var speedArray:[String]!
-  var fltDistanceTravelled,distance:Double!
-  var creationTime:Double!
-  var eventtypes:Events.EventType!
+  var autoStartState:Bool?
+  var brakAlert:Bool?
+  var acclAlert:Bool?
+  var hasBeenRun:Bool?
+  var locationmanager:CLLocationManager
+  var locSpeedArray:[String]?
+  var motiontype:String?
+  var speedArray:[String]?
+  var fltDistanceTravelled,distance:Double?
+  var creationTime:Double?
+  var eventtypes:Events.EventType?
+  
+  override init() {
+    locationmanager =  CLLocationManager()
+  }
   
   func initLocationManager() {
     print("location update")
-    self.locationmanager = CLLocationManager()
-    self.locationmanager!.delegate = self
-    self.locationmanager!.desiredAccuracy = kCLLocationAccuracyBest
-    startLocationupdate()
-    
-//    self.locationmanager!.locationServicesEnabled()
-//    locationmanager!.requestAlwaysAuthorization() // for use in background
-//    locationmanager!.requestWhenInUseAuthorization() // for use in foreground
+   // self.locationmanager =
+   //   print(self.locationmanager)
+
+    self.locationmanager.delegate = self
+    self.locationmanager.desiredAccuracy = kCLLocationAccuracyBest
+    if #available(iOS 9.0, *) {
+        self.locationmanager.allowsBackgroundLocationUpdates = true
+    } else {
+        // Fallback on earlier versions
+      
+    }
+    self.locationmanager.requestAlwaysAuthorization()
+    self.locationmanager.requestWhenInUseAuthorization()
 
     locSpeedArray = [String]()
+    speedArray = [String]()
     eventtypes = Events.EventType.NONE
   }
   
   func startLocationupdate() {
-    self.locationmanager!.startUpdatingLocation()
+    self.locationmanager.startUpdatingLocation()
   }
   
   func stopLocationupdate() {
-    self.locationmanager!.stopUpdatingLocation()
+    self.locationmanager.stopUpdatingLocation()
   }
   
   func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
 //    locationmanager.stopUpdatingLocation()
 //    if (error!) {
-      print(error)
+      print("err \(error)")
 //    }
   }
   
@@ -79,19 +89,19 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
 //    let accuracy:Double = newLocation.horizontalAccuracy
     
     //Calculation for autotrip detection
-    locSpeedArray.append(String(format:"%.2f", newLocation.speed * 3.6))
+    locSpeedArray!.append(String(format:"%.2f", newLocation.speed * 3.6))
     
     var newlocspeed:Float = 0.0
     var newlocsum:Float = 0.0
     
-    for i in 0..<locSpeedArray.count{
-      newlocsum += Float(locSpeedArray[i])!
+    for i in 0..<locSpeedArray!.count{
+      newlocsum += Float(locSpeedArray![i])!
     }
     print("newlocsum = \(newlocsum)")
     
-    if(locSpeedArray.count == 5){
-      newlocspeed = newlocsum / Float(locSpeedArray.count)
-      locSpeedArray.removeAll();
+    if(locSpeedArray!.count == 5){
+      newlocspeed = newlocsum / Float(locSpeedArray!.count)
+      locSpeedArray!.removeAll();
     }
     self.motiontype = ""
     
@@ -104,7 +114,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     if(newlocspeed >= 7.0){
       // motion ype automotive
       self.motiontype = StringConstants.MOTIONTYPE_AUTOMOTIVE
-      if (!hasBeenRun) // hasBeenRun is a boolean intance variable
+      if ((hasBeenRun == nil)) // hasBeenRun is a boolean intance variable
       {
         NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: "notMoving", object: nil)
         hasBeenRun = true;
@@ -157,10 +167,10 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     //Calculate Braking
     var brakingvalue:Double = 0.0
     var braking:String = String(format:"%.1f",0.0) as String
-    speedArray.append(String(format: "%.2f", newLocation.speed * 3.6))
+    speedArray!.append(String(format: "%.2f", newLocation.speed * 3.6))
     
-    if(speedArray.count == 10){
-      speedArray.removeAll()
+    if(speedArray!.count == 10){
+      speedArray!.removeAll()
     }
     
     brakingvalue = fabs(speedDifference)
@@ -170,11 +180,11 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     {
       
       var sumForBraking:Float = 0.0
-      for i in 0..<speedArray.count{
-        sumForBraking += Float(speedArray[i])!
+      for i in 0..<speedArray!.count{
+        sumForBraking += Float(speedArray![i])!
       }
       
-      avgSum = Float(sumForBraking) / Float(speedArray.count);
+      avgSum = Float(sumForBraking) / Float(speedArray!.count);
       
       if (brakingvalue > 7.0) {
 //        if (avgSum > 30.0 && brakAlert == true) {
@@ -201,11 +211,11 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       
       var avgSpeed:Float = 0.0;
       var sum:Float = 0;
-      for i in 0..<speedArray.count{
-        sum += Float(speedArray[i])!
+      for i in 0..<speedArray!.count{
+        sum += Float(speedArray![i])!
       }
       
-      avgSpeed = Float(sum)/Float(speedArray.count)
+      avgSpeed = Float(sum)/Float(speedArray!.count)
       print("average speed\(avgSpeed)")
       
       if (acceleration > 5.0) {
@@ -238,7 +248,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       distance = fltDistanceTravelled
       
       var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-      defaults.setDouble(fltDistanceTravelled, forKey: "distanceTravelled")
+      defaults.setDouble(fltDistanceTravelled!, forKey: "distanceTravelled")
     }else
     {
       distance = 0.0;
@@ -247,7 +257,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     //Data creation time
     
     creationTime = 1000.0 * NSDate().timeIntervalSince1970 //[[NSDate date] timeIntervalSince1970];
-    var dataCreatTime:String = String(format: "%f", creationTime) //[NSString stringWithFormat:@"%f",creationTime];
+    var dataCreatTime:String = String(format: "%f", creationTime!) //[NSString stringWithFormat:@"%f",creationTime];
 //    NSArray* getUptoDecimal = [dataCreatTime componentsSeparatedByString: @"."];
     
     //Update to DB
@@ -264,9 +274,9 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       speedval: newLocation.speed*3.6,
       datausage: 0,
       iseventval: NSNumber(integer: iseventval),
-      evetype: NSNumber(integer: eventtypes.rawValue),
+      evetype: NSNumber(integer: eventtypes!.rawValue),
       eveval: NSNumber(double: eventval),
-      distance: distance)
+      distance: distance!)
     
       FacadeLayer.sharedinstance.dbactions.saveTimeSeries(tseries)
     
@@ -350,8 +360,8 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   }
   
   func startReadingLocation(){
-    locationmanager!.startUpdatingLocation()
-    locationmanager!.startUpdatingHeading()
+    locationmanager.startUpdatingLocation()
+    locationmanager.startUpdatingHeading()
   }
   
   
