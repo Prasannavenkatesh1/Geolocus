@@ -10,8 +10,8 @@ import UIKit
 
 class WelcomePageViewController: UIViewController,UIPageViewControllerDataSource,UIPageViewControllerDelegate {
     
-    let pageTitles = ["Welcome screen 1", "Welcome screen 2", "Welcome screen 3", "Welcome screen 4"]
-    var images = ["back.png","loading.png","icon.png","emergency_call.png"]
+    let pageTitles = ["Welcome screen 1", "Welcome screen 2", "Welcome screen 3", "Welcome screen 4","Welcome screen 5","Welcome screen 6"]
+    var images = ["back.png","loading.png","icon.png","emergency_call.png","back.png","loading.png"]
     var count = 0
     
     var pageViewController : UIPageViewController!

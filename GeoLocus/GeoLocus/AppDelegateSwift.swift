@@ -82,7 +82,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setBool(false, forKey: "isStarted")
         
-     //   self.loadInitialViewController()
+        self.loadInitialViewController()
         
         // Override point for customization after application launch.
         

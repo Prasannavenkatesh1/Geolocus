@@ -41,6 +41,7 @@ struct StringConstants {
     /* Login View Controller */
     static let USERNAME_IMAGE = "username.png"
     static let PASSWORD_IMAGE = "password.png"
+    static let PASSWORD_EYE_IMAGE = "eye.png"
     static let CHECK_BOX_UNSELECTED = "check_box.png"
     static let CHECK_BOX_SELECTED = "checked_box.png"
     
@@ -48,6 +49,7 @@ struct StringConstants {
     static let NEED_HELP_URL = "http://www.google.com"
     static let LOGIN_URL = ""
     static let TERMS_AND_CONDITIONS_URL = ""
+    static let SCREEN_HEIGHT = UIScreen.mainScreen().bounds.size.height
 }
 
 
