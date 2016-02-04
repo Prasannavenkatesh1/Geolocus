@@ -21,6 +21,8 @@ class RootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       
+     
+        FacadeLayer.sharedinstance.corelocation.initLocationManager()
       
         let notifyfullView=UIView(frame: CGRectMake(0, 0, 50, 40))
         notifyfullView.backgroundColor=UIColor.clearColor()

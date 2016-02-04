@@ -132,17 +132,13 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
   
     /* function to navigate to respective view controller on first launch/succesive login */
     func loadInitialViewController(){
-        
+      
         let storyboard: UIStoryboard = UIStoryboard(name: "Storyboard", bundle: NSBundle.mainBundle())
         let geoLocusDashboard : LoginViewController = LoginViewController()
-        let checkUserLogin : Bool = geoLocusDashboard.checkUserDetails()
-        
+        var checkUserLogin : Bool = geoLocusDashboard.checkUserDetails()
+        checkUserLogin = false
         if(!checkUserLogin){
             print("Not first launch.")
-          
-          let loc:CoreLocation = CoreLocation()
-          loc.initLocationManager()
-          
             let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
             self.window?.rootViewController = dashboardPage
             self.window?.makeKeyAndVisible()
