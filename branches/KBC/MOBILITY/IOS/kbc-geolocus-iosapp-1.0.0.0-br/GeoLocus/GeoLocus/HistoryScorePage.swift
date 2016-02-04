@@ -16,6 +16,8 @@ class HistoryScorePage: UIViewController {
     @IBOutlet weak var attentionArcView: ArcGraphicsController!
     @IBOutlet weak var totalDistTravelledLabel: UILabel!
     
+    @IBOutlet weak var drivingDummyView: ArcGraphicsController!
+    @IBOutlet weak var drivingDummySecView: ArcGraphicsController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +52,21 @@ class HistoryScorePage: UIViewController {
         self.attentionArcView.ringLayer.strokeColor = UIColor.yellowColor().CGColor
         self.attentionArcView.animateScale = 0.75
         self.attentionArcView.setNeedsDisplay()
+        
+        
+        //dummy view
+        self.drivingDummyView.foreGroundArcWidth = 0
+        self.drivingDummyView.backGroundArcWidth = 0
+        self.drivingDummyView.ringLayer.strokeColor = self.view.backgroundColor!.CGColor
+        self.drivingDummyView.animateScale = 0.0
+        self.drivingDummyView.setNeedsDisplay()
+        
+        //dummy view
+        self.drivingDummySecView.foreGroundArcWidth = 0
+        self.drivingDummySecView.backGroundArcWidth = 0
+        self.drivingDummySecView.ringLayer.strokeColor = self.view.backgroundColor!.CGColor
+        self.drivingDummySecView.animateScale = 0.0
+        self.drivingDummySecView.setNeedsDisplay()
         
     }
 

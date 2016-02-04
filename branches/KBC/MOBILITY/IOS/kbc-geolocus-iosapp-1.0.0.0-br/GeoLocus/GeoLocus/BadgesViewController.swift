@@ -88,11 +88,11 @@ class BadgesViewController: UIViewController, UITableViewDataSource {
         
         let badge = dataArray[indexPath.row]
 
-        if badge.isEarned {
-            cell.shareButton.hidden = false
-        }else {
-            cell.shareButton.hidden = true
-        }
+//        if badge.isEarned {
+//            cell.shareButton.hidden = false
+//        }else {
+//            cell.shareButton.hidden = true
+//        }
         
        // cell.badgeIcon.image = UIImage(data: NSData(contentsOfURL:badge.badgeIcon)!)
         cell.badgeTitle.text = badge.badgeTitle

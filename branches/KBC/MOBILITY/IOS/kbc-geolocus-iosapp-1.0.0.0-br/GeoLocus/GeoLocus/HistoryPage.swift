@@ -79,7 +79,7 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
         if section == 0 {
             headerHeight = 1
         }else {
-            headerHeight = 20
+            headerHeight = 37
         }
         
         return CGFloat(headerHeight)
@@ -121,28 +121,40 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
         if section == 0 {
             return UIView(frame: CGRectZero)
         }else if section == 1{
-            let tabView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 20))
+            let tabView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 37))
             
             let mapButton = UIButton()
-            mapButton.frame = CGRectMake(0, 0, tabView.frame.width/2, tabView.frame.height)
+            mapButton.frame = CGRectMake(0, 0, tabView.frame.width/2, tabView.frame.height - 5/*bottom border padding*/)
             mapButton.setTitle("By Map", forState: .Normal)
             mapButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
-            mapButton.titleLabel?.font = UIFont(name: "Helvetica Neue Regular", size: 15.0)
+            mapButton.titleLabel?.font = UIFont(name: "Helvetica Neue Bold", size: 16.0)
+            mapButton.setTitleColor(UIColor(red: 0, green: 171, blue: 242, alpha: 1), forState: .Normal)
+            //mapButton.setTitleColor(UIColor(red: 0, green: 171, blue: 242, alpha: 1), forState: .)
             mapButton.addTarget(self, action: "byMapButtonPressed:", forControlEvents: .TouchUpInside)
             tabView.addSubview(mapButton)
             
+            let mapBorder = UIView()
+            mapBorder.frame = CGRectMake(mapBorder.frame.origin.x, mapButton.frame.size.height, mapButton.frame.width, 5)
+            mapBorder.backgroundColor = UIColor(red: 0, green: 171, blue: 242, alpha: 1)
+            tabView.addSubview(mapBorder)
+            
             let zoneButton = UIButton()
-            zoneButton.frame = CGRectMake(tabView.frame.width/2, 0, tabView.frame.width/2, tabView.frame.height)
+            zoneButton.frame = CGRectMake(tabView.frame.width/2, 0, tabView.frame.width/2, tabView.frame.height - 5/*bottom border padding*/)
             zoneButton.setTitle("By Speeding Zone", forState: .Normal)
             zoneButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
             zoneButton.addTarget(self, action: "bySpeedingZoneButtonPressed:", forControlEvents: .TouchUpInside)
             tabView.addSubview(zoneButton)
             
+            let zoneBorder = UIView()
+            zoneBorder.frame = CGRectMake(tabView.frame.width/2, zoneButton.frame.size.height, zoneButton.frame.width, 5)
+            zoneBorder.backgroundColor = UIColor(red: 0, green: 171, blue: 242, alpha: 1)
+            tabView.addSubview(zoneBorder)
+            
             //set the selected button here
             
             return tabView
         }else {
-            let tabView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 20))
+            let tabView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 37))
             let tripDetailLabel = UILabel()
             tripDetailLabel.frame = CGRectMake(0, 0, tabView.frame.width/2, tabView.frame.height)
             tripDetailLabel.text = "Trip Detail"
@@ -160,18 +172,20 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        var rowHeight:CGFloat = 200.0
+        var rowHeight:CGFloat = 75.0
         
-        if indexPath.section == 1 {
+        if indexPath.section == 0{
+            rowHeight = 210
+        }else if indexPath.section == 1 {
             //depend upon the tab selected
             if self.tabSelected == MapZoneTab.MapSelected {
                 rowHeight = UIScreen.mainScreen().bounds.size.width
             }else {
                 //change if row is expanded
                 if self.selectedIndexPath != nil && indexPath.compare(self.selectedIndexPath!) == .OrderedSame {
-                    rowHeight = 360
+                    rowHeight = 400
                 }else{
-                    rowHeight = 30
+                    rowHeight = 32
                 }
             }
         }
@@ -313,9 +327,9 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
         
         let sz22 = SpeedZone(maxSpeed: 50, aboveSpeed: 12, withinSpeed: 4, violationCount: 20, speedBehaviour: 90, distanceTravelled: 153)
         
-        let sz23 = SpeedZone(maxSpeed: 70, aboveSpeed: 22, withinSpeed: 2, violationCount: 2, speedBehaviour: 10, distanceTravelled: 13)
+        //let sz23 = SpeedZone(maxSpeed: 70, aboveSpeed: 22, withinSpeed: 2, violationCount: 2, speedBehaviour: 10, distanceTravelled: 13)
         
-        let speedZones2 = [sz21, sz22, sz23]
+        let speedZones2 = [sz21, sz22]
         
         //"dd-MM-yyyy'T'HH':'mm':'ss'Z'"
         

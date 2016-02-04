@@ -19,6 +19,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     var countryCode : NSString?
     var setSettings : String
     var iPhoneSize : String
+  //
   
     override init() {
       
