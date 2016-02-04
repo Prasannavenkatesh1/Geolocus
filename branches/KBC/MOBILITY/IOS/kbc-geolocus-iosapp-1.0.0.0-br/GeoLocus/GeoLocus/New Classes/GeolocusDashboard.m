@@ -335,9 +335,9 @@ BOOL manualTripStarted;
     settingsEntity.providervalue = @"GPS or Network or Both";
     settingsEntity.voiceAlert = mainDelegate.vAlert;
     
-    NSLog(@"host Settings %@", settingsEntity.hostname);
-    NSLog(@"Voice Alert Settings %@", settingsEntity.voiceAlert);
-    
+//    NSLog(@"host Settings %@", settingsEntity.hostname);
+//    NSLog(@"Voice Alert Settings %@", settingsEntity.voiceAlert);
+  
     GeoLocusViewController* geolocusViewController = [[GeoLocusViewController alloc] init];
     [geolocusViewController storeDataIntoDb: settingsEntity];
 }

@@ -12,31 +12,31 @@ struct TripNotify {
   var title:String
   var UUID:String
   var schedule:NSDate
+  var tripstatus:Bool
   
-  init(title:String, UUID:String, schedule:NSDate){
+  init(title:String, UUID:String, schedule:NSDate, tripstatus:Bool){
     self.title = title
     self.UUID = UUID
     self.schedule = schedule
+    self.tripstatus = tripstatus
+    
+    setTripNotification()
   }
   
-  func addItem(){
+  func setTripNotification(){
     
-    let calendar = NSCalendar.currentCalendar()
-    let fireDate = calendar.dateByAddingUnit(.Second,
-      value: 5,
-      toDate: self.schedule,
-      options:[])
-//    nowComponents.timeZone = NSTimeZone(abbreviation: "GMT")
-   print("fireDate : \(fireDate)")
-    
-    
-    
+    let fireDate = self.schedule.dateByAddingTimeInterval(1.0)
     let notification = UILocalNotification()
-    notification.alertBody = "Todo Item "
+    notification.alertBody = self.title
     notification.alertAction = "open"
     notification.fireDate = fireDate
+    notification.repeatInterval = NSCalendarUnit.Day
     notification.soundName = UILocalNotificationDefaultSoundName
-    notification.userInfo = ["title": "hi", "UUID": "new notify"]
+    notification.userInfo = ["title": self.title, "UUID": self.UUID, "triptype":self.tripstatus]
+    notification.category = categoryID
     UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    
   }
+  
+  
 }

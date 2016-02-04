@@ -45,7 +45,10 @@ class WelcomePageViewController: UIViewController,UIPageViewControllerDataSource
     func doubleTapped() {
         self.pageViewController.view.removeFromSuperview()
         [self.pageViewController.removeFromParentViewController()]
-        
+      
+      let loc:CoreLocation = CoreLocation()
+      loc.initLocationManager()
+      
         var revealViewController : SWRevealViewController!
         
         revealViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController

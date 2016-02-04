@@ -11,6 +11,18 @@ import Foundation
 
 //DECLARE ALL YOUR CONSTANTS HERE
 
+enum Actions:String{
+  case yes = "YES"
+  case no = "NO"
+}
+
+
+var categoryID:String {
+get{
+  return "BOOL_CATEGORY"
+}
+}
+
 struct StringConstants {
     
     //Side Menu List constants
