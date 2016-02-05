@@ -21,6 +21,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     var iPhoneSize : String
     var logoView:UIImageView?
     var bgView:UIImageView?
+    var identifier:UIBackgroundTaskIdentifier?
   //
   
     override init() {
@@ -37,6 +38,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
 //        let settings : GeolocusDashboard = GeolocusDashboard()
 //        settings.setSettingsData()
     }
+
+
   
   
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -99,6 +102,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     let settings = UIUserNotificationSettings(forTypes: types, categories: NSSet(object: counterCategory) as? Set<UIUserNotificationCategory>)
     UIApplication.sharedApplication().registerUserNotificationSettings(settings)
   }
+  
+  
   
   func application(application: UIApplication,
     handleActionWithIdentifier identifier: String?,
@@ -193,6 +198,20 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       addBackgroundImage()
       addLogo()
     }
+  
+  //  MARK: - Background Task Identifier
+  func applicationDidEnterBackground(application: UIApplication) {
+    let application = UIApplication.sharedApplication()
+    self.identifier = application.beginBackgroundTaskWithExpirationHandler {
+      application.endBackgroundTask(self.identifier!)
+      self.endBackgroundTask()
+    }
+    print("repeat")
+  }
+  
+  func endBackgroundTask() {
+    UIApplication.sharedApplication().endBackgroundTask(self.identifier!)
+  }
 
    
     
