@@ -87,7 +87,7 @@ class DatabaseActions: NSObject {
     
     do{
       try self.managedObjectContext.save()
-      self.reterive()
+//      self.reterive()
     }catch{
       fatalError("not iserted")
     }
