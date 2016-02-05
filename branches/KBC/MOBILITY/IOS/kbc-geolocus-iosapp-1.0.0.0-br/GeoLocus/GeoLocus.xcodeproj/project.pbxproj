@@ -1004,7 +1004,6 @@
 		BF7336F71C3F914C006094C0 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				6351947F1AD3AAC7002ED1D0 /* LaunchScreen.xib */,
 				6351947A1AD3AAC7002ED1D0 /* Main.storyboard */,
 				A6C6C2461B1869C200C9C470 /* Main4s.storyboard */,
 				6391CF981B4A4C7F002E940E /* Main6.storyboard */,
@@ -1015,6 +1014,7 @@
 		BF7336F81C3F9243006094C0 /* New */ = {
 			isa = PBXGroup;
 			children = (
+				6351947F1AD3AAC7002ED1D0 /* LaunchScreen.xib */,
 				BF5D3AB71C4E4F6500DDFDC1 /* Localized.strings */,
 				6C03B5C71C4CF16C00C938C6 /* External frameworks */,
 				63C2094E1B0B0BF8009DF880 /* AppDelegateSwift.swift */,
