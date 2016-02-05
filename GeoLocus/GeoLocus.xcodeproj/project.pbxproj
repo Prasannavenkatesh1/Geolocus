@@ -210,6 +210,7 @@
 		A6D52F881B6F454900855DDB /* TripSummaryDB.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D52F871B6F454900855DDB /* TripSummaryDB.m */; };
 		A6DB81441B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DB81431B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m */; };
 		A6DB81471B7346AF008D3F33 /* DASHBOARD_PARAMETER.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DB81461B7346AF008D3F33 /* DASHBOARD_PARAMETER.m */; };
+		B6336D651C64854200284961 /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6336D641C64854200284961 /* TermsAndConditionsViewController.swift */; };
 		B63F53ED1C51EAFA0070002E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63F53EB1C51EAFA0070002E /* LoginViewController.swift */; };
 		B63F53EE1C51EAFA0070002E /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63F53EC1C51EAFA0070002E /* LanguageSelectionViewController.swift */; };
 		B640F0DE1C621C9E0051864F /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B640F0DD1C621C9E0051864F /* CALayer+UIColor.swift */; };
@@ -507,6 +508,7 @@
 		A6DB81451B7346AF008D3F33 /* DASHBOARD_PARAMETER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DASHBOARD_PARAMETER.h; sourceTree = "<group>"; };
 		A6DB81461B7346AF008D3F33 /* DASHBOARD_PARAMETER.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DASHBOARD_PARAMETER.m; sourceTree = "<group>"; };
 		AA7811FEA1962DE3E4724EB8 /* Pods-GeoLocus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoLocus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus.debug.xcconfig"; sourceTree = "<group>"; };
+		B6336D641C64854200284961 /* TermsAndConditionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewController.swift; sourceTree = "<group>"; };
 		B63F53EB1C51EAFA0070002E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B63F53EC1C51EAFA0070002E /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
 		B640F0DD1C621C9E0051864F /* CALayer+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+UIColor.swift"; sourceTree = "<group>"; };
@@ -1056,6 +1058,7 @@
 			children = (
 				BF4F8D961C43840500895640 /* Cells */,
 				BF7337481C3FBCF4006094C0 /* RootViewController.swift */,
+				B6336D641C64854200284961 /* TermsAndConditionsViewController.swift */,
 				B648C20B1C58B83000EE52C3 /* PageContentViewController.swift */,
 				B648C20C1C58B83000EE52C3 /* WelcomePageViewController.swift */,
 				BF73374A1C3FBD9E006094C0 /* Pageviewcontroller.swift */,
@@ -1370,6 +1373,7 @@
 				BF73374B1C3FBD9E006094C0 /* Pageviewcontroller.swift in Sources */,
 				6CCAF9081C4E062700484056 /* ReportsViewController.swift in Sources */,
 				638452361B0353AE00E895F7 /* GetQuoteDatabase.m in Sources */,
+				B6336D651C64854200284961 /* TermsAndConditionsViewController.swift in Sources */,
 				A6DB81471B7346AF008D3F33 /* DASHBOARD_PARAMETER.m in Sources */,
 				A6DB81441B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m in Sources */,
 				6389B2531B1C9AA600F2A18C /* NetworkViewController.m in Sources */,

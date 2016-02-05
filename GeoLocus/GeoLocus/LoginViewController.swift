@@ -49,6 +49,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     /* Check box button action */
     @IBAction func checkButtonTapped(sender: UIButton) {
         if(!isChecked){
+            self.view.backgroundColor = UIColor.clearColor()
             [sender.setImage(UIImage(named:StringConstants.CHECK_BOX_SELECTED), forState: UIControlState.Normal)]
             isChecked = true
         }
@@ -182,7 +183,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         var tokenID : String
         var firstTimeLogin = true
         
-        tokenID = ""
+        tokenID = "3443"
         
         if(tokenID.isEmpty){
             firstTimeLogin = true
@@ -242,5 +243,4 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
 }
