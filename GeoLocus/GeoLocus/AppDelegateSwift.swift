@@ -19,6 +19,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     var countryCode : NSString?
     var setSettings : String
     var iPhoneSize : String
+    var logoView:UIImageView?
+    var bgView:UIImageView?
   //
   
     override init() {
@@ -129,6 +131,43 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       completionHandler()
   }
   
+  /*
+  * Adds background image to the splash screen
+  */
+  func addBackgroundImage() {
+    let screenSize: CGRect = UIScreen.mainScreen().bounds
+    
+    let bg = UIImage(named: "Anisplash")
+    self.bgView = UIImageView(image: bg)
+    
+    self.bgView!.frame = CGRectMake(0, 0, screenSize.width, screenSize.height)
+    self.window?.addSubview(self.bgView!)
+  }
+  
+  /*
+  * Adds logo to splash screen
+  */
+  func addLogo() {
+    let screenSize: CGRect = UIScreen.mainScreen().bounds
+    
+    let logo     = UIImage(named: "logo_home")
+    self.logoView = UIImageView(image: logo)
+    
+    let w = logo?.size.width
+    let h = logo?.size.height
+    
+    self.logoView!.frame = CGRectMake( (screenSize.width/2) - (w!/2), 5, w!, h! )
+    self.window?.addSubview(self.logoView!)
+    
+    UIView.animateWithDuration(0.9, delay: 0.4,
+      options: [.CurveEaseIn], animations: {
+        self.logoView!.center.y += self.window!.bounds.width - self.logoView!.bounds.height - 20
+      }, completion: {_ in
+        self.logoView!.hidden = true
+        self.bgView!.hidden = true
+    })
+  }
+  
   
     /* function to navigate to respective view controller on first launch/succesive login */
     func loadInitialViewController(){
@@ -150,6 +189,9 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = languageSelectionPage
             self.window?.makeKeyAndVisible()
         }
+      
+      addBackgroundImage()
+      addLogo()
     }
 
    
