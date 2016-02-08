@@ -225,6 +225,7 @@
 		BF4F8D981C43845000895640 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D971C43845000895640 /* CategoryCell.swift */; };
 		BF4F8D9A1C43CA8D00895640 /* Httpclient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D991C43CA8D00895640 /* Httpclient.swift */; };
 		BF4F8D9C1C43CA9D00895640 /* DatabaseActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */; };
+		BF51D5461C68C62100D8DB5E /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BF51D5451C68C62100D8DB5E /* Location.gpx */; };
 		BF5437B71C58FEA7009D2343 /* TimeSeriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5437B61C58FEA7009D2343 /* TimeSeriesModel.swift */; };
 		BF5BEE761C64C5A600BAE5F9 /* BackgroundTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5BEE751C64C5A600BAE5F9 /* BackgroundTaskManager.swift */; };
 		BF5D3AAD1C4E1E3000DDFDC1 /* Datausage.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */; };
@@ -529,6 +530,7 @@
 		BF4F8D971C43845000895640 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		BF4F8D991C43CA8D00895640 /* Httpclient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Httpclient.swift; sourceTree = "<group>"; };
 		BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseActions.swift; sourceTree = "<group>"; };
+		BF51D5451C68C62100D8DB5E /* Location.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		BF5437B61C58FEA7009D2343 /* TimeSeriesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSeriesModel.swift; sourceTree = "<group>"; };
 		BF5BEE751C64C5A600BAE5F9 /* BackgroundTaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundTaskManager.swift; sourceTree = "<group>"; };
 		BF5D3AAB1C4E1E3000DDFDC1 /* Datausage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Datausage.h; sourceTree = "<group>"; };
@@ -1041,6 +1043,7 @@
 		BF7336F91C3F9250006094C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BF51D5451C68C62100D8DB5E /* Location.gpx */,
 				BF5D3AAB1C4E1E3000DDFDC1 /* Datausage.h */,
 				BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */,
 				B640F0DD1C621C9E0051864F /* CALayer+UIColor.swift */,
@@ -1185,7 +1188,7 @@
 				TargetAttributes = {
 					635194701AD3AAC7002ED1D0 = {
 						CreatedOnToolsVersion = 6.0.1;
-						DevelopmentTeam = LSVVD8ZPH6;
+						DevelopmentTeam = 6568GSFQF5;
 					};
 					635194851AD3AAC7002ED1D0 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -1281,6 +1284,7 @@
 				6352C4341AD694A500E11D3A /* trip.png in Resources */,
 				6352C42C1AD694A500E11D3A /* ic_tripduration.png in Resources */,
 				6352C4331AD694A500E11D3A /* settings.png in Resources */,
+				BF51D5461C68C62100D8DB5E /* Location.gpx in Resources */,
 				6352C4221AD694A500E11D3A /* emergency_towing.png in Resources */,
 				6352C4211AD694A500E11D3A /* emergency_repair_map.png in Resources */,
 				638452491B03540300E895F7 /* GeoLocus-Info.plist in Resources */,
@@ -1567,8 +1571,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -1592,7 +1596,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_MODULE_NAME = "";
-				PROVISIONING_PROFILE = "a18e379c-24f0-4596-bb0d-04cac6586511";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1616,8 +1620,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -1633,7 +1637,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_MODULE_NAME = "";
-				PROVISIONING_PROFILE = "a18e379c-24f0-4596-bb0d-04cac6586511";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1645,8 +1649,8 @@
 			baseConfigurationReference = AA7811FEA1962DE3E4724EB8 /* Pods-GeoLocus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1658,10 +1662,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cognizant.kbcgeolocus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ggg.nnn;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a18e379c-24f0-4596-bb0d-04cac6586511";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GeoLocus/GeoLocus-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1673,8 +1677,8 @@
 			baseConfigurationReference = 10F13FC629960E9EB8E54E0C /* Pods-GeoLocus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1686,10 +1690,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cognizant.kbcgeolocus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ggg.nnn;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a18e379c-24f0-4596-bb0d-04cac6586511";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GeoLocus/GeoLocus-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";

@@ -6,7 +6,6 @@ import UIKit
 import CoreData
 
 
-
 @UIApplicationMain
 class AppDelegateSwift: UIResponder, UIApplicationDelegate {
   
@@ -21,8 +20,9 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     var iPhoneSize : String
     var logoView:UIImageView?
     var bgView:UIImageView?
-    var identifier:UIBackgroundTaskIdentifier?
-  //
+    var backgroundUpdateTask:UIBackgroundTaskIdentifier?
+
+
   
     override init() {
       
@@ -50,7 +50,11 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
 
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setBool(false, forKey: "isStarted")
-
+      
+      
+      
+      let temp:DetectingVechile = DetectingVechile()
+      temp.startDetectingVechile()
     
         self.loadInitialViewController()
       
@@ -124,6 +128,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
             let triptype = userinfo["triptype"] as! Bool
             if(triptype == false){
               print("trip stoped")
+              NSNotificationCenter.defaultCenter().postNotificationName("tipended", object: nil)
+
             }
           }
           
@@ -201,20 +207,42 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
   
   //  MARK: - Background Task Identifier
   func applicationDidEnterBackground(application: UIApplication) {
-    let application = UIApplication.sharedApplication()
-    self.identifier = application.beginBackgroundTaskWithExpirationHandler {
-      application.endBackgroundTask(self.identifier!)
-      self.endBackgroundTask()
-    }
-    print("repeat")
+    
+//    doBackgroundTask()
+   
   }
   
-  func endBackgroundTask() {
-    UIApplication.sharedApplication().endBackgroundTask(self.identifier!)
+  func applicationDidBecomeActive(application: UIApplication) {
+    // End the background task.
+    self.endBackgroundUpdateTask()
+  }
+  
+  
+  func beginBackgroundUpdateTask() {
+    self.backgroundUpdateTask = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler({
+//      self.endBackgroundUpdateTask()
+    })
   }
 
-   
-    
+  func endBackgroundUpdateTask() {
+    if let bgtsk = self.backgroundUpdateTask {
+      UIApplication.sharedApplication().endBackgroundTask(self.backgroundUpdateTask!)
+      self.backgroundUpdateTask = UIBackgroundTaskInvalid
+    }
+  }
+  
+  func doBackgroundTask() {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+      self.beginBackgroundUpdateTask()
+      
+      // Do something with the result.
+      let temp:DetectingVechile = DetectingVechile()
+      temp.startDetectingVechile()
+      
+      
+    })
+  }
+  
     // MARK: - Core Data stack
     
     lazy var applicationDocumentsDirectory: NSURL = {

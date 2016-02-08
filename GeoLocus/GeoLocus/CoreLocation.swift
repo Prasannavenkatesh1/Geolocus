@@ -30,6 +30,12 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     print("location update")
    // self.locationmanager =
    //   print(self.locationmanager)
+    
+    NSNotificationCenter.defaultCenter().addObserver(
+      self,
+      selector: "getdetails:",
+      name: "tipended",
+      object: nil)
 
     self.locationmanager.delegate = self
     self.locationmanager.desiredAccuracy = kCLLocationAccuracyBest
@@ -45,6 +51,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     locSpeedArray = [String]()
     speedArray = [String]()
     eventtypes = Events.EventType.NONE
+    startLocationupdate()
   }
   
   func startLocationupdate() {
@@ -62,7 +69,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
 //    }
   }
   
-  
+  var tempvar = -1
   
   func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     
@@ -78,10 +85,11 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     
     print(coord.latitude)
     print(coord.longitude)
+    print(newLocation.speed)
     
     // Reteiving the datausage within this speed
-    let datausagedict:Dictionary = Datausage.getDatas()
-    print("datausagedict :%@",datausagedict)
+//    let datausagedict:Dictionary = Datausage.getDatas()
+//    print("datausagedict :%@",datausagedict)
     
     let latitude:Double = coord.latitude
     let longitude:Double = coord.longitude
@@ -200,7 +208,6 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       brakAlert = true
     }
     
-
     // Calculate Acceleration
     var acceleration:Double = 0.0
     var accele:String = ""
@@ -239,7 +246,6 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     if (newLocation.speed * 3.6 >=  Double(mainDelegate.speedLimit)) {
 //      speedValue = [NSString stringWithFormat:@"%.1f", newLocation.speed*3.6f];
       speedValue = String(format: "%.1", newLocation.speed*3.6)
-
     }
   
     //Calculate distance
@@ -255,10 +261,8 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     }
     
     //Data creation time
-    
-    creationTime = 1000.0 * NSDate().timeIntervalSince1970 //[[NSDate date] timeIntervalSince1970];
-    var dataCreatTime:String = String(format: "%f", creationTime!) //[NSString stringWithFormat:@"%f",creationTime];
-//    NSArray* getUptoDecimal = [dataCreatTime componentsSeparatedByString: @"."];
+    creationTime = 1000.0 * NSDate().timeIntervalSince1970
+    var dataCreatTime:String = String(format: "%f", creationTime!)
     
     //Update to DB
     var iseventval:Int = 0
@@ -267,6 +271,40 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     }else{
       iseventval = 0
     }
+
+//    /*    Testing
+    
+    if(tempvar == -1){
+      eventtypes =  Events.EventType.STARTTRIP
+      TripNotify.init(title: "Do you want to start the trip",
+        UUID: NSUUID().UUIDString,
+        schedule: NSDate(),
+        tripstatus: true)
+    }
+    if(tempvar == 0){
+      eventtypes =  Events.EventType.TIMESERIES
+    }
+
+    if(tempvar == 1){
+      eventval = 10
+      eventtypes =  Events.EventType.ACCELERATION
+    }else if(tempvar == 2){
+      eventval = 15
+      eventtypes =  Events.EventType.BRAKING
+    }else if(tempvar == 3){
+      eventval = 0
+      tempvar = 0
+      eventtypes =  Events.EventType.TIMESERIES
+      TripNotify.init(title: "Do you want to stop the trip",
+        UUID: NSUUID().UUIDString,
+        schedule: NSDate(),
+        tripstatus: false)
+      
+    }
+
+    tempvar++
+
+//*/
   
      let tseries:TimeSeriesModel = TimeSeriesModel.init(ctime: newLocation.timestamp,
       lat: latitude,
@@ -288,6 +326,17 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       UUID: NSUUID().UUIDString,
       schedule: NSDate(),
       tripstatus: false)
+  }
+  
+  func getdetails(notification: NSNotification){
+    let alert: UIAlertView = UIAlertView()
+    alert.delegate = self
+    
+    alert.title = "aaa"
+    alert.message = "mmm"
+    alert.addButtonWithTitle("OK")
+    
+    alert.show()
   }
   
   func locationManager(manager: CLLocationManager,

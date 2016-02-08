@@ -9,11 +9,38 @@
 import Foundation
 import CoreMotion
 
-struct Motion {
+struct DetectingVechile {
   let activitymanager = CMMotionActivityManager()
+  let motionmanager = CMMotionManager()
 //  var str = ""
   
+  
+  func startDetectingVechile(){
+    
+    self.motionmanager.deviceMotionUpdateInterval = 0.01;
+    self.motionmanager.startDeviceMotionUpdatesToQueue(NSOperationQueue.mainQueue()) { (motion, err) -> Void in
+      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+        // do some task
+        
+        print("asasas")
+      }
+    }
+//    
+//    [self.motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue mainQueue]
+//      withHandler:^(CMDeviceMotion *motion, NSError *error){
+//      dispatch_async(dispatch_get_main_queue(), ^{
+//      NSLog(@"acceleration x %f", motion.userAcceleration.x);
+//      NSLog(@"acceleration y %f", motion.userAcceleration.y);
+//      NSLog(@"acceleration z %f", motion.userAcceleration.z);
+//      }
+//      );
+//      }
+//    ];
+    
+  }
 
+  
+/*
   func startDetectingVechile(){
     var str = ""
     if(CMMotionActivityManager.isActivityAvailable()){
@@ -32,16 +59,18 @@ struct Motion {
           }else if (data1.unknown == true){
             str = "\(data1.startDate) -> unknown $ \(data1.confidence.rawValue) \n"
           }
-          let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-          var getstr = defaults.objectForKey("motion") as! String
-          getstr = getstr + str
-          defaults.setObject(getstr, forKey: "motion")
+          
+          print("test \(str)")
+//          let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+//          var getstr = defaults.objectForKey("motion") as! String
+//          getstr = getstr + str
+//          defaults.setObject(getstr, forKey: "motion")
 //          self.activityState!.text = getstr as String
         })
       })
     }
   }
-  
+  */
   func stopDetectingVechile(){
     self.activitymanager.stopActivityUpdates()
   }
