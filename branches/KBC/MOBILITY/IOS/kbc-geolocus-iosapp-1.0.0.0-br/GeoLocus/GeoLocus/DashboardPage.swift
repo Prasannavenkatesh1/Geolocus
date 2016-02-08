@@ -11,6 +11,8 @@ import UIKit
  class DashboardPage: UIViewController {
 
     @IBOutlet var needle: UIImageView!
+    
+    @IBOutlet weak var arcView: ArcGraphicsController!
     override func viewDidLoad() {
         super.viewDidLoad()
 
