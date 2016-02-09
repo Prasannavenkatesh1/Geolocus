@@ -329,14 +329,17 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   }
   
   func getdetails(notification: NSNotification){
-    let alert: UIAlertView = UIAlertView()
-    alert.delegate = self
+//    let alert: UIAlertView = UIAlertView()
+//    alert.delegate = self
+//    
+//    alert.title = "aaa"
+//    alert.message = "mmm"
+//    alert.addButtonWithTitle("OK")
+//    
+//    alert.show()
     
-    alert.title = "aaa"
-    alert.message = "mmm"
-    alert.addButtonWithTitle("OK")
+    // calculation neds to be done
     
-    alert.show()
   }
   
   func locationManager(manager: CLLocationManager,
