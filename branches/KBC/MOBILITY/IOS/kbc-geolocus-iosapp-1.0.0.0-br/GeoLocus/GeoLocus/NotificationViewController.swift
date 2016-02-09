@@ -18,6 +18,8 @@ class NotificationViewController: UIViewController,UITableViewDataSource, UITabl
         notificationListArray.append("hello")
         notificationListArray.append("hello")
         notificationListArray.append("hello")
+        notificationListArray.append("hello")
+        notificationListArray.append("hello")
         // Do any additional setup after loading the view.
     }
 
@@ -58,6 +60,10 @@ class NotificationViewController: UIViewController,UITableViewDataSource, UITabl
     }
     func  pushToNotificationScreen(sender: UIButton!) {
         self.performSegueWithIdentifier("Notificationsegue", sender: self);
+        
+    }
+    @IBAction func didTapOnDelete(sender: AnyObject) {
+        print("Delete tapped")
         
     }
     /*

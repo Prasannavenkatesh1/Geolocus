@@ -247,6 +247,7 @@
 		BFE4547A1C64DD1C003BC0F2 /* TripSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE454781C64DD1C003BC0F2 /* TripSummary.swift */; };
 		F55265641C522F3E002362F5 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55265631C522F3E002362F5 /* NotificationViewController.swift */; };
 		F55265661C522FD0002362F5 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55265651C522FD0002362F5 /* NotificationTableViewCell.swift */; };
+		F59F935C1C61DE2D003748DA /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59F935B1C61DE2D003748DA /* NotificationModel.swift */; };
 		F5B020451C60AA4B006C97E5 /* NotificationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B020441C60AA4B006C97E5 /* NotificationDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -556,6 +557,7 @@
 		BFE454781C64DD1C003BC0F2 /* TripSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummary.swift; sourceTree = "<group>"; };
 		F55265631C522F3E002362F5 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		F55265651C522FD0002362F5 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		F59F935B1C61DE2D003748DA /* NotificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		F5B020441C60AA4B006C97E5 /* NotificationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -980,6 +982,8 @@
 		BF4E0D391C4F701E00BF53FB /* DBModels */ = {
 			isa = PBXGroup;
 			children = (
+				BF4D23761C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift */,
+				BF4D23771C5A0A8F00230355 /* Trip_timeseries.swift */,
 			);
 			name = DBModels;
 			sourceTree = "<group>";
@@ -1055,6 +1059,7 @@
 				BF5437B61C58FEA7009D2343 /* TimeSeriesModel.swift */,
 				BF43B34F1C61D25900710E22 /* TripNotify.swift */,
 				BF4BA0E11C5F661F0028D79B /* Thresholds.swift */,
+				F59F935B1C61DE2D003748DA /* NotificationModel.swift */,
 				BF27E04A1C637F44009E5204 /* DetectingVechile.swift */,
 				BF5BEE751C64C5A600BAE5F9 /* BackgroundTaskManager.swift */,
 				BFE454751C64DCD6003BC0F2 /* TripSummaryModel.swift */,
@@ -1433,6 +1438,7 @@
 				BFE454791C64DD1C003BC0F2 /* TripSummary+CoreDataProperties.swift in Sources */,
 				6C03B5D61C4D025500C938C6 /* SWRevealViewController.m in Sources */,
 				B63F53ED1C51EAFA0070002E /* LoginViewController.swift in Sources */,
+				F59F935C1C61DE2D003748DA /* NotificationModel.swift in Sources */,
 				BF4D23781C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift in Sources */,
 				BFE454761C64DCD6003BC0F2 /* TripSummaryModel.swift in Sources */,
 				6304FC1C1AD54B0D00734AEF /* DashboardViewController.swift in Sources */,
