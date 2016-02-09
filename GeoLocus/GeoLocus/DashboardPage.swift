@@ -17,6 +17,10 @@ import UIKit
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.arcView.ringLayer.strokeColor = UIColor.redColor().CGColor
+        self.arcView.foreGroundArcWidth = 10.0
+        self.arcView.animateScale = 0.75
+        self.arcView.setNeedsDisplay()
           
     }
 
