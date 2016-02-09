@@ -382,6 +382,12 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="arcView" destination="ij6-R8-zbg" id="HtJ-G0-GQ2"/>
+                        <outlet property="contractsPointsEarnedValue" destination="GCj-tw-b07" id="43v-dD-V1J"/>
+                        <outlet property="distanceTravelledValue" destination="ifY-Fa-cok" id="IFu-8Q-JUY"/>
+                        <outlet property="levelImage" destination="Qfz-P3-rvy" id="yyl-Ti-UW3"/>
+                        <outlet property="levelName" destination="eR2-7Q-ZBi" id="Mo2-he-3pQ"/>
+                        <outlet property="pointsAchievedProgressView" destination="9KS-jV-HYj" id="IxB-bd-F4P"/>
+                        <outlet property="startStopButton" destination="csG-jv-cli" id="Znx-jx-XfX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eF6-dj-zJH" userLabel="First Responder" sceneMemberID="firstResponder"/>
