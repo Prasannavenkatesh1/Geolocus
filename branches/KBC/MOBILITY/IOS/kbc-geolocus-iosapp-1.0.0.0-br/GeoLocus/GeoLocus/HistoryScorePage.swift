@@ -16,14 +16,15 @@ class HistoryScorePage: UIViewController {
     @IBOutlet weak var totalDistTravelledLabel: UILabel!
     @IBOutlet weak var drivingDummyView: ArcGraphicsController!
     @IBOutlet weak var drivingDummySecView: ArcGraphicsController!
-    
+    @IBOutlet weak var scrollContentView: UIView!
     var overallScores = OverallScores?()
     
+    @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        setContentHeight()
         reloadData()
         reloadView()
   
@@ -31,6 +32,7 @@ class HistoryScorePage: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
         
         
     }
@@ -118,6 +120,21 @@ class HistoryScorePage: UIViewController {
         }
     }
     
+    
+    func setContentHeight() {
+        
+        if StringConstants.SCREEN_HEIGHT == 480 {
+            self.contentViewHeightConstraint.constant = 500
+        }else if StringConstants.SCREEN_HEIGHT == 568 {
+            self.contentViewHeightConstraint.constant = 500
+        }else if StringConstants.SCREEN_HEIGHT == 667 {
+            self.contentViewHeightConstraint.constant = StringConstants.SCREEN_HEIGHT - 105
+        }else {
+            self.contentViewHeightConstraint.constant = StringConstants.SCREEN_HEIGHT - 105
+        }
+        
+        
+    }
     
     //
     
