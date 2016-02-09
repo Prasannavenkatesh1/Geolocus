@@ -19,8 +19,9 @@ class Httpclient: NSObject {
 */
   func tmp() {
     Alamofire.request(.GET, "asd")
-  }
-  
+    
+    }
+    
     //History services
     func requestHistoryData(URL: String, HTTPbody : Dictionary<String, String>, completionHandler:(status : (String, String), response: History?, error: NSError?) -> Void) -> Void{
         

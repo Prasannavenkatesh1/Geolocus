@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>badge</key>
+	<array>
+		<dict>
+			<key>title</key>
+			<string>Marathoner Badge</string>
+			<key>icon</key>
+			<string>Marathoner_Badge_Earned.png</string>
+			<key>icon_not_earned</key>
+			<string>Marathoner_Badge_Not_Earned.png</string>
+			<key>criteria</key>
+			<string>No speed violation for the last 50KM</string>
+			<key>message</key>
+			<string>I travelled more than 50KM  without speeding violation and just earned the Marathoner Badge</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Roadie Candidate Badge</string>
+			<key>icon</key>
+			<string>Roadie_Candidate_Badge_Earned.png</string>
+			<key>icon_not_earned</key>
+			<string>Roadie_Candidate_Badge_Not_Earned.png</string>
+			<key>criteria</key>
+			<string>No speed violation for the last 250KM</string>
+			<key>message</key>
+			<string>I travelled more than 250KM  without speeding violation  and just earned the Roadie Candidate Badge</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Rock star of Road Badge</string>
+			<key>icon</key>
+			<string>Rock_Star_Of_Road_Badge_Earned.png</string>
+			<key>icon_not_earned</key>
+			<string>Rock_Star_Of_Road_Badge_Not_Earned.png</string>
+			<key>criteria</key>
+			<string>No speed violation for the last 500KM</string>
+			<key>message</key>
+			<string>I travelled more than 500KM  without violating speeding and just earned the Rock star of the Road Trip Badge</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Perfect Trip Badge</string>
+			<key>icon</key>
+			<string>Perfect_Trip_Badge_Earned.png</string>
+			<key>icon_not_earned</key>
+			<string>Perfect_Trip_Badge_Not_Earned.png</string>
+			<key>criteria</key>
+			<string>All scores on dark green for &gt; 30KM trip</string>
+			<key>message</key>
+			<string>I travelled more than 30KM in a drive with my all  scores dark green and just earned the Perfect Trip Badge</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Nice Driver Badge</string>
+			<key>icon</key>
+			<string>Nice_Driver_Badge_Earned.png</string>
+			<key>icon_not_earned</key>
+			<string>Nice_Driver_Badge_Not_Earned.png</string>
+			<key>criteria</key>
+			<string>All scores on dark green for &gt; 100KM trip</string>
+			<key>message</key>
+			<string>I travelled more than 100KM with my all scores dark green and just earned the Nice Driver Badge</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Night Driver Badge</string>
+			<key>icon</key>
+			<string>Night_Driver_Badge_Earned.png</string>
+			<key>icon_not_earned</key>
+			<string>Night_Driver_Badge_Not_Earned.png</string>
+			<key>criteria</key>
+			<string>Dark green overall score during a trip at night travel &gt; 1 hours</string>
+			<key>message</key>
+			<string>I travelled more than 1 hour at night with my overall score dark green and just earned the Night Driver Badge</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Eco Driver Badge</string>
+			<key>icon</key>
+			<string>Eco_Driver_Badge_Earned.png</string>
+			<key>icon_not_earned</key>
+			<string>Eco_Driver_Badge_Not_Earned.png</string>
+			<key>criteria</key>
+			<string>Last 200KM the eco score was dark green</string>
+			<key>message</key>
+			<string>I travelled 200KM on with my eco score dark green and just earned the Eco Driver Badge</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Highway Driver Badge</string>
+			<key>icon</key>
+			<string>Highway_Driver_Badge_Earned.png</string>
+			<key>icon_not_earned</key>
+			<string>Highway_Driver_Badge_Not_Earned.png</string>
+			<key>criteria</key>
+			<string>Driving more than 1000km on autoroute (max allowed speed &gt;= 120km)</string>
+			<key>message</key>
+			<string>I travelled 1000KM on Highways having greater than 120Km/hr zone and just earned the Highway Driver Badge</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>King of the City Badge</string>
+			<key>icon</key>
+			<string>King_Of_The_Route_Or_City_Earned.png</string>
+			<key>icon_not_earned</key>
+			<string>King_Of_The_Route_Or_City_Not_Earned.png</string>
+			<key>criteria</key>
+			<string>Driving more than 500KM in a city center (max speed &lt;=50km)</string>
+			<key>message</key>
+			<string>I travelled 500KM with in 50km/hr zone and just earned the King of the City Badge</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Distraction score Badge</string>
+			<key>icon</key>
+			<string>Distraction_Score_Badge_Earned.png</string>
+			<key>icon_not_earned</key>
+			<string>Distraction_Score_Badge_Not_Earned.png</string>
+			<key>criteria</key>
+			<string>Dark green distractions core for the last 800km</string>
+			<key>message</key>
+			<string>I travelled 800KM with distraction score as dark green and just earned the Distraction score Badge</string>
+		</dict>
+	</array>
+	<key>level</key>
+	<array>
+		<dict>
+			<key>title</key>
+			<string>New Kid on the block Level</string>
+			<key>icon</key>
+			<string>New_Kid_On_The_Block_Badges_Earned.png</string>
+			<key>icon_not_earned</key>
+			<string>New_Kid_On_The_Block_Level.png</string>
+			<key>criteria</key>
+			<string>250 km all scores minimal Yellow</string>
+			<key>message</key>
+			<string>I travelled 250KM with all scores yellow and just earned the New Kid on the block level</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Apprentice Level</string>
+			<key>icon</key>
+			<string>Apprentice_Badges_Earned.png</string>
+			<key>icon_not_earned</key>
+			<string>Apprentice_Level.png</string>
+			<key>criteria</key>
+			<string>500 km all scores minimal light green</string>
+			<key>message</key>
+			<string>I travelled 500KM with all scores light green and just earned the Apprentice level</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Intermediate Level</string>
+			<key>icon</key>
+			<string>Intermediate_Badges_Earned.png</string>
+			<key>icon_not_earned</key>
+			<string>Intermediate_Level.png</string>
+			<key>criteria</key>
+			<string>1000 km all scores minimal light green</string>
+			<key>message</key>
+			<string>I travelled 1000KM with all scores light green and just earned the Intermediate level</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Advanced Level</string>
+			<key>icon</key>
+			<string>Advanced_Badges_Earned.png</string>
+			<key>icon_not_earned</key>
+			<string>Advanced_Level.png</string>
+			<key>criteria</key>
+			<string>1500 km all scores minimal light green</string>
+			<key>message</key>
+			<string>I travelled 1500KM with all scores light green and just earned the Advanced level</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Professional Level</string>
+			<key>icon</key>
+			<string>Professional_Level.png</string>
+			<key>icon_not_earned</key>
+			<string>Professional_Badges_Not_Earned.png</string>
+			<key>criteria</key>
+			<string>2500 km all scores dark green</string>
+			<key>message</key>
+			<string>I travelled 2500KM with all scores Dark green and just earned the Professional level</string>
+		</dict>
+	</array>
+</dict>
+</plist>

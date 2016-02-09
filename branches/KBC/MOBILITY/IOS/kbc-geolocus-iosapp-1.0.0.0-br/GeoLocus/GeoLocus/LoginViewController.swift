@@ -180,10 +180,10 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     }
     
     func checkUserDetails() -> Bool{
-        var tokenID : String
+        var tokenID = String()
         var firstTimeLogin = true
         
-        tokenID = "3443"
+        //tokenID = ""
         
         if(tokenID.isEmpty){
             firstTimeLogin = true

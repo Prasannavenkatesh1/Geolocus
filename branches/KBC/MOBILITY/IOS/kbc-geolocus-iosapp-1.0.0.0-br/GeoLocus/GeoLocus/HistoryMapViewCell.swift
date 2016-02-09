@@ -9,20 +9,101 @@
 import UIKit
 import MapKit
 
+class EventAnnotation : NSObject, MKAnnotation {
+    var coordinate: CLLocationCoordinate2D
+    var annotationID: Int
+    
+    init(coordinate: CLLocationCoordinate2D, annotationID: Int) {
+        self.coordinate = coordinate
+        self.annotationID = annotationID
+        
+    }
+}
+
 class HistoryMapViewCell: UITableViewCell {
 
-    
     @IBOutlet weak var historyMapView: MKMapView!
+    var delegate: MapViewDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.historyMapView.delegate = self
+        //self.historyMapView.scrollEnabled = false
+        self.historyMapView.rotateEnabled = false
+        self.historyMapView.pitchEnabled = false
     }
-
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
+        
+        
+    }
+    
+    func showMapAnnotations(annotations: [EventAnnotation]){
+        
+        self.historyMapView.removeAnnotations(self.historyMapView.annotations)
+        
+        self.historyMapView.addAnnotations(annotations)
+        self.historyMapView.showAnnotations(annotations, animated: true)
+        
+        let region = coordinateRegion(annotations)
+        self.historyMapView.regionThatFits(region)
+        self.historyMapView.setRegion(region, animated: true)
+        
     }
 
 }
+
+
+extension HistoryMapViewCell: MKMapViewDelegate {
+     //MARK:- Map View delegate
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        if let annotation = annotation as? EventAnnotation {
+            let identifier = "pin"
+            var view: MKPinAnnotationView
+            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
+                as? MKPinAnnotationView {
+                    dequeuedView.annotation = annotation
+                    view = dequeuedView
+            } else {
+               
+                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                view.canShowCallout = false
+                view.calloutOffset = CGPoint(x: -5, y: 5)
+                //view.rightCalloutAccessoryView = UIButton.buttonWithType(.DetailDisclosure) as! UIView
+            }
+            return view
+        }
+        return nil
+    }
+    
+    
+//    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+//        
+//    }
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        
+        let annotation = view.annotation as! EventAnnotation
+        
+        delegate?.mapView(self.historyMapView, didSelectAnnotation: annotation)
+        
+        
+    }
+    
+    func coordinateRegion(events: [EventAnnotation]) -> MKCoordinateRegion{
+        var rect = MKMapRectNull
+        
+        for event in events {
+            let mapPoint = MKMapPointForCoordinate(event.coordinate)
+            rect = MKMapRectUnion(rect, MKMapRectMake(mapPoint.x, mapPoint.y, 0, 0))
+        }
+        
+        return MKCoordinateRegionForMapRect(rect)
+    }
+    
+}
+

@@ -12,7 +12,7 @@ class HistoryZoneViewCell: UITableViewCell {
 
     @IBOutlet weak var maxSpeedLimit: UILabel!
     @IBOutlet weak var indicatorImageView: UIImageView!
-    @IBOutlet weak var speedingView: UIView!
+    @IBOutlet weak var speedingView: ArcGraphicsController!
     @IBOutlet weak var severeViolationLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var withinMaxSpeedLabel: UILabel!

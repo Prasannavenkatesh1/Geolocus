@@ -15,7 +15,7 @@ let π: CGFloat = CGFloat(M_PI)
 @IBDesignable class ArcGraphicsController: UIView {
     
    
-    @IBInspectable var ringBackgroundColour: UIColor = UIColor.grayColor()
+    @IBInspectable var ringBackgroundColour: UIColor = UIColor(netHex: 0xaba8a8)
     @IBInspectable var ringForegroundColour: UIColor = UIColor.greenColor()
     @IBInspectable var backgroundImage: UIImage?
     @IBInspectable var lowLevelColor: UIColor = UIColor.redColor()

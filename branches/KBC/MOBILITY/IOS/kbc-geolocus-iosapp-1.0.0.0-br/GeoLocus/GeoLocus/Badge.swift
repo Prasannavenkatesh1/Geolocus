@@ -16,19 +16,21 @@ class Badge {
         case Level = 1
     }
     
-    var badgeIcon : NSURL
+    var badgeIcon : String
     var badgeTitle : String
     var badgeDescription : String
     var isEarned : Bool
     var orderIndex : Int
     var badgeType : BadgesType
+    var additionalMsg : String?
     
-    init(withIconURL badgeIcon: String, badgeTitle: String, badgeDescription: String, isEarned: Bool, orderIndex: Int, badgeType: BadgesType) {
-        self.badgeIcon          = NSURL(string: badgeIcon)!
+    init(withIcon badgeIcon: String, badgeTitle: String, badgeDescription: String, isEarned: Bool, orderIndex: Int, badgeType: BadgesType, additionalMsg : String?) {
+        self.badgeIcon          = badgeIcon
         self.badgeTitle         = badgeTitle
         self.badgeDescription   = badgeDescription
         self.isEarned           = isEarned
         self.orderIndex         = orderIndex
         self.badgeType          = badgeType
+        self.additionalMsg      = additionalMsg
     }
 }
