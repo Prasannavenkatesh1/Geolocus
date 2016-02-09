@@ -92,17 +92,311 @@ class DatabaseActions: NSObject {
       fatalError("not iserted")
     }
  }
-  
-  func reterive(){
-    var locations  = [Trip_timeseries]()
-    
-    let fetchRequest = NSFetchRequest(entityName: "Trip_timeseries")
-    do{
-      try locations = self.managedObjectContext.executeFetchRequest(fetchRequest) as! [Trip_timeseries]
-      print(locations.count)
-    }catch{
-      fatalError("reterive error")
-    }
-  }  
+    func reterive(){
+        var locations  = [Trip_timeseries]()
+        
+        let fetchRequest = NSFetchRequest(entityName: "Trip_timeseries")
+        do{
+            try locations = self.managedObjectContext.executeFetchRequest(fetchRequest) as! [Trip_timeseries]
+            print(locations.count)
+        }catch{
+            fatalError("reterive error")
+        }
+    }  
 
+    
+    //MARK: - Trip Details methods ------------------------------------------------------------------------------------------------
+    
+    func saveTripDetail(tripDetail: History) {
+        
+        let events = NSMutableOrderedSet()
+        let speedZones = NSMutableOrderedSet()
+        
+        let tripDetailRow = NSEntityDescription.insertNewObjectForEntityForName("Trip_Detail",inManagedObjectContext: self.managedObjectContext) as! Trip_Detail
+        
+        if tripDetail.events?.count > 0 {
+            for tripEvent in tripDetail.events! {
+                let event = NSEntityDescription.insertNewObjectForEntityForName("Trip_Event",inManagedObjectContext: self.managedObjectContext) as! Trip_Event
+                event.latitude      = tripEvent.location.latitude
+                event.longitude     = tripEvent.location.longitude
+                event.eventType     = tripEvent.type.rawValue
+                event.eventMessage  = tripEvent.message
+                event.eventTrip     = tripDetailRow
+                
+                events.addObject(event)
+            }
+        }
+        
+        if tripDetail.speedZones.count > 0 {
+            for tripZone in tripDetail.speedZones {
+                let speedZone = NSEntityDescription.insertNewObjectForEntityForName("Trip_Speed_Zone",inManagedObjectContext: self.managedObjectContext) as! Trip_Speed_Zone
+                
+                speedZone.speedScore        = tripZone.speedScore
+                speedZone.speedBehaviour    = tripZone.speedBehaviour
+                speedZone.distanceTravelled = tripZone.distanceTravelled
+                speedZone.maxSpeed          = tripZone.maxSpeed
+                speedZone.aboveSpeed        = tripZone.aboveSpeed
+                speedZone.withinSpeed       = tripZone.withinSpeed
+                speedZone.violationCount    = tripZone.violationCount
+                speedZone.zoneTrip          = tripDetailRow
+                
+                speedZones.addObject(speedZone)
+            }
+        }
+        
+        
+        
+        tripDetailRow.tripId            = tripDetail.tripId
+        tripDetailRow.date              = NSDate(dateString: tripDetail.tripdDate)
+        tripDetailRow.distance          = tripDetail.distance
+        tripDetailRow.tripPoints        = tripDetail.tripPoints
+        tripDetailRow.speedScore        = tripDetail.tripScore.speedScore
+        tripDetailRow.ecoScore          = tripDetail.tripScore.ecoScore
+        tripDetailRow.attentionScore    = tripDetail.tripScore.attentionScore
+        tripDetailRow.dataUsageMessage  = tripDetail.dataUsageMessage
+        tripDetailRow.duration          = tripDetail.tripDuration
+        tripDetailRow.events            = events
+        tripDetailRow.speedZones        = speedZones
+        
+        
+        
+        do{
+            try self.managedObjectContext.save()
+            //add check
+            
+            fetchtripDetailData({ (status, response, error) -> Void in
+                print(response)
+            })
+        }catch{
+            fatalError("not iserted")
+        }
+    }
+    
+    func fetchtripDetailData(completionHandler:(status : Int, response: [History]?, error: NSError?) -> Void) -> Void{
+        // Initialize Fetch Request
+        let fetchRequest = NSFetchRequest(entityName: "Trip_Detail")
+        
+        let dateSortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        let sortDescriptors = [dateSortDescriptor]
+        fetchRequest.sortDescriptors = sortDescriptors
+        
+        // Initialize Asynchronous Fetch Request
+        let asyncFetchRequest = NSAsynchronousFetchRequest(fetchRequest: fetchRequest) { (asynchronousFetchResult) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                let trips = self.processTripDetailResult(asynchronousFetchResult)
+                
+                if trips != nil {
+                    completionHandler(status: 1, response: trips, error: nil)
+                }else{
+                    completionHandler(status: 0, response: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                }
+            })
+        }
+        
+        do {
+            // Execute Asynchronous Fetch Request
+            let asynchronousFetchResult = try managedObjectContext.executeRequest(asyncFetchRequest)
+            
+            print(asynchronousFetchResult)
+            
+        } catch {
+            let fetchError = error as NSError
+            print("\(fetchError), \(fetchError.userInfo)")
+        }
+    }
+    
+    func processTripDetailResult(asynchronousFetchResult: NSAsynchronousFetchResult) -> [History]? {
+        
+        if let results = asynchronousFetchResult.finalResult {
+            
+            var trips = [History]()
+            
+            for tripDetailObj in results {
+                let tripManagedObj = tripDetailObj as! Trip_Detail
+                
+                var eventsObj = [Event]()
+                var speedZonesObj = [SpeedZone]()
+                
+                //Event array
+                for eventObj in tripManagedObj.events!  {
+                    let eventManagedObject = eventObj as! Trip_Event
+                    
+                    let eventLocation = EventLocation(latitude: eventManagedObject.latitude!.doubleValue, longitude: eventManagedObject.longitude!.doubleValue)
+                    
+                    let event = Event(location: eventLocation, type:EventType(rawValue: eventManagedObject.eventType!.integerValue)! , message: eventManagedObject.eventMessage!)
+                    eventsObj.append(event)
+                    
+                }
+                
+                //Speedzone array
+                
+                for zoneObject in tripManagedObj.speedZones! {
+                    let zonemanagedObject = zoneObject as! Trip_Speed_Zone
+                    
+                    let speedZone = SpeedZone(speedScore: zonemanagedObject.speedScore!, maxSpeed: zonemanagedObject.maxSpeed!, aboveSpeed: zonemanagedObject.aboveSpeed!, withinSpeed: zonemanagedObject.withinSpeed!, violationCount: zonemanagedObject.violationCount!, speedBehaviour: zonemanagedObject.speedBehaviour!, distanceTravelled: zonemanagedObject.distanceTravelled!)
+                    
+                    speedZonesObj.append(speedZone)
+                }
+                
+                let tripScore = TripScore(speedScore: tripManagedObj.speedScore!, ecoScore: tripManagedObj.ecoScore!, attentionScore: nil)
+                
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "dd-MM-yyyy"
+                
+                let trip = History(tripid: tripManagedObj.tripId!, tripDate:dateFormatter.stringFromDate(tripManagedObj.date!), distance: tripManagedObj.distance!, tripPoints: tripManagedObj.tripPoints!, tripDuration: tripManagedObj.duration!, dataUsageMessage: tripManagedObj.dataUsageMessage!, tripScore: tripScore, events: eventsObj, speedZones: speedZonesObj)
+                
+                trips.append(trip)
+            }
+            
+            return trips
+            
+        }else{
+            
+            return nil
+        }
+    }
+    
+    
+    //MARK: - Badges Methods--------------------------------------------------------------------------------------
+    
+    func saveBadge(badge: Badge) {
+        let badgeRow = NSEntityDescription.insertNewObjectForEntityForName("Trip_Badge",inManagedObjectContext: self.managedObjectContext) as! Trip_Badge
+        
+        badgeRow.title              = badge.badgeTitle
+        badgeRow.badgeDescription   = badge.badgeDescription
+        badgeRow.isEarned           = badge.isEarned
+        badgeRow.type               = badge.badgeType.rawValue
+        badgeRow.orderIndex         = badge.orderIndex
+        
+        do{
+            try self.managedObjectContext.save()
+            //add check
+            fetchBadgeData({ (status, response, error) -> Void in
+                print(response)
+            })
+        }catch{
+            fatalError("not iserted")
+        }
+    }
+    
+    
+    func fetchBadgeData(completionHandler:(status : Int, response: [Badge]?, error: NSError?) -> Void) -> Void{
+        // Initialize Fetch Request
+        let fetchRequest = NSFetchRequest(entityName: "Trip_Badge")
+        
+        // Initialize Asynchronous Fetch Request
+        let asyncFetchRequest = NSAsynchronousFetchRequest(fetchRequest: fetchRequest) { (asynchronousFetchResult) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                let badges = self.processBadgeResult(asynchronousFetchResult)
+                
+                if badges != nil {
+                   completionHandler(status: 1, response: badges, error: nil)
+                }else{
+                    completionHandler(status: 0, response: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                }
+            })
+        }
+        
+        do {
+            // Execute Asynchronous Fetch Request
+            let asynchronousFetchResult = try managedObjectContext.executeRequest(asyncFetchRequest)
+            
+            print(asynchronousFetchResult)
+            
+        } catch {
+            let fetchError = error as NSError
+            print("\(fetchError), \(fetchError.userInfo)")
+        }
+    }
+    
+    func processBadgeResult(asynchronousFetchResult: NSAsynchronousFetchResult) -> [Badge]? {
+        
+        if let results = asynchronousFetchResult.finalResult {
+            
+            var badges = [Badge]()
+            
+            for item in results {
+                
+                let badgemanagedObj = item as! Trip_Badge
+                let badge = Badge(withIcon: "", badgeTitle: badgemanagedObj.title!, badgeDescription:badgemanagedObj.badgeDescription! , isEarned: badgemanagedObj.isEarned!.boolValue, orderIndex: badgemanagedObj.orderIndex!.integerValue, badgeType:Badge.BadgesType(rawValue: badgemanagedObj.type!.integerValue)! , additionalMsg:nil)
+                badges.append(badge)
+            }
+            
+            return badges
+            
+        }else{
+            
+            return nil
+        }
+    }
+    
+    
+    //MARK: - Overall Score methods-------------------------------------------------------------------------------------
+    
+    func saveOverallScore(overallScore: OverallScores){
+        let overallScoreRow = NSEntityDescription.insertNewObjectForEntityForName("OverallScore",inManagedObjectContext: self.managedObjectContext) as! OverallScore
+        
+        overallScoreRow.overall             = overallScore.overallScore
+        overallScoreRow.speeding            = overallScore.speedingScore
+        overallScoreRow.eco                 = overallScore.ecoScore
+        overallScoreRow.attention           = overallScore.attentionScore
+        overallScoreRow.distance            = overallScore.distanceTravelled
+        overallScoreRow.dataUsageMessage    = overallScore.dataUsageMsg
+        
+        do{
+            try self.managedObjectContext.save()
+            //add check
+        }catch{
+            fatalError("not iserted")
+        }
+    }
+    
+    
+    func fetchOverallScoreData(completionHandler:(status : Int, response: OverallScores?, error: NSError?) -> Void) -> Void{
+        // Initialize Fetch Request
+        let fetchRequest = NSFetchRequest(entityName: "OverallScore")
+        
+        // Initialize Asynchronous Fetch Request
+        let asyncFetchRequest = NSAsynchronousFetchRequest(fetchRequest: fetchRequest) { (asynchronousFetchResult) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                
+                let overallScore = self.processOverallScoreResult(asynchronousFetchResult)
+                
+                if overallScore != nil {
+                    completionHandler(status: 1, response: overallScore, error: nil)
+                }else{
+                    completionHandler(status: 0, response: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                }
+            })
+        }
+        
+        do {
+            // Execute Asynchronous Fetch Request
+            let asynchronousFetchResult = try managedObjectContext.executeRequest(asyncFetchRequest)
+            
+            print(asynchronousFetchResult)
+            
+        } catch {
+            let fetchError = error as NSError
+            print("\(fetchError), \(fetchError.userInfo)")
+        }
+    }
+    
+    func processOverallScoreResult(asynchronousFetchResult: NSAsynchronousFetchResult) -> OverallScores? {
+        
+        if let results = asynchronousFetchResult.finalResult {
+            
+            if let score = results.first {
+                let scoreObj = score as! OverallScore
+                
+                return OverallScores(overallScore: scoreObj.overall!, speedingScore: scoreObj.speeding!, ecoScore: scoreObj.eco!, distanceTravelled: scoreObj.distance!, dataUsageMsg: scoreObj.dataUsageMessage!)
+            }else{
+                return nil
+            }
+        }else{
+            
+            return nil
+        }
+    }
+   
 }

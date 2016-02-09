@@ -62,6 +62,22 @@ struct StringConstants {
     static let LOGIN_URL = ""
     static let TERMS_AND_CONDITIONS_URL = ""
     static let SCREEN_HEIGHT = UIScreen.mainScreen().bounds.size.height
+    static let SCREEN_WIDTH = UIScreen.mainScreen().bounds.size.width
+    
+    static let BADGE_CELL_TOP_MARGIN = 10.0
+    static let BADGE_CELL_BOTTOM_MARGIN = 10.0
+    static let BADGE_CELL_LEFT_MARGIN = 20.0
+    static let BADGE_CELL_RIGHT_MARGIN = 20.0
+    
+    static let BADGE_CONTENT_TITLE_HEIGHT = CGFloat(18.0)
+    static let BADGE_CONTENT_TITLE_BOTTOM_PADDING = 10.0
+    static let BADGE_CONTENT_DESCRIPTION_BOTTOM_PADDING = 5.0
+    static let BADGE_CONTENT_SHARE_BUTTON_HEIGHT = 15.0
+    static let BADGE_CONTENT_ICON_LEFT_PADDING = 10.0
+    static let BADGE_CONTENT_ICON_RIGHT_PADDING = 30.0
+    static let BADGE_CONTENT_ICON_WIDTH = 84.0
+    
+    static var appDataSynced = true
 }
 
 
@@ -149,13 +165,83 @@ public extension NSDate {
     }
 }
 
-public extension UIColor {
-    func colorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
-        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
-        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
-        let blue = CGFloat(rgbValue & 0xFF)/256.0
+/*
+var color = UIColor(red: 0xFF, green: 0xFF, blue: 0xFF)
+var color2 = UIColor(netHex:0xFFFFFF)
+*/
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
         
-        return UIColor(red:red, green:green, blue:blue, alpha:CGFloat(alpha))
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(netHex:Int) {
+        self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
     }
 }
+
+
+extension String {
+    func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: width, height: CGFloat.max)
+        
+        let boundingBox = self.boundingRectWithSize(constraintRect, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+        
+        return boundingBox.height
+    }
+}
+
+/*
+myLabel.font = myLabel.font.boldItalic()
+myLabel.font = myLabel.font.bold()
+myLabel.font = myLabel.font.withTraits(.TraitCondensed, .TraitBold, .TraitItalic)
+*/
+extension UIFont {
+    
+    func withTraits(traits:UIFontDescriptorSymbolicTraits...) -> UIFont {
+        let descriptor = self.fontDescriptor().fontDescriptorWithSymbolicTraits(UIFontDescriptorSymbolicTraits(traits))
+        return UIFont(descriptor: descriptor, size: 0)
+    }
+    
+    func bold() -> UIFont {
+        return withTraits(.TraitBold)
+    }
+    
+    func italic() -> UIFont {
+        return withTraits(.TraitItalic)
+    }
+    
+    func boldItalic() -> UIFont {
+        return withTraits(.TraitBold, .TraitItalic)
+    }
+    
+}
+
+class Helper {
+    
+    static func getMonthString(month: Int) -> String {
+        var monthString = String()
+        
+        switch month {
+        case 1: monthString = "Jan"
+        case 2: monthString = "Feb"
+        case 3: monthString = "Mar"
+        case 4: monthString = "Apr"
+        case 5: monthString = "May"
+        case 6: monthString = "Jun"
+        case 7: monthString = "Jul"
+        case 8: monthString = "Aug"
+        case 9: monthString = "Sep"
+        case 10:monthString = "Oct"
+        case 11:monthString = "Nov"
+        case 12:monthString = "Dec"
+        default: monthString = "UDF"
+        }
+        return monthString
+    }
+}
+
 

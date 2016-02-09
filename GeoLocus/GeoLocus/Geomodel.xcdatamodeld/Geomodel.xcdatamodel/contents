@@ -1,15 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Xcode 7.0">
-    <entity name="Configurations" representedClassName=".Configurations" syncable="YES">
-        <attribute name="ecoweightage_acceleration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="ecoweightage_braking" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="thresholds_acceleration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="thresholds_autotrip" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="thresholds_brake" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="weightage_acceleration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="weightage_braking" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="weightage_severevoilation" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="weightage_speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+    <entity name="OverallScore" representedClassName=".OverallScore" syncable="YES">
+        <attribute name="attention" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="dataUsageMessage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="eco" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="overall" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="speeding" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <entity name="Trip_Badge" representedClassName=".Trip_Badge" syncable="YES">
+        <attribute name="badgeDescription" attributeType="String" syncable="YES"/>
+        <attribute name="isEarned" attributeType="Boolean" syncable="YES"/>
+        <attribute name="orderIndex" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="type" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="Trip_Detail" representedClassName=".Trip_Detail" syncable="YES">
+        <attribute name="attentionScore" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="dataUsageMessage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="ecoScore" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="speedScore" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="tripId" attributeType="String" syncable="YES"/>
+        <attribute name="tripPoints" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Trip_Event" inverseName="eventTrip" inverseEntity="Trip_Event" syncable="YES"/>
+        <relationship name="speedZones" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Trip_Speed_Zone" inverseName="zoneTrip" inverseEntity="Trip_Speed_Zone" syncable="YES"/>
+    </entity>
+    <entity name="Trip_Event" representedClassName=".Trip_Event" syncable="YES">
+        <attribute name="eventMessage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eventType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="latitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="thresholdSpeed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="eventTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip_Detail" inverseName="events" inverseEntity="Trip_Detail" syncable="YES"/>
+    </entity>
+    <entity name="Trip_Speed_Zone" representedClassName=".Trip_Speed_Zone" syncable="YES">
+        <attribute name="aboveSpeed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="distanceTravelled" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="maxSpeed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="speedBehaviour" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="speedScore" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="violationCount" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="withinSpeed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="zoneTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip_Detail" inverseName="speedZones" inverseEntity="Trip_Detail" syncable="YES"/>
     </entity>
     <entity name="Trip_timeseries" representedClassName=".Trip_timeseries" syncable="YES">
         <attribute name="currenttime" optional="YES" attributeType="Date" syncable="YES"/>
@@ -22,24 +57,12 @@
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
     </entity>
-    <entity name="TripSummary" representedClassName=".TripSummary" syncable="YES">
-        <attribute name="accelerationcount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="attentionscore" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
-        <attribute name="brakingcount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="brakingscore" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
-        <attribute name="datausage" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="ecoscore" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
-        <attribute name="timezone" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="timezoneid" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="totaldistance" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="totalduration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="tripendtime" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="tripid" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="tripstarttime" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
     <elements>
-        <element name="Trip_timeseries" positionX="1987" positionY="-169" width="128" height="178"/>
-        <element name="TripSummary" positionX="1656" positionY="-198" width="128" height="238"/>
-        <element name="Configurations" positionX="1818" positionY="-117" width="128" height="178"/>
+        <element name="OverallScore" positionX="1818" positionY="-9" width="128" height="135"/>
+        <element name="Trip_Badge" positionX="1809" positionY="-18" width="128" height="120"/>
+        <element name="Trip_Detail" positionX="1620" positionY="-126" width="128" height="210"/>
+        <element name="Trip_Event" positionX="1996" positionY="123" width="128" height="135"/>
+        <element name="Trip_Speed_Zone" positionX="1719" positionY="189" width="128" height="163"/>
+        <element name="Trip_timeseries" positionX="1863" positionY="-169" width="128" height="178"/>
     </elements>
 </model>

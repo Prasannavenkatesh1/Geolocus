@@ -8,6 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		0A9D9F90C552EA717EE57041 /* Pods_GeoLocus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44319C4E7A14E359CCBE50F0 /* Pods_GeoLocus.framework */; };
+		28328A331C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A2F1C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift */; };
+		28328A341C646B8E004E5F86 /* OverallScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A301C646B8E004E5F86 /* OverallScore.swift */; };
+		28328A381C646F58004E5F86 /* OverallScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A371C646F58004E5F86 /* OverallScores.swift */; };
+		28398E551C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E4F1C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift */; };
+		28398E561C637F32003D5BE5 /* Trip_Speed_Zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E501C637F32003D5BE5 /* Trip_Speed_Zone.swift */; };
+		28398E571C637F32003D5BE5 /* Trip_Detail+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E511C637F32003D5BE5 /* Trip_Detail+CoreDataProperties.swift */; };
+		28398E581C637F32003D5BE5 /* Trip_Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E521C637F32003D5BE5 /* Trip_Detail.swift */; };
+		28398E591C637F32003D5BE5 /* Trip_Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E531C637F32003D5BE5 /* Trip_Event+CoreDataProperties.swift */; };
+		28398E5A1C637F32003D5BE5 /* Trip_Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E541C637F32003D5BE5 /* Trip_Event.swift */; };
+		283A2B371C65D7C700F6BD16 /* Trip_Badge+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283A2B351C65D7C700F6BD16 /* Trip_Badge+CoreDataProperties.swift */; };
+		283A2B381C65D7C700F6BD16 /* Trip_Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283A2B361C65D7C700F6BD16 /* Trip_Badge.swift */; };
+		28AF07CD1C69AC0A00D8D3F4 /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AF07CC1C69AC0A00D8D3F4 /* TermsAndConditionsViewController.swift */; };
+		28CD01E11C69A42300EEC94A /* DetectingVechile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CD01E01C69A42300EEC94A /* DetectingVechile.swift */; };
+		28DC53C81C64EFF800FB45B4 /* BadgesDetails.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28DC53C71C64EFF800FB45B4 /* BadgesDetails.plist */; };
 		28F38A0B1C61EB3900A02E93 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F38A091C61EB3900A02E93 /* Badge.swift */; };
 		28F38A0C1C61EB3900A02E93 /* HistoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F38A0A1C61EB3900A02E93 /* HistoryData.swift */; };
 		28F38A121C61EBB300A02E93 /* BadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F38A0D1C61EBB300A02E93 /* BadgeCell.swift */; };
@@ -211,13 +225,11 @@
 		A6D52F881B6F454900855DDB /* TripSummaryDB.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D52F871B6F454900855DDB /* TripSummaryDB.m */; };
 		A6DB81441B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DB81431B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m */; };
 		A6DB81471B7346AF008D3F33 /* DASHBOARD_PARAMETER.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DB81461B7346AF008D3F33 /* DASHBOARD_PARAMETER.m */; };
-		B6336D651C64854200284961 /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6336D641C64854200284961 /* TermsAndConditionsViewController.swift */; };
 		B63F53ED1C51EAFA0070002E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63F53EB1C51EAFA0070002E /* LoginViewController.swift */; };
 		B63F53EE1C51EAFA0070002E /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63F53EC1C51EAFA0070002E /* LanguageSelectionViewController.swift */; };
 		B640F0DE1C621C9E0051864F /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B640F0DD1C621C9E0051864F /* CALayer+UIColor.swift */; };
 		B648C20D1C58B83000EE52C3 /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B648C20B1C58B83000EE52C3 /* PageContentViewController.swift */; };
 		B648C20E1C58B83000EE52C3 /* WelcomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B648C20C1C58B83000EE52C3 /* WelcomePageViewController.swift */; };
-		BF27E04B1C637F44009E5204 /* DetectingVechile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF27E04A1C637F44009E5204 /* DetectingVechile.swift */; };
 		BF43B3501C61D25900710E22 /* TripNotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF43B34F1C61D25900710E22 /* TripNotify.swift */; };
 		BF4BA0E21C5F661F0028D79B /* Thresholds.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4BA0E11C5F661F0028D79B /* Thresholds.swift */; };
 		BF4BA0E41C5F6CC70028D79B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4BA0E31C5F6CC70028D79B /* Config.swift */; };
@@ -226,9 +238,7 @@
 		BF4F8D981C43845000895640 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D971C43845000895640 /* CategoryCell.swift */; };
 		BF4F8D9A1C43CA8D00895640 /* Httpclient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D991C43CA8D00895640 /* Httpclient.swift */; };
 		BF4F8D9C1C43CA9D00895640 /* DatabaseActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */; };
-		BF51D5461C68C62100D8DB5E /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BF51D5451C68C62100D8DB5E /* Location.gpx */; };
 		BF5437B71C58FEA7009D2343 /* TimeSeriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5437B61C58FEA7009D2343 /* TimeSeriesModel.swift */; };
-		BF5BEE761C64C5A600BAE5F9 /* BackgroundTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5BEE751C64C5A600BAE5F9 /* BackgroundTaskManager.swift */; };
 		BF5D3AAD1C4E1E3000DDFDC1 /* Datausage.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */; };
 		BF5D3AB51C4E4F6500DDFDC1 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF5D3AB71C4E4F6500DDFDC1 /* Localized.strings */; };
 		BF6FA2A11C55F6880038DBDF /* CoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6FA2A01C55F6880038DBDF /* CoreLocation.swift */; };
@@ -241,14 +251,8 @@
 		BF73374F1C3FC29A006094C0 /* DashboardPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF73374E1C3FC29A006094C0 /* DashboardPage.swift */; };
 		BF7337511C3FC2AE006094C0 /* HistoryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7337501C3FC2AE006094C0 /* HistoryPage.swift */; };
 		BF7337531C3FC2BF006094C0 /* HistoryScorePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7337521C3FC2BF006094C0 /* HistoryScorePage.swift */; };
-		BFE454731C64DC6D003BC0F2 /* Configurations+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE454701C64DC6D003BC0F2 /* Configurations+CoreDataProperties.swift */; };
-		BFE454741C64DC6D003BC0F2 /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE454711C64DC6D003BC0F2 /* Configurations.swift */; };
-		BFE454761C64DCD6003BC0F2 /* TripSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE454751C64DCD6003BC0F2 /* TripSummaryModel.swift */; };
-		BFE454791C64DD1C003BC0F2 /* TripSummary+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE454771C64DD1C003BC0F2 /* TripSummary+CoreDataProperties.swift */; };
-		BFE4547A1C64DD1C003BC0F2 /* TripSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE454781C64DD1C003BC0F2 /* TripSummary.swift */; };
 		F55265641C522F3E002362F5 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55265631C522F3E002362F5 /* NotificationViewController.swift */; };
 		F55265661C522FD0002362F5 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55265651C522FD0002362F5 /* NotificationTableViewCell.swift */; };
-		F59F935C1C61DE2D003748DA /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59F935B1C61DE2D003748DA /* NotificationModel.swift */; };
 		F5B020451C60AA4B006C97E5 /* NotificationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B020441C60AA4B006C97E5 /* NotificationDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -264,6 +268,20 @@
 
 /* Begin PBXFileReference section */
 		10F13FC629960E9EB8E54E0C /* Pods-GeoLocus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoLocus.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus.release.xcconfig"; sourceTree = "<group>"; };
+		28328A2F1C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OverallScore+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		28328A301C646B8E004E5F86 /* OverallScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverallScore.swift; sourceTree = "<group>"; };
+		28328A371C646F58004E5F86 /* OverallScores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverallScores.swift; sourceTree = "<group>"; };
+		28398E4F1C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_Speed_Zone+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		28398E501C637F32003D5BE5 /* Trip_Speed_Zone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_Speed_Zone.swift; sourceTree = "<group>"; };
+		28398E511C637F32003D5BE5 /* Trip_Detail+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_Detail+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		28398E521C637F32003D5BE5 /* Trip_Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_Detail.swift; sourceTree = "<group>"; };
+		28398E531C637F32003D5BE5 /* Trip_Event+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		28398E541C637F32003D5BE5 /* Trip_Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_Event.swift; sourceTree = "<group>"; };
+		283A2B351C65D7C700F6BD16 /* Trip_Badge+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_Badge+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		283A2B361C65D7C700F6BD16 /* Trip_Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_Badge.swift; sourceTree = "<group>"; };
+		28AF07CC1C69AC0A00D8D3F4 /* TermsAndConditionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewController.swift; sourceTree = "<group>"; };
+		28CD01E01C69A42300EEC94A /* DetectingVechile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectingVechile.swift; sourceTree = "<group>"; };
+		28DC53C71C64EFF800FB45B4 /* BadgesDetails.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BadgesDetails.plist; sourceTree = "<group>"; };
 		28F38A091C61EB3900A02E93 /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		28F38A0A1C61EB3900A02E93 /* HistoryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryData.swift; sourceTree = "<group>"; };
 		28F38A0D1C61EBB300A02E93 /* BadgeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeCell.swift; sourceTree = "<group>"; };
@@ -518,13 +536,11 @@
 		A6DB81451B7346AF008D3F33 /* DASHBOARD_PARAMETER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DASHBOARD_PARAMETER.h; sourceTree = "<group>"; };
 		A6DB81461B7346AF008D3F33 /* DASHBOARD_PARAMETER.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DASHBOARD_PARAMETER.m; sourceTree = "<group>"; };
 		AA7811FEA1962DE3E4724EB8 /* Pods-GeoLocus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoLocus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus.debug.xcconfig"; sourceTree = "<group>"; };
-		B6336D641C64854200284961 /* TermsAndConditionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewController.swift; sourceTree = "<group>"; };
 		B63F53EB1C51EAFA0070002E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B63F53EC1C51EAFA0070002E /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
 		B640F0DD1C621C9E0051864F /* CALayer+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+UIColor.swift"; sourceTree = "<group>"; };
 		B648C20B1C58B83000EE52C3 /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
 		B648C20C1C58B83000EE52C3 /* WelcomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomePageViewController.swift; sourceTree = "<group>"; };
-		BF27E04A1C637F44009E5204 /* DetectingVechile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectingVechile.swift; sourceTree = "<group>"; };
 		BF43B34F1C61D25900710E22 /* TripNotify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripNotify.swift; sourceTree = "<group>"; };
 		BF4BA0E11C5F661F0028D79B /* Thresholds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thresholds.swift; sourceTree = "<group>"; };
 		BF4BA0E31C5F6CC70028D79B /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -533,9 +549,7 @@
 		BF4F8D971C43845000895640 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		BF4F8D991C43CA8D00895640 /* Httpclient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Httpclient.swift; sourceTree = "<group>"; };
 		BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseActions.swift; sourceTree = "<group>"; };
-		BF51D5451C68C62100D8DB5E /* Location.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		BF5437B61C58FEA7009D2343 /* TimeSeriesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSeriesModel.swift; sourceTree = "<group>"; };
-		BF5BEE751C64C5A600BAE5F9 /* BackgroundTaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundTaskManager.swift; sourceTree = "<group>"; };
 		BF5D3AAB1C4E1E3000DDFDC1 /* Datausage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Datausage.h; sourceTree = "<group>"; };
 		BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Datausage.m; sourceTree = "<group>"; };
 		BF5D3AB11C4E4E9600DDFDC1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
@@ -552,14 +566,8 @@
 		BF73374E1C3FC29A006094C0 /* DashboardPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardPage.swift; sourceTree = "<group>"; };
 		BF7337501C3FC2AE006094C0 /* HistoryPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryPage.swift; sourceTree = "<group>"; };
 		BF7337521C3FC2BF006094C0 /* HistoryScorePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryScorePage.swift; sourceTree = "<group>"; };
-		BFE454701C64DC6D003BC0F2 /* Configurations+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Configurations+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		BFE454711C64DC6D003BC0F2 /* Configurations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
-		BFE454751C64DCD6003BC0F2 /* TripSummaryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryModel.swift; sourceTree = "<group>"; };
-		BFE454771C64DD1C003BC0F2 /* TripSummary+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TripSummary+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		BFE454781C64DD1C003BC0F2 /* TripSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummary.swift; sourceTree = "<group>"; };
 		F55265631C522F3E002362F5 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		F55265651C522FD0002362F5 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
-		F59F935B1C61DE2D003748DA /* NotificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		F5B020441C60AA4B006C97E5 /* NotificationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1022,6 +1030,7 @@
 		BF7336F71C3F914C006094C0 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				6351947F1AD3AAC7002ED1D0 /* LaunchScreen.xib */,
 				6351947A1AD3AAC7002ED1D0 /* Main.storyboard */,
 				A6C6C2461B1869C200C9C470 /* Main4s.storyboard */,
 				6391CF981B4A4C7F002E940E /* Main6.storyboard */,
@@ -1032,7 +1041,6 @@
 		BF7336F81C3F9243006094C0 /* New */ = {
 			isa = PBXGroup;
 			children = (
-				6351947F1AD3AAC7002ED1D0 /* LaunchScreen.xib */,
 				BF5D3AB71C4E4F6500DDFDC1 /* Localized.strings */,
 				6C03B5C71C4CF16C00C938C6 /* External frameworks */,
 				63C2094E1B0B0BF8009DF880 /* AppDelegateSwift.swift */,
@@ -1047,22 +1055,20 @@
 		BF7336F91C3F9250006094C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BF51D5451C68C62100D8DB5E /* Location.gpx */,
-				BF5D3AAB1C4E1E3000DDFDC1 /* Datausage.h */,
-				BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */,
+				28CD01E01C69A42300EEC94A /* DetectingVechile.swift */,
 				B640F0DD1C621C9E0051864F /* CALayer+UIColor.swift */,
 				28F38A091C61EB3900A02E93 /* Badge.swift */,
 				28F38A0A1C61EB3900A02E93 /* HistoryData.swift */,
 				6CCAF90F1C4E20D500484056 /* ErrorHandler.swift */,
+				BF5D3AAB1C4E1E3000DDFDC1 /* Datausage.h */,
+				BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */,
 				6CCAF9031C4E036200484056 /* GlobalConstants.swift */,
 				BF6FA2A01C55F6880038DBDF /* CoreLocation.swift */,
 				BF5437B61C58FEA7009D2343 /* TimeSeriesModel.swift */,
 				BF43B34F1C61D25900710E22 /* TripNotify.swift */,
 				BF4BA0E11C5F661F0028D79B /* Thresholds.swift */,
-				F59F935B1C61DE2D003748DA /* NotificationModel.swift */,
-				BF27E04A1C637F44009E5204 /* DetectingVechile.swift */,
-				BF5BEE751C64C5A600BAE5F9 /* BackgroundTaskManager.swift */,
-				BFE454751C64DCD6003BC0F2 /* TripSummaryModel.swift */,
+				28328A371C646F58004E5F86 /* OverallScores.swift */,
+				28DC53C71C64EFF800FB45B4 /* BadgesDetails.plist */,
 				6C34EA531C69F8A0000A0A0D /* DashboardModel.swift */,
 			);
 			name = Model;
@@ -1079,9 +1085,9 @@
 		BF7336FB1C3F9266006094C0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				28AF07CC1C69AC0A00D8D3F4 /* TermsAndConditionsViewController.swift */,
 				BF4F8D961C43840500895640 /* Cells */,
 				BF7337481C3FBCF4006094C0 /* RootViewController.swift */,
-				B6336D641C64854200284961 /* TermsAndConditionsViewController.swift */,
 				B648C20B1C58B83000EE52C3 /* PageContentViewController.swift */,
 				B648C20C1C58B83000EE52C3 /* WelcomePageViewController.swift */,
 				BF73374A1C3FBD9E006094C0 /* Pageviewcontroller.swift */,
@@ -1108,12 +1114,18 @@
 		BF7336FE1C3F92BC006094C0 /* DatabaseActions */ = {
 			isa = PBXGroup;
 			children = (
+				283A2B351C65D7C700F6BD16 /* Trip_Badge+CoreDataProperties.swift */,
+				283A2B361C65D7C700F6BD16 /* Trip_Badge.swift */,
+				28328A2F1C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift */,
+				28328A301C646B8E004E5F86 /* OverallScore.swift */,
+				28398E4F1C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift */,
+				28398E501C637F32003D5BE5 /* Trip_Speed_Zone.swift */,
+				28398E511C637F32003D5BE5 /* Trip_Detail+CoreDataProperties.swift */,
+				28398E521C637F32003D5BE5 /* Trip_Detail.swift */,
+				28398E531C637F32003D5BE5 /* Trip_Event+CoreDataProperties.swift */,
+				28398E541C637F32003D5BE5 /* Trip_Event.swift */,
 				BF4E0D391C4F701E00BF53FB /* DBModels */,
 				BF7337061C3F94A1006094C0 /* Geomodel.xcdatamodeld */,
-				BFE454771C64DD1C003BC0F2 /* TripSummary+CoreDataProperties.swift */,
-				BFE454781C64DD1C003BC0F2 /* TripSummary.swift */,
-				BFE454701C64DC6D003BC0F2 /* Configurations+CoreDataProperties.swift */,
-				BFE454711C64DC6D003BC0F2 /* Configurations.swift */,
 				BF4D23761C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift */,
 				BF4D23771C5A0A8F00230355 /* Trip_timeseries.swift */,
 				BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */,
@@ -1189,12 +1201,12 @@
 			attributes = {
 				LastSwiftMigration = 0720;
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = Cognizant;
 				TargetAttributes = {
 					635194701AD3AAC7002ED1D0 = {
 						CreatedOnToolsVersion = 6.0.1;
-						DevelopmentTeam = 6568GSFQF5;
+						DevelopmentTeam = Z726Q8WU78;
 					};
 					635194851AD3AAC7002ED1D0 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -1229,6 +1241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				633764EA1AE53DE9005D6597 /* Roboto-MediumItalic.ttf in Resources */,
+				28DC53C81C64EFF800FB45B4 /* BadgesDetails.plist in Resources */,
 				A61E44CC1B32C133001D3461 /* weeklyReport.html in Resources */,
 				63955C991AD7A593006A1B04 /* time.js in Resources */,
 				6351947C1AD3AAC7002ED1D0 /* Main.storyboard in Resources */,
@@ -1290,7 +1303,6 @@
 				6352C4341AD694A500E11D3A /* trip.png in Resources */,
 				6352C42C1AD694A500E11D3A /* ic_tripduration.png in Resources */,
 				6352C4331AD694A500E11D3A /* settings.png in Resources */,
-				BF51D5461C68C62100D8DB5E /* Location.gpx in Resources */,
 				6352C4221AD694A500E11D3A /* emergency_towing.png in Resources */,
 				6352C4211AD694A500E11D3A /* emergency_repair_map.png in Resources */,
 				638452491B03540300E895F7 /* GeoLocus-Info.plist in Resources */,
@@ -1394,16 +1406,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				6384522A1B0353AE00E895F7 /* LeaderBoardEntity.m in Sources */,
+				28398E591C637F32003D5BE5 /* Trip_Event+CoreDataProperties.swift in Sources */,
+				28328A381C646F58004E5F86 /* OverallScores.swift in Sources */,
 				28F38A121C61EBB300A02E93 /* BadgeCell.swift in Sources */,
 				630C19D71AE7B2A8000B32CA /* Drawings.swift in Sources */,
 				63EA2C661B70DA4400ECC0E9 /* DashboardDB.m in Sources */,
+				28398E561C637F32003D5BE5 /* Trip_Speed_Zone.swift in Sources */,
 				B640F0DE1C621C9E0051864F /* CALayer+UIColor.swift in Sources */,
 				BF73374B1C3FBD9E006094C0 /* Pageviewcontroller.swift in Sources */,
 				6CCAF9081C4E062700484056 /* ReportsViewController.swift in Sources */,
 				638452361B0353AE00E895F7 /* GetQuoteDatabase.m in Sources */,
-				B6336D651C64854200284961 /* TermsAndConditionsViewController.swift in Sources */,
 				A6DB81471B7346AF008D3F33 /* DASHBOARD_PARAMETER.m in Sources */,
-				BFE454741C64DC6D003BC0F2 /* Configurations.swift in Sources */,
 				A6DB81441B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m in Sources */,
 				6389B2531B1C9AA600F2A18C /* NetworkViewController.m in Sources */,
 				B63F53EE1C51EAFA0070002E /* LanguageSelectionViewController.swift in Sources */,
@@ -1428,21 +1441,21 @@
 				638452381B0353AE00E895F7 /* GetQuoteController.m in Sources */,
 				F55265661C522FD0002362F5 /* NotificationTableViewCell.swift in Sources */,
 				BF7337081C3F94A1006094C0 /* Geomodel.xcdatamodeld in Sources */,
+				28398E581C637F32003D5BE5 /* Trip_Detail.swift in Sources */,
 				63A93D5E1B8B24A10081C526 /* arcProgressView.swift in Sources */,
 				638452341B0353AE00E895F7 /* TripSummaryDatabase.m in Sources */,
 				BF73374F1C3FC29A006094C0 /* DashboardPage.swift in Sources */,
+				28AF07CD1C69AC0A00D8D3F4 /* TermsAndConditionsViewController.swift in Sources */,
 				28F38A0C1C61EB3900A02E93 /* HistoryData.swift in Sources */,
 				6389B24F1B1C9AA600F2A18C /* DataTransmissionController.m in Sources */,
 				BF5D3AAD1C4E1E3000DDFDC1 /* Datausage.m in Sources */,
 				635194791AD3AAC7002ED1D0 /* ViewController.swift in Sources */,
 				638451F31B0353A000E895F7 /* FMDatabaseQueue.m in Sources */,
-				BFE454791C64DD1C003BC0F2 /* TripSummary+CoreDataProperties.swift in Sources */,
 				6C34EA541C69F8A0000A0A0D /* DashboardModel.swift in Sources */,
 				6C03B5D61C4D025500C938C6 /* SWRevealViewController.m in Sources */,
 				B63F53ED1C51EAFA0070002E /* LoginViewController.swift in Sources */,
-				F59F935C1C61DE2D003748DA /* NotificationModel.swift in Sources */,
 				BF4D23781C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift in Sources */,
-				BFE454761C64DCD6003BC0F2 /* TripSummaryModel.swift in Sources */,
+				28398E551C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift in Sources */,
 				6304FC1C1AD54B0D00734AEF /* DashboardViewController.swift in Sources */,
 				63014BB01B15C5290022FCC6 /* AppDelegate.m in Sources */,
 				638452371B0353AE00E895F7 /* LeaderBoardController.m in Sources */,
@@ -1453,10 +1466,10 @@
 				F5B020451C60AA4B006C97E5 /* NotificationDetailsViewController.swift in Sources */,
 				BF4BA0E41C5F6CC70028D79B /* Config.swift in Sources */,
 				638451F01B0353A000E895F7 /* FMResultSet.m in Sources */,
+				28CD01E11C69A42300EEC94A /* DetectingVechile.swift in Sources */,
 				28F38A0B1C61EB3900A02E93 /* Badge.swift in Sources */,
 				636EF44C1B062B67007AA706 /* RegistrationDatabase.m in Sources */,
 				BF4F8D9C1C43CA9D00895640 /* DatabaseActions.swift in Sources */,
-				BF5BEE761C64C5A600BAE5F9 /* BackgroundTaskManager.swift in Sources */,
 				6384522C1B0353AE00E895F7 /* ScoringPageDatabase.m in Sources */,
 				A68F05AF1B143EF9003D1D22 /* LBCustomCell.swift in Sources */,
 				BF7337511C3FC2AE006094C0 /* HistoryPage.swift in Sources */,
@@ -1475,22 +1488,27 @@
 				63D086AF1B0478B700BDD656 /* HeadphonesDetector.m in Sources */,
 				6C44D6691C59E55F0055916B /* LeftViewController.swift in Sources */,
 				6384523A1B0353AE00E895F7 /* DashboardController.m in Sources */,
+				28398E5A1C637F32003D5BE5 /* Trip_Event.swift in Sources */,
 				63A0FE791AFA377E00EE7C46 /* LastTripViewController.swift in Sources */,
 				A68F05B31B147A73003D1D22 /* SettingsCustomCell.swift in Sources */,
+				28328A331C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift in Sources */,
 				BF73374D1C3FC278006094C0 /* ContractPage.swift in Sources */,
 				6389B2551B1C9AA600F2A18C /* SchedularViewController.m in Sources */,
 				6CEAF3251C4FBB2100F13379 /* ArcGraphicsController.swift in Sources */,
 				BF7337491C3FBCF4006094C0 /* RootViewController.swift in Sources */,
+				28398E571C637F32003D5BE5 /* Trip_Detail+CoreDataProperties.swift in Sources */,
 				6389B2511B1C9AA600F2A18C /* ListenerViewController.m in Sources */,
 				28F38A131C61EBB300A02E93 /* HistoryMapViewCell.swift in Sources */,
 				A6D52F881B6F454900855DDB /* TripSummaryDB.m in Sources */,
-				BF27E04B1C637F44009E5204 /* DetectingVechile.swift in Sources */,
 				63C2094F1B0B0BF8009DF880 /* AppDelegateSwift.swift in Sources */,
+				283A2B371C65D7C700F6BD16 /* Trip_Badge+CoreDataProperties.swift in Sources */,
 				6384523D1B0353AE00E895F7 /* RegistrationController.m in Sources */,
+				28328A341C646B8E004E5F86 /* OverallScore.swift in Sources */,
 				638451F21B0353A000E895F7 /* FMDatabasePool.m in Sources */,
 				6384523F1B0353AE00E895F7 /* SendingEmergencyInfo.m in Sources */,
 				63061B511BA03CD3006BF223 /* MapView.swift in Sources */,
 				638451F41B0353A000E895F7 /* GeoLocusAppDelegate.m in Sources */,
+				283A2B381C65D7C700F6BD16 /* Trip_Badge.swift in Sources */,
 				63D086BE1B047D2A00BDD656 /* MLTableAlert.m in Sources */,
 				BF43B3501C61D25900710E22 /* TripNotify.swift in Sources */,
 				B648C20D1C58B83000EE52C3 /* PageContentViewController.swift in Sources */,
@@ -1498,9 +1516,7 @@
 				638451F61B0353A000E895F7 /* CoreLocationController.m in Sources */,
 				638451EF1B0353A000E895F7 /* FMDatabase.m in Sources */,
 				63AAE5D31AE90C470013987F /* EmergencyViewController.swift in Sources */,
-				BFE4547A1C64DD1C003BC0F2 /* TripSummary.swift in Sources */,
 				BF4D23791C5A0A8F00230355 /* Trip_timeseries.swift in Sources */,
-				BFE454731C64DC6D003BC0F2 /* Configurations+CoreDataProperties.swift in Sources */,
 				6384523E1B0353AE00E895F7 /* GeolocusDashboard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1566,6 +1582,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1579,13 +1596,12 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
 				COPY_PHASE_STRIP = NO;
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1602,9 +1618,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_MODULE_NAME = "";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "2d458e58-5143-4345-a089-5e8235f37402";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1615,6 +1631,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1628,8 +1645,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
 				COPY_PHASE_STRIP = YES;
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -1645,7 +1662,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_MODULE_NAME = "";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "2d458e58-5143-4345-a089-5e8235f37402";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1656,6 +1673,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AA7811FEA1962DE3E4724EB8 /* Pods-GeoLocus.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
@@ -1670,7 +1688,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ggg.nnn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.deo.com;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1684,6 +1702,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 10F13FC629960E9EB8E54E0C /* Pods-GeoLocus.release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
@@ -1698,7 +1717,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ggg.nnn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.deo.com;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1711,6 +1730,7 @@
 		635194941AD3AAC7002ED1D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Ganesh Ravindran (X6292QTGN4)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1734,6 +1754,7 @@
 		635194951AD3AAC7002ED1D0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Cognizant Technology Solutions India Pvt Ltd/";
 				FRAMEWORK_SEARCH_PATHS = (

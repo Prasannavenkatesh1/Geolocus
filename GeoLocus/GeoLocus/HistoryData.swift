@@ -15,51 +15,58 @@ enum EventType: Int {
 }
 
 class EventLocation {
-    var latitude : CLLocationDegrees
-    var longitude : CLLocationDegrees
+    
+    let latitude    : CLLocationDegrees
+    let longitude   : CLLocationDegrees
     
     init (latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
-        self.latitude = latitude
-        self.longitude = longitude
+        self.latitude   = latitude
+        self.longitude  = longitude
     }
 }
 
 class Event {
-    var location : EventLocation
-    var type : EventType
-    var message : String
+    
+    let location    : EventLocation
+    let type        : EventType
+    let message     : String
     
     init(location : EventLocation, type : EventType, message : String){
         self.location = location
-        self.type = type
-        self.message = message
+        self.type     = type
+        self.message  = message
     }
 }
 
 class SpeedZone {
-    var maxSpeed : Int
-    var aboveSpeed : Int
-    var withinSpeed : Int
-    var violationCount : Int
-    var speedBehaviour : Int
-    var distanceTravelled : Int
     
-    init(maxSpeed : Int, aboveSpeed : Int, withinSpeed : Int, violationCount : Int, speedBehaviour : Int, distanceTravelled : Int){
-        self.maxSpeed = maxSpeed
-        self.aboveSpeed = aboveSpeed
-        self.withinSpeed = withinSpeed
-        self.violationCount = violationCount
-        self.speedBehaviour = speedBehaviour
-        self.distanceTravelled = distanceTravelled
+    let speedScore          : NSNumber
+    let maxSpeed            : NSNumber
+    let aboveSpeed          : NSNumber
+    let withinSpeed         : NSNumber
+    let violationCount      : NSNumber
+    let speedBehaviour      : NSNumber
+    let distanceTravelled   : NSNumber
+    
+    init(speedScore: NSNumber, maxSpeed : NSNumber, aboveSpeed : NSNumber, withinSpeed : NSNumber, violationCount : NSNumber, speedBehaviour : NSNumber, distanceTravelled : NSNumber){
+        
+        self.speedScore         = speedScore
+        self.maxSpeed           = maxSpeed
+        self.aboveSpeed         = aboveSpeed
+        self.withinSpeed        = withinSpeed
+        self.violationCount     = violationCount
+        self.speedBehaviour     = speedBehaviour
+        self.distanceTravelled  = distanceTravelled
     }
 }
 
 class TripScore {
-    var speedScore : Int
-    var ecoScore : Int
-    var attentionScore : Int?  //neglect in iOS
     
-    init(speedScore : Int, ecoScore : Int, attentionScore : Int?){
+    let speedScore      : NSNumber
+    let ecoScore        : NSNumber
+    let attentionScore  : NSNumber?  //neglect in iOS
+    
+    init(speedScore : NSNumber, ecoScore : NSNumber, attentionScore : NSNumber?){
         
         self.speedScore     = speedScore
         self.ecoScore       = ecoScore
@@ -69,27 +76,27 @@ class TripScore {
 
 class History {
     
+    let tripId          : String
+    let tripdDate       : String
+    let distance        : NSNumber
+    let tripPoints      : NSNumber
+    let tripDuration    : NSNumber
+    let dataUsageMessage: String
+    let tripScore       : TripScore
+    let events          : [Event]?
+    let speedZones      : [SpeedZone]
     
-    
-    var tripId : Int
-    var tripdDate : NSDate
-    var distance : Int
-    var tripPoints : Int
-    var tripDuration : Int
-    var tripScore : TripScore
-    var eventLocations : [Event]?
-    var speedZones : [SpeedZone]
-    
-    init(tripid : Int, tripDate : String, distance : Int, tripPoints : Int, tripDuration : Int, tripScore : TripScore,eventLocations : [Event]?, speedZones : [SpeedZone]) {
+    init(tripid : String, tripDate : String, distance : NSNumber, tripPoints : NSNumber, tripDuration : NSNumber, dataUsageMessage: String, tripScore : TripScore,events : [Event]?, speedZones : [SpeedZone]) {
         
-        self.tripId         = tripid
-        self.tripdDate      = NSDate(dateString: tripDate)
-        self.distance       = distance
-        self.tripPoints     = tripPoints
-        self.tripDuration   = tripDuration
-        self.tripScore      = tripScore
-        self.eventLocations = eventLocations
-        self.speedZones     = speedZones
+        self.tripId             = tripid
+        self.tripdDate          = tripDate
+        self.distance           = distance
+        self.tripPoints         = tripPoints
+        self.tripDuration       = tripDuration
+        self.dataUsageMessage   = dataUsageMessage
+        self.tripScore          = tripScore
+        self.events             = events
+        self.speedZones         = speedZones
         
     }
     

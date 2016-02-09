@@ -186,7 +186,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         let storyboard: UIStoryboard = UIStoryboard(name: "Storyboard", bundle: NSBundle.mainBundle())
         let geoLocusDashboard : LoginViewController = LoginViewController()
         var checkUserLogin : Bool = geoLocusDashboard.checkUserDetails()
-        checkUserLogin = false
+        //checkUserLogin = false
         if(!checkUserLogin){
             print("Not first launch.")
             let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
