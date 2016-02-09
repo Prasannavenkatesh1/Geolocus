@@ -78,7 +78,7 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
     {
         var numOfRows = 0
         
-        if section == 0 && self.tripScores != nil{
+        if section == 0 {
             numOfRows = 1
         }else if section == 1 {         //depend upon the tab option
             if self.tabSelected == MapZoneTab.MapSelected {
@@ -176,11 +176,13 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
 //                if scoreChanged {
 //                    cell.setNeedsDisplay()
 //                }
-                cell.severeViolationLabel.text = String(self.tripZones![indexPath.row].violationCount)
-                cell.distanceLabel.text =  String("\(self.tripZones![indexPath.row].distanceTravelled) km")
-                cell.maxSpeedLimit.text =  String("\(self.tripZones![indexPath.row].maxSpeed) km/h")
-                cell.withinMaxSpeedLabel.text =  String("\(self.tripZones![indexPath.row].withinSpeed) km")
-                cell.aboveMaxSpeedLabel.text =  String("\(self.tripZones![indexPath.row].aboveSpeed) km")
+                if tripZones?.count > 0 {
+                    cell.severeViolationLabel.text = String(self.tripZones![indexPath.row].violationCount)
+                    cell.distanceLabel.text =  String("\(self.tripZones![indexPath.row].distanceTravelled) km")
+                    cell.maxSpeedLimit.text =  String("\(self.tripZones![indexPath.row].maxSpeed) km/h")
+                    cell.withinMaxSpeedLabel.text =  String("\(self.tripZones![indexPath.row].withinSpeed) km")
+                    cell.aboveMaxSpeedLabel.text =  String("\(self.tripZones![indexPath.row].aboveSpeed) km")
+                }
                 
                 return cell
             }
