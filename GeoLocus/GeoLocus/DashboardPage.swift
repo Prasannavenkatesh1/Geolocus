@@ -8,14 +8,28 @@
 
 import UIKit
 
+
+
  class DashboardPage: UIViewController {
 
-    @IBOutlet var needle: UIImageView!
     
+ //MARK: IBOutlets
+    @IBOutlet weak var levelImage: UIImageView!
+    @IBOutlet weak var levelName: UILabel!
     @IBOutlet weak var arcView: ArcGraphicsController!
+    @IBOutlet weak var pointsAchievedProgressView: UIProgressView!
+    @IBOutlet weak var distanceTravelledValue: UILabel!
+    @IBOutlet weak var startStopButton: UIButton!
+    @IBOutlet weak var contractsPointsEarnedValue: UILabel!
+    
+    
+    
+    //MARK: System Delegates
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    
         // Do any additional setup after loading the view.
         self.arcView.ringLayer.strokeColor = UIColor.redColor().CGColor
         self.arcView.foreGroundArcWidth = 10.0
@@ -39,5 +53,13 @@ import UIKit
         // Pass the selected object to the new view controller.
     }
     */
+}
 
+//All internal methods are written inside dashboardpage extension
+extension DashboardPage {
+    
+    
+
+    
+    
 }
