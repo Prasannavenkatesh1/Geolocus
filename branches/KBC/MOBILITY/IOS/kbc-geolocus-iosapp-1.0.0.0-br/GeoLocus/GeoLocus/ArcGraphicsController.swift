@@ -88,19 +88,29 @@ let π: CGFloat = CGFloat(M_PI)
     func animateArc(loaderValue: CGFloat) {
         
         if isThumbImageAvailable {
-            thumbImage.image = UIImage(named: "meter_tip")
-            thumbLayer.contents = thumbImage.image?.CGImage
-            thumbLayer.anchorPoint = CGPointZero
-            thumbLayer.frame = CGRectMake(0.0, 0.0, thumbImage.image!.size.width, thumbImage.image!.size.height)
-            layer.addSublayer(thumbLayer)
             
-            let pathAnimation: CAKeyframeAnimation  = CAKeyframeAnimation(keyPath: "position")
-            pathAnimation.duration = 2.0
-            pathAnimation.path = arcPath.CGPath;
+//            thumbImage.image = UIImage(named: "meter_tip")
+//            thumbLayer.contents = thumbImage.image?.CGImage
+//            thumbLayer.anchorPoint = CGPointZero
+//            thumbLayer.frame = CGRectMake(0.0, 0.0, thumbImage.image!.size.width, thumbImage.image!.size.height)
+//            
+//            layer.addSublayer(thumbLayer)
+            
+//            let pathAnimation: CAKeyframeAnimation  = CAKeyframeAnimation(keyPath: "position")
+//            pathAnimation.duration = 2.0
+//            pathAnimation.path = arcPath.CGPath;
+//             pathAnimation.removedOnCompletion = false
+//     
+//            pathAnimation.calculationMode = kCAAnimationLinear
+//            thumbLayer.addAnimation(pathAnimation, forKey: "movingMeterTip")
+            
+
+//            
+//            UIView.animateWithDuration(2.0, animations: { () -> Void in
+//                self.thumbImage.transform = CGAffineTransformMakeRotation(CGFloat(0.25 * M_PI))
+//            })
             
             
-            pathAnimation.calculationMode = kCAAnimationLinear
-            thumbLayer.addAnimation(pathAnimation, forKey: "movingMeterTip")
         }
         
         let animation = CABasicAnimation(keyPath: "strokeEnd")
