@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 struct DashboardModel {
     
     let score: String

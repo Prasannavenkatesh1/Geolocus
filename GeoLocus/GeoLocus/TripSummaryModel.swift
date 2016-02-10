@@ -56,7 +56,7 @@ struct TripSummaryModel:BaseTrip,Score {
   
   var totaldistance:NSNumber{
     get{
-      
+      return FacadeLayer.sharedinstance.dbactions.fetchTotalDistance()
     }
   }
   
