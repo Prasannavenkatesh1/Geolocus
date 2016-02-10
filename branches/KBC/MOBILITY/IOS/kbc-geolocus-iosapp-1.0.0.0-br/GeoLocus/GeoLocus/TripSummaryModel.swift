@@ -9,29 +9,32 @@
 import Foundation
 
 protocol BaseTrip{
-  var brakingcount
+  var brakingcount      :NSNumber
+  var accelerationcount :NSNumber
+  var totaldistance     :NSNumber
 }
 
-struct TripSummaryModel:BaseTrip {
-  let tripid:String
-  let ecoscore:NSNumber
-  let attentionscore:NSNumber
-  let brakingscore:NSNumber
-  let tripstarttime:String
-  let tripendtime:String
-  let totaldistance:NSNumber
-//  let brakingcount:NSNumber
-//  let accelerationcount:NSNumber
-  let timezone:String
-  let timezoneid:String
-  let totalduration:String
-  let datausage:NSNumber
+protocol Score{
+  var brakingscore      :NSNumber
+  var accelerationscore :NSNumber
+  var ecoscore          :NSNumber
+}
+
+struct TripSummaryModel:BaseTrip,Score {
+  
+  let datausage     :NSNumber
+  let tripid        :String
+  let tripstarttime :String
+  let tripendtime   :String
+  let timezone      :String
+  let timezoneid    :String
+  let totalduration :String
   
   var brakingcount:NSNumber
   {
     get
     {
-       return 10
+       return FacadeLayer.sharedinstance.dbactions.fetchEventCount(Events.EventType.BRAKING)
     }
   }
   
@@ -39,8 +42,51 @@ struct TripSummaryModel:BaseTrip {
     {
     get
     {
-      return 10
+      return FacadeLayer.sharedinstance.dbactions.fetchEventCount(Events.EventType.ACCELERATION)
     }
   }
+  
+  var totaldistance:NSNumber{
+    get{
+      
+    }
+  }
+  
+  var attentionscore:NSNumber
+  {
+    get
+    {
+      return 0
+    }
+  }
+  
+//           Braking score = 1-(((number of Braking Events in Trip x weightage)/distance in kms))*100
+  var brakingscore:NSNumber
+  {
+    get
+    {
+      let bscore = (brakingcount * 0.9) / 100
+      return 0
+    }
+  }
+  
+//            Acceleration score = 1-(((Number of Acceleration Events in Trip x weightage)/distance km))*100)
+  var accelerationscore:NSNumber
+  {
+    get
+    {
+      return 0
+    }
+  }
+  
+//            Eco score = (Braking score * W1 + Acceleration score * W2)
+  var ecoscore:NSNumber
+    {
+    get
+    {
+      return 0
+    }
+  }
+  
   
 }

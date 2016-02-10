@@ -10,27 +10,25 @@ import Foundation
 
 class CoreLocation: NSObject,CLLocationManagerDelegate {
   
-  var autoStartState:Bool?
-  var brakAlert:Bool?
-  var acclAlert:Bool?
-  var hasBeenRun:Bool?
-  var locationmanager:CLLocationManager
-  var locSpeedArray:[String]?
-  var motiontype:String?
-  var speedArray:[String]?
-  var fltDistanceTravelled,distance:Double?
-  var creationTime:Double?
-  var eventtypes:Events.EventType?
-  var configmodel:ConfigurationModel?
+  var autoStartState        :Bool?
+  var brakAlert             :Bool?
+  var acclAlert             :Bool?
+  var hasBeenRun            :Bool?
+  var locationmanager       :CLLocationManager
+  var locSpeedArray         :[String]?
+  var motiontype            :String?
+  var speedArray            :[String]?
+  var fltDistanceTravelled  :Double?
+  var distance              :Double?
+  var creationTime          :Double?
+  var eventtypes            :Events.EventType?
+  var configmodel           :ConfigurationModel?
   
   override init() {
     locationmanager =  CLLocationManager()
   }
   
   func initLocationManager() {
-    print("location update")
-   // self.locationmanager =
-   //   print(self.locationmanager)
     
     configmodel = FacadeLayer.sharedinstance.dbactions.getConfiguration()
     
@@ -52,8 +50,8 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     self.locationmanager.requestWhenInUseAuthorization()
 
     locSpeedArray = [String]()
-    speedArray = [String]()
-    eventtypes = Events.EventType.NONE
+    speedArray    = [String]()
+    eventtypes    = Events.EventType.NONE
     startLocationupdate()
   }
   
@@ -293,13 +291,6 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   func testing(latitude:Double,longitude:Double, newLocation:CLLocation){
     
     var eventval:Double = 0.0
-    var iseventval:Int = 0
-    if(eventtypes ==  Events.EventType.ACCELERATION || eventtypes == Events.EventType.STARTTRIP || eventtypes == Events.EventType.BRAKING){
-      iseventval = 1
-    }else{
-      iseventval = 0
-    }
-
     
     if(tempvar == -1){
       distance = 10
@@ -313,7 +304,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         longt: longitude,
         speedval: newLocation.speed*3.6,
         datausage: 0,
-        iseventval: NSNumber(integer: iseventval),
+        iseventval: NSNumber(integer: 0),
         evetype: NSNumber(integer: eventtypes!.rawValue),
         eveval: NSNumber(double: eventval),
         distance: distance!)
@@ -329,7 +320,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         longt: longitude,
         speedval: newLocation.speed*3.6,
         datausage: 0,
-        iseventval: NSNumber(integer: iseventval),
+        iseventval: NSNumber(integer: 0),
         evetype: NSNumber(integer: eventtypes!.rawValue),
         eveval: NSNumber(double: eventval),
         distance: distance!)
@@ -345,7 +336,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         longt: longitude,
         speedval: newLocation.speed*3.6,
         datausage: 0,
-        iseventval: NSNumber(integer: iseventval),
+        iseventval: NSNumber(integer: 1),
         evetype: NSNumber(integer: eventtypes!.rawValue),
         eveval: NSNumber(double: eventval),
         distance: distance!)
@@ -361,7 +352,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         longt: longitude,
         speedval: newLocation.speed*3.6,
         datausage: 0,
-        iseventval: NSNumber(integer: iseventval),
+        iseventval: NSNumber(integer: 1),
         evetype: NSNumber(integer: eventtypes!.rawValue),
         eveval: NSNumber(double: eventval),
         distance: distance!)
@@ -376,7 +367,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         longt: longitude,
         speedval: newLocation.speed*3.6,
         datausage: 0,
-        iseventval: NSNumber(integer: iseventval),
+        iseventval: NSNumber(integer: 1),
         evetype: NSNumber(integer: eventtypes!.rawValue),
         eveval: NSNumber(double: eventval),
         distance: distance!)
@@ -390,7 +381,6 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         UUID: NSUUID().UUIDString,
         schedule: NSDate(),
         tripstatus: false)
-      
     }
     
     tempvar++
