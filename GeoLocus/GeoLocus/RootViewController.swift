@@ -20,7 +20,6 @@ class RootViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-      
      
         FacadeLayer.sharedinstance.corelocation.initLocationManager()
       

@@ -465,5 +465,29 @@ class DatabaseActions: NSObject {
             return nil
         }
     }
+    
+    
+    //MARK: - Delete methods
+    
+    func removeDateFor(entity: String) {
+        let fetchRequest = NSFetchRequest(entityName: entity)
+        fetchRequest.includesPropertyValues = false
+        
+        do{
+            if let results = try self.managedObjectContext.executeFetchRequest(fetchRequest) as? [NSManagedObject] {
+                for result in results {
+                    self.managedObjectContext.deleteObject(result)
+                }
+                
+                do{
+                    try self.managedObjectContext.save()
+                }catch{
+                    fatalError("not saved")
+                }
+            }
+        }catch{
+            fatalError("not iserted")
+        }
+    }
    
 }

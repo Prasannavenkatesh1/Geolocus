@@ -43,7 +43,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Mmz-fa-mLF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Cdc-bB-QVX">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="back_login.png" translatesAutoresizingMaskIntoConstraints="NO" id="3Ru-F7-Zye">
