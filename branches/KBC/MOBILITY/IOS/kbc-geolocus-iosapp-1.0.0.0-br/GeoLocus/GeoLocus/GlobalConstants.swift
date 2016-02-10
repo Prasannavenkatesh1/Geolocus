@@ -43,6 +43,7 @@ struct StringConstants {
     static let RootNavigationController = "RootNavigationController"
     static let RootViewController = "RootViewController"
     static let ReportsViewController = "ReportsViewController"
+    static let GroupBarViewController = "GroupBarViewController"
     static let TermsAndConditionViewController = "TermsAndConditionViewController"
     static let SettingsViewController = "SettingsViewController"
   
