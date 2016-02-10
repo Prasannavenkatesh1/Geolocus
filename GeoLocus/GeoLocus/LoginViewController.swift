@@ -85,7 +85,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     override func viewWillDisappear(animated: Bool) {
         deregisterFromKeyboardNotifications()
     }
-
     
     // MARK: - Custom Methods
 
@@ -98,18 +97,18 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     
     /* set URL for Terms and Conditions content */
     func termsAndConditionsURL(){
-        var termsAndConditionsURL : String!
-        termsAndConditionsURL = StringConstants.TERMS_AND_CONDITIONS_URL + "\(selectedLanguageCode)"
-        FacadeLayer.sharedinstance.httpclient.getContentFromTermsAndConditionsRequest(termsAndConditionsURL, completionHandler: {(success, data) -> Void in
-            if(success){
-                if let unwrappedData = data{
-                    self.termsAndConditionsString = NSString(data: unwrappedData, encoding: NSUTF8StringEncoding) as String!
-                }
-            }
-            else{
-                print("Error")
-            }
-        })
+//        var termsAndConditionsURL : String!
+//        termsAndConditionsURL = StringConstants.TERMS_AND_CONDITIONS_URL + "\(selectedLanguageCode)"
+//        FacadeLayer.sharedinstance.httpclient.getContentFromTermsAndConditionsRequest(termsAndConditionsURL, completionHandler: {(success, data) -> Void in
+//            if(success){
+//                if let unwrappedData = data{
+//                    self.termsAndConditionsString = NSString(data: unwrappedData, encoding: NSUTF8StringEncoding) as String!
+//                }
+//            }
+//            else{
+//                print("Error")
+//            }
+//        })
     }
     
     /* create modal dialog view controller for displaying terms and conditions */
