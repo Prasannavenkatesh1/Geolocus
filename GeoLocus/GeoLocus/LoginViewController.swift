@@ -27,12 +27,16 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var passwordText: UITextField!
     
     let passwordShowButton = UIButton()
+    var selectedLanguageCode : String!
+    var termsAndConditionsString = String()
     
     // MARK: - Button Actions
 
     /* Register Now button action */
     @IBAction func registerNowButtonTapped(sender: AnyObject) {
-        UIApplication.sharedApplication().openURL(NSURL(string:StringConstants.REGISTER_NOW_URL)!)
+        var registerNowURL : String!
+        registerNowURL = StringConstants.REGISTER_NOW_URL + "\(selectedLanguageCode)"
+        UIApplication.sharedApplication().openURL(NSURL(string:registerNowURL)!)
     }
     
     /* Need help button action */
@@ -49,6 +53,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     /* Check box button action */
     @IBAction func checkButtonTapped(sender: UIButton) {
         if(!isChecked){
+            showModal()
             self.view.backgroundColor = UIColor.clearColor()
             [sender.setImage(UIImage(named:StringConstants.CHECK_BOX_SELECTED), forState: UIControlState.Normal)]
             isChecked = true
@@ -65,6 +70,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        selectedLanguageCode = NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.SELECTED_LANGUAGE_USERDEFAULT_KEY)
+        
         userNameText.delegate = self
         passwordText.delegate = self
         
@@ -72,10 +79,45 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         setConstraintsForDevice()
         customizeTextField()
         customizeButton()
+        termsAndConditionsURL()
     }
     
     override func viewWillDisappear(animated: Bool) {
         deregisterFromKeyboardNotifications()
+    }
+
+    
+    // MARK: - Custom Methods
+
+    /* function to validate for required fields */
+    func validate(){
+        if !(userNameText.text!.isEmpty) && !(passwordText.text!.isEmpty) && (isChecked == true) {
+            loginButton.enabled = true
+        }
+    }
+    
+    /* set URL for Terms and Conditions content */
+    func termsAndConditionsURL(){
+        var termsAndConditionsURL : String!
+        termsAndConditionsURL = StringConstants.TERMS_AND_CONDITIONS_URL + "\(selectedLanguageCode)"
+        FacadeLayer.sharedinstance.httpclient.getContentFromTermsAndConditionsRequest(termsAndConditionsURL, completionHandler: {(success, data) -> Void in
+            if(success){
+                if let unwrappedData = data{
+                    self.termsAndConditionsString = NSString(data: unwrappedData, encoding: NSUTF8StringEncoding) as String!
+                }
+            }
+            else{
+                print("Error")
+            }
+        })
+    }
+    
+    /* create modal dialog view controller for displaying terms and conditions */
+    func showModal() {
+        let modalViewController = storyboard!.instantiateViewControllerWithIdentifier("TermsAndConditionsViewController") as! TermsAndConditionsViewController
+        modalViewController.termsAndConditionsContent = self.termsAndConditionsString
+        modalViewController.modalPresentationStyle = .OverCurrentContext
+        presentViewController(modalViewController, animated: true, completion: nil)
     }
     
     /* setting constraints based on device height */
@@ -90,15 +132,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         if(StringConstants.SCREEN_HEIGHT == 568){
             layoutConstraintTop.constant = 80
             layoutConstraintLoginTop.constant = 30
-        }
-    }
-    
-    // MARK: - Custom Methods
-
-    /* function to validate for required fields */
-    func validate(){
-        if !(userNameText.text!.isEmpty) && !(passwordText.text!.isEmpty) && (isChecked == true) {
-            loginButton.enabled = true
         }
     }
     
@@ -169,21 +202,11 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         }
     }
     
-    /* clear the values of the textfield when navigated back from Register or Need Help page */
-    func clearButtonValues(){
-        userNameText.text = ""
-        passwordText.text = ""
-        checkButton.setImage(UIImage(named:StringConstants.CHECK_BOX_UNSELECTED), forState: UIControlState.Normal)
-        loginButton.enabled = false
-        loginButton.backgroundColor = UIColor(red: 247.0/255.0, green: 249.0/255.0, blue: 251.0/255.0, alpha: 1.0)
-        loginButton.setTitleColor(UIColor.lightGrayColor(),forState: UIControlState.Normal)
-    }
-    
     func checkUserDetails() -> Bool{
-        var tokenID = String()
+        var tokenID : String
         var firstTimeLogin = true
         
-        //tokenID = ""
+        tokenID = ""
         
         if(tokenID.isEmpty){
             firstTimeLogin = true

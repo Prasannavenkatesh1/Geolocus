@@ -8,11 +8,17 @@ import UIKit
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var settingsTableView: UITableView!
     @IBOutlet weak var bkBtn: UIButton!
     
     @IBOutlet weak var settingsTable: UITableView!
     
     @IBOutlet weak var settingsNav: UINavigationBar!
+    
+    
+    let settingsCellTitles = ["Data Upload Type","Snooze the start","Auto trip Start","Notification","Share data with parent","Choose your Language","Reset Password","Coach's Username"]
+    let settingsHeaderTitle = "Customer Settings"
+    let textCellIdentifier = "TextCell"
     
     let settingsTitle = ["Voice Alert"]
     let settingsValues = ["Enabled"]
@@ -30,8 +36,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-
+        settingsTableView.delegate = self
+        settingsTableView.dataSource = self
         
 //        settingsNav.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
 //        
@@ -46,16 +52,35 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return settingsTitle.count
+        return settingsCellTitles.count
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 40
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return settingsHeaderTitle
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let identifier = "SettingsCustomCell"
+        let cell = tableView.dequeueReusableCellWithIdentifier(textCellIdentifier, forIndexPath: indexPath) as UITableViewCell
+        
+        let row = indexPath.row
+        cell.textLabel?.text = settingsCellTitles[row]
+        
+        if cell.respondsToSelector("setSeparatorInset:") {
+            cell.separatorInset = UIEdgeInsetsZero
+        }
+        if cell.respondsToSelector("setLayoutMargins:") {
+            cell.layoutMargins = UIEdgeInsetsZero
+        }
+        if cell.respondsToSelector("setPreservesSuperviewLayoutMargins:") {
+            cell.preservesSuperviewLayoutMargins = false
+        }
+        
+        /*let identifier = "SettingsCustomCell"
         var cell: SettingsCustomCell! = tableView.dequeueReusableCellWithIdentifier(identifier) as? SettingsCustomCell
         if cell == nil {
             tableView.registerNib(UINib(nibName: "SettingsCustomCell", bundle: nil), forCellReuseIdentifier: identifier)
@@ -87,7 +112,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
         }
         
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.selectionStyle = UITableViewCellSelectionStyle.None*/
   
         return cell
     }

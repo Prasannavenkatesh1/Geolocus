@@ -14,6 +14,7 @@ class ContractPage: UIViewController,UIImagePickerControllerDelegate,UINavigatio
     var imagePicker = UIImagePickerController()
     let bottomBorder = CALayer()
     
+    @IBOutlet weak var layoutConstraintPlusImageLeading: NSLayoutConstraint!
     @IBOutlet weak var layoutConstraintBonusPointsTop: NSLayoutConstraint!
     @IBOutlet weak var layoutConstraintEcoPointsViewHeight: NSLayoutConstraint!
     @IBOutlet weak var layoutConstraintSpeedPointsViewHeight: NSLayoutConstraint!
@@ -57,11 +58,13 @@ class ContractPage: UIViewController,UIImagePickerControllerDelegate,UINavigatio
             self.layoutConstraintSpeedPointsViewHeight.constant = 35
             self.layoutConstraintBonusPointsViewHeight.constant = 40
             self.layoutConstraintPointsViewHeight.constant = 70
+            self.layoutConstraintPlusImageLeading.constant = 15
         }
         if(StringConstants.SCREEN_HEIGHT == 568){
             self.layoutConstraintEcoPointsViewHeight.constant = 55
             self.layoutConstraintSpeedPointsViewHeight.constant = 55
             self.layoutConstraintPointsViewHeight.constant = 110
+            self.layoutConstraintPlusImageLeading.constant = 15
         }
     }
     

@@ -18,20 +18,25 @@ class LanguageSelectionViewController: UIViewController{
         
         sender.backgroundColor = UIColor(red: 0, green: 174, blue: 239, alpha: 1.0)
         sender.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        selectedLanguage = sender.titleLabel?.text
         
         switch(sender.tag){
         case 1:
-            break
-        case 2,3,4:
-            performSegueWithIdentifier(StringConstants.LOGINVIEW_STORYBOARD_SEGUE, sender: self)
-            break
+            selectedLanguage = LanguageCode.Nederlands.rawValue
+        case 2:
+            selectedLanguage = LanguageCode.French.rawValue
+        case 3:
+            selectedLanguage = LanguageCode.English.rawValue
+        case 4:
+            selectedLanguage = LanguageCode.Duits.rawValue
         default:
             break
         }
         
-        NSUserDefaults.standardUserDefaults().setValue(selectedLanguage, forKey: StringConstants.SELECTED_LANGUAGE_USERDEFAULT_KEY)
+        NSUserDefaults.standardUserDefaults().setObject(selectedLanguage, forKey: StringConstants.SELECTED_LANGUAGE_USERDEFAULT_KEY)
         NSUserDefaults.standardUserDefaults().synchronize()
+        
+        performSegueWithIdentifier(StringConstants.LOGINVIEW_STORYBOARD_SEGUE, sender: self)
+
     }
     
     override func viewDidLoad() {
