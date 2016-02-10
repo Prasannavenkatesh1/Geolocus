@@ -15,6 +15,12 @@ class FacadeLayer{
   var httpclient:Httpclient
   var corelocation:CoreLocation
   
+  var configmodel :ConfigurationModel{
+    get{
+      return self.dbactions.getConfiguration()
+    }
+  }
+  
   init(){
     dbactions = DatabaseActions()
     httpclient = Httpclient()

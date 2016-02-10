@@ -30,6 +30,14 @@ struct TripSummaryModel:BaseTrip,Score {
   let timezoneid    :String
   let totalduration :String
   
+  var attentionscore:NSNumber
+    {
+    get
+    {
+      return 0
+    }
+  }
+  
   var brakingcount:NSNumber
   {
     get
@@ -52,21 +60,13 @@ struct TripSummaryModel:BaseTrip,Score {
     }
   }
   
-  var attentionscore:NSNumber
-  {
-    get
-    {
-      return 0
-    }
-  }
-  
 //           Braking score = 1-(((number of Braking Events in Trip x weightage)/distance in kms))*100
   var brakingscore:NSNumber
   {
     get
     {
-      let bscore = (brakingcount * 0.9) / 100
-      return 0
+      let bscore = 1 - ((brakingcount * FacadeLayer.sharedinstance.configmodel.weightage_braking) / totaldistance) / 100
+      return bscore
     }
   }
   
@@ -75,16 +75,20 @@ struct TripSummaryModel:BaseTrip,Score {
   {
     get
     {
-      return 0
+      let ascore = 1 - ((brakingcount * FacadeLayer.sharedinstance.configmodel.weightage_acceleration) / totaldistance) / 100
+      return ascore
     }
   }
   
 //            Eco score = (Braking score * W1 + Acceleration score * W2)
   var ecoscore:NSNumber
-    {
+  {
     get
     {
-      return 0
+      var   BrakingSore_W  = brakingscore * FacadeLayer.sharedinstance.configmodel.ecoweightage_braking
+      var   Acceleration_W = brakingscore * FacadeLayer.sharedinstance.configmodel.ecoweightage_acceleration
+      var   escore         = BrakingSore_W + Acceleration_W
+      return escore
     }
   }
   
