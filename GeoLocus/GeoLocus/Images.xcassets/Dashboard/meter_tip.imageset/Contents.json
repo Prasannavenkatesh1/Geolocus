@@ -2,16 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "meter_tip.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "distance_travelled.png",
+      "filename" : "meter_tip-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "distance_travelled-1.png",
       "scale" : "3x"
     }
   ],
