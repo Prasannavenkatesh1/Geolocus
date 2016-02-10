@@ -16,6 +16,12 @@ enum Actions:String{
   case no = "NO"
 }
 
+enum LanguageCode:String{
+    case English = "en_uk"
+    case French = "fr_be"
+    case Nederlands = "nl_be"
+    case Duits = "de_be"
+}
 
 var categoryID:String {
 get{
@@ -57,10 +63,10 @@ struct StringConstants {
     static let CHECK_BOX_UNSELECTED = "check_box.png"
     static let CHECK_BOX_SELECTED = "checked_box.png"
     
-    static let REGISTER_NOW_URL = "http://www.google.com"
-    static let NEED_HELP_URL = "http://www.google.com"
-    static let LOGIN_URL = ""
-    static let TERMS_AND_CONDITIONS_URL = ""
+    static let REGISTER_NOW_URL = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-driver-web/login?channel_type=IOS&languageCode="
+    static let NEED_HELP_URL = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-driver-web/needHelp"
+    static let LOGIN_URL = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/j_spring_security_check"
+    static let TERMS_AND_CONDITIONS_URL = "http://ec2-52-9-108-237.us-west-1.compute.amazonaws.com:8080/kbc-app-service/admin/get/terms_conditions?languageCode="
     static let SCREEN_HEIGHT = UIScreen.mainScreen().bounds.size.height
     static let SCREEN_WIDTH = UIScreen.mainScreen().bounds.size.width
     
