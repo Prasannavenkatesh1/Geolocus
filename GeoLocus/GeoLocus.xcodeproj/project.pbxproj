@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A9D9F90C552EA717EE57041 /* Pods_GeoLocus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44319C4E7A14E359CCBE50F0 /* Pods_GeoLocus.framework */; };
+		217C9FF61C6B3FA1000BE567 /* GroupBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217C9FF51C6B3FA1000BE567 /* GroupBarViewController.swift */; };
 		28328A331C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A2F1C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift */; };
 		28328A341C646B8E004E5F86 /* OverallScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A301C646B8E004E5F86 /* OverallScore.swift */; };
 		28328A381C646F58004E5F86 /* OverallScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A371C646F58004E5F86 /* OverallScores.swift */; };
@@ -275,6 +276,7 @@
 
 /* Begin PBXFileReference section */
 		10F13FC629960E9EB8E54E0C /* Pods-GeoLocus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoLocus.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus.release.xcconfig"; sourceTree = "<group>"; };
+		217C9FF51C6B3FA1000BE567 /* GroupBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupBarViewController.swift; sourceTree = "<group>"; };
 		28328A2F1C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OverallScore+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		28328A301C646B8E004E5F86 /* OverallScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverallScore.swift; sourceTree = "<group>"; };
 		28328A371C646F58004E5F86 /* OverallScores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverallScores.swift; sourceTree = "<group>"; };
@@ -1127,6 +1129,7 @@
 				BF73374A1C3FBD9E006094C0 /* Pageviewcontroller.swift */,
 				BF73374C1C3FC278006094C0 /* ContractPage.swift */,
 				BF73374E1C3FC29A006094C0 /* DashboardPage.swift */,
+				217C9FF51C6B3FA1000BE567 /* GroupBarViewController.swift */,
 				BF7337501C3FC2AE006094C0 /* HistoryPage.swift */,
 				BF7337521C3FC2BF006094C0 /* HistoryScorePage.swift */,
 				6CCAF9051C4E05A300484056 /* BadgesViewController.swift */,
@@ -1496,6 +1499,7 @@
 				28CD01E11C69A42300EEC94A /* DetectingVechile.swift in Sources */,
 				28F38A0B1C61EB3900A02E93 /* Badge.swift in Sources */,
 				636EF44C1B062B67007AA706 /* RegistrationDatabase.m in Sources */,
+				217C9FF61C6B3FA1000BE567 /* GroupBarViewController.swift in Sources */,
 				BF4F8D9C1C43CA9D00895640 /* DatabaseActions.swift in Sources */,
 				6384522C1B0353AE00E895F7 /* ScoringPageDatabase.m in Sources */,
 				A68F05AF1B143EF9003D1D22 /* LBCustomCell.swift in Sources */,
