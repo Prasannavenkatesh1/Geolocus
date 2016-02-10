@@ -32,14 +32,12 @@ class FacadeLayer{
     var httpclient:Httpclient
     var corelocation:CoreLocation
     var webService: WebServiceURL
+    var configmodel :ConfigurationModel{
+      get{
+        return dbactions.getConfiguration()
+      }
+    }
   
-  
-//  class var sharedInstance: FacadeLayer {
-//    struct Singleton {
-//      static let instance = FacadeLayer()
-//    }
-//    return Singleton.instance
-//  }
   
   init(){
     dbactions = DatabaseActions()

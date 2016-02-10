@@ -149,6 +149,19 @@ class DatabaseActions: NSObject {
     
   }
   
+  func fetchTotalDistance() -> NSNumber{
+    
+    let fetchRequest = NSFetchRequest(entityName: "Trip_timeseries")
+    let timseries:Trip_timeseries
+    do{
+      timseries = try (self.managedObjectContext.executeFetchRequest(fetchRequest)).last as! Trip_timeseries
+    }catch{
+      fatalError("fetch error")
+    }
+    return timseries.distance!
+    
+  }
+  
   func reterive(){
     var locations  = [Trip_timeseries]()
     

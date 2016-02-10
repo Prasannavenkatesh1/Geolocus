@@ -20,17 +20,16 @@ class Httpclient: NSObject {
   func tmp() {
     Alamofire.request(.GET, "asd")
     
-    Alamofire.request(.GET, "http://ec2-52-9-108-237.us-west-1.compute.amazonaws.com:8080/kbc-app-service/admin/get/terms_conditions?languageCode=en_be").response { (req, res, data, error) -> Void in
-        print(res)
-        let outputString = NSString(data: data!, encoding:NSUTF8StringEncoding)
-        print(outputString)
-        print(res)
-    }
+      Alamofire.request(.GET, "http://ec2-52-9-108-237.us-west-1.compute.amazonaws.com:8080/kbc-app-service/admin/get/terms_conditions?languageCode=en_be").response { (req, res, data, error) -> Void in
+          print(res)
+          let outputString = NSString(data: data!, encoding:NSUTF8StringEncoding)
+          print(outputString)
+          print(res)
+      }
 
     
     }
 
-    
     //History services
     func requestRecentTripData(completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
        
