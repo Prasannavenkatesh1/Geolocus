@@ -21,6 +21,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   var fltDistanceTravelled,distance:Double?
   var creationTime:Double?
   var eventtypes:Events.EventType?
+  var configmodel:ConfigurationModel?
   
   override init() {
     locationmanager =  CLLocationManager()
@@ -30,6 +31,8 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     print("location update")
    // self.locationmanager =
    //   print(self.locationmanager)
+    
+    configmodel = FacadeLayer.sharedinstance.dbactions.getConfiguration()
     
     NSNotificationCenter.defaultCenter().addObserver(
       self,
@@ -72,6 +75,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   var tempvar = -1
   
   func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    
     
     let newLocation:CLLocation! = locations.last;
     var oldLocation:CLLocation!
@@ -119,7 +123,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       
     }
     
-    if(newlocspeed >= 7.0){
+    if(newlocspeed >= configmodel?.thresholds_autotrip as! Float){//if(newlocspeed >= 7.0){
       // motion ype automotive
       self.motiontype = StringConstants.MOTIONTYPE_AUTOMOTIVE
       if ((hasBeenRun == nil)) // hasBeenRun is a boolean intance variable
@@ -194,7 +198,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       
       avgSum = Float(sumForBraking) / Float(speedArray!.count);
       
-      if (brakingvalue > 7.0) {
+        if (brakingvalue > configmodel?.thresholds_brake as! Double) {//      if (brakingvalue > 7.0) {
 //        if (avgSum > 30.0 && brakAlert == true) {
         
           eventtypes = Events.EventType.BRAKING
@@ -225,7 +229,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       avgSpeed = Float(sum)/Float(speedArray!.count)
       print("average speed\(avgSpeed)")
       
-      if (acceleration > 5.0) {
+      if (acceleration > configmodel?.thresholds_acceleration as! Double) {
 //        if (avgSpeed > 35.0 && acclAlert == true){
         
           eventtypes = Events.EventType.ACCELERATION
@@ -265,6 +269,30 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     var dataCreatTime:String = String(format: "%f", creationTime!)
     
     //Update to DB
+    
+//    /*    Testing
+    
+//    testing(latitude, longitude: longitude, newLocation: newLocation)
+
+//*/
+  
+//     let tseries:TimeSeriesModel = TimeSeriesModel.init(ctime: newLocation.timestamp,
+//      lat: latitude,
+//      longt: longitude,
+//      speedval: newLocation.speed*3.6,
+//      datausage: 0,
+//      iseventval: NSNumber(integer: iseventval),
+//      evetype: NSNumber(integer: eventtypes!.rawValue),
+//      eveval: NSNumber(double: eventval),
+//      distance: distance!)
+//    
+//      FacadeLayer.sharedinstance.dbactions.saveTimeSeries(tseries)
+    
+  }
+  
+  func testing(latitude:Double,longitude:Double, newLocation:CLLocation){
+    
+    var eventval:Double = 0.0
     var iseventval:Int = 0
     if(eventtypes ==  Events.EventType.ACCELERATION || eventtypes == Events.EventType.STARTTRIP || eventtypes == Events.EventType.BRAKING){
       iseventval = 1
@@ -272,28 +300,76 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       iseventval = 0
     }
 
-//    /*    Testing
     
     if(tempvar == -1){
+      distance = 10
       eventtypes =  Events.EventType.STARTTRIP
       TripNotify.init(title: "Do you want to start the trip",
         UUID: NSUUID().UUIDString,
         schedule: NSDate(),
         tripstatus: true)
+      let tseries:TimeSeriesModel = TimeSeriesModel.init(ctime: newLocation.timestamp,
+        lat: latitude,
+        longt: longitude,
+        speedval: newLocation.speed*3.6,
+        datausage: 0,
+        iseventval: NSNumber(integer: iseventval),
+        evetype: NSNumber(integer: eventtypes!.rawValue),
+        eveval: NSNumber(double: eventval),
+        distance: distance!)
+      
+      FacadeLayer.sharedinstance.dbactions.saveTimeSeries(tseries)
     }
     if(tempvar == 0){
+      distance = 20
       eventtypes =  Events.EventType.TIMESERIES
+      eventval = 0
+      let tseries:TimeSeriesModel = TimeSeriesModel.init(ctime: newLocation.timestamp,
+        lat: latitude,
+        longt: longitude,
+        speedval: newLocation.speed*3.6,
+        datausage: 0,
+        iseventval: NSNumber(integer: iseventval),
+        evetype: NSNumber(integer: eventtypes!.rawValue),
+        eveval: NSNumber(double: eventval),
+        distance: distance!)
+      
+      FacadeLayer.sharedinstance.dbactions.saveTimeSeries(tseries)
     }
-
+    
     if(tempvar == 1){
+      distance = 30
       eventval = 10
       eventtypes =  Events.EventType.ACCELERATION
+      let tseries:TimeSeriesModel = TimeSeriesModel.init(ctime: newLocation.timestamp,
+        lat: latitude,
+        longt: longitude,
+        speedval: newLocation.speed*3.6,
+        datausage: 0,
+        iseventval: NSNumber(integer: iseventval),
+        evetype: NSNumber(integer: eventtypes!.rawValue),
+        eveval: NSNumber(double: eventval),
+        distance: distance!)
+      
+      FacadeLayer.sharedinstance.dbactions.saveTimeSeries(tseries)
     }else if(tempvar == 2){
+      distance = 40
       eventval = 15
       eventtypes =  Events.EventType.BRAKING
+      let tseries:TimeSeriesModel = TimeSeriesModel.init(ctime: newLocation.timestamp,
+        lat: latitude,
+        longt: longitude,
+        speedval: newLocation.speed*3.6,
+        datausage: 0,
+        iseventval: NSNumber(integer: iseventval),
+        evetype: NSNumber(integer: eventtypes!.rawValue),
+        eveval: NSNumber(double: eventval),
+        distance: distance!)
+      
+      FacadeLayer.sharedinstance.dbactions.saveTimeSeries(tseries)
     }else if(tempvar == 3){
       eventval = 0
-      tempvar = 0
+//      tempvar = 0
       eventtypes =  Events.EventType.TIMESERIES
       TripNotify.init(title: "Do you want to stop the trip",
         UUID: NSUUID().UUIDString,
@@ -301,23 +377,8 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         tripstatus: false)
       
     }
-
+    
     tempvar++
-
-//*/
-  
-     let tseries:TimeSeriesModel = TimeSeriesModel.init(ctime: newLocation.timestamp,
-      lat: latitude,
-      longt: longitude,
-      speedval: newLocation.speed*3.6,
-      datausage: 0,
-      iseventval: NSNumber(integer: iseventval),
-      evetype: NSNumber(integer: eventtypes!.rawValue),
-      eveval: NSNumber(double: eventval),
-      distance: distance!)
-    
-      FacadeLayer.sharedinstance.dbactions.saveTimeSeries(tseries)
-    
   }
   
   func notMoving(){
@@ -329,16 +390,17 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   }
   
   func getdetails(notification: NSNotification){
-//    let alert: UIAlertView = UIAlertView()
-//    alert.delegate = self
-//    
-//    alert.title = "aaa"
-//    alert.message = "mmm"
-//    alert.addButtonWithTitle("OK")
-//    
-//    alert.show()
+    let alert: UIAlertView = UIAlertView()
+    alert.delegate = self
     
-    // calculation neds to be done
+    alert.title = "Message"
+    alert.message = "Calculation is in progressing"
+    alert.addButtonWithTitle("OK")
+    
+    alert.show()
+    
+    // calculation needs to be done
+    FacadeLayer.sharedinstance.dbactions.reterive()
     
   }
   

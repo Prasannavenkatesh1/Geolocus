@@ -45,18 +45,42 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
       
         //      UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert , .Sound, .Badge], categories: nil))
-
-        registerNotification()
-
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setBool(false, forKey: "isStarted")
+      
+      // Testing Calculation Part
+//      Insert Weightage values
       
       
-      
-      let temp:DetectingVechile = DetectingVechile()
-      temp.startDetectingVechile()
+//    NSNotificationCenter.defaultCenter().postNotificationName("tipended", object: nil)
     
-        self.loadInitialViewController()
+      //
+
+    registerNotification()
+
+    let defaults = NSUserDefaults.standardUserDefaults()
+//    defaults.setBool(false, forKey: "isFirstTime")
+
+    if( defaults.boolForKey("isFirstTime") == false){
+      defaults.setBool(false, forKey: "isStarted")
+      
+      //  Insert Weightage values for testing
+      var conmodel:ConfigurationModel = ConfigurationModel()
+      conmodel.thresholds_brake = NSNumber(double: 7)
+      conmodel.thresholds_acceleration = NSNumber(double: 5)
+      conmodel.thresholds_autotrip = NSNumber(double: 7)
+      conmodel.weightage_braking = NSNumber(double: 0.9)
+      conmodel.weightage_acceleration = NSNumber(double: 1.2)
+      conmodel.weightage_speed = NSNumber(double: 1.6)
+      conmodel.weightage_severevoilation = NSNumber(double: 1.4)
+      conmodel.ecoweightage_braking = NSNumber(double: 0.5)
+      conmodel.ecoweightage_acceleration = NSNumber(double: 0.2)
+      FacadeLayer.sharedinstance.dbactions.saveConfiguration(conmodel)
+
+    }
+
+    let temp:DetectingVechile = DetectingVechile()
+    temp.startDetectingVechile()
+
+    self.loadInitialViewController()
       
         return true
     }
