@@ -6,7 +6,6 @@ import UIKit
 import CoreData
 
 
-
 @UIApplicationMain
 class AppDelegateSwift: UIResponder, UIApplicationDelegate {
   
@@ -21,7 +20,9 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     var iPhoneSize : String
     var logoView:UIImageView?
     var bgView:UIImageView?
-  //
+    var backgroundUpdateTask:UIBackgroundTaskIdentifier?
+
+
   
     override init() {
       
@@ -37,19 +38,55 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
 //        let settings : GeolocusDashboard = GeolocusDashboard()
 //        settings.setSettingsData()
     }
+
+
   
   
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
       
         //      UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert , .Sound, .Badge], categories: nil))
-
-        registerNotification()
-
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setBool(false, forKey: "isStarted")
-
+      
+      // Testing Calculation Part
+//      Insert Weightage values
+      
+      
+//    NSNotificationCenter.defaultCenter().postNotificationName("tipended", object: nil)
     
-        self.loadInitialViewController()
+      //
+
+    registerNotification()
+
+    let defaults = NSUserDefaults.standardUserDefaults()
+//    defaults.setBool(false, forKey: "isFirstTime")
+
+    if( defaults.boolForKey("isFirstTime") == false){
+      defaults.setBool(true, forKey: "isFirstTime")
+      defaults.setBool(false, forKey: "isStarted")
+      
+      
+      //  Insert Weightage values for testing
+      var conmodel:ConfigurationModel = ConfigurationModel()
+      conmodel.thresholds_brake = NSNumber(double: 7)
+      conmodel.thresholds_acceleration = NSNumber(double: 5)
+      conmodel.thresholds_autotrip = NSNumber(double: 7)
+      conmodel.weightage_braking = NSNumber(double: 0.9)
+      conmodel.weightage_acceleration = NSNumber(double: 1.2)
+      conmodel.weightage_speed = NSNumber(double: 1.6)
+      conmodel.weightage_severevoilation = NSNumber(double: 1.4)
+      conmodel.ecoweightage_braking = NSNumber(double: 0.5)
+      conmodel.ecoweightage_acceleration = NSNumber(double: 0.2)
+      FacadeLayer.sharedinstance.dbactions.saveConfiguration(conmodel)
+
+    }
+      
+//      FacadeLayer.sharedinstance.dbactions.reterive()
+      
+      print("ACCELERATION \(FacadeLayer.sharedinstance.dbactions.fetchEventCount(Events.EventType.ACCELERATION))")
+      
+      print("BRAKING \(FacadeLayer.sharedinstance.dbactions.fetchEventCount(Events.EventType.BRAKING))")
+
+
+    self.loadInitialViewController()
       
         return true
     }
@@ -100,6 +137,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     UIApplication.sharedApplication().registerUserNotificationSettings(settings)
   }
   
+  
+  
   func application(application: UIApplication,
     handleActionWithIdentifier identifier: String?,
     forLocalNotification notification: UILocalNotification,
@@ -119,6 +158,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
             let triptype = userinfo["triptype"] as! Bool
             if(triptype == false){
               print("trip stoped")
+              NSNotificationCenter.defaultCenter().postNotificationName("tipended", object: nil)
+
             }
           }
           
@@ -174,7 +215,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       
         let storyboard: UIStoryboard = UIStoryboard(name: "Storyboard", bundle: NSBundle.mainBundle())
         let geoLocusDashboard : LoginViewController = LoginViewController()
-        let checkUserLogin : Bool = geoLocusDashboard.checkUserDetails()
+        var checkUserLogin : Bool = geoLocusDashboard.checkUserDetails()
         //checkUserLogin = false
         if(!checkUserLogin){
             print("Not first launch.")
@@ -193,9 +234,45 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       addBackgroundImage()
       addLogo()
     }
-
-   
+  
+  //  MARK: - Background Task Identifier
+  func applicationDidEnterBackground(application: UIApplication) {
     
+//    doBackgroundTask()
+   
+  }
+  
+  func applicationDidBecomeActive(application: UIApplication) {
+    // End the background task.
+    self.endBackgroundUpdateTask()
+  }
+  
+  
+  func beginBackgroundUpdateTask() {
+    self.backgroundUpdateTask = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler({
+//      self.endBackgroundUpdateTask()
+    })
+  }
+
+  func endBackgroundUpdateTask() {
+    if let bgtsk = self.backgroundUpdateTask {
+      UIApplication.sharedApplication().endBackgroundTask(self.backgroundUpdateTask!)
+      self.backgroundUpdateTask = UIBackgroundTaskInvalid
+    }
+  }
+  
+  func doBackgroundTask() {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+      self.beginBackgroundUpdateTask()
+      
+      // Do something with the result.
+      let temp:DetectingVechile = DetectingVechile()
+      temp.startDetectingVechile()
+      
+      
+    })
+  }
+  
     // MARK: - Core Data stack
     
     lazy var applicationDocumentsDirectory: NSURL = {
