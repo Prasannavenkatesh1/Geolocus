@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Xcode 7.0">
+    <entity name="Configurations" representedClassName=".Configurations" syncable="YES">
+        <attribute name="ecoweightage_acceleration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="ecoweightage_braking" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="thresholds_acceleration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="thresholds_autotrip" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="thresholds_brake" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="weightage_acceleration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="weightage_braking" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="weightage_severevoilation" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="weightage_speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+    </entity>
     <entity name="OverallScore" representedClassName=".OverallScore" syncable="YES">
         <attribute name="attention" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="dataUsageMessage" optional="YES" attributeType="String" syncable="YES"/>
@@ -57,12 +68,29 @@
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
     </entity>
+    <entity name="TripSummary" representedClassName=".TripSummary" syncable="YES">
+        <attribute name="accelerationcount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="attentionscore" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="brakingcount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="brakingscore" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="datausage" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="ecoscore" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="timezone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timezoneid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totaldistance" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="totalduration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="tripendtime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tripid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tripstarttime" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="OverallScore" positionX="1818" positionY="-9" width="128" height="135"/>
-        <element name="Trip_Badge" positionX="1809" positionY="-18" width="128" height="120"/>
-        <element name="Trip_Detail" positionX="1620" positionY="-126" width="128" height="210"/>
+        <element name="Configurations" positionX="1341" positionY="65" width="189" height="178"/>
+        <element name="OverallScore" positionX="1989" positionY="-153" width="128" height="135"/>
+        <element name="Trip_Badge" positionX="1843" positionY="-153" width="128" height="120"/>
+        <element name="Trip_Detail" positionX="1663" positionY="-153" width="128" height="210"/>
         <element name="Trip_Event" positionX="1996" positionY="123" width="128" height="135"/>
         <element name="Trip_Speed_Zone" positionX="1719" positionY="189" width="128" height="163"/>
-        <element name="Trip_timeseries" positionX="1863" positionY="-169" width="128" height="178"/>
+        <element name="Trip_timeseries" positionX="1386" positionY="-153" width="128" height="178"/>
+        <element name="TripSummary" positionX="1359" positionY="252" width="128" height="238"/>
     </elements>
 </model>

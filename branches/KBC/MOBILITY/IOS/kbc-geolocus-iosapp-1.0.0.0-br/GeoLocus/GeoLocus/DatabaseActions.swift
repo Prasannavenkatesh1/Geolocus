@@ -73,6 +73,8 @@ class DatabaseActions: NSObject {
     }
   }
   
+  //MARK:- TripTimeSeries
+  
   func saveTimeSeries(timeseriesmodel:TimeSeriesModel){
     let timeseries = NSEntityDescription.insertNewObjectForEntityForName("Trip_timeseries",inManagedObjectContext: self.managedObjectContext) as! Trip_timeseries
     timeseries.isEvent = timeseriesmodel.isEvent
@@ -92,21 +94,78 @@ class DatabaseActions: NSObject {
       fatalError("not iserted")
     }
  }
-    func reterive(){
-        var locations  = [Trip_timeseries]()
-        
-        let fetchRequest = NSFetchRequest(entityName: "Trip_timeseries")
-        do{
-            try locations = self.managedObjectContext.executeFetchRequest(fetchRequest) as! [Trip_timeseries]
-            print(locations.count)
-        }catch{
-            fatalError("reterive error")
-        }
-    }  
+  
+ 
+  
+  func saveConfiguration(configmodel:ConfigurationModel){
+    let configthresholds = NSEntityDescription.insertNewObjectForEntityForName("Configurations",inManagedObjectContext: self.managedObjectContext) as! Configurations
+    configthresholds.thresholds_brake = configmodel.thresholds_brake
+    configthresholds.thresholds_acceleration = configmodel.thresholds_acceleration
+    configthresholds.thresholds_autotrip = configmodel.thresholds_autotrip
+    configthresholds.weightage_braking = configmodel.weightage_braking
+    configthresholds.weightage_acceleration = configmodel.weightage_acceleration
+    configthresholds.weightage_speed = configmodel.weightage_speed
+    configthresholds.weightage_severevoilation = configmodel.weightage_severevoilation
+    configthresholds.ecoweightage_braking = configmodel.ecoweightage_braking
+    configthresholds.ecoweightage_acceleration = configmodel.ecoweightage_acceleration
+    
+    do{
+      try self.managedObjectContext.save()
+    }catch{
+      fatalError("not iserted")
+    }
+  }
+  
+  func getConfiguration() -> ConfigurationModel{
+    
+    let fetchRequest = NSFetchRequest(entityName: "Configurations")
+    do{
+       var configdata:Configurations =  try self.managedObjectContext.executeFetchRequest(fetchRequest) as! Configurations
+      
+      var configmodeldata:ConfigurationModel = ConfigurationModel()
+      configmodeldata.thresholds_brake = configdata.thresholds_brake
+      configmodeldata.thresholds_acceleration = configdata.thresholds_acceleration
+      configmodeldata.thresholds_autotrip = configdata.thresholds_autotrip
+      configmodeldata.weightage_braking = configdata.weightage_braking
+      configmodeldata.weightage_acceleration = configdata.weightage_acceleration
+      configmodeldata.weightage_speed = configdata.weightage_speed
+      configmodeldata.weightage_severevoilation = configdata.weightage_severevoilation
+      configmodeldata.ecoweightage_braking = configdata.ecoweightage_braking
+      configmodeldata.ecoweightage_acceleration = configdata.ecoweightage_acceleration
+      
+      return configmodeldata
 
+    }catch{
+      fatalError("reterive error")
+    }
+  }
+  
+  func reterive(){
+    var locations  = [Trip_timeseries]()
     
-    //MARK: - Trip Details methods ------------------------------------------------------------------------------------------------
-    
+    let fetchRequest = NSFetchRequest(entityName: "Trip_timeseries")
+    do{
+      
+       locations =  try self.managedObjectContext.executeFetchRequest(fetchRequest) as! [Trip_timeseries]
+      print(locations.count)
+      
+      for triptimeseries in locations {
+        var timeseries:TimeSeriesModel = TimeSeriesModel.init(ctime: triptimeseries.currenttime!,
+          lat: triptimeseries.latitude!,
+          longt: triptimeseries.longitude!,
+          speedval: triptimeseries.speed!,
+          datausage: triptimeseries.datausage!,
+          iseventval: triptimeseries.isEvent!,
+          evetype: triptimeseries.eventtype!,
+          eveval: triptimeseries.eventvalue!,
+          distance: triptimeseries.distance!)
+        print(timeseries)
+      }
+    }catch{
+      fatalError("reterive error")
+    }
+  }
+  
     func saveTripDetail(tripDetail: History) {
         
         let events = NSMutableOrderedSet()
