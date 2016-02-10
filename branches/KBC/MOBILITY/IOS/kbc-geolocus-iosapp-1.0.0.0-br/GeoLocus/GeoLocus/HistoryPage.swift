@@ -24,23 +24,27 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
         case ZoneSelected
     }
     
-    @IBOutlet weak var HTableView: UITableView!
+    @IBOutlet weak var tripHistoryTableView: UITableView!
 
-    var tripScores       = TripScore?()          //trip scores info
+    var tripScores       = [TripScore]?()          //trip scores info
     var tripMapEvents    = [Event]?()            //trip events info
     var tripZones        = [SpeedZone]?()        //trip zones info
     var tripAnnotation   = [EventAnnotation]?()  //annotation array
     var historyData      = [History]?()          //recent trips info
     
     var tripDetailRowSelected : Int?
-    var selectedIndexPath: NSIndexPath?
+    var zoneSelectedIndexPath: NSIndexPath?
+    var recentTripSelectedIndexPath: NSIndexPath?
     var tabSelected: MapZoneTab = MapZoneTab.MapSelected
     
     var mapButton : UIButton?
     var mapBorder : UIView?
     var zoneButton: UIButton?
     var zoneBorder: UIView?
-    var scoreChanged = true
+
+    var scoreRefreshRequired    = true
+    var mapRefreshRequired    = true
+    var zoneRefreshRequired     = true
     
     let NUM_OF_SECTION = 3
     
@@ -55,10 +59,14 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        scoreChanged = true
+        self.scoreRefreshRequired    = true
+        self.mapRefreshRequired    = true
+        self.zoneRefreshRequired     = true
+        
         tabSelected = MapZoneTab.MapSelected
         self.tripDetailRowSelected = 0 // this may be nil if no trip detail data
-        // dataModals()
+        self.zoneSelectedIndexPath = nil
+        //dataModals()
         loadData()
     }
 
@@ -131,24 +139,24 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
             cell.speedingView.foreGroundArcWidth = 8
             cell.speedingView.backGroundArcWidth = 8
             cell.speedingView.ringLayer.strokeColor = UIColor.greenColor().CGColor          //changes dynamically
-            if let speedScore = self.tripScores?.speedScore {
+            if let speedScore = self.tripScores?[indexPath.row].speedScore {
                 cell.speedingView.animateScale = speedScore.doubleValue/100.0
             }
-            cell.speedingView.setNeedsDisplay()
-//            if scoreChanged {
-//               cell.speedingView.setNeedsDisplay()
-//            }
+            if self.scoreRefreshRequired {
+                cell.speedingView.setNeedsDisplay()
+            }
             
             cell.ecoView.foreGroundArcWidth = 8
             cell.ecoView.backGroundArcWidth = 8
             cell.ecoView.ringLayer.strokeColor = UIColor.redColor().CGColor                 //changes dynamically
-            if let ecoScore = self.tripScores?.ecoScore {
+            if let ecoScore = self.tripScores?[indexPath.row].ecoScore {
                 cell.ecoView.animateScale = ecoScore.doubleValue/100.0
             }
-            cell.ecoView.setNeedsDisplay()
-//            if scoreChanged {
-//                cell.ecoView.setNeedsDisplay()
-//            }
+            if self.scoreRefreshRequired {
+                cell.ecoView.setNeedsDisplay()
+            }
+            
+            self.scoreRefreshRequired = false
             
             return cell
         }else if indexPath.section == 1{
@@ -158,9 +166,12 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
                 
                 cell.delegate = self
-                if self.tripAnnotation?.count > 0 {
-                    cell.showMapAnnotations(self.tripAnnotation!)
+                if self.mapRefreshRequired {
+                    if self.tripAnnotation?.count > 0 {
+                        cell.showMapAnnotations(self.tripAnnotation!)
+                    }
                 }
+                self.mapRefreshRequired = false
                 return cell
             }else {
                 let cell = tableView.dequeueReusableCellWithIdentifier("HSZCell", forIndexPath: indexPath) as! HistoryZoneViewCell
@@ -172,10 +183,10 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
                 if let speedBehaviour = self.tripZones?[indexPath.row].speedBehaviour {
                      cell.speedingView.animateScale = speedBehaviour.doubleValue/100.0
                 }
-                cell.setNeedsDisplay()
-//                if scoreChanged {
-//                    cell.setNeedsDisplay()
-//                }
+                
+                if self.zoneRefreshRequired {
+                    cell.speedingView.setNeedsDisplay()
+                }
                 if tripZones?.count > 0 {
                     cell.severeViolationLabel.text = String(self.tripZones![indexPath.row].violationCount)
                     cell.distanceLabel.text =  String("\(self.tripZones![indexPath.row].distanceTravelled) km")
@@ -184,6 +195,8 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
                     cell.aboveMaxSpeedLabel.text =  String("\(self.tripZones![indexPath.row].aboveSpeed) km")
                 }
                 
+                cell.indicatorButton.selected = false
+                self.zoneRefreshRequired = false
                 return cell
             }
         }else if indexPath.section == 2{     //section 2
@@ -201,13 +214,14 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
             cell.tripDistanceLabel.text = String("\(self.historyData![indexPath.row].distance) km")
             cell.tripPointsLabel.text = String(self.historyData![indexPath.row].tripPoints)
             
+            
             //TO DO:
             /*
             If overall score or speeding score or eco score or attention score(for android device) is red color against any trip 
             then the sharing icon will be disabled for that trip.
             
             */
-            self.scoreChanged = false
+            
             return cell
         }else {
             let cell = tableView.dequeueReusableCellWithIdentifier("HTDCell", forIndexPath: indexPath) as! HistoryTripDetailCell  //remove this
@@ -336,7 +350,7 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
                 
             }else {
                 //change if row is expanded
-                if self.selectedIndexPath != nil && indexPath.compare(self.selectedIndexPath!) == .OrderedSame {
+                if self.zoneSelectedIndexPath != nil && indexPath.compare(self.zoneSelectedIndexPath!) == .OrderedSame {
                     rowHeight = 320
                 }else{
                     rowHeight = 30
@@ -348,51 +362,23 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
     }
 
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
-    {
-        
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        
+        if self.recentTripSelectedIndexPath == nil || self.recentTripSelectedIndexPath == indexPath {
+            return
+        }
+        
+        self.recentTripSelectedIndexPath = indexPath
         
         if indexPath.section == 1 {
             if self.tabSelected == MapZoneTab.ZoneSelected {
-                if selectedIndexPath != nil && selectedIndexPath == indexPath {
-                    selectedIndexPath = nil
-                    let hzCell = tableView.cellForRowAtIndexPath(indexPath) as! HistoryZoneViewCell
-                    
-                    UIView.animateWithDuration(0.8, animations: { () -> Void in
-                        //hzCell.indicatorImageView.transform = CGAffineTransformMakeRotation(-(CGFloat(M_PI_2)))
-                        }, completion: { (animated) -> Void in
-                            if animated {
-                                //hzCell.indicatorImageView.transform = CGAffineTransformMakeRotation((CGFloat(M_PI_2)))
-                                hzCell.indicatorImageView.image = UIImage(named:"arrow_right.png")
-                            }
-                    })
-                    
-                    HTableView.beginUpdates()
-                    HTableView.endUpdates()
-                } else {
-                    selectedIndexPath = indexPath
-                    
-                    let hzCell = tableView.cellForRowAtIndexPath(indexPath) as! HistoryZoneViewCell
-                    
-                    UIView.animateWithDuration(0.8, animations: { () -> Void in
-                        //hzCell.indicatorImageView.transform = CGAffineTransformMakeRotation((CGFloat(M_PI_2)))
-                        }, completion: { (animated) -> Void in
-                            if animated {
-                                //hzCell.indicatorImageView.transform = CGAffineTransformMakeRotation(-(CGFloat(M_PI_2)))
-                                hzCell.indicatorImageView.image = UIImage(named:"arrow_down.png")
-                            }
-                    })
-                    
-                    HTableView.beginUpdates()
-                    HTableView.endUpdates()
-                }
+             animateZoneRow(indexPath)
             }
         }else if indexPath.section == 2 {
             //handle last 5 trips here
             self.tripDetailRowSelected = indexPath.row
             reload()
-           
         }
     }
     
@@ -421,7 +407,7 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
     
     func reload() {
         reloadTableViewData(self.tripDetailRowSelected!)
-        [HTableView.reloadData()]
+        [self.tripHistoryTableView.reloadData()]
     }
     
     func loadData() {
@@ -451,6 +437,10 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
             //call services...get data...parse
             //store data in DB
             //reload table
+            
+            FacadeLayer.sharedinstance.requestRecentTripData({ (status, data, error) -> Void in
+                
+            })
         }
 
     }
@@ -557,17 +547,21 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
     
     func reloadTableViewData(index: Int){
         
-        self.tripScores     = TripScore?()
+        self.tripScores     = []
         self.tripMapEvents  = []
         self.tripZones      = []
         self.tripAnnotation = []
-        self.selectedIndexPath = nil
+        self.zoneSelectedIndexPath = nil
+        
+        self.scoreRefreshRequired    = true
+        self.mapRefreshRequired    = true
+        self.zoneRefreshRequired     = true
         
         if self.historyData != nil && index < self.historyData?.count {
             
             let data = self.historyData![index] as History
             //1
-            self.tripScores = data.tripScore
+            self.tripScores?.append(TripScore(speedScore: data.tripScore.speedScore, ecoScore: data.tripScore.ecoScore, attentionScore: nil))
             //2
             if self.tabSelected == MapZoneTab.MapSelected {
                 self.tripMapEvents = data.events!
@@ -597,6 +591,35 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
         }
         
     }
+    
+    func animateZoneRow(indexPath: NSIndexPath) {
+        
+        if self.zoneSelectedIndexPath != nil && self.zoneSelectedIndexPath == indexPath {
+           
+            let cell = self.tripHistoryTableView.cellForRowAtIndexPath(self.zoneSelectedIndexPath!) as! HistoryZoneViewCell
+            cell.indicatorButton.selected = false
+            self.zoneSelectedIndexPath = nil
+    
+            self.tripHistoryTableView.beginUpdates()
+            self.tripHistoryTableView.endUpdates()
+        } else {
+            
+            if let previousIndexPath = self.zoneSelectedIndexPath {
+                let cell = self.tripHistoryTableView.cellForRowAtIndexPath(previousIndexPath) as! HistoryZoneViewCell
+                cell.indicatorButton.selected = false
+            }
+            
+            let cell = self.tripHistoryTableView.cellForRowAtIndexPath(indexPath) as! HistoryZoneViewCell
+            cell.indicatorButton.selected = true
+            self.zoneSelectedIndexPath = indexPath
+            
+            self.tripHistoryTableView.beginUpdates()
+            self.tripHistoryTableView.endUpdates()
+        }
+        
+    }
+    
+    
     
     
     /*

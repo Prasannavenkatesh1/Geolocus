@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseURL</key>
+	<string></string>
+	<key>LoginServiceURL</key>
+	<string></string>
+	<key>RegistrationServiceURL</key>
+	<string></string>
+	<key>TermConditionsServiceURL</key>
+	<string></string>
+	<key>NeedHelpServiceURL</key>
+	<string></string>
+	<key>ContractServiceURL</key>
+	<string></string>
+	<key>DashboardServiceURL</key>
+	<string></string>
+	<key>HistoryServiceURL</key>
+	<string>https://dweet.io:443/dweet/for/historyService</string>
+	<key>BadgeServiceURL</key>
+	<string></string>
+	<key>OverallServiceURL</key>
+	<string></string>
+	<key>ReportServiceURL</key>
+	<string></string>
+	<key>TripServiceURL</key>
+	<string></string>
+	<key>ConfigurationServiceURL</key>
+	<string></string>
+	<key>RegisterPNURL</key>
+	<string></string>
+</dict>
+</plist>

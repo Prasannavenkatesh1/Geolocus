@@ -11,7 +11,7 @@ import UIKit
 class HistoryZoneViewCell: UITableViewCell {
 
     @IBOutlet weak var maxSpeedLimit: UILabel!
-    @IBOutlet weak var indicatorImageView: UIImageView!
+    @IBOutlet weak var indicatorButton: UIButton!
     @IBOutlet weak var speedingView: ArcGraphicsController!
     @IBOutlet weak var severeViolationLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
@@ -31,4 +31,5 @@ class HistoryZoneViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBOutlet weak var indicatorButtonTapped: UIButton!
 }

@@ -19,6 +19,8 @@
 		28398E5A1C637F32003D5BE5 /* Trip_Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E541C637F32003D5BE5 /* Trip_Event.swift */; };
 		283A2B371C65D7C700F6BD16 /* Trip_Badge+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283A2B351C65D7C700F6BD16 /* Trip_Badge+CoreDataProperties.swift */; };
 		283A2B381C65D7C700F6BD16 /* Trip_Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283A2B361C65D7C700F6BD16 /* Trip_Badge.swift */; };
+		2840EFDE1C6B20F10020B8FF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2840EFDD1C6B20F10020B8FF /* Extensions.swift */; };
+		2840EFE01C6B3C970020B8FF /* WebServicesURL.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2840EFDF1C6B3C970020B8FF /* WebServicesURL.plist */; };
 		28AF07CD1C69AC0A00D8D3F4 /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AF07CC1C69AC0A00D8D3F4 /* TermsAndConditionsViewController.swift */; };
 		28CD01E11C69A42300EEC94A /* DetectingVechile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CD01E01C69A42300EEC94A /* DetectingVechile.swift */; };
 		28DC53C81C64EFF800FB45B4 /* BadgesDetails.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28DC53C71C64EFF800FB45B4 /* BadgesDetails.plist */; };
@@ -284,6 +286,8 @@
 		28398E541C637F32003D5BE5 /* Trip_Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_Event.swift; sourceTree = "<group>"; };
 		283A2B351C65D7C700F6BD16 /* Trip_Badge+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_Badge+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		283A2B361C65D7C700F6BD16 /* Trip_Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_Badge.swift; sourceTree = "<group>"; };
+		2840EFDD1C6B20F10020B8FF /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		2840EFDF1C6B3C970020B8FF /* WebServicesURL.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WebServicesURL.plist; sourceTree = "<group>"; };
 		28AF07CC1C69AC0A00D8D3F4 /* TermsAndConditionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewController.swift; sourceTree = "<group>"; };
 		28CD01E01C69A42300EEC94A /* DetectingVechile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectingVechile.swift; sourceTree = "<group>"; };
 		28DC53C71C64EFF800FB45B4 /* BadgesDetails.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BadgesDetails.plist; sourceTree = "<group>"; };
@@ -1099,6 +1103,7 @@
 				28328A371C646F58004E5F86 /* OverallScores.swift */,
 				28DC53C71C64EFF800FB45B4 /* BadgesDetails.plist */,
 				6C34EA531C69F8A0000A0A0D /* DashboardModel.swift */,
+				2840EFDD1C6B20F10020B8FF /* Extensions.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1154,6 +1159,7 @@
 			isa = PBXGroup;
 			children = (
 				BF4F8D991C43CA8D00895640 /* Httpclient.swift */,
+				2840EFDF1C6B3C970020B8FF /* WebServicesURL.plist */,
 			);
 			name = HttpClient;
 			sourceTree = "<group>";
@@ -1297,6 +1303,7 @@
 				633764EC1AE53DE9005D6597 /* Roboto-Thin.ttf in Resources */,
 				63955C971AD7A593006A1B04 /* brake.js in Resources */,
 				6389B24E1B1C9AA600F2A18C /* CollectionIntervalController.xib in Resources */,
+				2840EFE01C6B3C970020B8FF /* WebServicesURL.plist in Resources */,
 				63A32CCB1AD8003F0042B6A4 /* PointsLoad.html in Resources */,
 				6352C4271AD694A500E11D3A /* ic_incoming.png in Resources */,
 				63955C961AD7A593006A1B04 /* jquery.percentageloader-0.1.js in Resources */,
@@ -1429,6 +1436,7 @@
 				630C19D71AE7B2A8000B32CA /* Drawings.swift in Sources */,
 				63EA2C661B70DA4400ECC0E9 /* DashboardDB.m in Sources */,
 				28398E561C637F32003D5BE5 /* Trip_Speed_Zone.swift in Sources */,
+				2840EFDE1C6B20F10020B8FF /* Extensions.swift in Sources */,
 				B640F0DE1C621C9E0051864F /* CALayer+UIColor.swift in Sources */,
 				BF73374B1C3FBD9E006094C0 /* Pageviewcontroller.swift in Sources */,
 				6CCAF9081C4E062700484056 /* ReportsViewController.swift in Sources */,
