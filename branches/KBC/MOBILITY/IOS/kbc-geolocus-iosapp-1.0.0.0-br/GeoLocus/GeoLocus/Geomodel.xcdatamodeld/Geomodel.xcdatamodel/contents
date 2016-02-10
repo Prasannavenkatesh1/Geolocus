@@ -90,7 +90,7 @@
         <element name="Trip_Detail" positionX="1663" positionY="-153" width="128" height="210"/>
         <element name="Trip_Event" positionX="1996" positionY="123" width="128" height="135"/>
         <element name="Trip_Speed_Zone" positionX="1719" positionY="189" width="128" height="163"/>
-        <element name="Trip_timeseries" positionX="1386" positionY="-153" width="128" height="178"/>
-        <element name="TripSummary" positionX="1359" positionY="252" width="128" height="238"/>
+        <element name="Trip_timeseries" positionX="1368" positionY="-153" width="128" height="178"/>
+        <element name="TripSummary" positionX="1546" positionY="81" width="128" height="238"/>
     </elements>
 </model>

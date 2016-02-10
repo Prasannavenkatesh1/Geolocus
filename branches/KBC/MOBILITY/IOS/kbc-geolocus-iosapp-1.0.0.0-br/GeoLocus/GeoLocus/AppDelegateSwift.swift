@@ -60,6 +60,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
 //    defaults.setBool(false, forKey: "isFirstTime")
 
     if( defaults.boolForKey("isFirstTime") == false){
+      defaults.setBool(true, forKey: "isFirstTime")
       defaults.setBool(false, forKey: "isStarted")
       
       //  Insert Weightage values for testing
@@ -76,9 +77,14 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       FacadeLayer.sharedinstance.dbactions.saveConfiguration(conmodel)
 
     }
+      let t1:Events.EventType = Events.EventType.ACCELERATION
+      print("ACCELERATION \(FacadeLayer.sharedinstance.dbactions.fetchEventCount(t1))")
+      
+      let t2:Events.EventType = Events.EventType.BRAKING
+      print("BRAKING \(FacadeLayer.sharedinstance.dbactions.fetchEventCount(t2))")
 
-    let temp:DetectingVechile = DetectingVechile()
-    temp.startDetectingVechile()
+//    let temp:DetectingVechile = DetectingVechile()
+//    temp.startDetectingVechile()
 
     self.loadInitialViewController()
       

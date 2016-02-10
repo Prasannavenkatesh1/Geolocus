@@ -336,8 +336,23 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       
       FacadeLayer.sharedinstance.dbactions.saveTimeSeries(tseries)
     }
-    
     if(tempvar == 1){
+      distance = 30
+      eventval = 12
+      eventtypes =  Events.EventType.ACCELERATION
+      let tseries:TimeSeriesModel = TimeSeriesModel.init(ctime: newLocation.timestamp,
+        lat: latitude,
+        longt: longitude,
+        speedval: newLocation.speed*3.6,
+        datausage: 0,
+        iseventval: NSNumber(integer: iseventval),
+        evetype: NSNumber(integer: eventtypes!.rawValue),
+        eveval: NSNumber(double: eventval),
+        distance: distance!)
+      
+      FacadeLayer.sharedinstance.dbactions.saveTimeSeries(tseries)
+    }
+    else if(tempvar == 2){
       distance = 30
       eventval = 10
       eventtypes =  Events.EventType.ACCELERATION
@@ -352,7 +367,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         distance: distance!)
       
       FacadeLayer.sharedinstance.dbactions.saveTimeSeries(tseries)
-    }else if(tempvar == 2){
+    }else if(tempvar == 3){
       distance = 40
       eventval = 15
       eventtypes =  Events.EventType.BRAKING
@@ -367,7 +382,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         distance: distance!)
       
       FacadeLayer.sharedinstance.dbactions.saveTimeSeries(tseries)
-    }else if(tempvar == 3){
+    }else if(tempvar == 4){
       eventval = 0
 //      tempvar = 0
       eventtypes =  Events.EventType.TIMESERIES

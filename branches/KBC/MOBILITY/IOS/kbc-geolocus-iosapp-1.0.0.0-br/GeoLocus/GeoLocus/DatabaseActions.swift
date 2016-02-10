@@ -77,19 +77,18 @@ class DatabaseActions: NSObject {
   
   func saveTimeSeries(timeseriesmodel:TimeSeriesModel){
     let timeseries = NSEntityDescription.insertNewObjectForEntityForName("Trip_timeseries",inManagedObjectContext: self.managedObjectContext) as! Trip_timeseries
-    timeseries.isEvent = timeseriesmodel.isEvent
-    timeseries.eventtype = timeseriesmodel.eventtype
-    timeseries.eventvalue = timeseriesmodel.eventvalue
-    timeseries.speed = timeseriesmodel.speed
-    timeseries.latitude = timeseriesmodel.latitude
-    timeseries.longitude = timeseriesmodel.longitude
-    timeseries.datausage = timeseriesmodel.datausage
-    timeseries.distance = timeseriesmodel.distance
-    timeseries.currenttime = timeseriesmodel.currenttime
+    timeseries.isEvent      = timeseriesmodel.isEvent
+    timeseries.eventtype    = timeseriesmodel.eventtype
+    timeseries.eventvalue   = timeseriesmodel.eventvalue
+    timeseries.speed        = timeseriesmodel.speed
+    timeseries.latitude     = timeseriesmodel.latitude
+    timeseries.longitude    = timeseriesmodel.longitude
+    timeseries.datausage    = timeseriesmodel.datausage
+    timeseries.distance     = timeseriesmodel.distance
+    timeseries.currenttime  = timeseriesmodel.currenttime
     
     do{
       try self.managedObjectContext.save()
-//      self.reterive()
     }catch{
       fatalError("not iserted")
     }
@@ -99,15 +98,15 @@ class DatabaseActions: NSObject {
   
   func saveConfiguration(configmodel:ConfigurationModel){
     let configthresholds = NSEntityDescription.insertNewObjectForEntityForName("Configurations",inManagedObjectContext: self.managedObjectContext) as! Configurations
-    configthresholds.thresholds_brake = configmodel.thresholds_brake
-    configthresholds.thresholds_acceleration = configmodel.thresholds_acceleration
-    configthresholds.thresholds_autotrip = configmodel.thresholds_autotrip
-    configthresholds.weightage_braking = configmodel.weightage_braking
-    configthresholds.weightage_acceleration = configmodel.weightage_acceleration
-    configthresholds.weightage_speed = configmodel.weightage_speed
-    configthresholds.weightage_severevoilation = configmodel.weightage_severevoilation
-    configthresholds.ecoweightage_braking = configmodel.ecoweightage_braking
-    configthresholds.ecoweightage_acceleration = configmodel.ecoweightage_acceleration
+    configthresholds.thresholds_brake             = configmodel.thresholds_brake
+    configthresholds.thresholds_acceleration      = configmodel.thresholds_acceleration
+    configthresholds.thresholds_autotrip          = configmodel.thresholds_autotrip
+    configthresholds.weightage_braking            = configmodel.weightage_braking
+    configthresholds.weightage_acceleration       = configmodel.weightage_acceleration
+    configthresholds.weightage_speed              = configmodel.weightage_speed
+    configthresholds.weightage_severevoilation    = configmodel.weightage_severevoilation
+    configthresholds.ecoweightage_braking         = configmodel.ecoweightage_braking
+    configthresholds.ecoweightage_acceleration    = configmodel.ecoweightage_acceleration
     
     do{
       try self.managedObjectContext.save()
@@ -120,17 +119,17 @@ class DatabaseActions: NSObject {
     
     let fetchRequest = NSFetchRequest(entityName: "Configurations")
     do{
-       var configdata:Configurations =  try self.managedObjectContext.executeFetchRequest(fetchRequest) as! Configurations
+       let configdata:Configurations =  try (self.managedObjectContext.executeFetchRequest(fetchRequest))[0] as! Configurations
       
-      var configmodeldata:ConfigurationModel = ConfigurationModel()
-      configmodeldata.thresholds_brake = configdata.thresholds_brake
-      configmodeldata.thresholds_acceleration = configdata.thresholds_acceleration
-      configmodeldata.thresholds_autotrip = configdata.thresholds_autotrip
-      configmodeldata.weightage_braking = configdata.weightage_braking
-      configmodeldata.weightage_acceleration = configdata.weightage_acceleration
-      configmodeldata.weightage_speed = configdata.weightage_speed
+      var configmodeldata:ConfigurationModel    = ConfigurationModel()
+      configmodeldata.thresholds_brake          = configdata.thresholds_brake
+      configmodeldata.thresholds_acceleration   = configdata.thresholds_acceleration
+      configmodeldata.thresholds_autotrip       = configdata.thresholds_autotrip
+      configmodeldata.weightage_braking         = configdata.weightage_braking
+      configmodeldata.weightage_acceleration    = configdata.weightage_acceleration
+      configmodeldata.weightage_speed           = configdata.weightage_speed
       configmodeldata.weightage_severevoilation = configdata.weightage_severevoilation
-      configmodeldata.ecoweightage_braking = configdata.ecoweightage_braking
+      configmodeldata.ecoweightage_braking      = configdata.ecoweightage_braking
       configmodeldata.ecoweightage_acceleration = configdata.ecoweightage_acceleration
       
       return configmodeldata
@@ -140,6 +139,16 @@ class DatabaseActions: NSObject {
     }
   }
   
+  func fetchEventCount(eventtype:Events.EventType) -> NSNumber{
+    
+    let fetchRequest = NSFetchRequest(entityName: "Trip_timeseries")
+    let predicate = NSPredicate(format: "eventtype = %d AND isEvent == 1",eventtype.rawValue)
+    fetchRequest.predicate = predicate
+    let count = self.managedObjectContext.countForFetchRequest(fetchRequest, error: nil)
+    return NSNumber(integer: count)
+    
+  }
+  
   func reterive(){
     var locations  = [Trip_timeseries]()
     
@@ -147,7 +156,6 @@ class DatabaseActions: NSObject {
     do{
       
        locations =  try self.managedObjectContext.executeFetchRequest(fetchRequest) as! [Trip_timeseries]
-      print(locations.count)
       
       for triptimeseries in locations {
         var timeseries:TimeSeriesModel = TimeSeriesModel.init(ctime: triptimeseries.currenttime!,

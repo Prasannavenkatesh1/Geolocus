@@ -1003,6 +1003,22 @@
 		BF4E0D391C4F701E00BF53FB /* DBModels */ = {
 			isa = PBXGroup;
 			children = (
+				BF2AA39E1C6B0847000D9A67 /* TripSummary+CoreDataProperties.swift */,
+				BF2AA39F1C6B0847000D9A67 /* TripSummary.swift */,
+				BF2AA3A01C6B0847000D9A67 /* Configurations+CoreDataProperties.swift */,
+				BF2AA3A11C6B0847000D9A67 /* Configurations.swift */,
+				BF4D23761C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift */,
+				BF4D23771C5A0A8F00230355 /* Trip_timeseries.swift */,
+				283A2B351C65D7C700F6BD16 /* Trip_Badge+CoreDataProperties.swift */,
+				283A2B361C65D7C700F6BD16 /* Trip_Badge.swift */,
+				28328A2F1C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift */,
+				28328A301C646B8E004E5F86 /* OverallScore.swift */,
+				28398E4F1C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift */,
+				28398E501C637F32003D5BE5 /* Trip_Speed_Zone.swift */,
+				28398E511C637F32003D5BE5 /* Trip_Detail+CoreDataProperties.swift */,
+				28398E521C637F32003D5BE5 /* Trip_Detail.swift */,
+				28398E531C637F32003D5BE5 /* Trip_Event+CoreDataProperties.swift */,
+				28398E541C637F32003D5BE5 /* Trip_Event.swift */,
 			);
 			name = DBModels;
 			sourceTree = "<group>";
@@ -1127,25 +1143,9 @@
 		BF7336FE1C3F92BC006094C0 /* DatabaseActions */ = {
 			isa = PBXGroup;
 			children = (
-				283A2B351C65D7C700F6BD16 /* Trip_Badge+CoreDataProperties.swift */,
-				283A2B361C65D7C700F6BD16 /* Trip_Badge.swift */,
-				28328A2F1C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift */,
-				28328A301C646B8E004E5F86 /* OverallScore.swift */,
-				28398E4F1C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift */,
-				28398E501C637F32003D5BE5 /* Trip_Speed_Zone.swift */,
-				28398E511C637F32003D5BE5 /* Trip_Detail+CoreDataProperties.swift */,
-				28398E521C637F32003D5BE5 /* Trip_Detail.swift */,
-				28398E531C637F32003D5BE5 /* Trip_Event+CoreDataProperties.swift */,
-				28398E541C637F32003D5BE5 /* Trip_Event.swift */,
 				BF4E0D391C4F701E00BF53FB /* DBModels */,
 				BF7337061C3F94A1006094C0 /* Geomodel.xcdatamodeld */,
-				BF4D23761C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift */,
-				BF4D23771C5A0A8F00230355 /* Trip_timeseries.swift */,
 				BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */,
-				BF2AA39E1C6B0847000D9A67 /* TripSummary+CoreDataProperties.swift */,
-				BF2AA39F1C6B0847000D9A67 /* TripSummary.swift */,
-				BF2AA3A01C6B0847000D9A67 /* Configurations+CoreDataProperties.swift */,
-				BF2AA3A11C6B0847000D9A67 /* Configurations.swift */,
 			);
 			name = DatabaseActions;
 			sourceTree = "<group>";

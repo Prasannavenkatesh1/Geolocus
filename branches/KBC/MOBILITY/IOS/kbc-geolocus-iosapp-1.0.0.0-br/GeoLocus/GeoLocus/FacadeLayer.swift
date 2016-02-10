@@ -15,14 +15,6 @@ class FacadeLayer{
   var httpclient:Httpclient
   var corelocation:CoreLocation
   
-  
-//  class var sharedInstance: FacadeLayer {
-//    struct Singleton {
-//      static let instance = FacadeLayer()
-//    }
-//    return Singleton.instance
-//  }
-  
   init(){
     dbactions = DatabaseActions()
     httpclient = Httpclient()
