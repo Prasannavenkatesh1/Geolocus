@@ -1006,6 +1006,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BF2AA3A61C6B70BB000D9A67 /* CustomPlists */ = {
+			isa = PBXGroup;
+			children = (
+				2840EFDF1C6B3C970020B8FF /* WebServicesURL.plist */,
+				28DC53C71C64EFF800FB45B4 /* BadgesDetails.plist */,
+			);
+			name = CustomPlists;
+			sourceTree = "<group>";
+		};
 		BF4E0D391C4F701E00BF53FB /* DBModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -1073,6 +1082,7 @@
 		BF7336F81C3F9243006094C0 /* New */ = {
 			isa = PBXGroup;
 			children = (
+				BF2AA3A61C6B70BB000D9A67 /* CustomPlists */,
 				6351947F1AD3AAC7002ED1D0 /* LaunchScreen.xib */,
 				BF5D3AB71C4E4F6500DDFDC1 /* Localized.strings */,
 				6C03B5C71C4CF16C00C938C6 /* External frameworks */,
@@ -1088,13 +1098,13 @@
 		BF7336F91C3F9250006094C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BF5D3AAB1C4E1E3000DDFDC1 /* Datausage.h */,
+				BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */,
 				28CD01E01C69A42300EEC94A /* DetectingVechile.swift */,
 				B640F0DD1C621C9E0051864F /* CALayer+UIColor.swift */,
 				28F38A091C61EB3900A02E93 /* Badge.swift */,
 				28F38A0A1C61EB3900A02E93 /* HistoryData.swift */,
 				6CCAF90F1C4E20D500484056 /* ErrorHandler.swift */,
-				BF5D3AAB1C4E1E3000DDFDC1 /* Datausage.h */,
-				BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */,
 				6CCAF9031C4E036200484056 /* GlobalConstants.swift */,
 				BF6FA2A01C55F6880038DBDF /* CoreLocation.swift */,
 				BF5437B61C58FEA7009D2343 /* TimeSeriesModel.swift */,
@@ -1103,7 +1113,6 @@
 				BFE454751C64DCD6003BC0F2 /* TripSummaryModel.swift */,
 				BF87B26E1C6A0D5600DA6000 /* ConfigurationModel.swift */,
 				28328A371C646F58004E5F86 /* OverallScores.swift */,
-				28DC53C71C64EFF800FB45B4 /* BadgesDetails.plist */,
 				6C34EA531C69F8A0000A0A0D /* DashboardModel.swift */,
 				2840EFDD1C6B20F10020B8FF /* Extensions.swift */,
 			);
@@ -1162,7 +1171,6 @@
 			isa = PBXGroup;
 			children = (
 				BF4F8D991C43CA8D00895640 /* Httpclient.swift */,
-				2840EFDF1C6B3C970020B8FF /* WebServicesURL.plist */,
 			);
 			name = HttpClient;
 			sourceTree = "<group>";

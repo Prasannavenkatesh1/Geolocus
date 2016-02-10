@@ -85,7 +85,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     override func viewWillDisappear(animated: Bool) {
         deregisterFromKeyboardNotifications()
     }
-    
+  
     // MARK: - Custom Methods
 
     /* function to validate for required fields */
