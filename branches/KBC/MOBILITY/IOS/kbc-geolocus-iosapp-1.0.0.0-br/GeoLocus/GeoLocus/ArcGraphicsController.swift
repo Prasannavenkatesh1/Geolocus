@@ -23,12 +23,15 @@ let π: CGFloat = CGFloat(M_PI)
     @IBInspectable var highLevelColor: UIColor = UIColor.greenColor()
     @IBInspectable var foreGroundArcWidth: CGFloat = 20
     @IBInspectable var backGroundArcWidth: CGFloat = 8
+    @IBInspectable var isThumbImageAvailable: Bool = false
+    
     var arcMargin: CGFloat = 0
     var animateScale = 0.0      //must be between [0,1]
     let ringLayer = CAShapeLayer()
+    let thumbLayer = CALayer()
     let imageView = UIImageView()
-
-
+    var thumbImage = UIImageView()
+    var arcPath = UIBezierPath()
 
     
     override func drawRect(rect: CGRect) {
@@ -46,13 +49,13 @@ let π: CGFloat = CGFloat(M_PI)
         let startAngle: CGFloat = 2 * π / 3
         let endAngle: CGFloat = π / 3
         
-        let path = UIBezierPath(
+         arcPath = UIBezierPath(
             arcCenter: center,
             radius: radius/2 - backGroundArcWidth/2,                    //changed here
             startAngle: startAngle,
             endAngle: endAngle,
             clockwise: true)
-        ringLayer.path = path.CGPath
+        ringLayer.path = arcPath.CGPath
         //ringLayer.strokeColor = ringForegroundColour.CGColor
         ringLayer.fillColor = UIColor.clearColor().CGColor
         ringLayer.lineWidth = foreGroundArcWidth
@@ -83,6 +86,23 @@ let π: CGFloat = CGFloat(M_PI)
     }
     
     func animateArc(loaderValue: CGFloat) {
+        
+        if isThumbImageAvailable {
+            thumbImage.image = UIImage(named: "meter_tip")
+            thumbLayer.contents = thumbImage.image?.CGImage
+            thumbLayer.anchorPoint = CGPointZero
+            thumbLayer.frame = CGRectMake(0.0, 0.0, thumbImage.image!.size.width, thumbImage.image!.size.height)
+            layer.addSublayer(thumbLayer)
+            
+            let pathAnimation: CAKeyframeAnimation  = CAKeyframeAnimation(keyPath: "position")
+            pathAnimation.duration = 2.0
+            pathAnimation.path = arcPath.CGPath;
+            
+            
+            pathAnimation.calculationMode = kCAAnimationLinear
+            thumbLayer.addAnimation(pathAnimation, forKey: "movingMeterTip")
+        }
+        
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.duration = 2
         animation.fromValue = 0
