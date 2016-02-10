@@ -30,7 +30,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   
   func initLocationManager() {
     
-    configmodel = FacadeLayer.sharedinstance.dbactions.getConfiguration()
+    configmodel = FacadeLayer.sharedinstance.configmodel
     
     NSNotificationCenter.defaultCenter().addObserver(
       self,
