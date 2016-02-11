@@ -6228,7 +6228,8 @@
                                                             <exclude reference="qyV-w7-bf1"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="101" y="25" width="90" height="15"/>
                                                         <mask key="constraints">
                                                             <include reference="qyV-w7-bf1"/>
                                                         </mask>
@@ -6250,7 +6251,8 @@
                                                             <exclude reference="cQL-Cb-gii"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="101" y="50" width="2" height="20"/>
                                                         <mask key="constraints">
                                                             <include reference="cQL-Cb-gii"/>
                                                         </mask>
@@ -6270,7 +6272,8 @@
                                                             <exclude reference="6Ll-N6-zAc"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="101" y="73" width="90" height="28"/>
                                                         <mask key="constraints">
                                                             <include reference="6Ll-N6-zAc"/>
                                                         </mask>
@@ -6279,6 +6282,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F0R-sL-f5m">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                     <state key="normal" image="DeleteIcon"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="202" y="44" width="18" height="22"/>
+                                                    </variation>
                                                     <connections>
                                                         <action selector="didTapOnDelete:" destination="HbJ-mu-jex" eventType="touchUpInside" id="6bL-zI-gb7"/>
                                                     </connections>
