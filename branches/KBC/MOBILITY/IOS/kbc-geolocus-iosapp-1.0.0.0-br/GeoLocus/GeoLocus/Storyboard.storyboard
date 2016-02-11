@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EDY-1L-EKK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EDY-1L-EKK">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -2480,121 +2480,63 @@
                                     <segue destination="FJ9-kd-xw8" kind="embed" id="OEg-uk-4Ck"/>
                                 </connections>
                             </containerView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Bkg-kj-fak">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zqm-Sn-NVv" customClass="HMSegmentedControl">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" red="1" green="0.97367667752447973" blue="0.39297681357222314" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="ZI6-XS-yta"/>
+                                    <constraint firstAttribute="height" constant="58" id="ORp-Oq-odi"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ejp-AQ-e1O">
-                                    <size key="itemSize" width="150" height="40"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="categorycell" id="FKb-TL-iIH" customClass="CategoryCell" customModule="GeoLocus" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="40"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gC8-DT-ut6">
-                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="0.65000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="gC8-DT-ut6" firstAttribute="leading" secondItem="FKb-TL-iIH" secondAttribute="leadingMargin" id="7bz-De-3ay"/>
-                                            <constraint firstItem="gC8-DT-ut6" firstAttribute="trailing" secondItem="FKb-TL-iIH" secondAttribute="trailingMargin" id="qFI-yI-0Bt"/>
-                                            <constraint firstItem="gC8-DT-ut6" firstAttribute="bottom" secondItem="FKb-TL-iIH" secondAttribute="bottomMargin" id="wX1-Iw-mTA"/>
-                                        </constraints>
-                                        <variation key="default">
-                                            <mask key="subviews">
-                                                <exclude reference="gC8-DT-ut6"/>
-                                            </mask>
-                                            <mask key="constraints">
-                                                <exclude reference="7bz-De-3ay"/>
-                                                <exclude reference="qFI-yI-0Bt"/>
-                                                <exclude reference="wX1-Iw-mTA"/>
-                                            </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
-                                            <mask key="subviews">
-                                                <include reference="gC8-DT-ut6"/>
-                                            </mask>
-                                            <mask key="constraints">
-                                                <include reference="7bz-De-3ay"/>
-                                                <include reference="qFI-yI-0Bt"/>
-                                                <include reference="wX1-Iw-mTA"/>
-                                            </mask>
-                                        </variation>
-                                        <connections>
-                                            <outlet property="caption" destination="gC8-DT-ut6" id="KdQ-bg-RGr"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="ZI6-XS-yta"/>
+                                        <exclude reference="ORp-Oq-odi"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="ZI6-XS-yta"/>
+                                        <include reference="ORp-Oq-odi"/>
                                     </mask>
                                 </variation>
-                                <connections>
-                                    <outlet property="dataSource" destination="gbb-ju-gE6" id="sRb-YS-uGw"/>
-                                    <outlet property="delegate" destination="gbb-ju-gE6" id="mj6-RK-qaU"/>
-                                </connections>
-                            </collectionView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Zkb-ef-cXj" secondAttribute="bottom" constant="2" id="7o2-Q4-mkg">
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
-                            <constraint firstItem="Bkg-kj-fak" firstAttribute="leading" secondItem="CyA-gu-262" secondAttribute="leading" id="CIS-Ud-9ws"/>
-                            <constraint firstAttribute="trailing" secondItem="Bkg-kj-fak" secondAttribute="trailing" id="bfI-Nw-Mhi"/>
-                            <constraint firstItem="Bkg-kj-fak" firstAttribute="top" secondItem="3NA-S4-x5j" secondAttribute="bottom" constant="2" id="cai-Xd-7Hy"/>
+                            <constraint firstAttribute="trailing" secondItem="Zqm-Sn-NVv" secondAttribute="trailing" id="DMd-KI-cr1"/>
+                            <constraint firstItem="Zkb-ef-cXj" firstAttribute="top" secondItem="Zqm-Sn-NVv" secondAttribute="bottom" id="Jle-AU-YDu"/>
+                            <constraint firstItem="Zqm-Sn-NVv" firstAttribute="leading" secondItem="CyA-gu-262" secondAttribute="leading" id="LeV-iM-5Xd"/>
                             <constraint firstItem="Zkb-ef-cXj" firstAttribute="leading" secondItem="CyA-gu-262" secondAttribute="leading" id="gmt-dt-sep"/>
-                            <constraint firstItem="Zkb-ef-cXj" firstAttribute="top" secondItem="Bkg-kj-fak" secondAttribute="bottom" id="lz7-m7-77B"/>
+                            <constraint firstItem="Zqm-Sn-NVv" firstAttribute="top" secondItem="3NA-S4-x5j" secondAttribute="bottom" id="loK-at-3oa"/>
                             <constraint firstAttribute="trailing" secondItem="Zkb-ef-cXj" secondAttribute="trailing" id="ovO-i6-Qtd"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="Zkb-ef-cXj"/>
-                                <exclude reference="Bkg-kj-fak"/>
+                                <exclude reference="Zqm-Sn-NVv"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="CIS-Ud-9ws"/>
-                                <exclude reference="bfI-Nw-Mhi"/>
-                                <exclude reference="cai-Xd-7Hy"/>
+                                <exclude reference="DMd-KI-cr1"/>
+                                <exclude reference="LeV-iM-5Xd"/>
+                                <exclude reference="loK-at-3oa"/>
                                 <exclude reference="7o2-Q4-mkg"/>
+                                <exclude reference="Jle-AU-YDu"/>
                                 <exclude reference="gmt-dt-sep"/>
-                                <exclude reference="lz7-m7-77B"/>
                                 <exclude reference="ovO-i6-Qtd"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="Zkb-ef-cXj"/>
-                                <include reference="Bkg-kj-fak"/>
+                                <include reference="Zqm-Sn-NVv"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="CIS-Ud-9ws"/>
-                                <include reference="bfI-Nw-Mhi"/>
-                                <include reference="cai-Xd-7Hy"/>
+                                <include reference="DMd-KI-cr1"/>
+                                <include reference="LeV-iM-5Xd"/>
+                                <include reference="loK-at-3oa"/>
                                 <include reference="7o2-Q4-mkg"/>
+                                <include reference="Jle-AU-YDu"/>
                                 <include reference="gmt-dt-sep"/>
-                                <include reference="lz7-m7-77B"/>
                                 <include reference="ovO-i6-Qtd"/>
                             </mask>
                         </variation>
@@ -2604,6 +2546,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Menu" id="tdp-wg-rfA"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="segmentControl" destination="Zqm-Sn-NVv" id="7O8-Op-YUN"/>
                         <outlet property="sideMenuButton" destination="tdp-wg-rfA" id="7wb-Wu-gaf"/>
                         <segue destination="HbJ-mu-jex" kind="show" identifier="Notificationsegue" id="SfU-G1-tXh"/>
                     </connections>
