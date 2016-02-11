@@ -30,35 +30,10 @@ struct TripSummaryModel:BaseTrip,Score {
   let timezoneid    :String
   let totalduration :String
   
-  var attentionscore:NSNumber
-    {
-    get
-    {
-      return 0
-    }
-  }
-  
-  var brakingcount:NSNumber
-  {
-    get
-    {
-       return FacadeLayer.sharedinstance.dbactions.fetchEventCount(Events.EventType.BRAKING)
-    }
-  }
-  
-  var accelerationcount:NSNumber
-    {
-    get
-    {
-      return FacadeLayer.sharedinstance.dbactions.fetchEventCount(Events.EventType.ACCELERATION)
-    }
-  }
-  
-  var totaldistance:NSNumber{
-    get{
-      return FacadeLayer.sharedinstance.dbactions.fetchTotalDistance()
-    }
-  }
+  var attentionscore    :NSNumber   = 0
+  var brakingcount      :NSNumber   = FacadeLayer.sharedinstance.dbactions.fetchEventCount(Events.EventType.BRAKING)
+  var accelerationcount :NSNumber   = FacadeLayer.sharedinstance.dbactions.fetchEventCount(Events.EventType.ACCELERATION)
+  var totaldistance     :NSNumber   = FacadeLayer.sharedinstance.dbactions.fetchTotalDistance()
   
 //           Braking score = 1-(((number of Braking Events in Trip x weightage)/distance in kms))*100
   var brakingscore:NSNumber
