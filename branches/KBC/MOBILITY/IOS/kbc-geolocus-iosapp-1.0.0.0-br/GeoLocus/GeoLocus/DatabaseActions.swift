@@ -415,14 +415,14 @@ class DatabaseActions: NSObject {
     
     func saveOverallScore(overallScore: OverallScores){
         let overallScoreRow = NSEntityDescription.insertNewObjectForEntityForName("OverallScore",inManagedObjectContext: self.managedObjectContext) as! OverallScore
-        
         overallScoreRow.overall             = overallScore.overallScore
         overallScoreRow.speeding            = overallScore.speedingScore
         overallScoreRow.eco                 = overallScore.ecoScore
         overallScoreRow.attention           = overallScore.attentionScore
         overallScoreRow.distance            = overallScore.distanceTravelled
         overallScoreRow.dataUsageMessage    = overallScore.dataUsageMsg
-        
+
+                
         do{
             try self.managedObjectContext.save()
             //add check

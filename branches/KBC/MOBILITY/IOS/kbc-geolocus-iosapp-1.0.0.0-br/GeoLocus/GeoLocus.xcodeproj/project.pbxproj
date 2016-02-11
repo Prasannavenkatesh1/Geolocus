@@ -265,6 +265,7 @@
 		F55265641C522F3E002362F5 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55265631C522F3E002362F5 /* NotificationViewController.swift */; };
 		F55265661C522FD0002362F5 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55265651C522FD0002362F5 /* NotificationTableViewCell.swift */; };
 		F5B020451C60AA4B006C97E5 /* NotificationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B020441C60AA4B006C97E5 /* NotificationDetailsViewController.swift */; };
+		F5CADFFF1C6C9B5900070044 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CADFFE1C6C9B5900070044 /* NotificationModel.swift */; };
 		FB0A9DA937A9B64E32BDFF3C /* Pods_GeoLocus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0A04536BDB0507336147D5 /* Pods_GeoLocus.framework */; };
 /* End PBXBuildFile section */
 
@@ -595,6 +596,7 @@
 		F55265631C522F3E002362F5 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		F55265651C522FD0002362F5 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		F5B020441C60AA4B006C97E5 /* NotificationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailsViewController.swift; sourceTree = "<group>"; };
+		F5CADFFE1C6C9B5900070044 /* NotificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		F6A1D20234676659C7D4F0A6 /* Pods_GeoLocusTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoLocusTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFFB56FF0A817FDFA0EF8AF7 /* Pods-GeoLocus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoLocus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1137,6 +1139,7 @@
 				BF4BA0E11C5F661F0028D79B /* Thresholds.swift */,
 				BF87B26E1C6A0D5600DA6000 /* ConfigurationModel.swift */,
 				28328A371C646F58004E5F86 /* OverallScores.swift */,
+				F5CADFFE1C6C9B5900070044 /* NotificationModel.swift */,
 				6C34EA531C69F8A0000A0A0D /* DashboardModel.swift */,
 				2840EFDD1C6B20F10020B8FF /* Extensions.swift */,
 				BF6FA2A01C55F6880038DBDF /* CoreLocation.swift */,
@@ -1573,6 +1576,7 @@
 				6304FC1C1AD54B0D00734AEF /* DashboardViewController.swift in Sources */,
 				63014BB01B15C5290022FCC6 /* AppDelegate.m in Sources */,
 				638452371B0353AE00E895F7 /* LeaderBoardController.m in Sources */,
+				F5CADFFF1C6C9B5900070044 /* NotificationModel.swift in Sources */,
 				BF7337531C3FC2BF006094C0 /* HistoryScorePage.swift in Sources */,
 				BF4BA0E21C5F661F0028D79B /* Thresholds.swift in Sources */,
 				638451F51B0353A000E895F7 /* GeoLocusViewController.m in Sources */,

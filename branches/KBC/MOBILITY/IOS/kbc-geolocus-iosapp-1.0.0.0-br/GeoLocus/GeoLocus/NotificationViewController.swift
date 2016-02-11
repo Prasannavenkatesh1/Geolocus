@@ -11,6 +11,8 @@ import UIKit
 class NotificationViewController: UIViewController,UITableViewDataSource, UITableViewDelegate{
     var notificationListDict = [String: String]()
     var notificationListArray = [String]()
+    var notificationListModel = NotificationListModel?()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         notificationListDict = ["key1": "value1", "key2": "value2"]
@@ -27,7 +29,13 @@ class NotificationViewController: UIViewController,UITableViewDataSource, UITabl
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    func reloadView() {
+        if self.notificationListModel != nil {
+            
+        }
+        
+       
+    }
     //MARK: - Tableview Delegate & Datasource
     func tableView(tableView:UITableView, numberOfRowsInSection section:Int) -> Int
     {
