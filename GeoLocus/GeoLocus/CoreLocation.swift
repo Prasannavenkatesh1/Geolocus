@@ -396,7 +396,6 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         schedule: NSDate(),
         tripstatus: false)
     }
-    
     tempvar++
   }
   
@@ -419,17 +418,14 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     alert.show()
     
 
-//    let tripsum = TripSummaryModel(trip)
-//    var stringval:String = String(format: \(NSTimeZone.localTimeZone()))
-//    let ggg = SummaryModel(datausage: NSNumber(integer: 0),
-//      tripid: "qwqw",
-//      tripstarttime: startdate!,
-//      tripendtime: enddate!,
-//      timezone:stringval
-//      timezoneid: timezoneid,
-//      totalduration: "aaa")
+
+    let stringval:String = String(format: "\(NSTimeZone.localTimeZone())")
+    let summarymodal:SummaryModel = SummaryModel(datausage: NSNumber(integer: 0),
+      tripid: "qwqw",
+      tripstarttime: startdate!,
+      tripendtime: enddate!,
+      timezone:stringval)
     
-      
     // calculation needs to be done
     FacadeLayer.sharedinstance.dbactions.reterive()
     
