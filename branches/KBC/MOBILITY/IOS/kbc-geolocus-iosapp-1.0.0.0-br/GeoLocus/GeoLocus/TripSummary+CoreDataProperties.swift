@@ -2,7 +2,7 @@
 //  TripSummary+CoreDataProperties.swift
 //  GeoLocus
 //
-//  Created by Wearables Mac Mini on 10/02/16.
+//  Created by Wearables Mac Mini on 11/02/16.
 //  Copyright © 2016 Cognizant. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -24,8 +24,8 @@ extension TripSummary {
     @NSManaged var timezoneid: String?
     @NSManaged var totaldistance: NSNumber?
     @NSManaged var totalduration: NSNumber?
-    @NSManaged var tripendtime: String?
+    @NSManaged var tripendtime: NSDate?
     @NSManaged var tripid: String?
-    @NSManaged var tripstarttime: String?
+    @NSManaged var tripstarttime: NSDate?
 
 }

@@ -235,11 +235,11 @@
 		B640F0DE1C621C9E0051864F /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B640F0DD1C621C9E0051864F /* CALayer+UIColor.swift */; };
 		B648C20D1C58B83000EE52C3 /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B648C20B1C58B83000EE52C3 /* PageContentViewController.swift */; };
 		B648C20E1C58B83000EE52C3 /* WelcomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B648C20C1C58B83000EE52C3 /* WelcomePageViewController.swift */; };
-		BF2AA3A21C6B0847000D9A67 /* TripSummary+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2AA39E1C6B0847000D9A67 /* TripSummary+CoreDataProperties.swift */; };
-		BF2AA3A31C6B0847000D9A67 /* TripSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2AA39F1C6B0847000D9A67 /* TripSummary.swift */; };
 		BF2AA3A41C6B0847000D9A67 /* Configurations+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2AA3A01C6B0847000D9A67 /* Configurations+CoreDataProperties.swift */; };
 		BF2AA3A51C6B0847000D9A67 /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2AA3A11C6B0847000D9A67 /* Configurations.swift */; };
 		BF2D457F1C6C81080017EBB0 /* SummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D457E1C6C81070017EBB0 /* SummaryModel.swift */; };
+		BF2D45821C6CC1E90017EBB0 /* TripSummary+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D45801C6CC1E90017EBB0 /* TripSummary+CoreDataProperties.swift */; };
+		BF2D45831C6CC1E90017EBB0 /* TripSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D45811C6CC1E90017EBB0 /* TripSummary.swift */; };
 		BF43B3501C61D25900710E22 /* TripNotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF43B34F1C61D25900710E22 /* TripNotify.swift */; };
 		BF4BA0E21C5F661F0028D79B /* Thresholds.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4BA0E11C5F661F0028D79B /* Thresholds.swift */; };
 		BF4BA0E41C5F6CC70028D79B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4BA0E31C5F6CC70028D79B /* Config.swift */; };
@@ -560,11 +560,11 @@
 		B648C20B1C58B83000EE52C3 /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
 		B648C20C1C58B83000EE52C3 /* WelcomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomePageViewController.swift; sourceTree = "<group>"; };
 		BB0A04536BDB0507336147D5 /* Pods_GeoLocus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoLocus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BF2AA39E1C6B0847000D9A67 /* TripSummary+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TripSummary+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		BF2AA39F1C6B0847000D9A67 /* TripSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummary.swift; sourceTree = "<group>"; };
 		BF2AA3A01C6B0847000D9A67 /* Configurations+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Configurations+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BF2AA3A11C6B0847000D9A67 /* Configurations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		BF2D457E1C6C81070017EBB0 /* SummaryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryModel.swift; sourceTree = "<group>"; };
+		BF2D45801C6CC1E90017EBB0 /* TripSummary+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TripSummary+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BF2D45811C6CC1E90017EBB0 /* TripSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummary.swift; sourceTree = "<group>"; };
 		BF43B34F1C61D25900710E22 /* TripNotify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripNotify.swift; sourceTree = "<group>"; };
 		BF4BA0E11C5F661F0028D79B /* Thresholds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thresholds.swift; sourceTree = "<group>"; };
 		BF4BA0E31C5F6CC70028D79B /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -1045,8 +1045,6 @@
 		BF4E0D391C4F701E00BF53FB /* DBModels */ = {
 			isa = PBXGroup;
 			children = (
-				BF2AA39E1C6B0847000D9A67 /* TripSummary+CoreDataProperties.swift */,
-				BF2AA39F1C6B0847000D9A67 /* TripSummary.swift */,
 				BF2AA3A01C6B0847000D9A67 /* Configurations+CoreDataProperties.swift */,
 				BF2AA3A11C6B0847000D9A67 /* Configurations.swift */,
 				BF4D23761C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift */,
@@ -1061,6 +1059,8 @@
 				28398E521C637F32003D5BE5 /* Trip_Detail.swift */,
 				28398E531C637F32003D5BE5 /* Trip_Event+CoreDataProperties.swift */,
 				28398E541C637F32003D5BE5 /* Trip_Event.swift */,
+				BF2D45801C6CC1E90017EBB0 /* TripSummary+CoreDataProperties.swift */,
+				BF2D45811C6CC1E90017EBB0 /* TripSummary.swift */,
 			);
 			name = DBModels;
 			sourceTree = "<group>";
@@ -1586,6 +1586,7 @@
 				BF4BA0E41C5F6CC70028D79B /* Config.swift in Sources */,
 				638451F01B0353A000E895F7 /* FMResultSet.m in Sources */,
 				28CD01E11C69A42300EEC94A /* DetectingVechile.swift in Sources */,
+				BF2D45821C6CC1E90017EBB0 /* TripSummary+CoreDataProperties.swift in Sources */,
 				28F38A0B1C61EB3900A02E93 /* Badge.swift in Sources */,
 				636EF44C1B062B67007AA706 /* RegistrationDatabase.m in Sources */,
 				217C9FF61C6B3FA1000BE567 /* GroupBarViewController.swift in Sources */,
@@ -1626,12 +1627,11 @@
 				283A2B371C65D7C700F6BD16 /* Trip_Badge+CoreDataProperties.swift in Sources */,
 				6384523D1B0353AE00E895F7 /* RegistrationController.m in Sources */,
 				28328A341C646B8E004E5F86 /* OverallScore.swift in Sources */,
+				BF2D45831C6CC1E90017EBB0 /* TripSummary.swift in Sources */,
 				638451F21B0353A000E895F7 /* FMDatabasePool.m in Sources */,
-				BF2AA3A31C6B0847000D9A67 /* TripSummary.swift in Sources */,
 				6384523F1B0353AE00E895F7 /* SendingEmergencyInfo.m in Sources */,
 				63061B511BA03CD3006BF223 /* MapView.swift in Sources */,
 				638451F41B0353A000E895F7 /* GeoLocusAppDelegate.m in Sources */,
-				BF2AA3A21C6B0847000D9A67 /* TripSummary+CoreDataProperties.swift in Sources */,
 				283A2B381C65D7C700F6BD16 /* Trip_Badge.swift in Sources */,
 				63D086BE1B047D2A00BDD656 /* MLTableAlert.m in Sources */,
 				BF43B3501C61D25900710E22 /* TripNotify.swift in Sources */,

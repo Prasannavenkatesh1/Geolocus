@@ -79,9 +79,9 @@
         <attribute name="timezoneid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="totaldistance" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="totalduration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="tripendtime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tripendtime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="tripid" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="tripstarttime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tripstarttime" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
     <elements>
         <element name="Configurations" positionX="1341" positionY="65" width="189" height="178"/>
