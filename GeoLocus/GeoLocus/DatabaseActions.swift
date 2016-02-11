@@ -94,6 +94,29 @@ class DatabaseActions: NSObject {
     }
  }
   
+  func saveTripSummary(summarymodel:SummaryModel){
+    let tripsummary = NSEntityDescription.insertNewObjectForEntityForName("TripSummary",inManagedObjectContext: self.managedObjectContext) as! TripSummary
+    tripsummary.accelerationcount             = summarymodel.accelerationcount
+    tripsummary.attentionscore = summarymodel.attentionscore
+    tripsummary.brakingcount = summarymodel.brakingcount
+    tripsummary.brakingscore = summarymodel.brakingscore
+    tripsummary.datausage = summarymodel.datausage
+    tripsummary.ecoscore = summarymodel.ecoscore
+    tripsummary.timezone = summarymodel.timezone
+//    tripsummary.timezoneid = summarymodel.timezoneid
+    tripsummary.totaldistance = summarymodel.totaldistance
+    tripsummary.totalduration = summarymodel.totalduration
+    tripsummary.tripendtime = summarymodel.tripendtime
+    tripsummary.tripid = summarymodel.tripid
+    tripsummary.tripstarttime = summarymodel.tripstarttime
+    
+    
+    do{
+      try self.managedObjectContext.save()
+    }catch{
+      fatalError("not iserted")
+    }
+  }
  
   
   func saveConfiguration(configmodel:ConfigurationModel){
