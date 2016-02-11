@@ -1130,9 +1130,9 @@
 		BF7336FB1C3F9266006094C0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				28AF07CC1C69AC0A00D8D3F4 /* TermsAndConditionsViewController.swift */,
 				BF4F8D961C43840500895640 /* Cells */,
 				BF7337481C3FBCF4006094C0 /* RootViewController.swift */,
+				28AF07CC1C69AC0A00D8D3F4 /* TermsAndConditionsViewController.swift */,
 				B648C20B1C58B83000EE52C3 /* PageContentViewController.swift */,
 				B648C20C1C58B83000EE52C3 /* WelcomePageViewController.swift */,
 				BF73374A1C3FBD9E006094C0 /* Pageviewcontroller.swift */,

@@ -48,6 +48,9 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBAction func loginTapped(sender: UIButton) {     
         loginButton.backgroundColor = UIColor(red: 83.0/255.0, green: 178.0/255.0, blue: 98.0/255.0, alpha: 1.0)
         loginButton.setTitleColor(UIColor(red: 174.0/255.0, green: 174.0/255.0, blue: 174.0/255.0, alpha: 1.0),forState: UIControlState.Normal)
+        
+        let requestDictionary = ["j_password" : passwordText.text!,"j_username" : userNameText.text!,"languageCode" : self.selectedLanguageCode, "channel_type" : "IOS","_spring_security_remember_me" : "on"]
+        FacadeLayer.sharedinstance.httpclient.requestLoginData(StringConstants.LOGIN_URL,parametersHTTPBody:requestDictionary)
     }
     
     /* Check box button action */
@@ -97,18 +100,18 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     
     /* set URL for Terms and Conditions content */
     func termsAndConditionsURL(){
-//        var termsAndConditionsURL : String!
-//        termsAndConditionsURL = StringConstants.TERMS_AND_CONDITIONS_URL + "\(selectedLanguageCode)"
-//        FacadeLayer.sharedinstance.httpclient.getContentFromTermsAndConditionsRequest(termsAndConditionsURL, completionHandler: {(success, data) -> Void in
-//            if(success){
-//                if let unwrappedData = data{
-//                    self.termsAndConditionsString = NSString(data: unwrappedData, encoding: NSUTF8StringEncoding) as String!
-//                }
-//            }
-//            else{
-//                print("Error")
-//            }
-//        })
+        var termsAndConditionsURL : String!
+        termsAndConditionsURL = StringConstants.TERMS_AND_CONDITIONS_URL + "\(selectedLanguageCode)"
+        FacadeLayer.sharedinstance.httpclient.getContentFromTermsAndConditionsRequest(termsAndConditionsURL, completionHandler: {(success, data) -> Void in
+            if(success){
+                if let unwrappedData = data{
+                    self.termsAndConditionsString = NSString(data: unwrappedData, encoding: NSUTF8StringEncoding) as String!
+                }
+            }
+            else{
+                print("Error")
+            }
+        })
     }
     
     /* create modal dialog view controller for displaying terms and conditions */
