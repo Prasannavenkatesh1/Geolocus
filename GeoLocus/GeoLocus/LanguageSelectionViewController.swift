@@ -16,7 +16,7 @@ class LanguageSelectionViewController: UIViewController{
         
         var selectedLanguage : String!
         
-        sender.backgroundColor = UIColor(red: 0, green: 174, blue: 239, alpha: 1.0)
+        sender.backgroundColor = UIColor(red: 0, green: 174, blue: 239)
         sender.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         
         switch(sender.tag){

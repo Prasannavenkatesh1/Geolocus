@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import Alamofire
 
-class Httpclient: NSObject,NSURLSessionDelegate {
+class Httpclient: NSObject {
     var delegate = self
   /*
   {(parameters) -> returntype in

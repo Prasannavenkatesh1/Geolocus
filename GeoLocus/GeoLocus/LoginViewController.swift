@@ -45,9 +45,9 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     }
     
     /* Login button action */
-    @IBAction func loginTapped(sender: UIButton) {     
-        loginButton.backgroundColor = UIColor(red: 83.0/255.0, green: 178.0/255.0, blue: 98.0/255.0, alpha: 1.0)
-        loginButton.setTitleColor(UIColor(red: 174.0/255.0, green: 174.0/255.0, blue: 174.0/255.0, alpha: 1.0),forState: UIControlState.Normal)
+    @IBAction func loginTapped(sender: UIButton) {
+        loginButton.backgroundColor = UIColor(red: 83, green: 178, blue: 98)
+        loginButton.setTitleColor(UIColor(red: 174, green: 174, blue: 174), forState: .Normal)
         
         let requestDictionary = ["j_password" : passwordText.text!,"j_username" : userNameText.text!,"languageCode" : self.selectedLanguageCode, "channel_type" : "IOS","_spring_security_remember_me" : "on"]
         FacadeLayer.sharedinstance.httpclient.requestLoginData(StringConstants.LOGIN_URL,parametersHTTPBody:requestDictionary)
@@ -208,7 +208,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         var tokenID : String
         var firstTimeLogin = true
         
-        tokenID = ""
+        tokenID = "dd"
         
         if(tokenID.isEmpty){
             firstTimeLogin = true
@@ -266,6 +266,11 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     // MARK: Textfield Delegates Implementation
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        self.validate()
         return true
     }
 }

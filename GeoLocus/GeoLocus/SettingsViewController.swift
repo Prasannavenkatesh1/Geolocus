@@ -51,6 +51,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
     }
     
+    //MARK : Tableview delegate and datasource methods
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settingsCellTitles.count
     }
@@ -69,6 +70,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         let row = indexPath.row
         cell.textLabel?.text = settingsCellTitles[row]
+        cell.textLabel?.font = UIFont(name: "Helvetica Neue", size: 17)
+        cell.textLabel?.textColor = UIColor(red: 24, green: 31, blue: 41)
         
         if cell.respondsToSelector("setSeparatorInset:") {
             cell.separatorInset = UIEdgeInsetsZero
@@ -117,6 +120,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
 
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textColor = UIColor(netHex: 003665)
+        header.textLabel?.font = UIFont.boldSystemFontOfSize(15)
+        header.textLabel?.font = UIFont(name: "Helvetica Neue", size: 15)
+    }
 
     func backBtnTapped() {
        
