@@ -50,19 +50,19 @@ class HistoryScorePage: UIViewController {
         if self.overallScores != nil {
             self.drivingBehaviorArcView.foreGroundArcWidth = 8
             self.drivingBehaviorArcView.backGroundArcWidth = 8
-            self.drivingBehaviorArcView.ringLayer.strokeColor = UIColor.redColor().CGColor
+            self.drivingBehaviorArcView.ringLayer.strokeColor = UIColor(range: (self.overallScores?.overallScore.integerValue)!).CGColor
             self.drivingBehaviorArcView.animateScale = (self.overallScores?.overallScore.doubleValue)!/100.0
             self.drivingBehaviorArcView.setNeedsDisplay()
             
             self.speedingArcView.foreGroundArcWidth = 8
             self.speedingArcView.backGroundArcWidth = 8
-            self.speedingArcView.ringLayer.strokeColor = UIColor.greenColor().CGColor
+            self.speedingArcView.ringLayer.strokeColor = UIColor(range: (self.overallScores?.speedingScore.integerValue)!).CGColor
             self.speedingArcView.animateScale = (self.overallScores?.speedingScore.doubleValue)!/100.0
             self.speedingArcView.setNeedsDisplay()
             
             self.ecoArcView.foreGroundArcWidth = 8
             self.ecoArcView.backGroundArcWidth = 8
-            self.ecoArcView.ringLayer.strokeColor = UIColor.orangeColor().CGColor
+            self.ecoArcView.ringLayer.strokeColor = UIColor(range: (self.overallScores?.ecoScore.integerValue)!).CGColor
             self.ecoArcView.animateScale = (self.overallScores?.ecoScore.doubleValue)!/100.0
             self.ecoArcView.setNeedsDisplay()
             

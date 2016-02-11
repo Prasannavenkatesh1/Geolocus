@@ -87,9 +87,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-GeoLocus/Alamofire.framework"
   install_framework "Pods-GeoLocus/SDWebImage.framework"
   install_framework "Pods-GeoLocus/SwiftCharts.framework"
+  install_framework "Pods-GeoLocus/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-GeoLocus/Alamofire.framework"
   install_framework "Pods-GeoLocus/SDWebImage.framework"
   install_framework "Pods-GeoLocus/SwiftCharts.framework"
+  install_framework "Pods-GeoLocus/SwiftyJSON.framework"
 fi

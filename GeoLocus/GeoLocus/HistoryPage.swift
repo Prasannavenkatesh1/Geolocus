@@ -92,13 +92,13 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
             if self.tabSelected == MapZoneTab.MapSelected {
                 numOfRows = 1
             }else {
-                if let rows = self.tripZones?.count {
-                    numOfRows = rows      //change dynamically
+                if self.tripZones?.count > 0{
+                    numOfRows = (self.tripZones?.count)!      //change dynamically
                 }
             }
         }else if section == 2 {
-            if let rows = self.historyData?.count {
-                numOfRows = rows      //change dynamically
+            if self.historyData?.count > 0{
+                numOfRows = (self.historyData?.count)!      //change dynamically
             }
         }
         
@@ -138,9 +138,10 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
             
             cell.speedingView.foreGroundArcWidth = 8
             cell.speedingView.backGroundArcWidth = 8
-            cell.speedingView.ringLayer.strokeColor = UIColor.greenColor().CGColor          //changes dynamically
-            if let speedScore = self.tripScores?[indexPath.row].speedScore {
-                cell.speedingView.animateScale = speedScore.doubleValue/100.0
+                      //changes dynamically
+            if self.tripScores?.count > 0 {
+                cell.speedingView.ringLayer.strokeColor = UIColor(range: (self.tripScores?[indexPath.row].speedScore.integerValue)!).CGColor
+                cell.speedingView.animateScale = (self.tripScores?[indexPath.row].speedScore.doubleValue)!/100.0
             }
             if self.scoreRefreshRequired {
                 cell.speedingView.setNeedsDisplay()
@@ -148,9 +149,10 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
             
             cell.ecoView.foreGroundArcWidth = 8
             cell.ecoView.backGroundArcWidth = 8
-            cell.ecoView.ringLayer.strokeColor = UIColor.redColor().CGColor                 //changes dynamically
-            if let ecoScore = self.tripScores?[indexPath.row].ecoScore {
-                cell.ecoView.animateScale = ecoScore.doubleValue/100.0
+            
+            if self.tripScores?.count > 0 {
+                cell.ecoView.ringLayer.strokeColor = UIColor(range: (self.tripScores?[indexPath.row].ecoScore.integerValue)!).CGColor
+                cell.ecoView.animateScale = (self.tripScores?[indexPath.row].ecoScore.doubleValue)!/100.0
             }
             if self.scoreRefreshRequired {
                 cell.ecoView.setNeedsDisplay()
@@ -179,9 +181,10 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
                 
                 cell.speedingView.foreGroundArcWidth = 8
                 cell.speedingView.backGroundArcWidth = 8
-                cell.speedingView.ringLayer.strokeColor = UIColor.greenColor().CGColor      //changes dynamically
-                if let speedBehaviour = self.tripZones?[indexPath.row].speedBehaviour {
-                     cell.speedingView.animateScale = speedBehaviour.doubleValue/100.0
+                
+                if self.tripZones?.count > 0 {
+                    cell.speedingView.ringLayer.strokeColor = UIColor(range: (self.tripZones?[indexPath.row].speedBehaviour.integerValue)!).CGColor
+                     cell.speedingView.animateScale = (self.tripZones?[indexPath.row].speedBehaviour.doubleValue)!/100.0
                 }
                 
                 if self.zoneRefreshRequired {
@@ -365,19 +368,20 @@ class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
-        if self.recentTripSelectedIndexPath == nil || self.recentTripSelectedIndexPath == indexPath {
-            return
-        }
-        
-        self.recentTripSelectedIndexPath = indexPath
-        
         if indexPath.section == 1 {
             if self.tabSelected == MapZoneTab.ZoneSelected {
              animateZoneRow(indexPath)
             }
         }else if indexPath.section == 2 {
             //handle last 5 trips here
+            if self.tripDetailRowSelected == indexPath.row {
+                return
+            }
+            
             self.tripDetailRowSelected = indexPath.row
+            
+            
+            
             reload()
         }
     }
