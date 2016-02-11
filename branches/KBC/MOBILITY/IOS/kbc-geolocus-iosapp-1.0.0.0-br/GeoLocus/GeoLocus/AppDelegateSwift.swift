@@ -76,6 +76,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       conmodel.ecoweightage_braking = NSNumber(double: 0.5)
       conmodel.ecoweightage_acceleration = NSNumber(double: 0.2)
       FacadeLayer.sharedinstance.dbactions.saveConfiguration(conmodel)
+      
+      
 
     }
       

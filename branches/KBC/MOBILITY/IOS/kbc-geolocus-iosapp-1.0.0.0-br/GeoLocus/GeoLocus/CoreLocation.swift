@@ -25,7 +25,8 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   var configmodel           :ConfigurationModel?
   var startdate             :NSDate?
   var enddate               :NSDate?
-  
+  var timezoneid            :String?
+
   
   override init() {
     locationmanager =  CLLocationManager()
@@ -83,6 +84,14 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     if (locations.count > 1) {
       oldLocation = locations[locations.count - 2];
     }
+    
+//    CLGeocoder().reverseGeocodeLocation(newLocation) { (placemarks, error) -> Void in
+//      if error == nil && placemarks!.count > 0 {
+//        let location = placemarks![0]
+////        print("\(location.ISOcountryCode)")
+//        self.timezoneid! = location.ISOcountryCode!
+//      }
+//    }
   
     let coord = newLocation.coordinate
     
@@ -409,20 +418,24 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     
     alert.show()
     
-//    var temp:TripSummaryModel = TripSummaryModel()
+
+//    let tripsum = TripSummaryModel(trip)
+//    var stringval:String = String(format: \(NSTimeZone.localTimeZone()))
+//    let ggg = SummaryModel(datausage: NSNumber(integer: 0),
+//      tripid: "qwqw",
+//      tripstarttime: startdate!,
+//      tripendtime: enddate!,
+//      timezone:stringval
+//      timezoneid: timezoneid,
+//      totalduration: "aaa")
     
+      
     // calculation needs to be done
     FacadeLayer.sharedinstance.dbactions.reterive()
     
   }
   
-  func getDuration(sDate:NSDate, eDate:NSDate) -> NSInteger{
-    let calendar = NSCalendar.currentCalendar()//CalendarUnitSecond
-    let datecomponenets = calendar.components(.Second, fromDate:sDate , toDate: eDate, options: [])
-    let seconds:NSInteger = datecomponenets.second
-    print("Seconds: \(seconds)")
-    return seconds
-  }
+ 
   
   func locationManager(manager: CLLocationManager,
     didChangeAuthorizationStatus status: CLAuthorizationStatus) {

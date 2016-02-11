@@ -113,14 +113,16 @@ struct ArrayConstants {
         case Settings   = "Settings"
         case Reports    = "Reports"
         case Terms      = "Terms & Condition"
-        case Exit       = "Exit"
-        
+//        case Exit       = "Exit"
+      
     }
     
     //Need more elegant way to return array of enum type
     
-    static let MenuList: [String]? = [MenuItems.Badges.rawValue, MenuItems.Settings.rawValue, MenuItems.Reports.rawValue, MenuItems.Terms.rawValue, MenuItems.Exit.rawValue] 
-    
+//    static let MenuList: [String]? = [MenuItems.Badges.rawValue, MenuItems.Settings.rawValue, MenuItems.Reports.rawValue, MenuItems.Terms.rawValue, MenuItems.Exit.rawValue] 
+  
+  static let MenuList: [String]? = [MenuItems.Badges.rawValue, MenuItems.Settings.rawValue, MenuItems.Reports.rawValue, MenuItems.Terms.rawValue] 
+  
     static let MenuSection = ["Default"]
 }
 

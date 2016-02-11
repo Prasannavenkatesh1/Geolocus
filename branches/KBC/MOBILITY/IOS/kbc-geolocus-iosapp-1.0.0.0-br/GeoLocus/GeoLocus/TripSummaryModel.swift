@@ -8,6 +8,16 @@
 
 import Foundation
 
+//struct TripSummaryModel{
+//  let datausage     :NSNumber
+//  
+//  init(datausage:NSNumber){
+//    
+//  }
+//}
+
+
+/*
 protocol BaseTrip{
   var brakingcount      :NSNumber
   var accelerationcount :NSNumber
@@ -20,21 +30,28 @@ protocol Score{
   var ecoscore          :NSNumber
 }
 
-struct TripSummaryModel:BaseTrip,Score {
-  
-  let datausage     :NSNumber
+//struct TripSummaryModel : BaseTrip,Score {
+
+struct TripSummaryModel{
+
+  let datausage     :NSNumber?
   let tripid        :String
   let tripstarttime :String
-  let tripendtime   :String
-  let timezone      :String
-  let timezoneid    :String
-  let totalduration :String
+  let tripendtime   :String?
+  let timezone      :String?
+  let timezoneid    :String?
+  let totalduration :String?
   
   var attentionscore    :NSNumber   = 0
   var brakingcount      :NSNumber   = FacadeLayer.sharedinstance.dbactions.fetchEventCount(Events.EventType.BRAKING)
   var accelerationcount :NSNumber   = FacadeLayer.sharedinstance.dbactions.fetchEventCount(Events.EventType.ACCELERATION)
   var totaldistance     :NSNumber   = FacadeLayer.sharedinstance.dbactions.fetchTotalDistance()
   
+  init(tripid:String,tripstarttime:String){
+    
+  }
+  
+
 //           Braking score = 1-(((number of Braking Events in Trip x weightage)/distance in kms))*100
   var brakingscore:NSNumber
   {
@@ -67,5 +84,16 @@ struct TripSummaryModel:BaseTrip,Score {
     }
   }
   
-  
 }
+
+
+
+func getDuration(sDate:NSDate, eDate:NSDate) -> NSInteger{
+  let calendar = NSCalendar.currentCalendar()//CalendarUnitSecond
+  let datecomponenets = calendar.components(.Second, fromDate:sDate , toDate: eDate, options: [])
+  let seconds:NSInteger = datecomponenets.second
+  print("Seconds: \(seconds)")
+  return seconds
+}
+
+*/

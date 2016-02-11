@@ -74,9 +74,9 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
         case .Terms:
             let termsView = storyBoard.instantiateViewControllerWithIdentifier(StringConstants.TermsAndConditionViewController)
             self.revealViewController().pushFrontViewController(termsView, animated: true)
-        case .Exit:
-             print("Logout or kill Application?")
-            
+//        case .Exit:
+//             print("Logout or kill Application?")
+          
         }
       
     }
