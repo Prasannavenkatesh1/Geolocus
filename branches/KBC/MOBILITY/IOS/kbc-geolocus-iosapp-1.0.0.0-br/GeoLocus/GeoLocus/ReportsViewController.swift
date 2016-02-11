@@ -11,16 +11,23 @@ import UIKit
 class ReportsViewController: UIViewController {
     
     @IBOutlet weak var groupBarView: UIView!
+    @IBOutlet weak var filterPopUpView: UIView!
+    @IBOutlet weak var closePopUpBtn: UIButton!
+    
+    var groupBarVC: GroupBarViewController?
     
     override func viewDidLoad() {
-//        ReportsViewController
+    }
+    
+    override func viewDidLayoutSubviews() {
         
-        let storyBoard = UIStoryboard(name: StringConstants.StoryBoardIdentifier, bundle: nil)
-        let groupBarVC = storyBoard.instantiateViewControllerWithIdentifier(StringConstants.GroupBarViewController) as? GroupBarViewController
-        self.addChildViewController(groupBarVC!)
-        groupBarVC!.groupBarViewFrame = groupBarView.frame
-        groupBarVC!.view.frame = groupBarView.frame
-        groupBarView.addSubview((groupBarVC?.view!)!)
+        if groupBarVC == nil {
+            let storyBoard = UIStoryboard(name: StringConstants.StoryBoardIdentifier, bundle: nil)
+            groupBarVC = (storyBoard.instantiateViewControllerWithIdentifier(StringConstants.GroupBarViewController) as? GroupBarViewController)!
+            self.addChildViewController(groupBarVC!)
+            groupBarVC!.groupBarViewFrame = groupBarView.frame
+            groupBarView.addSubview(groupBarVC!.view!)
+        }
     }
     
     //MARK :- UIButton Actions
@@ -32,6 +39,11 @@ class ReportsViewController: UIViewController {
         self.revealViewController().setFrontViewController(navigationView, animated: true)
     }
  
+    @IBAction func didTapOnFilterBtn(sender: UIButton) {
+        filterPopUpView.hidden = false
+    }
 
-
+    @IBAction func didTapOnCloseBtn(sender: UIButton) {
+        filterPopUpView.hidden = true
+    }
 }
