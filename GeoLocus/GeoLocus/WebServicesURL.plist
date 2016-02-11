@@ -30,5 +30,17 @@
 	<string></string>
 	<key>RegisterPNURL</key>
 	<string></string>
+	<key>RegisterDeviceTokenServiceURL</key>
+	<string></string>
+	<key>NotificationCountServiceURL</key>
+	<string></string>
+	<key>NotificationListServiceURL</key>
+	<string></string>
+	<key>NotificationDetailsServiceURL</key>
+	<string></string>
+	<key>DeleteNotificationServiceURL</key>
+	<string></string>
+	<key>CompetitionAcceptanceServiceURL</key>
+	<string></string>
 </dict>
 </plist>

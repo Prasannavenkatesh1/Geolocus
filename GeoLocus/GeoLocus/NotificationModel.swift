@@ -8,13 +8,33 @@
 
 import Foundation
 
-struct NotificationModel {
+struct NotificationListModel {
     let title: String
     let date: String
     let day: String
     let notificationImage: String
     let message: String
     let notificationID: NSNumber
+    let notificationStatus: String
+    
+    init(title:String, date:String, day:String, notificationImage:String, message:String, notificationID:NSNumber, notificationStatus:String){
+        
+        self.title = title
+        self.date = date
+        self.day = day
+        self.notificationImage = notificationImage
+        self.message = message
+        self.notificationID = notificationID
+        self.notificationStatus = notificationStatus
+    }
+}
+
+struct NotificationDetailsModel {
+    let title: String
+    let date: String
+    let day: String
+    let notificationImage: String
+    let message: String
     let notificationType: String
     let competition_distance_score: NSNumber
     let competition_violation: NSNumber
@@ -29,14 +49,13 @@ struct NotificationModel {
     let user_overallscore: NSNumber
     let user_speedscore: NSNumber
     
-    init(title:String, date:String, day:String, notificationImage:String, message:String, notificationID:NSNumber, notificationType:String, competition_distance_score:NSNumber, competition_violation:NSNumber, competition_ecoscore:NSNumber, competition_attentionscore:NSNumber, competition_overallscore:NSNumber, competition_speedscore:NSNumber, user_distance_score:NSNumber, user_violation:NSNumber, user_ecoscore:NSNumber, user_attentionscore:NSNumber, user_overallscore:NSNumber, user_speedscore:NSNumber){
+    init(title:String, date:String, day:String, notificationImage:String, message:String, notificationType:String, competition_distance_score:NSNumber, competition_violation:NSNumber, competition_ecoscore:NSNumber, competition_attentionscore:NSNumber, competition_overallscore:NSNumber, competition_speedscore:NSNumber, user_distance_score:NSNumber, user_violation:NSNumber, user_ecoscore:NSNumber, user_attentionscore:NSNumber, user_overallscore:NSNumber, user_speedscore:NSNumber){
         
         self.title = title
         self.date = date
         self.day = day
         self.notificationImage = notificationImage
         self.message = message
-        self.notificationID = notificationID
         self.notificationType = notificationType
         self.competition_distance_score = competition_distance_score
         self.competition_violation = competition_violation
