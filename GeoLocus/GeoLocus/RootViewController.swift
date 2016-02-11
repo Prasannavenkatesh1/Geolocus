@@ -11,15 +11,23 @@ import CoreMotion
 
 class RootViewController: UIViewController {
   
-  
+    @IBOutlet var segmentControl: HMSegmentedControl!
     @IBOutlet var sideMenuButton: UIBarButtonItem!
     var labelNotificationCount:UILabel!
     var categories = [String]()
     let activitymanager = CMMotionActivityManager()
+    var currentSelectedIndex : Int!
 
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        currentSelectedIndex = 0
+        self.getCustomizedSegmentedControl(self.segmentControl)
+        self.segmentControl.addTarget(self, action: "segmentedControlChangedValue:", forControlEvents: UIControlEvents.ValueChanged)
+       // self.segmentControl .addTarget(self, action:"segmentedControlChangedValue:", forControlEvents: )
+        self.segmentControl.sectionTitles = ["Abstract","Dashboard", "History",  "Overall"]
+        self.segmentControl.reloadInputViews()
+
      
         FacadeLayer.sharedinstance.corelocation.initLocationManager()
       
@@ -141,4 +149,30 @@ class RootViewController: UIViewController {
         }
         
     }
+    
+    func getCustomizedSegmentedControl (segmentControl :HMSegmentedControl) -> HMSegmentedControl {
+            segmentControl.autoresizingMask = UIViewAutoresizing.FlexibleRightMargin
+            segmentControl.autoresizingMask = UIViewAutoresizing.FlexibleWidth
+            segmentControl.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10)
+            segmentControl.font =  UIFont (name: "HelveticaNeue", size: 16)
+            if #available(iOS 8.2, *) {
+                segmentControl.font = UIFont.systemFontOfSize(16, weight: UIFontWeightSemibold)
+            } else {
+                // Fallback on earlier versions
+            }
+            segmentControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyleDynamic
+            segmentControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe
+            segmentControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown
+            segmentControl.backgroundColor = UIColor.whiteColor()
+            segmentControl.textColor = UIColor(netHex:  0x4c7394)
+            segmentControl.selectedTextColor = UIColor(netHex: 0x003665)
+            segmentControl.selectionIndicatorColor = UIColor(netHex: 0x02abf2)
+            segmentControl.selectionIndicatorHeight = 5.0
+        return segmentControl
+    }
+    
+    func segmentedControlChangedValue(segmentControl :HMSegmentedControl) -> Void{
+        currentSelectedIndex = segmentControl.selectedSegmentIndex
+    }
+    
 }

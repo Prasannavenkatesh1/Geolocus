@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A9D9F90C552EA717EE57041 /* Pods_GeoLocus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44319C4E7A14E359CCBE50F0 /* Pods_GeoLocus.framework */; };
 		217C9FF61C6B3FA1000BE567 /* GroupBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217C9FF51C6B3FA1000BE567 /* GroupBarViewController.swift */; };
 		280D592A1C6C7EE600270CDC /* trip_details.json in Resources */ = {isa = PBXBuildFile; fileRef = 280D59291C6C7EE600270CDC /* trip_details.json */; };
 		28328A331C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A2F1C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift */; };
@@ -213,6 +212,7 @@
 		6CCAF90C1C4E0A7B00484056 /* RightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAF90B1C4E0A7B00484056 /* RightViewController.swift */; };
 		6CCAF9101C4E20D500484056 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCAF90F1C4E20D500484056 /* ErrorHandler.swift */; };
 		6CEAF3251C4FBB2100F13379 /* ArcGraphicsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEAF3241C4FBB2100F13379 /* ArcGraphicsController.swift */; };
+		798F2F270D0F6351CBB4ADC2 /* Pods_GeoLocusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6A1D20234676659C7D4F0A6 /* Pods_GeoLocusTests.framework */; };
 		A61E44CC1B32C133001D3461 /* weeklyReport.html in Resources */ = {isa = PBXBuildFile; fileRef = A61E44CB1B32C133001D3461 /* weeklyReport.html */; };
 		A61E44CE1B32C145001D3461 /* canvasjs.min.js in Resources */ = {isa = PBXBuildFile; fileRef = A61E44CD1B32C144001D3461 /* canvasjs.min.js */; };
 		A681B4BA1B3AD73100313629 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = A681B4B91B3AD73100313629 /* test.html */; };
@@ -265,6 +265,7 @@
 		F55265641C522F3E002362F5 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55265631C522F3E002362F5 /* NotificationViewController.swift */; };
 		F55265661C522FD0002362F5 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55265651C522FD0002362F5 /* NotificationTableViewCell.swift */; };
 		F5B020451C60AA4B006C97E5 /* NotificationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B020441C60AA4B006C97E5 /* NotificationDetailsViewController.swift */; };
+		FB0A9DA937A9B64E32BDFF3C /* Pods_GeoLocus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0A04536BDB0507336147D5 /* Pods_GeoLocus.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -278,7 +279,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		10F13FC629960E9EB8E54E0C /* Pods-GeoLocus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoLocus.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus.release.xcconfig"; sourceTree = "<group>"; };
 		217C9FF51C6B3FA1000BE567 /* GroupBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupBarViewController.swift; sourceTree = "<group>"; };
 		280D59291C6C7EE600270CDC /* trip_details.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = trip_details.json; sourceTree = "<group>"; };
 		28328A2F1C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OverallScore+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -304,7 +304,7 @@
 		28F38A0F1C61EBB300A02E93 /* HistoryTripDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTripDetailCell.swift; sourceTree = "<group>"; };
 		28F38A101C61EBB300A02E93 /* HistoryTripScoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTripScoreCell.swift; sourceTree = "<group>"; };
 		28F38A111C61EBB300A02E93 /* HistoryZoneViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryZoneViewCell.swift; sourceTree = "<group>"; };
-		44319C4E7A14E359CCBE50F0 /* Pods_GeoLocus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoLocus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		339B26F867F3F191B97829BC /* Pods-GeoLocusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoLocusTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoLocusTests/Pods-GeoLocusTests.debug.xcconfig"; sourceTree = "<group>"; };
 		63014BAE1B15C5290022FCC6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		63014BAF1B15C5290022FCC6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		6304FC1B1AD54B0D00734AEF /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -532,6 +532,7 @@
 		6CCAF90B1C4E0A7B00484056 /* RightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightViewController.swift; sourceTree = "<group>"; };
 		6CCAF90F1C4E20D500484056 /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		6CEAF3241C4FBB2100F13379 /* ArcGraphicsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcGraphicsController.swift; sourceTree = "<group>"; };
+		9AF4453F9B415725EF1F9FE9 /* Pods-GeoLocus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoLocus.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus.release.xcconfig"; sourceTree = "<group>"; };
 		A61E44CB1B32C133001D3461 /* weeklyReport.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = weeklyReport.html; path = Html/weeklyReport.html; sourceTree = "<group>"; };
 		A61E44CD1B32C144001D3461 /* canvasjs.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = canvasjs.min.js; path = JS/canvasjs.min.js; sourceTree = "<group>"; };
 		A681B4B91B3AD73100313629 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = test.html; path = Html/test.html; sourceTree = "<group>"; };
@@ -552,12 +553,12 @@
 		A6DB81431B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRIP_SUMMARY_COLLECTDATA.m; sourceTree = "<group>"; };
 		A6DB81451B7346AF008D3F33 /* DASHBOARD_PARAMETER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DASHBOARD_PARAMETER.h; sourceTree = "<group>"; };
 		A6DB81461B7346AF008D3F33 /* DASHBOARD_PARAMETER.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DASHBOARD_PARAMETER.m; sourceTree = "<group>"; };
-		AA7811FEA1962DE3E4724EB8 /* Pods-GeoLocus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoLocus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus.debug.xcconfig"; sourceTree = "<group>"; };
 		B63F53EB1C51EAFA0070002E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B63F53EC1C51EAFA0070002E /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
 		B640F0DD1C621C9E0051864F /* CALayer+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+UIColor.swift"; sourceTree = "<group>"; };
 		B648C20B1C58B83000EE52C3 /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
 		B648C20C1C58B83000EE52C3 /* WelcomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomePageViewController.swift; sourceTree = "<group>"; };
+		BB0A04536BDB0507336147D5 /* Pods_GeoLocus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoLocus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF2AA39E1C6B0847000D9A67 /* TripSummary+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TripSummary+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BF2AA39F1C6B0847000D9A67 /* TripSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummary.swift; sourceTree = "<group>"; };
 		BF2AA3A01C6B0847000D9A67 /* Configurations+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Configurations+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -590,9 +591,12 @@
 		BF7337521C3FC2BF006094C0 /* HistoryScorePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryScorePage.swift; sourceTree = "<group>"; };
 		BF87B26E1C6A0D5600DA6000 /* ConfigurationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationModel.swift; sourceTree = "<group>"; };
 		BFE454751C64DCD6003BC0F2 /* TripSummaryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryModel.swift; sourceTree = "<group>"; };
+		E94E61791B013D7B74CB16D9 /* Pods-GeoLocusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoLocusTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoLocusTests/Pods-GeoLocusTests.release.xcconfig"; sourceTree = "<group>"; };
 		F55265631C522F3E002362F5 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		F55265651C522FD0002362F5 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		F5B020441C60AA4B006C97E5 /* NotificationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailsViewController.swift; sourceTree = "<group>"; };
+		F6A1D20234676659C7D4F0A6 /* Pods_GeoLocusTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoLocusTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFFB56FF0A817FDFA0EF8AF7 /* Pods-GeoLocus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoLocus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -632,7 +636,7 @@
 				635194CD1AD3D4CC002ED1D0 /* QuartzCore.framework in Frameworks */,
 				635194CE1AD3D4CC002ED1D0 /* SystemConfiguration.framework in Frameworks */,
 				635194CF1AD3D4CC002ED1D0 /* UIKit.framework in Frameworks */,
-				0A9D9F90C552EA717EE57041 /* Pods_GeoLocus.framework in Frameworks */,
+				FB0A9DA937A9B64E32BDFF3C /* Pods_GeoLocus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -640,6 +644,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				798F2F270D0F6351CBB4ADC2 /* Pods_GeoLocusTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,6 +657,17 @@
 				280D59291C6C7EE600270CDC /* trip_details.json */,
 			);
 			name = JSON;
+			sourceTree = "<group>";
+		};
+		4B91784A4AFD29D101AE0A7C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FFFB56FF0A817FDFA0EF8AF7 /* Pods-GeoLocus.debug.xcconfig */,
+				9AF4453F9B415725EF1F9FE9 /* Pods-GeoLocus.release.xcconfig */,
+				339B26F867F3F191B97829BC /* Pods-GeoLocusTests.debug.xcconfig */,
+				E94E61791B013D7B74CB16D9 /* Pods-GeoLocusTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		633764D31AE53DE9005D6597 /* Roboto */ = {
@@ -684,7 +700,7 @@
 				635194891AD3AAC7002ED1D0 /* GeoLocusTests */,
 				635194721AD3AAC7002ED1D0 /* Products */,
 				6384524A1B03547900E895F7 /* Supporting Files */,
-				7BE7DB25C02160633E313C7C /* Pods */,
+				4B91784A4AFD29D101AE0A7C /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -758,7 +774,8 @@
 				635194B11AD3D4CC002ED1D0 /* QuartzCore.framework */,
 				635194B21AD3D4CC002ED1D0 /* SystemConfiguration.framework */,
 				635194B31AD3D4CC002ED1D0 /* UIKit.framework */,
-				44319C4E7A14E359CCBE50F0 /* Pods_GeoLocus.framework */,
+				BB0A04536BDB0507336147D5 /* Pods_GeoLocus.framework */,
+				F6A1D20234676659C7D4F0A6 /* Pods_GeoLocusTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1014,15 +1031,6 @@
 			name = "External frameworks";
 			sourceTree = "<group>";
 		};
-		7BE7DB25C02160633E313C7C /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				AA7811FEA1962DE3E4724EB8 /* Pods-GeoLocus.debug.xcconfig */,
-				10F13FC629960E9EB8E54E0C /* Pods-GeoLocus.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		BF2AA3A61C6B70BB000D9A67 /* CustomPlists */ = {
 			isa = PBXGroup;
 			children = (
@@ -1212,12 +1220,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 635194901AD3AAC7002ED1D0 /* Build configuration list for PBXNativeTarget "GeoLocus" */;
 			buildPhases = (
-				9AD36CB7911583CAAB11C8FD /* Check Pods Manifest.lock */,
+				FA5DCD68CB9A4ABEF9430922 /* Check Pods Manifest.lock */,
 				6351946D1AD3AAC7002ED1D0 /* Sources */,
 				6351946E1AD3AAC7002ED1D0 /* Frameworks */,
 				6351946F1AD3AAC7002ED1D0 /* Resources */,
-				081C610416C170EC300EE004 /* Embed Pods Frameworks */,
-				F01764DC08C11E3D371882F2 /* Copy Pods Resources */,
+				30CD9E641FA2BE17F51AAAE9 /* Embed Pods Frameworks */,
+				9F1F049A842C0FBEECFE63B5 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1232,9 +1240,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 635194931AD3AAC7002ED1D0 /* Build configuration list for PBXNativeTarget "GeoLocusTests" */;
 			buildPhases = (
+				B7D25775AEC595B41F19AA45 /* Check Pods Manifest.lock */,
 				635194821AD3AAC7002ED1D0 /* Sources */,
 				635194831AD3AAC7002ED1D0 /* Frameworks */,
 				635194841AD3AAC7002ED1D0 /* Resources */,
+				5348F3F9234369F4CC4A9E16 /* Embed Pods Frameworks */,
+				B16E0B5E52B93FCCB0C301D9 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1408,7 +1419,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		081C610416C170EC300EE004 /* Embed Pods Frameworks */ = {
+		30CD9E641FA2BE17F51AAAE9 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1423,7 +1434,52 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9AD36CB7911583CAAB11C8FD /* Check Pods Manifest.lock */ = {
+		5348F3F9234369F4CC4A9E16 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoLocusTests/Pods-GeoLocusTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F1F049A842C0FBEECFE63B5 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B16E0B5E52B93FCCB0C301D9 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoLocusTests/Pods-GeoLocusTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B7D25775AEC595B41F19AA45 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1438,19 +1494,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F01764DC08C11E3D371882F2 /* Copy Pods Resources */ = {
+		FA5DCD68CB9A4ABEF9430922 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1735,7 +1791,7 @@
 		};
 		635194911AD3AAC7002ED1D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA7811FEA1962DE3E4724EB8 /* Pods-GeoLocus.debug.xcconfig */;
+			baseConfigurationReference = FFFB56FF0A817FDFA0EF8AF7 /* Pods-GeoLocus.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1764,7 +1820,7 @@
 		};
 		635194921AD3AAC7002ED1D0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 10F13FC629960E9EB8E54E0C /* Pods-GeoLocus.release.xcconfig */;
+			baseConfigurationReference = 9AF4453F9B415725EF1F9FE9 /* Pods-GeoLocus.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1793,6 +1849,7 @@
 		};
 		635194941AD3AAC7002ED1D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 339B26F867F3F191B97829BC /* Pods-GeoLocusTests.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1817,6 +1874,7 @@
 		};
 		635194951AD3AAC7002ED1D0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E94E61791B013D7B74CB16D9 /* Pods-GeoLocusTests.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
