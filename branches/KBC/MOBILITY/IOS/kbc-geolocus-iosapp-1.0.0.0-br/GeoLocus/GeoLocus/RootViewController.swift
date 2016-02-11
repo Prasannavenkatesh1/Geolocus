@@ -16,7 +16,7 @@ class RootViewController: UIViewController {
     var labelNotificationCount:UILabel!
     var categories = [String]()
     let activitymanager = CMMotionActivityManager()
-    var currentSelectedIndex : Int!
+    var currentSelectedIndex : NSNumber!
 
   
     override func viewDidLoad() {
@@ -123,10 +123,11 @@ class RootViewController: UIViewController {
   
   func getSelectedIndex(vcindex:NSNotification) {
 //    print("index \(vcindex.userInfo)")
-    var getindex = vcindex.userInfo!["getindex"]
+    let getindex = vcindex.userInfo!["getindex"]
     print(getindex);
 
   }
+    
  func  pushToNotificationScreen(sender: UIButton!) {
     self.performSegueWithIdentifier("Notificationsegue", sender: self);
 
@@ -173,6 +174,9 @@ class RootViewController: UIViewController {
     
     func segmentedControlChangedValue(segmentControl :HMSegmentedControl) -> Void{
         currentSelectedIndex = segmentControl.selectedSegmentIndex
+        NSNotificationCenter.defaultCenter().postNotificationName("segmentindexchanged",
+            object:nil,
+            userInfo:["getindex":currentSelectedIndex!])
     }
     
 }
