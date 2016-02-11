@@ -84,7 +84,7 @@ struct StringConstants {
     static let BADGE_CONTENT_ICON_RIGHT_PADDING = 30.0
     static let BADGE_CONTENT_ICON_WIDTH = 84.0
     
-    static var appDataSynced = false
+    static var appDataSynced = true
     
     static let CHANNEL_TYPE = "iOS"
 }

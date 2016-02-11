@@ -320,6 +320,11 @@ class BadgesViewController: UIViewController, UITableViewDataSource, UITableView
         }
         */
         
+        
+        
+        
+        
+        
         /*
         let badge1 = Badge(withIcon:"https://" , badgeTitle: "king of the route", badgeDescription: "No speed violation for 300km on the highways", isEarned: true, orderIndex: 1, badgeType: Badge.BadgesType.Badge, additionalMsg: nil)
         self.badgeEarnedArray.append(badge1)

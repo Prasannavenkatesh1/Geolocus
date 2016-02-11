@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A9D9F90C552EA717EE57041 /* Pods_GeoLocus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44319C4E7A14E359CCBE50F0 /* Pods_GeoLocus.framework */; };
 		217C9FF61C6B3FA1000BE567 /* GroupBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217C9FF51C6B3FA1000BE567 /* GroupBarViewController.swift */; };
+		280D592A1C6C7EE600270CDC /* trip_details.json in Resources */ = {isa = PBXBuildFile; fileRef = 280D59291C6C7EE600270CDC /* trip_details.json */; };
 		28328A331C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A2F1C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift */; };
 		28328A341C646B8E004E5F86 /* OverallScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A301C646B8E004E5F86 /* OverallScore.swift */; };
 		28328A381C646F58004E5F86 /* OverallScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A371C646F58004E5F86 /* OverallScores.swift */; };
@@ -278,6 +279,7 @@
 /* Begin PBXFileReference section */
 		10F13FC629960E9EB8E54E0C /* Pods-GeoLocus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoLocus.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus.release.xcconfig"; sourceTree = "<group>"; };
 		217C9FF51C6B3FA1000BE567 /* GroupBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupBarViewController.swift; sourceTree = "<group>"; };
+		280D59291C6C7EE600270CDC /* trip_details.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = trip_details.json; sourceTree = "<group>"; };
 		28328A2F1C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OverallScore+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		28328A301C646B8E004E5F86 /* OverallScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverallScore.swift; sourceTree = "<group>"; };
 		28328A371C646F58004E5F86 /* OverallScores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverallScores.swift; sourceTree = "<group>"; };
@@ -642,6 +644,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		280D59281C6C7ED100270CDC /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				280D59291C6C7EE600270CDC /* trip_details.json */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
 		633764D31AE53DE9005D6597 /* Roboto */ = {
 			isa = PBXGroup;
 			children = (
@@ -1087,6 +1097,7 @@
 		BF7336F81C3F9243006094C0 /* New */ = {
 			isa = PBXGroup;
 			children = (
+				280D59281C6C7ED100270CDC /* JSON */,
 				BF2AA3A61C6B70BB000D9A67 /* CustomPlists */,
 				6351947F1AD3AAC7002ED1D0 /* LaunchScreen.xib */,
 				BF5D3AB71C4E4F6500DDFDC1 /* Localized.strings */,
@@ -1360,6 +1371,7 @@
 				63955CA01AD7A593006A1B04 /* jquery.knob.min.js in Resources */,
 				6351947E1AD3AAC7002ED1D0 /* Images.xcassets in Resources */,
 				6391CF991B4A4C7F002E940E /* Main6.storyboard in Resources */,
+				280D592A1C6C7EE600270CDC /* trip_details.json in Resources */,
 				633764E81AE53DE9005D6597 /* Roboto-LightItalic.ttf in Resources */,
 				6389B2541B1C9AA600F2A18C /* NetworkViewController.xib in Resources */,
 				633764E51AE53DE9005D6597 /* Roboto-BoldItalic.ttf in Resources */,

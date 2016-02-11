@@ -39,6 +39,25 @@ extension UIColor {
     convenience init(netHex:Int) {
         self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
     }
+    
+    convenience init(range:Int) {
+        //assert(range < 0 && range > 100, "Invalid range")
+    
+        switch range {
+        case 0...50:
+            self.init(netHex:0xff3b3b)
+        case 51...60:
+            self.init(netHex:0xf99d1c)
+        case 61...70:
+            self.init(netHex:0xffd200)
+        case 71...80:
+            self.init(netHex:0x4cd964)
+        case 80...Int.max as ClosedInterval:
+            self.init(netHex:0x07a05a)
+        default:
+            self.init(netHex:0xc7c7cc)
+        }
+    }
 }
 
 
