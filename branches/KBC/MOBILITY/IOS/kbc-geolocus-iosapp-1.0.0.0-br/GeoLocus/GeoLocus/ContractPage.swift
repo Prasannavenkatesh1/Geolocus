@@ -75,7 +75,7 @@ class ContractPage: UIViewController,UIImagePickerControllerDelegate,UINavigatio
     
     /* adding border between the points view */
     func addViewBorder(){
-        bottomBorder.borderColor = UIColor(red: 163.0/255.0, green: 162.0/255.0, blue: 162.0/255.0, alpha: 1.0).CGColor
+        bottomBorder.borderColor = UIColor(red: 163, green: 162, blue: 162).CGColor
         bottomBorder.borderWidth = CGFloat(1.0)
         bottomBorder.opaque = true
         speedPointsView.layer.addSublayer(bottomBorder)
@@ -86,7 +86,7 @@ class ContractPage: UIViewController,UIImagePickerControllerDelegate,UINavigatio
     func addDashedBorderToImageView(){
         imageViewBorder = CAShapeLayer()
         
-        imageViewBorder.strokeColor = UIColor(red: 76.0/255.0, green: 115.0/255.0, blue: 148.0/255.0, alpha: 1.0).CGColor
+        imageViewBorder.strokeColor = UIColor(red: 76, green: 115, blue: 148).CGColor
         imageViewBorder.fillColor = nil
         imageViewBorder.lineDashPattern = [6, 6]
         imageView.layer.addSublayer(imageViewBorder)
