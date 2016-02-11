@@ -507,6 +507,7 @@
         if ([self.sectionTitles count] > 0 &&   self.selectedSegmentIndex < [self.sectionTitles count] && self.selectedSegmentIndex >= 0) {
             CGFloat stringWidth = [[self.sectionTitles objectAtIndex:self.selectedSegmentIndex] sizeWithFont:self.font].width;
             sectionWidth = stringWidth;
+           // sectionWidth = 150;
         }
     }
     else if (self.type == HMSegmentedControlTypeImages && self.selectedSegmentIndex < [self.sectionImages count] && self.selectedSegmentIndex >= 0) {
@@ -620,6 +621,7 @@
 #else
             CGFloat stringWidth = [titleString sizeWithFont:self.font].width + self.segmentEdgeInset.left + self.segmentEdgeInset.right;
 #endif
+            stringWidth += 50;
             [mutableSegmentWidths addObject:[NSNumber numberWithFloat:stringWidth]];
         }
         self.segmentWidthsArray = [mutableSegmentWidths copy];

@@ -45,7 +45,6 @@ class Pageviewcontroller: UIPageViewController,UIPageViewControllerDataSource {
     }
     
     func getSegmentIndex(vcindex:NSNotification) {
-        var a : Int = 22
         
         var temp = vcindex.userInfo!["getindex"] as! Int
            print("index \(vcindex.userInfo!["getindex"])")

@@ -25,7 +25,7 @@ class RootViewController: UIViewController {
         self.getCustomizedSegmentedControl(self.segmentControl)
         self.segmentControl.addTarget(self, action: "segmentedControlChangedValue:", forControlEvents: UIControlEvents.ValueChanged)
        // self.segmentControl .addTarget(self, action:"segmentedControlChangedValue:", forControlEvents: )
-        self.segmentControl.sectionTitles = ["Abstract","Dashboard", "History",  "Overall"]
+        self.segmentControl.sectionTitles = [StringConstants.categoryTypeContract ,StringConstants.categoryTypeDashboard, StringConstants.categoryTypeHistory,StringConstants.categoryTypeOverall]
         self.segmentControl.reloadInputViews()
 
      
@@ -123,8 +123,17 @@ class RootViewController: UIViewController {
   
   func getSelectedIndex(vcindex:NSNotification) {
 //    print("index \(vcindex.userInfo)")
-    let getindex = vcindex.userInfo!["getindex"]
-    print(getindex);
+    if let id = vcindex.userInfo!["getindex"] as? NSNumber {
+
+        currentSelectedIndex = id
+        segmentControl.setSelectedSegmentIndex(UInt(currentSelectedIndex), animated: true)
+    }
+    
+//    let temp = vcindex.userInfo!["getindex"]
+//    //var getindex:Int = vcindex.userInfo!["getindex"] as! Int
+//    print(temp);
+//    currentSelectedIndex = Int(temp)
+//    segmentControl.setSelectedSegmentIndex(UInt(currentSelectedIndex), animated: true)
 
   }
     

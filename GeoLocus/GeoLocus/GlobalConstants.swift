@@ -35,6 +35,13 @@ struct StringConstants {
     
     static let MenuCellIdentifier = "Default"
     
+    //Category Constants
+    
+    static let categoryTypeContract    =   "Contract"
+    static let categoryTypeDashboard   =   "Dashboard"
+    static let categoryTypeHistory     =   "History"
+    static let categoryTypeOverall     =   "Overall"
+    
     
     
     //Storyboard and Controllers
