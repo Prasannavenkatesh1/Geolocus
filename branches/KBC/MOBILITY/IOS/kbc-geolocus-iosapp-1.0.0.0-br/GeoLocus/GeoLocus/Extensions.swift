@@ -22,6 +22,7 @@ public extension NSDate {
     }
 }
 
+
 /*
 var color = UIColor(red: 0xFF, green: 0xFF, blue: 0xFF)
 var color2 = UIColor(netHex:0xFFFFFF)

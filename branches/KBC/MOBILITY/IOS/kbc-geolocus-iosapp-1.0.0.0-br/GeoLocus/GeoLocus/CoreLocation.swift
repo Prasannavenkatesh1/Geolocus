@@ -23,6 +23,9 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   var creationTime          :Double?
   var eventtypes            :Events.EventType?
   var configmodel           :ConfigurationModel?
+  var startdate             :NSDate?
+  var enddate               :NSDate?
+  
   
   override init() {
     locationmanager =  CLLocationManager()
@@ -135,6 +138,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     if(self.motiontype == StringConstants.MOTIONTYPE_AUTOMOTIVE && self.autoStartState == false && mainDelegate.globalAutoTrip == true) {
         self.autoStartState = true
         mainDelegate.globalAutoTrip = false
+      startdate = newLocation.timestamp
       TripNotify.init(title: "Do you want to start the trip",
         UUID: NSUUID().UUIDString,
         schedule: NSDate(),
@@ -148,6 +152,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       if (hasBeenRun == true) // hasBeenRun is a boolean instance variable
       {
         hasBeenRun = false;
+        enddate = newLocation.timestamp
         self.performSelector("notMoving", withObject: nil, afterDelay: 900)
       }
     }
@@ -404,9 +409,19 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     
     alert.show()
     
+//    var temp:TripSummaryModel = TripSummaryModel()
+    
     // calculation needs to be done
     FacadeLayer.sharedinstance.dbactions.reterive()
     
+  }
+  
+  func getDuration(sDate:NSDate, eDate:NSDate) -> NSInteger{
+    let calendar = NSCalendar.currentCalendar()//CalendarUnitSecond
+    let datecomponenets = calendar.components(.Second, fromDate:sDate , toDate: eDate, options: [])
+    let seconds:NSInteger = datecomponenets.second
+    print("Seconds: \(seconds)")
+    return seconds
   }
   
   func locationManager(manager: CLLocationManager,
