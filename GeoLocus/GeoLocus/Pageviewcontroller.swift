@@ -35,6 +35,24 @@ class Pageviewcontroller: UIPageViewController,UIPageViewControllerDataSource {
       views.append(historyscore)
       
       self.setViewControllers([views[0]], direction: .Forward, animated:false, completion: nil)
+        
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "getSegmentIndex:",
+            name: "segmentindexchanged",
+            object: nil)
+    }
+    
+    func getSegmentIndex(vcindex:NSNotification) {
+        var a : Int = 22
+        
+        var temp = vcindex.userInfo!["getindex"] as! Int
+           print("index \(vcindex.userInfo!["getindex"])")
+//        let getindex:NSNumber = vcindex.userInfo!["getindex"] as! NSNumber
+//        print(getindex);
+        self.setViewControllers([views[temp]], direction: .Forward, animated:false, completion: nil)
+        
     }
 
     override func didReceiveMemoryWarning() {
