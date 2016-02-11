@@ -31,7 +31,7 @@ struct ExamplesDefaults {
     }
     
     static func chartFrame(containerBounds: CGRect) -> CGRect {
-        return CGRectMake(0, 40, UIScreen.mainScreen().bounds.size.width - 10, containerBounds.height + 100)
+        return CGRectMake(0, 25, UIScreen.mainScreen().bounds.size.width - 10, containerBounds.height)
     }
     
     static var labelSettings: ChartLabelSettings {
@@ -39,7 +39,7 @@ struct ExamplesDefaults {
     }
     
     static var labelFont: UIFont {
-        return ExamplesDefaults.fontWithSize(11)
+        return ExamplesDefaults.fontWithSize(9)
     }
     
     static var labelFontSmall: UIFont {
@@ -47,7 +47,7 @@ struct ExamplesDefaults {
     }
     
     static func fontWithSize(size: CGFloat) -> UIFont {
-        return UIFont(name: "Helvetica", size: size) ?? UIFont.systemFontOfSize(size)
+        return UIFont(name: "Helvetica Neue", size: size) ?? UIFont.systemFontOfSize(size)
     }
     
     static var guidelinesWidth: CGFloat {
@@ -65,7 +65,7 @@ class GroupBarViewController: UIViewController {
     
     private var chart: Chart?
     
-    private let dirSelectorHeight: CGFloat = 50
+    private let dirSelectorHeight: CGFloat = 30
     
     private func barsChart(horizontal horizontal: Bool) -> Chart {
         let labelSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
@@ -109,7 +109,7 @@ class GroupBarViewController: UIViewController {
         
         let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: "", settings: labelSettings))
         let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "", settings: labelSettings.defaultVertical()))
-        let frame = ExamplesDefaults.chartFrame(groupBarViewFrame)
+        let frame = ExamplesDefaults.chartFrame(self.view.bounds)
         let chartFrame = self.chart?.frame ?? CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height - self.dirSelectorHeight)
         let coordsSpace = ChartCoordsSpaceLeftBottomSingleAxis(chartSettings: ExamplesDefaults.chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
         let (xAxis, yAxis, innerFrame) = (coordsSpace.xAxis, coordsSpace.yAxis, coordsSpace.chartInnerFrame)
@@ -140,6 +140,7 @@ class GroupBarViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.frame.size = groupBarViewFrame.size
         self.showChart(horizontal: false)
     }
 
