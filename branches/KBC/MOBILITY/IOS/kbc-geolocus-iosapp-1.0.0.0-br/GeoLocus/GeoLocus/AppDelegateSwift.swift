@@ -58,7 +58,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
 
     let defaults = NSUserDefaults.standardUserDefaults()
 //    defaults.setBool(false, forKey: "isFirstTime")
-
+        defaults.setObject("", forKey: "tokenID")
     if( defaults.boolForKey("isFirstTime") == false){
       defaults.setBool(true, forKey: "isFirstTime")
       defaults.setBool(false, forKey: "isStarted")
@@ -218,13 +218,11 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         var checkUserLogin : Bool = geoLocusDashboard.checkUserDetails()
         //checkUserLogin = false
         if(!checkUserLogin){
-            print("Not first launch.")
             let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
             self.window?.rootViewController = dashboardPage
             self.window?.makeKeyAndVisible()
         }
         else{
-//            print("First launch, setting NSUserDefault.")
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "FirstLaunch")
             let languageSelectionPage = storyboard.instantiateViewControllerWithIdentifier("LanguageSelectionViewController") as! LanguageSelectionViewController
             self.window?.rootViewController = languageSelectionPage

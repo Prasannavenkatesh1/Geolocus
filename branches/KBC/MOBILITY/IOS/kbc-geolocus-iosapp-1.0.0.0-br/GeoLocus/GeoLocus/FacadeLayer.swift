@@ -117,14 +117,14 @@ class FacadeLayer{
     
     func requestRecentTripData(completionHandler:(status: Int, data: [History]?, error: NSError?) -> Void) -> Void{
         
-        httpclient.requestRecentTripData { (response, data, error) -> Void in
-            
-            if error == nil {
-                
-                //completionHandler(status: 1, data: <#T##[History]?#>, error: <#T##NSError?#>)
-            }
-            
-        }
+//        httpclient.requestRecentTripData { (response, data, error) -> Void in
+//            
+//            if error == nil {
+//                
+//                //completionHandler(status: 1, data: <#T##[History]?#>, error: <#T##NSError?#>)
+//            }
+//            
+//        }
         
     }
 
