@@ -30,4 +30,5 @@
 //
 
 #import "SWRevealViewController.h"
+#import "HMSegmentedControl.h"
 

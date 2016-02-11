@@ -5,7 +5,6 @@ use_frameworks!
 
 target 'GeoLocus' do
 
-pod "TextFieldEffects"
 pod 'Alamofire', '~> 3.0'
 pod 'SwiftCharts', '~> 0.3'
 pod 'SDWebImage', '~>3.7'
