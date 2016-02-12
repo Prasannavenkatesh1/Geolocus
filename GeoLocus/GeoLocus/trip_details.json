@@ -1,13 +1,13 @@
 {
     "tripdetails": [{
                     "tripId": "123",
-                    "date": "timeInMilliseconds",
+                    "date": "1455185526569",
                     "distance": "25",
                     "trippoints": "36",
                     "ecoscore": "45",
                     "speedscore": "66",
                     "attentionscore": "74",
-                    "dataUsageMsg": "",
+                    "dataUsageMsg": "25",
                     "hours": "5",
                     "event": [{
                               "lat": "9.1121212",
@@ -33,33 +33,35 @@
                               }, {
                               "lat": "9.1121212",
                               "long": "-8.7678678678",
-                              "distraction_type": "speeding",
+                              "event_type": "speeding",
                               "eventMessage": "eventMessage"
                               }],
                     "speed_zone": [{
-                                   "speedScore": "",
+                                   "speedScore": "34",
                                    "speedbehaviour": "25",
                                    "distance_travelled": "7",
                                    "max_speed": "50",
                                    "Above_maxspeed": "5",
-                                   "within_maxspeed": 2,
+                                   "within_maxspeed": "2",
                                    "violation_count": 1
                                    }, {
+                                   "speedScore": "56",
                                    "speedbehaviour": "25",
                                    "distance_travelled": "7",
                                    "max_speed": "50",
                                    "Above_maxspeed": "5",
-                                   "within_maxspeed": 2,
+                                   "within_maxspeed": "2",
                                    "violation_count": 3
                                    }]
                     }, {
                     "tripId": "123",
-                    "date": "timeInMilliseconds",
+                    "date": "1411185526569",
                     "distance": "25",
                     "trippoints": "36",
                     "ecoscore": "45",
                     "speedscore": "66",
                     "attentionscore": "74",
+                    "dataUsageMsg": "25",
                     "hours": "5",
                     "event": [{
                               "lat": "9.1121212",
@@ -84,23 +86,25 @@
                               }, {
                               "lat": "9.1121212",
                               "long": "-8.7678678678",
-                              "distraction_type": "speeding",
+                              "event_type": "speeding",
                               "eventMessage": "eventMessage"
                               }],
                     "speed_zone": [{
+                                   "speedScore": "67",
                                    "speedbehaviour": "25",
                                    "distance_travelled": "7",
                                    "max_speed": "50",
                                    "Above_maxspeed": "5",
-                                   "within_maxspeed": 2,
-                                   "violation_count": 1
+                                   "within_maxspeed": "5",
+                                   "violation_count": 4
                                    }, {
+                                   "speedScore": "47",
                                    "speedbehaviour": "25",
                                    "distance_travelled": "7",
-                                   "zone": "50",
+                                   "max_speed": "50",
                                    "Above_maxspeed": "5",
-                                   "within_maxspeed": 2,
-                                   "violation_count": 3
+                                   "within_maxspeed": "3",
+                                   "violation_count": 7
                                    }]
                     }]
     

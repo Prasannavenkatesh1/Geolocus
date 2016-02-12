@@ -24,16 +24,17 @@ class HistoryScorePage: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        setContentHeight()
-        reloadData()
-        reloadView()
+        
   
     }
+
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        
+        setContentHeight()
+        reloadData()
+        reloadView()
         
     }
 
@@ -120,6 +121,12 @@ class HistoryScorePage: UIViewController {
         }
     }
     
+    func requestOverallScoreData(completionHandler:(status: Int, data: OverallScores?, error: NSError?) -> Void) -> Void{
+        
+        FacadeLayer.sharedinstance.requestOverallScoreData { (status, data, error) -> Void in
+            completionHandler(status: status, data: data, error: error)
+        }
+    }
     
     func setContentHeight() {
         
@@ -132,8 +139,6 @@ class HistoryScorePage: UIViewController {
         }else {
             self.contentViewHeightConstraint.constant = StringConstants.SCREEN_HEIGHT - 105
         }
-        
-        
     }
     
     //

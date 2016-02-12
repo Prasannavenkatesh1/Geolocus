@@ -193,6 +193,19 @@ class Helper {
         }
         return monthString
     }
+    
+    static func getEventType(event:String) -> EventType{
+        
+        if(event.caseInsensitiveCompare("Acceleration") == NSComparisonResult.OrderedSame){
+            return EventType.Acceleration
+        }else if (event.caseInsensitiveCompare("Breaking") == NSComparisonResult.OrderedSame) {
+            return EventType.Breaking
+        }else if (event.caseInsensitiveCompare("Speeding") == NSComparisonResult.OrderedSame) {
+            return EventType.Speeding
+        }else{
+            return EventType.None
+        }
+    }
 }
 
 

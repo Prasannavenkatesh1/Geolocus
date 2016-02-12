@@ -208,7 +208,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         var tokenID : String
         var firstTimeLogin = true
         
-        tokenID = "dd"
+        tokenID = ""
         
         if(tokenID.isEmpty){
             firstTimeLogin = true

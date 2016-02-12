@@ -284,23 +284,28 @@ class BadgesViewController: UIViewController, UITableViewDataSource, UITableView
             //call services...get data...parse
             //store data in DB
             //reload table
+            
+            
+            self.requestBadgeData({ (status, response, error) -> Void in
+                
+            })
         }
         
-        /*
+        
         //badges
         
         for var index = 0; index < self.plistBadgeArray.count - 2; index++ {
             
             let badge = Badge(withIcon:"" , badgeTitle: self.plistBadgeArray[index]["title"] as! String, badgeDescription: self.plistBadgeArray[index]["criteria"] as! String, isEarned: true, orderIndex: index + 1, badgeType: Badge.BadgesType.Badge, additionalMsg: nil)
             
-            sahredObject.dbactions.saveBadge(badge)
+           // sahredObject.dbactions.saveBadge(badge)
         }
         
         for var index = self.plistBadgeArray.count - 2; index < self.plistBadgeArray.count; index++ {
             
             let badge = Badge(withIcon:"" , badgeTitle: self.plistBadgeArray[index]["title"] as! String, badgeDescription: self.plistBadgeArray[index]["criteria"] as! String, isEarned: false, orderIndex: index + 1, badgeType: Badge.BadgesType.Badge, additionalMsg: nil)
             
-            sahredObject.dbactions.saveBadge(badge)
+           // sahredObject.dbactions.saveBadge(badge)
         }
         
         //level
@@ -309,68 +314,17 @@ class BadgesViewController: UIViewController, UITableViewDataSource, UITableView
             
             let badge = Badge(withIcon:"" , badgeTitle: self.plistLevelArray[index]["title"] as! String, badgeDescription: self.plistLevelArray[index]["criteria"] as! String, isEarned: true, orderIndex: index + 1, badgeType: Badge.BadgesType.Level, additionalMsg: nil)
             
-            sahredObject.dbactions.saveBadge(badge)
+           // sahredObject.dbactions.saveBadge(badge)
         }
         
         for var index = self.plistLevelArray.count - 2; index < self.plistLevelArray.count; index++ {
             
             let badge = Badge(withIcon:"" , badgeTitle: self.plistLevelArray[index]["title"] as! String, badgeDescription: self.plistLevelArray[index]["criteria"] as! String, isEarned: false, orderIndex: index + 1, badgeType: Badge.BadgesType.Level, additionalMsg: nil)
             
-            sahredObject.dbactions.saveBadge(badge)
+          //  sahredObject.dbactions.saveBadge(badge)
         }
-        */
-        
-        
-        
-        
-        
-        
-        /*
-        let badge1 = Badge(withIcon:"https://" , badgeTitle: "king of the route", badgeDescription: "No speed violation for 300km on the highways", isEarned: true, orderIndex: 1, badgeType: Badge.BadgesType.Badge, additionalMsg: nil)
-        self.badgeEarnedArray.append(badge1)
-        
-        
-        let badge2 = Badge(withIcon:"https://" , badgeTitle: "king of the city", badgeDescription: "No Speed violation for 100km in zones <=50. You have already completed 15 km to earn this badge.", isEarned: false, orderIndex: 2, badgeType: Badge.BadgesType.Badge, additionalMsg: nil)
-        self.badgeNotEarnedArray.append(badge2)
-        
-        let badge3 = Badge(withIcon:"https://" , badgeTitle: "Perfect trip", badgeDescription: "No speed violation for 300km on the highways", isEarned: false, orderIndex: 4, badgeType: Badge.BadgesType.Badge, additionalMsg: nil)
-        self.badgeNotEarnedArray.append(badge3)
-        
-        let badge4 = Badge(withIcon:"https://" , badgeTitle: "Eco Driver", badgeDescription: "No speed violation for 300km on the highways", isEarned: false, orderIndex: 3, badgeType: Badge.BadgesType.Badge, additionalMsg: nil)
-        self.badgeNotEarnedArray.append(badge4)
-        
-        let badge5 = Badge(withIcon:"https://" , badgeTitle: "king of the city", badgeDescription: "Dark green eco score last 500km. You have already completed 300km to earn this badge.", isEarned: false, orderIndex: 5, badgeType: Badge.BadgesType.Badge, additionalMsg: nil)
-        self.badgeNotEarnedArray.append(badge5)
-        
-        
-        let level1 = Badge(withIcon:"https://" , badgeTitle: "Beginner", badgeDescription: "We specify the name that we want to create a managed object for, but we also need to tell Core Data where it can find the data model for that entity. Remember that a managed object context is tied to a persistent store coordinator and a persistent store coordinator keeps a reference to a data model. When we pass in a managed object context, Core Data asks its persistent store coordinator for its data model to find the entity we're looking for.", isEarned: true, orderIndex: 6, badgeType: Badge.BadgesType.Level, additionalMsg: nil)
-        self.levelArray.append(level1)
-        
-        let level2 = Badge(withIcon:"https://" , badgeTitle: "Driver", badgeDescription: "No speed violation for 300km on the highways", isEarned: false, orderIndex: 7, badgeType: Badge.BadgesType.Level, additionalMsg: nil)
-        self.levelArray.append(level2)
-        
-        let level3 = Badge(withIcon:"https://" , badgeTitle: "Expert", badgeDescription: "No Speed violation for 100km in zones <=50. You have already completed 15 km to earn this badge.", isEarned: false, orderIndex: 8, badgeType: Badge.BadgesType.Level, additionalMsg: nil)
-        self.levelArray.append(level3)
-        
-        let level4 = Badge(withIcon:"https://" , badgeTitle: "Coach", badgeDescription: "No speed violation for 300km on the highways", isEarned: true, orderIndex: 9, badgeType: Badge.BadgesType.Level, additionalMsg: nil)
-        self.levelArray.append(level4)
-        
-        sahredObject.dbactions.saveBadge(badge4)
-         sahredObject.dbactions.saveBadge(badge3)
-        
-    */
-        
-        
+
     }
-    
-//    func find<C: CollectionType>(collection: C, predicate: (C.Generator.Element) -> Bool) -> C.Index? {
-//        for index in collection.startIndex ..< collection.endIndex {
-//            if predicate(collection[index]) {
-//                return index
-//            }
-//        }
-//        return nil
-//    }
     
     
     //MARK:- Custom Methods
@@ -395,18 +349,13 @@ class BadgesViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     
-//    func requestBadgeData(completionHandler:(status : Int, response: Badge?, error: NSError?) -> Void) -> Void{
-//        
-//        //get URL from config file
-//        
-////        FacadeLayer.sharedinstance.httpClient.requestBadgeData("ur") { (status, response, error) -> Void in
-//        
-//        }
-//    }
-//    
-//    func parsebadgeData(responseData: NSData, complitionhandler:(response: Badge, error: NSError?)->Void) -> Void {
-//        
-//        
-//        }
-//    }
+    func requestBadgeData(completionHandler:(status : Int, response: [Badge]?, error: NSError?) -> Void) -> Void{
+        
+        FacadeLayer.sharedinstance.requestBadgesData { (status, data, error) -> Void in
+            completionHandler(status: status, response: data, error: error)
+        }
+        
+    }
+    
+
 }
