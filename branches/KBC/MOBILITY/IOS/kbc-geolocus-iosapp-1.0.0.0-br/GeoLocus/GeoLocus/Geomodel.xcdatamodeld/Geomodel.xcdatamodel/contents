@@ -11,6 +11,16 @@
         <attribute name="weightage_severevoilation" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="weightage_speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
     </entity>
+    <entity name="Dashboard" representedClassName=".Dashboard" syncable="YES">
+        <attribute name="distancetravelled" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="levelname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nextlevelmessage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pointsachieved" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="scoremessage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="scorerange" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalpoints" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tripstatus" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="OverallScore" representedClassName=".OverallScore" syncable="YES">
         <attribute name="attention" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="dataUsageMessage" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,6 +28,12 @@
         <attribute name="eco" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="overall" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="speeding" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <entity name="Reports" representedClassName=".Reports" syncable="YES">
+        <attribute name="myscore" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="poolaveragescore" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="scoreoption" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="timeframe" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Trip_Badge" representedClassName=".Trip_Badge" syncable="YES">
         <attribute name="badgeDescription" attributeType="String" syncable="YES"/>
@@ -84,13 +100,15 @@
         <attribute name="tripstarttime" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Configurations" positionX="1341" positionY="65" width="189" height="178"/>
+        <element name="Configurations" positionX="1305" positionY="63" width="189" height="178"/>
         <element name="OverallScore" positionX="1989" positionY="-153" width="128" height="135"/>
         <element name="Trip_Badge" positionX="1843" positionY="-153" width="128" height="120"/>
         <element name="Trip_Detail" positionX="1663" positionY="-153" width="128" height="210"/>
         <element name="Trip_Event" positionX="1996" positionY="123" width="128" height="135"/>
         <element name="Trip_Speed_Zone" positionX="1719" positionY="189" width="128" height="163"/>
         <element name="Trip_timeseries" positionX="1368" positionY="-153" width="128" height="178"/>
-        <element name="TripSummary" positionX="1546" positionY="81" width="128" height="238"/>
+        <element name="TripSummary" positionX="1521" positionY="-144" width="128" height="238"/>
+        <element name="Dashboard" positionX="1539" positionY="116" width="128" height="163"/>
+        <element name="Reports" positionX="1332" positionY="261" width="128" height="103"/>
     </elements>
 </model>
