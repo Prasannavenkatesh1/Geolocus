@@ -248,6 +248,7 @@
 		BF44D27F1C6DBA9F00BFB1E2 /* Reports.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44D27B1C6DBA9F00BFB1E2 /* Reports.swift */; };
 		BF44D2801C6DBA9F00BFB1E2 /* Dashboard+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44D27C1C6DBA9F00BFB1E2 /* Dashboard+CoreDataProperties.swift */; };
 		BF44D2811C6DBA9F00BFB1E2 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44D27D1C6DBA9F00BFB1E2 /* Dashboard.swift */; };
+		BF44D2831C6DED3E00BFB1E2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44D2821C6DED3E00BFB1E2 /* BaseViewController.swift */; };
 		BF4BA0E21C5F661F0028D79B /* Thresholds.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4BA0E11C5F661F0028D79B /* Thresholds.swift */; };
 		BF4BA0E41C5F6CC70028D79B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4BA0E31C5F6CC70028D79B /* Config.swift */; };
 		BF4D23781C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4D23761C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift */; };
@@ -581,6 +582,7 @@
 		BF44D27B1C6DBA9F00BFB1E2 /* Reports.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reports.swift; sourceTree = "<group>"; };
 		BF44D27C1C6DBA9F00BFB1E2 /* Dashboard+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dashboard+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BF44D27D1C6DBA9F00BFB1E2 /* Dashboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		BF44D2821C6DED3E00BFB1E2 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		BF4BA0E11C5F661F0028D79B /* Thresholds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thresholds.swift; sourceTree = "<group>"; };
 		BF4BA0E31C5F6CC70028D79B /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		BF4D23761C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_timeseries+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -1207,6 +1209,7 @@
 				F55265631C522F3E002362F5 /* NotificationViewController.swift */,
 				F5B020441C60AA4B006C97E5 /* NotificationDetailsViewController.swift */,
 				6C44D6681C59E55F0055916B /* LeftViewController.swift */,
+				BF44D2821C6DED3E00BFB1E2 /* BaseViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1591,6 +1594,7 @@
 				BF73374F1C3FC29A006094C0 /* DashboardPage.swift in Sources */,
 				28AF07CD1C69AC0A00D8D3F4 /* TermsAndConditionsViewController.swift in Sources */,
 				28F38A0C1C61EB3900A02E93 /* HistoryData.swift in Sources */,
+				BF44D2831C6DED3E00BFB1E2 /* BaseViewController.swift in Sources */,
 				6389B24F1B1C9AA600F2A18C /* DataTransmissionController.m in Sources */,
 				BF5D3AAD1C4E1E3000DDFDC1 /* Datausage.m in Sources */,
 				635194791AD3AAC7002ED1D0 /* ViewController.swift in Sources */,

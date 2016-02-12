@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContractPage: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     var imageViewBorder:CAShapeLayer!
     var imagePicker = UIImagePickerController()

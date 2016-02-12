@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BadgesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BadgesViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var badgeTableView: UITableView!
 
