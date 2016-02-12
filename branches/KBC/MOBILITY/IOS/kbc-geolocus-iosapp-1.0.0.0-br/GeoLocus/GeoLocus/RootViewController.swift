@@ -115,11 +115,18 @@ class RootViewController: UIViewController {
   
   func getSelectedIndex(vcindex:NSNotification) {
 //    print("index \(vcindex.userInfo)")
-    if let id = vcindex.userInfo!["getindex"] as? NSNumber {
-
-        currentSelectedIndex = id
-        segmentControl.setSelectedSegmentIndex(UInt(currentSelectedIndex), animated: true)
-    }
+    
+//    if let id = vcindex.userInfo!["getindex"] as? NSNumber {
+//
+//        currentSelectedIndex = id
+//        segmentControl.setSelectedSegmentIndex(UInt(currentSelectedIndex), animated: true)
+//    }
+    var gg:String =  vcindex.userInfo!["getindex"] as! String
+    print(gg)
+    var idx = Int(gg)
+    print(idx)    
+    currentSelectedIndex = idx
+    segmentControl.setSelectedSegmentIndex(UInt(currentSelectedIndex), animated: true)
     
 //    let temp = vcindex.userInfo!["getindex"]
 //    //var getindex:Int = vcindex.userInfo!["getindex"] as! Int

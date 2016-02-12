@@ -62,10 +62,10 @@ class Pageviewcontroller: UIPageViewController,UIPageViewControllerDataSource {
   func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
     let vcIndex = views.indexOf(viewController);
     if (vcIndex < views.count-1) {
-
+      let getvcidx:String = String(format:"\(vcIndex!+1)")
       NSNotificationCenter.defaultCenter().postNotificationName(NotificationKey.PageViewControllerIndexchangedNotification,
         object:nil,
-        userInfo:["getindex":"\(vcIndex!+1)"])
+        userInfo:["getindex":getvcidx])
       return views[vcIndex!+1];
     }
     print("after \(vcIndex)")
@@ -76,9 +76,10 @@ class Pageviewcontroller: UIPageViewController,UIPageViewControllerDataSource {
   func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
     let vcIndex = views.indexOf(viewController);
     if (vcIndex > 0) {
+      let getvcidx:String = String(format:"\(vcIndex!-1)")
       NSNotificationCenter.defaultCenter().postNotificationName(NotificationKey.PageViewControllerIndexchangedNotification,
         object:nil,
-        userInfo:["getindex":"\(vcIndex!-1)"])
+        userInfo:["getindex":getvcidx])
       return views[vcIndex!-1];
     }
     print("before \(vcIndex)")
