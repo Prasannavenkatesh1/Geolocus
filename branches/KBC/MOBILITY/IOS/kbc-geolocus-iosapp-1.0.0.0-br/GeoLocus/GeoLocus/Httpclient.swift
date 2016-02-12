@@ -24,16 +24,14 @@ class Httpclient: NSObject {
     
     /* Terms and Conditions Service call */
     
-    func getContentFromTermsAndConditionsRequest(URL : String, completionHandler : (success : Bool, data : NSData?) -> Void){
-        Alamofire.request(.GET, URL)
-            .responseString { (responseString) -> Void in
-                if let termsAndConditionsString = responseString.data{
-                    completionHandler(success: true, data: termsAndConditionsString)
-                    return
-                }
-                completionHandler(success: false, data: nil)
-        }.resume()
+    func requestTermsAndConditionsData(URL : String, completionHandler: (response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
+                Alamofire.request(.GET, URL)
+                    .response { (request, response, data, error) -> Void in
+                        completionHandler(response: response, data: data, error: error)
+            }
     }
+    
+    /* Login Service call */
     
     func requestLoginData(URL:String, parametersHTTPBody : [String:String!]){
         let loginRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
@@ -41,20 +39,54 @@ class Httpclient: NSObject {
         loginRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         loginRequest.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(parametersHTTPBody, options: [])
         Alamofire.request(loginRequest)
+            .validate()
             .responseJSON{ responseJSON in
                 switch responseJSON.result {
-                case .Failure(let error):
-                    print(error)
-                case .Success(let responseObject):
-                    print(responseObject)
-                    let responseHeader = responseObject.allHeaderFields
-                    print(responseHeader)
-                    let responseJSON = responseObject as! NSDictionary
-                    let userID = responseJSON.objectForKey("userID")
-                    print(userID)
-            }
+                    case .Failure(let error):
+                        print(error)
+                    case .Success(let responseObject):
+                        print(responseObject)
+                        
+                        let tokenID = responseJSON.response?.allHeaderFields["SPRING_SECURITY_REMEMBER_ME_COOKIE"]//SPRING_SECURITY_REMEMBER_ME_COOKIE
+                        print(tokenID)
+                        NSUserDefaults.standardUserDefaults().setValue(tokenID, forKey: StringConstants.TOKEN_ID)
+                        
+                        let responseJSON = responseObject as! NSDictionary
+                        let userID = responseJSON.objectForKey("userID")
+                        print(userID)
+                }
         }.resume()
+        
+       /* let url:NSURL = NSURL(string : URL)!
+        let session = NSURLSession.sharedSession()
+        let request = NSMutableURLRequest(URL:url)
+        request.HTTPMethod = "POST"
+        let task = session.dataTaskWithRequest(request){
+        (let data,let response, let error) in
+            print(data)
+            print(response)
+            print(error)
+        }
+        task.resume()*/
     }
+    
+    /* Contract Service call */
+    func requestContractData(URL : String, completionHandler : (success : Bool, data : NSData?) -> Void){
+        
+        let contractRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
+        contractRequest.HTTPMethod = "GET"
+        contractRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        Alamofire.request(contractRequest)
+            .responseJSON { (responseJSON) -> Void in
+                if let contractData = responseJSON.data{
+                    completionHandler(success: true, data: contractData)
+                    return
+                }
+                completionHandler(success: false, data: nil)
+            }.resume()
+    }
+    
     
     //History services
     func requestRecentTripData(URL: String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{

@@ -75,7 +75,7 @@ class ContractPage: UIViewController,UIImagePickerControllerDelegate,UINavigatio
     
     /* adding border between the points view */
     func addViewBorder(){
-        bottomBorder.borderColor = UIColor(red: 163, green: 162, blue: 162).CGColor
+        bottomBorder.borderColor = UIColor(red: 163.0/255.0, green: 162.0/255.0, blue: 162.0/255.0, alpha: 1.0).CGColor
         bottomBorder.borderWidth = CGFloat(1.0)
         bottomBorder.opaque = true
         speedPointsView.layer.addSublayer(bottomBorder)
@@ -86,7 +86,7 @@ class ContractPage: UIViewController,UIImagePickerControllerDelegate,UINavigatio
     func addDashedBorderToImageView(){
         imageViewBorder = CAShapeLayer()
         
-        imageViewBorder.strokeColor = UIColor(red: 76, green: 115, blue: 148).CGColor
+        imageViewBorder.strokeColor = UIColor(red: 76.0/255.0, green: 115.0/255.0, blue: 148.0/255.0, alpha: 1.0).CGColor
         imageViewBorder.fillColor = nil
         imageViewBorder.lineDashPattern = [6, 6]
         imageView.layer.addSublayer(imageViewBorder)
@@ -102,12 +102,22 @@ class ContractPage: UIViewController,UIImagePickerControllerDelegate,UINavigatio
         }
     }
     
+    /* resize image to fit the imageview */
+    func resizeImage(image: UIImage, imageSize: CGSize) -> UIImage {
+        
+        UIGraphicsBeginImageContext(imageSize)
+        image.drawInRect(CGRectMake(0, 0, imageSize.width, imageSize.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
     //MARK : Image Picker Delegate Methods
+    
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
-        self.dismissViewControllerAnimated(true, completion: { () -> Void in
-            
-        })
-        imageView.image = image
+        self.dismissViewControllerAnimated(true, completion:nil)
+        imageView.image = resizeImage(image, imageSize: CGSizeMake(imageView.bounds.width, imageView.bounds.height))
         imageViewBorder.strokeColor = UIColor.clearColor().CGColor
         messageLabel.hidden = true
         cameraButton.hidden = true

@@ -9,22 +9,10 @@ import UIKit
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var settingsTableView: UITableView!
-    @IBOutlet weak var bkBtn: UIButton!
-    
-    @IBOutlet weak var settingsTable: UITableView!
-    
-    @IBOutlet weak var settingsNav: UINavigationBar!
-    
     
     let settingsCellTitles = ["Data Upload Type","Snooze the start","Auto trip Start","Notification","Share data with parent","Choose your Language","Reset Password","Coach's Username"]
     let settingsHeaderTitle = "Customer Settings"
-    let textCellIdentifier = "TextCell"
-    
-    let settingsTitle = ["Voice Alert"]
-    let settingsValues = ["Enabled"]
-    let settingsValuesChanged = ["Disabled"]
-    
-    var checkboxArray:[String] = ["Enabled"]
+    let textCellIdentifier = "settingsCellIdentifier"
     
     @IBAction func backButtonTapped(sender: AnyObject) {
         
@@ -38,17 +26,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         settingsTableView.delegate = self
         settingsTableView.dataSource = self
-        
-//        settingsNav.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-//        
-//        bkBtn.addTarget(self, action: "backBtnTapped", forControlEvents: .TouchUpInside)
-//        
-//        settingsTable.backgroundColor = UIColor.clearColor()
-//        settingsTable.opaque = false
-//        
-//        let mainDelegate = UIApplication.sharedApplication().delegate as! AppDelegateSwift
-//        checkboxArray[0] = (mainDelegate.vAlert as! String)
-
     }
     
     //MARK : Tableview delegate and datasource methods
@@ -66,12 +43,21 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(textCellIdentifier, forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(textCellIdentifier, forIndexPath: indexPath) as! SettingsCustomViewCell
         
         let row = indexPath.row
-        cell.textLabel?.text = settingsCellTitles[row]
-        cell.textLabel?.font = UIFont(name: "Helvetica Neue", size: 17)
-        cell.textLabel?.textColor = UIColor(red: 24, green: 31, blue: 41)
+        cell.primaryTextLabel.text = settingsCellTitles[row]
+        
+        switch(row){
+        case 0,1,5,7:
+            cell.settingsSwitch.hidden = true
+        //case 2,3,4:
+        case 6:
+            cell.settingsSwitch.hidden = true
+            cell.secondaryTextLabel.hidden = true
+        default:
+            break
+        }
         
         if cell.respondsToSelector("setSeparatorInset:") {
             cell.separatorInset = UIEdgeInsetsZero
@@ -83,40 +69,22 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             cell.preservesSuperviewLayoutMargins = false
         }
         
-        /*let identifier = "SettingsCustomCell"
-        var cell: SettingsCustomCell! = tableView.dequeueReusableCellWithIdentifier(identifier) as? SettingsCustomCell
-        if cell == nil {
-            tableView.registerNib(UINib(nibName: "SettingsCustomCell", bundle: nil), forCellReuseIdentifier: identifier)
-            cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? SettingsCustomCell
-        }
+        cell.settingsSwitch.tag = row
+        cell.settingsSwitch.addTarget(self, action: Selector("switchValueChanged:"), forControlEvents:UIControlEvents.ValueChanged)
         
-        cell.settingsValues.text = settingsTitle[indexPath.row]
-        
-        cell.backgroundColor = UIColor.clearColor()
-        cell.opaque = false
-        
-        cell.settingsValues.textColor = UIColor.whiteColor()
-        cell.settingsValuesSub.textColor = UIColor.greenColor()
-
-        cell.settingsSwitch.tag = indexPath.row
-        cell.settingsSwitch.transform = CGAffineTransformMakeScale(0.5, 0.5);
-        cell.settingsSwitch .addTarget(self, action: Selector("settingsSwitchClicked:"), forControlEvents: UIControlEvents.ValueChanged)
-
-        if checkboxArray[indexPath.row] == "Enabled" {
+        /*if switchState[row] == "Enabled" {
             
-            cell.settingsValuesSub.text = settingsValues[indexPath.row]
+            cell.secondaryTextLabel.text = switchStateEnabled[row]
             cell.settingsSwitch.on = true
-
+            
         }
         else {
-
-            cell.settingsValuesSub.text = settingsValuesChanged[indexPath.row]
+            
+            cell.secondaryTextLabel.text = switchStateDisabled[row]
             cell.settingsSwitch.on = false
-
-        }
+            
+        }*/
         
-        cell.selectionStyle = UITableViewCellSelectionStyle.None*/
-  
         return cell
     }
 
@@ -134,21 +102,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
-    func settingsSwitchClicked(mySwitch : UISwitch){
-        
-        let mainDelegate = UIApplication.sharedApplication().delegate as! AppDelegateSwift
-        
-        if mySwitch.on {
-            
-            checkboxArray[mySwitch.tag] = "Enabled"
-            mainDelegate.vAlert = "Enabled"
-            
-        } else {
-            
-            checkboxArray[mySwitch.tag] = "Disabled"
-            mainDelegate.vAlert = "Disabled"
+    func switchValueChanged(settingsSwitch : UISwitch){
+        /*if(settingsSwitch.on){
+            switchState[settingsSwitch.tag] = "Enabled"
         }
-        
-        settingsTable.reloadData()
+        else{
+            switchState[settingsSwitch.tag] = "Disabled"
+        }*/
     }
 }

@@ -143,6 +143,19 @@ class FacadeLayer{
         }
     }
     
+    //MARK: Terms and Conditions Service
+    
+    func requestTermsAndConditionsData(URL : String, completionHandler:(status : Int,data : NSData?, error : NSError?) -> Void) -> Void{
+
+        httpclient.requestTermsAndConditionsData(URL) { (response, data, error) -> Void in
+            if(error == nil){
+                completionHandler(status: 1, data: data, error: nil)
+            }
+            else{
+                completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+            }
+        }
+    }
     
     //MARK: - History service
     

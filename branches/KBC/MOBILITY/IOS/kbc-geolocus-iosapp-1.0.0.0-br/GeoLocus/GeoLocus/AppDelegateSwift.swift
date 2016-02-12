@@ -58,11 +58,11 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
 
     let defaults = NSUserDefaults.standardUserDefaults()
 //    defaults.setBool(false, forKey: "isFirstTime")
-        defaults.setObject("", forKey: "tokenID")
     if( defaults.boolForKey("isFirstTime") == false){
       defaults.setBool(true, forKey: "isFirstTime")
       defaults.setBool(false, forKey: "isStarted")
-      
+      defaults.setValue("", forKey: StringConstants.TOKEN_ID)
+
       
       //  Insert Weightage values for testing
       var conmodel:ConfigurationModel = ConfigurationModel()
@@ -76,7 +76,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       conmodel.ecoweightage_braking = NSNumber(double: 0.5)
       conmodel.ecoweightage_acceleration = NSNumber(double: 0.2)
       FacadeLayer.sharedinstance.dbactions.saveConfiguration(conmodel)
-      
+
     }
       
 //      FacadeLayer.sharedinstance.dbactions.reterive()
@@ -214,9 +214,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     func loadInitialViewController(){
       
         let storyboard: UIStoryboard = UIStoryboard(name: "Storyboard", bundle: NSBundle.mainBundle())
-        let geoLocusDashboard : LoginViewController = LoginViewController()
-        var checkUserLogin : Bool = geoLocusDashboard.checkUserDetails()
-        checkUserLogin = false
+        let checkUserLogin : Bool = self.checkUserDetails()
+       // checkUserLogin = false
         if(!checkUserLogin){
             let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
             self.window?.rootViewController = dashboardPage
@@ -231,6 +230,21 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       
       addBackgroundImage()
       addLogo()
+    }
+    
+    /* check if the user is logged in to the app for the first time or not */
+    
+    func checkUserDetails() -> Bool{
+        let tokenID : String = NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.TOKEN_ID)!
+        var isFirstTimeLogin : Bool
+        
+        if(tokenID.isEmpty){
+            isFirstTimeLogin = true
+        }
+        else{
+            isFirstTimeLogin = false
+        }
+        return isFirstTimeLogin
     }
   
   //  MARK: - Background Task Identifier
