@@ -272,6 +272,7 @@
 		F55265661C522FD0002362F5 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55265651C522FD0002362F5 /* NotificationTableViewCell.swift */; };
 		F5B020451C60AA4B006C97E5 /* NotificationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B020441C60AA4B006C97E5 /* NotificationDetailsViewController.swift */; };
 		F5CADFFF1C6C9B5900070044 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CADFFE1C6C9B5900070044 /* NotificationModel.swift */; };
+		F5EBE6371C6DC00100AF08EA /* NotificationList.json in Resources */ = {isa = PBXBuildFile; fileRef = F5EBE6361C6DC00100AF08EA /* NotificationList.json */; };
 		FB0A9DA937A9B64E32BDFF3C /* Pods_GeoLocus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0A04536BDB0507336147D5 /* Pods_GeoLocus.framework */; };
 /* End PBXBuildFile section */
 
@@ -609,6 +610,7 @@
 		F55265651C522FD0002362F5 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		F5B020441C60AA4B006C97E5 /* NotificationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailsViewController.swift; sourceTree = "<group>"; };
 		F5CADFFE1C6C9B5900070044 /* NotificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		F5EBE6361C6DC00100AF08EA /* NotificationList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NotificationList.json; sourceTree = "<group>"; };
 		F6A1D20234676659C7D4F0A6 /* Pods_GeoLocusTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoLocusTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFFB56FF0A817FDFA0EF8AF7 /* Pods-GeoLocus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoLocus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -671,6 +673,7 @@
 				28800A621C6DA4EE00550064 /* badges.json */,
 				28800A631C6DA4EE00550064 /* overallscore.json */,
 				280D59291C6C7EE600270CDC /* trip_details.json */,
+				F5EBE6361C6DC00100AF08EA /* NotificationList.json */,
 			);
 			name = JSON;
 			sourceTree = "<group>";
@@ -1422,6 +1425,7 @@
 				638452451B03540300E895F7 /* collectData.sqlite in Resources */,
 				A61E44CE1B32C145001D3461 /* canvasjs.min.js in Resources */,
 				6361D41C1AFB4D730054D4BB /* digital.ttf in Resources */,
+				F5EBE6371C6DC00100AF08EA /* NotificationList.json in Resources */,
 				63955CA41AD7A5C1006A1B04 /* font.css in Resources */,
 				638452461B03540300E895F7 /* geoLocus.sqlite in Resources */,
 				6389B2501B1C9AA600F2A18C /* DataTransmissionController.xib in Resources */,

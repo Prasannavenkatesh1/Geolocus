@@ -74,6 +74,13 @@ class NotificationViewController: UIViewController,UITableViewDataSource, UITabl
         print("Delete tapped")
         
     }
+    
+    func requestNotificationListData(completionHandler:(status: Int, data: NotificationListModel?, error: NSError?) -> Void) -> Void{
+        
+        FacadeLayer.sharedinstance.requestNotificationListData { (status, data, error) -> Void in
+            completionHandler(status: status, data: data, error: error)
+        }
+    }
     /*
     // MARK: - Navigation
 

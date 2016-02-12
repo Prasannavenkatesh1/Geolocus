@@ -150,6 +150,36 @@ class Httpclient: NSObject {
             }
         }
     }
+    
+    func requestNotificationListData(URL:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
+        
+        
+        if let filePath = NSBundle.mainBundle().pathForResource("NotificationList", ofType: "json"), data = NSData(contentsOfFile: filePath) {
+            do {
+                let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
+                print(json)
+                
+                //****************************************//
+                
+                let parameters = ["userId":"<user id>","tokenId":"<get from server>","channel_type":StringConstants.CHANNEL_TYPE,"language_code":"en_be"]
+                
+                if let notificationListServiceURL = FacadeLayer.sharedinstance.webService.notificationListServiceURL{
+                    
+                    Alamofire.request(.POST, notificationListServiceURL, parameters: json as? Dictionary, encoding: .JSON, headers: nil).response{ (request, response, data, error) -> Void in
+                        
+                        completionHandler(response: response, data: data, error: error)
+                        
+                    }
+                }
+                
+                //*****************************************//
+                
+            }
+            catch {
+                //Handle error
+            }
+        }
+    }
 }
 
 
