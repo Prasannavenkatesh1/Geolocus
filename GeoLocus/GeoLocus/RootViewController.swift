@@ -67,15 +67,6 @@ class RootViewController: UIViewController {
         rightItem.customView = notifyfullView
         self.navigationItem.rightBarButtonItem = rightItem
         
-        
-//      let a = {print("aaa")}
-//      a()
-////
-//      let multiply = {(val1: Int, val2:Int) -> Int in
-//        return val1+val2
-//      }
-//      let ggg = multiply(10,20)
-//      print("ggg\(ggg)")
       
       categories.append("Contract")
       categories.append("Dashboard")
