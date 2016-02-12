@@ -66,6 +66,7 @@ class NotificationViewController: UIViewController,UITableViewDataSource, UITabl
         }
         
     }
+  
     func  pushToNotificationScreen(sender: UIButton!) {
         self.performSegueWithIdentifier("Notificationsegue", sender: self);
         

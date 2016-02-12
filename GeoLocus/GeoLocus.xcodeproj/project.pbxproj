@@ -1089,6 +1089,7 @@
 		BF4F8D961C43840500895640 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				F55265651C522FD0002362F5 /* NotificationTableViewCell.swift */,
 				28F38A0D1C61EBB300A02E93 /* BadgeCell.swift */,
 				28F38A0E1C61EBB300A02E93 /* HistoryMapViewCell.swift */,
 				28F38A0F1C61EBB300A02E93 /* HistoryTripDetailCell.swift */,
@@ -1183,9 +1184,9 @@
 			children = (
 				BF4F8D961C43840500895640 /* Cells */,
 				BF7337481C3FBCF4006094C0 /* RootViewController.swift */,
-				28AF07CC1C69AC0A00D8D3F4 /* TermsAndConditionsViewController.swift */,
 				B648C20B1C58B83000EE52C3 /* PageContentViewController.swift */,
 				B648C20C1C58B83000EE52C3 /* WelcomePageViewController.swift */,
+				28AF07CC1C69AC0A00D8D3F4 /* TermsAndConditionsViewController.swift */,
 				BF73374A1C3FBD9E006094C0 /* Pageviewcontroller.swift */,
 				BF73374C1C3FC278006094C0 /* ContractPage.swift */,
 				BF73374E1C3FC29A006094C0 /* DashboardPage.swift */,
@@ -1201,7 +1202,6 @@
 				B63F53EB1C51EAFA0070002E /* LoginViewController.swift */,
 				B63F53EC1C51EAFA0070002E /* LanguageSelectionViewController.swift */,
 				F55265631C522F3E002362F5 /* NotificationViewController.swift */,
-				F55265651C522FD0002362F5 /* NotificationTableViewCell.swift */,
 				F5B020441C60AA4B006C97E5 /* NotificationDetailsViewController.swift */,
 				6C44D6681C59E55F0055916B /* LeftViewController.swift */,
 			);

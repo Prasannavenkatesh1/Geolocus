@@ -276,15 +276,11 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       distance = 0.0;
     }
     
-    //Data creation time
-    creationTime = 1000.0 * NSDate().timeIntervalSince1970
-    var dataCreatTime:String = String(format: "%f", creationTime!)
-    
     //Update to DB
     
 //    /*    Testing
     
-//    testing(latitude, longitude: longitude, newLocation: newLocation)
+    testing(latitude, longitude: longitude, newLocation: newLocation)
 
 //*/
   
@@ -307,6 +303,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     var eventval:Double = 0.0
     
     if(tempvar == -1){
+      startdate = newLocation.timestamp
       distance = 10
       eventtypes =  Events.EventType.STARTTRIP
       TripNotify.init(title: "Do you want to start the trip",
@@ -387,9 +384,10 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         distance: distance!)
       
       FacadeLayer.sharedinstance.dbactions.saveTimeSeries(tseries)
-    }else if(tempvar == 4){
+    }else if(tempvar == 10){
       eventval = 0
 //      tempvar = 0
+      enddate = newLocation.timestamp
       eventtypes =  Events.EventType.TIMESERIES
       TripNotify.init(title: "Do you want to stop the trip",
         UUID: NSUUID().UUIDString,
@@ -424,7 +422,10 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       tripid: "qwqw",
       tripstarttime: startdate!,
       tripendtime: enddate!,
-      timezone:stringval)
+      timezone:stringval,
+      timezoneid:"temp")
+    
+    print("summarymodal: \(summarymodal)")
     
     // calculation needs to be done
     FacadeLayer.sharedinstance.dbactions.reterive()

@@ -23,7 +23,7 @@ struct SummaryModel{
   let tripstarttime :NSDate
   let tripendtime   :NSDate
   let timezone      :String
-//  let timezoneid    :String
+  let timezoneid    :String
 //  let totalduration :String
   
   var attentionscore    :NSNumber   = 0
@@ -31,13 +31,13 @@ struct SummaryModel{
   var accelerationcount :NSNumber   = FacadeLayer.sharedinstance.dbactions.fetchEventCount(Events.EventType.ACCELERATION)
   var totaldistance     :NSNumber   = FacadeLayer.sharedinstance.dbactions.fetchTotalDistance()
   
-  init(datausage:NSNumber ,tripid:String,tripstarttime:NSDate, tripendtime:NSDate, timezone:String){
+  init(datausage:NSNumber ,tripid:String,tripstarttime:NSDate, tripendtime:NSDate, timezone:String, timezoneid:String){
     self.datausage = datausage
     self.tripid = tripid
     self.tripstarttime = tripstarttime
     self.tripendtime = tripendtime
     self.timezone = timezone
-//    self.timezoneid =  timezoneid    
+    self.timezoneid =  timezoneid    
   }
   
   var totalduration :NSInteger {
