@@ -19,9 +19,9 @@
 	<key>HistoryServiceURL</key>
 	<string>https://dweet.io:443/dweet/for/historyService</string>
 	<key>BadgeServiceURL</key>
-	<string></string>
+	<string>https://dweet.io:443/dweet/for/badgesService</string>
 	<key>OverallServiceURL</key>
-	<string></string>
+	<string>https://dweet.io:443/dweet/for/overallscoreService</string>
 	<key>ReportServiceURL</key>
 	<string></string>
 	<key>TripServiceURL</key>

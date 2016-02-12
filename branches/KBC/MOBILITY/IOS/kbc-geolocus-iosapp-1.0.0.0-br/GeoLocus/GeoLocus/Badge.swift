@@ -9,7 +9,7 @@
 import Foundation
 
 
-class Badge {
+struct Badge {
     
     enum BadgesType : Int {
         case Badge = 0

@@ -12,6 +12,7 @@ enum EventType: Int {
     case Acceleration
     case Breaking
     case Speeding
+    case None
 }
 
 class EventLocation {

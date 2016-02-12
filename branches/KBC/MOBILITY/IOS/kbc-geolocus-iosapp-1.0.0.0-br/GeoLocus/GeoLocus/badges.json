@@ -1,0 +1,89 @@
+ {
+ 	"statuscode": 1,
+ 	"statusmessage": "Success",
+ 	"badges": [{
+ 		"badge_title": "Marathoner Badge",
+ 		"badge_description": "No speed violation for the last 50KM",
+ 		"isEarned": true,
+ 		"order_index": 1
+ 	}, {
+ 		"badge_title": "Roadie Candidate Badge",
+ 		"badge_description": "No speed violation for the last 250KM",
+ 		"isEarned": true,
+ 		"order_index": 2
+ 	}, {
+ 		"badge_title": "Rock star of Road Badge",
+ 		"badge_description": "No speed violation for the last 500KM",
+ 		"isEarned": true,
+ 		"order_index": 3
+ 	}, {
+ 		"badge_title": "Perfect Trip Badge",
+ 		"badge_description": "All scores on dark green for > 30KM trip",
+ 		"isEarned": true,
+ 		"order_index": 4
+ 	}, {
+ 		"badge_title": "Nice Driver Badge",
+ 		"badge_description": "All scores on dark green for > 100KM trip",
+ 		"isEarned": true,
+ 		"order_index": 5
+ 	}, {
+ 		"badge_title": "Night Driver Badge",
+ 		"badge_description": "Dark green overall score during a trip at night travel > 1 hours",
+ 		"isEarned": true,
+ 		"order_index": 6
+ 	}, {
+ 		"badge_title": "Eco Driver Badge",
+ 		"badge_description": "Last 200KM the eco score was dark green",
+ 		"isEarned": true,
+ 		"order_index": 7
+ 	}, {
+ 		"badge_title": "Highway Driver Badge",
+ 		"badge_description": "Driving more than 1000km on autoroute (max allowed speed >= 120km)",
+ 		"isEarned": true,
+ 		"order_index": 8
+ 	}, {
+ 		"badge_title": "King of the City Badge",
+ 		"badge_description": "Driving more than 500KM in a city center (max speed <=50km)",
+ 		"isEarned": true,
+ 		"order_index": 9
+ 	}, {
+ 		"badge_title": "Distraction score Badge",
+ 		"badge_description": "Dark green distractions core for the last 800km",
+ 		"isEarned": true,
+ 		"order_index": 10
+ 	}],
+
+ 	"levels": [{
+ 			"badge_title": "New Kid on the block Level ",
+ 			"badge_description": "250 km all scores minimal Yellow",
+ 			"isEarned": true,
+ 			"order_index": 1
+
+ 		}, {
+ 			"badge_title": "Apprentice Level",
+ 			"badge_description": "500 km all scores minimal light green",
+ 			"isEarned": false,
+ 			"order_index": 2
+
+ 		}, {
+ 			"badge_title": "Intermediate Level ",
+ 			"badge_description": "1000 km all scores minimal light green",
+ 			"isEarned": true,
+ 			"order_index": 3
+
+ 		}, {
+ 			"badge_title": "Advanced Level ",
+ 			"badge_description": "1500 km all scores minimal light green",
+ 			"isEarned": true,
+ 			"order_index": 4
+
+ 		}, {
+ 			"badge_title": "Professional Level ",
+ 			"badge_description": "2500 km all scores dark green",
+ 			"isEarned": true,
+ 			"order_index": 5
+
+ 		}
+
+ 	]
+ }

@@ -22,6 +22,8 @@
 		283A2B381C65D7C700F6BD16 /* Trip_Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283A2B361C65D7C700F6BD16 /* Trip_Badge.swift */; };
 		2840EFDE1C6B20F10020B8FF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2840EFDD1C6B20F10020B8FF /* Extensions.swift */; };
 		2840EFE01C6B3C970020B8FF /* WebServicesURL.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2840EFDF1C6B3C970020B8FF /* WebServicesURL.plist */; };
+		28800A641C6DA4EE00550064 /* badges.json in Resources */ = {isa = PBXBuildFile; fileRef = 28800A621C6DA4EE00550064 /* badges.json */; };
+		28800A651C6DA4EE00550064 /* overallscore.json in Resources */ = {isa = PBXBuildFile; fileRef = 28800A631C6DA4EE00550064 /* overallscore.json */; };
 		28AF07CD1C69AC0A00D8D3F4 /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AF07CC1C69AC0A00D8D3F4 /* TermsAndConditionsViewController.swift */; };
 		28CD01E11C69A42300EEC94A /* DetectingVechile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CD01E01C69A42300EEC94A /* DetectingVechile.swift */; };
 		28DC53C81C64EFF800FB45B4 /* BadgesDetails.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28DC53C71C64EFF800FB45B4 /* BadgesDetails.plist */; };
@@ -295,6 +297,8 @@
 		283A2B361C65D7C700F6BD16 /* Trip_Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_Badge.swift; sourceTree = "<group>"; };
 		2840EFDD1C6B20F10020B8FF /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2840EFDF1C6B3C970020B8FF /* WebServicesURL.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WebServicesURL.plist; sourceTree = "<group>"; };
+		28800A621C6DA4EE00550064 /* badges.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = badges.json; sourceTree = "<group>"; };
+		28800A631C6DA4EE00550064 /* overallscore.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = overallscore.json; sourceTree = "<group>"; };
 		28AF07CC1C69AC0A00D8D3F4 /* TermsAndConditionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewController.swift; sourceTree = "<group>"; };
 		28CD01E01C69A42300EEC94A /* DetectingVechile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectingVechile.swift; sourceTree = "<group>"; };
 		28DC53C71C64EFF800FB45B4 /* BadgesDetails.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BadgesDetails.plist; sourceTree = "<group>"; };
@@ -656,6 +660,8 @@
 		280D59281C6C7ED100270CDC /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				28800A621C6DA4EE00550064 /* badges.json */,
+				28800A631C6DA4EE00550064 /* overallscore.json */,
 				280D59291C6C7EE600270CDC /* trip_details.json */,
 			);
 			name = JSON;
@@ -1317,6 +1323,7 @@
 				6352C4181AD694A500E11D3A /* back.png in Resources */,
 				633764E61AE53DE9005D6597 /* Roboto-Italic.ttf in Resources */,
 				63955C841AD7A581006A1B04 /* AccelerationIndiactor.html in Resources */,
+				28800A651C6DA4EE00550064 /* overallscore.json in Resources */,
 				63955C821AD7A581006A1B04 /* SampleLoader.html in Resources */,
 				638452471B03540300E895F7 /* storeData.sqlite in Resources */,
 				63955C981AD7A593006A1B04 /* speed.js in Resources */,
@@ -1339,6 +1346,7 @@
 				63955CA11AD7A593006A1B04 /* jquery.knob.js in Resources */,
 				6352C42E1AD694A500E11D3A /* icon.png in Resources */,
 				633764ED1AE53DE9005D6597 /* Roboto-ThinItalic.ttf in Resources */,
+				28800A641C6DA4EE00550064 /* badges.json in Resources */,
 				63955C851AD7A581006A1B04 /* BrakingIndicator.html in Resources */,
 				633764E71AE53DE9005D6597 /* Roboto-Light.ttf in Resources */,
 				6352C4241AD694A500E11D3A /* ic_accleration.png in Resources */,

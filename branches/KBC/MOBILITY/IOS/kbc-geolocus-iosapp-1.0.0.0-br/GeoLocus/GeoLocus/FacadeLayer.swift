@@ -118,20 +118,149 @@ class FacadeLayer{
     
     func requestRecentTripData(completionHandler:(status: Int, data: [History]?, error: NSError?) -> Void) -> Void{
         
-        httpclient.requestRecentTripData { (response, data, error) -> Void in
+        httpclient.requestRecentTripData ("url"){ (response, data, error) -> Void in
             
             if error == nil {
+                
+                var tripArray = [History]()
                 
                 if let result = data {
                     var jsonData = JSON(data: result)
                     
                     if let tripDetails = jsonData["with"]["content"]["tripdetails"].array {
-                        print(tripDetails)
+                        //print(tripDetails)
+                        
+                        for tripObj in tripDetails {
+                            let trip = tripObj.dictionaryValue
+                            
+                            var eventsObj = [Event]()
+                            var speedZonesObj = [SpeedZone]()
+                            
+                            let tripScore = TripScore(speedScore: trip["speedscore"]!.doubleValue, ecoScore: trip["ecoscore"]!.doubleValue, attentionScore: nil)
+                            
+                            //Event array
+                            
+                            for (_,subJson):(String, JSON) in trip["event"]! {
+                                let eventDict = subJson.dictionaryValue
+                                let eventLocation = EventLocation(latitude: Double(eventDict["lat"]!.stringValue)!, longitude:Double(eventDict["long"]!.stringValue)!)
+                                let event = Event(location: eventLocation, type:Helper.getEventType(eventDict["event_type"]!.string!) , message: eventDict["eventMessage"]!.string!)
+                                
+                                eventsObj.append(event)
+                            }
+                            
+                            //Speedzone array
+                            
+                            for (index,subjson):(String, JSON) in trip["speed_zone"]! {
+                                let zoneDict = subjson.dictionaryValue
+                                let speedZone = SpeedZone(speedScore: Double(zoneDict["speedScore"]!.stringValue)!,
+                                    maxSpeed: Double(zoneDict["max_speed"]!.stringValue)!,
+                                    aboveSpeed: Double(zoneDict["Above_maxspeed"]!.stringValue)!,
+                                    withinSpeed: Double(zoneDict["within_maxspeed"]!.stringValue)!,
+                                    violationCount: Double(zoneDict["violation_count"]!.stringValue)!,
+                                    speedBehaviour: Double(zoneDict["speedbehaviour"]!.stringValue)!,
+                                    distanceTravelled: Double(zoneDict["distance_travelled"]!.stringValue)!)
+                                
+                                speedZonesObj.append(speedZone)
+                            }
+                            
+                            let dateFormatter = NSDateFormatter()
+                            dateFormatter.dateFormat = "dd-MM-yyyy"
+                            
+
+                            let tripDetail = History(tripid: trip["tripId"]!.string!, tripDate:dateFormatter.stringFromDate(NSDate(jsonDate: trip["date"]!.string!)!), distance: Double(trip["distance"]!.stringValue)!, tripPoints: Int(trip["trippoints"]!.stringValue)!, tripDuration: Double(trip["hours"]!.stringValue)!, dataUsageMessage: trip["dataUsageMsg"]!.string!, tripScore: tripScore, events: eventsObj, speedZones: speedZonesObj)
+                            
+                            tripArray.append(tripDetail)
+                            
+                        }
+                         completionHandler(status: 1, data: tripArray, error: nil)
+                    }else{
+                        completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
                     }
+                }else{
+                    completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
                 }
-                
+            }else{
+                completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+            }
             
-                //completionHandler(status: 1, data: <#T##[History]?#>, error: <#T##NSError?#>)
+        }
+        
+    }
+
+    
+    //MARK: - History service
+    
+    func requestBadgesData(completionHandler:(status: Int, data: [Badge]?, error: NSError?) -> Void) -> Void{
+        
+        
+        httpclient.requestBadgesData("URL") { (response, data, error) -> Void in
+            if error == nil {
+                var badges = [Badge]()
+                
+                if let result = data {
+                    var jsonData = JSON(data: result)
+                    
+                    if let badgesList = jsonData["with"]["content"]["badges"].array {
+                        print(badges)
+                        for badgeObj in badgesList {
+                            let badgeDict = badgeObj.dictionaryValue
+                            
+                            let badge = Badge(withIcon: " ", badgeTitle: badgeDict["badge_title"]!.stringValue, badgeDescription: badgeDict["badge_description"]!.stringValue, isEarned: Bool(badgeDict["isEarned"]!.intValue), orderIndex: badgeDict["order_index"]!.intValue, badgeType: Badge.BadgesType.Badge, additionalMsg: nil)
+                            
+                            badges.append(badge)
+                        }
+                        
+                    }
+                    
+                    if let levelList = jsonData["with"]["content"]["levels"].array {
+                        print(levelList)
+                        for badgeObj in levelList {
+                            let badgeDict = badgeObj.dictionaryValue
+                            
+                            let badge = Badge(withIcon: " ", badgeTitle: badgeDict["badge_title"]!.stringValue, badgeDescription: badgeDict["badge_description"]!.stringValue, isEarned: Bool(badgeDict["isEarned"]!.intValue), orderIndex: badgeDict["order_index"]!.intValue, badgeType: Badge.BadgesType.Level, additionalMsg: nil)
+                            
+                            badges.append(badge)
+                        }
+                        completionHandler(status: 1, data: badges, error: nil)
+                    }else{
+                        completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                    }
+                }else{
+                    //something went wrong
+                    completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                }
+            }else {
+                //something went wrong
+                completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+            }
+        }
+        
+    }
+
+    
+    func requestOverallScoreData(completionHandler:(status: Int, data: OverallScores?, error: NSError?) -> Void) -> Void{
+        
+        httpclient.requestOverallScoreData("") { (response, data, error) -> Void in
+            if error == nil {
+                if let result = data {
+                    var jsonData = JSON(data: result)
+                    
+                    if let scores = jsonData["with"]["content"].dictionary {
+                        
+                        let overallScore = OverallScores(overallScore: Double(scores["overallScore"]!.stringValue)!, speedingScore: Double(scores["overallSpeedingScore"]!.stringValue)!, ecoScore: Double(scores["overallEcoScore"]!.stringValue)!, distanceTravelled: Double(scores["distanceTravelled"]!.stringValue)!, dataUsageMsg: scores["dataUsageMsg"]!.stringValue)
+                        
+                        completionHandler(status: 1, data: overallScore, error: nil)
+                    }else{
+                        //something went wrong
+                        completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                    }
+                }else{
+                    //something went wrong
+                    completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                }
+            }else {
+                //something went wrong
+                completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
             }
             
         }
