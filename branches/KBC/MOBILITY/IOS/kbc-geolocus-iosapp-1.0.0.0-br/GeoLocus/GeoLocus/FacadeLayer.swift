@@ -24,6 +24,12 @@ struct WebServiceURL {
     var tripServiceURL:String?
     var configurationServiceURL:String?
     var registerPNURL:String?
+    var registerDeviceTokenServiceURL:String?
+    var notificationCountServiceURL:String?
+    var notificationListServiceURL:String?
+    var notificationDetailsServiceURL:String?
+    var deleteNotificationServiceURL:String?
+    var competitionAcceptanceServiceURL:String?
 }
 
 class FacadeLayer{
@@ -38,8 +44,8 @@ class FacadeLayer{
         return dbactions.getConfiguration()
       }
     }
-  
-  
+   var notificationCount:String?
+    
   init(){
     dbactions = DatabaseActions()
     httpclient = Httpclient()
@@ -108,6 +114,30 @@ class FacadeLayer{
                 
                 if let registerPNURL = dataDict["RegisterPNURL"] {
                     self.webService.registerPNURL = registerPNURL as? String
+                }
+                
+                if let registerDeviceTokenServiceURL = dataDict["RegisterDeviceTokenServiceURL"] {
+                    self.webService.registerDeviceTokenServiceURL = registerDeviceTokenServiceURL as? String
+                }
+                
+                if let notificationCountServiceURL = dataDict["NotificationCountServiceURL"] {
+                    self.webService.notificationCountServiceURL = notificationCountServiceURL as? String
+                }
+                
+                if let notificationListServiceURL = dataDict["NotificationListServiceURL"] {
+                    self.webService.notificationListServiceURL = notificationListServiceURL as? String
+                }
+                
+                if let notificationDetailsServiceURL = dataDict["NotificationDetailsServiceURL"] {
+                    self.webService.notificationDetailsServiceURL = notificationDetailsServiceURL as? String
+                }
+                
+                if let deleteNotificationServiceURL = dataDict["DeleteNotificationServiceURL"] {
+                    self.webService.deleteNotificationServiceURL = deleteNotificationServiceURL as? String
+                }
+                
+                if let competitionAcceptanceServiceURL = dataDict["CompetitionAcceptanceServiceURL"] {
+                    self.webService.competitionAcceptanceServiceURL = competitionAcceptanceServiceURL as? String
                 }
             }
         }

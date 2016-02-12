@@ -50,24 +50,32 @@ class NotificationDetailsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     func reloadView() {
+        self.ecoScoreArc.foreGroundArcWidth = 4
+        self.ecoScoreArc.backGroundArcWidth = 4
+        self.ecoScoreArc.ringLayer.strokeColor = UIColor.greenColor().CGColor
+        self.ecoScoreArc.animateScale = 60/100.0
+        self.ecoScoreArc.setNeedsDisplay()
         if self.notificationDetailsModel != nil {
-            self.ecoScoreArc.foreGroundArcWidth = 8
-            self.ecoScoreArc.backGroundArcWidth = 8
-            self.ecoScoreArc.ringLayer.strokeColor = UIColor(range: (self.notificationDetailsModel?.competition_ecoscore.integerValue)!).CGColor
-            self.ecoScoreArc.animateScale = (self.notificationDetailsModel?.competition_ecoscore.doubleValue)!/100.0
+            self.ecoScoreArc.foreGroundArcWidth = 4
+            self.ecoScoreArc.backGroundArcWidth = 4
+            self.ecoScoreArc.ringLayer.strokeColor = UIColor.greenColor().CGColor
+            self.ecoScoreArc.animateScale = 60/100.0
             self.ecoScoreArc.setNeedsDisplay()
-            
-            self.overallScoreArc.foreGroundArcWidth = 8
-            self.overallScoreArc.backGroundArcWidth = 8
-            self.overallScoreArc.ringLayer.strokeColor = UIColor(range: (self.notificationDetailsModel?.competition_overallscore.integerValue)!).CGColor
-            self.overallScoreArc.animateScale = (self.notificationDetailsModel?.competition_overallscore.doubleValue)!/100.0
-            self.overallScoreArc.setNeedsDisplay()
-            
-            speedingScoreArc.foreGroundArcWidth = 8
-            speedingScoreArc.backGroundArcWidth = 8
-            speedingScoreArc.ringLayer.strokeColor = UIColor(range: (self.notificationDetailsModel?.competition_speedscore.integerValue)!).CGColor
-            speedingScoreArc.animateScale = (self.notificationDetailsModel?.competition_speedscore.doubleValue)!/100.0
-            speedingScoreArc.setNeedsDisplay()
+//            self.ecoScoreArc.ringLayer.strokeColor = UIColor(range: (self.notificationDetailsModel?.competition_ecoscore.integerValue)!).CGColor
+//            self.ecoScoreArc.animateScale = (self.notificationDetailsModel?.competition_ecoscore.doubleValue)!/100.0
+//            self.ecoScoreArc.setNeedsDisplay()
+//            
+//            self.overallScoreArc.foreGroundArcWidth = 4
+//            self.overallScoreArc.backGroundArcWidth = 4
+//            self.overallScoreArc.ringLayer.strokeColor = UIColor(range: (self.notificationDetailsModel?.competition_overallscore.integerValue)!).CGColor
+//            self.overallScoreArc.animateScale = (self.notificationDetailsModel?.competition_overallscore.doubleValue)!/100.0
+//            self.overallScoreArc.setNeedsDisplay()
+//            
+//            speedingScoreArc.foreGroundArcWidth = 4
+//            speedingScoreArc.backGroundArcWidth = 4
+//            speedingScoreArc.ringLayer.strokeColor = UIColor(range: (self.notificationDetailsModel?.competition_speedscore.integerValue)!).CGColor
+//            speedingScoreArc.animateScale = (self.notificationDetailsModel?.competition_speedscore.doubleValue)!/100.0
+//            speedingScoreArc.setNeedsDisplay()
             
            // self.totalDistTravelledLabel.text = String("\(self.overallScores!.distanceTravelled) km")
             
