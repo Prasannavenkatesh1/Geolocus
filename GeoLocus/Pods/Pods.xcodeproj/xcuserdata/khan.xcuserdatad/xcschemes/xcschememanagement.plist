@@ -8,51 +8,26 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
-		<key>Charts.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>Pods-GeoLocus.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
-		</dict>
-		<key>Pods-GeoLocusTests.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>8</integer>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 		<key>SwiftCharts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
 		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>6</integer>
-		</dict>
-		<key>TextFieldEffects.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -62,42 +37,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0ED2BD4F28B363DD94A00FBA3AE30F64</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>432ECC54282C84882B482CCB4CF227FC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6A69AD75DAED47147CD673185F24E32D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>6DC3B00B49D51FC5D2063ABA9793A834</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7B8FC651CE8814A30F72A86565CD4BA2</key>
+		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>8772AF0D3C10AB697805E90CDFE61751</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>972CFA7E7F5E9DFE1786C7EB1E0289CF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CCC84F52535AB16A9684C2761CC16CE9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
