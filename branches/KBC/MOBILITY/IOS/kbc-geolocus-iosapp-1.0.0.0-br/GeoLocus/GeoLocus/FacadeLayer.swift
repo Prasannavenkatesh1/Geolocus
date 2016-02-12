@@ -297,4 +297,32 @@ class FacadeLayer{
         
     }
 
+    func requestNotificationListData(completionHandler:(status: Int, data: NotificationListModel?, error: NSError?) -> Void) -> Void{
+        
+        httpclient.requestNotificationListData("") { (response, data, error) -> Void in
+            if error == nil {
+                if let result = data {
+                    var jsonData = JSON(data: result)
+                    
+                    if let notificationListData = jsonData["with"]["content"].dictionary {
+                        
+                        let notificationList = NotificationListModel(title: (notificationListData["Title"]!.stringValue), date: (notificationListData["Date"]!.stringValue), day: (notificationListData["Day"]!.stringValue), notificationImage: (notificationListData["NotificationImage"]!.stringValue), message: (notificationListData["message"]!.stringValue), notificationID: Double(notificationListData["Notification ID"]!.stringValue)!, notificationStatus: (notificationListData["Status"]!.stringValue))
+                        
+                        completionHandler(status: 1, data: notificationList, error: nil)
+                    }else{
+                        //something went wrong
+                        completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                    }
+                }else{
+                    //something went wrong
+                    completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                }
+            }else {
+                //something went wrong
+                completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+            }
+            
+        }
+        
+    }
 }
