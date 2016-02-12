@@ -26,6 +26,8 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   var startdate             :NSDate?
   var enddate               :NSDate?
   var timezoneid            :String?
+  var currentCountForDataUsageCalc :Int?
+    var dataUsageArray        :[AnyObject]?
 
   
   override init() {
@@ -33,6 +35,8 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   }
   
   func initLocationManager() {
+    dataUsageArray = [AnyObject]()
+    currentCountForDataUsageCalc = 1
     
     configmodel = FacadeLayer.sharedinstance.configmodel
     
@@ -102,8 +106,19 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     print(newLocation.speed)
     
     // Reteiving the datausage within this speed
-//    let datausagedict:Dictionary = Datausage.getDatas()
-//    print("datausagedict :%@",datausagedict)
+    let datausagedict:Dictionary = Datausage.getDatas()
+    print("datausagedict :%@",datausagedict)
+    
+    if currentCountForDataUsageCalc <= 2 {
+        
+        print("array :%@",dataUsageArray)
+        dataUsageArray!.append(datausagedict)
+        if let currentCount = currentCountForDataUsageCalc {
+        currentCountForDataUsageCalc = currentCount + 1
+        }
+    } else {
+     //   self.calculateThresholdDataUsage()
+    }
     
     let latitude:Double = coord.latitude
     let longitude:Double = coord.longitude
@@ -127,11 +142,11 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     }
     self.motiontype = ""
     
-    if(newLocation.speed * 3.6 <= 2.8 || newLocation.coordinate.latitude == oldLocation.coordinate.latitude && newLocation.coordinate.longitude == oldLocation.coordinate.longitude){
-      //motion type not moving
-      self.motiontype = StringConstants.MOTIONTYPE_NOTMOVING
-      
-    }
+//    if(newLocation.speed * 3.6 <= 2.8 || newLocation.coordinate.latitude == oldLocation.coordinate.latitude && newLocation.coordinate.longitude == oldLocation.coordinate.longitude){
+//      //motion type not moving
+//      self.motiontype = StringConstants.MOTIONTYPE_NOTMOVING
+//      
+//    }
     
     if(newlocspeed >= configmodel?.thresholds_autotrip as! Float){//if(newlocspeed >= 7.0){
       // motion ype automotive
@@ -188,6 +203,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     }
     
     var eventval:Double = 0.0
+    
     //Calculate Braking
     var brakingvalue:Double = 0.0
     var braking:String = String(format:"%.1f",0.0) as String
@@ -297,6 +313,14 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
 //      FacadeLayer.sharedinstance.dbactions.saveTimeSeries(tseries)
     
   }
+    
+    
+    func calculateThresholdDataUsage(){
+        print(dataUsageArray)
+//        var previousDataUsageDict :Dictionary = dataUsageArray![0] as! Dictionary
+//        var currentDataUsageDict  :Dictionary = dataUsageArray![1] as! Dictionary
+        
+    }
   
   func testing(latitude:Double,longitude:Double, newLocation:CLLocation){
     

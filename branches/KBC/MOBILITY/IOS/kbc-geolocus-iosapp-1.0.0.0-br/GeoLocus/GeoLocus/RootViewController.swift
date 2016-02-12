@@ -21,7 +21,7 @@ class RootViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentSelectedIndex = 0
+        currentSelectedIndex = 1
         self.getCustomizedSegmentedControl(self.segmentControl)
         self.segmentControl.addTarget(self, action: "segmentedControlChangedValue:", forControlEvents: UIControlEvents.ValueChanged)
        // self.segmentControl .addTarget(self, action:"segmentedControlChangedValue:", forControlEvents: )
@@ -114,12 +114,7 @@ class RootViewController: UIViewController {
   }
   
   func getSelectedIndex(vcindex:NSNotification) {
-//    print("index \(vcindex.userInfo)")
-    
-//    if let id = vcindex.userInfo!["getindex"] as? NSNumber {
-//
-//        currentSelectedIndex = id
-//        segmentControl.setSelectedSegmentIndex(UInt(currentSelectedIndex), animated: true)
+
 //    }
     var gg:String =  vcindex.userInfo!["getindex"] as! String
     print(gg)
@@ -127,13 +122,6 @@ class RootViewController: UIViewController {
     print(idx)    
     currentSelectedIndex = idx
     segmentControl.setSelectedSegmentIndex(UInt(currentSelectedIndex), animated: true)
-    
-//    let temp = vcindex.userInfo!["getindex"]
-//    //var getindex:Int = vcindex.userInfo!["getindex"] as! Int
-//    print(temp);
-//    currentSelectedIndex = Int(temp)
-//    segmentControl.setSelectedSegmentIndex(UInt(currentSelectedIndex), animated: true)
-
   }
     
  func  pushToNotificationScreen(sender: UIButton!) {
