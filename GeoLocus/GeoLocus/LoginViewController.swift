@@ -10,8 +10,6 @@ import UIKit
 
 class LoginViewController: UIViewController,UITextFieldDelegate {
     
-    var isChecked = false
-    
     @IBOutlet weak var layoutConstraintTop: NSLayoutConstraint!
     @IBOutlet weak var layoutConstraintVerticalUserNameTop: NSLayoutConstraint!
     @IBOutlet weak var layoutConstraintLoginTop: NSLayoutConstraint!
@@ -26,6 +24,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var passwordText: UITextField!
     
+    var isChecked = false
     let passwordShowButton = UIButton()
     var selectedLanguageCode : String!
     var termsAndConditionsString = String()
@@ -45,11 +44,17 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     }
     
     /* Login button action */
-    @IBAction func loginTapped(sender: UIButton) {
-        loginButton.backgroundColor = UIColor(red: 83, green: 178, blue: 98)
-        loginButton.setTitleColor(UIColor(red: 174, green: 174, blue: 174), forState: .Normal)
+    @IBAction func loginTapped(sender: UIButton) {     
+        loginButton.backgroundColor = UIColor(red: 83.0/255.0, green: 178.0/255.0, blue: 98.0/255.0, alpha: 1.0)
+        loginButton.setTitleColor(UIColor(red: 174.0/255.0, green: 174.0/255.0, blue: 174.0/255.0, alpha: 1.0),forState: UIControlState.Normal)
         
-        let requestDictionary = ["j_password" : passwordText.text!,"j_username" : userNameText.text!,"languageCode" : self.selectedLanguageCode, "channel_type" : "IOS","_spring_security_remember_me" : "on"]
+        let requestDictionary = [
+                     "j_password" : passwordText.text!,
+                     "j_username" : userNameText.text!,
+                     "languageCode" : self.selectedLanguageCode,
+                     "channel_type" : "IOS",
+                     "_spring_security_remember_me" : "on"
+        ]
         FacadeLayer.sharedinstance.httpclient.requestLoginData(StringConstants.LOGIN_URL,parametersHTTPBody:requestDictionary)
     }
     
@@ -100,18 +105,18 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     
     /* set URL for Terms and Conditions content */
     func termsAndConditionsURL(){
-        var termsAndConditionsURL : String!
+        var termsAndConditionsURL : String
         termsAndConditionsURL = StringConstants.TERMS_AND_CONDITIONS_URL + "\(selectedLanguageCode)"
-        FacadeLayer.sharedinstance.httpclient.getContentFromTermsAndConditionsRequest(termsAndConditionsURL, completionHandler: {(success, data) -> Void in
-            if(success){
-                if let unwrappedData = data{
-                    self.termsAndConditionsString = NSString(data: unwrappedData, encoding: NSUTF8StringEncoding) as String!
-                }
+        
+        self.requestTermsAndConditionsData(termsAndConditionsURL){ (status,response,error) -> Void in
+            self.termsAndConditionsString = NSString(data: response!, encoding: NSUTF8StringEncoding) as String!
             }
-            else{
-                print("Error")
-            }
-        })
+    }
+    
+    func requestTermsAndConditionsData(URL : String, completionHandler:(status : Int, response : NSData?, error : NSError?) -> Void) -> Void{
+        FacadeLayer.sharedinstance.requestTermsAndConditionsData(URL){ (status, data, error) -> Void in
+            completionHandler(status: status, response: data, error: error)
+        }
     }
     
     /* create modal dialog view controller for displaying terms and conditions */
@@ -202,21 +207,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         else{
             passwordText.secureTextEntry = true
         }
-    }
-    
-    func checkUserDetails() -> Bool{
-        var tokenID : String
-        var firstTimeLogin = true
-        
-        tokenID = ""
-        
-        if(tokenID.isEmpty){
-            firstTimeLogin = true
-        }
-        else{
-            firstTimeLogin = false
-        }
-        return firstTimeLogin
     }
     
     //MARK : Notification methods on Keyboard pop up

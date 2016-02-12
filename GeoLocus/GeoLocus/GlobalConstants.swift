@@ -94,6 +94,7 @@ struct StringConstants {
     static var appDataSynced = true
     
     static let CHANNEL_TYPE = "iOS"
+    static let TOKEN_ID = "tokenID"
 }
 
 
