@@ -40,7 +40,7 @@ class Pageviewcontroller: UIPageViewController,UIPageViewControllerDataSource {
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "getSegmentIndex:",
-            name: "segmentindexchanged",
+            name: NotificationKey.SegmentIndexChangedNotification,
             object: nil)
     }
     
@@ -63,7 +63,7 @@ class Pageviewcontroller: UIPageViewController,UIPageViewControllerDataSource {
     let vcIndex = views.indexOf(viewController);
     if (vcIndex < views.count-1) {
 
-      NSNotificationCenter.defaultCenter().postNotificationName("pageviewcontrollerindexchanged",
+      NSNotificationCenter.defaultCenter().postNotificationName(NotificationKey.PageViewControllerIndexchangedNotification,
         object:nil,
         userInfo:["getindex":"\(vcIndex!+1)"])
       return views[vcIndex!+1];
@@ -76,7 +76,7 @@ class Pageviewcontroller: UIPageViewController,UIPageViewControllerDataSource {
   func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
     let vcIndex = views.indexOf(viewController);
     if (vcIndex > 0) {
-      NSNotificationCenter.defaultCenter().postNotificationName("pageviewcontrollerindexchanged",
+      NSNotificationCenter.defaultCenter().postNotificationName(NotificationKey.PageViewControllerIndexchangedNotification,
         object:nil,
         userInfo:["getindex":"\(vcIndex!-1)"])
       return views[vcIndex!-1];
