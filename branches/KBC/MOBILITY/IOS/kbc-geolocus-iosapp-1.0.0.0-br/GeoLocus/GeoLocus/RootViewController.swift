@@ -86,7 +86,7 @@ class RootViewController: UIViewController {
       NSNotificationCenter.defaultCenter().addObserver(
         self,
         selector: "getSelectedIndex:",
-        name: "pageviewcontrollerindexchanged",
+        name: NotificationKey.PageViewControllerIndexchangedNotification,
         object: nil)
         
         //attributes for SWrevealController framework
@@ -183,7 +183,7 @@ class RootViewController: UIViewController {
     
     func segmentedControlChangedValue(segmentControl :HMSegmentedControl) -> Void{
         currentSelectedIndex = segmentControl.selectedSegmentIndex
-        NSNotificationCenter.defaultCenter().postNotificationName("segmentindexchanged",
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationKey.SegmentIndexChangedNotification,
             object:nil,
             userInfo:["getindex":currentSelectedIndex!])
     }

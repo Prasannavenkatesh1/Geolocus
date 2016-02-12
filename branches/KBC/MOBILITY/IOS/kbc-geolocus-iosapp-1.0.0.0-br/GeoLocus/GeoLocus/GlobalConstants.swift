@@ -139,7 +139,10 @@ struct ErrorConstants {
 }
 
 struct NotificationKey {
-
+    
+    static let SegmentIndexChangedNotification            = "SegmentIndexChangedNotification"
+    static let PageViewControllerIndexchangedNotification = "PageViewControllerIndexchangedNotification"
+    
 }
 
 struct Path {
