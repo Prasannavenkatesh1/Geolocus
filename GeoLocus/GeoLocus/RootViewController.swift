@@ -13,7 +13,7 @@ class RootViewController: UIViewController {
   
     @IBOutlet var segmentControl: HMSegmentedControl!
     @IBOutlet var sideMenuButton: UIBarButtonItem!
-    var labelNotificationCount:UILabel!
+    var labelNotificationCount:UILabel?
     var categories = [String]()
     let activitymanager = CMMotionActivityManager()
     var currentSelectedIndex : NSNumber!
@@ -41,12 +41,13 @@ class RootViewController: UIViewController {
         //DynamicView.layer.borderWidth=2
         
         labelNotificationCount = UILabel()
-        labelNotificationCount.frame = CGRectMake(1, 1, 15, 15)
-        labelNotificationCount.textColor = UIColor.whiteColor()
-        labelNotificationCount.textAlignment = NSTextAlignment.Center
-        labelNotificationCount.text = "25"
-        labelNotificationCount.font = UIFont(name: labelNotificationCount.font.fontName, size: 10)
-        redView.addSubview(labelNotificationCount)
+        labelNotificationCount!.frame = CGRectMake(1, 1, 15, 15)
+        labelNotificationCount!.textColor = UIColor.whiteColor()
+        labelNotificationCount!.textAlignment = NSTextAlignment.Center
+        labelNotificationCount!.text = "2"
+        //labelNotificationCount!.text = FacadeLayer.sharedinstance.notificationCount
+        labelNotificationCount!.font = UIFont(name: labelNotificationCount!.font.fontName, size: 10)
+        redView.addSubview(labelNotificationCount!)
         
         let bgImage: UIImageView!
         let image: UIImage = UIImage(named: "NotificationIcon")!
