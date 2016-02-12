@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NotificationViewController: UIViewController,UITableViewDataSource, UITableViewDelegate{
+class NotificationViewController: BaseViewController,UITableViewDataSource, UITableViewDelegate{
     var notificationListDict = [String: String]()
     var notificationListArray = [String]()
     var notificationListModel = NotificationListModel?()

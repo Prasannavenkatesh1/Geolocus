@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NotificationDetailsViewController: UIViewController {
+class NotificationDetailsViewController: BaseViewController {
 
     @IBOutlet weak var notificationDescription: UILabel!
     @IBOutlet weak var competitionAcceptanceView: UIView!

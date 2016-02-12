@@ -17,7 +17,7 @@ protocol MapViewDelegate {
     func mapView(mapView: MKMapView!, didSelectAnnotation annotation: EventAnnotation)
 }
 
-class HistoryPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 
     enum MapZoneTab: Int{
         case MapSelected

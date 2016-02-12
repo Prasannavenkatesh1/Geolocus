@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReportsViewController: UIViewController {
+class ReportsViewController: BaseViewController {
     
     @IBOutlet weak var groupBarView: UIView!
     @IBOutlet weak var filterPopUpView: UIView!

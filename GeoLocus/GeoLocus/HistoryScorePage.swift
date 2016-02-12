@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HistoryScorePage: UIViewController {
+class HistoryScorePage: BaseViewController {
 
     @IBOutlet weak var drivingBehaviorArcView: ArcGraphicsController!
     @IBOutlet weak var speedingArcView: ArcGraphicsController!

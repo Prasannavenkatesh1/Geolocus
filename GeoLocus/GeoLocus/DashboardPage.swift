@@ -10,7 +10,7 @@ import UIKit
 
 
 
- class DashboardPage: UIViewController {
+ class DashboardPage: BaseViewController {
 
     
  //MARK: IBOutlets

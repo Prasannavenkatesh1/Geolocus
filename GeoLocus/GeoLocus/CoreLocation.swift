@@ -296,7 +296,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     
 //    /*    Testing
     
-    testing(latitude, longitude: longitude, newLocation: newLocation)
+//    testing(latitude, longitude: longitude, newLocation: newLocation)
 
 //*/
   

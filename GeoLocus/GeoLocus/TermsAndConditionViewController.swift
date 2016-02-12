@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TermsAndConditionViewController: UIViewController {
+class TermsAndConditionViewController: BaseViewController {
 
     
     @IBAction func backButtonTapped(sender: AnyObject) {

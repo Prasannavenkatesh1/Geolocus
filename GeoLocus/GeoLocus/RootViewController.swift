@@ -9,7 +9,7 @@
 import UIKit
 import CoreMotion
 
-class RootViewController: UIViewController {
+class RootViewController: BaseViewController {
   
     @IBOutlet var segmentControl: HMSegmentedControl!
     @IBOutlet var sideMenuButton: UIBarButtonItem!
@@ -18,9 +18,13 @@ class RootViewController: UIViewController {
     let activitymanager = CMMotionActivityManager()
     var currentSelectedIndex : NSNumber!
 
-  
     override func viewDidLoad() {
         super.viewDidLoad()
+      
+      self.edgesForExtendedLayout = .None;
+      self.extendedLayoutIncludesOpaqueBars = false;
+      self.automaticallyAdjustsScrollViewInsets = false;
+      
         currentSelectedIndex = 1
         self.getCustomizedSegmentedControl(self.segmentControl)
         self.segmentControl.addTarget(self, action: "segmentedControlChangedValue:", forControlEvents: UIControlEvents.ValueChanged)
