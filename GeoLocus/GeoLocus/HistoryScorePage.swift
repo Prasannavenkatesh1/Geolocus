@@ -90,21 +90,23 @@ class HistoryScorePage: BaseViewController {
         //fetch the data
         //populate the data structure
         //load the views
-            
-            /*FacadeLayer.sharedinstance.fetchOverallScoreData({ (status, data, error) -> Void in
-                if (status == 1 && error == nil) {
-                    self.overallScores = data
-                    self.reloadView()
-                }else{
-                    //something went wrong
-                    print("error while fetching badge data from DB")
-                }
-            })*/
         
         
-//        FacadeLayer.sharedinstance.dbactions.saveOverallScore(OverallScores(overallScore: 75, speedingScore: 60, ecoScore: 30, distanceTravelled: 7564, dataUsageMsg: "25")) { (status) -> Void in
-//            print("saved")
-//        }
+        FacadeLayer.sharedinstance.fetchOverallScoreData { (status, data, error) -> Void in
+            if (status == 1 && error == nil){
+                self.overallScores = data
+                self.reloadView()
+            }else{
+                //something went bad
+            }
+        }
+        
+        
+        
+        FacadeLayer.sharedinstance.dbactions.removeData("OverallScore")
+        FacadeLayer.sharedinstance.dbactions.saveOverallScore(OverallScores(overallScore: 75, speedingScore: 60, ecoScore: 30, distanceTravelled: 7564, dataUsageMsg: "25")) { (status) -> Void in
+            print("saved")
+        }
         
     }
 

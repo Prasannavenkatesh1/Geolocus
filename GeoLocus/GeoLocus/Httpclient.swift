@@ -171,7 +171,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
     func requestOverallScoreData(URL:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
         
         
-        if let filePath = NSBundle.mainBundle().pathForResource("badges", ofType: "json"), data = NSData(contentsOfFile: filePath) {
+        if let filePath = NSBundle.mainBundle().pathForResource("overallscore", ofType: "json"), data = NSData(contentsOfFile: filePath) {
             do {
                 let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
                 print(json)
