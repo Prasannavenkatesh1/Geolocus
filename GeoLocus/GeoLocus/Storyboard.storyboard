@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EDY-1L-EKK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EDY-1L-EKK">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -522,7 +522,6 @@
                                 <exclude reference="Pha-TL-q0y"/>
                                 <exclude reference="XE0-Kv-tiK"/>
                                 <exclude reference="q06-U7-l3I"/>
-                                <exclude reference="kyW-1w-je3"/>
                                 <exclude reference="zJz-ml-gSh"/>
                                 <exclude reference="4lN-Je-Xbr"/>
                                 <exclude reference="Anb-Xf-miW"/>
@@ -530,6 +529,7 @@
                                 <exclude reference="J5P-WU-Wih"/>
                                 <exclude reference="Vsx-iW-8OQ"/>
                                 <exclude reference="WdZ-fB-qZf"/>
+                                <exclude reference="kyW-1w-je3"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -541,7 +541,6 @@
                                 <include reference="Pha-TL-q0y"/>
                                 <include reference="XE0-Kv-tiK"/>
                                 <include reference="q06-U7-l3I"/>
-                                <exclude reference="kyW-1w-je3"/>
                                 <exclude reference="zJz-ml-gSh"/>
                                 <include reference="4lN-Je-Xbr"/>
                                 <include reference="Anb-Xf-miW"/>
@@ -549,6 +548,7 @@
                                 <include reference="J5P-WU-Wih"/>
                                 <include reference="Vsx-iW-8OQ"/>
                                 <include reference="WdZ-fB-qZf"/>
+                                <exclude reference="kyW-1w-je3"/>
                             </mask>
                         </variation>
                     </view>
@@ -6853,10 +6853,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="IW9-fr-MW3" firstAttribute="trailing" secondItem="PSZ-nQ-5X0" secondAttribute="trailing" id="67w-Xx-bSK"/>
                             <constraint firstItem="PNJ-wc-uDH" firstAttribute="top" secondItem="PSZ-nQ-5X0" secondAttribute="bottom" id="6Wx-eO-Z8S"/>
-                            <constraint firstItem="PSZ-nQ-5X0" firstAttribute="top" secondItem="vtj-RC-6VK" secondAttribute="bottom" constant="24" id="Ain-my-01j"/>
+                            <constraint firstItem="IW9-fr-MW3" firstAttribute="top" secondItem="vtj-RC-6VK" secondAttribute="bottom" constant="-20" id="8S9-5v-UQe">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstItem="PSZ-nQ-5X0" firstAttribute="top" secondItem="vtj-RC-6VK" secondAttribute="bottom" constant="24" id="Ain-my-01j">
+                                <variation key="heightClass=regular-widthClass=compact" constant="44"/>
+                            </constraint>
                             <constraint firstItem="PSZ-nQ-5X0" firstAttribute="leading" secondItem="mvQ-15-iPe" secondAttribute="leadingMargin" constant="-20" id="Yst-37-pZU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="PSZ-nQ-5X0" secondAttribute="trailing" constant="-20" id="eg3-gA-Pc0"/>
+                            <constraint firstItem="IW9-fr-MW3" firstAttribute="leading" secondItem="PSZ-nQ-5X0" secondAttribute="leading" id="fXo-cW-gZL"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -6865,6 +6872,9 @@
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="6Wx-eO-Z8S"/>
+                                <exclude reference="67w-Xx-bSK"/>
+                                <exclude reference="8S9-5v-UQe"/>
+                                <exclude reference="fXo-cW-gZL"/>
                                 <exclude reference="Ain-my-01j"/>
                                 <exclude reference="Yst-37-pZU"/>
                                 <exclude reference="eg3-gA-Pc0"/>
@@ -6881,6 +6891,9 @@
                             </mask>
                             <mask key="constraints">
                                 <include reference="6Wx-eO-Z8S"/>
+                                <include reference="67w-Xx-bSK"/>
+                                <include reference="8S9-5v-UQe"/>
+                                <include reference="fXo-cW-gZL"/>
                                 <include reference="Ain-my-01j"/>
                                 <include reference="Yst-37-pZU"/>
                                 <include reference="eg3-gA-Pc0"/>

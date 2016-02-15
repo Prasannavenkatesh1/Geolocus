@@ -272,41 +272,45 @@ class FacadeLayer{
                     if let result = data {
                         var jsonData = JSON(data: result)
                         
-                        if let badgesList = jsonData["with"]["content"]["badges"].array {
-                            print(badges)
-                            for badgeObj in badgesList {
-                                let badgeDict = badgeObj.dictionaryValue
-                                
-                                let badge = Badge(withIcon: " ", badgeTitle: badgeDict["badge_title"]!.stringValue, badgeDescription: badgeDict["badge_description"]!.stringValue, isEarned: Bool(badgeDict["isEarned"]!.intValue), orderIndex: badgeDict["order_index"]!.intValue, badgeType: Badge.BadgesType.Badge, additionalMsg: nil)
-                                
-                                badges.append(badge)
-                            }
-                            
-                        }
-                        
-                        if let levelList = jsonData["with"]["content"]["levels"].array {
-                            print(levelList)
-                            for badgeObj in levelList {
-                                let badgeDict = badgeObj.dictionaryValue
-                                
-                                let badge = Badge(withIcon: " ", badgeTitle: badgeDict["badge_title"]!.stringValue, badgeDescription: badgeDict["badge_description"]!.stringValue, isEarned: Bool(badgeDict["isEarned"]!.intValue), orderIndex: badgeDict["order_index"]!.intValue, badgeType: Badge.BadgesType.Level, additionalMsg: nil)
-                                
-                                badges.append(badge)
-                            }
-                            
-                            //delete
-                            //save
-                            //return
-                            self.dbactions.removeData("Trip_Badge")
-                            self.dbactions.saveBadge(badges, completionhandler: { (status) -> Void in
-                                if status{
-                                    completionHandler(status: 1, data: badges, error: nil)
-                                }else{
-                                    completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                        if jsonData["statusCode"].intValue == 1{
+                            if let badgesList = jsonData["badges"].array {
+                                print(badges)
+                                for badgeObj in badgesList {
+                                    let badgeDict = badgeObj.dictionaryValue
+                                    
+                                    let badge = Badge(withIcon: " ", badgeTitle: badgeDict["badge_title"]!.stringValue, badgeDescription: badgeDict["badge_description"]!.stringValue, isEarned: Bool(badgeDict["isEarned"]!.intValue), orderIndex: badgeDict["order_index"]!.intValue, badgeType: Badge.BadgesType.Badge, additionalMsg: nil)
+                                    
+                                    badges.append(badge)
                                 }
-                            })
+                            }
+                            
+                            if let levelList = jsonData["levels"].array {
+                                print(levelList)
+                                for badgeObj in levelList {
+                                    let badgeDict = badgeObj.dictionaryValue
+                                    
+                                    let badge = Badge(withIcon: " ", badgeTitle: badgeDict["badge_title"]!.stringValue, badgeDescription: badgeDict["badge_description"]!.stringValue, isEarned: Bool(badgeDict["isEarned"]!.intValue), orderIndex: badgeDict["order_index"]!.intValue, badgeType: Badge.BadgesType.Level, additionalMsg: nil)
+                                    
+                                    badges.append(badge)
+                                }
+                                
+                                //delete
+                                //save
+                                //return
+                                self.dbactions.removeData("Trip_Badge")
+                                self.dbactions.saveBadge(badges, completionhandler: { (status) -> Void in
+                                    if status{
+                                        completionHandler(status: 1, data: badges, error: nil)
+                                    }else{
+                                        completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                                    }
+                                })
+                            }else{
+                                completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                            }
                         }else{
-                            completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                            //something went wrong
+                            completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
                         }
                     }else{
                         //something went wrong
