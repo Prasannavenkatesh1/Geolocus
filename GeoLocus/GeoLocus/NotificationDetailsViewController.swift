@@ -37,6 +37,22 @@ class NotificationDetailsViewController: BaseViewController {
         
         reloadView()
         
+        self.navigationItem.title = "Notification"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red:0/255.0, green:54/255.0, blue:101/255.0, alpha: 1.0),NSFontAttributeName: UIFont(name: "HelveticaNeue-Medium", size: 18)!]
+        
+        let backButton = UIButton()
+        backButton.setImage(UIImage(named: "BackButton"), forState: .Normal)
+        backButton.frame = CGRectMake(0, 0, 12, 21)
+        backButton.addTarget(self, action: Selector("backButtonPressed:"), forControlEvents: .TouchUpInside)
+        
+        let kbcicon = UIImageView()
+        kbcicon.image=UIImage(named: "KBCIcon")
+        kbcicon.frame = CGRectMake(0, 0, 35, 32)
+        let backButtonItem:UIBarButtonItem = UIBarButtonItem(customView: backButton)
+        let kbcIconItem:UIBarButtonItem = UIBarButtonItem(customView: kbcicon)
+        
+        self.navigationItem.setLeftBarButtonItems([backButtonItem,kbcIconItem], animated:true)
+
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(animated: Bool) {
@@ -49,12 +65,48 @@ class NotificationDetailsViewController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func backButtonPressed(sender:UIButton) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     func reloadView() {
         self.ecoScoreArc.foreGroundArcWidth = 4
         self.ecoScoreArc.backGroundArcWidth = 4
-        self.ecoScoreArc.ringLayer.strokeColor = UIColor.greenColor().CGColor
+        self.ecoScoreArc.ringLayer.strokeColor = UIColor.orangeColor().CGColor
         self.ecoScoreArc.animateScale = 60/100.0
         self.ecoScoreArc.setNeedsDisplay()
+        
+        self.overallScoreArc.foreGroundArcWidth = 4
+        self.overallScoreArc.backGroundArcWidth = 4
+        self.overallScoreArc.ringLayer.strokeColor = UIColor.greenColor().CGColor
+        self.overallScoreArc.animateScale = 60/100.0
+        self.overallScoreArc.setNeedsDisplay()
+        
+        self.speedingScoreArc.foreGroundArcWidth = 4
+        self.speedingScoreArc.backGroundArcWidth = 4
+        self.speedingScoreArc.ringLayer.strokeColor = UIColor.greenColor().CGColor
+        self.speedingScoreArc.animateScale = 60/100.0
+        self.speedingScoreArc.setNeedsDisplay()
+        
+        self.userEcoScoreArc.foreGroundArcWidth = 4
+        self.userEcoScoreArc.backGroundArcWidth = 4
+        self.userEcoScoreArc.ringLayer.strokeColor = UIColor.orangeColor().CGColor
+        self.userEcoScoreArc.animateScale = 60/100.0
+        self.userEcoScoreArc.setNeedsDisplay()
+        
+        self.userOverallScoreArc.foreGroundArcWidth = 4
+        self.userOverallScoreArc.backGroundArcWidth = 4
+        self.userOverallScoreArc.ringLayer.strokeColor = UIColor.greenColor().CGColor
+        self.userOverallScoreArc.animateScale = 60/100.0
+        self.userOverallScoreArc.setNeedsDisplay()
+        
+        self.userSpeedingScoreArc.foreGroundArcWidth = 4
+        self.userSpeedingScoreArc.backGroundArcWidth = 4
+        self.userSpeedingScoreArc.ringLayer.strokeColor = UIColor.greenColor().CGColor
+        self.userSpeedingScoreArc.animateScale = 60/100.0
+        self.userSpeedingScoreArc.setNeedsDisplay()
+        
+        //--------------
         if self.notificationDetailsModel != nil {
             self.ecoScoreArc.foreGroundArcWidth = 4
             self.ecoScoreArc.backGroundArcWidth = 4

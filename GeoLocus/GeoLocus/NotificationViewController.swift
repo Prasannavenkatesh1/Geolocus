@@ -22,12 +22,33 @@ class NotificationViewController: BaseViewController,UITableViewDataSource, UITa
         notificationListArray.append("hello")
         notificationListArray.append("hello")
         notificationListArray.append("hello")
+        
+        self.navigationItem.title = "Notification"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red:0/255.0, green:54/255.0, blue:101/255.0, alpha: 1.0),NSFontAttributeName: UIFont(name: "HelveticaNeue-Medium", size: 18)!]
+        
+        let backButton = UIButton()
+        backButton.setImage(UIImage(named: "BackButton"), forState: .Normal)
+        backButton.frame = CGRectMake(0, 0, 12, 21)
+        backButton.addTarget(self, action: Selector("backButtonPressed:"), forControlEvents: .TouchUpInside)
+        
+        let kbcicon = UIImageView()
+        kbcicon.image=UIImage(named: "KBCIcon")
+        kbcicon.frame = CGRectMake(0, 0, 35, 32)
+        let backButtonItem:UIBarButtonItem = UIBarButtonItem(customView: backButton)
+        let kbcIconItem:UIBarButtonItem = UIBarButtonItem(customView: kbcicon)
+
+        self.navigationItem.setLeftBarButtonItems([backButtonItem,kbcIconItem], animated:true)
+        
+
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    func backButtonPressed(sender:UIButton) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
     func reloadView() {
         if self.notificationListModel != nil {
@@ -73,12 +94,25 @@ class NotificationViewController: BaseViewController,UITableViewDataSource, UITa
     }
     @IBAction func didTapOnDelete(sender: AnyObject) {
         print("Delete tapped")
+        let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: { action in
+            
+            // call delete service
+            
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
         
     }
     
     func requestNotificationListData(completionHandler:(status: Int, data: NotificationListModel?, error: NSError?) -> Void) -> Void{
         
         FacadeLayer.sharedinstance.requestNotificationListData { (status, data, error) -> Void in
+            completionHandler(status: status, data: data, error: error)
+        }
+    }
+    func requestNotificationDetailsData(completionHandler:(status: Int, data: NotificationDetailsModel?, error: NSError?) -> Void) -> Void{
+        
+        FacadeLayer.sharedinstance.requestNotificationDetailsData { (status, data, error) -> Void in
             completionHandler(status: status, data: data, error: error)
         }
     }

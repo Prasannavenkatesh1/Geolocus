@@ -12,8 +12,6 @@
 		28328A331C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A2F1C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift */; };
 		28328A341C646B8E004E5F86 /* OverallScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A301C646B8E004E5F86 /* OverallScore.swift */; };
 		28328A381C646F58004E5F86 /* OverallScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A371C646F58004E5F86 /* OverallScores.swift */; };
-		28359EAF1C71CFDD0044D73D /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28359EAE1C71CFDD0044D73D /* ShareView.swift */; };
-		28359EB11C71D4090044D73D /* ShareTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28359EB01C71D4090044D73D /* ShareTemplateView.swift */; };
 		28398E551C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E4F1C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift */; };
 		28398E561C637F32003D5BE5 /* Trip_Speed_Zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E501C637F32003D5BE5 /* Trip_Speed_Zone.swift */; };
 		28398E571C637F32003D5BE5 /* Trip_Detail+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E511C637F32003D5BE5 /* Trip_Detail+CoreDataProperties.swift */; };
@@ -275,6 +273,7 @@
 		BF87B26F1C6A0D5600DA6000 /* ConfigurationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF87B26E1C6A0D5600DA6000 /* ConfigurationModel.swift */; };
 		F55265641C522F3E002362F5 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55265631C522F3E002362F5 /* NotificationViewController.swift */; };
 		F55265661C522FD0002362F5 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55265651C522FD0002362F5 /* NotificationTableViewCell.swift */; };
+		F574AFCA1C71D48D00FA0645 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F574AFC91C71D48D00FA0645 /* ShareView.swift */; };
 		F5B020451C60AA4B006C97E5 /* NotificationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B020441C60AA4B006C97E5 /* NotificationDetailsViewController.swift */; };
 		F5CADFFF1C6C9B5900070044 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CADFFE1C6C9B5900070044 /* NotificationModel.swift */; };
 		F5EBE6371C6DC00100AF08EA /* NotificationList.json in Resources */ = {isa = PBXBuildFile; fileRef = F5EBE6361C6DC00100AF08EA /* NotificationList.json */; };
@@ -296,8 +295,6 @@
 		28328A2F1C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OverallScore+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		28328A301C646B8E004E5F86 /* OverallScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverallScore.swift; sourceTree = "<group>"; };
 		28328A371C646F58004E5F86 /* OverallScores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverallScores.swift; sourceTree = "<group>"; };
-		28359EAE1C71CFDD0044D73D /* ShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
-		28359EB01C71D4090044D73D /* ShareTemplateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareTemplateView.swift; sourceTree = "<group>"; };
 		28398E4F1C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_Speed_Zone+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		28398E501C637F32003D5BE5 /* Trip_Speed_Zone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_Speed_Zone.swift; sourceTree = "<group>"; };
 		28398E511C637F32003D5BE5 /* Trip_Detail+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_Detail+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -617,6 +614,7 @@
 		F2F7AEBFFCD98C6A0975094C /* Pods-GeoLocus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoLocus.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus.release.xcconfig"; sourceTree = "<group>"; };
 		F55265631C522F3E002362F5 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		F55265651C522FD0002362F5 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		F574AFC91C71D48D00FA0645 /* ShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		F5B020441C60AA4B006C97E5 /* NotificationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailsViewController.swift; sourceTree = "<group>"; };
 		F5CADFFE1C6C9B5900070044 /* NotificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		F5EBE6361C6DC00100AF08EA /* NotificationList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NotificationList.json; sourceTree = "<group>"; };
@@ -1191,6 +1189,7 @@
 		BF7336FB1C3F9266006094C0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F574AFC91C71D48D00FA0645 /* ShareView.swift */,
 				BF4F8D961C43840500895640 /* Cells */,
 				BF7337481C3FBCF4006094C0 /* RootViewController.swift */,
 				B648C20B1C58B83000EE52C3 /* PageContentViewController.swift */,
@@ -1214,8 +1213,6 @@
 				F5B020441C60AA4B006C97E5 /* NotificationDetailsViewController.swift */,
 				6C44D6681C59E55F0055916B /* LeftViewController.swift */,
 				BF44D2821C6DED3E00BFB1E2 /* BaseViewController.swift */,
-				28359EAE1C71CFDD0044D73D /* ShareView.swift */,
-				28359EB01C71D4090044D73D /* ShareTemplateView.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1557,7 +1554,6 @@
 			files = (
 				6384522A1B0353AE00E895F7 /* LeaderBoardEntity.m in Sources */,
 				28398E591C637F32003D5BE5 /* Trip_Event+CoreDataProperties.swift in Sources */,
-				28359EB11C71D4090044D73D /* ShareTemplateView.swift in Sources */,
 				28328A381C646F58004E5F86 /* OverallScores.swift in Sources */,
 				28F38A121C61EBB300A02E93 /* BadgeCell.swift in Sources */,
 				630C19D71AE7B2A8000B32CA /* Drawings.swift in Sources */,
@@ -1656,7 +1652,7 @@
 				BF44D2801C6DBA9F00BFB1E2 /* Dashboard+CoreDataProperties.swift in Sources */,
 				28398E5A1C637F32003D5BE5 /* Trip_Event.swift in Sources */,
 				63A0FE791AFA377E00EE7C46 /* LastTripViewController.swift in Sources */,
-				28359EAF1C71CFDD0044D73D /* ShareView.swift in Sources */,
+				F574AFCA1C71D48D00FA0645 /* ShareView.swift in Sources */,
 				A68F05B31B147A73003D1D22 /* SettingsCustomCell.swift in Sources */,
 				28328A331C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift in Sources */,
 				BF73374D1C3FC278006094C0 /* ContractPage.swift in Sources */,
