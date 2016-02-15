@@ -56,18 +56,6 @@ class Httpclient: NSObject {
                         print(userID)
                 }
         }.resume()
-        
-       /* let url:NSURL = NSURL(string : URL)!
-        let session = NSURLSession.sharedSession()
-        let request = NSMutableURLRequest(URL:url)
-        request.HTTPMethod = "POST"
-        let task = session.dataTaskWithRequest(request){
-        (let data,let response, let error) in
-            print(data)
-            print(response)
-            print(error)
-        }
-        task.resume()*/
     }
     
     /* Contract Service call */
@@ -125,7 +113,7 @@ class Httpclient: NSObject {
     func requestBadgesData(URL:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
         
         
-        if let filePath = NSBundle.mainBundle().pathForResource("badges", ofType: "json"), data = NSData(contentsOfFile: filePath) {
+        /*if let filePath = NSBundle.mainBundle().pathForResource("badges", ofType: "json"), data = NSData(contentsOfFile: filePath) {
             do {
                 let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
                 print(json)
@@ -135,8 +123,9 @@ class Httpclient: NSObject {
                 let parameters = ["userId":"<user id>","tokenId":"<get from server>","channel_type":StringConstants.CHANNEL_TYPE,"language_code":"en_be"]
                 
                 if let badgesServiceURL = FacadeLayer.sharedinstance.webService.badgeServiceURL{
-                    
-                    Alamofire.request(.POST, badgesServiceURL, parameters: json as? Dictionary, encoding: .JSON, headers: nil).response{ (request, response, data, error) -> Void in
+                   
+                    var header:[String: String] = ["SPRING_SECURITY_REMEMBER_ME_COOKIE":"NkJYQURVV3poNlkxQU5xdUVEOFdrdz09OnRkL2xEMWUrN0lOTG40UXpLcS9iQ1E9PQ"]
+                    Alamofire.request(.GET, badgesServiceURL, parameters:nil /*json as? Dictionary*/, encoding: .JSON, headers: header).response{ (request, response, data, error) -> Void in
                         
                         completionHandler(response: response, data: data, error: error)
                         
@@ -149,7 +138,33 @@ class Httpclient: NSObject {
             catch {
                 //Handle error
             }
-        }
+        }*/
+        
+        
+        
+        let session = NSURLSession.sharedSession()
+ 
+        
+        
+        let loginRequest = NSMutableURLRequest(URL: NSURL(string: FacadeLayer.sharedinstance.webService.badgeServiceURL!)!)
+        loginRequest.HTTPMethod = "GET"
+        loginRequest.setValue("SPRING_SECURITY_REMEMBER_ME_COOKIE", forHTTPHeaderField: "NkJYQURVV3poNlkxQU5xdUVEOFdrdz09OnRkL2xEMWUrN0lOTG40UXpLcS9iQ1E9PQ")
+        
+        let task = session.dataTaskWithRequest(loginRequest) {
+            (
+            let data, let response, let error) in
+            
+            guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
+                print("error")
+                return
+            }
+            
+            let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            print(dataString)
+            
+        }.resume()
+        
+        
     }
     
     //Overall services

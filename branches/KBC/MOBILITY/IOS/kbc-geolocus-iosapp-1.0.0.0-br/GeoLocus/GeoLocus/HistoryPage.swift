@@ -17,6 +17,11 @@ protocol MapViewDelegate {
     func mapView(mapView: MKMapView!, didSelectAnnotation annotation: EventAnnotation)
 }
 
+
+protocol SpeedZoneCellDelegate {
+    func severeViolationViewTapped()
+}
+
 class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 
     enum MapZoneTab: Int{
@@ -178,6 +183,7 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
             }else {
                 let cell = tableView.dequeueReusableCellWithIdentifier("HSZCell", forIndexPath: indexPath) as! HistoryZoneViewCell
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
+                cell.delegate = self
                 
                 cell.speedingView.foreGroundArcWidth = 8
                 cell.speedingView.backGroundArcWidth = 8
@@ -380,8 +386,6 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
             
             self.tripDetailRowSelected = indexPath.row
             
-            
-            
             reload()
         }
     }
@@ -424,28 +428,21 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
         
         self.historyData = []
         
-        if StringConstants.appDataSynced {
-            //get from DB and reload table
+        FacadeLayer.sharedinstance.fetchtripDetailData { (status, data, error) -> Void in
+            self.historyData = []
+            if(status == 1 && error == nil){
+                self.historyData = data
+                self.reload()
+            }
             
-            fetchTripDetailsData({ (status, response, error) -> Void in
-                if(status == 1 && error == nil){
-                    self.historyData = response
-                    self.reload()
-                    //self.reloadTableViewData(self.tripDetailRowSelected!)
-                }else{
-                    //something went wrong
-                    print("error while fetching badge data from DB")
-                }
-            })
-        }else{
-            //call services...get data...parse
-            //store data in DB
-            //reload table
-            
-            FacadeLayer.sharedinstance.requestRecentTripData({ (status, data, error) -> Void in
-                
-            })
         }
+        
+        
+        
+        
+        
+        
+        
 
     }
     
@@ -539,11 +536,20 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
         
         self.historyData?.append(history2)
         
-        FacadeLayer.sharedinstance.dbactions.saveTripDetail(history2)
-        FacadeLayer.sharedinstance.dbactions.saveTripDetail(history1)
+        let hisArr = [history1, history2]
         
-        //1st init of data
-        //reloadTableViewData(self.tripDetailRowSelected!)
+        FacadeLayer.sharedinstance.dbactions.saveTripDetail(hisArr) { (status) -> Void in
+            FacadeLayer.sharedinstance.fetchtripDetailData { (status, data, error) -> Void in
+                self.historyData = []
+                if(status == 1 && error == nil){
+                    self.historyData = data
+                    self.reload()
+                }
+                
+            }
+        }
+        
+    
 
 
     }
@@ -643,6 +649,11 @@ extension HistoryPage: MapViewDelegate {
         
         var annotationID = annotation.annotationID
         //procced further for message alert
+         var messageString = String()    //get message from config file on basis of annotation
+        messageString = " "
+        let alert = UIAlertController(title: nil, message:messageString , preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
         
     }
 }
@@ -652,15 +663,40 @@ extension HistoryPage: ScoreCellDelegate {
     
     func scoreViewTapped(tag: Int) {
         
+        var messageString = String()    //get message from config file
+        
         switch tag {
         case 1 :
             print("speeding tapped")
+            messageString = "<Speeding message based on the trip>"
         case 2:
             print("eco tapped")
+            messageString = "<Eco message based on the trip>"
         case 3:
             print("attention tapped")
+             messageString = "<Data usage message based on the trip>"
         default:
             print("default in cell")
         }
+        
+        let alert = UIAlertController(title: nil, message:messageString , preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }
+
+extension HistoryPage: SpeedZoneCellDelegate {
+    
+    func severeViolationViewTapped() {
+        var messageString = String()    //get message from config file
+        
+        messageString = "<Severe Violation message for the trip>"
+        
+        let alert = UIAlertController(title: nil, message:messageString , preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+}
+
+
+
