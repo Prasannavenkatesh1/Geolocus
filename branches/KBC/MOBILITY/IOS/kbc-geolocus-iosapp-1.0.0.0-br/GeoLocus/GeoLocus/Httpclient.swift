@@ -241,7 +241,6 @@ class Httpclient: NSObject,NSURLSessionDelegate {
     
     func requestNotificationDetailsData(URL:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
         
-        
         if let filePath = NSBundle.mainBundle().pathForResource("NotificationDetails", ofType: "json"), data = NSData(contentsOfFile: filePath) {
             do {
                 let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
