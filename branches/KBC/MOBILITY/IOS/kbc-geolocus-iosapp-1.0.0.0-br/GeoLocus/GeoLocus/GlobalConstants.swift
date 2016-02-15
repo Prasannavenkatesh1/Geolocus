@@ -73,9 +73,9 @@ struct StringConstants {
     
     static let REGISTER_NOW_URL = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-driver-web/login?channel_type=IOS&languageCode="
     static let NEED_HELP_URL = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-driver-web/needHelp"
-    static let LOGIN_URL = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/j_spring_security_check?"
+    static let LOGIN_URL = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/j_spring_security_check"
     static let TERMS_AND_CONDITIONS_URL = "http://ec2-52-9-108-237.us-west-1.compute.amazonaws.com:8080/kbc-app-service/admin/get/terms_conditions?languageCode="
-    
+    static let REPORT_SERVICE_URL = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/report/get/report?userId=9&timeFrame=monthly&scoreType=speed"
     static let LOGIN_PARAMETERS = "j_password=%@&j_username=%@&languageCode=%@&channel_type=iOS&_spring_security_remember_me=on"
     
     static let SCREEN_HEIGHT = UIScreen.mainScreen().bounds.size.height
@@ -96,14 +96,8 @@ struct StringConstants {
     
     static var appDataSynced = false
     
-    static let CHANNEL_TYPE = "channel_type"
-    static let IOS = "IOS"
+    static let CHANNEL_TYPE = "iOS"
     static let TOKEN_ID = "tokenID"
-    static let PASSWORD_KEY = "j_password"
-    static let USERNAME_KEY = "j_username"
-    static let LANGUAGE_CODE = "languageCode"
-    static let SPRING_SECURITY_COOKIE = "_spring_security_remember_me"
-    static let SPRING_SECURITY_COOKIE_VALUE = "on"
 }
 
 

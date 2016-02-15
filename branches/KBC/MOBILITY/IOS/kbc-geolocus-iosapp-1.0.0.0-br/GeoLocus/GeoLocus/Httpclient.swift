@@ -178,6 +178,27 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         }.resume()*/
     }
     
+    //MARK: - Report Service
+    func requestReportData(URL:String, completionHandler:(response: NSURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
+        
+        let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: StringConstants.REPORT_SERVICE_URL)!)
+        request.HTTPMethod = "GET"
+        
+        let authValue = "SWs5cVUyeUFDTDg5bnhMMnZaOWVLUT09Om16Vm01Q3pPVHErZXJyUUV3ZHMyM3c9PQ"
+        request.setValue(authValue, forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
+        
+        let task = session.dataTaskWithRequest(request) {
+            (
+            let data, let response, let error) in
+            
+            completionHandler(response: response, data: data, error: error)
+            
+            }.resume()
+    }
+
     //Overall services
     func requestOverallScoreData(URL:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
         
