@@ -265,7 +265,7 @@ class FacadeLayer{
             })
             
         }else{
-            httpclient.requestBadgesData("URL") { (response, data, error) -> Void in
+            httpclient.requestBadgesData(webService.badgeServiceURL!) { (response, data, error) -> Void in
                 if error == nil {
                     var badges = [Badge]()
                     

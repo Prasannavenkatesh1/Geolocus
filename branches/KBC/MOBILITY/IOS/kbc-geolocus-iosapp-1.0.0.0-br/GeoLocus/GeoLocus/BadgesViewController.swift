@@ -242,6 +242,8 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                             let isEarned = self.badgeNotEarnedArray[index].isEarned
                             
                             self.badgeNotEarnedArray[index].badgeIcon = isEarned ? self.plistBadgeArray[pIndex]["icon"] as! String: self.plistBadgeArray[pIndex]["icon_not_earned"] as! String
+                            
+                            self.badgeNotEarnedArray[index].orderIndex = Int(self.plistBadgeArray[pIndex]["index"] as! String)!
                         }
                     }
                 }
@@ -259,6 +261,8 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                             let isEarned = self.badgeEarnedArray[index].isEarned
                             
                             self.badgeEarnedArray[index].badgeIcon = isEarned ? self.plistBadgeArray[pIndex]["icon"] as! String: self.plistBadgeArray[pIndex]["icon_not_earned"] as! String
+                            
+                            self.badgeEarnedArray[index].orderIndex = Int(self.plistBadgeArray[pIndex]["index"] as! String)!
                         }
                     }
                 }
@@ -276,9 +280,23 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                             let isEarned = self.levelArray[index].isEarned
                             
                             self.levelArray[index].badgeIcon = isEarned ? self.plistLevelArray[pIndex]["icon"] as! String: self.plistLevelArray[pIndex]["icon_not_earned"] as! String
+                            
+                            self.levelArray[index].orderIndex = Int(self.plistLevelArray[pIndex]["index"] as! String)!
                         }
                     }
                 }
+                
+                self.badgeNotEarnedArray = self.badgeNotEarnedArray.sort({ (badge1, badge2) -> Bool in
+                    badge1.orderIndex < badge2.orderIndex
+                })
+                
+                self.badgeEarnedArray = self.badgeEarnedArray.sort({ (badge1, badge2) -> Bool in
+                    badge1.orderIndex < badge2.orderIndex
+                })
+                
+                self.levelArray = self.levelArray.sort({ (badge1, badge2) -> Bool in
+                    badge1.orderIndex < badge2.orderIndex
+                })
                 
                 self.badgeTableView.reloadData()
                 

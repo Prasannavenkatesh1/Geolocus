@@ -136,7 +136,31 @@ class Httpclient: NSObject,NSURLSessionDelegate {
     }
     
     //Badges services
-    func requestBadgesData(URL:String, completionHandler:(response: NSURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
+    func requestBadgesData(URL:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
+    
+        let manager = Alamofire.Manager.sharedInstance
+        manager.delegate.sessionDidReceiveChallenge = { session, challenge in
+            var disposition: NSURLSessionAuthChallengeDisposition = .PerformDefaultHandling
+            var credential: NSURLCredential?
+            if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+                if challenge.protectionSpace.host == "ec2-52-9-107-182.us-west-1.compute.amazonaws.com" {
+                    disposition = NSURLSessionAuthChallengeDisposition.UseCredential
+                    
+                    credential = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!)
+                }
+            }
+            return (disposition, credential)
+        }
+        
+        let badgesRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
+        badgesRequest.HTTPMethod = "GET"
+        badgesRequest.setValue("SWs5cVUyeUFDTDg5bnhMMnZaOWVLUT09Om16Vm01Q3pPVHErZXJyUUV3ZHMyM3c9PQ", forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
+        
+        manager.request(badgesRequest).response { (Request, response, data, error) -> Void in
+             completionHandler(response: response, data: data, error: error)
+        }
+
+        /*
         
         let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         let session = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
@@ -151,7 +175,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             
             completionHandler(response: response, data: data, error: error)
             
-        }.resume()
+        }.resume()*/
     }
     
     //Overall services
