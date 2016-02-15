@@ -117,7 +117,8 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         currentCountForDataUsageCalc = currentCount + 1
         }
     } else {
-     //   self.calculateThresholdDataUsage()
+        currentCountForDataUsageCalc = 2
+        self.calculateThresholdDataUsage()
     }
     
     let latitude:Double = coord.latitude
@@ -317,9 +318,23 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     
     func calculateThresholdDataUsage(){
         print(dataUsageArray)
-//        var previousDataUsageDict :Dictionary = dataUsageArray![0] as! Dictionary
-//        var currentDataUsageDict  :Dictionary = dataUsageArray![1] as! Dictionary
+        var dataSentWAN : Int = 0
+        var dataReceivedWAN : Int = 0
+        var dataSentWIFI : Int = 0
+        var dataReceivedWIFI :Int = 0
         
+        for dataUsage in dataUsageArray! {
+//            for (key,value) in dataUsage {
+//                
+//            }
+//            let dataDictionary :Dictionary = dataUsage as! Dictionary
+            if let datareceived = dataUsage["WWANReceived"] {
+                dataReceivedWAN = dataReceivedWAN + (datareceived as! Int)
+            }
+            if let dataSent  = dataUsage["WWANSent"] {
+                dataSentWAN  = dataSentWAN + (dataSent as! Int)
+            }
+        }
     }
   
   func testing(latitude:Double,longitude:Double, newLocation:CLLocation){
