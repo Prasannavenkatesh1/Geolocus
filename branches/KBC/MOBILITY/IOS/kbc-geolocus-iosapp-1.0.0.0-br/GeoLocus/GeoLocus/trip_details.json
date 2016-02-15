@@ -10,45 +10,45 @@
                     "dataUsageMsg": "25",
                     "hours": "5",
                     "event": [{
-                              "lat": "9.1121212",
+                              "lat": "9.4121212",
                               "long": "-8.7678678678",
                               "event_type": "speeding",
                               "eventMessage": "eventMessage"
                               }, {
-                              "lat": "9.1121212",
-                              "long": "-8.7678678678",
+                              "lat": "9.3121212",
+                              "long": "-7.7678678678",
                               "event_type": "Breaking",
                               "eventMessage": "eventMessage"
                               }, {
-                              "lat": "9.1121212",
-                              "long": "-8.7678678678",
+                              "lat": "9.9121212",
+                              "long": "-8.3678678678",
                               "event_type": "speeding",
                               "eventMessage": "eventMessage",
                               "threshold": "67"
                               }, {
-                              "lat": "9.1121212",
-                              "long": "-8.7678678678",
+                              "lat": "9.2121212",
+                              "long": "-8.0678678678",
                               "event_type": "Breaking",
                               "eventMessage": "eventMessage"
                               }, {
-                              "lat": "9.1121212",
-                              "long": "-8.7678678678",
+                              "lat": "9.1991212",
+                              "long": "-8.7238678678",
                               "event_type": "speeding",
                               "eventMessage": "eventMessage"
                               }],
                     "speed_zone": [{
                                    "speedScore": "34",
-                                   "speedbehaviour": "25",
+                                   "speedbehaviour": "66",
                                    "distance_travelled": "7",
-                                   "max_speed": "50",
-                                   "Above_maxspeed": "5",
+                                   "max_speed": "30",
+                                   "Above_maxspeed": "9",
                                    "within_maxspeed": "2",
                                    "violation_count": 1
                                    }, {
                                    "speedScore": "56",
-                                   "speedbehaviour": "25",
-                                   "distance_travelled": "7",
-                                   "max_speed": "50",
+                                   "speedbehaviour": "52",
+                                   "distance_travelled": "10",
+                                   "max_speed": "40",
                                    "Above_maxspeed": "5",
                                    "within_maxspeed": "2",
                                    "violation_count": 3
@@ -64,28 +64,28 @@
                     "dataUsageMsg": "25",
                     "hours": "5",
                     "event": [{
-                              "lat": "9.1121212",
-                              "long": "-8.7678678678",
+                              "lat": "9.1621212",
+                              "long": "-8.8678678678",
                               "event_type": "speeding",
                               "eventMessage": "eventMessage"
                               }, {
-                              "lat": "9.1121212",
-                              "long": "-8.7678678678",
+                              "lat": "9.1901212",
+                              "long": "-8.1678678678",
                               "event_type": "Breaking",
                               "eventMessage": "eventMessage"
                               }, {
-                              "lat": "9.1121212",
-                              "long": "-8.7678678678",
+                              "lat": "9.9121212",
+                              "long": "-8.4678678678",
                               "event_type": "speeding",
                               "eventMessage": "eventMessage"
                               }, {
-                              "lat": "9.1121212",
-                              "long": "-8.7678678678",
+                              "lat": "9.0121212",
+                              "long": "-8.1678678678",
                               "event_type": "Breaking",
                               "eventMessage": "eventMessage"
                               }, {
-                              "lat": "9.1121212",
-                              "long": "-8.7678678678",
+                              "lat": "8.1121212",
+                              "long": "-7.7678678678",
                               "event_type": "speeding",
                               "eventMessage": "eventMessage"
                               }],
@@ -93,17 +93,17 @@
                                    "speedScore": "67",
                                    "speedbehaviour": "25",
                                    "distance_travelled": "7",
-                                   "max_speed": "50",
+                                   "max_speed": "60",
                                    "Above_maxspeed": "5",
                                    "within_maxspeed": "5",
                                    "violation_count": 4
                                    }, {
                                    "speedScore": "47",
-                                   "speedbehaviour": "25",
+                                   "speedbehaviour": "96",
                                    "distance_travelled": "7",
-                                   "max_speed": "50",
-                                   "Above_maxspeed": "5",
-                                   "within_maxspeed": "3",
+                                   "max_speed": "70",
+                                   "Above_maxspeed": "1",
+                                   "within_maxspeed": "1",
                                    "violation_count": 7
                                    }]
                     }]

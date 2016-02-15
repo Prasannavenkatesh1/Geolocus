@@ -71,8 +71,8 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
         tabSelected = MapZoneTab.MapSelected
         self.tripDetailRowSelected = 0 // this may be nil if no trip detail data
         self.zoneSelectedIndexPath = nil
-        //dataModals()
-        loadData()
+        dataModals()
+        //loadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -538,6 +538,7 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
         
         let hisArr = [history1, history2]
         
+        FacadeLayer.sharedinstance.dbactions.removeData("Trip_Detail")
         FacadeLayer.sharedinstance.dbactions.saveTripDetail(hisArr) { (status) -> Void in
             FacadeLayer.sharedinstance.fetchtripDetailData { (status, data, error) -> Void in
                 self.historyData = []
@@ -647,7 +648,7 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
 extension HistoryPage: MapViewDelegate {
     func mapView(mapView: MKMapView!, didSelectAnnotation annotation: EventAnnotation) {
         
-        var annotationID = annotation.annotationID
+        let annotationID = annotation.annotationID
         //procced further for message alert
          var messageString = String()    //get message from config file on basis of annotation
         messageString = " "

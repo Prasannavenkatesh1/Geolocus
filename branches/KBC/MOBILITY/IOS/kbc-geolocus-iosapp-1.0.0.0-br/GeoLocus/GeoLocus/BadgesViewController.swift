@@ -22,12 +22,13 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
     let BADGE_CELL_ID = "BadgeCell"
     
     var sahredObject = FacadeLayer()
-    
+    var myActivityIndicator: UIActivityIndicatorView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        self.badgeTableView.backgroundColor = UIColor.clearColor()
         
         reloadDataSource()
         
@@ -192,6 +193,8 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
         */
         //
         
+        self.showActivityIndicator()
+        
         //1. Get data from plist
         let path = NSBundle.mainBundle().pathForResource("BadgesDetails", ofType: "plist")
         let dataDict = NSDictionary(contentsOfFile: path!)
@@ -277,14 +280,14 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                     }
                 }
                 
-                
                 self.badgeTableView.reloadData()
-                
                 
             }else{
                 //something went wrong
-                print("error while fetching badge data from DB")
+               // print("error while fetching badge data ")
+                
             }
+            self.hideActivityIndicator()
         }
 
     }
@@ -303,7 +306,21 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
     }
     
     
+    //MARK: - IndicatorView methods
+    func showActivityIndicator(){
+        self.myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        
+        self.myActivityIndicator!.center = self.view.center
+        self.myActivityIndicator!.startAnimating()
+        self.view.addSubview(self.myActivityIndicator!)
+    }
     
+    func hideActivityIndicator(){
+        self.myActivityIndicator!.stopAnimating()
+    }
+    
+    
+    //********************************** Mock using Local data...remove this *****************************************//
     //TO DO: remove this
     func storeBadge(){
         
@@ -418,9 +435,8 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                             }
                         }
                         
-                        
+                        self.hideActivityIndicator()
                         self.badgeTableView.reloadData()
-                        
                         
                     }else{
                         //something went wrong
@@ -432,4 +448,5 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
         }
         
     }
+    //****************************************************************************************************************//
 }
