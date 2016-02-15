@@ -404,4 +404,35 @@ class FacadeLayer{
         }
         
     }
+    
+    func requestNotificationDetailsData(completionHandler:(status: Int, data: NotificationDetailsModel?, error: NSError?) -> Void) -> Void{
+        
+        httpclient.requestNotificationDetailsData("") { (response, data, error) -> Void in
+            if error == nil {
+                if let result = data {
+                    var jsonData = JSON(data: result)
+                    
+                    if let notificationDetailsData = jsonData["with"]["content"].dictionary {
+                        
+                        // add new vars to get competition scores and user scores
+                        
+                        let notificationDetails = NotificationDetailsModel(title: (notificationDetailsData["Title"]!.stringValue), date: (notificationDetailsData["Date"]!.stringValue), day: (notificationDetailsData["Day"]!.stringValue), notificationImage: (notificationDetailsData["NotificationImage"]!.stringValue), message: (notificationDetailsData["message"]!.stringValue), notificationType:(notificationDetailsData["Type"]!.stringValue), competition_distance_score: Double(notificationDetailsData["distancescore"]!.stringValue)!, competition_violation: Double(notificationDetailsData["severevoilation"]!.stringValue)!, competition_ecoscore: Double(notificationDetailsData["ecoscore"]!.stringValue)!, competition_attentionscore: Double(notificationDetailsData["attentionscore"]!.stringValue)!, competition_overallscore: Double(notificationDetailsData["overallscore"]!.stringValue)!, competition_speedscore: Double(notificationDetailsData["speedscore"]!.stringValue)!, user_distance_score: Double(notificationDetailsData["distancescore"]!.stringValue)!, user_violation: Double(notificationDetailsData["severevoilation"]!.stringValue)!, user_ecoscore: Double(notificationDetailsData["ecoscore"]!.stringValue)!, user_attentionscore: Double(notificationDetailsData["attentionscore"]!.stringValue)!, user_overallscore: Double(notificationDetailsData["speedscore"]!.stringValue)!, user_speedscore: Double(notificationDetailsData["distancescore"]!.stringValue)!)
+                        
+                        completionHandler(status: 1, data: notificationDetails, error: nil)
+                    }else{
+                        //something went wrong
+                        completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                    }
+                }else{
+                    //something went wrong
+                    completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                }
+            }else {
+                //something went wrong
+                completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+            }
+            
+        }
+        
+    }
 }

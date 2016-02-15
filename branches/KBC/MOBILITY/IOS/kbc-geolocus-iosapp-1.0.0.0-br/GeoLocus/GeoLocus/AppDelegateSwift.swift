@@ -88,11 +88,46 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
 
     self.loadInitialViewController()
       
+        // Push notification
+        let settings = UIUserNotificationSettings(forTypes: UIUserNotificationType([.Alert, .Badge, .Sound]), categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings);
+        UIApplication.sharedApplication().registerForRemoteNotifications();
+        
         return true
     }
 
-  
-  
+    func application(application: UIApplication,didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        //send this device token to server
+        let characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
+        
+        let deviceTokenString: String = ( deviceToken.description as NSString )
+            .stringByTrimmingCharactersInSet( characterSet )
+            .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
+        
+        print( deviceTokenString )
+        
+        
+    }
+    
+    //Called if unable to register for APNS.
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        
+        print(error)
+        
+    }
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        
+        print("Received: \(userInfo)")
+        //Parsing userinfo:
+        //var temp : NSDictionary = userInfo
+        if let info = userInfo["aps"] as? Dictionary<String, AnyObject>
+        {
+            var alertMsg = info["alert"] as! String
+            var alert: UIAlertView!
+            alert = UIAlertView(title: "", message: alertMsg, delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+        }
+    }
   // Register notification settings
   func registerNotification() {
     
