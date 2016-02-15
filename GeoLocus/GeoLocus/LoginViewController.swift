@@ -28,6 +28,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     let passwordShowButton = UIButton()
     var selectedLanguageCode : String!
     var termsAndConditionsString = String()
+    var activityIndicatorView : UIActivityIndicatorView!
     
     // MARK: - Button Actions
 
@@ -48,14 +49,13 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         loginButton.backgroundColor = UIColor(red: 83.0/255.0, green: 178.0/255.0, blue: 98.0/255.0, alpha: 1.0)
         loginButton.setTitleColor(UIColor(red: 174.0/255.0, green: 174.0/255.0, blue: 174.0/255.0, alpha: 1.0),forState: UIControlState.Normal)
         
-        let requestDictionary = [
-                     "j_password" : passwordText.text!,
-                     "j_username" : userNameText.text!,
-                     "languageCode" : self.selectedLanguageCode,
-                     "channel_type" : "IOS",
-                     "_spring_security_remember_me" : "on"
-        ]
-        FacadeLayer.sharedinstance.httpclient.requestLoginData(StringConstants.LOGIN_URL,parametersHTTPBody:requestDictionary)
+        let userNameString = self.userNameText.text
+        let passwordString = self.passwordText.text
+        
+        let parameterString = String(format: StringConstants.LOGIN_PARAMETERS, passwordString!, userNameString!, self.selectedLanguageCode)
+        
+        //FacadeLayer.sharedinstance.httpclient.requestLoginData(loginURL,parametersHTTPBody:requestDictionary)
+        FacadeLayer.sharedinstance.httpclient.requestLoginData(StringConstants.LOGIN_URL,parameterString: parameterString)
     }
     
     /* Check box button action */
@@ -113,6 +113,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             }
     }
     
+    /* Facade layer call */
     func requestTermsAndConditionsData(URL : String, completionHandler:(status : Int, response : NSData?, error : NSError?) -> Void) -> Void{
         FacadeLayer.sharedinstance.requestTermsAndConditionsData(URL){ (status, data, error) -> Void in
             completionHandler(status: status, response: data, error: error)
@@ -209,19 +210,27 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         }
     }
     
-    //MARK : Notification methods on Keyboard pop up
+    /* adding Activity Indicator to view */
+    func addActivityIndicator(){
+        
+        activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        activityIndicatorView.center = self.view.center
+        activityIndicatorView.startAnimating()
+        self.view.addSubview(activityIndicatorView)
+    }
     
-    func registerForKeyboardNotifications()
-    {
-        //Adding notifies on keyboard appearing
+   
+    //MARK: Notification methods on Keyboard pop up
+    
+    //Adding notifies on keyboard appearing
+
+    func registerForKeyboardNotifications(){
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
-    
-    func deregisterFromKeyboardNotifications()
-    {
-        //Removing notifies on keyboard appearing
+    //Removing notifies on keyboard appearing
+    func deregisterFromKeyboardNotifications(){
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }

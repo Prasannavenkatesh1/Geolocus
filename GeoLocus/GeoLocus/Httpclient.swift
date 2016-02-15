@@ -33,11 +33,11 @@ class Httpclient: NSObject,NSURLSessionDelegate {
     
     /* Login Service call */
     
-    func requestLoginData(URL:String, parametersHTTPBody : [String:String!]){
+    /*func requestLoginData(URL:String, parametersHTTPBody : [String:String!]){
         let loginRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
         loginRequest.HTTPMethod = "POST"
-        loginRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        loginRequest.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(parametersHTTPBody, options: [])
+       // loginRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        //loginRequest.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(parametersHTTPBody, options: [])
         Alamofire.request(loginRequest)
             .validate()
             .responseJSON{ responseJSON in
@@ -56,6 +56,33 @@ class Httpclient: NSObject,NSURLSessionDelegate {
                         print(userID)
                 }
         }.resume()
+    }*/
+    
+    /* Login Service call */
+    func requestLoginData(URL : String, parameterString:String){
+        
+        let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
+        let loginURL : NSURL = NSURL(string : URL)!
+        
+        let loginRequest = NSMutableURLRequest(URL : loginURL)
+        loginRequest.HTTPMethod = "POST"
+        
+        loginRequest.HTTPBody = parameterString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let task = session.dataTaskWithRequest(loginRequest) {
+            (let data, let response, let error) in
+            
+            guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
+                print("error")
+                return
+            }
+            
+            let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            print(dataString)
+            
+        }
+        task.resume()
     }
     
     /* Contract Service call */
@@ -110,10 +137,10 @@ class Httpclient: NSObject,NSURLSessionDelegate {
     }
     
     //Badges services
-    func requestBadgesData(URL:String, completionHandler:(response: NSURLResponse?/*NSHTTPURLResponse?*/, data: NSData?, error: NSError?) -> Void) -> Void{
+    func requestBadgesData(URL:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
         
         
-        /*if let filePath = NSBundle.mainBundle().pathForResource("badges", ofType: "json"), data = NSData(contentsOfFile: filePath) {
+        if let filePath = NSBundle.mainBundle().pathForResource("badges", ofType: "json"), data = NSData(contentsOfFile: filePath) {
             do {
                 let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
                 print(json)
@@ -123,9 +150,8 @@ class Httpclient: NSObject,NSURLSessionDelegate {
                 let parameters = ["userId":"<user id>","tokenId":"<get from server>","channel_type":StringConstants.CHANNEL_TYPE,"language_code":"en_be"]
                 
                 if let badgesServiceURL = FacadeLayer.sharedinstance.webService.badgeServiceURL{
-                   
-                    var header:[String: String] = ["SPRING_SECURITY_REMEMBER_ME_COOKIE":"NkJYQURVV3poNlkxQU5xdUVEOFdrdz09OnRkL2xEMWUrN0lOTG40UXpLcS9iQ1E9PQ"]
-                    Alamofire.request(.GET, badgesServiceURL, parameters:nil /*json as? Dictionary*/, encoding: .JSON, headers: header).response{ (request, response, data, error) -> Void in
+                    
+                    Alamofire.request(.POST, badgesServiceURL, parameters: json as? Dictionary, encoding: .JSON, headers: nil).response{ (request, response, data, error) -> Void in
                         
                         completionHandler(response: response, data: data, error: error)
                         
@@ -138,45 +164,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             catch {
                 //Handle error
             }
-        }*/
-        
-        
-    
-        
-        let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
-        
-        let request = NSMutableURLRequest(URL: NSURL(string: FacadeLayer.sharedinstance.webService.badgeServiceURL!)!)
-        request.HTTPMethod = "GET"
-        
-        let authValue = "SWs5cVUyeUFDTDg5bnhMMnZaOWVLUT09Om16Vm01Q3pPVHErZXJyUUV3ZHMyM3c9PQ"
-        request.setValue(authValue, forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
-        
-        
-        
-//        let session = NSURLSession.sharedSession()
-//        
-//        let loginRequest = NSMutableURLRequest(URL: NSURL(string: FacadeLayer.sharedinstance.webService.badgeServiceURL!)!)
-//        loginRequest.HTTPMethod = "GET"
-//        loginRequest.setValue("SPRING_SECURITY_REMEMBER_ME_COOKIE", forHTTPHeaderField: "NkJYQURVV3poNlkxQU5xdUVEOFdrdz09OnRkL2xEMWUrN0lOTG40UXpLcS9iQ1E9PQ")
-        
-        let task = session.dataTaskWithRequest(request) {
-            (
-            let data, let response, let error) in
-            
-            completionHandler(response: response, data: data, error: error)
-            
-//            guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
-//            
-//                return
-//            }
-//            
-//            let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
-//            print(dataString)
-            
-        }.resume()
-        
-        
+        }
     }
     
     //Overall services
@@ -209,6 +197,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             }
         }
     }
+    
     func requestNotificationListData(URL:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
         
         
@@ -231,34 +220,6 @@ class Httpclient: NSObject,NSURLSessionDelegate {
                 }
                 
                 //*****************************************//
-            }
-            catch {
-                //Handle error
-            }
-        }
-    }
-    
-    
-    func requestNotificationDetailsData(URL:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
-        
-        if let filePath = NSBundle.mainBundle().pathForResource("NotificationDetails", ofType: "json"), data = NSData(contentsOfFile: filePath) {
-            do {
-                let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
-                print(json)
-                //****************************************//
-                
-                let parameters = ["userId":"<user id>","tokenId":"<get from server>","channel_type":StringConstants.CHANNEL_TYPE,"language_code":"en_be"]
-                
-                if let notificationDetailsServiceURL = FacadeLayer.sharedinstance.webService.notificationDetailsServiceURL{
-                    
-                    Alamofire.request(.POST, notificationDetailsServiceURL, parameters: json as? Dictionary, encoding: .JSON, headers: nil).response{ (request, response, data, error) -> Void in
-                        
-                        completionHandler(response: response, data: data, error: error)
-                        
-                    }
-                }
-                
-                //*****************************************//
                 
             }
             catch {
@@ -266,6 +227,9 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             }
         }
     }
+    
+    //MARK: Delegate Methods
+    
     func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
         
         if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
