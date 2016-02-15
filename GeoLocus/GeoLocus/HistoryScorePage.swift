@@ -90,31 +90,26 @@ class HistoryScorePage: BaseViewController {
         //fetch the data
         //populate the data structure
         //load the views
-        
-        if StringConstants.appDataSynced {
-            //get from DB and reload table
             
-            fetchTripDetailsData({ (status, response, error) -> Void in
+            /*FacadeLayer.sharedinstance.fetchOverallScoreData({ (status, data, error) -> Void in
                 if (status == 1 && error == nil) {
-                    self.overallScores = response
-                     self.reloadView()
+                    self.overallScores = data
+                    self.reloadView()
                 }else{
                     //something went wrong
                     print("error while fetching badge data from DB")
                 }
-            })
-            
-        }else{
-            //call services...get data...parse
-            //store data in DB
-            //reload table
-        }
+            })*/
         
-        //FacadeLayer.sharedinstance.dbactions.saveOverallScore(OverallScores(overallScore: 75, speedingScore: 60, ecoScore: 30, distanceTravelled: 7564, dataUsageMsg: "message1"))
+        
+//        FacadeLayer.sharedinstance.dbactions.saveOverallScore(OverallScores(overallScore: 75, speedingScore: 60, ecoScore: 30, distanceTravelled: 7564, dataUsageMsg: "25")) { (status) -> Void in
+//            print("saved")
+//        }
+        
     }
 
     
-    func fetchTripDetailsData(completionHandler:(status : Int, response: OverallScores?, error: NSError?) -> Void) -> Void{
+    /*func fetchTripDetailsData(completionHandler:(status : Int, response: OverallScores?, error: NSError?) -> Void) -> Void{
         
         FacadeLayer.sharedinstance.dbactions.fetchOverallScoreData { (status, response, error) -> Void in
           completionHandler(status: status, response: response, error: error)
@@ -126,7 +121,7 @@ class HistoryScorePage: BaseViewController {
         FacadeLayer.sharedinstance.requestOverallScoreData { (status, data, error) -> Void in
             completionHandler(status: status, data: data, error: error)
         }
-    }
+    }*/
     
     func setContentHeight() {
         

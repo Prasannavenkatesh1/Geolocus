@@ -18,8 +18,10 @@
 	<string></string>
 	<key>HistoryServiceURL</key>
 	<string>https://dweet.io:443/dweet/for/historyService</string>
-	<key>BadgeServiceURL</key>
+	<key>BadgeServiceURL mock</key>
 	<string>https://dweet.io:443/dweet/for/badgesService</string>
+	<key>BadgeServiceURL</key>
+	<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/get/badges?userId=9</string>
 	<key>OverallServiceURL</key>
 	<string>https://dweet.io:443/dweet/for/overallscoreService</string>
 	<key>ReportServiceURL</key>

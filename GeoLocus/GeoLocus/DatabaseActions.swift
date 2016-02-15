@@ -210,69 +210,82 @@ class DatabaseActions: NSObject {
     }
   }
   
-    func saveTripDetail(tripDetail: History) {
+    func saveTripDetail(tripDetails: [History], completionhandler:(status: Bool)-> Void) {
         
-        let events = NSMutableOrderedSet()
-        let speedZones = NSMutableOrderedSet()
+        var rowCount = 0
         
-        let tripDetailRow = NSEntityDescription.insertNewObjectForEntityForName("Trip_Detail",inManagedObjectContext: self.managedObjectContext) as! Trip_Detail
-        
-        if tripDetail.events?.count > 0 {
-            for tripEvent in tripDetail.events! {
-                let event = NSEntityDescription.insertNewObjectForEntityForName("Trip_Event",inManagedObjectContext: self.managedObjectContext) as! Trip_Event
-                event.latitude      = tripEvent.location.latitude
-                event.longitude     = tripEvent.location.longitude
-                event.eventType     = tripEvent.type.rawValue
-                event.eventMessage  = tripEvent.message
-                event.eventTrip     = tripDetailRow
-                
-                events.addObject(event)
-            }
-        }
-        
-        if tripDetail.speedZones.count > 0 {
-            for tripZone in tripDetail.speedZones {
-                let speedZone = NSEntityDescription.insertNewObjectForEntityForName("Trip_Speed_Zone",inManagedObjectContext: self.managedObjectContext) as! Trip_Speed_Zone
-                
-                speedZone.speedScore        = tripZone.speedScore
-                speedZone.speedBehaviour    = tripZone.speedBehaviour
-                speedZone.distanceTravelled = tripZone.distanceTravelled
-                speedZone.maxSpeed          = tripZone.maxSpeed
-                speedZone.aboveSpeed        = tripZone.aboveSpeed
-                speedZone.withinSpeed       = tripZone.withinSpeed
-                speedZone.violationCount    = tripZone.violationCount
-                speedZone.zoneTrip          = tripDetailRow
-                
-                speedZones.addObject(speedZone)
-            }
-        }
-        
-        
-        
-        tripDetailRow.tripId            = tripDetail.tripId
-        tripDetailRow.date              = NSDate(dateString: tripDetail.tripdDate)
-        tripDetailRow.distance          = tripDetail.distance
-        tripDetailRow.tripPoints        = tripDetail.tripPoints
-        tripDetailRow.speedScore        = tripDetail.tripScore.speedScore
-        tripDetailRow.ecoScore          = tripDetail.tripScore.ecoScore
-        tripDetailRow.attentionScore    = tripDetail.tripScore.attentionScore
-        tripDetailRow.dataUsageMessage  = tripDetail.dataUsageMessage
-        tripDetailRow.duration          = tripDetail.tripDuration
-        tripDetailRow.events            = events
-        tripDetailRow.speedZones        = speedZones
-        
-        
-        
-        do{
-            try self.managedObjectContext.save()
-            //add check
+        for tripDetail in tripDetails {
             
-            fetchtripDetailData({ (status, response, error) -> Void in
-                print(response)
-            })
-        }catch{
-            fatalError("not iserted")
+            let events = NSMutableOrderedSet()
+            let speedZones = NSMutableOrderedSet()
+            
+            let tripDetailRow = NSEntityDescription.insertNewObjectForEntityForName("Trip_Detail",inManagedObjectContext: self.managedObjectContext) as! Trip_Detail
+            
+            if tripDetail.events?.count > 0 {
+                for tripEvent in tripDetail.events! {
+                    let event = NSEntityDescription.insertNewObjectForEntityForName("Trip_Event",inManagedObjectContext: self.managedObjectContext) as! Trip_Event
+                    event.latitude      = tripEvent.location.latitude
+                    event.longitude     = tripEvent.location.longitude
+                    event.eventType     = tripEvent.type.rawValue
+                    event.eventMessage  = tripEvent.message
+                    event.eventTrip     = tripDetailRow
+                    
+                    events.addObject(event)
+                }
+            }
+            
+            if tripDetail.speedZones.count > 0 {
+                for tripZone in tripDetail.speedZones {
+                    let speedZone = NSEntityDescription.insertNewObjectForEntityForName("Trip_Speed_Zone",inManagedObjectContext: self.managedObjectContext) as! Trip_Speed_Zone
+                    
+                    speedZone.speedScore        = tripZone.speedScore
+                    speedZone.speedBehaviour    = tripZone.speedBehaviour
+                    speedZone.distanceTravelled = tripZone.distanceTravelled
+                    speedZone.maxSpeed          = tripZone.maxSpeed
+                    speedZone.aboveSpeed        = tripZone.aboveSpeed
+                    speedZone.withinSpeed       = tripZone.withinSpeed
+                    speedZone.violationCount    = tripZone.violationCount
+                    speedZone.zoneTrip          = tripDetailRow
+                    
+                    speedZones.addObject(speedZone)
+                }
+            }
+            
+            
+            
+            tripDetailRow.tripId            = tripDetail.tripId
+            tripDetailRow.date              = NSDate(dateString: tripDetail.tripdDate)
+            tripDetailRow.distance          = tripDetail.distance
+            tripDetailRow.tripPoints        = tripDetail.tripPoints
+            tripDetailRow.speedScore        = tripDetail.tripScore.speedScore
+            tripDetailRow.ecoScore          = tripDetail.tripScore.ecoScore
+            tripDetailRow.attentionScore    = tripDetail.tripScore.attentionScore
+            tripDetailRow.dataUsageMessage  = tripDetail.dataUsageMessage
+            tripDetailRow.duration          = tripDetail.tripDuration
+            tripDetailRow.events            = events
+            tripDetailRow.speedZones        = speedZones
+            
+            do{
+                try self.managedObjectContext.save()
+                
+                rowCount++
+                
+                if rowCount == tripDetails.count{
+                    completionhandler(status: true)
+                }
+                
+                //add check
+                
+//                fetchtripDetailData({ (status, response, error) -> Void in
+//                    print(response)
+//                })
+            }catch{
+                
+                completionhandler(status: false)
+                fatalError("not iserted")
+            }
         }
+        
     }
     
     func fetchtripDetailData(completionHandler:(status : Int, response: [History]?, error: NSError?) -> Void) -> Void{
@@ -362,23 +375,35 @@ class DatabaseActions: NSObject {
     
     //MARK: - Badges Methods--------------------------------------------------------------------------------------
     
-    func saveBadge(badge: Badge) {
-        let badgeRow = NSEntityDescription.insertNewObjectForEntityForName("Trip_Badge",inManagedObjectContext: self.managedObjectContext) as! Trip_Badge
+    func saveBadge(badges: [Badge], completionhandler:(status: Bool)-> Void) {
         
-        badgeRow.title              = badge.badgeTitle
-        badgeRow.badgeDescription   = badge.badgeDescription
-        badgeRow.isEarned           = badge.isEarned
-        badgeRow.type               = badge.badgeType.rawValue
-        badgeRow.orderIndex         = badge.orderIndex
+        var rowCount = 0
         
-        do{
-            try self.managedObjectContext.save()
-            //add check
-            fetchBadgeData({ (status, response, error) -> Void in
-                print(response)
-            })
-        }catch{
-            fatalError("not iserted")
+        for badge in badges {
+            let badgeRow = NSEntityDescription.insertNewObjectForEntityForName("Trip_Badge",inManagedObjectContext: self.managedObjectContext) as! Trip_Badge
+            
+            badgeRow.title              = badge.badgeTitle
+            badgeRow.badgeDescription   = badge.badgeDescription
+            badgeRow.isEarned           = badge.isEarned
+            badgeRow.type               = badge.badgeType.rawValue
+            badgeRow.orderIndex         = badge.orderIndex
+            
+            do{
+                try self.managedObjectContext.save()
+                
+                rowCount++
+                if rowCount == badges.count {
+                    completionhandler(status: true)
+                }
+                
+                //add check
+//                fetchBadgeData({ (status, response, error) -> Void in
+//                    print(response)
+//                })
+            }catch{
+                completionhandler(status: false)
+                fatalError("not iserted")
+            }
         }
     }
     
@@ -436,7 +461,7 @@ class DatabaseActions: NSObject {
     
     //MARK: - Overall Score methods-------------------------------------------------------------------------------------
     
-    func saveOverallScore(overallScore: OverallScores){
+    func saveOverallScore(overallScore: OverallScores, completionhandler:(status: Bool)-> Void){
         let overallScoreRow = NSEntityDescription.insertNewObjectForEntityForName("OverallScore",inManagedObjectContext: self.managedObjectContext) as! OverallScore
         overallScoreRow.overall             = overallScore.overallScore
         overallScoreRow.speeding            = overallScore.speedingScore
@@ -449,8 +474,12 @@ class DatabaseActions: NSObject {
         do{
             try self.managedObjectContext.save()
             //add check
+            print("saved")
+            completionhandler(status: true)
         }catch{
+            completionhandler(status: false)
             fatalError("not iserted")
+            
         }
     }
     
@@ -505,7 +534,7 @@ class DatabaseActions: NSObject {
     
     //MARK: - Delete methods
     
-    func removeDateFor(entity: String) {
+    func removeData(entity: String) {
         let fetchRequest = NSFetchRequest(entityName: entity)
         fetchRequest.includesPropertyValues = false
         

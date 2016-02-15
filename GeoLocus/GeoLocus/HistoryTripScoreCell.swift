@@ -36,16 +36,7 @@ class HistoryTripScoreCell: UITableViewCell {
         self.attentionTapGestureRecognizer.delegate = self
         self.attentionView.addGestureRecognizer(self.attentionTapGestureRecognizer)
     }
-    
-//    override init(style: UITableViewCellStyle, reuseIdentifier: String?)
-//    {
-//        super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        self.selectionStyle = UITableViewCellSelectionStyle.None
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

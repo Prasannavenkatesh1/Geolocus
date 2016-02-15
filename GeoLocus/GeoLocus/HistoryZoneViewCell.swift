@@ -17,12 +17,18 @@ class HistoryZoneViewCell: UITableViewCell {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var withinMaxSpeedLabel: UILabel!
     @IBOutlet weak var aboveMaxSpeedLabel: UILabel!
+    @IBOutlet weak var severeViolationView: UIView!
     
-    
+    var svGestureReconizer = UITapGestureRecognizer()
+    var delegate: SpeedZoneCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        self.svGestureReconizer = UITapGestureRecognizer(target: self, action: "severeViolationViewTapped:")
+        self.svGestureReconizer.delegate = self
+        self.severeViolationView.addGestureRecognizer(self.svGestureReconizer)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -30,6 +36,9 @@ class HistoryZoneViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
-    @IBOutlet weak var indicatorButtonTapped: UIButton!
+    
+    
+    func severeViolationViewTapped(gestureRecognizer: UITapGestureRecognizer) {
+        self.delegate?.severeViolationViewTapped()
+    }
 }

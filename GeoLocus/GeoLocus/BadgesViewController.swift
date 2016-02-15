@@ -29,7 +29,9 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
         
         // Do any additional setup after loading the view.
         
-        reloadDataSource()
+        //reloadDataSource()
+        
+        storeBadge()
     }
     
     
@@ -197,131 +199,84 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
         self.plistLevelArray = (dataDict?.valueForKey("level"))! as! NSArray
         
         
-        if StringConstants.appDataSynced {
-            //get from DB and reload table
-            
-            fetchBadgeData({ (status, response, error) -> Void in
-                if(status == 1 && error == nil) {
-                    
-                    //filtering then ordering each array
-                    
-                    self.badgeNotEarnedArray = []
-                    self.badgeEarnedArray = []
-                    self.levelArray = []
-                    
-                    self.badgeNotEarnedArray = response!.filter({ (badge) -> Bool in
-                        badge.isEarned == false && badge.badgeType == Badge.BadgesType.Badge
-                    }).sort({ (badge1, badge2) -> Bool in
-                        badge1.orderIndex < badge2.orderIndex
-                    })
-                    
-                    self.badgeEarnedArray = response!.filter({ (badge) -> Bool in
-                        badge.isEarned == true && badge.badgeType == Badge.BadgesType.Badge
-                    }).sort({ (badge1, badge2) -> Bool in
-                        badge1.orderIndex < badge2.orderIndex
-                    })
-                    
-                    self.levelArray = response!.filter({ (badge) -> Bool in
-                        badge.badgeType == Badge.BadgesType.Level
-                    }).sort({ (badge1, badge2) -> Bool in
-                        badge1.orderIndex < badge2.orderIndex
-                    })
-                    
-                    
-                    for var index = 0; index < self.badgeNotEarnedArray.count; index++ {
-                        
-                        let title = self.badgeNotEarnedArray[index].badgeTitle
-                        
-                        for var pIndex = 0; pIndex < self.plistBadgeArray.count; pIndex++ {
-                            if self.plistBadgeArray[pIndex]["title"] as! String == title {
-                    
-                                let isEarned = self.badgeNotEarnedArray[index].isEarned
-                                
-                                self.badgeNotEarnedArray[index].badgeIcon = isEarned ? self.plistBadgeArray[pIndex]["icon"] as! String: self.plistBadgeArray[pIndex]["icon_not_earned"] as! String
-                            }
-                        }
-                    }
-                    
-                    for var index = 0; index < self.badgeEarnedArray.count; index++ {
-                        
-                        let title = self.badgeEarnedArray[index].badgeTitle
-                        
-                        for var pIndex = 0; pIndex < self.plistBadgeArray.count; pIndex++ {
-                            if self.plistBadgeArray[pIndex]["title"] as! String == title {
-                                
-                                let isEarned = self.badgeEarnedArray[index].isEarned
-                                
-                                self.badgeEarnedArray[index].badgeIcon = isEarned ? self.plistBadgeArray[pIndex]["icon"] as! String: self.plistBadgeArray[pIndex]["icon_not_earned"] as! String
-                            }
-                        }
-                    }
-                    
-                    for var index = 0; index < self.levelArray.count; index++ {
-                        
-                        let title = self.levelArray[index].badgeTitle
-                        
-                        for var pIndex = 0; pIndex < self.plistLevelArray.count; pIndex++ {
-                            if self.plistLevelArray[pIndex]["title"] as! String == title {
-                                
-                                let isEarned = self.levelArray[index].isEarned
-                                
-                                self.levelArray[index].badgeIcon = isEarned ? self.plistLevelArray[pIndex]["icon"] as! String: self.plistLevelArray[pIndex]["icon_not_earned"] as! String
-                            }
-                        }
-                    }
-                    
-                    
-                    self.badgeTableView.reloadData()
-                    
-                    
-                }else{
-                    //something went wrong
-                    print("error while fetching badge data from DB")
-                }
-            })
-            
-        }else{
-            //call services...get data...parse
-            //store data in DB
-            //reload table
-            
-            
-            self.requestBadgeData({ (status, response, error) -> Void in
+        FacadeLayer.sharedinstance.fetchBadgeData { (status, data, error) -> Void in
+            if(status == 1 && error == nil) {
                 
-            })
-        }
-        
-        
-        //badges
-        
-        for var index = 0; index < self.plistBadgeArray.count - 2; index++ {
-            
-            let badge = Badge(withIcon:"" , badgeTitle: self.plistBadgeArray[index]["title"] as! String, badgeDescription: self.plistBadgeArray[index]["criteria"] as! String, isEarned: true, orderIndex: index + 1, badgeType: Badge.BadgesType.Badge, additionalMsg: nil)
-            
-           // sahredObject.dbactions.saveBadge(badge)
-        }
-        
-        for var index = self.plistBadgeArray.count - 2; index < self.plistBadgeArray.count; index++ {
-            
-            let badge = Badge(withIcon:"" , badgeTitle: self.plistBadgeArray[index]["title"] as! String, badgeDescription: self.plistBadgeArray[index]["criteria"] as! String, isEarned: false, orderIndex: index + 1, badgeType: Badge.BadgesType.Badge, additionalMsg: nil)
-            
-           // sahredObject.dbactions.saveBadge(badge)
-        }
-        
-        //level
-        
-        for var index = 0; index < self.plistLevelArray.count - 2; index++ {
-            
-            let badge = Badge(withIcon:"" , badgeTitle: self.plistLevelArray[index]["title"] as! String, badgeDescription: self.plistLevelArray[index]["criteria"] as! String, isEarned: true, orderIndex: index + 1, badgeType: Badge.BadgesType.Level, additionalMsg: nil)
-            
-           // sahredObject.dbactions.saveBadge(badge)
-        }
-        
-        for var index = self.plistLevelArray.count - 2; index < self.plistLevelArray.count; index++ {
-            
-            let badge = Badge(withIcon:"" , badgeTitle: self.plistLevelArray[index]["title"] as! String, badgeDescription: self.plistLevelArray[index]["criteria"] as! String, isEarned: false, orderIndex: index + 1, badgeType: Badge.BadgesType.Level, additionalMsg: nil)
-            
-          //  sahredObject.dbactions.saveBadge(badge)
+                //filtering then ordering each array
+                
+                self.badgeNotEarnedArray = []
+                self.badgeEarnedArray = []
+                self.levelArray = []
+                
+                self.badgeNotEarnedArray = data!.filter({ (badge) -> Bool in
+                    badge.isEarned == false && badge.badgeType == Badge.BadgesType.Badge
+                }).sort({ (badge1, badge2) -> Bool in
+                    badge1.orderIndex < badge2.orderIndex
+                })
+                
+                self.badgeEarnedArray = data!.filter({ (badge) -> Bool in
+                    badge.isEarned == true && badge.badgeType == Badge.BadgesType.Badge
+                }).sort({ (badge1, badge2) -> Bool in
+                    badge1.orderIndex < badge2.orderIndex
+                })
+                
+                self.levelArray = data!.filter({ (badge) -> Bool in
+                    badge.badgeType == Badge.BadgesType.Level
+                }).sort({ (badge1, badge2) -> Bool in
+                    badge1.orderIndex < badge2.orderIndex
+                })
+                
+                
+                for var index = 0; index < self.badgeNotEarnedArray.count; index++ {
+                    
+                    let title = self.badgeNotEarnedArray[index].badgeTitle
+                    
+                    for var pIndex = 0; pIndex < self.plistBadgeArray.count; pIndex++ {
+                        if self.plistBadgeArray[pIndex]["title"] as! String == title {
+                            
+                            let isEarned = self.badgeNotEarnedArray[index].isEarned
+                            
+                            self.badgeNotEarnedArray[index].badgeIcon = isEarned ? self.plistBadgeArray[pIndex]["icon"] as! String: self.plistBadgeArray[pIndex]["icon_not_earned"] as! String
+                        }
+                    }
+                }
+                
+                for var index = 0; index < self.badgeEarnedArray.count; index++ {
+                    
+                    let title = self.badgeEarnedArray[index].badgeTitle
+                    
+                    for var pIndex = 0; pIndex < self.plistBadgeArray.count; pIndex++ {
+                        if self.plistBadgeArray[pIndex]["title"] as! String == title {
+                            
+                            let isEarned = self.badgeEarnedArray[index].isEarned
+                            
+                            self.badgeEarnedArray[index].badgeIcon = isEarned ? self.plistBadgeArray[pIndex]["icon"] as! String: self.plistBadgeArray[pIndex]["icon_not_earned"] as! String
+                        }
+                    }
+                }
+                
+                for var index = 0; index < self.levelArray.count; index++ {
+                    
+                    let title = self.levelArray[index].badgeTitle
+                    
+                    for var pIndex = 0; pIndex < self.plistLevelArray.count; pIndex++ {
+                        if self.plistLevelArray[pIndex]["title"] as! String == title {
+                            
+                            let isEarned = self.levelArray[index].isEarned
+                            
+                            self.levelArray[index].badgeIcon = isEarned ? self.plistLevelArray[pIndex]["icon"] as! String: self.plistLevelArray[pIndex]["icon_not_earned"] as! String
+                        }
+                    }
+                }
+                
+                
+                self.badgeTableView.reloadData()
+                
+                
+            }else{
+                //something went wrong
+                print("error while fetching badge data from DB")
+            }
         }
 
     }
@@ -341,21 +296,126 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
     
     
     
-    func fetchBadgeData(completionHandler:(status : Int, response: [Badge]?, error: NSError?) -> Void) -> Void{
-            FacadeLayer.sharedinstance.dbactions.fetchBadgeData { (status, response, error) -> Void in
-                completionHandler(status: status, response: response, error: error)
-        }
-    }
-    
-    
-    
-    func requestBadgeData(completionHandler:(status : Int, response: [Badge]?, error: NSError?) -> Void) -> Void{
+    //TO DO: remove this
+    func storeBadge(){
         
-        FacadeLayer.sharedinstance.requestBadgesData { (status, data, error) -> Void in
-            completionHandler(status: status, response: data, error: error)
+        //1. Get data from plist
+        let path = NSBundle.mainBundle().pathForResource("BadgesDetails", ofType: "plist")
+        let dataDict = NSDictionary(contentsOfFile: path!)
+        self.plistBadgeArray = (dataDict?.valueForKey("badge"))! as! NSArray
+        self.plistLevelArray = (dataDict?.valueForKey("level"))! as! NSArray
+        
+        
+        //badges
+        var badges = [Badge]()
+        
+        for var index = 0; index < self.plistBadgeArray.count - 2; index++ {
+            
+            badges.append(Badge(withIcon:"" , badgeTitle: self.plistBadgeArray[index]["title"] as! String, badgeDescription: self.plistBadgeArray[index]["criteria"] as! String, isEarned: true, orderIndex: index + 1, badgeType: Badge.BadgesType.Badge, additionalMsg: nil))
+        }
+        
+        for var index = self.plistBadgeArray.count - 2; index < self.plistBadgeArray.count; index++ {
+            
+            badges.append(Badge(withIcon:"" , badgeTitle: self.plistBadgeArray[index]["title"] as! String, badgeDescription: self.plistBadgeArray[index]["criteria"] as! String, isEarned: false, orderIndex: index + 1, badgeType: Badge.BadgesType.Badge, additionalMsg: nil))
+        }
+        
+        //level
+        
+        for var index = 0; index < self.plistLevelArray.count - 2; index++ {
+            
+            badges.append(Badge(withIcon:"" , badgeTitle: self.plistLevelArray[index]["title"] as! String, badgeDescription: self.plistLevelArray[index]["criteria"] as! String, isEarned: true, orderIndex: index + 1, badgeType: Badge.BadgesType.Level, additionalMsg: nil))
+        }
+        
+        for var index = self.plistLevelArray.count - 2; index < self.plistLevelArray.count; index++ {
+            
+            badges.append(Badge(withIcon:"" , badgeTitle: self.plistLevelArray[index]["title"] as! String, badgeDescription: self.plistLevelArray[index]["criteria"] as! String, isEarned: false, orderIndex: index + 1, badgeType: Badge.BadgesType.Level, additionalMsg: nil))
+        }
+        
+        
+        FacadeLayer.sharedinstance.dbactions.saveBadge(badges) { (status) -> Void in
+            if status {
+                FacadeLayer.sharedinstance.fetchBadgeData({ (status, data, error) -> Void in
+                    if(status == 1 && error == nil) {
+                        
+                        //filtering then ordering each array
+                        
+                        self.badgeNotEarnedArray = []
+                        self.badgeEarnedArray = []
+                        self.levelArray = []
+                        
+                        self.badgeNotEarnedArray = data!.filter({ (badge) -> Bool in
+                            badge.isEarned == false && badge.badgeType == Badge.BadgesType.Badge
+                        }).sort({ (badge1, badge2) -> Bool in
+                            badge1.orderIndex < badge2.orderIndex
+                        })
+                        
+                        self.badgeEarnedArray = data!.filter({ (badge) -> Bool in
+                            badge.isEarned == true && badge.badgeType == Badge.BadgesType.Badge
+                        }).sort({ (badge1, badge2) -> Bool in
+                            badge1.orderIndex < badge2.orderIndex
+                        })
+                        
+                        self.levelArray = data!.filter({ (badge) -> Bool in
+                            badge.badgeType == Badge.BadgesType.Level
+                        }).sort({ (badge1, badge2) -> Bool in
+                            badge1.orderIndex < badge2.orderIndex
+                        })
+                        
+                        
+                        for var index = 0; index < self.badgeNotEarnedArray.count; index++ {
+                            
+                            let title = self.badgeNotEarnedArray[index].badgeTitle
+                            
+                            for var pIndex = 0; pIndex < self.plistBadgeArray.count; pIndex++ {
+                                if self.plistBadgeArray[pIndex]["title"] as! String == title {
+                                    
+                                    let isEarned = self.badgeNotEarnedArray[index].isEarned
+                                    
+                                    self.badgeNotEarnedArray[index].badgeIcon = isEarned ? self.plistBadgeArray[pIndex]["icon"] as! String: self.plistBadgeArray[pIndex]["icon_not_earned"] as! String
+                                }
+                            }
+                        }
+                        
+                        for var index = 0; index < self.badgeEarnedArray.count; index++ {
+                            
+                            let title = self.badgeEarnedArray[index].badgeTitle
+                            
+                            for var pIndex = 0; pIndex < self.plistBadgeArray.count; pIndex++ {
+                                if self.plistBadgeArray[pIndex]["title"] as! String == title {
+                                    
+                                    let isEarned = self.badgeEarnedArray[index].isEarned
+                                    
+                                    self.badgeEarnedArray[index].badgeIcon = isEarned ? self.plistBadgeArray[pIndex]["icon"] as! String: self.plistBadgeArray[pIndex]["icon_not_earned"] as! String
+                                }
+                            }
+                        }
+                        
+                        for var index = 0; index < self.levelArray.count; index++ {
+                            
+                            let title = self.levelArray[index].badgeTitle
+                            
+                            for var pIndex = 0; pIndex < self.plistLevelArray.count; pIndex++ {
+                                if self.plistLevelArray[pIndex]["title"] as! String == title {
+                                    
+                                    let isEarned = self.levelArray[index].isEarned
+                                    
+                                    self.levelArray[index].badgeIcon = isEarned ? self.plistLevelArray[pIndex]["icon"] as! String: self.plistLevelArray[pIndex]["icon_not_earned"] as! String
+                                }
+                            }
+                        }
+                        
+                        
+                        self.badgeTableView.reloadData()
+                        
+                        
+                    }else{
+                        //something went wrong
+                        print("error while fetching badge data from DB")
+                    }
+                })
+            }
+            
         }
         
     }
-    
-
 }

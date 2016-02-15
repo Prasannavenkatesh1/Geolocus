@@ -12,6 +12,7 @@
 		28328A331C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A2F1C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift */; };
 		28328A341C646B8E004E5F86 /* OverallScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A301C646B8E004E5F86 /* OverallScore.swift */; };
 		28328A381C646F58004E5F86 /* OverallScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A371C646F58004E5F86 /* OverallScores.swift */; };
+		28359EA91C71AB910044D73D /* ShareTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28359EA81C71AB910044D73D /* ShareTemplateView.swift */; };
 		28398E551C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E4F1C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift */; };
 		28398E561C637F32003D5BE5 /* Trip_Speed_Zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E501C637F32003D5BE5 /* Trip_Speed_Zone.swift */; };
 		28398E571C637F32003D5BE5 /* Trip_Detail+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E511C637F32003D5BE5 /* Trip_Detail+CoreDataProperties.swift */; };
@@ -294,6 +295,7 @@
 		28328A2F1C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OverallScore+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		28328A301C646B8E004E5F86 /* OverallScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverallScore.swift; sourceTree = "<group>"; };
 		28328A371C646F58004E5F86 /* OverallScores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverallScores.swift; sourceTree = "<group>"; };
+		28359EA81C71AB910044D73D /* ShareTemplateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareTemplateView.swift; sourceTree = "<group>"; };
 		28398E4F1C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_Speed_Zone+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		28398E501C637F32003D5BE5 /* Trip_Speed_Zone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_Speed_Zone.swift; sourceTree = "<group>"; };
 		28398E511C637F32003D5BE5 /* Trip_Detail+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_Detail+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -1187,6 +1189,7 @@
 		BF7336FB1C3F9266006094C0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				28359EA81C71AB910044D73D /* ShareTemplateView.swift */,
 				BF4F8D961C43840500895640 /* Cells */,
 				BF7337481C3FBCF4006094C0 /* RootViewController.swift */,
 				B648C20B1C58B83000EE52C3 /* PageContentViewController.swift */,
@@ -1603,6 +1606,7 @@
 				6C03B5D61C4D025500C938C6 /* SWRevealViewController.m in Sources */,
 				B63F53ED1C51EAFA0070002E /* LoginViewController.swift in Sources */,
 				BF4D23781C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift in Sources */,
+				28359EA91C71AB910044D73D /* ShareTemplateView.swift in Sources */,
 				28398E551C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift in Sources */,
 				6304FC1C1AD54B0D00734AEF /* DashboardViewController.swift in Sources */,
 				63014BB01B15C5290022FCC6 /* AppDelegate.m in Sources */,

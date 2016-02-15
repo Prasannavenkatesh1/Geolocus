@@ -146,9 +146,6 @@ struct NotificationKey {
     
 }
 
-struct Path {
-    
-}
 
 
 
