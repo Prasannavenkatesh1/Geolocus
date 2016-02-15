@@ -324,6 +324,36 @@ class FacadeLayer{
         }
     }
     
+    //MARK: - Reoport service
+    
+    func fetchReportData(completionHandler:(status: Int, data: [Badge]?, error: NSError?) -> Void) -> Void{
+        
+        if StringConstants.appDataSynced {
+            //get from DB and reload table
+            dbactions.fetchBadgeData({ (status, data, error) -> Void in
+                completionHandler(status: status, data: data, error: error)
+            })
+            
+        }else{
+            httpclient.requestReportData("URL") { (response, data, error) -> Void in
+                if error == nil {
+                    var badges = [Badge]()
+                    
+                    if let result = data {
+                        var jsonData = JSON(data: result)
+                        print(jsonData)
+                    }else{
+                        //something went wrong
+                        completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                    }
+                }else {
+                    //something went wrong
+                    completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                }
+            }
+        }
+    }
+
     //Overall score service
     
     func fetchOverallScoreData(completionHandler:(status: Int, data: OverallScores?, error: NSError?) -> Void) -> Void{

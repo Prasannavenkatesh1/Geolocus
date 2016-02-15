@@ -34,6 +34,7 @@
 		28F38A141C61EBB300A02E93 /* HistoryTripDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F38A0F1C61EBB300A02E93 /* HistoryTripDetailCell.swift */; };
 		28F38A151C61EBB300A02E93 /* HistoryTripScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F38A101C61EBB300A02E93 /* HistoryTripScoreCell.swift */; };
 		28F38A161C61EBB300A02E93 /* HistoryZoneViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F38A111C61EBB300A02E93 /* HistoryZoneViewCell.swift */; };
+		430CAB4C1C71F7790055C220 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430CAB4B1C71F7790055C220 /* Report.swift */; };
 		55382AA864CB84DD8EBE9FF5 /* Pods_GeoLocus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6E56A1EC735052EEA387140 /* Pods_GeoLocus.framework */; };
 		63014BB01B15C5290022FCC6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63014BAF1B15C5290022FCC6 /* AppDelegate.m */; };
 		6304FC1C1AD54B0D00734AEF /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6304FC1B1AD54B0D00734AEF /* DashboardViewController.swift */; };
@@ -318,6 +319,7 @@
 		28F38A101C61EBB300A02E93 /* HistoryTripScoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTripScoreCell.swift; sourceTree = "<group>"; };
 		28F38A111C61EBB300A02E93 /* HistoryZoneViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryZoneViewCell.swift; sourceTree = "<group>"; };
 		3B088B19D5B1562B72812902 /* Pods_GeoLocusTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoLocusTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		430CAB4B1C71F7790055C220 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		63014BAE1B15C5290022FCC6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		63014BAF1B15C5290022FCC6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		6304FC1B1AD54B0D00734AEF /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -1160,6 +1162,7 @@
 				28CD01E01C69A42300EEC94A /* DetectingVechile.swift */,
 				B640F0DD1C621C9E0051864F /* CALayer+UIColor.swift */,
 				28F38A091C61EB3900A02E93 /* Badge.swift */,
+				430CAB4B1C71F7790055C220 /* Report.swift */,
 				28F38A0A1C61EB3900A02E93 /* HistoryData.swift */,
 				6CCAF90F1C4E20D500484056 /* ErrorHandler.swift */,
 				6CCAF9031C4E036200484056 /* GlobalConstants.swift */,
@@ -1602,6 +1605,7 @@
 				BF5D3AAD1C4E1E3000DDFDC1 /* Datausage.m in Sources */,
 				635194791AD3AAC7002ED1D0 /* ViewController.swift in Sources */,
 				638451F31B0353A000E895F7 /* FMDatabaseQueue.m in Sources */,
+				430CAB4C1C71F7790055C220 /* Report.swift in Sources */,
 				6C34EA541C69F8A0000A0A0D /* DashboardModel.swift in Sources */,
 				6C03B5D61C4D025500C938C6 /* SWRevealViewController.m in Sources */,
 				B63F53ED1C51EAFA0070002E /* LoginViewController.swift in Sources */,
