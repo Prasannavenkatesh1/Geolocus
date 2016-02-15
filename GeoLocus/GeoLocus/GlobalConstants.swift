@@ -143,6 +143,7 @@ struct NotificationKey {
     
     static let SegmentIndexChangedNotification            = "SegmentIndexChangedNotification"
     static let PageViewControllerIndexchangedNotification = "PageViewControllerIndexchangedNotification"
+    static let CurrentPageControlIndexNotification        = "currentPageControlIndexNotification"
     
 }
 

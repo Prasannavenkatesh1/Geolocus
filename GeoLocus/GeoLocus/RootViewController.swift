@@ -85,6 +85,12 @@ class RootViewController: BaseViewController {
         name: NotificationKey.PageViewControllerIndexchangedNotification,
         object: nil)
         
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "currentPageIndex:",
+            name: NotificationKey.CurrentPageControlIndexNotification,
+            object: nil)
+        
         //attributes for SWrevealController framework
         if revealViewController() != nil {
             //            revealViewController().rearViewRevealWidth = 62
@@ -116,16 +122,25 @@ class RootViewController: BaseViewController {
     cell.caption?.text = categories[indexPath.row]
     return cell
   }
+    
+   func currentPageIndex(vcindex:NSNotification){
+    
+        var gg:String =  vcindex.userInfo!["currentIndex"] as! String
+        print(gg)
+        var idx = Int(gg)
+        print(idx)
+        currentSelectedIndex = idx
+        segmentControl.setSelectedSegmentIndex(UInt(currentSelectedIndex), animated: true)
+   }
   
   func getSelectedIndex(vcindex:NSNotification) {
 
-//    }
-    var gg:String =  vcindex.userInfo!["getindex"] as! String
-    print(gg)
-    var idx = Int(gg)
-    print(idx)    
-    currentSelectedIndex = idx
-    segmentControl.setSelectedSegmentIndex(UInt(currentSelectedIndex), animated: true)
+//    var gg:String =  vcindex.userInfo!["getindex"] as! String
+//    print(gg)
+//    var idx = Int(gg)
+//    print(idx)    
+//    currentSelectedIndex = idx
+//    segmentControl.setSelectedSegmentIndex(UInt(currentSelectedIndex), animated: true)
   }
     
  func  pushToNotificationScreen(sender: UIButton!) {

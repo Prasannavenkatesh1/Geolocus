@@ -9,7 +9,7 @@
 import UIKit
 
 
-class Pageviewcontroller: UIPageViewController,UIPageViewControllerDataSource {
+class Pageviewcontroller: UIPageViewController,UIPageViewControllerDataSource,UIPageViewControllerDelegate {
   
   var pages:Int = 2
   var views = [UIViewController]()
@@ -24,6 +24,7 @@ class Pageviewcontroller: UIPageViewController,UIPageViewControllerDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self;
+        self.delegate = self;
       contract = self.storyboard?.instantiateViewControllerWithIdentifier("ContractPage") as! ContractPage
       dashboard = self.storyboard?.instantiateViewControllerWithIdentifier("DashboardPage") as! DashboardPage
       history = self.storyboard?.instantiateViewControllerWithIdentifier("HistoryPage") as! HistoryPage
@@ -72,6 +73,18 @@ class Pageviewcontroller: UIPageViewController,UIPageViewControllerDataSource {
     
     return nil;
   }
+  
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool){
+        let viewController :UIViewController = pageViewController.viewControllers![0]
+         let vcIndex = views.indexOf(viewController);
+        if (vcIndex < views.count) {
+            let getvcidx:String = String(format:"\(vcIndex!)")
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationKey.CurrentPageControlIndexNotification,
+                object:nil,
+                userInfo:["currentIndex":getvcidx])
+        }
+
+    }
   
   func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
     let vcIndex = views.indexOf(viewController);
