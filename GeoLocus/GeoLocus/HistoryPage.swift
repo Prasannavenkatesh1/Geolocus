@@ -651,7 +651,7 @@ extension HistoryPage: MapViewDelegate {
         let annotationID = annotation.annotationID
         //procced further for message alert
          var messageString = String()    //get message from config file on basis of annotation
-        messageString = " "
+        messageString = "Message as per annoatation ID: \(annotationID)"
         let alert = UIAlertController(title: nil, message:messageString , preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
