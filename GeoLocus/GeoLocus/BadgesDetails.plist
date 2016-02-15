@@ -7,6 +7,8 @@
 		<dict>
 			<key>title</key>
 			<string>Marathoner Badge</string>
+			<key>index</key>
+			<string>1</string>
 			<key>icon</key>
 			<string>Marathoner_Badge_Earned.png</string>
 			<key>icon_not_earned</key>
@@ -19,6 +21,8 @@
 		<dict>
 			<key>title</key>
 			<string>Roadie Candidate Badge</string>
+			<key>index</key>
+			<string>2</string>
 			<key>icon</key>
 			<string>Roadie_Candidate_Badge_Earned.png</string>
 			<key>icon_not_earned</key>
@@ -31,6 +35,8 @@
 		<dict>
 			<key>title</key>
 			<string>Rock star of Road Badge</string>
+			<key>index</key>
+			<string>3</string>
 			<key>icon</key>
 			<string>Rock_Star_Of_Road_Badge_Earned.png</string>
 			<key>icon_not_earned</key>
@@ -43,6 +49,8 @@
 		<dict>
 			<key>title</key>
 			<string>Perfect Trip Badge</string>
+			<key>index</key>
+			<string>4</string>
 			<key>icon</key>
 			<string>Perfect_Trip_Badge_Earned.png</string>
 			<key>icon_not_earned</key>
@@ -55,6 +63,8 @@
 		<dict>
 			<key>title</key>
 			<string>Nice Driver Badge</string>
+			<key>index</key>
+			<string>5</string>
 			<key>icon</key>
 			<string>Nice_Driver_Badge_Earned.png</string>
 			<key>icon_not_earned</key>
@@ -67,6 +77,8 @@
 		<dict>
 			<key>title</key>
 			<string>Night Driver Badge</string>
+			<key>index</key>
+			<string>6</string>
 			<key>icon</key>
 			<string>Night_Driver_Badge_Earned.png</string>
 			<key>icon_not_earned</key>
@@ -79,6 +91,8 @@
 		<dict>
 			<key>title</key>
 			<string>Eco Driver Badge</string>
+			<key>index</key>
+			<string>7</string>
 			<key>icon</key>
 			<string>Eco_Driver_Badge_Earned.png</string>
 			<key>icon_not_earned</key>
@@ -91,6 +105,8 @@
 		<dict>
 			<key>title</key>
 			<string>Highway Driver Badge</string>
+			<key>index</key>
+			<string>8</string>
 			<key>icon</key>
 			<string>Highway_Driver_Badge_Earned.png</string>
 			<key>icon_not_earned</key>
@@ -103,6 +119,8 @@
 		<dict>
 			<key>title</key>
 			<string>King of the City Badge</string>
+			<key>index</key>
+			<string>9</string>
 			<key>icon</key>
 			<string>King_Of_The_Route_Or_City_Earned.png</string>
 			<key>icon_not_earned</key>
@@ -115,6 +133,8 @@
 		<dict>
 			<key>title</key>
 			<string>Distraction score Badge</string>
+			<key>index</key>
+			<string>10</string>
 			<key>icon</key>
 			<string>Distraction_Score_Badge_Earned.png</string>
 			<key>icon_not_earned</key>
@@ -130,6 +150,8 @@
 		<dict>
 			<key>title</key>
 			<string>New Kid on the block Level</string>
+			<key>index</key>
+			<string>1</string>
 			<key>icon</key>
 			<string>New_Kid_On_The_Block_Badges_Earned.png</string>
 			<key>icon_not_earned</key>
@@ -142,6 +164,8 @@
 		<dict>
 			<key>title</key>
 			<string>Apprentice Level</string>
+			<key>index</key>
+			<string>2</string>
 			<key>icon</key>
 			<string>Apprentice_Badges_Earned.png</string>
 			<key>icon_not_earned</key>
@@ -154,6 +178,8 @@
 		<dict>
 			<key>title</key>
 			<string>Intermediate Level</string>
+			<key>index</key>
+			<string>3</string>
 			<key>icon</key>
 			<string>Intermediate_Badges_Earned.png</string>
 			<key>icon_not_earned</key>
@@ -166,6 +192,8 @@
 		<dict>
 			<key>title</key>
 			<string>Advanced Level</string>
+			<key>index</key>
+			<string>4</string>
 			<key>icon</key>
 			<string>Advanced_Badges_Earned.png</string>
 			<key>icon_not_earned</key>
@@ -178,6 +206,8 @@
 		<dict>
 			<key>title</key>
 			<string>Professional Level</string>
+			<key>index</key>
+			<string>5</string>
 			<key>icon</key>
 			<string>Professional_Level.png</string>
 			<key>icon_not_earned</key>
