@@ -27,7 +27,8 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   var enddate               :NSDate?
   var timezoneid            :String?
   var currentCountForDataUsageCalc :Int?
-    var dataUsageArray        :[AnyObject]?
+  var dataUsageArray        :[AnyObject]?
+    var finalDataUsageArray :[AnyObject]?
 
   
   override init() {
@@ -36,7 +37,8 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   
   func initLocationManager() {
     dataUsageArray = [AnyObject]()
-    currentCountForDataUsageCalc = 1
+    finalDataUsageArray = [AnyObject]()
+    currentCountForDataUsageCalc = 0
     
     configmodel = FacadeLayer.sharedinstance.configmodel
     
@@ -109,16 +111,19 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     let datausagedict:Dictionary = Datausage.getDatas()
     print("datausagedict :%@",datausagedict)
     
-    if currentCountForDataUsageCalc <= 2 {
+    if currentCountForDataUsageCalc == 2 {
+        self.calculateDataUsage()
+        currentCountForDataUsageCalc = 1
+        dataUsageArray?.removeAtIndex(0)
+    }
+    
+    if currentCountForDataUsageCalc < 2 {
         
         print("array :%@",dataUsageArray)
         dataUsageArray!.append(datausagedict)
         if let currentCount = currentCountForDataUsageCalc {
         currentCountForDataUsageCalc = currentCount + 1
         }
-    } else {
-        currentCountForDataUsageCalc = 2
-        self.calculateThresholdDataUsage()
     }
     
     let latitude:Double = coord.latitude
@@ -316,25 +321,57 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   }
     
     
-    func calculateThresholdDataUsage(){
+    func calculateDataUsage(){
         print(dataUsageArray)
         var dataSentWAN : Int = 0
         var dataReceivedWAN : Int = 0
         var dataSentWIFI : Int = 0
         var dataReceivedWIFI :Int = 0
+        var dataSent : Int = 0
+        var dataReceived :Int = 0
+        var tempDict = [String: Int]()
+        var tempArray = [AnyObject]()
         
         for dataUsage in dataUsageArray! {
-//            for (key,value) in dataUsage {
-//                
-//            }
-//            let dataDictionary :Dictionary = dataUsage as! Dictionary
-            if let datareceived = dataUsage["WWANReceived"] {
-                dataReceivedWAN = dataReceivedWAN + (datareceived as! Int)
+            
+            for (key,value) in dataUsage as! NSDictionary{
+                print(key)
+                print(value)
+                if key as! String == "WWANReceived"{
+                    if let datareceived = dataUsage["WWANReceived"]{
+                        dataReceivedWAN = (datareceived as! Int)
+                    }
+                }
+                else if key as! String == "WWANSent"{
+                    if let dataSent  = dataUsage["WWANSent"] {
+                        dataSentWAN  = (dataSent as! Int)
+                    }
+                }
+                else if key as! String == "WiFiReceived"{
+                    if let datareceived  = dataUsage["WiFiReceived"] {
+                        dataReceivedWIFI  = (datareceived as! Int)
+                    }
+                }
+                else if key as! String == "WiFiSent"{
+                    if let datasent  = dataUsage["WiFiSent"] {
+                        dataSentWIFI  = (datasent as! Int)
+                    }
+                }
+                
             }
-            if let dataSent  = dataUsage["WWANSent"] {
-                dataSentWAN  = dataSentWAN + (dataSent as! Int)
-            }
+            dataSent = dataSentWAN + dataSentWIFI
+            dataReceived = dataReceivedWAN + dataReceivedWIFI
+            tempDict["dataSent"] = dataSent
+            tempDict["dataReceived"] = dataReceived
+            tempArray.append(tempDict)
         }
+        
+        var previousDataUsageDict = tempArray[0] as! Dictionary<String,Int>
+        var currentDataUsageDict  = tempArray[1] as! Dictionary<String,Int>
+        
+        var finalDataSent     = currentDataUsageDict["dataSent"]! - previousDataUsageDict["dataSent"]!
+        var finalDataReceived = currentDataUsageDict["dataReceived"]! - previousDataUsageDict["dataReceived"]!
+        finalDataUsageArray?.append(finalDataSent+finalDataReceived)
     }
   
   func testing(latitude:Double,longitude:Double, newLocation:CLLocation){
