@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import Alamofire
 
-class Httpclient: NSObject {
+class Httpclient: NSObject,NSURLSessionDelegate {
     var delegate = self
   /*
   {(parameters) -> returntype in
@@ -110,7 +110,7 @@ class Httpclient: NSObject {
     }
     
     //Badges services
-    func requestBadgesData(URL:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
+    func requestBadgesData(URL:String, completionHandler:(response: NSURLResponse?/*NSHTTPURLResponse?*/, data: NSData?, error: NSError?) -> Void) -> Void{
         
         
         /*if let filePath = NSBundle.mainBundle().pathForResource("badges", ofType: "json"), data = NSData(contentsOfFile: filePath) {
@@ -141,26 +141,38 @@ class Httpclient: NSObject {
         }*/
         
         
+    
         
-        let session = NSURLSession.sharedSession()
- 
+        let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: FacadeLayer.sharedinstance.webService.badgeServiceURL!)!)
+        request.HTTPMethod = "GET"
+        
+        let authValue = "SWs5cVUyeUFDTDg5bnhMMnZaOWVLUT09Om16Vm01Q3pPVHErZXJyUUV3ZHMyM3c9PQ"
+        request.setValue(authValue, forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
         
         
-        let loginRequest = NSMutableURLRequest(URL: NSURL(string: FacadeLayer.sharedinstance.webService.badgeServiceURL!)!)
-        loginRequest.HTTPMethod = "GET"
-        loginRequest.setValue("SPRING_SECURITY_REMEMBER_ME_COOKIE", forHTTPHeaderField: "NkJYQURVV3poNlkxQU5xdUVEOFdrdz09OnRkL2xEMWUrN0lOTG40UXpLcS9iQ1E9PQ")
         
-        let task = session.dataTaskWithRequest(loginRequest) {
+//        let session = NSURLSession.sharedSession()
+//        
+//        let loginRequest = NSMutableURLRequest(URL: NSURL(string: FacadeLayer.sharedinstance.webService.badgeServiceURL!)!)
+//        loginRequest.HTTPMethod = "GET"
+//        loginRequest.setValue("SPRING_SECURITY_REMEMBER_ME_COOKIE", forHTTPHeaderField: "NkJYQURVV3poNlkxQU5xdUVEOFdrdz09OnRkL2xEMWUrN0lOTG40UXpLcS9iQ1E9PQ")
+        
+        let task = session.dataTaskWithRequest(request) {
             (
             let data, let response, let error) in
             
-            guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
-                print("error")
-                return
-            }
+            completionHandler(response: response, data: data, error: error)
             
-            let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
-            print(dataString)
+//            guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
+//            
+//                return
+//            }
+//            
+//            let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+//            print(dataString)
             
         }.resume()
         
@@ -224,6 +236,16 @@ class Httpclient: NSObject {
             }
             catch {
                 //Handle error
+            }
+        }
+    }
+    
+    func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+        
+        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+            if challenge.protectionSpace.host == "ec2-52-9-107-182.us-west-1.compute.amazonaws.com" {
+                let credential = NSURLCredential(trust: challenge.protectionSpace.serverTrust!)
+                completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credential)
             }
         }
     }

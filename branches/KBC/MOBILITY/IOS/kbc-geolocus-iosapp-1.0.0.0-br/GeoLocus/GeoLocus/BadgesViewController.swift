@@ -29,9 +29,9 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
         
         // Do any additional setup after loading the view.
         
-        //reloadDataSource()
+        reloadDataSource()
         
-        storeBadge()
+        //storeBadge()
     }
     
     
@@ -229,7 +229,9 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                 
                 for var index = 0; index < self.badgeNotEarnedArray.count; index++ {
                     
-                    let title = self.badgeNotEarnedArray[index].badgeTitle
+                    let title = self.badgeNotEarnedArray[index].badgeTitle.stringByTrimmingCharactersInSet(
+                        NSCharacterSet.whitespaceAndNewlineCharacterSet()
+                    )
                     
                     for var pIndex = 0; pIndex < self.plistBadgeArray.count; pIndex++ {
                         if self.plistBadgeArray[pIndex]["title"] as! String == title {
@@ -243,7 +245,10 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                 
                 for var index = 0; index < self.badgeEarnedArray.count; index++ {
                     
-                    let title = self.badgeEarnedArray[index].badgeTitle
+                    let title = self.badgeEarnedArray[index].badgeTitle.stringByTrimmingCharactersInSet(
+                        NSCharacterSet.whitespaceAndNewlineCharacterSet()
+                    )
+
                     
                     for var pIndex = 0; pIndex < self.plistBadgeArray.count; pIndex++ {
                         if self.plistBadgeArray[pIndex]["title"] as! String == title {
@@ -257,7 +262,10 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                 
                 for var index = 0; index < self.levelArray.count; index++ {
                     
-                    let title = self.levelArray[index].badgeTitle
+                    let title = self.levelArray[index].badgeTitle.stringByTrimmingCharactersInSet(
+                        NSCharacterSet.whitespaceAndNewlineCharacterSet()
+                    )
+
                     
                     for var pIndex = 0; pIndex < self.plistLevelArray.count; pIndex++ {
                         if self.plistLevelArray[pIndex]["title"] as! String == title {
@@ -364,7 +372,9 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                         
                         for var index = 0; index < self.badgeNotEarnedArray.count; index++ {
                             
-                            let title = self.badgeNotEarnedArray[index].badgeTitle
+                            let title = self.badgeNotEarnedArray[index].badgeTitle.stringByTrimmingCharactersInSet(
+                                NSCharacterSet.whitespaceAndNewlineCharacterSet()
+                            )
                             
                             for var pIndex = 0; pIndex < self.plistBadgeArray.count; pIndex++ {
                                 if self.plistBadgeArray[pIndex]["title"] as! String == title {
@@ -378,7 +388,9 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                         
                         for var index = 0; index < self.badgeEarnedArray.count; index++ {
                             
-                            let title = self.badgeEarnedArray[index].badgeTitle
+                            let title = self.badgeEarnedArray[index].badgeTitle.stringByTrimmingCharactersInSet(
+                                NSCharacterSet.whitespaceAndNewlineCharacterSet()
+                            )
                             
                             for var pIndex = 0; pIndex < self.plistBadgeArray.count; pIndex++ {
                                 if self.plistBadgeArray[pIndex]["title"] as! String == title {
@@ -392,7 +404,9 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                         
                         for var index = 0; index < self.levelArray.count; index++ {
                             
-                            let title = self.levelArray[index].badgeTitle
+                            let title = self.levelArray[index].badgeTitle.stringByTrimmingCharactersInSet(
+                                NSCharacterSet.whitespaceAndNewlineCharacterSet()
+                            )
                             
                             for var pIndex = 0; pIndex < self.plistLevelArray.count; pIndex++ {
                                 if self.plistLevelArray[pIndex]["title"] as! String == title {
