@@ -28,7 +28,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   var timezoneid            :String?
   var currentCountForDataUsageCalc :Int?
   var dataUsageArray        :[AnyObject]?
-    var finalDataUsageArray :[AnyObject]?
+  var finalDataUsageArray   :[AnyObject]?
 
   
   override init() {
@@ -173,6 +173,9 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         UUID: NSUUID().UUIDString,
         schedule: NSDate(),
         tripstatus: true)
+        
+        //Data Usage
+        finalDataUsageArray?.removeAll(keepCapacity: true)
 
     }
     
@@ -185,6 +188,19 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         enddate = newLocation.timestamp
         self.performSelector("notMoving", withObject: nil, afterDelay: 900)
       }
+        
+        let tempDataUsageArray = finalDataUsageArray
+        var dataUsageFinalValue : Int = 0
+        if let tempDataUsageArr = tempDataUsageArray {
+            if let thresholdValue = tempDataUsageArray?.first {
+                for var i = 1; i < tempDataUsageArr.count; i++ {
+                    let dataUsageDifference = (tempDataUsageArr[i] as! Int) - (thresholdValue as! Int)
+                    if dataUsageDifference > 0 {
+                        dataUsageFinalValue = dataUsageFinalValue + dataUsageDifference
+                    }
+                }
+            }
+        }
     }
     
     //********************End auto trip detection
