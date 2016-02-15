@@ -209,7 +209,6 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             }
         }
     }
-    
     func requestNotificationListData(URL:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
         
         
@@ -232,7 +231,6 @@ class Httpclient: NSObject,NSURLSessionDelegate {
                 }
                 
                 //*****************************************//
-                
             }
             catch {
                 //Handle error
@@ -248,7 +246,6 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             do {
                 let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
                 print(json)
-                
                 //****************************************//
                 
                 let parameters = ["userId":"<user id>","tokenId":"<get from server>","channel_type":StringConstants.CHANNEL_TYPE,"language_code":"en_be"]
