@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WelcomePageViewController: UIViewController,UIPageViewControllerDataSource,UIPageViewControllerDelegate {
+class WelcomePageViewController: BaseViewController,UIPageViewControllerDataSource,UIPageViewControllerDelegate {
     
     let pageTitles = ["Welcome screen 1", "Welcome screen 2", "Welcome screen 3", "Welcome screen 4","Welcome screen 5","Welcome screen 6"]
     var images = ["back.png","loading.png","icon.png","emergency_call.png","back.png","loading.png"]
@@ -18,7 +18,7 @@ class WelcomePageViewController: UIViewController,UIPageViewControllerDataSource
     
     func reset() {
         /* Getting the page View controller */
-        pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
+        pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier(StringConstants.PageViewController) as! UIPageViewController
         self.pageViewController.dataSource = self
         
         let pageContentViewController = self.viewControllerAtIndex(0)

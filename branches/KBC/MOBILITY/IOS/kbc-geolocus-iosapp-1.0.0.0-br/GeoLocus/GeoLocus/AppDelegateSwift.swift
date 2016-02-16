@@ -249,7 +249,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     func loadInitialViewController(){
       
         let storyboard: UIStoryboard = UIStoryboard(name: "Storyboard", bundle: NSBundle.mainBundle())
-        var checkUserLogin : Bool = self.checkUserDetails()
+        let checkUserLogin : Bool = self.checkUserDetails()
         checkUserLogin = false
         if(!checkUserLogin){
             let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
@@ -258,7 +258,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         }
         else{
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "FirstLaunch")
-            let languageSelectionPage = storyboard.instantiateViewControllerWithIdentifier("LanguageSelectionViewController") as! LanguageSelectionViewController
+            let languageSelectionPage = storyboard.instantiateViewControllerWithIdentifier(StringConstants.LanguageSelectionViewController) as! LanguageSelectionViewController
             self.window?.rootViewController = languageSelectionPage
             self.window?.makeKeyAndVisible()
         }

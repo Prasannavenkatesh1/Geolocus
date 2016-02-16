@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController,UITextFieldDelegate {
+class LoginViewController: BaseViewController,UITextFieldDelegate {
     
     @IBOutlet weak var layoutConstraintTop: NSLayoutConstraint!
     @IBOutlet weak var layoutConstraintVerticalUserNameTop: NSLayoutConstraint!
@@ -28,14 +28,14 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     let passwordShowButton = UIButton()
     var selectedLanguageCode : String!
     var termsAndConditionsString = String()
-    var activityIndicatorView : UIActivityIndicatorView!
+    var alertView = UIAlertController()
     
     // MARK: - Button Actions
 
     /* Register Now button action */
     @IBAction func registerNowButtonTapped(sender: AnyObject) {
         var registerNowURL : String!
-        registerNowURL = StringConstants.REGISTER_NOW_URL + "\(selectedLanguageCode)"
+        registerNowURL = StringConstants.REGISTER_NOW_URL + "\(self.selectedLanguageCode)"
         UIApplication.sharedApplication().openURL(NSURL(string:registerNowURL)!)
     }
     
@@ -45,17 +45,30 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     }
     
     /* Login button action */
-    @IBAction func loginTapped(sender: UIButton) {     
+    @IBAction func loginTapped(sender: UIButton) {
+        self.startLoading()
         loginButton.backgroundColor = UIColor(red: 83.0/255.0, green: 178.0/255.0, blue: 98.0/255.0, alpha: 1.0)
         loginButton.setTitleColor(UIColor(red: 174.0/255.0, green: 174.0/255.0, blue: 174.0/255.0, alpha: 1.0),forState: UIControlState.Normal)
         
-        let userNameString = self.userNameText.text
-        let passwordString = self.passwordText.text
+        let userNameString = StringConstants.USERNAME_STRING //self.userNameText.text
+        let passwordString = StringConstants.PASSWORD_STRING //self.passwordText.text
         
-        let parameterString = String(format: StringConstants.LOGIN_PARAMETERS, passwordString!, userNameString!, self.selectedLanguageCode)
+        let parameterString = String(format: StringConstants.LOGIN_PARAMETERS, passwordString, userNameString, self.selectedLanguageCode)
         
-        //FacadeLayer.sharedinstance.httpclient.requestLoginData(loginURL,parametersHTTPBody:requestDictionary)
-        FacadeLayer.sharedinstance.httpclient.requestLoginData(StringConstants.LOGIN_URL,parameterString: parameterString)
+        self.requestLoginData(StringConstants.LOGIN_URL, parameterString: parameterString){ (status, response, error) -> Void in
+            self.stopLoading()
+            
+            //navigate to onboarding screen,if the response is success
+            if(error == nil){
+                let welcomeScreenViewController = self.storyboard!.instantiateViewControllerWithIdentifier(StringConstants.WelcomePageViewController) as! WelcomePageViewController
+                self.presentViewController(welcomeScreenViewController, animated: true, completion: nil)
+            }
+            else{
+                self.alertView = UIAlertController(title: StringConstants.ERROR, message: error?.description, preferredStyle: UIAlertControllerStyle.Alert)
+                self.alertView.addAction(UIAlertAction(title: StringConstants.OK, style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(self.alertView, animated: true, completion: nil)
+            }
+        }
     }
     
     /* Check box button action */
@@ -83,11 +96,11 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         userNameText.delegate = self
         passwordText.delegate = self
         
-        registerForKeyboardNotifications()
-        setConstraintsForDevice()
-        customizeTextField()
-        customizeButton()
-        termsAndConditionsURL()
+        self.registerForKeyboardNotifications()
+        self.setConstraintsForDevice()
+        self.customizeTextField()
+        self.customizeButton()
+        self.termsAndConditionsURL()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -106,23 +119,38 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     /* set URL for Terms and Conditions content */
     func termsAndConditionsURL(){
         var termsAndConditionsURL : String
-        termsAndConditionsURL = StringConstants.TERMS_AND_CONDITIONS_URL + "\(selectedLanguageCode)"
+        termsAndConditionsURL = StringConstants.TERMS_AND_CONDITIONS_URL + "\(self.selectedLanguageCode)"
         
         self.requestTermsAndConditionsData(termsAndConditionsURL){ (status,response,error) -> Void in
-            self.termsAndConditionsString = NSString(data: response!, encoding: NSUTF8StringEncoding) as String!
+            if(error == nil){
+                self.termsAndConditionsString = NSString(data: response!, encoding: NSUTF8StringEncoding) as String!
             }
+            else{
+                self.alertView = UIAlertController(title: StringConstants.ERROR, message: error?.description, preferredStyle: UIAlertControllerStyle.Alert)
+                self.alertView.addAction(UIAlertAction(title: StringConstants.OK, style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(self.alertView, animated: true, completion: nil)
+            }
+        }
     }
     
-    /* Facade layer call */
+    /* Facade layer call for Terms and Conditions */
     func requestTermsAndConditionsData(URL : String, completionHandler:(status : Int, response : NSData?, error : NSError?) -> Void) -> Void{
         FacadeLayer.sharedinstance.requestTermsAndConditionsData(URL){ (status, data, error) -> Void in
             completionHandler(status: status, response: data, error: error)
         }
     }
     
+    /* Facade layer call for Login */
+
+    func requestLoginData(URL : String, parameterString : String, completionHandler :(status : Int, response : NSData?, error : NSError?) -> Void) -> Void{
+        FacadeLayer.sharedinstance.requestLoginData(URL, parameterString: parameterString){ (status, data, error) -> Void in
+            completionHandler(status: status, response: data, error: error)
+        }
+    }
+    
     /* create modal dialog view controller for displaying terms and conditions */
     func showModal() {
-        let modalViewController = storyboard!.instantiateViewControllerWithIdentifier("TermsAndConditionsViewController") as! TermsAndConditionsViewController
+        let modalViewController = storyboard!.instantiateViewControllerWithIdentifier(StringConstants.TermsAndConditionsViewController) as! TermsAndConditionsViewController
         modalViewController.termsAndConditionsContent = self.termsAndConditionsString
         modalViewController.modalPresentationStyle = .OverCurrentContext
         presentViewController(modalViewController, animated: true, completion: nil)
@@ -210,16 +238,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         }
     }
     
-    /* adding Activity Indicator to view */
-    func addActivityIndicator(){
-        
-        activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
-        activityIndicatorView.center = self.view.center
-        activityIndicatorView.startAnimating()
-        self.view.addSubview(activityIndicatorView)
-    }
     
-   
     //MARK: Notification methods on Keyboard pop up
     
     //Adding notifies on keyboard appearing
@@ -235,6 +254,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
+    /* set view constraints when keyboard is shown */
     func keyboardWasShown(notification: NSNotification) {
         
         UIView.animateWithDuration(0.1, animations: { () -> Void in
@@ -249,6 +269,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         })
     }
 
+    /* set view constraints when keyboard is hidden */
     func keyboardWillBeHidden(notification:NSNotification){
         
         UIView.animateWithDuration(0.1, animations: { () -> Void in

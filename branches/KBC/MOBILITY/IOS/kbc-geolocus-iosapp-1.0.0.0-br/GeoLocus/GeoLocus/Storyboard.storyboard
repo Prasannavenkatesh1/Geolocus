@@ -3839,7 +3839,6 @@
                                         </variation>
                                         <connections>
                                             <action selector="loginTapped:" destination="Nxg-xU-SOE" eventType="touchUpInside" id="qxt-Z0-TFK"/>
-                                            <segue destination="N3h-gI-vu7" kind="show" identifier="welcomescreen" id="G9g-I1-qQs"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -4287,7 +4286,7 @@
         <!--Welcome Page View Controller-->
         <scene sceneID="v4L-MR-Hiy">
             <objects>
-                <viewController id="N3h-gI-vu7" customClass="WelcomePageViewController" customModule="GeoLocus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomePageViewController" id="N3h-gI-vu7" customClass="WelcomePageViewController" customModule="GeoLocus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vY4-gz-kUi"/>
                         <viewControllerLayoutGuide type="bottom" id="8AD-P9-xzq"/>

@@ -53,7 +53,11 @@ struct StringConstants {
     static let GroupBarViewController = "GroupBarViewController"
     static let TermsAndConditionViewController = "TermsAndConditionViewController"
     static let SettingsViewController = "SettingsViewController"
-  
+    static let TermsAndConditionsViewController = "TermsAndConditionsViewController"
+    static let WelcomePageViewController = "WelcomePageViewController"
+    static let PageViewController = "PageViewController"
+    static let LanguageSelectionViewController = "LanguageSelectionViewController"
+    
     static let MOTIONTYPE_NOTMOVING = "Not Moving"
     static let MOTIONTYPE_NONVEHICLE = "Walking or Running"
     static let MOTIONTYPE_AUTOMOTIVE = "Automotive"
@@ -73,9 +77,10 @@ struct StringConstants {
     
     static let REGISTER_NOW_URL = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-driver-web/login?channel_type=IOS&languageCode="
     static let NEED_HELP_URL = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-driver-web/needHelp"
-    static let LOGIN_URL = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/j_spring_security_check"
+    static let LOGIN_URL = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/j_spring_security_check?"
     static let TERMS_AND_CONDITIONS_URL = "http://ec2-52-9-108-237.us-west-1.compute.amazonaws.com:8080/kbc-app-service/admin/get/terms_conditions?languageCode="
-    static let REPORT_SERVICE_URL = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/report/get/report?userId=9&timeFrame=monthly&scoreType=speed"
+    static let CONTRACT_URL = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/get/contract_details?userId=9"
+    
     static let LOGIN_PARAMETERS = "j_password=%@&j_username=%@&languageCode=%@&channel_type=iOS&_spring_security_remember_me=on"
     
     static let SCREEN_HEIGHT = UIScreen.mainScreen().bounds.size.height
@@ -96,8 +101,17 @@ struct StringConstants {
     
     static var appDataSynced = false
     
-    static let CHANNEL_TYPE = "iOS"
+    static let CHANNEL_TYPE = "channel_type"
     static let TOKEN_ID = "tokenID"
+    static let USER_ID = "userId"
+    static let USERNAME = "userName"
+    static let SPRING_SECURITY_COOKIE = "SPRING_SECURITY_REMEMBER_ME_COOKIE"
+    
+    static let ERROR = "Error"
+    static let OK = "OK"
+    
+    static let USERNAME_STRING = "abdul"
+    static let PASSWORD_STRING = "abdul12345"
 }
 
 
