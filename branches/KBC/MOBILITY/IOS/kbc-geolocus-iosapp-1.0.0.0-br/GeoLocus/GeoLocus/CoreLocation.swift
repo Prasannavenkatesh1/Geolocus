@@ -84,21 +84,12 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   
   func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     
-    
     let newLocation:CLLocation! = locations.last;
     var oldLocation:CLLocation!
     if (locations.count > 1) {
       oldLocation = locations[locations.count - 2];
     }
     
-//    CLGeocoder().reverseGeocodeLocation(newLocation) { (placemarks, error) -> Void in
-//      if error == nil && placemarks!.count > 0 {
-//        let location = placemarks![0]
-////        print("\(location.ISOcountryCode)")
-//        self.timezoneid! = location.ISOcountryCode!
-//      }
-//    }
-  
     let coord = newLocation.coordinate
     
     let mainDelegate:AppDelegateSwift = UIApplication.sharedApplication().delegate as! AppDelegateSwift
@@ -128,8 +119,6 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     
     let latitude:Double = coord.latitude
     let longitude:Double = coord.longitude
-//    let altitude:Double = newLocation.altitude
-//    let accuracy:Double = newLocation.horizontalAccuracy
     
     //Calculation for autotrip detection
     locSpeedArray!.append(String(format:"%.2f", newLocation.speed * 3.6))
@@ -176,7 +165,6 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         
         //Data Usage
         finalDataUsageArray?.removeAll(keepCapacity: true)
-
     }
     
     //Auto trip stop
