@@ -263,8 +263,9 @@ class FacadeLayer{
     
     func fetchBadgeData(completionHandler:(status: Int, data: [Badge]?, error: NSError?) -> Void) -> Void{
         
+        let defaults = NSUserDefaults.standardUserDefaults()
         
-        if StringConstants.appDataSynced {
+        if defaults.boolForKey("Badges_Page_Synced") {
             //get from DB and reload table
             dbactions.fetchBadgeData({ (status, data, error) -> Void in
                 completionHandler(status: status, data: data, error: error)
@@ -306,23 +307,29 @@ class FacadeLayer{
                                 self.dbactions.removeData("Trip_Badge")
                                 self.dbactions.saveBadge(badges, completionhandler: { (status) -> Void in
                                     if status{
+                                        defaults.setBool(true, forKey: "Badges_Page_Synced")
                                         completionHandler(status: 1, data: badges, error: nil)
                                     }else{
+                                        defaults.setBool(false, forKey: "Badges_Page_Synced")
                                         completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
                                     }
                                 })
                             }else{
+                                defaults.setBool(false, forKey: "Badges_Page_Synced")
                                 completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
                             }
                         }else{
+                            defaults.setBool(false, forKey: "Badges_Page_Synced")
                             //something went wrong
                             completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
                         }
                     }else{
+                        defaults.setBool(false, forKey: "Badges_Page_Synced")
                         //something went wrong
                         completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
                     }
                 }else {
+                    defaults.setBool(false, forKey: "Badges_Page_Synced")
                     //something went wrong
                     completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
                 }
@@ -360,7 +367,7 @@ class FacadeLayer{
         }
     }
 
-    //Overall score service
+    //MARK: - Overall score service
     
     func fetchOverallScoreData(completionHandler:(status: Int, data: OverallScores?, error: NSError?) -> Void) -> Void{
         
