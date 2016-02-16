@@ -531,6 +531,52 @@ class DatabaseActions: NSObject {
         }
     }
     
+    //MARK: Contract Methods
+    
+    /* save contract data fetched from service in to Core data*/
+    func saveContractData(contractData : ContractModel, completionHandler :(status : Bool) -> Void){
+        let contractDataValues = NSEntityDescription.insertNewObjectForEntityForName("Contract", inManagedObjectContext: self.managedObjectContext) as! Contract
+        
+        contractDataValues.parentUserName = contractData.parentUserName
+        contractDataValues.attentionPoints = contractData.attentionPoints
+        contractDataValues.ecoPoints = contractData.ecoPoints
+        contractDataValues.speedPoints = contractData.speedPoints
+        contractDataValues.bonusPoints = contractData.bonusPoints
+        contractDataValues.totalContractPoints = contractData.totalContractPoints
+        contractDataValues.contractAchievedDate = contractData.contractAchievedDate
+        contractDataValues.rewardsDescription = contractData.rewardsDescription
+        contractDataValues.contractPointsAchieved = contractData.contractPointsAchieved
+        
+        do{
+            try self.managedObjectContext.save()
+            completionHandler(status: true)
+        }
+        catch{
+            completionHandler(status: false)
+        }
+    }
+    
+    /* fetch contract data stored in the core data */
+//    func fetchContractData(completionHandler : (status : Int, response : ContractModel?, error : NSError?) -> Void) -> Void{
+//        let fetchRequest = NSFetchRequest(entityName: "Contract")
+//        
+//        let asyncFetchRequest = NSAsynchronousFetchRequest(fetchRequest : fetchRequest){
+//            (asynchronousFetchResult) -> Void in
+//            
+//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                
+//                let contractData = self.processOverallScoreResult(asynchronousFetchResult)
+//                
+//                if overallScore != nil {
+//                    completionHandler(status: 1, response: overallScore, error: nil)
+//                }else{
+//                    completionHandler(status: 0, response: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+//                }
+//            })
+//        }
+//
+//        }
+//    }
     
     //MARK: - Delete methods
     
