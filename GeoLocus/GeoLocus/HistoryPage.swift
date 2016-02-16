@@ -17,7 +17,6 @@ protocol MapViewDelegate {
     func mapView(mapView: MKMapView!, didSelectAnnotation annotation: EventAnnotation)
 }
 
-
 protocol SpeedZoneCellDelegate {
     func severeViolationViewTapped()
 }
@@ -145,12 +144,14 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             cell.delegate = self
             
+            let rowIndex = self.tripDetailRowSelected
+            
             cell.speedingView.foreGroundArcWidth = 8
             cell.speedingView.backGroundArcWidth = 8
                       //changes dynamically
             if self.tripScores?.count > 0 {
-                cell.speedingView.ringLayer.strokeColor = UIColor(range: (self.tripScores?[indexPath.row].speedScore.integerValue)!).CGColor
-                cell.speedingView.animateScale = (self.tripScores?[indexPath.row].speedScore.doubleValue)!/100.0
+                cell.speedingView.ringLayer.strokeColor = UIColor(range: (self.tripScores?[rowIndex!].speedScore.integerValue)!).CGColor
+                cell.speedingView.animateScale = (self.tripScores?[rowIndex!].speedScore.doubleValue)!/100.0
             }
             if self.scoreRefreshRequired {
                 cell.speedingView.setNeedsDisplay()
@@ -160,8 +161,8 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
             cell.ecoView.backGroundArcWidth = 8
             
             if self.tripScores?.count > 0 {
-                cell.ecoView.ringLayer.strokeColor = UIColor(range: (self.tripScores?[indexPath.row].ecoScore.integerValue)!).CGColor
-                cell.ecoView.animateScale = (self.tripScores?[indexPath.row].ecoScore.doubleValue)!/100.0
+                cell.ecoView.ringLayer.strokeColor = UIColor(range: (self.tripScores?[rowIndex!].ecoScore.integerValue)!).CGColor
+                cell.ecoView.animateScale = (self.tripScores?[rowIndex!].ecoScore.doubleValue)!/100.0
             }
             if self.scoreRefreshRequired {
                 cell.ecoView.setNeedsDisplay()
@@ -570,9 +571,13 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
         
         if self.historyData != nil && index < self.historyData?.count {
             
-            let data = self.historyData![index] as History
             //1
-            self.tripScores?.append(TripScore(speedScore: data.tripScore.speedScore, ecoScore: data.tripScore.ecoScore, attentionScore: nil))
+            for item in self.historyData! {
+                let tripItem = item as History
+                self.tripScores?.append(tripItem.tripScore)
+            }
+            
+            let data = self.historyData![index] as History
             //2
             if self.tabSelected == MapZoneTab.MapSelected {
                 self.tripMapEvents = data.events!
@@ -704,7 +709,14 @@ extension HistoryPage: TripDetailCellDelegate {
     func shareButtonTapped(cell: HistoryTripDetailCell) {
         let indexpath = self.tripHistoryTableView.indexPathForCell(cell)
         print(indexpath?.row)
-//        super.displayActivityView()
+
+        
+        let speedScore = (self.tripScores?[indexpath!.row].speedScore.integerValue)!
+        let ecoScore = (self.tripScores?[indexpath!.row].ecoScore.integerValue)!
+        
+        print(speedScore)
+        
+        super.displayActivityView("Trip Score", detail: "On \((cell.tripDateLabel.text)!), I travelled with distance of \((cell.tripDistanceLabel.text)!) KM’s over a period of \((cell.tripDurationLabel.text)!) and achieved above scores using my KBC First 10,000KM app.", imageInfo: ["speedScore":String(speedScore), "ecoScore":String(ecoScore)], shareOption: ShareTemplate.ShareOption.TRIP_DETAIL)
     }
 }
 

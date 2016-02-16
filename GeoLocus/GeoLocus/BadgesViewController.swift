@@ -82,7 +82,7 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
             cell.badgeDescription.textColor = UIColor(netHex: 0x181F29)
             
         }else {
-            cell.shareButton.hidden = true
+            cell.shareButton.hidden = false         //TO DO: make this true
             cell.badgeTitle.font = UIFont(name: "Helvetica Neue", size: 15.0)
             cell.badgeTitle.textColor = UIColor(netHex: 0x003665)
             
@@ -244,6 +244,8 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                             self.badgeNotEarnedArray[index].badgeIcon = isEarned ? self.plistBadgeArray[pIndex]["icon"] as! String: self.plistBadgeArray[pIndex]["icon_not_earned"] as! String
                             
                             self.badgeNotEarnedArray[index].orderIndex = Int(self.plistBadgeArray[pIndex]["index"] as! String)!
+                            self.badgeNotEarnedArray[index].additionalMsg = self.plistBadgeArray[pIndex]["message"] as? String
+                            
                         }
                     }
                 }
@@ -263,6 +265,7 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                             self.badgeEarnedArray[index].badgeIcon = isEarned ? self.plistBadgeArray[pIndex]["icon"] as! String: self.plistBadgeArray[pIndex]["icon_not_earned"] as! String
                             
                             self.badgeEarnedArray[index].orderIndex = Int(self.plistBadgeArray[pIndex]["index"] as! String)!
+                            self.badgeEarnedArray[index].additionalMsg = self.plistBadgeArray[pIndex]["message"] as? String
                         }
                     }
                 }
@@ -282,6 +285,7 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                             self.levelArray[index].badgeIcon = isEarned ? self.plistLevelArray[pIndex]["icon"] as! String: self.plistLevelArray[pIndex]["icon_not_earned"] as! String
                             
                             self.levelArray[index].orderIndex = Int(self.plistLevelArray[pIndex]["index"] as! String)!
+                            self.levelArray[index].additionalMsg = self.plistBadgeArray[pIndex]["message"] as? String
                         }
                     }
                 }
@@ -320,6 +324,30 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
         
         print("clicked share button data: \(clickedRowIndexPath!.row)")
         //add logic to get data and share them
+        
+        var title = String()
+        var details = String()
+        var icon = String()
+        
+        if clickedRowIndexPath?.section == 0 {    //badges earned
+            //TO DO: revert this and change section 0 to 1 above
+            /*
+            title = self.badgeEarnedArray[clickedRowIndexPath!.row].badgeTitle
+            details = self.badgeEarnedArray[clickedRowIndexPath!.row].badgeDescription
+            icon = self.badgeEarnedArray[clickedRowIndexPath!.row].badgeIcon
+            */
+            
+            //TO DO: Delete this
+            title = self.badgeNotEarnedArray[clickedRowIndexPath!.row].badgeTitle
+            details = self.badgeNotEarnedArray[clickedRowIndexPath!.row].additionalMsg!
+            icon = self.badgeNotEarnedArray[clickedRowIndexPath!.row].badgeIcon
+        }else if clickedRowIndexPath?.section == 2 {     //levels
+            title = self.levelArray[clickedRowIndexPath!.row].badgeTitle
+            details = self.levelArray[clickedRowIndexPath!.row].badgeDescription
+            icon = self.levelArray[clickedRowIndexPath!.row].badgeIcon
+        }
+        
+        super.displayActivityView(title, detail: details, imageInfo: ["icon":icon], shareOption: ShareTemplate.ShareOption.BADGES)
         
     }
     
