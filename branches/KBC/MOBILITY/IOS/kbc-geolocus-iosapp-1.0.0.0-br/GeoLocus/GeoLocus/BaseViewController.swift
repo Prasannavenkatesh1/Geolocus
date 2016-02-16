@@ -11,7 +11,7 @@ import UIKit
 class BaseViewController: UIViewController {
 
     var activityIndicatorView = UIActivityIndicatorView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addActivityIndicator()
@@ -41,6 +41,36 @@ class BaseViewController: UIViewController {
         activityIndicatorView.stopAnimating()
         activityIndicatorView.hidden = true
     }
+    
+    
+    func displayActivityView(title: String, detail: String, imageInfo: Dictionary<String, String>, shareOption: ShareTemplate.ShareOption){
+        
+        let shareTemplate = ShareTemplate()
+        
+        shareTemplate.createShareTemplateImage(title, detail: detail, imageInfo: imageInfo, shareOption: shareOption) { (image) -> Void in
+            
+            let activityViewController : UIActivityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+            self.presentViewController(activityViewController, animated: true, completion: nil)
+            
+            
+            activityViewController.completionWithItemsHandler = { activity, success, items, error in
+                if success {
+                    
+                    let messageString = "Successfully shared"
+                    let alert = UIAlertController(title: nil, message:messageString , preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                    
+                    let imageView = UIImageView(frame: CGRectMake(30, 20, 20, 20))
+                    imageView.image = UIImage(named: StringConstants.CHECK_BOX_SELECTED)
+                    alert.view.addSubview(imageView)
+                    
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    
+                }
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

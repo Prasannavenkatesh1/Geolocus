@@ -115,6 +115,7 @@ struct Events {
     case ACCELERATION
     case TIMESERIES
     case STARTTRIP
+    case SPEEDING
     case NONE
   }
   
