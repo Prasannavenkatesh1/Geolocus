@@ -161,8 +161,9 @@ class FacadeLayer{
     
     func fetchtripDetailData(completionHandler:(status: Int, data: [History]?, error: NSError?) -> Void) -> Void{
         
+        let defaults = NSUserDefaults.standardUserDefaults()
         
-        if StringConstants.appDataSynced {
+        if defaults.boolForKey("History_Page_Synced") {
             //get from DB and reload table
             
             self.dbactions.fetchtripDetailData({ (status, response, error) -> Void in
@@ -234,18 +235,23 @@ class FacadeLayer{
                             self.dbactions.removeData("Trip_Detail")
                             self.dbactions.saveTripDetail(tripArray, completionhandler: { (status) -> Void in
                                 if status {
+                                    defaults.setBool(true, forKey: "History_Page_Synced")
                                     completionHandler(status: 1, data: tripArray, error: nil)
                                 }else{
+                                    defaults.setBool(false, forKey: "History_Page_Synced")
                                     completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
                                 }
                             })
                         }else{
+                            defaults.setBool(false, forKey: "History_Page_Synced")
                             completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
                         }
                     }else{
+                        defaults.setBool(false, forKey: "History_Page_Synced")
                         completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
                     }
                 }else{
+                    defaults.setBool(false, forKey: "History_Page_Synced")
                     completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
                 }
             }
