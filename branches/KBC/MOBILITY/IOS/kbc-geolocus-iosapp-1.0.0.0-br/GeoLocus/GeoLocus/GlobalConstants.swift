@@ -72,6 +72,9 @@ struct StringConstants {
     
     static let LOGIN_PARAMETERS = "j_password=%@&j_username=%@&languageCode=%@&channel_type=iOS&_spring_security_remember_me=on"
     
+    static let NOTIFICATION_DELETE = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/notification/delete?"
+    static let NOTIFICATION_DELETE_PARAMETERS = "userId=%@&notificationId=%@&type=%@"
+    
     static let SCREEN_HEIGHT = UIScreen.mainScreen().bounds.size.height
     static let SCREEN_WIDTH = UIScreen.mainScreen().bounds.size.width
     
