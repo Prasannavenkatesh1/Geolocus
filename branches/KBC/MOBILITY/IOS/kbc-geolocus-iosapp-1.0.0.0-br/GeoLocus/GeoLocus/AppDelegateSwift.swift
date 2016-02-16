@@ -5,6 +5,19 @@
 import UIKit
 import CoreData
 
+enum Actions:String{
+  case yes = "YES"
+  case no = "NO"
+}
+
+enum LanguageCode:String{
+  case English = "en_uk"
+  case French = "fr_be"
+  case Nederlands = "nl_be"
+  case Duits = "de_be"
+}
+
+
 
 @UIApplicationMain
 class AppDelegateSwift: UIResponder, UIApplicationDelegate {
@@ -249,7 +262,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     func loadInitialViewController(){
       
         let storyboard: UIStoryboard = UIStoryboard(name: "Storyboard", bundle: NSBundle.mainBundle())
-        let checkUserLogin : Bool = self.checkUserDetails()
+        var checkUserLogin : Bool = self.checkUserDetails()
         checkUserLogin = false
         if(!checkUserLogin){
             let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController

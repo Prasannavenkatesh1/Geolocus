@@ -704,7 +704,7 @@ extension HistoryPage: TripDetailCellDelegate {
     func shareButtonTapped(cell: HistoryTripDetailCell) {
         let indexpath = self.tripHistoryTableView.indexPathForCell(cell)
         print(indexpath?.row)
-        super.displayActivityView()
+//        super.displayActivityView()
     }
 }
 

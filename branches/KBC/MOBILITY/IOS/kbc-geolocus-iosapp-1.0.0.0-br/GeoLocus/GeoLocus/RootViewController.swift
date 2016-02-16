@@ -101,7 +101,7 @@ class RootViewController: BaseViewController {
         }
       
       //Motion detect
-       self.showSnoozingPop()
+//       self.showSnoozingPop()
     }
 
     override func didReceiveMemoryWarning() {
