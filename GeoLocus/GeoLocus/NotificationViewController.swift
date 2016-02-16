@@ -12,6 +12,7 @@ class NotificationViewController: BaseViewController,UITableViewDataSource, UITa
     var notificationListDict = [String: String]()
     var notificationListArray = [String]()
     var notificationListModel = NotificationListModel?()
+    var myActivityIndicator: UIActivityIndicatorView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,7 @@ class NotificationViewController: BaseViewController,UITableViewDataSource, UITa
 
         self.navigationItem.setLeftBarButtonItems([backButtonItem,kbcIconItem], animated:true)
         
-
+        notificationCountURL()
         // Do any additional setup after loading the view.
     }
 
@@ -57,6 +58,33 @@ class NotificationViewController: BaseViewController,UITableViewDataSource, UITa
         
        
     }
+    //MARK: - IndicatorView methods
+    func showActivityIndicator(){
+        self.myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        
+        self.myActivityIndicator!.center = self.view.center
+        self.myActivityIndicator!.startAnimating()
+        self.view.addSubview(self.myActivityIndicator!)
+    }
+    
+    func hideActivityIndicator(){
+        self.myActivityIndicator!.stopAnimating()
+    }
+    func notificationCountURL(){
+        self.showActivityIndicator()
+        FacadeLayer.sharedinstance.fetchNotificationCount { (status, data, error) -> Void in
+            if(status == 1 && error == nil) {
+                
+                //filtering then ordering each array
+                
+            }
+            self.hideActivityIndicator()
+
+        }
+    }
+    
+    /* Facade layer call */
+   
     //MARK: - Tableview Delegate & Datasource
     func tableView(tableView:UITableView, numberOfRowsInSection section:Int) -> Int
     {
@@ -94,10 +122,32 @@ class NotificationViewController: BaseViewController,UITableViewDataSource, UITa
     }
     @IBAction func didTapOnDelete(sender: AnyObject) {
         print("Delete tapped")
-        let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: { action in
-            
+        let alert = UIAlertController(title: "", message: "Are you sure want to delete?", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { action in
+            self.showActivityIndicator()
             // call delete service
+            print("Tapped yes")
+            let userID = "7"
+            let notificationId = "14"
+            let type = "Promotion"
+            
+            let parameterString = String(format: StringConstants.NOTIFICATION_DELETE_PARAMETERS, userID, notificationId, type)
+            
+            FacadeLayer.sharedinstance.postDeletedNotification { (status, data, error) -> Void in
+                if(status == 1 && error == nil) {
+                    
+                    //filtering then ordering each array
+                    
+                }
+                self.hideActivityIndicator()
+
+            }
+            
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Default, handler: { action in
+            
+            print ("Tapped No")
+
             
         }))
         self.presentViewController(alert, animated: true, completion: nil)

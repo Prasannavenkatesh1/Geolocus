@@ -141,6 +141,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
             alert.show()
         }
     }
+    
   // Register notification settings
   func registerNotification() {
     

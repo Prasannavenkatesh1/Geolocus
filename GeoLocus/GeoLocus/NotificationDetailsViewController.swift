@@ -32,8 +32,8 @@ class NotificationDetailsViewController: BaseViewController {
         super.viewDidLoad()
         notificationDescription.text = "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files , to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions"
         declineButton.layer.borderColor = UIColor(red:240/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).CGColor
-        competitionAcceptanceView.hidden = true
-        //competitionScoresView.hidden = true
+        //competitionAcceptanceView.hidden = true
+        competitionScoresView.hidden = true
         
         reloadView()
         
@@ -148,7 +148,23 @@ class NotificationDetailsViewController: BaseViewController {
 //        self.drivingDummySecView.setNeedsDisplay()
     }
     @IBAction func didTapOnAccept(sender: AnyObject) {
+        //https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/notification/delete?userId=7&notificationId=14&type=Promotion
+        //FacadeLayer.sharedinstance.httpclient.requestLoginData(loginURL,parametersHTTPBody:requestDictionary)
+        //FacadeLayer.sharedinstance.httpclient.requestDeleteNotification(StringConstants.LOGIN_URL,parameterString: parameterString)
         
+        let userID = "7"
+        let notificationId = "14"
+        let type = "Promotion"
+        
+        let parameterString = String(format: StringConstants.NOTIFICATION_DELETE_PARAMETERS, userID, notificationId, type)
+        
+        FacadeLayer.sharedinstance.postAcceptedNotification { (status, data, error) -> Void in
+            if(status == 1 && error == nil) {
+                
+                //filtering then ordering each array
+                
+            }
+        }
         
     }
     @IBAction func didTapOnDecline(sender: AnyObject) {
