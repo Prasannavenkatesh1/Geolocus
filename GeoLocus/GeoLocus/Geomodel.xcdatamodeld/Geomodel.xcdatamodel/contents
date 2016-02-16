@@ -11,6 +11,17 @@
         <attribute name="weightage_severevoilation" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="weightage_speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
     </entity>
+    <entity name="Contract" representedClassName=".Contract" syncable="YES">
+        <attribute name="attentionPoints" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bonusPoints" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contractAchievedDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contractPointsAchieved" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ecoPoints" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parentUserName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rewardsDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="speedPoints" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalContractPoints" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Dashboard" representedClassName=".Dashboard" syncable="YES">
         <attribute name="distancetravelled" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="levelname" optional="YES" attributeType="String" syncable="YES"/>
@@ -101,14 +112,15 @@
     </entity>
     <elements>
         <element name="Configurations" positionX="1305" positionY="63" width="189" height="178"/>
+        <element name="Dashboard" positionX="1539" positionY="116" width="128" height="163"/>
         <element name="OverallScore" positionX="1989" positionY="-153" width="128" height="135"/>
+        <element name="Reports" positionX="1332" positionY="261" width="128" height="103"/>
         <element name="Trip_Badge" positionX="1843" positionY="-153" width="128" height="120"/>
         <element name="Trip_Detail" positionX="1663" positionY="-153" width="128" height="210"/>
         <element name="Trip_Event" positionX="1996" positionY="123" width="128" height="135"/>
         <element name="Trip_Speed_Zone" positionX="1719" positionY="189" width="128" height="163"/>
         <element name="Trip_timeseries" positionX="1368" positionY="-153" width="128" height="178"/>
         <element name="TripSummary" positionX="1521" positionY="-144" width="128" height="238"/>
-        <element name="Dashboard" positionX="1539" positionY="116" width="128" height="163"/>
-        <element name="Reports" positionX="1332" positionY="261" width="128" height="103"/>
+        <element name="Contract" positionX="1503" positionY="-9" width="128" height="180"/>
     </elements>
 </model>

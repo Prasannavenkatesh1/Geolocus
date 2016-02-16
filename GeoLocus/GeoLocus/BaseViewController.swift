@@ -10,9 +10,11 @@ import UIKit
 
 class BaseViewController: UIViewController {
 
+    var activityIndicatorView = UIActivityIndicatorView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.addActivityIndicator()
         // Do any additional setup after loading the view.
     }
 
@@ -20,21 +22,33 @@ class BaseViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-  
-  
     
-    
-    func displayActivityView(){
-        let firstActivityItem = "my text"
-        let activityViewController : UIActivityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
-        self.navigationController!.presentViewController(activityViewController, animated: true, completion: nil)
+    /* adding Activity Indicator to view */
+    func addActivityIndicator(){
+        activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        activityIndicatorView.center = self.view.center
+        self.view.addSubview(activityIndicatorView)
     }
     
+    /* start animating */
+    func startLoading(){
+        activityIndicatorView.startAnimating()
+        activityIndicatorView.hidden = false
+    }
+    
+    /* stop animating */
+    func stopLoading(){
+        activityIndicatorView.stopAnimating()
+        activityIndicatorView.hidden = true
+    }
+    /*
+    // MARK: - Navigation
 
-  func showSnoozingPop(){
-    let storyboard: UIStoryboard = UIStoryboard(name: "Storyboard", bundle: NSBundle.mainBundle())
-    let snoozing = storyboard.instantiateViewControllerWithIdentifier("SnoozingController") as! SnoozingController
-    UIApplication.sharedApplication().keyWindow?.addSubview(snoozing.view)
-  }
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
 }
