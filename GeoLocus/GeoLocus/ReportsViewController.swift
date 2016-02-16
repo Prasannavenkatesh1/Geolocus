@@ -21,30 +21,70 @@ class ReportsViewController: BaseViewController {
     @IBOutlet weak var okBtn: UIButton!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var distance: UILabel!
+    @IBOutlet weak var totalPoints: UILabel!
+    @IBOutlet weak var totalTrips: UILabel!
     
     var groupBarVC: GroupBarViewController?
+    var report: Report?
+    var chartData = [(title: String, [(min: Double, max: Double)])]()
+    var timeFrameType: ReportDetails.TimeFrameType = ReportDetails.TimeFrameType.weekly
+    var scoreType: ReportDetails.ScoreType = ReportDetails.ScoreType.speed
     
     override func viewDidLoad() {
+        FacadeLayer.sharedinstance.fetchReportData(timeFrame: ReportDetails.TimeFrameType.monthly, scoreType: ReportDetails.ScoreType.speed, completionHandler: { (success, error, result) -> Void in
+            if success == true {
+                if let resultObj = result {
+                    self.report = resultObj
+                    self.reportInformation(self.report!.reportDetail)
+                    self.groupBarVC?.showChart(horizontal: false, barChartData: self.chartData)
+                }
+            }
+        })
     }
     
     override func viewDidLayoutSubviews() {
-
+        
         if UIScreen.mainScreen().bounds.size.height == 480 {
             heightConstraint.constant = 240
             bottomConstraint.constant = 20
             self.view.layoutIfNeeded()
         }
-
+        
         if groupBarVC == nil {
             let storyBoard = UIStoryboard(name: StringConstants.StoryBoardIdentifier, bundle: nil)
             groupBarVC = (storyBoard.instantiateViewControllerWithIdentifier(StringConstants.GroupBarViewController) as? GroupBarViewController)!
             self.addChildViewController(groupBarVC!)
             groupBarVC!.groupBarViewFrame = groupBarView.frame
             groupBarView.addSubview(groupBarVC!.view!)
+            groupBarVC?.showChart(horizontal: false, barChartData: self.chartData)
         }
     }
     
-    //MARK :- UIButton Actions
+    //MARK:- Custom Methods
+    
+    func reportInformation(chartPoints: [ReportDetails]) {
+        
+        var i: Int = 1
+        var title: String = ""
+        for reportDetailObj in chartPoints {
+            title = reportDetailObj.timeFrame.rawValue == 0 ? "W" + "\(i)" : "M" + "\(i)"
+            i++
+            chartData.append((title, [(0, Double(reportDetailObj.myScore)), (0, Double(reportDetailObj.poolAverage))]))
+        }
+        
+        if let distance = self.report?.distanceTravelled {
+            self.distance.text = "\(distance) km"
+        }
+        if let totalPts = self.report?.totalPoints {
+            self.totalPoints.text = "\(totalPts)"
+        }
+        if let trips = self.report?.totalTrips {
+            self.totalTrips.text = "\(trips)"
+        }
+    }
+    
+    //MARK:- UIButton Actions
     
     @IBAction func backButtonTapped(sender: AnyObject) {
         let storyBoard = UIStoryboard(name: StringConstants.StoryBoardIdentifier, bundle: nil)
@@ -70,9 +110,11 @@ class ReportsViewController: BaseViewController {
         switch sender.tag {
         case 100:
             monthlyBtn.selected = false
+            timeFrameType = ReportDetails.TimeFrameType.weekly
             break
         case 101:
             weeklyBtn.selected = false
+            timeFrameType = ReportDetails.TimeFrameType.monthly
             break
         default:
             break
@@ -89,16 +131,19 @@ class ReportsViewController: BaseViewController {
             EcoScoreBtn.selected = false
             attentionBtn.selected = false
             overallScoreBtn.selected = false
+            scoreType = ReportDetails.ScoreType.speed
             break
         case 1001:
             speedBtn.selected = false
             attentionBtn.selected = false
             overallScoreBtn.selected = false
+            scoreType = ReportDetails.ScoreType.eco
             break
         case 1002:
             speedBtn.selected = false
             EcoScoreBtn.selected = false
             overallScoreBtn.selected = false
+            scoreType = ReportDetails.ScoreType.attention
             break
         case 1003:
             speedBtn.selected = false
@@ -107,6 +152,22 @@ class ReportsViewController: BaseViewController {
             break
         default:
             break
+        }
+    }
+    
+    @IBAction func didTapOnConfirmBtn(sender: UIButton) {
+        if groupBarVC != nil {
+            chartData.removeAll()
+            FacadeLayer.sharedinstance.fetchReportData(timeFrame: timeFrameType, scoreType: scoreType, completionHandler: { (success, error, result) -> Void in
+                if success == true {
+                    if let resultObj = result {
+                        self.report = resultObj
+                        self.reportInformation(self.report!.reportDetail)
+                        self.filterPopUpView.hidden = true
+                        self.groupBarVC?.showChart(horizontal: false, barChartData: self.chartData)
+                    }
+                }
+            })
         }
     }
 }

@@ -60,34 +60,17 @@ struct ExamplesDefaults {
 }
 
 class GroupBarViewController: UIViewController {
-
+    
     var groupBarViewFrame: CGRect = CGRect(x: 0, y: 0, width: 320, height: 200)
     
     private var chart: Chart?
     
     private let dirSelectorHeight: CGFloat = 30
     
-    private func barsChart(horizontal horizontal: Bool) -> Chart {
+    private func barsChart(horizontal horizontal: Bool, barChartData: [(title: String, [(min: Double, max: Double)])]) -> Chart {
         let labelSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
         
-        let groupsData: [(title: String, [(min: Double, max: Double)])] = [
-            ("W1", [
-                (0, 40),
-                (0, 50),
-                ]),
-            ("W2", [
-                (0, 20),
-                (0, 30),
-                ]),
-            ("W3", [
-                (0, 30),
-                (0, 50),
-                ]),
-            ("W4", [
-                (0, 50),
-                (0, 30),
-                ])
-        ]
+        let groupsData = barChartData
         
         let groupColors = [UIColor(netHex: 0xE7CD31), UIColor(netHex: 0x56B45C)]
         
@@ -129,35 +112,35 @@ class GroupBarViewController: UIViewController {
             ]
         )
     }
-
-    private func showChart(horizontal horizontal: Bool) {
+    
+    internal func showChart(horizontal horizontal: Bool, barChartData: [(title: String, [(min: Double, max: Double)])]) {
         self.chart?.clearView()
         
-        let chart = self.barsChart(horizontal: horizontal)
+        let chart = self.barsChart(horizontal: horizontal, barChartData: barChartData)
+        chart.view.removeFromSuperview()
         self.view.addSubview(chart.view)
         self.chart = chart
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.frame.size = groupBarViewFrame.size
-        self.showChart(horizontal: false)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }

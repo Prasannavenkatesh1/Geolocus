@@ -11,15 +11,15 @@ import Foundation
 struct Report {
     
     var reportDetail: [ReportDetails]
-    var totalPoints: NSNumber
-    var distanceTravelled: NSNumber
-    var totalTrips: NSNumber
+    var totalPoints: Int
+    var distanceTravelled: Int
+    var totalTrips: Int
     
-    init(reportDetail: [ReportDetails], totalPoints: NSNumber, distanceTravelled: NSNumber, totalTrips: NSNumber) {
+    init(reportDetail: [ReportDetails], totalPoints: Int, distanceTravelled: Int, totalTrips: Int) {
         self.reportDetail = reportDetail
         self.totalPoints = totalPoints
         self.distanceTravelled = distanceTravelled
-        self.totalTrips = totalPoints
+        self.totalTrips = totalTrips
     }
 }
 
@@ -35,13 +35,13 @@ struct ReportDetails {
         case eco = 1
         case attention = 2
     }
-
+    
     var timeFrame: TimeFrameType
     var scoreType: ScoreType
-    var myScore: NSNumber
-    var poolAverage: NSNumber
-
-    init(timeFrame: TimeFrameType, scoreType: ScoreType, myScore: NSNumber, poolAverage: NSNumber) {
+    var myScore: Int
+    var poolAverage: Int
+    
+    init(timeFrame: TimeFrameType, scoreType: ScoreType, myScore: Int, poolAverage: Int) {
         self.timeFrame = timeFrame
         self.scoreType = scoreType
         self.myScore = myScore
