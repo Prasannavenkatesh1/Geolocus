@@ -36,7 +36,6 @@ class ShareTemplate {
         // getting size
         //let sizeOfText = showText.sizeWithAttributes(titleAttr)
         
-        
         //para text
         // select a font
         let font = UIFont(name: "HelveticaNeue", size: 15)
