@@ -19,6 +19,9 @@ class HistoryTripDetailCell: UITableViewCell {
     
     @IBOutlet weak var distanceConstraint: NSLayoutConstraint!
     @IBOutlet weak var tripPointsConstraint: NSLayoutConstraint!
+    
+    var delegate: TripDetailCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -47,5 +50,8 @@ class HistoryTripDetailCell: UITableViewCell {
     }
 
     @IBAction func shareButtonTapped(sender: AnyObject) {
+        //let indexPath = (self.superview as! UITableView).indexPathForCell(self)
+        
+        self.delegate?.shareButtonTapped(self)
     }
 }

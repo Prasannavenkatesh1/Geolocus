@@ -22,6 +22,10 @@ protocol SpeedZoneCellDelegate {
     func severeViolationViewTapped()
 }
 
+protocol TripDetailCellDelegate {
+    func shareButtonTapped(cell: HistoryTripDetailCell)
+}
+
 class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 
     enum MapZoneTab: Int{
@@ -210,7 +214,7 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
             }
         }else if indexPath.section == 2{     //section 2
             let cell = tableView.dequeueReusableCellWithIdentifier("HTDCell", forIndexPath: indexPath) as! HistoryTripDetailCell
-            
+            cell.delegate = self
             print("date from DB: \(self.historyData![indexPath.row].tripdDate)")
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd-MM-yyyy"
@@ -450,7 +454,7 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
         
         
         
-        //*****************************need to remove once actual data provided***********************************
+        //***************************** need to remove once actual data provided ***********************************
         
         
         let tripScore11 = TripScore(speedScore: 60, ecoScore: 50, attentionScore: nil)
@@ -549,10 +553,6 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
                 
             }
         }
-        
-    
-
-
     }
     
     
@@ -696,6 +696,15 @@ extension HistoryPage: SpeedZoneCellDelegate {
         let alert = UIAlertController(title: nil, message:messageString , preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+}
+
+extension HistoryPage: TripDetailCellDelegate {
+    
+    func shareButtonTapped(cell: HistoryTripDetailCell) {
+        let indexpath = self.tripHistoryTableView.indexPathForCell(cell)
+        print(indexpath?.row)
+        super.displayActivityView()
     }
 }
 

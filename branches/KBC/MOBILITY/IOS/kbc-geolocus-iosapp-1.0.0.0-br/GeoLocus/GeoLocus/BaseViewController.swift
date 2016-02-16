@@ -21,6 +21,13 @@ class BaseViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func displayActivityView(){
+        let firstActivityItem = "my text"
+        let activityViewController : UIActivityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
+        self.navigationController!.presentViewController(activityViewController, animated: true, completion: nil)
+    }
+    
 
     /*
     // MARK: - Navigation

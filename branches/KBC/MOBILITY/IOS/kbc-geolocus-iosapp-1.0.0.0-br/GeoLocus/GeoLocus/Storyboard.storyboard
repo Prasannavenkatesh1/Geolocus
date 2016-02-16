@@ -519,6 +519,7 @@
                                 <exclude reference="NdW-a8-bEa"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="WdZ-fB-qZf"/>
                                 <exclude reference="Pha-TL-q0y"/>
                                 <exclude reference="XE0-Kv-tiK"/>
                                 <exclude reference="q06-U7-l3I"/>
@@ -529,7 +530,6 @@
                                 <exclude reference="WjP-J5-0gg"/>
                                 <exclude reference="J5P-WU-Wih"/>
                                 <exclude reference="Vsx-iW-8OQ"/>
-                                <exclude reference="WdZ-fB-qZf"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -538,6 +538,7 @@
                                 <include reference="NdW-a8-bEa"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="WdZ-fB-qZf"/>
                                 <include reference="Pha-TL-q0y"/>
                                 <include reference="XE0-Kv-tiK"/>
                                 <include reference="q06-U7-l3I"/>
@@ -548,7 +549,6 @@
                                 <include reference="WjP-J5-0gg"/>
                                 <include reference="J5P-WU-Wih"/>
                                 <include reference="Vsx-iW-8OQ"/>
-                                <include reference="WdZ-fB-qZf"/>
                             </mask>
                         </variation>
                     </view>
@@ -5999,11 +5999,14 @@
                                                         <color key="textColor" red="0.094117647060000004" green="0.1215686275" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1245 km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AEc-83-uo4">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AEc-83-uo4">
                                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
                                                         <color key="textColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
+                                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="157" y="43" width="94" height="29"/>
+                                                        </variation>
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -8534,6 +8537,9 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R0E-U7-fNb">
                                                     <rect key="frame" x="-25" y="-15" width="51" height="31"/>
                                                     <color key="onTintColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="181" y="22" width="51" height="31"/>
+                                                    </variation>
                                                 </switch>
                                             </subviews>
                                             <constraints>

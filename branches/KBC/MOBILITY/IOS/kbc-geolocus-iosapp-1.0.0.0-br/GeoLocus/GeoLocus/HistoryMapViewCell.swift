@@ -81,10 +81,6 @@ extension HistoryMapViewCell: MKMapViewDelegate {
     }
     
     
-//    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-//        
-//    }
-    
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         
         let annotation = view.annotation as! EventAnnotation
