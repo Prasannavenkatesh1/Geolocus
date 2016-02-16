@@ -258,7 +258,9 @@
 		BF4F8D981C43845000895640 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D971C43845000895640 /* CategoryCell.swift */; };
 		BF4F8D9A1C43CA8D00895640 /* Httpclient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D991C43CA8D00895640 /* Httpclient.swift */; };
 		BF4F8D9C1C43CA9D00895640 /* DatabaseActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */; };
+		BF51C4E41C72F66700211C13 /* EnumMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF51C4E31C72F66700211C13 /* EnumMaster.swift */; };
 		BF5437B71C58FEA7009D2343 /* TimeSeriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5437B61C58FEA7009D2343 /* TimeSeriesModel.swift */; };
+		BF56B23D1C71F8FE00A38C8D /* SnoozingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF56B23C1C71F8FE00A38C8D /* SnoozingController.swift */; };
 		BF5D3AAD1C4E1E3000DDFDC1 /* Datausage.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */; };
 		BF5D3AB51C4E4F6500DDFDC1 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF5D3AB71C4E4F6500DDFDC1 /* Localized.strings */; };
 		BF6FA2A11C55F6880038DBDF /* CoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6FA2A01C55F6880038DBDF /* CoreLocation.swift */; };
@@ -594,7 +596,9 @@
 		BF4F8D971C43845000895640 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		BF4F8D991C43CA8D00895640 /* Httpclient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Httpclient.swift; sourceTree = "<group>"; };
 		BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseActions.swift; sourceTree = "<group>"; };
+		BF51C4E31C72F66700211C13 /* EnumMaster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumMaster.swift; sourceTree = "<group>"; };
 		BF5437B61C58FEA7009D2343 /* TimeSeriesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSeriesModel.swift; sourceTree = "<group>"; };
+		BF56B23C1C71F8FE00A38C8D /* SnoozingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnoozingController.swift; sourceTree = "<group>"; };
 		BF5D3AAB1C4E1E3000DDFDC1 /* Datausage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Datausage.h; sourceTree = "<group>"; };
 		BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Datausage.m; sourceTree = "<group>"; };
 		BF5D3AB11C4E4E9600DDFDC1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
@@ -1177,6 +1181,7 @@
 				BF6FA2A01C55F6880038DBDF /* CoreLocation.swift */,
 				BFE454751C64DCD6003BC0F2 /* TripSummaryModel.swift */,
 				BF2D457E1C6C81070017EBB0 /* SummaryModel.swift */,
+				BF51C4E31C72F66700211C13 /* EnumMaster.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1216,6 +1221,7 @@
 				F5B020441C60AA4B006C97E5 /* NotificationDetailsViewController.swift */,
 				6C44D6681C59E55F0055916B /* LeftViewController.swift */,
 				BF44D2821C6DED3E00BFB1E2 /* BaseViewController.swift */,
+				BF56B23C1C71F8FE00A38C8D /* SnoozingController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1616,6 +1622,7 @@
 				638452371B0353AE00E895F7 /* LeaderBoardController.m in Sources */,
 				F5CADFFF1C6C9B5900070044 /* NotificationModel.swift in Sources */,
 				BF7337531C3FC2BF006094C0 /* HistoryScorePage.swift in Sources */,
+				BF51C4E41C72F66700211C13 /* EnumMaster.swift in Sources */,
 				BF4BA0E21C5F661F0028D79B /* Thresholds.swift in Sources */,
 				638451F51B0353A000E895F7 /* GeoLocusViewController.m in Sources */,
 				6CCAF9041C4E036200484056 /* GlobalConstants.swift in Sources */,
@@ -1649,6 +1656,7 @@
 				635B88661ADBD90E00891EDE /* LeaderBoardViewController.swift in Sources */,
 				6C8ADBB71C6C69FD001BB5B9 /* HMSegmentedControl.m in Sources */,
 				63D086AF1B0478B700BDD656 /* HeadphonesDetector.m in Sources */,
+				BF56B23D1C71F8FE00A38C8D /* SnoozingController.swift in Sources */,
 				B636D54B1C6C8DF10067C7B8 /* SettingsCustomViewCell.swift in Sources */,
 				6C44D6691C59E55F0055916B /* LeftViewController.swift in Sources */,
 				6384523A1B0353AE00E895F7 /* DashboardController.m in Sources */,

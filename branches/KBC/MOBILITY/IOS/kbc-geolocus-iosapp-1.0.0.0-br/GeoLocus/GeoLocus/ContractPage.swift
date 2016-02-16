@@ -40,6 +40,10 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
         imageView.userInteractionEnabled = true
         imageView.addGestureRecognizer(tapGestureRecognizer)
+      
+     
+      
+
     }
     
     override func viewWillLayoutSubviews() {

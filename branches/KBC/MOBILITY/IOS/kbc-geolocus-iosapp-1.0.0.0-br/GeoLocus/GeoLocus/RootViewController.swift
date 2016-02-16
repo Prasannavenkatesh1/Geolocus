@@ -79,12 +79,12 @@ class RootViewController: BaseViewController {
       categories.append("HistoryScore")
 
         // Do any additional setup after loading the view.
-      NSNotificationCenter.defaultCenter().addObserver(
-        self,
-        selector: "getSelectedIndex:",
-        name: NotificationKey.PageViewControllerIndexchangedNotification,
-        object: nil)
-        
+//      NSNotificationCenter.defaultCenter().addObserver(
+//        self,
+//        selector: "getSelectedIndex:",
+//        name: NotificationKey.PageViewControllerIndexchangedNotification,
+//        object: nil)
+      
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "currentPageIndex:",
@@ -101,7 +101,7 @@ class RootViewController: BaseViewController {
         }
       
       //Motion detect
-      
+       self.showSnoozingPop()
     }
 
     override func didReceiveMemoryWarning() {
@@ -131,6 +131,7 @@ class RootViewController: BaseViewController {
         print(idx)
         currentSelectedIndex = idx
         segmentControl.setSelectedSegmentIndex(UInt(currentSelectedIndex), animated: true)
+    
    }
   
   func getSelectedIndex(vcindex:NSNotification) {
@@ -141,6 +142,7 @@ class RootViewController: BaseViewController {
 //    print(idx)    
 //    currentSelectedIndex = idx
 //    segmentControl.setSelectedSegmentIndex(UInt(currentSelectedIndex), animated: true)
+    
   }
     
  func  pushToNotificationScreen(sender: UIButton!) {
