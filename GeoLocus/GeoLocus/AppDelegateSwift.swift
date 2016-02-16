@@ -250,7 +250,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       
         let storyboard: UIStoryboard = UIStoryboard(name: "Storyboard", bundle: NSBundle.mainBundle())
         var checkUserLogin : Bool = self.checkUserDetails()
-//        checkUserLogin = false
+        checkUserLogin = false
         if(!checkUserLogin){
             let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
             self.window?.rootViewController = dashboardPage

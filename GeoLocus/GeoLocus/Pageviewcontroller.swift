@@ -64,9 +64,9 @@ class Pageviewcontroller: UIPageViewController,UIPageViewControllerDataSource,UI
     let vcIndex = views.indexOf(viewController);
     if (vcIndex < views.count-1) {
       let getvcidx:String = String(format:"\(vcIndex!+1)")
-      NSNotificationCenter.defaultCenter().postNotificationName(NotificationKey.PageViewControllerIndexchangedNotification,
-        object:nil,
-        userInfo:["getindex":getvcidx])
+//      NSNotificationCenter.defaultCenter().postNotificationName(NotificationKey.PageViewControllerIndexchangedNotification,
+//        object:nil,
+//        userInfo:["getindex":getvcidx])
       return views[vcIndex!+1];
     }
     print("after \(vcIndex)")
@@ -74,7 +74,7 @@ class Pageviewcontroller: UIPageViewController,UIPageViewControllerDataSource,UI
     return nil;
   }
   
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool){
+  func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool){
         let viewController :UIViewController = pageViewController.viewControllers![0]
          let vcIndex = views.indexOf(viewController);
         if (vcIndex < views.count) {
@@ -84,15 +84,15 @@ class Pageviewcontroller: UIPageViewController,UIPageViewControllerDataSource,UI
                 userInfo:["currentIndex":getvcidx])
         }
 
-    }
+  }
   
   func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
     let vcIndex = views.indexOf(viewController);
     if (vcIndex > 0) {
       let getvcidx:String = String(format:"\(vcIndex!-1)")
-      NSNotificationCenter.defaultCenter().postNotificationName(NotificationKey.PageViewControllerIndexchangedNotification,
-        object:nil,
-        userInfo:["getindex":getvcidx])
+//      NSNotificationCenter.defaultCenter().postNotificationName(NotificationKey.PageViewControllerIndexchangedNotification,
+//        object:nil,
+//        userInfo:["getindex":getvcidx])
       return views[vcIndex!-1];
     }
     print("before \(vcIndex)")
