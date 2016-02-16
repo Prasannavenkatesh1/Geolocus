@@ -311,6 +311,45 @@ class FacadeLayer{
         }
     }
     
+    //MARK:- Reoport service
+    
+    func fetchReportData(timeFrame timeFrame: ReportDetails.TimeFrameType, scoreType: ReportDetails.ScoreType, completionHandler:(success: Bool, error: NSError?, result: Report?) -> Void) -> Void{
+        
+        if StringConstants.appDataSynced {
+            //get from DB and reload table
+            //            dbactions.fetchBadgeData({ (status, data, error) -> Void in
+            //                completionHandler(succes, error: <#T##NSError?#>)
+            //                completionHandler(status: status, data: ni, error: error)
+            //            })
+            
+        }else{
+            httpclient.requestReportData(StringConstants.REPORT_SERVICE_URL + "userId=9&timeFrame=\(timeFrame)&scoreType=\(scoreType)", completionHandler: { (success, data) -> Void in
+                if let result = data {
+                    
+                    var reportDetails = [ReportDetails]()
+                    
+                    let jsonData = JSON(data: result)
+                    print(jsonData)
+                    if jsonData["statusCode"] == 1 {
+                        if let reportDetailArr = jsonData["reportDetails"].array {
+                            
+                            for reportDetailObj in reportDetailArr {
+                                let reportDetailDict = reportDetailObj.dictionaryValue
+                                
+                                let reportDetail = ReportDetails(timeFrame: ReportDetails.TimeFrameType.monthly, scoreType: ReportDetails.ScoreType.speed, myScore: (reportDetailDict["score"]?.intValue)!, poolAverage: (reportDetailDict["poolAverage"]?.intValue)!)
+                                reportDetails.append(reportDetail)
+                            }
+                        }
+                        if let overallScore = jsonData["overallscore"].dictionary {
+                            let report = Report(reportDetail: reportDetails, totalPoints: (overallScore["totalPoints"]?.intValue)!, distanceTravelled: (overallScore["distanceTravelled"]?.intValue)!, totalTrips: (overallScore["totalTrips"]?.intValue)!)
+                            completionHandler(success: true, error: nil, result: report)
+                        }
+                    }
+                }
+            })
+        }
+    }
+
     //MARK: - Dashboard Service
     
     func fetchDashboardData(completionHandler:(status: Int, data: DashboardModel?, error: NSError?) -> Void) -> Void{
@@ -456,36 +495,6 @@ class FacadeLayer{
         }
     }
     
-    //MARK: - Reoport service
-    
-    func fetchReportData(completionHandler:(status: Int, data: [Badge]?, error: NSError?) -> Void) -> Void{
-        
-        if StringConstants.appDataSynced {
-            //get from DB and reload table
-            dbactions.fetchBadgeData({ (status, data, error) -> Void in
-                completionHandler(status: status, data: data, error: error)
-            })
-            
-        }else{
-            httpclient.requestReportData("URL") { (response, data, error) -> Void in
-                if error == nil {
-                    var badges = [Badge]()
-                    
-                    if let result = data {
-                        var jsonData = JSON(data: result)
-                        print(jsonData)
-                    }else{
-                        //something went wrong
-                        completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
-                    }
-                }else {
-                    //something went wrong
-                    completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
-                }
-            }
-        }
-    }
-
     //MARK: - Overall score service
     
     func fetchOverallScoreData(completionHandler:(status: Int, data: OverallScores?, error: NSError?) -> Void) -> Void{

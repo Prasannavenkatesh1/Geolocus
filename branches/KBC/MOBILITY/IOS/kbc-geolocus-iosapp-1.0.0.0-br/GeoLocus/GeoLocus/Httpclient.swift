@@ -112,7 +112,37 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         
     }
     
-    
+    //MARK:- Report Service
+    func requestReportData(URL:String, completionHandler:(success: Bool?, data: NSData?) -> Void) -> Void{
+        
+        let manager = Alamofire.Manager.sharedInstance
+        manager.delegate.sessionDidReceiveChallenge = { session, challenge in
+            var disposition: NSURLSessionAuthChallengeDisposition = .PerformDefaultHandling
+            var credential: NSURLCredential?
+            if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+                if challenge.protectionSpace.host == "ec2-52-9-107-182.us-west-1.compute.amazonaws.com" {
+                    disposition = NSURLSessionAuthChallengeDisposition.UseCredential
+                    
+                    credential = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!)
+                }
+            }
+            return (disposition, credential)
+        }
+
+        let reportRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
+        reportRequest.HTTPMethod = "GET"
+        reportRequest.setValue("SWs5cVUyeUFDTDg5bnhMMnZaOWVLUT09Om16Vm01Q3pPVHErZXJyUUV3ZHMyM3c9PQ", forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
+        
+        Alamofire.request(reportRequest)
+            .responseJSON { (responseJSON) -> Void in
+                if let contractData = responseJSON.data{
+                    completionHandler(success: true, data: contractData)
+                    return
+                }
+                completionHandler(success: false, data: nil)
+            }.resume()
+    }
+
     //History services
     func requestRecentTripData(URL: String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
         
@@ -203,27 +233,6 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             completionHandler(response: response, data: data, error: error)
             
         }.resume()*/
-    }
-    
-    //MARK: - Report Service
-    func requestReportData(URL:String, completionHandler:(response: NSURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
-        
-//        let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
-//        let session = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
-//        
-//        let request = NSMutableURLRequest(URL: NSURL(string: StringConstants.REPORT_SERVICE_URL)!)
-//        request.HTTPMethod = "GET"
-//        
-//        let authValue = "SWs5cVUyeUFDTDg5bnhMMnZaOWVLUT09Om16Vm01Q3pPVHErZXJyUUV3ZHMyM3c9PQ"
-//        request.setValue(authValue, forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
-//        
-//        let task = session.dataTaskWithRequest(request) {
-//            (
-//            let data, let response, let error) in
-//            
-//            completionHandler(response: response, data: data, error: error)
-//            
-//            }.resume()
     }
 
     //Overall services
