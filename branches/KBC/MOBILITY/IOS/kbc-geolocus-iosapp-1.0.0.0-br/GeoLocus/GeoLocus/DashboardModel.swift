@@ -14,8 +14,8 @@ struct DashboardModel {
     let levelName: String
     let levelMessage: String
     let distanceTravelled: String
-    let totalPoints: String
-    let pointsAchieved: String
+    let totalPoints: String?
+    let pointsAchieved: String?
     let scoreMessage: String
     let tripStatus: String
     

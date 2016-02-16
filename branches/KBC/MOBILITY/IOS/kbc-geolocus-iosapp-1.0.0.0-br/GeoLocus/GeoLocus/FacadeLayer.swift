@@ -60,6 +60,7 @@ class FacadeLayer{
         
         if let path = NSBundle.mainBundle().pathForResource("WebServicesURL", ofType: "plist") {
             if let dataDict = NSDictionary(contentsOfFile: path){
+                print(dataDict)
                 if let loginServiceURL = dataDict["BaseURL"] {
                     self.webService.loginServiceURL = loginServiceURL as? String
                 }
@@ -256,6 +257,72 @@ class FacadeLayer{
                 }
             }
         }
+    }
+    
+    //MARK: - Dashboard Service
+    
+    func fetchDashboardData(completionHandler:(status: Int, data: DashboardModel?, error: NSError?) -> Void) -> Void{
+        
+        httpclient.requestDashboardData("URL") { (response, data, error) -> Void in
+            if error == nil {
+                var dashboard : DashboardModel
+                
+                if let result = data {
+                    var jsonData = JSON(data: result)
+                    
+                    if jsonData["statusCode"].intValue == 1{
+                        print(jsonData)
+                        
+                        var score             : String?
+                        var level             : String?
+                        var nextLevelMessage  : String?
+                        var distanceTravelled : String?
+                        var totalPoints       : String?
+                        var pointsAchieved    : String?
+                        var scoreMessage      : String?
+                        var tripStatus        : String?
+                        
+                        if let dashboardDictionary = jsonData["dashboard"].dictionary{
+                            
+                            distanceTravelled = dashboardDictionary["distanceTravelled"]?.stringValue
+                            if let dashBoardScore = dashboardDictionary["score"]?.stringValue{
+                                score = dashBoardScore
+                            }
+                            if let totalpoints = dashboardDictionary["totalPoints"]?.stringValue{
+                                totalPoints = totalpoints
+                            }
+                            if let points = dashboardDictionary["pointsAchieved"]?.stringValue{
+                                pointsAchieved = points
+                            }
+                            scoreMessage      = dashboardDictionary["scoreMessage"]?.stringValue
+                            tripStatus        = dashboardDictionary["tripStatus"]?.stringValue
+                            
+                            if let badgeDictionary = dashboardDictionary["badge"]?.dictionaryValue{
+                                level            = badgeDictionary["level"]?.stringValue
+                                nextLevelMessage = badgeDictionary["nextLevelMessage"]?.stringValue
+                            }
+                            
+                            dashboard = DashboardModel(score: score!, levelName: level!, levelMessage: nextLevelMessage!, distanceTravelled: distanceTravelled!, totalPoints:totalPoints!, pointsAchieved: pointsAchieved!, scoreMessage: scoreMessage!, tripStatus: tripStatus!)
+                            completionHandler(status: 1, data: dashboard, error: nil)
+                        }else{
+                            //something went wrong
+                            completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                        }
+
+                    }else{
+                        //something went wrong
+                        completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                    }
+                }else{
+                    //something went wrong
+                    completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                }
+            }else {
+                //something went wrong
+                completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+            }
+        }
+        
     }
     
     
