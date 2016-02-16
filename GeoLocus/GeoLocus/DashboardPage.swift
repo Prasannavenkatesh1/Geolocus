@@ -30,15 +30,8 @@ import UIKit
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        customiseProgressView()
-       //  customColorAndFontSetup()
-    startStopButton.layer.cornerRadius = 15.0
-        // Do any additional setup after loading the view.
-        self.arcView.ringLayer.strokeColor = UIColor.redColor().CGColor
-        self.arcView.foreGroundArcWidth = 10.0
-        self.arcView.animateScale = 0.75
-        self.arcView.setNeedsDisplay()
-          
+        self.handleGetDashboardDetails()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,6 +39,38 @@ import UIKit
         // Dispose of any resources that can be recreated.
     }
     
+    func handleGetDashboardDetails(){
+        
+        FacadeLayer.sharedinstance.fetchDashboardData{ (status, data, error) -> Void in
+            if(status == 1 && error == nil) {
+                
+                print(data)
+                let dashboardData :DashboardModel = data!
+                
+                self.levelName.text = dashboardData.levelName
+                
+                
+                self.customiseProgressView()
+                //  customColorAndFontSetup()
+                self.startStopButton.layer.cornerRadius = 15.0
+                // Do any additional setup after loading the view.
+                self.arcView.ringLayer.strokeColor = UIColor.redColor().CGColor
+                self.arcView.foreGroundArcWidth = 10.0
+                self.arcView.animateScale = 0.75
+                self.arcView.setNeedsDisplay()
+
+            }else{
+                //something went wrong
+                // print("error while fetching badge data ")
+                
+            }
+            //self.hideActivityIndicator()
+        }
+
+        
+        
+        
+    }
 
     /*
     // MARK: - Navigation

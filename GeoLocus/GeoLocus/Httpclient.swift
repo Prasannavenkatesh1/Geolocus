@@ -135,6 +135,23 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         
     }
     
+    func requestDashboardData(URL:String, completionHandler:(response: NSURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
+        let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: FacadeLayer.sharedinstance.webService.dashboardServiceURL!)!)
+        request.HTTPMethod = "GET"
+        
+        let authValue = "SWs5cVUyeUFDTDg5bnhMMnZaOWVLUT09Om16Vm01Q3pPVHErZXJyUUV3ZHMyM3c9PQ"
+        request.setValue(authValue, forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
+        
+        _ = session.dataTaskWithRequest(request) {(let data, let response, let error) in
+            
+            completionHandler(response: response, data: data, error: error)
+            
+            }.resume()
+    }
+    
     //Badges services
     func requestBadgesData(URL:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
     
