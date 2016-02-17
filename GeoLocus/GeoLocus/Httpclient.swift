@@ -101,15 +101,13 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             return (disposition, credential)
         }
         
-        let badgesRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
-        badgesRequest.HTTPMethod = "GET"
-        badgesRequest.setValue("SWs5cVUyeUFDTDg5bnhMMnZaOWVLUT09Om16Vm01Q3pPVHErZXJyUUV3ZHMyM3c9PQ", forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
+        let contractRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
+        contractRequest.HTTPMethod = "GET"
+        contractRequest.setValue("SWs5cVUyeUFDTDg5bnhMMnZaOWVLUT09Om16Vm01Q3pPVHErZXJyUUV3ZHMyM3c9PQ", forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
         
-        manager.request(badgesRequest).response { (Request, response, data, error) -> Void in
+        manager.request(contractRequest).response { (Request, response, data, error) -> Void in
             completionHandler(response: response, data: data, error: error)
-        }
-
-        
+        }        
     }
     
     //MARK:- Report Service

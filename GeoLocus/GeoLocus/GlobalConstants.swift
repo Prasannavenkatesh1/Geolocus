@@ -102,6 +102,7 @@ struct StringConstants {
     
     static let ERROR = "Error"
     static let OK = "OK"
+    static let CONTRACT_POINTS_ACHIEVED_MESSAGE = "You have achieved your target on %@. Contact parents to redeem points."
     
     static let USERNAME_STRING = "abdul"
     static let PASSWORD_STRING = "abdul12345"

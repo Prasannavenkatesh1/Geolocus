@@ -176,7 +176,7 @@ class FacadeLayer{
                         do{
                             if let jsonData = try! NSJSONSerialization.JSONObjectWithData(result, options: []) as? NSDictionary{
                                 let userID = jsonData["userId"]?.stringValue
-                                let userName = jsonData["userName"]?.stringValue
+                                let userName = jsonData["userName"] as! String
                                 
                                 NSUserDefaults.standardUserDefaults().setValue(userID, forKey: StringConstants.USER_ID)
                                 NSUserDefaults.standardUserDefaults().setValue(userName, forKey: StringConstants.USERNAME)
@@ -206,6 +206,56 @@ class FacadeLayer{
             else{
                 //something went wrong
                 completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+            }
+        }
+    }
+    
+    //MARK: Contract Service
+    
+    func requestContractData(URL : String, completionHandler : (status : Int, data : ContractModel?, error: NSError?) -> Void) -> Void{
+        
+        if(StringConstants.appDataSynced){
+            /* retrieve data from DB */
+            dbactions.fetchContractData( {(status, response, error) -> Void in completionHandler(status: status, data: response, error: error)
+            })
+        }
+        else{
+            /* make service call and store data in to DB */
+            httpclient.requestContractData(URL){ (response, data, error) -> Void in
+                if(error == nil){
+                    if let result = data{
+                        var jsonData = JSON(data: result)
+                        
+                        if (jsonData["statusCode"].intValue == 1) {
+                            let contractData = ContractModel(parentUserName: (jsonData["parentUserName"].stringValue), attentionPoints: (jsonData["attentionPoints"].stringValue), speedPoints: (jsonData["speedPoints"].stringValue), ecoPoints: (jsonData["ecoPoints"].stringValue), bonusPoints: (jsonData["bonusPoints"].stringValue), totalContractPoints: (jsonData["totalContractPoints"].stringValue), contractPointsAchieved: (jsonData["contractPointsAchieved"].stringValue), rewardsDescription: (jsonData["rewardsDescription"].stringValue), contractAchievedDate: (jsonData["contractAchievedDate"].stringValue))
+                            
+                            self.dbactions.removeData("Contract")
+                            
+                            /* store data to DB */
+                            self.dbactions.saveContractData(contractData, completionHandler: { (status) -> Void in
+                                
+                                if status{
+                                    completionHandler(status: 1, data: contractData, error: nil)
+                                }
+                                else{
+                                    completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                                }
+                            })
+                        }
+                        else{
+                            //something went wrong
+                            completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                        }
+                    }
+                    else{
+                        //something went wrong
+                        completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                    }
+                }
+                else{
+                    //something went wrong
+                    completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                }
             }
         }
     }

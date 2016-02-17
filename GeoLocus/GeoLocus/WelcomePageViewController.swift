@@ -35,6 +35,9 @@ class WelcomePageViewController: BaseViewController,UIPageViewControllerDataSour
         let tap = UITapGestureRecognizer(target: self, action: "doubleTapped")
         tap.numberOfTapsRequired = 2
         view.addGestureRecognizer(tap)
+        
+        FacadeLayer.sharedinstance.requestContractData(StringConstants.CONTRACT_URL) { (status, data, error) -> Void in
+        }
     }
     
     override func didReceiveMemoryWarning() {

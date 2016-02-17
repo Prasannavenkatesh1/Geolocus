@@ -28,7 +28,6 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
     let passwordShowButton = UIButton()
     var selectedLanguageCode : String!
     var termsAndConditionsString = String()
-    var alertView = UIAlertController()
     
     // MARK: - Button Actions
 
@@ -64,9 +63,9 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
                 self.presentViewController(welcomeScreenViewController, animated: true, completion: nil)
             }
             else{
-                self.alertView = UIAlertController(title: StringConstants.ERROR, message: error?.description, preferredStyle: UIAlertControllerStyle.Alert)
-                self.alertView.addAction(UIAlertAction(title: StringConstants.OK, style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(self.alertView, animated: true, completion: nil)
+                let alertView = UIAlertController(title: StringConstants.ERROR, message: error?.description, preferredStyle: UIAlertControllerStyle.Alert)
+                alertView.addAction(UIAlertAction(title: StringConstants.OK, style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alertView, animated: true, completion: nil)
             }
         }
     }
@@ -126,9 +125,9 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
                 self.termsAndConditionsString = NSString(data: response!, encoding: NSUTF8StringEncoding) as String!
             }
             else{
-                self.alertView = UIAlertController(title: StringConstants.ERROR, message: error?.description, preferredStyle: UIAlertControllerStyle.Alert)
-                self.alertView.addAction(UIAlertAction(title: StringConstants.OK, style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(self.alertView, animated: true, completion: nil)
+                let alertView = UIAlertController(title: StringConstants.ERROR, message: error?.description, preferredStyle: UIAlertControllerStyle.Alert)
+                alertView.addAction(UIAlertAction(title: StringConstants.OK, style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alertView, animated: true, completion: nil)
             }
         }
     }
