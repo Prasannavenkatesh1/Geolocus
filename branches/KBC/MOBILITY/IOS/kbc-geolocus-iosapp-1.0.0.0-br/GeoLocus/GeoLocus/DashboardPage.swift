@@ -21,8 +21,9 @@ import UIKit
     @IBOutlet weak var distanceTravelledValue: UILabel!
     @IBOutlet weak var startStopButton: UIButton!
     @IBOutlet weak var contractsPointsEarnedValue: UILabel!
-    
     @IBOutlet weak var distanceTravelledLabel: UILabel!
+    
+    var snoozingViewController : UIViewController!
     
     
     //MARK: System Delegates
@@ -31,6 +32,10 @@ import UIKit
         super.viewDidLoad()
         
         self.handleGetDashboardDetails()
+//        snoozingViewController = UIStoryboard(name: "Storyboard", bundle: nil).instantiateViewControllerWithIdentifier("SnoozingController")
+//        //snoozeController.view.frame = CGRectMake(10, 40, 280, 295)
+//        snoozingViewController.view.frame = CGRectMake(10, 40, 280, 295)
+//        self.presentPopUpController(snoozingViewController)
         
     }
 
@@ -46,9 +51,8 @@ import UIKit
                 
                 print(data)
                 let dashboardData :DashboardModel = data!
-                
                 self.levelName.text = dashboardData.levelName
-                
+                 var score = Int(dashboardData.score)
                 
                 self.customiseProgressView()
                 //  customColorAndFontSetup()
@@ -61,7 +65,6 @@ import UIKit
 
             }else{
                 //something went wrong
-                // print("error while fetching badge data ")
                 
             }
             //self.hideActivityIndicator()
