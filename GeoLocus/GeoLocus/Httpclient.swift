@@ -141,7 +141,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             }.resume()
     }
 
-    //History services
+    //MARK: - History services
     func requestRecentTripData(URL: String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
         
         if let filePath = NSBundle.mainBundle().pathForResource("trip_details", ofType: "json"), data = NSData(contentsOfFile: filePath) {
@@ -151,7 +151,6 @@ class Httpclient: NSObject,NSURLSessionDelegate {
                 
                 //****************************************//
                 
-                let parameters = ["userId":"<user id>","tokenId":"<get from server>","channel_type":StringConstants.CHANNEL_TYPE,"language_code":"en_be"]
                 
                 if let historyServiceURL = FacadeLayer.sharedinstance.webService.historyServiceURL{
                     
@@ -173,6 +172,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         
     }
     
+    //MARK: - Dashboard data
     func requestDashboardData(URL:String, completionHandler:(response: NSURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
         let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         let session = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
@@ -190,7 +190,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             }.resume()
     }
     
-    //Badges services
+    //MARK: - Badges services
     func requestBadgesData(URL:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
     
         let manager = Alamofire.Manager.sharedInstance
@@ -233,7 +233,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         }.resume()*/
     }
 
-    //Overall services
+    //MARK: - Overall services
     func requestOverallScoreData(URL:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
         
         
@@ -263,6 +263,8 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             }
         }
     }
+    
+    //MARK: - Notification
     func requestNotificationCount(URL : String, completionHandler: (response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
         
         let manager = Alamofire.Manager.sharedInstance
@@ -402,6 +404,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         }
     }
     
+    //TO DO: Remove this
     //MARK: Delegate Methods
     
     func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {

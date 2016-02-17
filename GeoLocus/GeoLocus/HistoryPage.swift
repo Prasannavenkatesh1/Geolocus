@@ -74,8 +74,8 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
         tabSelected = MapZoneTab.MapSelected
         self.tripDetailRowSelected = 0 // this may be nil if no trip detail data
         self.zoneSelectedIndexPath = nil
-        dataModals()
-        //loadData()
+    
+        loadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -226,14 +226,13 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
             cell.tripPointsLabel.text = String(self.historyData![indexPath.row].tripPoints)
             
             
-            //TO DO:
             /*
             If overall score or speeding score or eco score or attention score(for android device) is red color against any trip 
             then the sharing icon will be disabled for that trip.
             
             */
             
-            if (UIColor(range: (self.historyData![indexPath.row].tripScore.speedScore.integerValue)) == UIColor(netHex: 0xff3b3b)) || (UIColor(range: (self.historyData![indexPath.row].tripScore.ecoScore.integerValue)) == UIColor(netHex: 0xff3b3b)) /*|| UIColor(range: (self.historyData![indexPath.row].tripScore.overallScore.integerValue) == UIColor(netHex: 0xff3b3b) */{
+            if (UIColor(range: (self.historyData![indexPath.row].tripScore.speedScore.integerValue)) == UIColor(netHex: 0xff3b3b)) || (UIColor(range: (self.historyData![indexPath.row].tripScore.ecoScore.integerValue)) == UIColor(netHex: 0xff3b3b)) || (UIColor(range: (self.historyData![indexPath.row].tripScore.overallScore.integerValue)) == UIColor(netHex: 0xff3b3b)) {
                 
                 cell.tripShareButton.hidden = true
             }else{
@@ -429,8 +428,7 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
         //if new update then Get data from service and store in DB
         */
         //
-        
-        self.historyData = []
+    
         
         FacadeLayer.sharedinstance.fetchtripDetailData { (status, data, error) -> Void in
             self.historyData = []
@@ -448,109 +446,6 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
         
         
 
-    }
-    
-    func dataModals() {
-        
-        
-        
-        //***************************** need to remove once actual data provided ***********************************
-        
-        
-        let tripScore11 = TripScore(speedScore: 60, ecoScore: 50, attentionScore: nil)
-        
-        let eloc11 = EventLocation(latitude: 20.5, longitude: 25.5)
-        let eloc12 = EventLocation(latitude: 21.5, longitude: 55.5)
-        let eloc13 = EventLocation(latitude: 30.5, longitude: 45.5)
-        let eloc14 = EventLocation(latitude: 33.5, longitude: 35.5)
-        let eloc15 = EventLocation(latitude: 22.5, longitude: 15.5)
-        let eloc16 = EventLocation(latitude: 45.5, longitude: 75.5)
-        
-        
-        let e11 = Event(location: eloc11, type: EventType.Speeding, message: "......event11.....test message......long message")
-        
-        let e12 = Event(location: eloc12, type: EventType.Speeding, message: "......event11.....test message......long message")
-        
-        let e13 = Event(location: eloc13, type: EventType.Speeding, message: "......event11.....test message......long message")
-        
-        let e14 = Event(location: eloc14, type: EventType.Speeding, message: "......event11.....test message......long message")
-        
-        let e15 = Event(location: eloc15, type: EventType.Speeding, message: "......event11.....test message......long message")
-        
-        let e16 = Event(location: eloc16, type: EventType.Speeding, message: "......event11.....test message......long message")
-        
-        let events1 = [e11, e12, e13, e14, e15, e16]
-        
-        
-        // init speedScore here... its not initialize
-        let sz11 = SpeedZone(speedScore: 567, maxSpeed: 50, aboveSpeed: 12, withinSpeed: 13, violationCount: 1, speedBehaviour: 75, distanceTravelled: 123)
-        
-        // init speedScore here... its not initialize
-        let sz12 = SpeedZone(speedScore: 568, maxSpeed: 60, aboveSpeed: 122, withinSpeed: 24, violationCount: 2, speedBehaviour: 45, distanceTravelled: 153)
-        
-        // init speedScore here... its not initialize
-        let sz13 = SpeedZone(speedScore: 569, maxSpeed: 70, aboveSpeed: 22, withinSpeed: 2, violationCount: 12, speedBehaviour: 49, distanceTravelled: 13)
-        
-        let speedZones1 = [sz11, sz12, sz13]
-        
-        
-      //"dd-MM-yyyy'T'HH':'mm':'ss'Z'"
-        
-        let history1 = History(tripid: "123", tripDate: "12-11-2016", distance: 25, tripPoints: 36, tripDuration: 5, dataUsageMessage:"datausagemessage", tripScore:tripScore11 ,events: events1, speedZones: speedZones1)
-        
-        self.historyData?.append(history1)
-        //------------------------------------------------------------------------------------------//
-        
-        let tripScore12 = TripScore(speedScore: 20, ecoScore: 80, attentionScore: nil)
-        
-        let eloc21 = EventLocation(latitude: 60.5, longitude: 95.5)
-        let eloc22 = EventLocation(latitude: 61.5, longitude: 65.5)
-        let eloc23 = EventLocation(latitude: 60.5, longitude: 25.5)
-        let eloc24 = EventLocation(latitude: 73.5, longitude: 45.5)
-        let eloc25 = EventLocation(latitude: 62.5, longitude: 75.5)
-        let eloc26 = EventLocation(latitude: 45.5, longitude: 75.5)
-        
-        
-        let e21 = Event(location: eloc21, type: EventType.Speeding, message: "......event11.....test message......long message")
-        
-        let e22 = Event(location: eloc22, type: EventType.Speeding, message: "......event11.....test message......long message")
-        
-        let e23 = Event(location: eloc23, type: EventType.Speeding, message: "......event11.....test message......long message")
-        
-        let e24 = Event(location: eloc24, type: EventType.Speeding, message: "......event11.....test message......long message")
-        
-        let e25 = Event(location: eloc25, type: EventType.Speeding, message: "......event11.....test message......long message")
-        
-        let e26 = Event(location: eloc26, type: EventType.Speeding, message: "......event11.....test message......long message")
-        
-        let events2 = [e21, e22, e23, e24, e25, e26]
-        
-        
-        let sz21 = SpeedZone(speedScore: 570, maxSpeed: 3, aboveSpeed: 2, withinSpeed: 3, violationCount: 10, speedBehaviour: 55, distanceTravelled: 123)
-      
-        let sz22 = SpeedZone(speedScore: 571, maxSpeed: 50, aboveSpeed: 12, withinSpeed: 4, violationCount: 20, speedBehaviour: 90, distanceTravelled: 153)
-        
-        //let sz23 = SpeedZone(speedScore: 567, maxSpeed: 70, aboveSpeed: 22, withinSpeed: 2, violationCount: 2, speedBehaviour: 10, distanceTravelled: 13)
-        
-        let speedZones2 = [sz21, sz22]
-        
-        //"dd-MM-yyyy'T'HH':'mm':'ss'Z'"
-        
-        let history2 = History(tripid: "124", tripDate: "13-11-2016", distance: 44, tripPoints: 90, tripDuration: 8, dataUsageMessage: "test",tripScore: tripScore12, events: events2, speedZones: speedZones2)
-        
-        self.historyData?.append(history2)
-        
-        //let hisArr = [history1, history2]
-        
-        
-        FacadeLayer.sharedinstance.fetchtripDetailData { (status, data, error) -> Void in
-            self.historyData = []
-            if(status == 1 && error == nil){
-                self.historyData = data
-                self.reload()
-            }
-            
-        }
     }
     
     
@@ -652,25 +547,27 @@ extension HistoryPage: ScoreCellDelegate {
     
     func scoreViewTapped(tag: Int) {
         
-        var messageString = String()    //get message from config file
-        
-        switch tag {
-        case 1 :
-            print("speeding tapped")
-            messageString = "<Speeding message based on the trip>"
-        case 2:
-            print("eco tapped")
-            messageString = "<Eco message based on the trip>"
-        case 3:
-            print("attention tapped")
-             messageString = "<Data usage message based on the trip>"
-        default:
-            print("default in cell")
+        if self.historyData?.count > 0 {
+            var messageString = String()    //get message from config file
+            
+            switch tag {
+            case 1 :
+                print("speeding tapped")
+                messageString = self.historyData![self.tripDetailRowSelected!].speedingMessage
+            case 2:
+                print("eco tapped")
+                messageString = self.historyData![self.tripDetailRowSelected!].ecoMessage
+            case 3:
+                print("attention tapped")
+                messageString = self.historyData![self.tripDetailRowSelected!].dataUsageMessage
+            default:
+                print("default in cell")
+            }
+            
+            let alert = UIAlertController(title: nil, message:messageString , preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
         }
-        
-        let alert = UIAlertController(title: nil, message:messageString , preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
     }
 }
 

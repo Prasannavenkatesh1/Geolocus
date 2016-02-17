@@ -257,9 +257,12 @@ class DatabaseActions: NSObject {
             tripDetailRow.date              = NSDate(dateString: tripDetail.tripdDate)
             tripDetailRow.distance          = tripDetail.distance
             tripDetailRow.tripPoints        = tripDetail.tripPoints
+            tripDetailRow.overallScore      = tripDetail.tripScore.overallScore
             tripDetailRow.speedScore        = tripDetail.tripScore.speedScore
             tripDetailRow.ecoScore          = tripDetail.tripScore.ecoScore
             tripDetailRow.attentionScore    = tripDetail.tripScore.attentionScore
+            tripDetailRow.speedingMessage   = tripDetail.speedingMessage
+            tripDetailRow.ecoMessage        = tripDetail.ecoMessage
             tripDetailRow.dataUsageMessage  = tripDetail.dataUsageMessage
             tripDetailRow.duration          = tripDetail.tripDuration
             tripDetailRow.events            = events
@@ -354,12 +357,12 @@ class DatabaseActions: NSObject {
                     speedZonesObj.append(speedZone)
                 }
                 
-                let tripScore = TripScore(speedScore: tripManagedObj.speedScore!, ecoScore: tripManagedObj.ecoScore!, attentionScore: nil)
+                let tripScore = TripScore(overallScore: 70,speedScore: tripManagedObj.speedScore!, ecoScore: tripManagedObj.ecoScore!, attentionScore: nil)
                 
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "dd-MM-yyyy"
                 
-                let trip = History(tripid: tripManagedObj.tripId!, tripDate:dateFormatter.stringFromDate(tripManagedObj.date!), distance: tripManagedObj.distance!, tripPoints: tripManagedObj.tripPoints!, tripDuration: tripManagedObj.duration!, dataUsageMessage: tripManagedObj.dataUsageMessage!, tripScore: tripScore, events: eventsObj, speedZones: speedZonesObj)
+                let trip = History(tripid: tripManagedObj.tripId!, tripDate:dateFormatter.stringFromDate(tripManagedObj.date!), distance: tripManagedObj.distance!, tripPoints: tripManagedObj.tripPoints!, tripDuration: tripManagedObj.duration!,speedingMessage: tripManagedObj.speedingMessage!,ecoMessage:tripManagedObj.ecoMessage!, dataUsageMessage: tripManagedObj.dataUsageMessage!, tripScore: tripScore, events: eventsObj, speedZones: speedZonesObj)
                 
                 trips.append(trip)
             }

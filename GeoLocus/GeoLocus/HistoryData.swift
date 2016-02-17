@@ -63,12 +63,14 @@ class SpeedZone {
 
 class TripScore {
     
+    let overallScore    : NSNumber
     let speedScore      : NSNumber
     let ecoScore        : NSNumber
     let attentionScore  : NSNumber?  //neglect in iOS
     
-    init(speedScore : NSNumber, ecoScore : NSNumber, attentionScore : NSNumber?){
+    init(overallScore : NSNumber, speedScore : NSNumber, ecoScore : NSNumber, attentionScore : NSNumber?){
         
+        self.overallScore   = overallScore
         self.speedScore     = speedScore
         self.ecoScore       = ecoScore
         self.attentionScore = attentionScore
@@ -82,18 +84,22 @@ class History {
     let distance        : NSNumber
     let tripPoints      : NSNumber
     let tripDuration    : NSNumber
+    let speedingMessage : String
+    let ecoMessage      : String
     let dataUsageMessage: String
     let tripScore       : TripScore
     let events          : [Event]?
     let speedZones      : [SpeedZone]
     
-    init(tripid : String, tripDate : String, distance : NSNumber, tripPoints : NSNumber, tripDuration : NSNumber, dataUsageMessage: String, tripScore : TripScore,events : [Event]?, speedZones : [SpeedZone]) {
+    init(tripid : String, tripDate : String, distance : NSNumber, tripPoints : NSNumber, tripDuration : NSNumber, speedingMessage: String, ecoMessage: String, dataUsageMessage: String, tripScore : TripScore,events : [Event]?, speedZones : [SpeedZone]) {
         
         self.tripId             = tripid
         self.tripdDate          = tripDate
         self.distance           = distance
         self.tripPoints         = tripPoints
         self.tripDuration       = tripDuration
+        self.speedingMessage    = speedingMessage
+        self.ecoMessage         = ecoMessage
         self.dataUsageMessage   = dataUsageMessage
         self.tripScore          = tripScore
         self.events             = events

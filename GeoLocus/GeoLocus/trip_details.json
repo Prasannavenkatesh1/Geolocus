@@ -4,8 +4,11 @@
                     "date": "1455185526569",
                     "distance": "25",
                     "trippoints": "36",
+                    "tripOverallScore":"40",
                     "ecoscore": "45",
+                    "ecoMessage": "eco messsage string",
                     "speedscore": "66",
+                    "speedingMessage":"speeding message string",
                     "attentionscore": "74",
                     "dataUsageMsg": "25",
                     "hours": "5",
@@ -58,8 +61,11 @@
                     "date": "1411185526569",
                     "distance": "25",
                     "trippoints": "36",
+                    "tripOverallScore":"70",
                     "ecoscore": "90",
+                    "ecoMessage": "eco messsage string 2",
                     "speedscore": "95",
+                    "speedingMessage":"speeding message string 2",
                     "attentionscore": "74",
                     "dataUsageMsg": "25",
                     "hours": "5",
@@ -105,6 +111,22 @@
                                    "Above_maxspeed": "1",
                                    "within_maxspeed": "1",
                                    "violation_count": 7
+                                   },{
+                                   "speedScore": "90",
+                                   "speedbehaviour": "96",
+                                   "distance_travelled": "117",
+                                   "max_speed": "80",
+                                   "Above_maxspeed": "1",
+                                   "within_maxspeed": "11",
+                                   "violation_count": 1
+                                   },{
+                                   "speedScore": "65",
+                                   "speedbehaviour": "10",
+                                   "distance_travelled": "70",
+                                   "max_speed": "100",
+                                   "Above_maxspeed": "1",
+                                   "within_maxspeed": "1",
+                                   "violation_count": 1
                                    }]
                     }]
     

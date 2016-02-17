@@ -294,7 +294,7 @@ class FacadeLayer{
                                 var eventsObj = [Event]()
                                 var speedZonesObj = [SpeedZone]()
                                 
-                                let tripScore = TripScore(speedScore: trip["speedscore"]!.doubleValue, ecoScore: trip["ecoscore"]!.doubleValue, attentionScore: nil)
+                                let tripScore = TripScore(overallScore: trip["tripOverallScore"]!.doubleValue,speedScore: trip["speedscore"]!.doubleValue, ecoScore: trip["ecoscore"]!.doubleValue, attentionScore: nil)
                                 
                                 //Event array
                                 
@@ -324,8 +324,7 @@ class FacadeLayer{
                                 let dateFormatter = NSDateFormatter()
                                 dateFormatter.dateFormat = "dd-MM-yyyy"
                                 
-                                
-                                let tripDetail = History(tripid: trip["tripId"]!.string!, tripDate:dateFormatter.stringFromDate(NSDate(jsonDate: trip["date"]!.string!)!), distance: Double(trip["distance"]!.stringValue)!, tripPoints: Int(trip["trippoints"]!.stringValue)!, tripDuration: Double(trip["hours"]!.stringValue)!, dataUsageMessage: trip["dataUsageMsg"]!.string!, tripScore: tripScore, events: eventsObj, speedZones: speedZonesObj)
+                                let tripDetail = History(tripid:  trip["tripId"]!.string!, tripDate: dateFormatter.stringFromDate(NSDate(jsonDate: trip["date"]!.string!)!), distance: Double(trip["distance"]!.stringValue)!, tripPoints: Int(trip["trippoints"]!.stringValue)!, tripDuration:  Double(trip["hours"]!.stringValue)!, speedingMessage: trip["speedingMessage"]!.string!, ecoMessage: trip["ecoMessage"]!.string!, dataUsageMessage: trip["dataUsageMsg"]!.string!, tripScore: tripScore, events: eventsObj, speedZones: speedZonesObj)
                                 
                                 tripArray.append(tripDetail)
                                 
