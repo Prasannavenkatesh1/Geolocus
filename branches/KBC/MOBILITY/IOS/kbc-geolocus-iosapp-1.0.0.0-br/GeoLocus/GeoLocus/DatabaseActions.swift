@@ -607,6 +607,87 @@ class DatabaseActions: NSObject {
             return nil
         }
     }
+    
+    //MARK:- Report Data
+    
+    func saveReportData(reportData : Report, completionHandler :(status : Bool) -> Void){
+        
+        for reportItem in reportData.reportDetail {
+            
+            let report = NSEntityDescription.insertNewObjectForEntityForName("Reports", inManagedObjectContext: self.managedObjectContext) as! Reports
+            
+            report.timeframe = reportItem.timeFrame.rawValue
+            report.scoreoption = reportItem.scoreType.rawValue
+            report.myscore = reportItem.myScore.description
+            report.poolaveragescore = reportItem.poolAverage.description
+            report.distancetravelled = reportData.distanceTravelled
+            report.totalcontractpoints = reportData.totalPoints
+            report.totaltrip = reportData.totalTrips
+        }
+        
+        do{
+            try self.managedObjectContext.save()
+            completionHandler(status: true)
+        }
+        catch{
+            completionHandler(status: false)
+        }
+    }
+    
+    func fetchReportData(completionHandler:(success : Bool, error: NSError?, result: Report?) -> Void) -> Void{
+        // Initialize Fetch Request
+        let fetchRequest = NSFetchRequest(entityName: "Reports")
+        
+        // Initialize Asynchronous Fetch Request
+        let asyncFetchRequest = NSAsynchronousFetchRequest(fetchRequest: fetchRequest) { (asynchronousFetchResult) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                let reports = self.reportFetchResult(asynchronousFetchResult)
+                
+                if reports != nil {
+                    completionHandler(success: true, error: nil, result: reports!)
+                }else{
+                    completionHandler(success: false, error: NSError.init(domain: "", code: 0, userInfo: nil), result: nil)
+                }
+            })
+        }
+        
+        do {
+            // Execute Asynchronous Fetch Request
+            let asynchronousFetchResult = try managedObjectContext.executeRequest(asyncFetchRequest)
+            
+            print(asynchronousFetchResult)
+            
+        } catch {
+            let fetchError = error as NSError
+            print("\(fetchError), \(fetchError.userInfo)")
+        }
+    }
+
+    func reportFetchResult(asynchronousFetchResult: NSAsynchronousFetchResult) -> Report? {
+        
+        if let results = asynchronousFetchResult.finalResult {
+            var reportDetails = [ReportDetails]()
+            
+            for reportDetailObj in results {
+                
+                let reportDetailManagedObj = reportDetailObj as! Reports
+                if let timeFrame = reportDetailManagedObj.timeframe?.integerValue, scoreType = reportDetailManagedObj.scoreoption?.integerValue, myScore = reportDetailManagedObj.myscore, poolAverage = reportDetailManagedObj.poolaveragescore {
+                    
+                    let reportDetail = ReportDetails(timeFrame: ReportDetails.TimeFrameType(rawValue: timeFrame)!, scoreType: ReportDetails.ScoreType(rawValue: scoreType)!, myScore: Int(myScore)!, poolAverage: Int(poolAverage)!)
+                    reportDetails.append(reportDetail)
+                }
+            }
+            
+            let reportManagedObj = results.first as! Reports
+            if let totalPoints = reportManagedObj.totalcontractpoints, distanceTravelled = reportManagedObj.distancetravelled, totalTrips = reportManagedObj.totaltrip {
+                
+                let report = Report(reportDetail: reportDetails, totalPoints: totalPoints.integerValue, distanceTravelled: distanceTravelled.integerValue, totalTrips: totalTrips.integerValue)
+                return report
+            }
+        }
+        return nil
+    }
+
     //MARK: - Delete methods
     
     func removeData(entity: String) {
