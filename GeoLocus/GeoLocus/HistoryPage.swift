@@ -39,37 +39,31 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
     var tripZones        = [SpeedZone]?()        //trip zones info
     var tripAnnotation   = [EventAnnotation]?()  //annotation array
     var historyData      = [History]?()          //recent trips info
-    
-    var tripDetailRowSelected : Int?
-    var zoneSelectedIndexPath: NSIndexPath?
-    var recentTripSelectedIndexPath: NSIndexPath?
     var tabSelected: MapZoneTab = MapZoneTab.MapSelected
     
-    var mapButton : UIButton?
-    var mapBorder : UIView?
-    var zoneButton: UIButton?
-    var zoneBorder: UIView?
+    var tripDetailRowSelected       : Int?
+    var zoneSelectedIndexPath       : NSIndexPath?
+    var recentTripSelectedIndexPath : NSIndexPath?
+    var mapButton                   : UIButton?
+    var mapBorder                   : UIView?
+    var zoneButton                  : UIButton?
+    var zoneBorder                  : UIView?
 
     var scoreRefreshRequired    = true
-    var mapRefreshRequired    = true
+    var mapRefreshRequired      = true
     var zoneRefreshRequired     = true
     
     let NUM_OF_SECTION = 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-
-        
-        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.scoreRefreshRequired    = true
-        self.mapRefreshRequired    = true
-        self.zoneRefreshRequired     = true
+        self.scoreRefreshRequired = true
+        self.mapRefreshRequired   = true
+        self.zoneRefreshRequired  = true
         
         tabSelected = MapZoneTab.MapSelected
         self.tripDetailRowSelected = 0 // this may be nil if no trip detail data
@@ -80,18 +74,17 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
-    
-    //MARK: - Tableview Delegate & Datasource
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int
-    {
+    //MARK: - Tableview Datasource
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int{
+        
         return NUM_OF_SECTION
     }
     
-    func tableView(tableView:UITableView, numberOfRowsInSection section:Int) -> Int
-    {
+    func tableView(tableView:UITableView, numberOfRowsInSection section:Int) -> Int{
+        
         var numOfRows = 0
         
         if section == 0 {
@@ -109,33 +102,15 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
                 numOfRows = (self.historyData?.count)!      //change dynamically
             }
         }
-        
         return numOfRows
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    
+    
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
-        var headerHeight = 40
-        
-        if section == 0 {
-            headerHeight = 40
-        }else {
-            headerHeight = 37
-        }
-        
-        return CGFloat(headerHeight)
-    }
-    
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
-    }
-    
-    
-    
-    
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-    {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("HTSCell", forIndexPath: indexPath) as! HistoryTripScoreCell
             cell.selectionStyle = UITableViewCellSelectionStyle.None
@@ -145,7 +120,7 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
             
             cell.speedingView.foreGroundArcWidth = 8
             cell.speedingView.backGroundArcWidth = 8
-                      //changes dynamically
+            
             if self.tripScores?.count > 0 {
                 cell.speedingView.ringLayer.strokeColor = UIColor(range: (self.tripScores?[rowIndex!].speedScore.integerValue)!).CGColor
                 cell.speedingView.animateScale = (self.tripScores?[rowIndex!].speedScore.doubleValue)!/100.0
@@ -199,11 +174,11 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
                     cell.speedingView.setNeedsDisplay()
                 }
                 if tripZones?.count > 0 {
-                    cell.severeViolationLabel.text = String(self.tripZones![indexPath.row].violationCount)
-                    cell.distanceLabel.text =  String("\(self.tripZones![indexPath.row].distanceTravelled) km")
-                    cell.maxSpeedLimit.text =  String("\(self.tripZones![indexPath.row].maxSpeed) km/h")
-                    cell.withinMaxSpeedLabel.text =  String("\(self.tripZones![indexPath.row].withinSpeed) km")
-                    cell.aboveMaxSpeedLabel.text =  String("\(self.tripZones![indexPath.row].aboveSpeed) km")
+                    cell.severeViolationLabel.text  = String(self.tripZones![indexPath.row].violationCount)
+                    cell.distanceLabel.text         = String("\(self.tripZones![indexPath.row].distanceTravelled) km")
+                    cell.maxSpeedLimit.text         = String("\(self.tripZones![indexPath.row].maxSpeed) km/h")
+                    cell.withinMaxSpeedLabel.text   = String("\(self.tripZones![indexPath.row].withinSpeed) km")
+                    cell.aboveMaxSpeedLabel.text    = String("\(self.tripZones![indexPath.row].aboveSpeed) km")
                 }
                 
                 cell.indicatorButton.selected = false
@@ -213,17 +188,17 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
         }else if indexPath.section == 2{     //section 2
             let cell = tableView.dequeueReusableCellWithIdentifier("HTDCell", forIndexPath: indexPath) as! HistoryTripDetailCell
             cell.delegate = self
-            print("date from DB: \(self.historyData![indexPath.row].tripdDate)")
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "dd-MM-yyyy"
-            let tripDate = dateFormatter.dateFromString(self.historyData![indexPath.row].tripdDate)
+          
+            let dateFormatter           = NSDateFormatter()
+            dateFormatter.dateFormat    = "dd-MM-yyyy"
+            let tripDate                = dateFormatter.dateFromString(self.historyData![indexPath.row].tripdDate)
             let unitFlags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
-            let components = NSCalendar.currentCalendar().components(unitFlags, fromDate: tripDate!)
+            let components              = NSCalendar.currentCalendar().components(unitFlags, fromDate: tripDate!)
             
-            cell.tripDateLabel.text = String("\(components.day)th \(Helper.getMonthString(components.month)) \(components.year)")
+            cell.tripDateLabel.text     = String("\(components.day)th \(Helper.getMonthString(components.month)) \(components.year)")
             cell.tripDurationLabel.text = String("\(self.historyData![indexPath.row].tripDuration) Hrs")
             cell.tripDistanceLabel.text = String("\(self.historyData![indexPath.row].distance) km")
-            cell.tripPointsLabel.text = String(self.historyData![indexPath.row].tripPoints)
+            cell.tripPointsLabel.text   = String(self.historyData![indexPath.row].tripPoints)
             
             
             /*
@@ -247,6 +222,25 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
         
     }
     
+    //MARK: - Tableview Delegate &
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        var headerHeight = 40
+        
+        if section == 0 {
+            headerHeight = 40
+        }else {
+            headerHeight = 37
+        }
+        
+        return CGFloat(headerHeight)
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         if section == 0 {

@@ -579,7 +579,7 @@ class FacadeLayer{
                         
                         if let scores = jsonData["with"]["content"].dictionary {
                             
-                            let overallScore = OverallScores(overallScore: Double(scores["overallScore"]!.stringValue)!, speedingScore: Double(scores["overallSpeedingScore"]!.stringValue)!, ecoScore: Double(scores["overallEcoScore"]!.stringValue)!, distanceTravelled: Double(scores["distanceTravelled"]!.stringValue)!, dataUsageMsg: scores["dataUsageMsg"]!.stringValue)
+                            let overallScore = OverallScores(overallScore: Double(scores["overallScore"]!.stringValue)!, speedingScore: Double(scores["overallSpeedingScore"]!.stringValue)!, ecoScore: Double(scores["overallEcoScore"]!.stringValue)!, distanceTravelled: Double(scores["distanceTravelled"]!.stringValue)!, dataUsageMsg: scores["dataUsageMsg"]!.stringValue, overallmessage: scores["OverallScoremessage"]!.stringValue, speedingMessage: scores["OverallspeedingMessage"]!.stringValue, ecoMessage: scores["OverallecoMessage"]!.stringValue)
                             
                             self.dbactions.removeData("OverallScore")
                             //store to DB
