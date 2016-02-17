@@ -32,6 +32,12 @@ class ReportsViewController: BaseViewController {
     var scoreType: ReportDetails.ScoreType = ReportDetails.ScoreType.speed
     
     override func viewDidLoad() {
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.startLoading()
         FacadeLayer.sharedinstance.fetchReportData(timeFrame: ReportDetails.TimeFrameType.monthly, scoreType: ReportDetails.ScoreType.speed, completionHandler: { (success, error, result) -> Void in
             if success == true {
                 if let resultObj = result {
@@ -40,6 +46,7 @@ class ReportsViewController: BaseViewController {
                     self.groupBarVC?.showChart(horizontal: false, barChartData: self.chartData)
                 }
             }
+            self.stopLoading()
         })
     }
     
@@ -158,16 +165,19 @@ class ReportsViewController: BaseViewController {
     @IBAction func didTapOnConfirmBtn(sender: UIButton) {
         if groupBarVC != nil {
             chartData.removeAll()
+            self.filterPopUpView.hidden = true
+            self.startLoading()
             FacadeLayer.sharedinstance.fetchReportData(timeFrame: timeFrameType, scoreType: scoreType, completionHandler: { (success, error, result) -> Void in
                 if success == true {
                     if let resultObj = result {
                         self.report = resultObj
                         self.reportInformation(self.report!.reportDetail)
-                        self.filterPopUpView.hidden = true
                         self.groupBarVC?.showChart(horizontal: false, barChartData: self.chartData)
                     }
                 }
+                self.stopLoading()
             })
         }
     }
+    
 }

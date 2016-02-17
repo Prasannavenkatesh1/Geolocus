@@ -11,10 +11,10 @@ import UIKit
 class BaseViewController: UIViewController {
 
     var activityIndicatorView = UIActivityIndicatorView()
+    var activityView: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addActivityIndicator()
         // Do any additional setup after loading the view.
     }
 
@@ -24,22 +24,35 @@ class BaseViewController: UIViewController {
     }
     
     /* adding Activity Indicator to view */
-    func addActivityIndicator(){
+    func addActivityIndicator() {
+        if activityView == nil {
+            activityView = UIView(frame: CGRectMake(0, 64, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height - 64))
+            activityView!.backgroundColor = UIColor.blackColor()
+            activityView!.alpha = 0.5
+        }
+        
         activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
         activityIndicatorView.center = self.view.center
-        self.view.addSubview(activityIndicatorView)
+        activityIndicatorView.startAnimating()
+        activityView!.addSubview(activityIndicatorView)
+        self.view.addSubview(activityView!)
+        activityView?.hidden = true
+    }
+    
+    func shouldShowActivtyOnView(show: Bool) {
+        activityView?.hidden = !show
+        self.view.bringSubviewToFront(activityView!)
     }
     
     /* start animating */
     func startLoading(){
-        activityIndicatorView.startAnimating()
-        activityIndicatorView.hidden = false
+        self.addActivityIndicator()
+        self.shouldShowActivtyOnView(true)
     }
     
     /* stop animating */
     func stopLoading(){
-        activityIndicatorView.stopAnimating()
-        activityIndicatorView.hidden = true
+        self.shouldShowActivtyOnView(false)
     }
     
     
