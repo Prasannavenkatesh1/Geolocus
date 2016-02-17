@@ -32,11 +32,6 @@ class ReportsViewController: BaseViewController {
     var scoreType: ReportDetails.ScoreType = ReportDetails.ScoreType.speed
     
     override func viewDidLoad() {
-        
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         self.startLoading()
         FacadeLayer.sharedinstance.fetchReportData(timeFrame: ReportDetails.TimeFrameType.monthly, scoreType: ReportDetails.ScoreType.speed, completionHandler: { (success, error, result) -> Void in
             if success == true {
@@ -48,6 +43,10 @@ class ReportsViewController: BaseViewController {
             }
             self.stopLoading()
         })
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     override func viewDidLayoutSubviews() {
@@ -103,6 +102,7 @@ class ReportsViewController: BaseViewController {
     @IBAction func didTapOnFilterBtn(sender: UIButton) {
         okBtn.layer.cornerRadius = 15.0
         filterPopUpView.hidden = false
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: StringConstants.REPORT_SYNCHRONISATION)
     }
     
     @IBAction func didTapOnCloseBtn(sender: UIButton) {

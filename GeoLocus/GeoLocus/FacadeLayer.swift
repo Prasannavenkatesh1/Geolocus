@@ -364,13 +364,13 @@ class FacadeLayer{
     
     func fetchReportData(timeFrame timeFrame: ReportDetails.TimeFrameType, scoreType: ReportDetails.ScoreType, completionHandler:(success: Bool, error: NSError?, result: Report?) -> Void) -> Void{
         
-        if StringConstants.appDataSynced {
-            //get from DB and reload table
-            //            dbactions.fetchBadgeData({ (status, data, error) -> Void in
-            //                completionHandler(succes, error: <#T##NSError?#>)
-            //                completionHandler(status: status, data: ni, error: error)
-            //            })
-            
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if defaults.boolForKey(StringConstants.REPORT_SYNCHRONISATION) {
+            dbactions.fetchReportData({ (success, error, result) -> Void in
+                if success {
+                    completionHandler(success: true, error: error, result: result)
+                }
+            })
         }else{
             httpclient.requestReportData(StringConstants.REPORT_SERVICE_URL + "userId=9&timeFrame=\(timeFrame)&scoreType=\(scoreType)", completionHandler: { (success, data) -> Void in
                 if let result = data {
@@ -391,9 +391,21 @@ class FacadeLayer{
                         }
                         if let overallScore = jsonData["overallscore"].dictionary {
                             let report = Report(reportDetail: reportDetails, totalPoints: (overallScore["totalPoints"]?.intValue)!, distanceTravelled: (overallScore["distanceTravelled"]?.intValue)!, totalTrips: (overallScore["totalTrips"]?.intValue)!)
-                            completionHandler(success: true, error: nil, result: report)
+                            
+                            self.dbactions.removeData("Reports")
+                            self.dbactions.saveReportData(report, completionHandler: { (status) -> Void in
+                                if status {
+                                    defaults.setBool(true, forKey: StringConstants.REPORT_SYNCHRONISATION)
+                                    completionHandler(success: status, error: nil, result: report)
+                                } else {
+                                    defaults.setBool(false, forKey: StringConstants.REPORT_SYNCHRONISATION)
+                                    completionHandler(success: false, error: NSError(domain: "", code: 0, userInfo: nil), result: nil)
+                                }
+                            })
                         }
                     }
+                } else {
+                    completionHandler(success: false, error: NSError(domain: "", code: 0, userInfo: nil), result: nil)
                 }
             })
         }
