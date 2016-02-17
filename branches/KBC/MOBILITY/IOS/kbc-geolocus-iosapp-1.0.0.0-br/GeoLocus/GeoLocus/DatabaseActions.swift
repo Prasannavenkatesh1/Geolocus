@@ -557,27 +557,53 @@ class DatabaseActions: NSObject {
     }
     
     /* fetch contract data stored in the core data */
-//    func fetchContractData(completionHandler : (status : Int, response : ContractModel?, error : NSError?) -> Void) -> Void{
-//        let fetchRequest = NSFetchRequest(entityName: "Contract")
-//        
-//        let asyncFetchRequest = NSAsynchronousFetchRequest(fetchRequest : fetchRequest){
-//            (asynchronousFetchResult) -> Void in
-//            
-//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                
-//                let contractData = self.processOverallScoreResult(asynchronousFetchResult)
-//                
-//                if overallScore != nil {
-//                    completionHandler(status: 1, response: overallScore, error: nil)
-//                }else{
-//                    completionHandler(status: 0, response: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
-//                }
-//            })
-//        }
-//
-//        }
-//    }
-    
+    func fetchContractData(completionHandler : (status : Int, response : ContractModel?, error : NSError?) -> Void) -> Void{
+        let fetchRequest = NSFetchRequest(entityName: "Contract")
+        
+        let asyncFetchRequest = NSAsynchronousFetchRequest(fetchRequest : fetchRequest){
+            (asynchronousFetchResult) -> Void in
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                
+                let contractData = self.processContractData(asynchronousFetchResult)
+                
+                if contractData != nil {
+                    completionHandler(status : 1, response : contractData, error : nil)
+                }
+                else{
+                    completionHandler(status: 0, response: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                }
+            })
+        }
+        do{
+            // Execute Asynchronous Fetch Request
+            let asynchronousFetchResult = try managedObjectContext.executeRequest(asyncFetchRequest)
+        }
+        catch{
+            let fetchError = error as NSError
+            print("\(fetchError), \(fetchError.userInfo)")
+        }
+    }
+
+    /* process Contract Data */
+
+    func processContractData(asychronousFetchResult : NSAsynchronousFetchResult) -> ContractModel? {
+        
+        if let results = asychronousFetchResult.finalResult{
+            
+            if let contractValues = results.first{
+                let contractObject = contractValues as! Contract
+                
+                return ContractModel(parentUserName: contractObject.parentUserName!, attentionPoints: contractObject.attentionPoints!, speedPoints: contractObject.speedPoints!, ecoPoints: contractObject.ecoPoints!, bonusPoints: contractObject.bonusPoints!, totalContractPoints: contractObject.totalContractPoints!, contractPointsAchieved: contractObject.contractPointsAchieved!, rewardsDescription: contractObject.rewardsDescription!, contractAchievedDate: contractObject.contractAchievedDate!)
+            }
+            else{
+                return nil
+            }
+        }
+        else{
+            return nil
+        }
+    }
     //MARK: - Delete methods
     
     func removeData(entity: String) {

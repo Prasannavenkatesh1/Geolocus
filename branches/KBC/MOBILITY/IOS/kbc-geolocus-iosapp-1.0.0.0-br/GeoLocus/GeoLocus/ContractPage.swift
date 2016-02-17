@@ -29,21 +29,28 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var transparentView: UIView!
     
+    @IBOutlet weak var contractPointsAchievedLabel: UILabel!
+    @IBOutlet weak var totalContractPointsLabel: UILabel!
+    @IBOutlet weak var bonusPointsLabel: UILabel!
+    @IBOutlet weak var ecoPointsLabel: UILabel!
+    @IBOutlet weak var speedPointsLabel: UILabel!
+    
+    var contractPointsAchieved = String()
+    var totalContractPoints = String()
+    
     //MARK: View Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        setConstraintsForDifferentDevices()
-        customiseProgressView()
-        addDashedBorderToImageView()
-        addViewBorder()
+        
+        self.fetchContractDataFromDatabase()
+        self.setConstraintsForDifferentDevices()
+        self.customiseProgressView()
+        self.addDashedBorderToImageView()
+        self.addViewBorder()
         
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
         imageView.userInteractionEnabled = true
         imageView.addGestureRecognizer(tapGestureRecognizer)
-      
-     
-      
-
     }
     
     override func viewWillLayoutSubviews() {
@@ -74,7 +81,8 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
     
     /* customize progress view */
     func customiseProgressView(){
-        progressView.transform = CGAffineTransformScale(progressView.transform, 1, 10)
+        progressView.transform = CGAffineTransformScale(progressView.transform, 1, 5)
+        
     }
     
     /* adding border between the points view */
@@ -96,6 +104,7 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
         imageView.layer.addSublayer(imageViewBorder)
     }
     
+    /* image tapped action - open the device gallery */
     func imageTapped(img:AnyObject){
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum){
             imagePicker.delegate = self
@@ -115,6 +124,44 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
         UIGraphicsEndImageContext()
         
         return newImage
+    }
+    
+    /* fetch data from the database */
+    func fetchContractDataFromDatabase(){
+        FacadeLayer.sharedinstance.dbactions.fetchContractData{ (status, data, error) -> Void in
+            if(status == 1 && error == nil) {
+                let contractData : ContractModel = data!
+                
+                self.contractPointsAchieved = contractData.contractPointsAchieved
+                self.totalContractPoints = contractData.totalContractPoints
+                
+                self.speedPointsLabel.text = contractData.speedPoints
+                self.totalContractPointsLabel.text = self.totalContractPoints
+                self.ecoPointsLabel.text = contractData.ecoPoints
+                self.contractPointsAchievedLabel.text = self.contractPointsAchieved
+                self.bonusPointsLabel.text = contractData.bonusPoints
+                
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "dd-MM-yyyy"
+                let contractAchievedDate = dateFormatter.dateFromString(contractData.contractAchievedDate)
+                
+                let contractAchievedMessage = contractAchievedDate != nil ? String(format: StringConstants.CONTRACT_POINTS_ACHIEVED_MESSAGE, contractAchievedDate!) : ""
+                let pointsAchieved = (self.contractPointsAchieved as NSString).floatValue
+                let totalPoints = (self.totalContractPoints as NSString).floatValue
+                let progressValue = (pointsAchieved/totalPoints)
+                
+                self.progressView.setProgress(progressValue, animated: true)
+                
+                if(pointsAchieved == totalPoints){
+                    let alertView = UIAlertController(title: "", message: contractAchievedMessage, preferredStyle: UIAlertControllerStyle.Alert)
+                    alertView.addAction(UIAlertAction(title: StringConstants.OK, style: UIAlertActionStyle.Default, handler: nil))
+                    self.presentViewController(alertView, animated: true, completion: nil)
+                }
+            }
+            else{
+                print("Error is:\(error)")
+            }
+        }
     }
     
     //MARK : Image Picker Delegate Methods
