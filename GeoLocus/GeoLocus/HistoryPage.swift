@@ -136,9 +136,6 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        
-        //print(tripMapEvents)
-        
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("HTSCell", forIndexPath: indexPath) as! HistoryTripScoreCell
             cell.selectionStyle = UITableViewCellSelectionStyle.None
@@ -236,6 +233,13 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
             
             */
             
+            if (UIColor(range: (self.historyData![indexPath.row].tripScore.speedScore.integerValue)) == UIColor(netHex: 0xff3b3b)) || (UIColor(range: (self.historyData![indexPath.row].tripScore.ecoScore.integerValue)) == UIColor(netHex: 0xff3b3b)) /*|| UIColor(range: (self.historyData![indexPath.row].tripScore.overallScore.integerValue) == UIColor(netHex: 0xff3b3b) */{
+                
+                cell.tripShareButton.hidden = true
+            }else{
+                cell.tripShareButton.hidden = false
+            }
+            
             return cell
         }else {
             let cell = tableView.dequeueReusableCellWithIdentifier("HTDCell", forIndexPath: indexPath) as! HistoryTripDetailCell  //remove this
@@ -243,7 +247,6 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
         }
         
     }
-    
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
@@ -328,10 +331,6 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
         }
         
     }
-    
-//    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//       
-//    }
     
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -541,18 +540,16 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
         
         self.historyData?.append(history2)
         
-        let hisArr = [history1, history2]
+        //let hisArr = [history1, history2]
         
-        FacadeLayer.sharedinstance.dbactions.removeData("Trip_Detail")
-        FacadeLayer.sharedinstance.dbactions.saveTripDetail(hisArr) { (status) -> Void in
-            FacadeLayer.sharedinstance.fetchtripDetailData { (status, data, error) -> Void in
-                self.historyData = []
-                if(status == 1 && error == nil){
-                    self.historyData = data
-                    self.reload()
-                }
-                
+        
+        FacadeLayer.sharedinstance.fetchtripDetailData { (status, data, error) -> Void in
+            self.historyData = []
+            if(status == 1 && error == nil){
+                self.historyData = data
+                self.reload()
             }
+            
         }
     }
     
@@ -599,14 +596,14 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
         }
     }
     
-    
+    /*
     func fetchTripDetailsData(completionHandler:(status : Int, response: [History]?, error: NSError?) -> Void) -> Void{
         
         FacadeLayer.sharedinstance.dbactions.fetchtripDetailData { (status, response, error) -> Void in
             completionHandler(status: status, response: response, error: error)
         }
         
-    }
+    }*/
     
     func animateZoneRow(indexPath: NSIndexPath) {
         
@@ -634,20 +631,6 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
         }
         
     }
-    
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension HistoryPage: MapViewDelegate {
@@ -716,7 +699,7 @@ extension HistoryPage: TripDetailCellDelegate {
         
         print(speedScore)
         
-        super.displayActivityView("Trip Score", detail: "On \((cell.tripDateLabel.text)!), I travelled with distance of \((cell.tripDistanceLabel.text)!) KM’s over a period of \((cell.tripDurationLabel.text)!) and achieved above scores using my KBC First 10,000KM app.", imageInfo: ["speedScore":String(speedScore), "ecoScore":String(ecoScore)], shareOption: ShareTemplate.ShareOption.TRIP_DETAIL)
+        super.displayActivityView("Trip Score", detail: "On \((cell.tripDateLabel.text)!), I travelled with distance of \((cell.tripDistanceLabel.text)!)’s over a period of \((cell.tripDurationLabel.text)!) and achieved above scores using my KBC First 10,000KM app.", imageInfo: ["speedScore":String(speedScore), "ecoScore":String(ecoScore)], shareOption: ShareTemplate.ShareOption.TRIP_DETAIL)
     }
 }
 

@@ -63,6 +63,7 @@ class BaseViewController: UIViewController {
         shareTemplate.createShareTemplateImage(title, detail: detail, imageInfo: imageInfo, shareOption: shareOption) { (image) -> Void in
             
             let activityViewController : UIActivityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+            activityViewController.excludedActivityTypes = [UIActivityTypePrint, UIActivityTypeCopyToPasteboard, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll, UIActivityTypeAirDrop]
             self.presentViewController(activityViewController, animated: true, completion: nil)
             
             
@@ -73,7 +74,7 @@ class BaseViewController: UIViewController {
                     let alert = UIAlertController(title: nil, message:messageString , preferredStyle: UIAlertControllerStyle.Alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                     
-                    let imageView = UIImageView(frame: CGRectMake(30, 20, 20, 20))
+                    let imageView   = UIImageView(frame: CGRectMake(30, 20, 20, 20))
                     imageView.image = UIImage(named: StringConstants.CHECK_BOX_SELECTED)
                     alert.view.addSubview(imageView)
                     

@@ -193,7 +193,7 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
         */
         //
         
-        self.showActivityIndicator()
+        self.startLoading()
         
         //1. Get data from plist
         let path = NSBundle.mainBundle().pathForResource("BadgesDetails", ofType: "plist")
@@ -309,7 +309,9 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                // print("error while fetching badge data ")
                 
             }
-            self.hideActivityIndicator()
+           // self.hideActivityIndicator()
+            
+            self.stopLoading()
         }
 
     }
@@ -353,13 +355,13 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
     
     
     //MARK: - IndicatorView methods
-    func showActivityIndicator(){
-        self.myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-        
-        self.myActivityIndicator!.center = self.view.center
-        self.myActivityIndicator!.startAnimating()
-        self.view.addSubview(self.myActivityIndicator!)
-    }
+//    func showActivityIndicator(){
+//        self.myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+//        
+//        self.myActivityIndicator!.center = self.view.center
+//        self.myActivityIndicator!.startAnimating()
+//        self.view.addSubview(self.myActivityIndicator!)
+//    }
     
     func hideActivityIndicator(){
         self.myActivityIndicator!.stopAnimating()
