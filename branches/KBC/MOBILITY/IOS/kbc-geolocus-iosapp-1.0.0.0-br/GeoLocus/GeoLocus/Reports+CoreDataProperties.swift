@@ -18,5 +18,8 @@ extension Reports {
     @NSManaged var poolaveragescore: String?
     @NSManaged var timeframe: NSNumber?
     @NSManaged var scoreoption: NSNumber?
+    @NSManaged var distancetravelled: NSNumber?
+    @NSManaged var totaltrip: NSNumber?
+    @NSManaged var totalcontractpoints: NSNumber?
 
 }
