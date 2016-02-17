@@ -85,6 +85,60 @@ class BaseViewController: UIViewController {
         }
     }
     
+    //MARK - PopUp
+    func presentPopUpController(popUp:UIViewController){
+        let sourceView : UIView = self.topView()
+        let popUpView : UIView = popUp.view
+        if sourceView.subviews .contains(popUpView) {
+            return
+        }
+        
+        // Add overlay
+        let overLayView : UIView = UIView(frame: sourceView.bounds)
+        overLayView.autoresizingMask = [.FlexibleWidth,.FlexibleHeight]
+        overLayView.backgroundColor = UIColor.clearColor()
+        overLayView.tag = 111
+        
+        // Add Blured View
+        let bluredView : UIView = UIView(frame: overLayView.bounds)
+        bluredView.autoresizingMask = [.FlexibleWidth , .FlexibleHeight]
+        bluredView.tag = 222
+        bluredView.alpha = 0.6
+        bluredView.backgroundColor = UIColor.blackColor()
+        overLayView.addSubview(bluredView)
+        
+        
+        //Customize popUpView
+        popUpView.layer.cornerRadius = 3.5
+        popUpView.layer.masksToBounds = true
+        popUpView.layer.zPosition = 99
+        popUpView.tag = 333
+        popUpView.center = overLayView.center
+        popUpView.setNeedsDisplay()
+        popUpView.setNeedsLayout()
+        
+        
+        overLayView.addSubview(popUpView)
+        sourceView.addSubview(overLayView)
+        sourceView.bringSubviewToFront(popUpView)
+        
+    }
+    
+    func topView() -> UIView{
+        return (((UIApplication.sharedApplication().delegate)?.window)!)!
+    }
+    
+    func dismissPopUpController(){
+        let sourceView = self.topView()
+        let overLayView = sourceView.viewWithTag(111)
+        let bluredView = sourceView.viewWithTag(222)
+        let popUpView = sourceView.viewWithTag(333)
+        
+        popUpView?.removeFromSuperview()
+        bluredView?.removeFromSuperview()
+        overLayView?.removeFromSuperview()
+    }
+    
     /*
     // MARK: - Navigation
 
