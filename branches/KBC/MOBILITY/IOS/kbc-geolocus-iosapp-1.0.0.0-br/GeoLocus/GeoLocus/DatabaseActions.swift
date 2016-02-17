@@ -472,7 +472,9 @@ class DatabaseActions: NSObject {
         overallScoreRow.attention           = overallScore.attentionScore
         overallScoreRow.distance            = overallScore.distanceTravelled
         overallScoreRow.dataUsageMessage    = overallScore.dataUsageMsg
-
+        overallScoreRow.overallMessage      = overallScore.overallmessage
+        overallScoreRow.speedingMessage     = overallScore.speedingMessage
+        overallScoreRow.ecoMessage          = overallScore.ecoMessage
                 
         do{
             try self.managedObjectContext.save()
@@ -524,7 +526,7 @@ class DatabaseActions: NSObject {
             if let score = results.first {
                 let scoreObj = score as! OverallScore
                 
-                return OverallScores(overallScore: scoreObj.overall!, speedingScore: scoreObj.speeding!, ecoScore: scoreObj.eco!, distanceTravelled: scoreObj.distance!, dataUsageMsg: scoreObj.dataUsageMessage!)
+                return OverallScores(overallScore: scoreObj.overall!, speedingScore: scoreObj.speeding!, ecoScore: scoreObj.eco!, distanceTravelled: scoreObj.distance!, dataUsageMsg: scoreObj.dataUsageMessage!,overallmessage: scoreObj.overallMessage!, speedingMessage: scoreObj.speedingMessage!, ecoMessage: scoreObj.ecoMessage!)
             }else{
                 return nil
             }

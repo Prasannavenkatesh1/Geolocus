@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HistoryScorePage: BaseViewController {
+class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var drivingBehaviorArcView   : ArcGraphicsController!
     @IBOutlet weak var speedingArcView          : ArcGraphicsController!
@@ -16,9 +16,16 @@ class HistoryScorePage: BaseViewController {
     @IBOutlet weak var totalDistTravelledLabel  : UILabel!
     @IBOutlet weak var drivingDummyView         : ArcGraphicsController!
     @IBOutlet weak var drivingDummySecView      : ArcGraphicsController!
+    @IBOutlet weak var attentionView            : UIView!
     @IBOutlet weak var scrollContentView        : UIView!
-    var overallScores                           = OverallScores?()
     @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
+    
+    var driveBehTapGestureRecognizer    : UITapGestureRecognizer!
+    var speedingTapGestureRecognizer    : UITapGestureRecognizer!
+    var ecoTapGestureRecognizer         : UITapGestureRecognizer!
+    var attentionTapGestureRecognizer   : UITapGestureRecognizer!
+    var overallScores                   = OverallScores?()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +36,7 @@ class HistoryScorePage: BaseViewController {
         super.viewWillAppear(animated)
         
         setContentHeight()
+        reloadView()        //to check dummy view
         reloadData()
     }
 
@@ -63,19 +71,35 @@ class HistoryScorePage: BaseViewController {
             
             self.totalDistTravelledLabel.text = String("\(self.overallScores!.distanceTravelled) km")
             
+            self.driveBehTapGestureRecognizer = UITapGestureRecognizer(target: self, action: "drivingBehaviourViewTapped:")
+            self.driveBehTapGestureRecognizer.delegate = self
+            self.drivingBehaviorArcView.addGestureRecognizer(self.driveBehTapGestureRecognizer)
+            
+            self.speedingTapGestureRecognizer = UITapGestureRecognizer(target: self, action: "speedingViewTapped:")
+            self.speedingTapGestureRecognizer.delegate = self
+            self.speedingArcView.addGestureRecognizer(self.speedingTapGestureRecognizer)
+            
+            self.ecoTapGestureRecognizer = UITapGestureRecognizer(target: self, action: "ecoViewTapped:")
+            self.ecoTapGestureRecognizer.delegate = self
+            self.ecoArcView.addGestureRecognizer(self.ecoTapGestureRecognizer)
+            
+            self.attentionTapGestureRecognizer = UITapGestureRecognizer(target: self, action: "attentionViewTapped:")
+            self.attentionTapGestureRecognizer.delegate = self
+            self.attentionView.addGestureRecognizer(self.attentionTapGestureRecognizer)
+            
         }
         
         //dummy view
         self.drivingDummyView.foreGroundArcWidth = 0
         self.drivingDummyView.backGroundArcWidth = 0
-        self.drivingDummyView.ringLayer.strokeColor = self.view.backgroundColor!.CGColor
+        self.drivingDummyView.ringLayer.strokeColor = UIColor.clearColor().CGColor
         self.drivingDummyView.animateScale = 0.0
         self.drivingDummyView.setNeedsDisplay()
         
         //dummy view
         self.drivingDummySecView.foreGroundArcWidth = 0
         self.drivingDummySecView.backGroundArcWidth = 0
-        self.drivingDummySecView.ringLayer.strokeColor = self.view.backgroundColor!.CGColor
+        self.drivingDummySecView.ringLayer.strokeColor = UIColor.clearColor().CGColor
         self.drivingDummySecView.animateScale = 0.0
         self.drivingDummySecView.setNeedsDisplay()
     }
@@ -109,5 +133,48 @@ class HistoryScorePage: BaseViewController {
             self.contentViewHeightConstraint.constant = StringConstants.SCREEN_HEIGHT - 105
         }
     }
+    
+    func drivingBehaviourViewTapped(gestureRecognizer: UITapGestureRecognizer){
+        scoreViewTapped(1)
+    }
+    
+    func speedingViewTapped(gestureRecognizer: UITapGestureRecognizer){
+        scoreViewTapped(2)
+    }
+    
+    func ecoViewTapped(gestureRecognizer: UITapGestureRecognizer){
+        scoreViewTapped(3)
+    }
+    
+    func attentionViewTapped(gestureRecognizer: UITapGestureRecognizer){
+        scoreViewTapped(4)
+    }
+    
+    func scoreViewTapped(tag: Int) {
+        
+        var messageString = String()
+        
+        switch tag {
+        case 1 :
+            print("driving tapped")
+            messageString = self.overallScores!.overallmessage
+        case 2 :
+            print("speeding tapped")
+            messageString = self.overallScores!.speedingMessage
+        case 3:
+            print("eco tapped")
+            messageString = self.overallScores!.ecoMessage
+        case 4:
+            print("attention tapped")
+            messageString = self.overallScores!.dataUsageMsg
+        default:
+            messageString = " "
+        }
+        
+        let alert = UIAlertController(title: nil, message:messageString , preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
 
 }

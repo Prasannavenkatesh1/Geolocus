@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		217C9FF61C6B3FA1000BE567 /* GroupBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217C9FF51C6B3FA1000BE567 /* GroupBarViewController.swift */; };
 		280D592A1C6C7EE600270CDC /* trip_details.json in Resources */ = {isa = PBXBuildFile; fileRef = 280D59291C6C7EE600270CDC /* trip_details.json */; };
-		28328A331C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A2F1C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift */; };
-		28328A341C646B8E004E5F86 /* OverallScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A301C646B8E004E5F86 /* OverallScore.swift */; };
 		28328A381C646F58004E5F86 /* OverallScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A371C646F58004E5F86 /* OverallScores.swift */; };
 		28398E551C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E4F1C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift */; };
 		28398E561C637F32003D5BE5 /* Trip_Speed_Zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E501C637F32003D5BE5 /* Trip_Speed_Zone.swift */; };
@@ -20,6 +18,8 @@
 		283A2B381C65D7C700F6BD16 /* Trip_Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283A2B361C65D7C700F6BD16 /* Trip_Badge.swift */; };
 		283C04911C7484F10096358C /* Trip_Detail+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283C048F1C7484F10096358C /* Trip_Detail+CoreDataProperties.swift */; };
 		283C04921C7484F10096358C /* Trip_Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283C04901C7484F10096358C /* Trip_Detail.swift */; };
+		283C04951C74A24D0096358C /* OverallScore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283C04931C74A24D0096358C /* OverallScore+CoreDataProperties.swift */; };
+		283C04961C74A24D0096358C /* OverallScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283C04941C74A24D0096358C /* OverallScore.swift */; };
 		2840EFDE1C6B20F10020B8FF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2840EFDD1C6B20F10020B8FF /* Extensions.swift */; };
 		2840EFE01C6B3C970020B8FF /* WebServicesURL.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2840EFDF1C6B3C970020B8FF /* WebServicesURL.plist */; };
 		28800A641C6DA4EE00550064 /* badges.json in Resources */ = {isa = PBXBuildFile; fileRef = 28800A621C6DA4EE00550064 /* badges.json */; };
@@ -296,8 +296,6 @@
 /* Begin PBXFileReference section */
 		217C9FF51C6B3FA1000BE567 /* GroupBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupBarViewController.swift; sourceTree = "<group>"; };
 		280D59291C6C7EE600270CDC /* trip_details.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = trip_details.json; sourceTree = "<group>"; };
-		28328A2F1C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OverallScore+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		28328A301C646B8E004E5F86 /* OverallScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverallScore.swift; sourceTree = "<group>"; };
 		28328A371C646F58004E5F86 /* OverallScores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverallScores.swift; sourceTree = "<group>"; };
 		28398E4F1C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_Speed_Zone+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		28398E501C637F32003D5BE5 /* Trip_Speed_Zone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_Speed_Zone.swift; sourceTree = "<group>"; };
@@ -307,6 +305,8 @@
 		283A2B361C65D7C700F6BD16 /* Trip_Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_Badge.swift; sourceTree = "<group>"; };
 		283C048F1C7484F10096358C /* Trip_Detail+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_Detail+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		283C04901C7484F10096358C /* Trip_Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_Detail.swift; sourceTree = "<group>"; };
+		283C04931C74A24D0096358C /* OverallScore+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OverallScore+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		283C04941C74A24D0096358C /* OverallScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverallScore.swift; sourceTree = "<group>"; };
 		2840EFDD1C6B20F10020B8FF /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2840EFDF1C6B3C970020B8FF /* WebServicesURL.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WebServicesURL.plist; sourceTree = "<group>"; };
 		28800A621C6DA4EE00550064 /* badges.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = badges.json; sourceTree = "<group>"; };
@@ -1076,6 +1076,8 @@
 		BF4E0D391C4F701E00BF53FB /* DBModels */ = {
 			isa = PBXGroup;
 			children = (
+				283C04931C74A24D0096358C /* OverallScore+CoreDataProperties.swift */,
+				283C04941C74A24D0096358C /* OverallScore.swift */,
 				283C048F1C7484F10096358C /* Trip_Detail+CoreDataProperties.swift */,
 				283C04901C7484F10096358C /* Trip_Detail.swift */,
 				BF44D27A1C6DBA9F00BFB1E2 /* Reports+CoreDataProperties.swift */,
@@ -1090,8 +1092,6 @@
 				BF4D23771C5A0A8F00230355 /* Trip_timeseries.swift */,
 				283A2B351C65D7C700F6BD16 /* Trip_Badge+CoreDataProperties.swift */,
 				283A2B361C65D7C700F6BD16 /* Trip_Badge.swift */,
-				28328A2F1C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift */,
-				28328A301C646B8E004E5F86 /* OverallScore.swift */,
 				28398E4F1C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift */,
 				28398E501C637F32003D5BE5 /* Trip_Speed_Zone.swift */,
 				28398E531C637F32003D5BE5 /* Trip_Event+CoreDataProperties.swift */,
@@ -1599,6 +1599,7 @@
 				6384522E1B0353AE00E895F7 /* SettingsEntity.m in Sources */,
 				BF4F8D9A1C43CA8D00895640 /* Httpclient.swift in Sources */,
 				B648C20E1C58B83000EE52C3 /* WelcomePageViewController.swift in Sources */,
+				283C04951C74A24D0096358C /* OverallScore+CoreDataProperties.swift in Sources */,
 				28F38A161C61EBB300A02E93 /* HistoryZoneViewCell.swift in Sources */,
 				6384522D1B0353AE00E895F7 /* ScoringEntity.m in Sources */,
 				638452381B0353AE00E895F7 /* GetQuoteController.m in Sources */,
@@ -1659,6 +1660,7 @@
 				BF44D27E1C6DBA9F00BFB1E2 /* Reports+CoreDataProperties.swift in Sources */,
 				635B88661ADBD90E00891EDE /* LeaderBoardViewController.swift in Sources */,
 				6C8ADBB71C6C69FD001BB5B9 /* HMSegmentedControl.m in Sources */,
+				283C04961C74A24D0096358C /* OverallScore.swift in Sources */,
 				63D086AF1B0478B700BDD656 /* HeadphonesDetector.m in Sources */,
 				B636D54B1C6C8DF10067C7B8 /* SettingsCustomViewCell.swift in Sources */,
 				6C44D6691C59E55F0055916B /* LeftViewController.swift in Sources */,
@@ -1669,7 +1671,6 @@
 				63A0FE791AFA377E00EE7C46 /* LastTripViewController.swift in Sources */,
 				F574AFCA1C71D48D00FA0645 /* ShareView.swift in Sources */,
 				A68F05B31B147A73003D1D22 /* SettingsCustomCell.swift in Sources */,
-				28328A331C646B8E004E5F86 /* OverallScore+CoreDataProperties.swift in Sources */,
 				BF73374D1C3FC278006094C0 /* ContractPage.swift in Sources */,
 				6389B2551B1C9AA600F2A18C /* SchedularViewController.m in Sources */,
 				6CEAF3251C4FBB2100F13379 /* ArcGraphicsController.swift in Sources */,
@@ -1681,7 +1682,6 @@
 				283A2B371C65D7C700F6BD16 /* Trip_Badge+CoreDataProperties.swift in Sources */,
 				283C04921C7484F10096358C /* Trip_Detail.swift in Sources */,
 				6384523D1B0353AE00E895F7 /* RegistrationController.m in Sources */,
-				28328A341C646B8E004E5F86 /* OverallScore.swift in Sources */,
 				BF2D45831C6CC1E90017EBB0 /* TripSummary.swift in Sources */,
 				638451F21B0353A000E895F7 /* FMDatabasePool.m in Sources */,
 				6384523F1B0353AE00E895F7 /* SendingEmergencyInfo.m in Sources */,

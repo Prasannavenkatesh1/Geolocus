@@ -37,8 +37,11 @@
         <attribute name="dataUsageMessage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="eco" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="ecoMessage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="overall" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="overallMessage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="speeding" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="speedingMessage" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Reports" representedClassName=".Reports" syncable="YES">
         <attribute name="distancetravelled" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -120,7 +123,7 @@
         <element name="Configurations" positionX="1305" positionY="63" width="189" height="178"/>
         <element name="Contract" positionX="1503" positionY="-9" width="128" height="180"/>
         <element name="Dashboard" positionX="1539" positionY="116" width="128" height="163"/>
-        <element name="OverallScore" positionX="1989" positionY="-153" width="128" height="135"/>
+        <element name="OverallScore" positionX="1989" positionY="-153" width="128" height="180"/>
         <element name="Reports" positionX="1332" positionY="261" width="128" height="150"/>
         <element name="Trip_Badge" positionX="1843" positionY="-153" width="128" height="120"/>
         <element name="Trip_Detail" positionX="1663" positionY="-153" width="128" height="255"/>
