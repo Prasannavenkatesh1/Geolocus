@@ -20,7 +20,7 @@ class EventLocation {
     let latitude    : CLLocationDegrees
     let longitude   : CLLocationDegrees
     
-    init (latitude : CLLocationDegrees, longitude : CLLocationDegrees) {
+    init (latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         self.latitude   = latitude
         self.longitude  = longitude
     }
@@ -49,7 +49,7 @@ class SpeedZone {
     let speedBehaviour      : NSNumber
     let distanceTravelled   : NSNumber
     
-    init(speedScore: NSNumber, maxSpeed : NSNumber, aboveSpeed : NSNumber, withinSpeed : NSNumber, violationCount : NSNumber, speedBehaviour : NSNumber, distanceTravelled : NSNumber){
+    init(speedScore: NSNumber, maxSpeed: NSNumber, aboveSpeed: NSNumber, withinSpeed: NSNumber, violationCount: NSNumber, speedBehaviour: NSNumber, distanceTravelled: NSNumber){
         
         self.speedScore         = speedScore
         self.maxSpeed           = maxSpeed
@@ -66,9 +66,9 @@ class TripScore {
     let overallScore    : NSNumber
     let speedScore      : NSNumber
     let ecoScore        : NSNumber
-    let attentionScore  : NSNumber?  //neglect in iOS
+    let attentionScore  : NSNumber?
     
-    init(overallScore : NSNumber, speedScore : NSNumber, ecoScore : NSNumber, attentionScore : NSNumber?){
+    init(overallScore: NSNumber, speedScore: NSNumber, ecoScore: NSNumber, attentionScore: NSNumber?){
         
         self.overallScore   = overallScore
         self.speedScore     = speedScore
@@ -91,7 +91,7 @@ class History {
     let events          : [Event]?
     let speedZones      : [SpeedZone]
     
-    init(tripid : String, tripDate : String, distance : NSNumber, tripPoints : NSNumber, tripDuration : NSNumber, speedingMessage: String, ecoMessage: String, dataUsageMessage: String, tripScore : TripScore,events : [Event]?, speedZones : [SpeedZone]) {
+    init(tripid: String, tripDate: String, distance: NSNumber, tripPoints: NSNumber, tripDuration: NSNumber, speedingMessage: String, ecoMessage: String, dataUsageMessage: String, tripScore: TripScore,events: [Event]?, speedZones: [SpeedZone]) {
         
         self.tripId             = tripid
         self.tripdDate          = tripDate

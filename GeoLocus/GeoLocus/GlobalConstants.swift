@@ -106,6 +106,11 @@ struct StringConstants {
     
     static let USERNAME_STRING = "abdul"
     static let PASSWORD_STRING = "abdul12345"
+    
+    
+    /* Font name */
+    static let HELVETICA_NEUE = "Helvetica Neue"
+    static let HELVETICA_NEUE_MEDIUM = "HelveticaNeue-Medium"
 }
 
 

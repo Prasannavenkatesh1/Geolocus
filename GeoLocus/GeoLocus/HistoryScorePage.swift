@@ -10,22 +10,18 @@ import UIKit
 
 class HistoryScorePage: BaseViewController {
 
-    @IBOutlet weak var drivingBehaviorArcView: ArcGraphicsController!
-    @IBOutlet weak var speedingArcView: ArcGraphicsController!
-    @IBOutlet weak var ecoArcView: ArcGraphicsController!
-    @IBOutlet weak var totalDistTravelledLabel: UILabel!
-    @IBOutlet weak var drivingDummyView: ArcGraphicsController!
-    @IBOutlet weak var drivingDummySecView: ArcGraphicsController!
-    @IBOutlet weak var scrollContentView: UIView!
-    var overallScores = OverallScores?()
-    
+    @IBOutlet weak var drivingBehaviorArcView   : ArcGraphicsController!
+    @IBOutlet weak var speedingArcView          : ArcGraphicsController!
+    @IBOutlet weak var ecoArcView               : ArcGraphicsController!
+    @IBOutlet weak var totalDistTravelledLabel  : UILabel!
+    @IBOutlet weak var drivingDummyView         : ArcGraphicsController!
+    @IBOutlet weak var drivingDummySecView      : ArcGraphicsController!
+    @IBOutlet weak var scrollContentView        : UIView!
+    var overallScores                           = OverallScores?()
     @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        
-  
     }
 
     
@@ -34,8 +30,6 @@ class HistoryScorePage: BaseViewController {
         
         setContentHeight()
         reloadData()
-        reloadView()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,10 +81,6 @@ class HistoryScorePage: BaseViewController {
     }
     
     func reloadData() {
-        //fetch the data
-        //populate the data structure
-        //load the views
-        
         
         FacadeLayer.sharedinstance.fetchOverallScoreData { (status, data, error) -> Void in
             if (status == 1 && error == nil){
@@ -101,29 +91,11 @@ class HistoryScorePage: BaseViewController {
             }
         }
         
-        
-        
-        FacadeLayer.sharedinstance.dbactions.removeData("OverallScore")
-        FacadeLayer.sharedinstance.dbactions.saveOverallScore(OverallScores(overallScore: 75, speedingScore: 60, ecoScore: 30, distanceTravelled: 7564, dataUsageMsg: "25")) { (status) -> Void in
-            print("saved")
-        }
-        
+//        FacadeLayer.sharedinstance.dbactions.removeData("OverallScore")
+//        FacadeLayer.sharedinstance.dbactions.saveOverallScore(OverallScores(overallScore: 75, speedingScore: 60, ecoScore: 30, distanceTravelled: 7564, dataUsageMsg: "25")) { (status) -> Void in
+//            print("saved")
+//        }
     }
-
-    
-    /*func fetchTripDetailsData(completionHandler:(status : Int, response: OverallScores?, error: NSError?) -> Void) -> Void{
-        
-        FacadeLayer.sharedinstance.dbactions.fetchOverallScoreData { (status, response, error) -> Void in
-          completionHandler(status: status, response: response, error: error)
-        }
-    }
-    
-    func requestOverallScoreData(completionHandler:(status: Int, data: OverallScores?, error: NSError?) -> Void) -> Void{
-        
-        FacadeLayer.sharedinstance.requestOverallScoreData { (status, data, error) -> Void in
-            completionHandler(status: status, data: data, error: error)
-        }
-    }*/
     
     func setContentHeight() {
         
@@ -137,18 +109,5 @@ class HistoryScorePage: BaseViewController {
             self.contentViewHeightConstraint.constant = StringConstants.SCREEN_HEIGHT - 105
         }
     }
-    
-    //
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
