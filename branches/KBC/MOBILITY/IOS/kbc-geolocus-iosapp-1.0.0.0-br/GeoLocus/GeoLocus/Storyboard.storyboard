@@ -7031,6 +7031,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="notificationListTableView" destination="xyh-x9-Z38" id="Wvp-8l-BDP"/>
                         <segue destination="9ga-nf-OG3" kind="show" identifier="NotificationDetailssegue" id="WGT-Mb-Ixl"/>
                     </connections>
                 </viewController>

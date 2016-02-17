@@ -48,8 +48,8 @@ class RootViewController: BaseViewController {
         labelNotificationCount!.frame = CGRectMake(1, 1, 15, 15)
         labelNotificationCount!.textColor = UIColor.whiteColor()
         labelNotificationCount!.textAlignment = NSTextAlignment.Center
-        labelNotificationCount!.text = "2"
-        //labelNotificationCount!.text = FacadeLayer.sharedinstance.notificationCount
+       // labelNotificationCount!.text = "2"
+        labelNotificationCount!.text = FacadeLayer.sharedinstance.notificationCount
         labelNotificationCount!.font = UIFont(name: labelNotificationCount!.font.fontName, size: 10)
         redView.addSubview(labelNotificationCount!)
         
@@ -99,11 +99,33 @@ class RootViewController: BaseViewController {
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
             
         }
-      
+        notificationCountURL()
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+        self,
+        selector: "updateNotificationCount",
+        name: "UPDATE_NOTIFICATION_COUNT",
+        object: nil)
+        
       //Motion detect
 //       self.showSnoozingPop()
     }
-
+    func notificationCountURL(){
+        //self.showActivityIndicator()
+        FacadeLayer.sharedinstance.fetchNotificationCount { (status, data, error) -> Void in
+            self.labelNotificationCount!.text = FacadeLayer.sharedinstance.notificationCount
+            if(status == 1 && error == nil) {
+                //filtering then ordering each array
+            }
+            //self.hideActivityIndicator()
+            
+        }
+    }
+    func updateNotificationCount() {
+        
+        labelNotificationCount?.text = FacadeLayer.sharedinstance.notificationCount
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

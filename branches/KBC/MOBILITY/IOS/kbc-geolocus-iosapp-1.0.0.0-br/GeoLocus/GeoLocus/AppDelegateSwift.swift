@@ -295,14 +295,30 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         }
         return isFirstTimeLogin
     }
-  
+    func notificationCountURL(){
+        //self.showActivityIndicator()
+        FacadeLayer.sharedinstance.fetchNotificationCount { (status, data, error) -> Void in
+            //FacadeLayer.sharedinstance.notificationCount = "22"
+            let nc = NSNotificationCenter.defaultCenter()
+            nc.postNotificationName("UPDATE_NOTIFICATION_COUNT", object: nil)
+            if(status == 1 && error == nil) {
+                
+                //filtering then ordering each array
+                
+            }
+            //self.hideActivityIndicator()
+            
+        }
+    }
   //  MARK: - Background Task Identifier
   func applicationDidEnterBackground(application: UIApplication) {
-    
 //    doBackgroundTask()
    
   }
-  
+    func applicationWillEnterForeground(application: UIApplication) {
+        notificationCountURL()
+        
+    }
   func applicationDidBecomeActive(application: UIApplication) {
     // End the background task.
     self.endBackgroundUpdateTask()

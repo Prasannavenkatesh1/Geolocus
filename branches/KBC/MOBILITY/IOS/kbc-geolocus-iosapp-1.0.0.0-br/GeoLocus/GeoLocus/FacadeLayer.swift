@@ -552,11 +552,14 @@ class FacadeLayer{
         
         httpclient.requestNotificationCount(webService.notificationCountServiceURL!) { (response, data, error) -> Void in
             if error == nil {
-                
                 if let result = data {
                     var jsonData = JSON(data: result)
-                    
+                    self.notificationCount =  "22"
+
                     if jsonData["statusCode"].intValue == 1{
+                        
+                        self.notificationCount =  jsonData["Count"].string!
+
                         //
                     }else{
                         //defaults.setBool(false, forKey: "Badges_Page_Synced")

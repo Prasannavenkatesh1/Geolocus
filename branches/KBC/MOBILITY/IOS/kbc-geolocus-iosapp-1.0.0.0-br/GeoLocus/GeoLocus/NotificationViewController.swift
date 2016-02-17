@@ -14,6 +14,7 @@ class NotificationViewController: BaseViewController,UITableViewDataSource, UITa
     var notificationListModel = NotificationListModel?()
     var myActivityIndicator: UIActivityIndicatorView?
 
+    @IBOutlet weak var notificationListTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         notificationListDict = ["key1": "value1", "key2": "value2"]
@@ -40,7 +41,7 @@ class NotificationViewController: BaseViewController,UITableViewDataSource, UITa
 
         self.navigationItem.setLeftBarButtonItems([backButtonItem,kbcIconItem], animated:true)
         
-        notificationCountURL()
+        //notificationCountURL()
         // Do any additional setup after loading the view.
     }
 
@@ -70,18 +71,6 @@ class NotificationViewController: BaseViewController,UITableViewDataSource, UITa
     func hideActivityIndicator(){
         self.myActivityIndicator!.stopAnimating()
     }
-    func notificationCountURL(){
-        self.showActivityIndicator()
-        FacadeLayer.sharedinstance.fetchNotificationCount { (status, data, error) -> Void in
-            if(status == 1 && error == nil) {
-                
-                //filtering then ordering each array
-                
-            }
-            self.hideActivityIndicator()
-
-        }
-    }
     
     /* Facade layer call */
    
@@ -99,6 +88,11 @@ class NotificationViewController: BaseViewController,UITableViewDataSource, UITa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("CustomCell", forIndexPath: indexPath) as! NotificationTableViewCell
+//        cell.notificationTitle.text = "Hai"
+//        cell.notificationDate.text = ""
+//        cell.notificationMessage.text  = ""
+        //cell.notificationImageView.image =
+
         
         return cell
     }
@@ -120,6 +114,8 @@ class NotificationViewController: BaseViewController,UITableViewDataSource, UITa
         self.performSegueWithIdentifier("Notificationsegue", sender: self);
         
     }
+    
+    
     @IBAction func didTapOnDelete(sender: AnyObject) {
         print("Delete tapped")
         let alert = UIAlertController(title: "", message: "Are you sure want to delete?", preferredStyle: UIAlertControllerStyle.Alert)
@@ -130,6 +126,19 @@ class NotificationViewController: BaseViewController,UITableViewDataSource, UITa
             let userID = "7"
             let notificationId = "14"
             let type = "Promotion"
+            
+            
+            let indexPath: NSIndexPath!
+            let deleteRow : Int!
+            if let button = sender as? UIButton {
+                if let superview = button.superview {
+                    if let cell = superview.superview as? NotificationTableViewCell {
+                        indexPath = self.notificationListTableView.indexPathForCell(cell)
+                        deleteRow = indexPath.row
+
+                    }
+                }
+            }
             
             let parameterString = String(format: StringConstants.NOTIFICATION_DELETE_PARAMETERS, userID, notificationId, type)
             
