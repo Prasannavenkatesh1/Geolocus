@@ -428,12 +428,12 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
   }
     func applicationWillEnterForeground(application: UIApplication) {
         notificationCountURL()
-        requestAndSaveAppData()
     }
     
   func applicationDidBecomeActive(application: UIApplication) {
     // End the background task.
     self.endBackgroundUpdateTask()
+    requestAndSaveAppData()
   }
   
   
