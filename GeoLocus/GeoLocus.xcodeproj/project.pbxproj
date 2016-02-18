@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		217C9FF61C6B3FA1000BE567 /* GroupBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217C9FF51C6B3FA1000BE567 /* GroupBarViewController.swift */; };
 		280D592A1C6C7EE600270CDC /* trip_details.json in Resources */ = {isa = PBXBuildFile; fileRef = 280D59291C6C7EE600270CDC /* trip_details.json */; };
+		282FAB5C1C75929F00AEDB63 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAB5B1C75929F00AEDB63 /* Utility.swift */; };
 		28328A381C646F58004E5F86 /* OverallScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A371C646F58004E5F86 /* OverallScores.swift */; };
 		28398E551C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E4F1C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift */; };
 		28398E561C637F32003D5BE5 /* Trip_Speed_Zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E501C637F32003D5BE5 /* Trip_Speed_Zone.swift */; };
@@ -299,6 +300,7 @@
 		1A95D9C3DA0393AE29CF19F3 /* Pods-GeoLocus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoLocus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeoLocus/Pods-GeoLocus.debug.xcconfig"; sourceTree = "<group>"; };
 		217C9FF51C6B3FA1000BE567 /* GroupBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupBarViewController.swift; sourceTree = "<group>"; };
 		280D59291C6C7EE600270CDC /* trip_details.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = trip_details.json; sourceTree = "<group>"; };
+		282FAB5B1C75929F00AEDB63 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		28328A371C646F58004E5F86 /* OverallScores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverallScores.swift; sourceTree = "<group>"; };
 		28398E4F1C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_Speed_Zone+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		28398E501C637F32003D5BE5 /* Trip_Speed_Zone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_Speed_Zone.swift; sourceTree = "<group>"; };
@@ -1188,6 +1190,7 @@
 				BFE454751C64DCD6003BC0F2 /* TripSummaryModel.swift */,
 				BF2D457E1C6C81070017EBB0 /* SummaryModel.swift */,
 				B6AC7CC21C73134800CD8B02 /* ContractModel.swift */,
+				282FAB5B1C75929F00AEDB63 /* Utility.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1588,6 +1591,7 @@
 				BF2D457F1C6C81080017EBB0 /* SummaryModel.swift in Sources */,
 				6384523C1B0353AE00E895F7 /* ScoringPageController.m in Sources */,
 				6389B24D1B1C9AA600F2A18C /* CollectionIntervalController.m in Sources */,
+				282FAB5C1C75929F00AEDB63 /* Utility.swift in Sources */,
 				6CCAF9061C4E05A300484056 /* BadgesViewController.swift in Sources */,
 				6CCAF9101C4E20D500484056 /* ErrorHandler.swift in Sources */,
 				638452391B0353AE00E895F7 /* RegistrationEntity.m in Sources */,
