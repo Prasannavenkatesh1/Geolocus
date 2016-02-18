@@ -298,13 +298,10 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     func notificationCountURL(){
         //self.showActivityIndicator()
         FacadeLayer.sharedinstance.fetchNotificationCount { (status, data, error) -> Void in
-            //FacadeLayer.sharedinstance.notificationCount = "22"
-            let nc = NSNotificationCenter.defaultCenter()
-            nc.postNotificationName("UPDATE_NOTIFICATION_COUNT", object: nil)
-            if(status == 1 && error == nil) {
+            if(status == 1) {
                 
-                //filtering then ordering each array
-                
+                let nc = NSNotificationCenter.defaultCenter()
+                nc.postNotificationName("UPDATE_NOTIFICATION_COUNT", object: nil)
             }
             //self.hideActivityIndicator()
             

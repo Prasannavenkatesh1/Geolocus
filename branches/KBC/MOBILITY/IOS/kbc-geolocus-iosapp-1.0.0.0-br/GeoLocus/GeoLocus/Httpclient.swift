@@ -282,7 +282,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         }
         
         
-        let notificationCountRequest = NSMutableURLRequest(URL: NSURL(string: "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/notification/getnotificationcount?userId=9")!)
+        let notificationCountRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
         notificationCountRequest.HTTPMethod = "GET"
         notificationCountRequest.setValue("SWs5cVUyeUFDTDg5bnhMMnZaOWVLUT09Om16Vm01Q3pPVHErZXJyUUV3ZHMyM3c9PQ", forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
         

@@ -13,7 +13,7 @@ class NotificationViewController: BaseViewController,UITableViewDataSource, UITa
     var notificationListArray = [String]()
     var notificationListModel = NotificationListModel?()
     var myActivityIndicator: UIActivityIndicatorView?
-
+    var selectedRow :NSIndexPath?
     @IBOutlet weak var notificationListTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +43,16 @@ class NotificationViewController: BaseViewController,UITableViewDataSource, UITa
         
         //notificationCountURL()
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        selectedRow = notificationListTableView.indexPathForSelectedRow as NSIndexPath!
+        if selectedRow != nil {
+           print (selectedRow!.row)
+           notificationListTableView.reloadData()
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,8 +102,11 @@ class NotificationViewController: BaseViewController,UITableViewDataSource, UITa
 //        cell.notificationDate.text = ""
 //        cell.notificationMessage.text  = ""
         //cell.notificationImageView.image =
-
-        
+        if selectedRow != nil && selectedRow == indexPath{
+            cell.notificationTitle.textColor = UIColor(red:0/255.0, green:54/255.0, blue:101/255.0, alpha: 1.0)
+            cell.notificationDate.textColor = UIColor(red:0/255.0, green:54/255.0, blue:101/255.0, alpha: 1.0)
+            cell.notificationMessage.textColor = UIColor(red:0/255.0, green:54/255.0, blue:101/255.0, alpha: 1.0)
+        }
         return cell
     }
     
@@ -143,9 +156,8 @@ class NotificationViewController: BaseViewController,UITableViewDataSource, UITa
             let parameterString = String(format: StringConstants.NOTIFICATION_DELETE_PARAMETERS, userID, notificationId, type)
             
             FacadeLayer.sharedinstance.postDeletedNotification { (status, data, error) -> Void in
-                if(status == 1 && error == nil) {
-                    
-                    //filtering then ordering each array
+                if(status == 1) {
+                    self.notificationListTableView.reloadData()
                     
                 }
                 self.hideActivityIndicator()
