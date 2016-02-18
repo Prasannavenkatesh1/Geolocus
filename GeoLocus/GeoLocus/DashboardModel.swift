@@ -10,14 +10,14 @@ import Foundation
 
 struct DashboardModel {
     
-    let score: String
-    let levelName: String
-    let levelMessage: String
-    let distanceTravelled: String
-    let totalPoints: String?
-    let pointsAchieved: String?
-    let scoreMessage: String
-    let tripStatus: String
+    var score: String
+    var levelName: String
+    var levelMessage: String
+    var distanceTravelled: String
+    var totalPoints: String
+    var pointsAchieved: String
+    var scoreMessage: String
+    var tripStatus: String
     
     init(score: String, levelName: String, levelMessage: String, distanceTravelled: String, totalPoints: String, pointsAchieved: String, scoreMessage: String,
         tripStatus: String) {

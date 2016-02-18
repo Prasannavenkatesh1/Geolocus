@@ -45,13 +45,14 @@ import UIKit
     }
     
     func handleGetDashboardDetails(){
-        
+        self.startLoading()
         FacadeLayer.sharedinstance.fetchDashboardData{ (status, data, error) -> Void in
             if(status == 1 && error == nil) {
-                
+                self.stopLoading()
                 print(data)
                 let dashboardData :DashboardModel = data!
                 self.levelName.text = dashboardData.levelName
+                self.distanceTravelledValue.text = dashboardData.distanceTravelled
                  var score = Int(dashboardData.score)
                 
                 self.customiseProgressView()
@@ -60,11 +61,14 @@ import UIKit
                 // Do any additional setup after loading the view.
                 self.arcView.ringLayer.strokeColor = UIColor.redColor().CGColor
                 self.arcView.foreGroundArcWidth = 10.0
-                self.arcView.animateScale = 0.75
+                if let dashboardScore = score{
+                    self.arcView.animateScale = Double(dashboardScore)/100
+                }
                 self.arcView.setNeedsDisplay()
 
             }else{
                 //something went wrong
+                self.stopLoading()
                 
             }
             //self.hideActivityIndicator()
