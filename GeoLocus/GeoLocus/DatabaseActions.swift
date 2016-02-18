@@ -29,6 +29,19 @@ class DatabaseActions: NSObject {
     
     return managedObjectContext
   }()
+    
+    
+    lazy var privateManagedObjectContext: NSManagedObjectContext = {
+        let persistentStoreCoordinator = self.persistentStoreCoordinator
+        
+        // Initialize Managed Object Context
+        var privateManagedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+        
+        // Configure Managed Object Context
+        privateManagedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
+        
+        return privateManagedObjectContext
+    }()
   
   lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
     // Initialize Persistent Store Coordinator
@@ -72,6 +85,18 @@ class DatabaseActions: NSObject {
       print("\(saveError), \(saveError.userInfo)")
     }
   }
+    
+//    private func savePrivateManagedObjectContext() {
+//        
+//        self.privateManagedObjectContext.performBlock { () -> Void in
+//            do {
+//                try self.privateManagedObjectContext.save()
+//            } catch {
+//                let saveError = error as NSError
+//                print("\(saveError), \(saveError.userInfo)")
+//            }
+//        }
+//    }
   
   //MARK:- TripTimeSeries
   
@@ -209,6 +234,9 @@ class DatabaseActions: NSObject {
       fatalError("reterive error")
     }
   }
+    
+    
+    //MARK: - History Methods
   
     func saveTripDetail(tripDetails: [History], completionhandler:(status: Bool)-> Void) {
         
@@ -220,11 +248,11 @@ class DatabaseActions: NSObject {
                 let events = NSMutableOrderedSet()
                 let speedZones = NSMutableOrderedSet()
                 
-                let tripDetailRow = NSEntityDescription.insertNewObjectForEntityForName("Trip_Detail",inManagedObjectContext: self.managedObjectContext) as! Trip_Detail
+                let tripDetailRow = NSEntityDescription.insertNewObjectForEntityForName("Trip_Detail",inManagedObjectContext: self.privateManagedObjectContext) as! Trip_Detail
                 
                 if tripDetail.events?.count > 0 {
                     for tripEvent in tripDetail.events! {
-                        let event = NSEntityDescription.insertNewObjectForEntityForName("Trip_Event",inManagedObjectContext: self.managedObjectContext) as! Trip_Event
+                        let event = NSEntityDescription.insertNewObjectForEntityForName("Trip_Event",inManagedObjectContext: self.privateManagedObjectContext) as! Trip_Event
                         event.latitude      = tripEvent.location.latitude
                         event.longitude     = tripEvent.location.longitude
                         event.eventType     = tripEvent.type.rawValue
@@ -237,7 +265,7 @@ class DatabaseActions: NSObject {
                 
                 if tripDetail.speedZones.count > 0 {
                     for tripZone in tripDetail.speedZones {
-                        let speedZone = NSEntityDescription.insertNewObjectForEntityForName("Trip_Speed_Zone",inManagedObjectContext: self.managedObjectContext) as! Trip_Speed_Zone
+                        let speedZone = NSEntityDescription.insertNewObjectForEntityForName("Trip_Speed_Zone",inManagedObjectContext: self.privateManagedObjectContext) as! Trip_Speed_Zone
                         
                         speedZone.speedScore        = tripZone.speedScore
                         speedZone.speedBehaviour    = tripZone.speedBehaviour
@@ -269,19 +297,22 @@ class DatabaseActions: NSObject {
                 tripDetailRow.events            = events
                 tripDetailRow.speedZones        = speedZones
                 
-                do{
-                    try self.managedObjectContext.save()
-                    
-                    rowCount++
-                    
-                    if rowCount == tripDetails.count{
-                        completionhandler(status: true)
+                self.privateManagedObjectContext.performBlockAndWait({ () -> Void in
+                    do{
+                        try self.privateManagedObjectContext.save()
+                        
+                        rowCount++
+                        
+                        if rowCount == tripDetails.count{
+                            completionhandler(status: true)
+                        }
+                    }catch{
+                        
+                        completionhandler(status: false)
+                        fatalError("not iserted")
                     }
-                }catch{
-                    
-                    completionhandler(status: false)
-                    fatalError("not iserted")
-                }
+                })
+                
             }
         }
     }
@@ -379,7 +410,7 @@ class DatabaseActions: NSObject {
             var rowCount = 0
             
             for badge in badges {
-                let badgeRow = NSEntityDescription.insertNewObjectForEntityForName("Trip_Badge",inManagedObjectContext: self.managedObjectContext) as! Trip_Badge
+                let badgeRow = NSEntityDescription.insertNewObjectForEntityForName("Trip_Badge",inManagedObjectContext: self.privateManagedObjectContext) as! Trip_Badge
                 
                 badgeRow.title              = badge.badgeTitle
                 badgeRow.badgeDescription   = badge.badgeDescription
@@ -387,22 +418,22 @@ class DatabaseActions: NSObject {
                 badgeRow.type               = badge.badgeType.rawValue
                 badgeRow.orderIndex         = badge.orderIndex
                 
-                do{
-                    try self.managedObjectContext.save()
-                    
-                    rowCount++
-                    if rowCount == badges.count {
-                        completionhandler(status: true)
+                self.privateManagedObjectContext.performBlockAndWait({ () -> Void in
+                    do{
+                        try self.privateManagedObjectContext.save()
+                        
+                        rowCount++
+                        if rowCount == badges.count {
+                            completionhandler(status: true)
+                        }
+                        
+                    }catch{
+                        completionhandler(status: false)
+                        fatalError("not iserted")
                     }
-                    
-                    //add check
-                    //                fetchBadgeData({ (status, response, error) -> Void in
-                    //                    print(response)
-                    //                })
-                }catch{
-                    completionhandler(status: false)
-                    fatalError("not iserted")
-                }
+                })
+                
+                
             }
         }else{
             completionhandler(status: false)
@@ -424,7 +455,7 @@ class DatabaseActions: NSObject {
         
         
         do{
-            try self.managedObjectContext.save()
+            try self.privateManagedObjectContext.save()
                 completionhandler(status: true)
         }catch{
             completionhandler(status: false)
@@ -487,7 +518,7 @@ class DatabaseActions: NSObject {
     //MARK: - Overall Score methods-------------------------------------------------------------------------------------
     
     func saveOverallScore(overallScore: OverallScores, completionhandler:(status: Bool)-> Void){
-        let overallScoreRow = NSEntityDescription.insertNewObjectForEntityForName("OverallScore",inManagedObjectContext: self.managedObjectContext) as! OverallScore
+        let overallScoreRow = NSEntityDescription.insertNewObjectForEntityForName("OverallScore",inManagedObjectContext: self.privateManagedObjectContext) as! OverallScore
         overallScoreRow.overall             = overallScore.overallScore
         overallScoreRow.speeding            = overallScore.speedingScore
         overallScoreRow.eco                 = overallScore.ecoScore
@@ -497,17 +528,20 @@ class DatabaseActions: NSObject {
         overallScoreRow.overallMessage      = overallScore.overallmessage
         overallScoreRow.speedingMessage     = overallScore.speedingMessage
         overallScoreRow.ecoMessage          = overallScore.ecoMessage
+        
+        self.privateManagedObjectContext.performBlockAndWait { () -> Void in
+            do{
+                try self.privateManagedObjectContext.save()
+                //add check
+                print("saved")
+                completionhandler(status: true)
+            }catch{
+                completionhandler(status: false)
+                fatalError("not iserted")
                 
-        do{
-            try self.managedObjectContext.save()
-            //add check
-            print("saved")
-            completionhandler(status: true)
-        }catch{
-            completionhandler(status: false)
-            fatalError("not iserted")
-            
+            }
         }
+        
     }
     
     
