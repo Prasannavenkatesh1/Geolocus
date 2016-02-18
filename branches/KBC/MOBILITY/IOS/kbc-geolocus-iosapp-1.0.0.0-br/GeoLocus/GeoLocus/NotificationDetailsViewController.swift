@@ -23,6 +23,11 @@ class NotificationDetailsViewController: BaseViewController {
     @IBOutlet weak var overallScoreArc: ArcGraphicsController!
     @IBOutlet weak var speedingScoreArc: ArcGraphicsController!
     
+    @IBOutlet weak var shareTextfield: UITextField!
+    @IBOutlet weak var userViolationScore: UILabel!
+    @IBOutlet weak var userDistance: UILabel!
+    @IBOutlet weak var competitionViolationScore: UILabel!
+    @IBOutlet weak var competitionDistance: UILabel!
     @IBOutlet weak var userEcoScoreArc: ArcGraphicsController!
     @IBOutlet weak var userOverallScoreArc: ArcGraphicsController!
     @IBOutlet weak var userSpeedingScoreArc: ArcGraphicsController!
@@ -33,7 +38,7 @@ class NotificationDetailsViewController: BaseViewController {
         notificationDescription.text = "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files , to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions"
         declineButton.layer.borderColor = UIColor(red:240/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).CGColor
         //competitionAcceptanceView.hidden = true
-        //competitionScoresView.hidden = true
+        competitionScoresView.hidden = true
         
         reloadView()
         
@@ -160,9 +165,25 @@ class NotificationDetailsViewController: BaseViewController {
         
         FacadeLayer.sharedinstance.postAcceptedNotification { (status, data, error) -> Void in
             if(status == 1) {
+                self.competitionAcceptanceView.hidden = true
+                self.competitionScoresView.hidden = false
+
+                self.userDistance.text = ""
+                self.userViolationScore.text = ""
+
+                self.competitionDistance.text = ""
+                self.competitionViolationScore.text = ""
                 
-                //filtering then ordering each array
                 
+            }
+            else{
+                let alert = UIAlertController(title: "", message: "Please try again later..", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { action in
+                    
+                }))
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+
             }
         }
         
