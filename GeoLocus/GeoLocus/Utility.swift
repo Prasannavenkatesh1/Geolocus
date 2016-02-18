@@ -8,22 +8,39 @@
 
 import Foundation
 
-var GlobalMainQueue: dispatch_queue_t {
-    return dispatch_get_main_queue()
-}
-
-var GlobalUserInteractiveQueue: dispatch_queue_t {
-    return dispatch_get_global_queue(Int(QOS_CLASS_USER_INTERACTIVE.rawValue), 0)
-}
-
-var GlobalUserInitiatedQueue: dispatch_queue_t {
-    return dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)
-}
-
-var GlobalUtilityQueue: dispatch_queue_t {
-    return dispatch_get_global_queue(Int(QOS_CLASS_UTILITY.rawValue), 0)
-}
-
-var GlobalBackgroundQueue: dispatch_queue_t {
-    return dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.rawValue), 0)
+class Utility {
+    
+    static func getMonthString(month: Int) -> String {
+        var monthString = String()
+        
+        switch month {
+        case 1: monthString = "Jan"
+        case 2: monthString = "Feb"
+        case 3: monthString = "Mar"
+        case 4: monthString = "Apr"
+        case 5: monthString = "May"
+        case 6: monthString = "Jun"
+        case 7: monthString = "Jul"
+        case 8: monthString = "Aug"
+        case 9: monthString = "Sep"
+        case 10:monthString = "Oct"
+        case 11:monthString = "Nov"
+        case 12:monthString = "Dec"
+        default: monthString = "UDF"
+        }
+        return monthString
+    }
+    
+    static func getEventType(event:String) -> EventType{
+        
+        if(event.caseInsensitiveCompare("Acceleration") == NSComparisonResult.OrderedSame){
+            return EventType.Acceleration
+        }else if (event.caseInsensitiveCompare("Breaking") == NSComparisonResult.OrderedSame) {
+            return EventType.Breaking
+        }else if (event.caseInsensitiveCompare("Speeding") == NSComparisonResult.OrderedSame) {
+            return EventType.Speeding
+        }else{
+            return EventType.None
+        }
+    }
 }

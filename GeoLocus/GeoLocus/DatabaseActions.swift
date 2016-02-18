@@ -499,15 +499,17 @@ class DatabaseActions: NSObject {
             
             var badges = [Badge]()
             
-            for item in results {
-                
-                let badgemanagedObj = item as! Trip_Badge
-                let badge = Badge(withIcon: "", badgeTitle: badgemanagedObj.title!, badgeDescription:badgemanagedObj.badgeDescription! , isEarned: badgemanagedObj.isEarned!.boolValue, orderIndex: badgemanagedObj.orderIndex!.integerValue, badgeType:Badge.BadgesType(rawValue: badgemanagedObj.type!.integerValue)! , additionalMsg:nil)
-                badges.append(badge)
+            if results.count > 0 {
+                for item in results {
+                    
+                    let badgemanagedObj = item as! Trip_Badge
+                    let badge = Badge(withIcon: "", badgeTitle: badgemanagedObj.title!, badgeDescription:badgemanagedObj.badgeDescription! , isEarned: badgemanagedObj.isEarned!.boolValue, orderIndex: badgemanagedObj.orderIndex!.integerValue, badgeType:Badge.BadgesType(rawValue: badgemanagedObj.type!.integerValue)! , additionalMsg:nil)
+                    badges.append(badge)
+                }
+                return badges
+            }else{
+                return nil
             }
-            
-            return badges
-            
         }else{
             
             return nil

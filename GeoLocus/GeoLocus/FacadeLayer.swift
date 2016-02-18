@@ -400,7 +400,7 @@ class FacadeLayer{
                                 for (_,subJson):(String, JSON) in trip["event"]! {
                                     let eventDict = subJson.dictionaryValue
                                     let eventLocation = EventLocation(latitude: Double(eventDict["lat"]!.stringValue)!, longitude:Double(eventDict["long"]!.stringValue)!)
-                                    let event = Event(location: eventLocation, type:Helper.getEventType(eventDict["event_type"]!.string!) , message: eventDict["eventMessage"]!.string!)
+                                    let event = Event(location: eventLocation, type:Utility.getEventType(eventDict["event_type"]!.string!) , message: eventDict["eventMessage"]!.string!)
                                     
                                     eventsObj.append(event)
                                 }
