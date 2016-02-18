@@ -33,7 +33,7 @@ class NotificationDetailsViewController: BaseViewController {
         notificationDescription.text = "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files , to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions"
         declineButton.layer.borderColor = UIColor(red:240/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).CGColor
         //competitionAcceptanceView.hidden = true
-        competitionScoresView.hidden = true
+        //competitionScoresView.hidden = true
         
         reloadView()
         
@@ -159,7 +159,7 @@ class NotificationDetailsViewController: BaseViewController {
         let parameterString = String(format: StringConstants.NOTIFICATION_DELETE_PARAMETERS, userID, notificationId, type)
         
         FacadeLayer.sharedinstance.postAcceptedNotification { (status, data, error) -> Void in
-            if(status == 1 && error == nil) {
+            if(status == 1) {
                 
                 //filtering then ordering each array
                 

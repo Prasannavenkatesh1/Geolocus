@@ -114,8 +114,8 @@ class RootViewController: BaseViewController {
         //self.showActivityIndicator()
         FacadeLayer.sharedinstance.fetchNotificationCount { (status, data, error) -> Void in
             self.labelNotificationCount!.text = FacadeLayer.sharedinstance.notificationCount
-            if(status == 1 && error == nil) {
-                //filtering then ordering each array
+            if(status == 1) {
+                self.updateNotificationCount()
             }
             //self.hideActivityIndicator()
             
