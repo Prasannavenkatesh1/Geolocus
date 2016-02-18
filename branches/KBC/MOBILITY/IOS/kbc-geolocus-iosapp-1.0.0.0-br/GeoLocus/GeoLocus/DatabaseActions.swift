@@ -410,6 +410,28 @@ class DatabaseActions: NSObject {
         }
     }
     
+    func saveDashboardData(dashboardData:DashboardModel , completionhandler:(status:Bool)->Void){
+        
+         let dashboard = NSEntityDescription.insertNewObjectForEntityForName("Dashboard", inManagedObjectContext: self.managedObjectContext) as! Dashboard
+         dashboard.distancetravelled  = dashboardData.distanceTravelled
+         dashboard.levelname          = dashboardData.levelName
+         dashboard.nextlevelmessage   = dashboardData.levelMessage
+         dashboard.pointsachieved     = dashboardData.pointsAchieved
+         dashboard.scoremessage       = dashboardData.scoreMessage
+         dashboard.scorerange         = dashboardData.score
+         dashboard.totalpoints        = dashboardData.totalPoints
+         dashboard.tripstatus         = dashboardData.tripStatus
+        
+        
+        do{
+            try self.managedObjectContext.save()
+                completionhandler(status: true)
+        }catch{
+            completionhandler(status: false)
+            fatalError("not iserted")
+        }
+    }
+    
     
     func fetchBadgeData(completionHandler:(status : Int, response: [Badge]?, error: NSError?) -> Void) -> Void{
         // Initialize Fetch Request

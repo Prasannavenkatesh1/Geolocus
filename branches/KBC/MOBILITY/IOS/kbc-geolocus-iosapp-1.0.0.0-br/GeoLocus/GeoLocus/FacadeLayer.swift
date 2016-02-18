@@ -455,7 +455,17 @@ class FacadeLayer{
                             }
                             
                             dashboard = DashboardModel(score: score!, levelName: level!, levelMessage: nextLevelMessage!, distanceTravelled: distanceTravelled!, totalPoints:totalPoints!, pointsAchieved: pointsAchieved!, scoreMessage: scoreMessage!, tripStatus: tripStatus!)
-                            completionHandler(status: 1, data: dashboard, error: nil)
+                            
+                            self.dbactions.removeData("Dashboard")
+                            self.dbactions.saveDashboardData(dashboard, completionhandler: { (status) -> Void in
+                                if status{
+                                    completionHandler(status: 1, data: dashboard, error: nil)
+                                }else{
+                                    completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                                }
+                            })
+
+                            //completionHandler(status: 1, data: dashboard, error: nil)
                         }else{
                             //something went wrong
                             completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
