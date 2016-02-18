@@ -109,10 +109,6 @@ struct StringConstants {
     
     static let REPORT_SYNCHRONISATION = "ReportData_Synchronised"
     
-    /* Font name */
-    static let HELVETICA_NEUE = "Helvetica Neue"
-    static let HELVETICA_NEUE_MEDIUM = "HelveticaNeue-Medium"
-
 }
 
 
@@ -166,44 +162,20 @@ struct NotificationKey {
     
 }
 
-
-
-
-class Helper {
-    
-    static func getMonthString(month: Int) -> String {
-        var monthString = String()
-        
-        switch month {
-        case 1: monthString = "Jan"
-        case 2: monthString = "Feb"
-        case 3: monthString = "Mar"
-        case 4: monthString = "Apr"
-        case 5: monthString = "May"
-        case 6: monthString = "Jun"
-        case 7: monthString = "Jul"
-        case 8: monthString = "Aug"
-        case 9: monthString = "Sep"
-        case 10:monthString = "Oct"
-        case 11:monthString = "Nov"
-        case 12:monthString = "Dec"
-        default: monthString = "UDF"
-        }
-        return monthString
-    }
-    
-    static func getEventType(event:String) -> EventType{
-        
-        if(event.caseInsensitiveCompare("Acceleration") == NSComparisonResult.OrderedSame){
-            return EventType.Acceleration
-        }else if (event.caseInsensitiveCompare("Breaking") == NSComparisonResult.OrderedSame) {
-            return EventType.Breaking
-        }else if (event.caseInsensitiveCompare("Speeding") == NSComparisonResult.OrderedSame) {
-            return EventType.Speeding
-        }else{
-            return EventType.None
-        }
-    }
+struct CellID {
+    static let HISTORY_SCORE  = "HTSCell"
+    static let HISTORY_MAP    = "HMVCell"
+    static let HISTORY_ZONE   = "HSZCell"
+    static let HISTORY_DETAIL = "HTDCell"
 }
 
+struct Font {
+    static let HELVETICA_NEUE = "Helvetica Neue"
+    static let HELVETICA_NEUE_MEDIUM = "HelveticaNeue-Medium"
 
+}
+
+struct Arc {
+    static let BACKGROUND_WIDTH = CGFloat(8)
+    static let FOREGROUND_WIDTH = CGFloat(8)
+}

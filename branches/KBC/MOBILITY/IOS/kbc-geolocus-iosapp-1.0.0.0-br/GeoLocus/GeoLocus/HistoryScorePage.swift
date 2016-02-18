@@ -51,20 +51,20 @@ class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
     
     func reloadView() {
         if self.overallScores != nil {
-            self.drivingBehaviorArcView.foreGroundArcWidth = 8
-            self.drivingBehaviorArcView.backGroundArcWidth = 8
+            self.drivingBehaviorArcView.foreGroundArcWidth = Arc.FOREGROUND_WIDTH
+            self.drivingBehaviorArcView.backGroundArcWidth = Arc.BACKGROUND_WIDTH
             self.drivingBehaviorArcView.ringLayer.strokeColor = UIColor(range: (self.overallScores?.overallScore.integerValue)!).CGColor
             self.drivingBehaviorArcView.animateScale = (self.overallScores?.overallScore.doubleValue)!/100.0
             self.drivingBehaviorArcView.setNeedsDisplay()
             
-            self.speedingArcView.foreGroundArcWidth = 8
-            self.speedingArcView.backGroundArcWidth = 8
+            self.speedingArcView.foreGroundArcWidth = Arc.FOREGROUND_WIDTH
+            self.speedingArcView.backGroundArcWidth = Arc.BACKGROUND_WIDTH
             self.speedingArcView.ringLayer.strokeColor = UIColor(range: (self.overallScores?.speedingScore.integerValue)!).CGColor
             self.speedingArcView.animateScale = (self.overallScores?.speedingScore.doubleValue)!/100.0
             self.speedingArcView.setNeedsDisplay()
             
-            self.ecoArcView.foreGroundArcWidth = 8
-            self.ecoArcView.backGroundArcWidth = 8
+            self.ecoArcView.foreGroundArcWidth = Arc.FOREGROUND_WIDTH
+            self.ecoArcView.backGroundArcWidth = Arc.BACKGROUND_WIDTH
             self.ecoArcView.ringLayer.strokeColor = UIColor(range: (self.overallScores?.ecoScore.integerValue)!).CGColor
             self.ecoArcView.animateScale = (self.overallScores?.ecoScore.doubleValue)!/100.0
             self.ecoArcView.setNeedsDisplay()
@@ -114,11 +114,6 @@ class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
                 //something went bad
             }
         }
-        
-//        FacadeLayer.sharedinstance.dbactions.removeData("OverallScore")
-//        FacadeLayer.sharedinstance.dbactions.saveOverallScore(OverallScores(overallScore: 75, speedingScore: 60, ecoScore: 30, distanceTravelled: 7564, dataUsageMsg: "25")) { (status) -> Void in
-//            print("saved")
-//        }
     }
     
     func setContentHeight() {
@@ -156,16 +151,12 @@ class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
         
         switch tag {
         case 1 :
-            print("driving tapped")
             messageString = self.overallScores!.overallmessage
         case 2 :
-            print("speeding tapped")
             messageString = self.overallScores!.speedingMessage
         case 3:
-            print("eco tapped")
             messageString = self.overallScores!.ecoMessage
         case 4:
-            print("attention tapped")
             messageString = self.overallScores!.dataUsageMsg
         default:
             messageString = " "
