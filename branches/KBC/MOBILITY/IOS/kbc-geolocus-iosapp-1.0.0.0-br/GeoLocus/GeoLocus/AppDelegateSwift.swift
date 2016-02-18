@@ -373,6 +373,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                     print("badgeData save finished...")
                     dispatch_group_leave(webServiceGroup)
                 }
+                 dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
                 
                 dispatch_group_enter(webServiceGroup)
                 FacadeLayer.sharedinstance.removeData("Trip_Detail")
@@ -385,6 +386,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                     print("historyData save finished...")
                     dispatch_group_leave(webServiceGroup)
                 })
+                 dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
                 
                 dispatch_group_enter(webServiceGroup)
                 FacadeLayer.sharedinstance.removeData("OverallScore")

@@ -332,11 +332,11 @@ class HistoryPage: BaseViewController, UITableViewDataSource, UITableViewDelegat
         
         if indexPath.section == 0{
             if StringConstants.SCREEN_HEIGHT == 480 {
-                rowHeight = 140
-            }else if StringConstants.SCREEN_HEIGHT == 568 {
-                rowHeight = 135
-            }else if StringConstants.SCREEN_HEIGHT == 667 {
                 rowHeight = 160
+            }else if StringConstants.SCREEN_HEIGHT == 568 {
+                rowHeight = 155
+            }else if StringConstants.SCREEN_HEIGHT >= 667 {
+                rowHeight = 170
             }else {
                 rowHeight = 170
             }
