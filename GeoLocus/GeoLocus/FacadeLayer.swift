@@ -687,6 +687,8 @@ class FacadeLayer{
                     var jsonData = JSON(data: result)
                     
                     if jsonData["status"].intValue == 1{
+                        completionHandler(status: 1, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+
                         //
                     }else{
                         //defaults.setBool(false, forKey: "Badges_Page_Synced")
