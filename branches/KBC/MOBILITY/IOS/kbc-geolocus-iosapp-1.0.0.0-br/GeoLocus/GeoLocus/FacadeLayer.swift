@@ -55,6 +55,7 @@ class FacadeLayer{
     print(__FUNCTION__)
   }
     
+    //MARK: - Webservice settings
     
     func getWebServiceURL(){
         
@@ -142,6 +143,12 @@ class FacadeLayer{
                 }
             }
         }
+    }
+    
+    
+    //DB Method
+    func removeData(entity: String) {
+        self.dbactions.removeData(entity)
     }
     
     //MARK: Terms and Conditions Service
@@ -264,7 +271,13 @@ class FacadeLayer{
     
     func fetchtripDetailData(completionHandler:(status: Int, data: [History]?, error: NSError?) -> Void) -> Void{
         
-        let defaults = NSUserDefaults.standardUserDefaults()
+        self.dbactions.fetchtripDetailData({ (status, response, error) -> Void in
+            completionHandler(status: status, data: response, error: error)
+        })
+        
+        
+        
+        /*let defaults = NSUserDefaults.standardUserDefaults()
         
         if defaults.boolForKey("History_Page_Synced") {
             //get from DB and reload table
@@ -308,7 +321,7 @@ class FacadeLayer{
                                 
                                 //Speedzone array
                                 
-                                for (index,subjson):(String, JSON) in trip["speed_zone"]! {
+                                for (_,subjson):(String, JSON) in trip["speed_zone"]! {
                                     let zoneDict = subjson.dictionaryValue
                                     let speedZone = SpeedZone(speedScore: Double(zoneDict["speedScore"]!.stringValue)!,
                                         maxSpeed: Double(zoneDict["max_speed"]!.stringValue)!,
@@ -357,8 +370,89 @@ class FacadeLayer{
                     completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
                 }
             }
+        }*/
+    }
+    
+    
+    func requestRecentTripData(completionHandler:(status: Int, data: [History]?, error: NSError?) -> Void) -> Void {
+        
+        if let serviceURL = self.webService.historyServiceURL {
+            httpclient.requestRecentTripData (serviceURL){ (response, data, error) -> Void in
+                
+                if error == nil {
+                    
+                    var tripArray = [History]()
+                    
+                    if let result = data {
+                        var jsonData = JSON(data: result)
+                        
+                        if let tripDetails = jsonData["with"]["content"]["tripdetails"].array {
+                            
+                            for tripObj in tripDetails {
+                                let trip = tripObj.dictionaryValue
+                                
+                                var eventsObj = [Event]()
+                                var speedZonesObj = [SpeedZone]()
+                                
+                                let tripScore = TripScore(overallScore: trip["tripOverallScore"]!.doubleValue,speedScore: trip["speedscore"]!.doubleValue, ecoScore: trip["ecoscore"]!.doubleValue, attentionScore: nil)
+                                
+                                //Event array
+                                for (_,subJson):(String, JSON) in trip["event"]! {
+                                    let eventDict = subJson.dictionaryValue
+                                    let eventLocation = EventLocation(latitude: Double(eventDict["lat"]!.stringValue)!, longitude:Double(eventDict["long"]!.stringValue)!)
+                                    let event = Event(location: eventLocation, type:Helper.getEventType(eventDict["event_type"]!.string!) , message: eventDict["eventMessage"]!.string!)
+                                    
+                                    eventsObj.append(event)
+                                }
+                                
+                                //Speedzone array
+                                for (_,subjson):(String, JSON) in trip["speed_zone"]! {
+                                    let zoneDict = subjson.dictionaryValue
+                                    let speedZone = SpeedZone(speedScore: Double(zoneDict["speedScore"]!.stringValue)!,
+                                        maxSpeed: Double(zoneDict["max_speed"]!.stringValue)!,
+                                        aboveSpeed: Double(zoneDict["Above_maxspeed"]!.stringValue)!,
+                                        withinSpeed: Double(zoneDict["within_maxspeed"]!.stringValue)!,
+                                        violationCount: Double(zoneDict["violation_count"]!.stringValue)!,
+                                        speedBehaviour: Double(zoneDict["speedbehaviour"]!.stringValue)!,
+                                        distanceTravelled: Double(zoneDict["distance_travelled"]!.stringValue)!)
+                                    
+                                    speedZonesObj.append(speedZone)
+                                }
+                                
+                                let dateFormatter = NSDateFormatter()
+                                dateFormatter.dateFormat = "dd-MM-yyyy"
+                                
+                                let tripDetail = History(tripid:  trip["tripId"]!.string!, tripDate: dateFormatter.stringFromDate(NSDate(jsonDate: trip["date"]!.string!)!), distance: Double(trip["distance"]!.stringValue)!, tripPoints: Int(trip["trippoints"]!.stringValue)!, tripDuration:  Double(trip["hours"]!.stringValue)!, speedingMessage: trip["speedingMessage"]!.string!, ecoMessage: trip["ecoMessage"]!.string!, dataUsageMessage: trip["dataUsageMsg"]!.string!, tripScore: tripScore, events: eventsObj, speedZones: speedZonesObj)
+                                
+                                tripArray.append(tripDetail)
+                            }
+                            completionHandler(status: 1, data: tripArray, error: nil)
+                        }else{
+                            completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                        }
+                    }else{
+                        completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                    }
+                }else{
+                    completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                }
+            }
         }
     }
+    
+    
+    func saveTripDetail(tripDetails: [History], completionhandler:(status: Bool)-> Void) {
+        
+        //self.dbactions.removeData("Trip_Detail")
+        self.dbactions.saveTripDetail(tripDetails, completionhandler: { (status) -> Void in
+            if status {
+                completionhandler(status: true)
+            }else{
+                completionhandler(status: false)
+            }
+        })
+    }
+    
     
     //MARK:- Reoport service
     
@@ -492,10 +586,15 @@ class FacadeLayer{
     
     func fetchBadgeData(completionHandler:(status: Int, data: [Badge]?, error: NSError?) -> Void) -> Void{
         
-        let defaults = NSUserDefaults.standardUserDefaults()
+        dbactions.fetchBadgeData({ (status, data, error) -> Void in
+            completionHandler(status: status, data: data, error: error)
+        })
+        
+        
+        /*let defaults = NSUserDefaults.standardUserDefaults()
         
         if defaults.boolForKey("Badges_Page_Synced") {
-            //get from DB and reload table
+           
             dbactions.fetchBadgeData({ (status, data, error) -> Void in
                 completionHandler(status: status, data: data, error: error)
             })
@@ -563,15 +662,84 @@ class FacadeLayer{
                     completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
                 }
             }
+        }*/
+    }
+    
+    
+    func requestBadgesData(completionHandler:(status: Int, data: [Badge]?, error: NSError?) -> Void) -> Void{
+        
+        if let serviceURL = webService.badgeServiceURL {
+            httpclient.requestBadgesData(serviceURL) { (response, data, error) -> Void in
+                if error == nil {
+                    var badges = [Badge]()
+                    
+                    if let result = data {
+                        var jsonData = JSON(data: result)
+                        
+                        if jsonData["statusCode"].intValue == 1{
+                            if let badgesList = jsonData["badges"].array {
+                                print(badges)
+                                for badgeObj in badgesList {
+                                    let badgeDict = badgeObj.dictionaryValue
+                                    
+                                    let badge = Badge(withIcon: " ", badgeTitle: badgeDict["badge_title"]!.stringValue, badgeDescription: badgeDict["badge_description"]!.stringValue, isEarned: Bool(badgeDict["isEarned"]!.intValue), orderIndex: badgeDict["order_index"]!.intValue, badgeType: Badge.BadgesType.Badge, additionalMsg: nil)
+                                    
+                                    badges.append(badge)
+                                }
+                            }
+                            
+                            if let levelList = jsonData["levels"].array {
+                                print(levelList)
+                                for badgeObj in levelList {
+                                    let badgeDict = badgeObj.dictionaryValue
+                                    
+                                    let badge = Badge(withIcon: " ", badgeTitle: badgeDict["badge_title"]!.stringValue, badgeDescription: badgeDict["badge_description"]!.stringValue, isEarned: Bool(badgeDict["isEarned"]!.intValue), orderIndex: badgeDict["order_index"]!.intValue, badgeType: Badge.BadgesType.Level, additionalMsg: nil)
+                                    
+                                    badges.append(badge)
+                                }
+                                completionHandler(status: 1, data: badges, error: nil)
+                                
+                            }else{
+                                completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                            }
+                        }else{
+                            //something went wrong
+                            completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                        }
+                    }else{
+                        //something went wrong
+                        completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                    }
+                }else {
+                    completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                }
+            }
         }
     }
+    
+    
+    func saveBadge(badges:[Badge], completionhandler:(status: Bool)-> Void) {
+        //delete...save...return
+        //self.dbactions.removeData("Trip_Badge")
+        self.dbactions.saveBadge(badges, completionhandler: { (status) -> Void in
+            if status{
+                completionhandler(status: true)
+            }else{
+                completionhandler(status: false)
+            }
+        })
+    }
+    
     
     //MARK: - Overall score service
     
     func fetchOverallScoreData(completionHandler:(status: Int, data: OverallScores?, error: NSError?) -> Void) -> Void{
         
+        dbactions.fetchOverallScoreData({ (status, response, error) -> Void in
+            completionHandler(status: status, data: response, error: error)
+        })
         
-        if StringConstants.appDataSynced {
+        /*if StringConstants.appDataSynced {
             //get from DB and reload table
             dbactions.fetchOverallScoreData({ (status, response, error) -> Void in
                 completionHandler(status: status, data: response, error: error)
@@ -615,7 +783,48 @@ class FacadeLayer{
                     completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
                 }
             }
+        }*/
+    }
+    
+    func requestOverallScoreData(completionHandler:(status: Int, data: OverallScores?, error: NSError?) -> Void) -> Void{
+        
+        if let serviceURL = self.webService.overallServiceURL {
+            httpclient.requestOverallScoreData(serviceURL) { (response, data, error) -> Void in
+                if error == nil {
+                    if let result = data {
+                        var jsonData = JSON(data: result)
+                        
+                        if let scores = jsonData["with"]["content"].dictionary {
+                            
+                            let overallScore = OverallScores(overallScore: Double(scores["overallScore"]!.stringValue)!, speedingScore: Double(scores["overallSpeedingScore"]!.stringValue)!, ecoScore: Double(scores["overallEcoScore"]!.stringValue)!, distanceTravelled: Double(scores["distanceTravelled"]!.stringValue)!, dataUsageMsg: scores["dataUsageMsg"]!.stringValue, overallmessage: scores["OverallScoremessage"]!.stringValue, speedingMessage: scores["OverallspeedingMessage"]!.stringValue, ecoMessage: scores["OverallecoMessage"]!.stringValue)
+                            
+                           completionHandler(status: 1, data: overallScore, error: nil)
+                        }else{
+                            //something went wrong
+                            completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                        }
+                    }else{
+                        //something went wrong
+                        completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                    }
+                }else {
+                    //something went wrong
+                    completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                }
+            }
         }
+    }
+    
+    
+    func saveOverallScore(overallScore: OverallScores, completionhandler:(status: Bool)-> Void){
+        //self.dbactions.removeData("OverallScore")
+        self.dbactions.saveOverallScore(overallScore, completionhandler: { (status) -> Void in
+            if status {
+                completionhandler(status: true)
+            }else{
+                completionhandler(status: false)
+            }
+        })
     }
     
     //MARK: Notification Services

@@ -63,7 +63,7 @@ class BaseViewController: UIViewController {
         shareTemplate.createShareTemplateImage(title, detail: detail, imageInfo: imageInfo, shareOption: shareOption) { (image) -> Void in
             
             let activityViewController : UIActivityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-            activityViewController.excludedActivityTypes = [UIActivityTypePrint, UIActivityTypeCopyToPasteboard, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll, UIActivityTypeAirDrop]
+           // activityViewController.excludedActivityTypes = [UIActivityTypePrint, UIActivityTypeCopyToPasteboard, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll, UIActivityTypeAirDrop]
             self.presentViewController(activityViewController, animated: true, completion: nil)
             
             

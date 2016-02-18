@@ -307,6 +307,120 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
             
         }
     }
+    
+    //MARK: - HTTP & Database
+    
+    func requestAndSaveAppData(){
+        
+        var serviceError: NSError!
+        var dbStatus = false
+        
+        var badgeData = [Badge]()
+        var historyData = [History]()
+        var overallScore = OverallScores?()
+        
+        let webServiceGroup = dispatch_group_create();
+        let operationQueue = NSOperationQueue()
+        
+        let serviceOperation = NSBlockOperation{
+            dispatch_group_enter(webServiceGroup)
+            FacadeLayer.sharedinstance.requestBadgesData { (status, data, error) -> Void in
+                
+                if status == 1 && error == nil {
+                    badgeData = data!
+                }else{
+                    serviceError = error
+                }
+                print("badge service finished...")
+                dispatch_group_leave(webServiceGroup)
+            }
+            
+            dispatch_group_enter(webServiceGroup)
+            FacadeLayer.sharedinstance.requestRecentTripData({ (status, data, error) -> Void in
+                if status == 1 && error == nil {
+                    historyData = data!
+                }else{
+                    serviceError = error
+                }
+                print("history service finished...")
+                dispatch_group_leave(webServiceGroup)
+            })
+            
+            dispatch_group_enter(webServiceGroup)
+            FacadeLayer.sharedinstance.requestOverallScoreData({ (status, data, error) -> Void in
+                if status == 1 && error == nil {
+                   overallScore  = data!
+                }else{
+                    serviceError = error
+                }
+                print("overall score service finished...")
+                dispatch_group_leave(webServiceGroup)
+            })
+            dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
+        }
+        
+        let dbOperation = NSBlockOperation {
+            
+            if serviceError == nil {
+                dispatch_group_enter(webServiceGroup)
+                FacadeLayer.sharedinstance.removeData("Trip_Badge")
+                FacadeLayer.sharedinstance.saveBadge(badgeData) { (status) -> Void in
+                    if status {
+                        dbStatus = true
+                    }else{
+                        dbStatus = false
+                    }
+                    print("badgeData save finished...")
+                    dispatch_group_leave(webServiceGroup)
+                }
+                
+                dispatch_group_enter(webServiceGroup)
+                FacadeLayer.sharedinstance.removeData("Trip_Detail")
+                FacadeLayer.sharedinstance.saveTripDetail(historyData, completionhandler: { (status) -> Void in
+                    if status {
+                        dbStatus = true
+                    }else{
+                        dbStatus = false
+                    }
+                    print("historyData save finished...")
+                    dispatch_group_leave(webServiceGroup)
+                })
+                
+                dispatch_group_enter(webServiceGroup)
+                FacadeLayer.sharedinstance.removeData("OverallScore")
+                FacadeLayer.sharedinstance.saveOverallScore(overallScore!, completionhandler: { (status) -> Void in
+                    if status {
+                        dbStatus = true
+                    }else{
+                        dbStatus = false
+                    }
+                    print("overallScore save finished...")
+                    dispatch_group_leave(webServiceGroup)
+                })
+                dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
+            }
+        }
+        
+        let completionOperation = NSBlockOperation {
+            
+            if ((dbStatus) && (serviceError == nil)) {
+                 print("success...")
+            }else{
+                print("failure")
+            }
+           
+        }
+        
+        // configuring interoperation dependencies
+        dbOperation.addDependency(serviceOperation)
+        completionOperation.addDependency(dbOperation)
+        
+        operationQueue.addOperations([serviceOperation, dbOperation, completionOperation], waitUntilFinished: false)
+    }
+    
+    
+    
+    
   //  MARK: - Background Task Identifier
   func applicationDidEnterBackground(application: UIApplication) {
 //    doBackgroundTask()
@@ -314,8 +428,9 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
   }
     func applicationWillEnterForeground(application: UIApplication) {
         notificationCountURL()
-        
+        requestAndSaveAppData()
     }
+    
   func applicationDidBecomeActive(application: UIApplication) {
     // End the background task.
     self.endBackgroundUpdateTask()
