@@ -192,6 +192,9 @@
                                                 <include reference="5GB-55-PXq"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="startStopButtonTapped:" destination="IX8-GD-0te" eventType="touchUpInside" id="Zed-Dy-8an"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fLq-P1-uPX">
                                         <rect key="frame" x="56" y="-5" width="306" height="69"/>

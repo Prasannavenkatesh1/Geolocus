@@ -114,6 +114,16 @@ struct StringConstants {
     
     static let RADIO_BUTTON_UNSELECTED = "Radio-Button_Unchecked.png"
     static let RADIO_BUTTON_SELECTED = "Radio-Button_Checked.png"
+    
+    /* Dashboard View Controller */
+    
+    static let YES = "Yes"
+    static let NO = "No"
+    static let STOP = "Stop"
+    static let CANCEL = "Cancel"
+    static let CONTINUE = "Continue"
+    static let START_TRIP_MESSAGE = "Do you want to start the trip"
+    static let STOP_TRIP_MESSAGE = "Do you want to stop the trip"
 }
 
 

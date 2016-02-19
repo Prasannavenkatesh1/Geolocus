@@ -23,6 +23,29 @@ import UIKit
     @IBOutlet weak var contractsPointsEarnedValue: UILabel!
     @IBOutlet weak var distanceTravelledLabel: UILabel!
     
+    @IBAction func startStopButtonTapped(sender: AnyObject) {
+        
+        if(sender.currentTitle == "Start" ){
+            self.createAlertView(StringConstants.START_TRIP_MESSAGE, firstButtonTitle: StringConstants.YES, secondButtonTitle: StringConstants.NO, thirdButtonTitle: "")
+        }
+        else{
+            self.createAlertView(StringConstants.STOP_TRIP_MESSAGE, firstButtonTitle: StringConstants.STOP, secondButtonTitle: StringConstants.CANCEL, thirdButtonTitle: StringConstants.CONTINUE)
+        }
+    }
+    
+    /* passing button titles and alert title to alertview */
+    func createAlertView(alertTitle : String, firstButtonTitle : String, secondButtonTitle : String, thirdButtonTitle : String){
+        
+        let alertView = UIAlertController(title: "", message: alertTitle , preferredStyle: UIAlertControllerStyle.Alert)
+        alertView.addAction(UIAlertAction(title: firstButtonTitle, style: UIAlertActionStyle.Default, handler: nil))
+        alertView.addAction(UIAlertAction(title: secondButtonTitle, style: UIAlertActionStyle.Default, handler: nil))
+        
+        if(thirdButtonTitle != ""){
+            alertView.addAction(UIAlertAction(title: thirdButtonTitle, style: UIAlertActionStyle.Default, handler: nil))
+        }
+        self.presentViewController(alertView, animated: true, completion: nil)
+    }
+    
     var snoozingViewController : UIViewController!
     
     
