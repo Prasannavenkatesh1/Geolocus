@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-class SettingsViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, SettingsLanguageChosenDelegate {
+class SettingsViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var settingsTableView: UITableView!
     
@@ -49,10 +49,10 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
         cell.primaryTextLabel.text = settingsCellTitles[row]
         
         switch(row){
-        case 0,1,5,7:
+        case 0,1,5,7 :
             cell.settingsSwitch.hidden = true
         //case 2,3,4:
-        case 6:
+        case 6 :
             cell.settingsSwitch.hidden = true
             cell.secondaryTextLabel.hidden = true
         default:
@@ -96,18 +96,6 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
         header.textLabel?.font = UIFont(name: "Helvetica Neue", size: 15)
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        let currentCell = tableView.cellForRowAtIndexPath(indexPath) as! SettingsCustomViewCell
-        
-        if(currentCell.primaryTextLabel?.text == "Choose your Language"){
-            
-            let modalViewController = storyboard!.instantiateViewControllerWithIdentifier(StringConstants.SettingsLanguageViewController) as! SettingsLanguageViewController
-            modalViewController.delegate = self
-            modalViewController.modalPresentationStyle = .OverCurrentContext
-            presentViewController(modalViewController, animated: true, completion: nil)
-        }
-    }
     
     func backBtnTapped() {
        
@@ -123,10 +111,5 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
             switchState[settingsSwitch.tag] = "Disabled"
         }*/
     }
-    
-    //MARK: Custom Delegate Methods
-    
-    func selectedLanguage(selectedLanguage: String) {
-        <#code#>
-    }
+
 }
