@@ -37,6 +37,7 @@ class BaseViewController: UIViewController {
         activityView!.addSubview(activityIndicatorView)
         self.view.addSubview(activityView!)
         activityView?.hidden = true
+        self.view.bringSubviewToFront(activityIndicatorView)
     }
     
     func shouldShowActivtyOnView(show: Bool) {

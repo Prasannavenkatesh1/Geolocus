@@ -10,14 +10,19 @@ enum Actions:String{
   case no = "NO"
 }
 
-enum LanguageCode:String{
+enum LanguageCode : String{
   case English = "en_uk"
   case French = "fr_be"
   case Nederlands = "nl_be"
   case Duits = "de_be"
 }
 
-
+enum Language : String{
+    case English = "English"
+    case German = "German"
+    case French = "French"
+    case Dutch = " Dutch"
+}
 
 @UIApplicationMain
 class AppDelegateSwift: UIResponder, UIApplicationDelegate {
