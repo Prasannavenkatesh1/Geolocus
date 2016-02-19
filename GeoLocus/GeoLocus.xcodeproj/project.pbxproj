@@ -237,6 +237,7 @@
 		A6DB81441B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DB81431B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m */; };
 		A6DB81471B7346AF008D3F33 /* DASHBOARD_PARAMETER.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DB81461B7346AF008D3F33 /* DASHBOARD_PARAMETER.m */; };
 		B636D54B1C6C8DF10067C7B8 /* SettingsCustomViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B636D54A1C6C8DF10067C7B8 /* SettingsCustomViewCell.swift */; };
+		B636D7721C7476AF008D5A94 /* SettingsLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B636D7711C7476AF008D5A94 /* SettingsLanguageViewController.swift */; };
 		B63F53ED1C51EAFA0070002E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63F53EB1C51EAFA0070002E /* LoginViewController.swift */; };
 		B63F53EE1C51EAFA0070002E /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63F53EC1C51EAFA0070002E /* LanguageSelectionViewController.swift */; };
 		B640F0DE1C621C9E0051864F /* CALayer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B640F0DD1C621C9E0051864F /* CALayer+UIColor.swift */; };
@@ -578,6 +579,7 @@
 		A6DB81451B7346AF008D3F33 /* DASHBOARD_PARAMETER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DASHBOARD_PARAMETER.h; sourceTree = "<group>"; };
 		A6DB81461B7346AF008D3F33 /* DASHBOARD_PARAMETER.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DASHBOARD_PARAMETER.m; sourceTree = "<group>"; };
 		B636D54A1C6C8DF10067C7B8 /* SettingsCustomViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCustomViewCell.swift; sourceTree = "<group>"; };
+		B636D7711C7476AF008D5A94 /* SettingsLanguageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLanguageViewController.swift; sourceTree = "<group>"; };
 		B63F53EB1C51EAFA0070002E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B63F53EC1C51EAFA0070002E /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
 		B640F0DD1C621C9E0051864F /* CALayer+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+UIColor.swift"; sourceTree = "<group>"; };
@@ -1209,6 +1211,7 @@
 				F574AFC91C71D48D00FA0645 /* ShareView.swift */,
 				BF4F8D961C43840500895640 /* Cells */,
 				BF7337481C3FBCF4006094C0 /* RootViewController.swift */,
+				B636D7711C7476AF008D5A94 /* SettingsLanguageViewController.swift */,
 				B648C20B1C58B83000EE52C3 /* PageContentViewController.swift */,
 				B648C20C1C58B83000EE52C3 /* WelcomePageViewController.swift */,
 				28AF07CC1C69AC0A00D8D3F4 /* TermsAndConditionsViewController.swift */,
@@ -1609,6 +1612,7 @@
 				B648C20E1C58B83000EE52C3 /* WelcomePageViewController.swift in Sources */,
 				283C04951C74A24D0096358C /* OverallScore+CoreDataProperties.swift in Sources */,
 				28F38A161C61EBB300A02E93 /* HistoryZoneViewCell.swift in Sources */,
+				B636D7721C7476AF008D5A94 /* SettingsLanguageViewController.swift in Sources */,
 				6384522D1B0353AE00E895F7 /* ScoringEntity.m in Sources */,
 				638452381B0353AE00E895F7 /* GetQuoteController.m in Sources */,
 				B6AC7CCF1C7326BD00CD8B02 /* Contract+CoreDataProperties.swift in Sources */,

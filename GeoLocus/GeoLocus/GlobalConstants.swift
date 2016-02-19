@@ -46,6 +46,7 @@ struct StringConstants {
     static let WelcomePageViewController = "WelcomePageViewController"
     static let PageViewController = "PageViewController"
     static let LanguageSelectionViewController = "LanguageSelectionViewController"
+    static let SettingsLanguageViewController = "SettingsLanguageViewController"
     
     static let MOTIONTYPE_NOTMOVING = "Not Moving"
     static let MOTIONTYPE_NONVEHICLE = "Walking or Running"
@@ -109,6 +110,10 @@ struct StringConstants {
     
     static let REPORT_SYNCHRONISATION = "ReportData_Synchronised"
     
+    /* Settings View Controller */
+    
+    static let RADIO_BUTTON_UNSELECTED = "Radio-Button_Unchecked.png"
+    static let RADIO_BUTTON_SELECTED = "Radio-Button_Checked.png"
 }
 
 
