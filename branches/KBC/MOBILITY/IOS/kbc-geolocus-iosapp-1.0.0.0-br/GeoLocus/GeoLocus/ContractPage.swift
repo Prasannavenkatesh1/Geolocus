@@ -41,6 +41,8 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
     //MARK: View Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        FacadeLayer.sharedinstance.requestContractData(StringConstants.CONTRACT_URL) { (status, data, error) -> Void in
+        }
         
         self.fetchContractDataFromDatabase()
         self.setConstraintsForDifferentDevices()
