@@ -11,14 +11,17 @@ import MapKit
 
 protocol ScoreCellDelegate {
     func scoreViewTapped(tag : Int)
+    func scoreCellRefreshRequired() -> Bool
 }
 
 protocol MapViewDelegate {
     func mapView(mapView: MKMapView!, didSelectAnnotation annotation: EventAnnotation)
+    func mapCellRefreshRequired() -> Bool
 }
 
 protocol SpeedZoneCellDelegate {
     func severeViolationViewTapped()
+    func zoneCellRefreshRequired() -> Bool
 }
 
 protocol TripDetailCellDelegate {
@@ -74,9 +77,7 @@ class HistoryPage: BaseViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
-    
     
     //MARK: - Custom Methods
     
@@ -87,7 +88,13 @@ class HistoryPage: BaseViewController {
         }
         
         self.tabSelected = MapZoneTab.MapSelected
-        reload()
+        
+        self.tripHistoryTableView.beginUpdates()
+        let range = NSMakeRange(1, 1)
+        let section = NSIndexSet(indexesInRange: range)
+        self.tripHistoryTableView.reloadSections(section, withRowAnimation: .Automatic)
+        self.tripHistoryTableView.endUpdates()
+        
     }
     
     func bySpeedingZoneButtonPressed(sender: UIButton!) {
@@ -97,7 +104,12 @@ class HistoryPage: BaseViewController {
         }
         
         self.tabSelected = MapZoneTab.ZoneSelected
-        reload()
+        
+        self.tripHistoryTableView.beginUpdates()
+        let range = NSMakeRange(1, 1)
+        let section = NSIndexSet(indexesInRange: range)
+        self.tripHistoryTableView.reloadSections(section, withRowAnimation: .Automatic)
+        self.tripHistoryTableView.endUpdates()
     }
     
     func reload() {
@@ -125,7 +137,7 @@ class HistoryPage: BaseViewController {
         self.zoneSelectedIndexPath = nil
         
         self.scoreRefreshRequired    = true
-        self.mapRefreshRequired    = true
+        self.mapRefreshRequired      = true
         self.zoneRefreshRequired     = true
         
         if self.historyData != nil && index < self.historyData?.count {
@@ -138,7 +150,7 @@ class HistoryPage: BaseViewController {
             
             let data = self.historyData![index] as History
             //2
-            if self.tabSelected == MapZoneTab.MapSelected {
+            //if self.tabSelected == MapZoneTab.MapSelected {
                 self.tripMapEvents = data.events!
                 
                 if self.tripMapEvents != nil {
@@ -151,9 +163,9 @@ class HistoryPage: BaseViewController {
                 }
                 
                 
-            }else{
+            //}else{
                 self.tripZones = data.speedZones
-            }
+           // }
             //3
         }
     }
@@ -214,7 +226,6 @@ extension HistoryPage: UITableViewDataSource {
         return numOfRows
     }
     
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
         if indexPath.section == 0 {
@@ -224,7 +235,10 @@ extension HistoryPage: UITableViewDataSource {
             
             let rowIndex = self.tripDetailRowSelected
             
-            cell.speedingView.foreGroundArcWidth = Arc.FOREGROUND_WIDTH
+            self.tripScores?.count > 0 ? cell.configure(self.tripScores?[rowIndex!]) : cell.configure(nil)
+            
+            
+            /*cell.speedingView.foreGroundArcWidth = Arc.FOREGROUND_WIDTH
             cell.speedingView.backGroundArcWidth = Arc.BACKGROUND_WIDTH
             
             if self.tripScores?.count > 0 {
@@ -244,7 +258,7 @@ extension HistoryPage: UITableViewDataSource {
             }
             if self.scoreRefreshRequired {
                 cell.ecoView.setNeedsDisplay()
-            }
+            }*/
             
             self.scoreRefreshRequired = false
             
@@ -268,7 +282,9 @@ extension HistoryPage: UITableViewDataSource {
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
                 cell.delegate = self
                 
-                cell.speedingView.foreGroundArcWidth = Arc.FOREGROUND_WIDTH
+                self.tripScores?.count > 0 ? cell.configure(self.self.tripZones![indexPath.row]) : cell.configure(nil)
+                
+                /*cell.speedingView.foreGroundArcWidth = Arc.FOREGROUND_WIDTH
                 cell.speedingView.backGroundArcWidth = Arc.BACKGROUND_WIDTH
                 
                 if self.tripZones?.count > 0 {
@@ -287,15 +303,19 @@ extension HistoryPage: UITableViewDataSource {
                     cell.aboveMaxSpeedLabel.text    = String("\(self.tripZones![indexPath.row].aboveSpeed) km")
                 }
                 
-                cell.indicatorButton.selected = false
+                cell.indicatorButton.selected = false*/
+                
+                
                 self.zoneRefreshRequired = false
+                
                 return cell
             }
         }else if indexPath.section == 2{     //section 2
             let cell = tableView.dequeueReusableCellWithIdentifier(CellID.HISTORY_DETAIL, forIndexPath: indexPath) as! HistoryTripDetailCell
             cell.delegate = self
+            cell.configure(self.historyData![indexPath.row])
             
-            let dateFormatter           = NSDateFormatter()
+           /* let dateFormatter           = NSDateFormatter()
             dateFormatter.dateFormat    = "dd-MM-yyyy"
             let tripDate                = dateFormatter.dateFromString(self.historyData![indexPath.row].tripdDate)
             let unitFlags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
@@ -312,7 +332,8 @@ extension HistoryPage: UITableViewDataSource {
                 cell.tripShareButton.hidden = true
             }else{
                 cell.tripShareButton.hidden = false
-            }
+            }*/
+            
             return cell
         }else {
             let cell = tableView.dequeueReusableCellWithIdentifier(CellID.HISTORY_DETAIL, forIndexPath: indexPath) as! HistoryTripDetailCell  //remove this
@@ -340,7 +361,6 @@ extension HistoryPage: UITableViewDelegate {
         return 0
     }
     
-    
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         if section == 0 {
@@ -348,12 +368,12 @@ extension HistoryPage: UITableViewDelegate {
             let titleView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 40))
             titleView.backgroundColor = UIColor(netHex: 0xF6F8FA)
             
-            let titleLabel = UILabel()
-            titleLabel.frame = CGRectMake(20, 7, tableView.frame.width, 20)
-            titleLabel.backgroundColor = UIColor.clearColor()
-            titleLabel.text = "Trip Score"      //consider Localization
-            titleLabel.font = UIFont(name: Font.HELVETICA_NEUE_MEDIUM, size: 15.0)
-            titleLabel.textColor = UIColor(netHex: 0x003665)
+            let titleLabel              = UILabel()
+            titleLabel.frame            = CGRectMake(20, 7, tableView.frame.width, 20)
+            titleLabel.backgroundColor  = UIColor.clearColor()
+            titleLabel.text             = "Trip Score"      //consider Localization
+            titleLabel.font             = UIFont(name: Font.HELVETICA_NEUE_MEDIUM, size: 15.0)
+            titleLabel.textColor        = UIColor(netHex: 0x003665)
             titleView.addSubview(titleLabel)
             return titleView
             
@@ -361,30 +381,30 @@ extension HistoryPage: UITableViewDelegate {
             let tabView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 37))
             tabView.backgroundColor = UIColor(netHex: 0xF6F8FA)
             
-            self.mapButton = nil
-            self.mapButton = UIButton()
-            self.mapButton?.frame = CGRectMake(0, 0, tabView.frame.width/2, tabView.frame.height - 5/*bottom border padding*/)
+            self.mapButton                  = nil
+            self.mapButton                  = UIButton()
+            self.mapButton?.frame           = CGRectMake(0, 0, tabView.frame.width/2, tabView.frame.height - 5/*bottom border padding*/)
             self.mapButton?.setTitle("By Map", forState: .Normal)       //consider Localization
             self.mapButton?.addTarget(self, action: "byMapButtonPressed:", forControlEvents: .TouchUpInside)
             self.mapButton?.backgroundColor = UIColor.clearColor()
             tabView.addSubview(self.mapButton!)
             
-            self.mapBorder = nil
-            self.mapBorder = UIView()
-            self.mapBorder?.frame = CGRectMake((self.mapBorder?.frame.origin.x)!, self.mapButton!.frame.size.height, self.mapButton!.frame.width, 5)
+            self.mapBorder          = nil
+            self.mapBorder          = UIView()
+            self.mapBorder?.frame   = CGRectMake((self.mapBorder?.frame.origin.x)!, self.mapButton!.frame.size.height, self.mapButton!.frame.width, 5)
             tabView.addSubview(self.mapBorder!)
             
-            self.zoneButton = nil
-            self.zoneButton = UIButton()
-            self.zoneButton?.frame = CGRectMake(tabView.frame.width/2, 0, tabView.frame.width/2, tabView.frame.height - 5/*bottom border padding*/)
+            self.zoneButton                 = nil
+            self.zoneButton                 = UIButton()
+            self.zoneButton?.frame          = CGRectMake(tabView.frame.width/2, 0, tabView.frame.width/2, tabView.frame.height - 5/*bottom border padding*/)
             self.zoneButton?.setTitle("By Speeding Zone", forState: .Normal)        //consider Localization
             self.zoneButton?.addTarget(self, action: "bySpeedingZoneButtonPressed:", forControlEvents: .TouchUpInside)
             self.zoneButton?.backgroundColor = UIColor.clearColor()
             tabView.addSubview(self.zoneButton!)
             
-            self.zoneBorder = nil
-            self.zoneBorder = UIView()
-            self.zoneBorder?.frame = CGRectMake(tabView.frame.width/2, self.zoneButton!.frame.size.height, self.zoneButton!.frame.width, 5)
+            self.zoneBorder         = nil
+            self.zoneBorder         = UIView()
+            self.zoneBorder?.frame  = CGRectMake(tabView.frame.width/2, self.zoneButton!.frame.size.height, self.zoneButton!.frame.width, 5)
             tabView.addSubview(self.zoneBorder!)
             
             //set the selected button here
@@ -410,17 +430,16 @@ extension HistoryPage: UITableViewDelegate {
             }
             return tabView
         }else {
-            let sectionView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 37))
+            let sectionView             = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 37))
             sectionView.backgroundColor = UIColor(netHex: 0xF6F8FA)
-            let tripDetailLabel = UILabel()
-            tripDetailLabel.frame = CGRectMake(20, 0, sectionView.frame.width/2, sectionView.frame.height)
-            tripDetailLabel.text = "Trip Details"           //consider Localization
-            tripDetailLabel.font = UIFont(name: Font.HELVETICA_NEUE_MEDIUM, size: 15.0)
-            tripDetailLabel.textColor = UIColor(netHex: 0x003665)
+            let tripDetailLabel         = UILabel()
+            tripDetailLabel.frame       = CGRectMake(20, 0, sectionView.frame.width/2, sectionView.frame.height)
+            tripDetailLabel.text        = "Trip Details"           //consider Localization
+            tripDetailLabel.font        = UIFont(name: Font.HELVETICA_NEUE_MEDIUM, size: 15.0)
+            tripDetailLabel.textColor   = UIColor(netHex: 0x003665)
             sectionView.addSubview(tripDetailLabel)
             return sectionView
         }
-        
     }
     
     
@@ -429,28 +448,27 @@ extension HistoryPage: UITableViewDelegate {
         var rowHeight:CGFloat = 75.0       //row height for recent trips by default
         
         if indexPath.section == 0{
-            if StringConstants.SCREEN_HEIGHT == 480 {
+            if StringConstants.SCREEN_HEIGHT <= Resolution.height.iPhone4 {
                 rowHeight = 160
-            }else if StringConstants.SCREEN_HEIGHT == 568 {
+            }else if StringConstants.SCREEN_HEIGHT == Resolution.height.iPhone5 {
                 rowHeight = 155
-            }else if StringConstants.SCREEN_HEIGHT >= 667 {
-                rowHeight = 170
+            }else if StringConstants.SCREEN_HEIGHT >= Resolution.height.iPhone6 {
+                rowHeight = 185
             }else {
-                rowHeight = 170
+                rowHeight = 185
             }
         }else if indexPath.section == 1 {
             if self.tabSelected == MapZoneTab.MapSelected {
                 
-                if StringConstants.SCREEN_HEIGHT == 480 {
+                if StringConstants.SCREEN_HEIGHT <= Resolution.height.iPhone4 {
                     rowHeight = UIScreen.mainScreen().bounds.size.width - 5
-                }else if StringConstants.SCREEN_HEIGHT == 568 {
+                }else if StringConstants.SCREEN_HEIGHT == Resolution.height.iPhone5 {
                     rowHeight = UIScreen.mainScreen().bounds.size.width - 5
-                }else if StringConstants.SCREEN_HEIGHT == 667 {
+                }else if StringConstants.SCREEN_HEIGHT >= Resolution.height.iPhone6 {
                     rowHeight = 315
                 }else {
                     rowHeight = 315
                 }
-                
             }else {
                 //change if row is expanded
                 if self.zoneSelectedIndexPath != nil && indexPath.compare(self.zoneSelectedIndexPath!) == .OrderedSame {
@@ -482,19 +500,6 @@ extension HistoryPage: UITableViewDelegate {
     }
 }
 
-extension HistoryPage: MapViewDelegate {
-    
-    func mapView(mapView: MKMapView!, didSelectAnnotation annotation: EventAnnotation) {
-        
-        let annotationID = annotation.annotationID
-        var messageString = String()
-        messageString = "Message as per annoatation ID: \(annotationID)"
-        let alert = UIAlertController(title: nil, message:messageString , preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-}
-
 extension HistoryPage: ScoreCellDelegate {
     
     func scoreViewTapped(tag: Int) {
@@ -518,6 +523,27 @@ extension HistoryPage: ScoreCellDelegate {
             self.presentViewController(alert, animated: true, completion: nil)
         }
     }
+    
+    func scoreCellRefreshRequired() -> Bool {
+        return self.scoreRefreshRequired
+    }
+}
+
+extension HistoryPage: MapViewDelegate {
+    
+    func mapView(mapView: MKMapView!, didSelectAnnotation annotation: EventAnnotation) {
+        
+        let annotationID = annotation.annotationID
+        var messageString = String()
+        messageString = "Message as per annoatation ID: \(annotationID)"
+        let alert = UIAlertController(title: nil, message:messageString , preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func mapCellRefreshRequired() -> Bool {
+        return self.mapRefreshRequired
+    }
 }
 
 extension HistoryPage: SpeedZoneCellDelegate {
@@ -527,18 +553,22 @@ extension HistoryPage: SpeedZoneCellDelegate {
         
         messageString = "<Severe Violation message for the trip>"
         
-        let alert = UIAlertController(title: nil, message:messageString , preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: nil, message:messageString, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func zoneCellRefreshRequired() -> Bool {
+        return self.zoneRefreshRequired
     }
 }
 
 extension HistoryPage: TripDetailCellDelegate {
     
     func shareButtonTapped(cell: HistoryTripDetailCell) {
-        let indexpath = self.tripHistoryTableView.indexPathForCell(cell)
-        let speedScore = (self.tripScores?[indexpath!.row].speedScore.integerValue)!
-        let ecoScore = (self.tripScores?[indexpath!.row].ecoScore.integerValue)!
+        let indexpath   = self.tripHistoryTableView.indexPathForCell(cell)
+        let speedScore  = (self.tripScores?[indexpath!.row].speedScore.integerValue)!
+        let ecoScore    = (self.tripScores?[indexpath!.row].ecoScore.integerValue)!
         
         //consider localization
         super.displayActivityView("Trip Score", detail: "On \((cell.tripDateLabel.text)!), I travelled with distance of \((cell.tripDistanceLabel.text)!)’s over a period of \((cell.tripDurationLabel.text)!) and achieved above scores using my KBC First 10,000KM app.", imageInfo: ["speedScore":String(speedScore), "ecoScore":String(ecoScore)], shareOption: ShareTemplate.ShareOption.TRIP_DETAIL)

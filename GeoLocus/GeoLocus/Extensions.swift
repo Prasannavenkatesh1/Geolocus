@@ -49,8 +49,8 @@ public extension NSDate {
     convenience
     init(dateString:String) {
         let dateStringFormatter = NSDateFormatter()
-        dateStringFormatter.dateFormat = "dd-MM-yyyy"         //TO DO : check the format
-        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")  //TO DO : check the locale if it changes dynamically
+        dateStringFormatter.dateFormat = "dd-MM-yyyy"         //TODO : check the format
+        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")  //TODO : check the locale if it changes dynamically
         let d = dateStringFormatter.dateFromString(dateString)!
         self.init(timeInterval:0, sinceDate:d)
     }

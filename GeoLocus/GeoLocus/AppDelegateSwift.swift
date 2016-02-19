@@ -327,8 +327,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         let webServiceGroup = dispatch_group_create();
         let operationQueue = NSOperationQueue()
         
-        let serviceOperation = NSBlockOperation{
-            dispatch_group_enter(webServiceGroup)
+        let serviceOperation = NSBlockOperation{        //TODO: uncomment this and below save method
+           /* dispatch_group_enter(webServiceGroup)
             FacadeLayer.sharedinstance.requestBadgesData { (status, data, error) -> Void in
                 
                 if status == 1 && error == nil {
@@ -338,7 +338,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                 }
                 print("badge service finished...")
                 dispatch_group_leave(webServiceGroup)
-            }
+            }*/
             
             dispatch_group_enter(webServiceGroup)
             FacadeLayer.sharedinstance.requestRecentTripData({ (status, data, error) -> Void in
@@ -367,7 +367,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         let dbOperation = NSBlockOperation {
             
             if serviceError == nil {
-                dispatch_group_enter(webServiceGroup)
+               /* dispatch_group_enter(webServiceGroup)
                 FacadeLayer.sharedinstance.removeData("Trip_Badge")
                 FacadeLayer.sharedinstance.saveBadge(badgeData) { (status) -> Void in
                     if status {
@@ -379,7 +379,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                     dispatch_group_leave(webServiceGroup)
                 }
                  dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
-                
+                */
                 dispatch_group_enter(webServiceGroup)
                 FacadeLayer.sharedinstance.removeData("Trip_Detail")
                 FacadeLayer.sharedinstance.saveTripDetail(historyData, completionhandler: { (status) -> Void in

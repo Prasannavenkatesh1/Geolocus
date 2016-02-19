@@ -168,8 +168,6 @@ class Httpclient: NSObject,NSURLSessionDelegate {
                 //Handle error
             }
         }
-        
-        
     }
     
     //MARK: - Dashboard data
@@ -209,7 +207,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         
         let badgesRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
         badgesRequest.HTTPMethod = "GET"
-        badgesRequest.setValue("SWs5cVUyeUFDTDg5bnhMMnZaOWVLUT09Om16Vm01Q3pPVHErZXJyUUV3ZHMyM3c9PQ", forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
+        badgesRequest.setValue("QTRORndhWUxMSUpEditZQVJYVlNrdz09OnhZTEFXVEFPK1BSSmlQVGhxYytrZ0E9PQ", forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
         
         manager.request(badgesRequest).response { (Request, response, data, error) -> Void in
              completionHandler(response: response, data: data, error: error)
@@ -243,8 +241,6 @@ class Httpclient: NSObject,NSURLSessionDelegate {
                 print(json)
                 
                 //****************************************//
-                
-                let parameters = ["userId":"<user id>","tokenId":"<get from server>","channel_type":StringConstants.CHANNEL_TYPE,"language_code":"en_be"]
                 
                 if let overallScoreServiceURL = FacadeLayer.sharedinstance.webService.overallServiceURL{
                     
@@ -404,7 +400,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         }
     }
     
-    //TO DO: Remove this
+    //TODO: Remove this
     //MARK: Delegate Methods
     
     func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {

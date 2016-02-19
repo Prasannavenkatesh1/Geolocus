@@ -174,7 +174,6 @@ struct NotificationKey {
     static let SegmentIndexChangedNotification            = "SegmentIndexChangedNotification"
     static let PageViewControllerIndexchangedNotification = "PageViewControllerIndexchangedNotification"
     static let CurrentPageControlIndexNotification        = "currentPageControlIndexNotification"
-    
 }
 
 struct CellID {
@@ -182,15 +181,34 @@ struct CellID {
     static let HISTORY_MAP    = "HMVCell"
     static let HISTORY_ZONE   = "HSZCell"
     static let HISTORY_DETAIL = "HTDCell"
+    static let BADGE_CELL     = "BadgeCell"
 }
 
 struct Font {
     static let HELVETICA_NEUE = "Helvetica Neue"
     static let HELVETICA_NEUE_MEDIUM = "HelveticaNeue-Medium"
-
 }
 
 struct Arc {
     static let BACKGROUND_WIDTH = CGFloat(8)
     static let FOREGROUND_WIDTH = CGFloat(8)
+}
+
+struct Resolution {
+    struct height {
+        static let iPhone4 = CGFloat(480)
+        static let iPhone5 = CGFloat(568)
+        static let iPhone6 = CGFloat(667)
+    }
+}
+
+struct BadgeKey {
+    static let S_CODE = "statusCode"
+    static let S_MESSAGE = "statusMessage"
+    static let BADGES = "badges"
+    static let LEVELS = "levels"
+    static let TITLE  = "badge_title"
+    static let DESC   = "badge_description"
+    static let EARNED = "isEarned"
+    static let INDEX  = "order_index"
 }
