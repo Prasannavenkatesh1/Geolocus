@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol BadgesDelegate {
+    func shareButtonTapped(sender: UIButton!)
+}
+
+
 class BadgesViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var badgeTableView: UITableView!
@@ -20,7 +25,6 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
     var plistLevelArray     = []
     var badgesSpecification = ["Badges to be Earned", "Badges Earned", "Levels"]  //consider Localization
     var sahredObject        = FacadeLayer()
-    let BADGE_CELL_ID       = "BadgeCell"
     let NUM_OF_SECTION = 3
     
     override func viewDidLoad() {
@@ -54,7 +58,8 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(BADGE_CELL_ID, forIndexPath: indexPath) as! BadgeCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(CellID.BADGE_CELL, forIndexPath: indexPath) as! BadgeCell
+        cell.delegate = self
         
         var dataArray = [Badge]()
         if indexPath.section == 0 {
@@ -65,29 +70,7 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
             dataArray = self.levelArray
         }
         
-        let badge = dataArray[indexPath.row]
-
-        if badge.isEarned {
-            cell.shareButton.hidden         = false
-            cell.badgeTitle.font            = UIFont(name: Font.HELVETICA_NEUE_MEDIUM, size: 15.0)
-            cell.badgeTitle.textColor       = UIColor(netHex: 0x003665)
-            cell.badgeDescription.textColor = UIColor(netHex: 0x181F29)
-            
-        }else {
-            cell.shareButton.hidden         = false         //TO DO: make this true
-            cell.badgeTitle.font            = UIFont(name: Font.HELVETICA_NEUE, size: 15.0)
-            cell.badgeTitle.textColor       = UIColor(netHex: 0x003665)
-            cell.badgeDescription.textColor = UIColor(netHex: 0x4c7394)
-        }
-        
-        cell.badgeIcon.image        = UIImage(named: dataArray[indexPath.row].badgeIcon)
-        cell.badgeTitle.text        = badge.badgeTitle
-        cell.badgeDescription.text  = badge.badgeDescription
-        
-        let attributes      = [NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
-        let attributedText  = NSAttributedString(string: cell.shareButton.currentTitle!, attributes: attributes)
-        cell.shareButton.titleLabel?.attributedText = attributedText
-        cell.shareButton.addTarget(self, action: "shareButtonClicked:", forControlEvents: .TouchUpInside)
+        cell.configure(dataArray[indexPath.row])
         
         return cell
     }
@@ -171,14 +154,6 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
     
     func reloadDataSource(){
         
-        /*
-        //get plist file for image names
-        //see if data is updated
-        //if no new update then get data from DB
-        //if new update then Get data from service and store in DB
-        */
-        //
-        
         //self.startLoading()
         
         //1. Get data from plist
@@ -218,11 +193,10 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                 for var index = 0; index < self.badgeNotEarnedArray.count; index++ {
                     
                     let title = self.badgeNotEarnedArray[index].badgeTitle.stringByTrimmingCharactersInSet(
-                        NSCharacterSet.whitespaceAndNewlineCharacterSet()
-                    )
+                        NSCharacterSet.whitespaceAndNewlineCharacterSet())
                     
                     for var pIndex = 0; pIndex < self.plistBadgeArray.count; pIndex++ {
-                        if self.plistBadgeArray[pIndex]["title"] as! String == title {
+                        if title.compare(self.plistBadgeArray[pIndex]["title"] as! String) == .OrderedSame {
                             
                             let isEarned = self.badgeNotEarnedArray[index].isEarned
                             
@@ -237,12 +211,11 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                 for var index = 0; index < self.badgeEarnedArray.count; index++ {
                     
                     let title = self.badgeEarnedArray[index].badgeTitle.stringByTrimmingCharactersInSet(
-                        NSCharacterSet.whitespaceAndNewlineCharacterSet()
-                    )
+                        NSCharacterSet.whitespaceAndNewlineCharacterSet())
 
-                    
                     for var pIndex = 0; pIndex < self.plistBadgeArray.count; pIndex++ {
-                        if self.plistBadgeArray[pIndex]["title"] as! String == title {
+            
+                        if title.compare(self.plistBadgeArray[pIndex]["title"] as! String) == .OrderedSame {
                             
                             let isEarned = self.badgeEarnedArray[index].isEarned
                             
@@ -257,12 +230,10 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                 for var index = 0; index < self.levelArray.count; index++ {
                     
                     let title = self.levelArray[index].badgeTitle.stringByTrimmingCharactersInSet(
-                        NSCharacterSet.whitespaceAndNewlineCharacterSet()
-                    )
+                        NSCharacterSet.whitespaceAndNewlineCharacterSet())
 
-                    
                     for var pIndex = 0; pIndex < self.plistLevelArray.count; pIndex++ {
-                        if self.plistLevelArray[pIndex]["title"] as! String == title {
+                        if title.compare(self.plistLevelArray[pIndex]["title"] as! String) == .OrderedSame {
                             
                             let isEarned = self.levelArray[index].isEarned
                             
@@ -289,18 +260,18 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                 self.badgeTableView.reloadData()
                 
             }else{
-                //something went wrong...or...frist time
+                //something went wrong...or...first time
                 
                 for var index = 0; index < self.plistBadgeArray.count; index++ {
                     
-                    let badge = Badge(withIcon: self.plistBadgeArray[index]["icon_not_earned"] as! String, badgeTitle: self.plistBadgeArray[index]["title"] as! String, badgeDescription: self.plistBadgeArray[index]["criteria"] as! String, isEarned: false, orderIndex: Int(self.plistBadgeArray[index]["index"] as! String)!, badgeType: Badge.BadgesType.Badge, additionalMsg: nil)
+                    let badge = Badge(withIcon: self.plistBadgeArray[index]["icon_not_earned"] as! String, badgeTitle: self.plistBadgeArray[index]["title"] as! String, badgeDescription: self.plistBadgeArray[index]["criteria"] as! String, isEarned: false, orderIndex: Int(self.plistBadgeArray[index]["index"] as! String)!, badgeType: Badge.BadgesType.Badge, additionalMsg: " ")
                     
                     self.badgeNotEarnedArray.append(badge)
                 }
                 
                 for var index = 0; index < self.plistBadgeArray.count; index++ {
                     
-                    let level = Badge(withIcon: self.plistBadgeArray[index]["icon_not_earned"] as! String, badgeTitle: self.plistBadgeArray[index]["title"] as! String, badgeDescription: self.plistBadgeArray[index]["criteria"] as! String, isEarned: false, orderIndex: Int(self.plistBadgeArray[index]["index"] as! String)!, badgeType: Badge.BadgesType.Level, additionalMsg: nil)
+                    let level = Badge(withIcon: self.plistBadgeArray[index]["icon_not_earned"] as! String, badgeTitle: self.plistBadgeArray[index]["title"] as! String, badgeDescription: self.plistBadgeArray[index]["criteria"] as! String, isEarned: false, orderIndex: Int(self.plistBadgeArray[index]["index"] as! String)!, badgeType: Badge.BadgesType.Level, additionalMsg: " ")
                     
                     self.levelArray.append(level)
                 }
@@ -309,8 +280,11 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
             //self.stopLoading()
         }
     }
+}
+
+extension BadgesViewController: BadgesDelegate {
     
-    func shareButtonClicked(sender: UIButton!){
+    func shareButtonTapped(sender: UIButton!){
         
         let touchPoint = sender?.convertPoint(CGPointZero, toView: self.badgeTableView)
         let clickedRowIndexPath = self.badgeTableView.indexPathForRowAtPoint(touchPoint!)
@@ -323,14 +297,14 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
         var icon = String()
         
         if clickedRowIndexPath?.section == 0 {    //badges earned
-            //TO DO: revert this and change section 0 to 1 above
+            //TODO: revert this and change section 0 to 1 above
             /*
             title = self.badgeEarnedArray[clickedRowIndexPath!.row].badgeTitle
             details = self.badgeEarnedArray[clickedRowIndexPath!.row].badgeDescription
             icon = self.badgeEarnedArray[clickedRowIndexPath!.row].badgeIcon
             */
             
-            //TO DO: Delete this
+            //TODO: Delete this
             title = self.badgeNotEarnedArray[clickedRowIndexPath!.row].badgeTitle
             details = self.badgeNotEarnedArray[clickedRowIndexPath!.row].additionalMsg!
             icon = self.badgeNotEarnedArray[clickedRowIndexPath!.row].badgeIcon

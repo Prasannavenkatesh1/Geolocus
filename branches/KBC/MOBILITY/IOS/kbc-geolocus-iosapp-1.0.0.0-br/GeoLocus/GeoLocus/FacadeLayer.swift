@@ -676,24 +676,36 @@ class FacadeLayer{
                     if let result = data {
                         var jsonData = JSON(data: result)
                         
-                        if jsonData["statusCode"].intValue == 1{
-                            if let badgesList = jsonData["badges"].array {
+                        if jsonData[BadgeKey.S_CODE].intValue == 1 {
+                            if let badgesList = jsonData[BadgeKey.BADGES].array {
                                 print(badges)
                                 for badgeObj in badgesList {
                                     let badgeDict = badgeObj.dictionaryValue
                                     
-                                    let badge = Badge(withIcon: " ", badgeTitle: badgeDict["badge_title"]!.stringValue, badgeDescription: badgeDict["badge_description"]!.stringValue, isEarned: Bool(badgeDict["isEarned"]!.intValue), orderIndex: badgeDict["order_index"]!.intValue, badgeType: Badge.BadgesType.Badge, additionalMsg: nil)
+                                    let badge = Badge(withIcon: " ",
+                                        badgeTitle: badgeDict[BadgeKey.TITLE]!.stringValue,
+                                        badgeDescription: badgeDict[BadgeKey.DESC]!.stringValue,
+                                        isEarned: Bool(badgeDict[BadgeKey.EARNED]!.intValue),
+                                        orderIndex: badgeDict[BadgeKey.INDEX]!.intValue,
+                                        badgeType: Badge.BadgesType.Badge,
+                                        additionalMsg: nil)
                                     
                                     badges.append(badge)
                                 }
                             }
                             
-                            if let levelList = jsonData["levels"].array {
+                            if let levelList = jsonData[BadgeKey.LEVELS].array {
                                 print(levelList)
                                 for badgeObj in levelList {
                                     let badgeDict = badgeObj.dictionaryValue
                                     
-                                    let badge = Badge(withIcon: " ", badgeTitle: badgeDict["badge_title"]!.stringValue, badgeDescription: badgeDict["badge_description"]!.stringValue, isEarned: Bool(badgeDict["isEarned"]!.intValue), orderIndex: badgeDict["order_index"]!.intValue, badgeType: Badge.BadgesType.Level, additionalMsg: nil)
+                                    let badge = Badge(withIcon: " ",
+                                        badgeTitle: badgeDict[BadgeKey.TITLE]!.stringValue,
+                                        badgeDescription: badgeDict[BadgeKey.DESC]!.stringValue,
+                                        isEarned: Bool(badgeDict[BadgeKey.EARNED]!.intValue),
+                                        orderIndex: badgeDict[BadgeKey.INDEX]!.intValue,
+                                        badgeType: Badge.BadgesType.Level,
+                                        additionalMsg: nil)
                                     
                                     badges.append(badge)
                                 }
@@ -716,7 +728,6 @@ class FacadeLayer{
             }
         }
     }
-    
     
     func saveBadge(badges:[Badge], completionhandler:(status: Bool)-> Void) {
         //delete...save...return
