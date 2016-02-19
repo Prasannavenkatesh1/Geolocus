@@ -36,6 +36,7 @@
 		28F38A151C61EBB300A02E93 /* HistoryTripScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F38A101C61EBB300A02E93 /* HistoryTripScoreCell.swift */; };
 		28F38A161C61EBB300A02E93 /* HistoryZoneViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F38A111C61EBB300A02E93 /* HistoryZoneViewCell.swift */; };
 		3A58EE361C74564C006CCF6D /* SnoozingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A58EE351C74564C006CCF6D /* SnoozingViewController.swift */; };
+		3A655ADF1C76DB2600C1D7AA /* popUpCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A655ADE1C76DB2600C1D7AA /* popUpCustomCell.swift */; };
 		430CAB4C1C71F7790055C220 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430CAB4B1C71F7790055C220 /* Report.swift */; };
 		59FE894ACB0DA28E63B89CCD /* Pods_GeoLocus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4818DE2662180244A697DB9 /* Pods_GeoLocus.framework */; };
 		63014BB01B15C5290022FCC6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63014BAF1B15C5290022FCC6 /* AppDelegate.m */; };
@@ -327,6 +328,7 @@
 		28F38A101C61EBB300A02E93 /* HistoryTripScoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTripScoreCell.swift; sourceTree = "<group>"; };
 		28F38A111C61EBB300A02E93 /* HistoryZoneViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryZoneViewCell.swift; sourceTree = "<group>"; };
 		3A58EE351C74564C006CCF6D /* SnoozingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnoozingViewController.swift; sourceTree = "<group>"; };
+		3A655ADE1C76DB2600C1D7AA /* popUpCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = popUpCustomCell.swift; sourceTree = "<group>"; };
 		430CAB4B1C71F7790055C220 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		63014BAE1B15C5290022FCC6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		63014BAF1B15C5290022FCC6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
@@ -1117,6 +1119,7 @@
 				28F38A111C61EBB300A02E93 /* HistoryZoneViewCell.swift */,
 				BF4F8D971C43845000895640 /* CategoryCell.swift */,
 				B636D54A1C6C8DF10067C7B8 /* SettingsCustomViewCell.swift */,
+				3A655ADE1C76DB2600C1D7AA /* popUpCustomCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1666,6 +1669,7 @@
 				638451F11B0353A000E895F7 /* FMDatabaseAdditions.m in Sources */,
 				6CCAF90A1C4E064D00484056 /* TermsAndConditionViewController.swift in Sources */,
 				BF44D27E1C6DBA9F00BFB1E2 /* Reports+CoreDataProperties.swift in Sources */,
+				3A655ADF1C76DB2600C1D7AA /* popUpCustomCell.swift in Sources */,
 				635B88661ADBD90E00891EDE /* LeaderBoardViewController.swift in Sources */,
 				6C8ADBB71C6C69FD001BB5B9 /* HMSegmentedControl.m in Sources */,
 				283C04961C74A24D0096358C /* OverallScore.swift in Sources */,
