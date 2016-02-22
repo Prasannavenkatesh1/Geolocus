@@ -1459,7 +1459,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="NcH-Oj-D2c" firstAttribute="top" secondItem="bJQ-1H-54T" secondAttribute="top" id="623-1I-p57"/>
+                            <constraint firstItem="NcH-Oj-D2c" firstAttribute="top" secondItem="bJQ-1H-54T" secondAttribute="top" id="623-1I-p57">
+                                <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                            </constraint>
                             <constraint firstAttribute="trailing" secondItem="XNe-JE-4D2" secondAttribute="trailing" id="8am-vN-d76"/>
                             <constraint firstItem="3Vd-cL-lwe" firstAttribute="top" secondItem="XNe-JE-4D2" secondAttribute="bottom" id="MnA-0c-Opb"/>
                             <constraint firstItem="XNe-JE-4D2" firstAttribute="leading" secondItem="bJQ-1H-54T" secondAttribute="leading" id="P6P-9y-ufS"/>
@@ -7309,7 +7311,8 @@
                                                         <exclude reference="lRg-zC-flg"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=compact">
+                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="1" y="5" width="85" height="30"/>
                                                     <mask key="constraints">
                                                         <include reference="HBF-Vc-dl0"/>
                                                         <include reference="lRg-zC-flg"/>
@@ -7333,6 +7336,9 @@
                                                         <integer key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="101" y="5" width="85" height="30"/>
+                                                </variation>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

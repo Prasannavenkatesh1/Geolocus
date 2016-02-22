@@ -140,7 +140,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         let reportRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
         reportRequest.HTTPMethod = "GET"
         if let tokenId: String = NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.TOKEN_ID) {
-            reportRequest.setValue(tokenId, forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
+            reportRequest.setValue(tokenId, forHTTPHeaderField: StringConstants.SPRING_SECURITY_COOKIE)
         }
         
         Alamofire.request(reportRequest)
