@@ -8,6 +8,8 @@
 
 import UIKit
 
+/* This view displays the on-boarding screens once user in logged into the application */
+
 class WelcomePageViewController: BaseViewController,UIPageViewControllerDataSource,UIPageViewControllerDelegate {
     
     let pageTitles = ["Welcome screen 1", "Welcome screen 2", "Welcome screen 3", "Welcome screen 4","Welcome screen 5","Welcome screen 6"]
@@ -16,6 +18,20 @@ class WelcomePageViewController: BaseViewController,UIPageViewControllerDataSour
     
     var pageViewController : UIPageViewController!
     
+    //MARK: View Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.reset()
+        
+        let tap = UITapGestureRecognizer(target: self, action: "doubleTapped")
+        tap.numberOfTapsRequired = 2
+        self.pageViewController.view.addGestureRecognizer(tap)
+        
+        FacadeLayer.sharedinstance.requestContractData{ (status, data, error) -> Void in
+        }
+    }
+    
+    /* This method creates different pages and adds those pages as child view */
     func reset() {
         /* Getting the page View controller */
         pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier(StringConstants.PageViewController) as! UIPageViewController
@@ -28,35 +44,17 @@ class WelcomePageViewController: BaseViewController,UIPageViewControllerDataSour
         self.pageViewController.didMoveToParentViewController(self)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        reset()
-        
-        let tap = UITapGestureRecognizer(target: self, action: "doubleTapped")
-        tap.numberOfTapsRequired = 2
-        view.addGestureRecognizer(tap)
-        
-        FacadeLayer.sharedinstance.requestContractData(StringConstants.CONTRACT_URL) { (status, data, error) -> Void in
-        }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+    /* on double tapping the pages, navigates to contract page */
     func doubleTapped() {
         self.pageViewController.view.removeFromSuperview()
         [self.pageViewController.removeFromParentViewController()]
-      
-           
-        var revealViewController : SWRevealViewController!
         
-        revealViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
+        let revealViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
         self.addChildViewController(revealViewController)
         self.view.addSubview(revealViewController.view)
     }
     
+    //MARK: PageView delegate methods
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         
         var index = (viewController as! PageContentViewController).pageIndex!

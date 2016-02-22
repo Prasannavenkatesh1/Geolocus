@@ -12,6 +12,7 @@ import Alamofire
 
 class Httpclient: NSObject,NSURLSessionDelegate {
     var delegate = self
+    let defaults = NSUserDefaults.standardUserDefaults()
   /*
   {(parameters) -> returntype in
   
@@ -24,8 +25,12 @@ class Httpclient: NSObject,NSURLSessionDelegate {
     
     /* Terms and Conditions Service call */
     
-    func requestTermsAndConditionsData(URL : String, completionHandler: (response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
-                Alamofire.request(.GET, URL)
+    func requestTermsAndConditionsData(completionHandler: (response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
+        
+        let selectedLanguageCode : String! = defaults.stringForKey(StringConstants.SELECTED_LANGUAGE_USERDEFAULT_KEY)
+        let termsAndConditionsURL = FacadeLayer.sharedinstance.webService.termConditionsServiceURL! + "\(selectedLanguageCode)"
+        
+            Alamofire.request(.GET, termsAndConditionsURL)
                     .response { (request, response, data, error) -> Void in
                         completionHandler(response: response, data: data, error: error)
             }
@@ -60,11 +65,11 @@ class Httpclient: NSObject,NSURLSessionDelegate {
     
     /* Login Service call */
 
-    func requestLoginData(URL : String, parameterString : String, completionHandler:(response:NSHTTPURLResponse?, data : NSData?, error : NSError?) -> Void) -> Void{
+    func requestLoginData(parameterString : String, completionHandler:(response:NSHTTPURLResponse?, data : NSData?, error : NSError?) -> Void) -> Void{
         
         let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         let session = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
-        let loginURL : NSURL = NSURL(string : URL)!
+        let loginURL : NSURL = NSURL(string : FacadeLayer.sharedinstance.webService.loginServiceURL!)!
         
         let loginRequest = NSMutableURLRequest(URL : loginURL)
         loginRequest.HTTPMethod = "POST"
@@ -85,7 +90,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
     
     /* Contract Service call */
     
-    func requestContractData(URL : String, completionHandler : (response : NSHTTPURLResponse?, data : NSData?, error : NSError?) -> Void) -> Void{
+    func requestContractData(completionHandler : (response : NSHTTPURLResponse?, data : NSData?, error : NSError?) -> Void) -> Void{
         
         let manager = Alamofire.Manager.sharedInstance
         manager.delegate.sessionDidReceiveChallenge = { session, challenge in
@@ -101,9 +106,14 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             return (disposition, credential)
         }
         
-        let contractRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
+        let userID : String! = defaults.stringForKey(StringConstants.USER_ID)
+        let contractServiceURL = FacadeLayer.sharedinstance.webService.contractServiceURL! + "\(userID)"
+        
+        let contractRequest = NSMutableURLRequest(URL: NSURL(string : contractServiceURL)!)
         contractRequest.HTTPMethod = "GET"
-        contractRequest.setValue("QTRORndhWUxMSUpEditZQVJYVlNrdz09Onp1MW8wWkd1UFRHTUU5SDN5UmxyQVE9PQ", forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
+        
+        let tokenID = defaults.valueForKey(StringConstants.TOKEN_ID) as? String
+        contractRequest.setValue(tokenID, forHTTPHeaderField: StringConstants.SPRING_SECURITY_COOKIE)
         
         manager.request(contractRequest).response { (Request, response, data, error) -> Void in
             completionHandler(response: response, data: data, error: error)

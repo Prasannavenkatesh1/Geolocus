@@ -8,8 +8,11 @@
 
 import UIKit
 
+/* This view allows the user to enter their login information or navigate to register page or need help page in the portal */
+
 class LoginViewController: BaseViewController,UITextFieldDelegate {
     
+    /* Outlets for the constraints */
     @IBOutlet weak var layoutConstraintTop: NSLayoutConstraint!
     @IBOutlet weak var layoutConstraintVerticalUserNameTop: NSLayoutConstraint!
     @IBOutlet weak var layoutConstraintLoginTop: NSLayoutConstraint!
@@ -17,6 +20,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
     @IBOutlet weak var layoutConstraintNeedHelpTop: NSLayoutConstraint!
     @IBOutlet weak var layoutConstraintViewBottom: NSLayoutConstraint!
     
+    /* Outlets for the controls defined in the view */
     @IBOutlet weak var userNameText: UITextField!
     @IBOutlet weak var needHelpButton: UIButton!
     @IBOutlet weak var registerNowButton: UIButton!
@@ -24,6 +28,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var passwordText: UITextField!
     
+    /* Variable declarations */
     var isChecked = false
     let passwordShowButton = UIButton()
     var selectedLanguageCode : String!
@@ -34,13 +39,13 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
     /* Register Now button action */
     @IBAction func registerNowButtonTapped(sender: AnyObject) {
         var registerNowURL : String!
-        registerNowURL = StringConstants.REGISTER_NOW_URL + "\(self.selectedLanguageCode)"
+        registerNowURL = FacadeLayer.sharedinstance.webService.registrationServiceURL! + "\(self.selectedLanguageCode)"
         UIApplication.sharedApplication().openURL(NSURL(string:registerNowURL)!)
     }
     
     /* Need help button action */
     @IBAction func needHelpButtonTapped(sender: AnyObject) {
-        UIApplication.sharedApplication().openURL(NSURL(string:StringConstants.NEED_HELP_URL)!)
+        UIApplication.sharedApplication().openURL(NSURL(string: FacadeLayer.sharedinstance.webService.needHelpServiceURL!)!)
     }
     
     /* Login button action */
@@ -49,15 +54,15 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
         loginButton.backgroundColor = UIColor(red: 83.0/255.0, green: 178.0/255.0, blue: 98.0/255.0, alpha: 1.0)
         loginButton.setTitleColor(UIColor(red: 174.0/255.0, green: 174.0/255.0, blue: 174.0/255.0, alpha: 1.0),forState: UIControlState.Normal)
         
-        let userNameString = StringConstants.USERNAME_STRING //self.userNameText.text
-        let passwordString = StringConstants.PASSWORD_STRING //self.passwordText.text
+        let userNameString =  self.userNameText.text
+        let passwordString =  self.passwordText.text
         
-        let parameterString = String(format: StringConstants.LOGIN_PARAMETERS, passwordString, userNameString, self.selectedLanguageCode)
+        let parameterString = String(format: StringConstants.LOGIN_PARAMETERS, passwordString!, userNameString!, self.selectedLanguageCode)
         
-        self.requestLoginData(StringConstants.LOGIN_URL, parameterString: parameterString){ (status, response, error) -> Void in
+        self.requestLoginData(parameterString){ (status, response, error) -> Void in
             self.stopLoading()
             
-            //navigate to onboarding screen,if the response is success
+            //navigate to onboarding screen,if the login is valid, else display an alert
             if(error == nil){
                 let welcomeScreenViewController = self.storyboard!.instantiateViewControllerWithIdentifier(StringConstants.WelcomePageViewController) as! WelcomePageViewController
                 self.presentViewController(welcomeScreenViewController, animated: true, completion: nil)
@@ -73,7 +78,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
     /* Check box button action */
     @IBAction func checkButtonTapped(sender: UIButton) {
         if(!isChecked){
-            showModal()
+            self.showModal()
             self.view.backgroundColor = UIColor.clearColor()
             [sender.setImage(UIImage(named:StringConstants.CHECK_BOX_SELECTED), forState: UIControlState.Normal)]
             isChecked = true
@@ -83,7 +88,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
             isChecked = false
         }
         
-        validate()
+        self.validate()
     }
     
     // MARK: - View Methods
@@ -103,7 +108,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        deregisterFromKeyboardNotifications()
+        self.deregisterFromKeyboardNotifications()
     }
   
     // MARK: - Custom Methods
@@ -117,10 +122,8 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
     
     /* set URL for Terms and Conditions content */
     func termsAndConditionsURL(){
-        var termsAndConditionsURL : String
-        termsAndConditionsURL = StringConstants.TERMS_AND_CONDITIONS_URL + "\(self.selectedLanguageCode)"
         
-        self.requestTermsAndConditionsData(termsAndConditionsURL){ (status,response,error) -> Void in
+        self.requestTermsAndConditionsData{ (status,response,error) -> Void in
             if(error == nil){
                 self.termsAndConditionsString = NSString(data: response!, encoding: NSUTF8StringEncoding) as String!
             }
@@ -133,16 +136,16 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
     }
     
     /* Facade layer call for Terms and Conditions */
-    func requestTermsAndConditionsData(URL : String, completionHandler:(status : Int, response : NSData?, error : NSError?) -> Void) -> Void{
-        FacadeLayer.sharedinstance.requestTermsAndConditionsData(URL){ (status, data, error) -> Void in
+    func requestTermsAndConditionsData(completionHandler:(status : Int, response : NSData?, error : NSError?) -> Void) -> Void{
+        FacadeLayer.sharedinstance.requestTermsAndConditionsData{ (status, data, error) -> Void in
             completionHandler(status: status, response: data, error: error)
         }
     }
     
     /* Facade layer call for Login */
 
-    func requestLoginData(URL : String, parameterString : String, completionHandler :(status : Int, response : NSData?, error : NSError?) -> Void) -> Void{
-        FacadeLayer.sharedinstance.requestLoginData(URL, parameterString: parameterString){ (status, data, error) -> Void in
+    func requestLoginData(parameterString : String, completionHandler :(status : Int, response : NSData?, error : NSError?) -> Void) -> Void{
+        FacadeLayer.sharedinstance.requestLoginData(parameterString){ (status, data, error) -> Void in
             completionHandler(status: status, response: data, error: error)
         }
     }
@@ -238,16 +241,15 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
     }
     
     
-    //MARK: Notification methods on Keyboard pop up
+    //MARK: Notification methods on Keyboard pop up/dismissal
     
-    //Adding notifies on keyboard appearing
-
+    /* Register for notifications when keyboard appears */
     func registerForKeyboardNotifications(){
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
-    //Removing notifies on keyboard appearing
+    /* Deregister for notifications when keyboard dismiss */
     func deregisterFromKeyboardNotifications(){
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)

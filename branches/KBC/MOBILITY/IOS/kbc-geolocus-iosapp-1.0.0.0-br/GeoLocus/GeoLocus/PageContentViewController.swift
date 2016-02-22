@@ -8,6 +8,8 @@
 
 import UIKit
 
+/* This view is the container for multiple pages */
+
 class PageContentViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -17,6 +19,7 @@ class PageContentViewController: UIViewController {
     var titleString : String!
     var imageName : String!
     
+    //MARK: View Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.backgroundImageView.image = UIImage(named:imageName)

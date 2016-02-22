@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+/* This view loads the web view with Terms and Conditions Content */
+
 class TermsAndConditionsViewController : UIViewController{
 
     var termsAndConditionsContent : String!
@@ -16,10 +18,12 @@ class TermsAndConditionsViewController : UIViewController{
     @IBOutlet weak var termsAndConditionsWebView: UIWebView!
     @IBOutlet weak var okButton: UIButton!
     
+    /* dismiss the modal web view on button tap */
     @IBAction func okButtonTapped(sender: AnyObject) {
         [self.dismissViewControllerAnimated(true, completion: nil)]
     }
     
+    //MARK: View Methods
     override func viewDidLoad() {
         termsAndConditionsWebView.loadHTMLString(termsAndConditionsContent, baseURL: nil)
         [self.termsAndConditionsWebView.bringSubviewToFront(okButton)]
