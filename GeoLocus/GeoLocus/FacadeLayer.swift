@@ -455,6 +455,54 @@ class FacadeLayer{
     
     
     //MARK:- Reoport service
+
+    func fetchInitialReportData(timeFrame timeFrame: ReportDetails.TimeFrameType, scoreType: ReportDetails.ScoreType, completionHandler:(success: Bool, error: NSError?, result: Report?) -> Void) -> Void {
+        dbactions.fetchReportData({ (success, error, result) -> Void in
+            if success {
+                completionHandler(success: true, error: error, result: result)
+            }
+        })
+    }
+    
+    func requestInitialReportData(timeFrame timeFrame: ReportDetails.TimeFrameType, scoreType: ReportDetails.ScoreType, completionHandler:(success: Bool, error: NSError?, result: Report?) -> Void) -> Void {
+        httpclient.requestReportData(StringConstants.REPORT_SERVICE_URL + "userId=9&timeFrame=\(timeFrame)&scoreType=\(scoreType)", completionHandler: { (success, data) -> Void in
+            if let result = data {
+                
+                var reportDetails = [ReportDetails]()
+                
+                let jsonData = JSON(data: result)
+                print(jsonData)
+                if jsonData["statusCode"] == 1 {
+                    if let reportDetailArr = jsonData["reportDetails"].array {
+                        
+                        for reportDetailObj in reportDetailArr {
+                            let reportDetailDict = reportDetailObj.dictionaryValue
+                            
+                            let reportDetail = ReportDetails(timeFrame: ReportDetails.TimeFrameType.monthly, scoreType: ReportDetails.ScoreType.speed, myScore: (reportDetailDict["score"]?.intValue)!, poolAverage: (reportDetailDict["poolAverage"]?.intValue)!)
+                            reportDetails.append(reportDetail)
+                        }
+                    }
+                    if let overallScore = jsonData["overallscore"].dictionary {
+                        let report = Report(reportDetail: reportDetails, totalPoints: (overallScore["totalPoints"]?.intValue)!, distanceTravelled: (overallScore["distanceTravelled"]?.intValue)!, totalTrips: (overallScore["totalTrips"]?.intValue)!)
+                        completionHandler(success: true, error: nil, result: report)
+                    }
+                }
+            } else {
+                completionHandler(success: false, error: NSError(domain: "", code: 0, userInfo: nil), result: nil)
+            }
+        })
+    }
+    
+    func saveInitialReportData(reportData : Report, completionHandler :(status : Bool) -> Void) {
+        self.dbactions.removeData("Reports")
+        self.dbactions.saveReportData(reportData, completionHandler: { (status) -> Void in
+            if status {
+                completionHandler(status: true)
+            } else {
+                completionHandler(status: false)
+            }
+        })
+    }
     
     func fetchReportData(timeFrame timeFrame: ReportDetails.TimeFrameType, scoreType: ReportDetails.ScoreType, completionHandler:(success: Bool, error: NSError?, result: Report?) -> Void) -> Void{
         

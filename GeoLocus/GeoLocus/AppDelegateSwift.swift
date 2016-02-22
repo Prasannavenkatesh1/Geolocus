@@ -324,25 +324,26 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         var historyData = [History]()
         var overallScore = OverallScores?()
         var contractData = ContractModel?()
+        var reportData = Report?()
         
         let webServiceGroup = dispatch_group_create();
         let operationQueue = NSOperationQueue()
         
         let serviceOperation = NSBlockOperation{        //TODO: uncomment this and below save method
-           /* dispatch_group_enter(webServiceGroup)
+            /* dispatch_group_enter(webServiceGroup)
             FacadeLayer.sharedinstance.requestBadgesData { (status, data, error) -> Void in
-                
-                if status == 1 && error == nil {
-                    badgeData = data!
-                }else{
-                    serviceError = error
-                }
-                print("badge service finished...")
-                dispatch_group_leave(webServiceGroup)
+            
+            if status == 1 && error == nil {
+            badgeData = data!
+            }else{
+            serviceError = error
+            }
+            print("badge service finished...")
+            dispatch_group_leave(webServiceGroup)
             }*/
             
             /* Contract Service */
-            dispatch_group_enter(webServiceGroup)
+             dispatch_group_enter(webServiceGroup)
             FacadeLayer.sharedinstance.requestContractData({ (status, data, error) -> Void in
                 if status == 1 && error == nil {
                     contractData = data!
@@ -352,7 +353,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                 print("contract service completed")
                 dispatch_group_leave(webServiceGroup)
             })
-            
+
             dispatch_group_enter(webServiceGroup)
             FacadeLayer.sharedinstance.requestRecentTripData({ (status, data, error) -> Void in
                 if status == 1 && error == nil {
@@ -367,11 +368,19 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
             dispatch_group_enter(webServiceGroup)
             FacadeLayer.sharedinstance.requestOverallScoreData({ (status, data, error) -> Void in
                 if status == 1 && error == nil {
-                   overallScore  = data!
+                    overallScore  = data!
                 }else{
                     serviceError = error
                 }
                 print("overall score service finished...")
+                dispatch_group_leave(webServiceGroup)
+            })
+            
+            dispatch_group_enter(webServiceGroup)
+            FacadeLayer.sharedinstance.requestInitialReportData(timeFrame: ReportDetails.TimeFrameType.weekly, scoreType: ReportDetails.ScoreType.speed, completionHandler: { (success, error, result) -> Void in
+                if success && error == nil {
+                    reportData = result
+                }
                 dispatch_group_leave(webServiceGroup)
             })
             dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
@@ -380,18 +389,18 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         let dbOperation = NSBlockOperation {
             
             if serviceError == nil {
-               /* dispatch_group_enter(webServiceGroup)
+                /* dispatch_group_enter(webServiceGroup)
                 FacadeLayer.sharedinstance.removeData("Trip_Badge")
                 FacadeLayer.sharedinstance.saveBadge(badgeData) { (status) -> Void in
-                    if status {
-                        dbStatus = true
-                    }else{
-                        dbStatus = false
-                    }
-                    print("badgeData save finished...")
-                    dispatch_group_leave(webServiceGroup)
+                if status {
+                dbStatus = true
+                }else{
+                dbStatus = false
                 }
-                 dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
+                print("badgeData save finished...")
+                dispatch_group_leave(webServiceGroup)
+                }
+                dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
                 */
                 dispatch_group_enter(webServiceGroup)
                 FacadeLayer.sharedinstance.removeData("Trip_Detail")
@@ -404,7 +413,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                     print("historyData save finished...")
                     dispatch_group_leave(webServiceGroup)
                 })
-                 dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
+                dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
                 
                 dispatch_group_enter(webServiceGroup)
                 FacadeLayer.sharedinstance.removeData("OverallScore")
@@ -417,6 +426,16 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                     print("overallScore save finished...")
                     dispatch_group_leave(webServiceGroup)
                 })
+                
+                dispatch_group_enter(webServiceGroup)
+                FacadeLayer.sharedinstance.removeData("Reports")
+                if let reportData = reportData {
+                    FacadeLayer.sharedinstance.saveInitialReportData(reportData, completionHandler: { (status) -> Void in
+                        dbStatus = status
+                        print("report data finished")
+                        dispatch_group_leave(webServiceGroup)
+                    })
+                }
                 dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
             }
         }
@@ -424,11 +443,11 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         let completionOperation = NSBlockOperation {
             
             if ((dbStatus) && (serviceError == nil)) {
-                 print("success...")
+                print("success...")
             }else{
                 print("failure")
             }
-           
+            
         }
         
         // configuring interoperation dependencies

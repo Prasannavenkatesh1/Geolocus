@@ -139,7 +139,9 @@ class Httpclient: NSObject,NSURLSessionDelegate {
 
         let reportRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
         reportRequest.HTTPMethod = "GET"
-        reportRequest.setValue("SWs5cVUyeUFDTDg5bnhMMnZaOWVLUT09Om16Vm01Q3pPVHErZXJyUUV3ZHMyM3c9PQ", forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
+        if let tokenId: String = NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.TOKEN_ID) {
+            reportRequest.setValue(tokenId, forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
+        }
         
         Alamofire.request(reportRequest)
             .responseJSON { (responseJSON) -> Void in
