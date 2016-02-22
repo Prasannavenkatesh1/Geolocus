@@ -8,12 +8,18 @@
 
 import UIKit
 
+/* This view loads the contract points for the user based on the values from the server */
+
 class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
+    /* Variable Declarations */
     var imageViewBorder:CAShapeLayer!
     var imagePicker = UIImagePickerController()
     let bottomBorder = CALayer()
+    var contractPointsAchieved = String()
+    var totalContractPoints = String()
     
+    /* Outlets for the constraints created in the view */
     @IBOutlet weak var layoutConstraintPlusImageLeading: NSLayoutConstraint!
     @IBOutlet weak var layoutConstraintBonusPointsTop: NSLayoutConstraint!
     @IBOutlet weak var layoutConstraintEcoPointsViewHeight: NSLayoutConstraint!
@@ -21,6 +27,7 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
     @IBOutlet weak var layoutConstraintBonusPointsViewHeight: NSLayoutConstraint!
     @IBOutlet weak var layoutConstraintPointsViewHeight: NSLayoutConstraint!
     
+    /* Outlets for the label and other controls in the view */
     @IBOutlet weak var speedPointsView: UIView!
     @IBOutlet weak var totalPointsLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
@@ -35,14 +42,9 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
     @IBOutlet weak var ecoPointsLabel: UILabel!
     @IBOutlet weak var speedPointsLabel: UILabel!
     
-    var contractPointsAchieved = String()
-    var totalContractPoints = String()
-    
     //MARK: View Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        FacadeLayer.sharedinstance.requestContractData(StringConstants.CONTRACT_URL) { (status, data, error) -> Void in
-        }
         
         self.fetchContractDataFromDatabase()
         self.setConstraintsForDifferentDevices()

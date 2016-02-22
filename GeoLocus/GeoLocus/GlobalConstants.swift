@@ -65,13 +65,8 @@ struct StringConstants {
     static let CHECK_BOX_UNSELECTED = "check_box.png"
     static let CHECK_BOX_SELECTED = "checked_box.png"
     
-    static let REGISTER_NOW_URL = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-driver-web/login?channel_type=IOS&languageCode="
-    static let NEED_HELP_URL = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-driver-web/needHelp"
-    static let LOGIN_URL = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/j_spring_security_check?"
-    static let TERMS_AND_CONDITIONS_URL = "http://ec2-52-9-108-237.us-west-1.compute.amazonaws.com:8080/kbc-app-service/admin/get/terms_conditions?languageCode="
-    static let CONTRACT_URL = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/get/contract_details?userId=9"
-    
     static let LOGIN_PARAMETERS = "j_password=%@&j_username=%@&languageCode=%@&channel_type=iOS&_spring_security_remember_me=on"
+    
     static let REPORT_SERVICE_URL = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/report/get/report?"
 
     static let NOTIFICATION_DELETE = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/notification/delete?"
@@ -104,9 +99,6 @@ struct StringConstants {
     static let ERROR = "Error"
     static let OK = "OK"
     static let CONTRACT_POINTS_ACHIEVED_MESSAGE = "You have achieved your target on %@. Contact parents to redeem points."
-    
-    static let USERNAME_STRING = "anuspillai"
-    static let PASSWORD_STRING = "anu12345"
     
     static let REPORT_SYNCHRONISATION = "ReportData_Synchronised"
     

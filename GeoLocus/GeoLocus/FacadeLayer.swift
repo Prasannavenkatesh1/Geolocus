@@ -153,9 +153,9 @@ class FacadeLayer{
     
     //MARK: Terms and Conditions Service
     
-    func requestTermsAndConditionsData(URL : String, completionHandler:(status : Int,data : NSData?, error : NSError?) -> Void) -> Void{
+    func requestTermsAndConditionsData(completionHandler:(status : Int,data : NSData?, error : NSError?) -> Void) -> Void{
 
-        httpclient.requestTermsAndConditionsData(URL) { (response, data, error) -> Void in
+        httpclient.requestTermsAndConditionsData{ (response, data, error) -> Void in
             if(error == nil){
                 completionHandler(status: 1, data: data, error: nil)
             }
@@ -167,9 +167,9 @@ class FacadeLayer{
     
     //MARK: Login Service
     
-    func requestLoginData(URL : String, parameterString : String, completionHandler :(status : Int, data : NSData?, error : NSError?) -> Void) -> Void{
+    func requestLoginData(parameterString : String, completionHandler :(status : Int, data : NSData?, error : NSError?) -> Void) -> Void{
         
-        httpclient.requestLoginData(URL,parameterString: parameterString) { (response,data,error) -> Void in
+        httpclient.requestLoginData(parameterString) { (response,data,error) -> Void in
             if(error == nil){
                 if let resultHeader = response{
                     let tokenID = resultHeader.allHeaderFields[StringConstants.SPRING_SECURITY_COOKIE]
@@ -219,7 +219,7 @@ class FacadeLayer{
     
     //MARK: Contract Service
     
-    func requestContractData(URL : String, completionHandler : (status : Int, data : ContractModel?, error: NSError?) -> Void) -> Void{
+    func requestContractData(completionHandler : (status : Int, data : ContractModel?, error: NSError?) -> Void) -> Void{
         
         if(StringConstants.appDataSynced){
             /* retrieve data from DB */
@@ -228,7 +228,7 @@ class FacadeLayer{
         }
         else{
             /* make service call and store data in to DB */
-            httpclient.requestContractData(URL){ (response, data, error) -> Void in
+            httpclient.requestContractData{ (response, data, error) -> Void in
                 if(error == nil){
                     if let result = data{
                         var jsonData = JSON(data: result)

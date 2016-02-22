@@ -323,6 +323,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         var badgeData = [Badge]()
         var historyData = [History]()
         var overallScore = OverallScores?()
+        var contractData = ContractModel?()
         
         let webServiceGroup = dispatch_group_create();
         let operationQueue = NSOperationQueue()
@@ -339,6 +340,18 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                 print("badge service finished...")
                 dispatch_group_leave(webServiceGroup)
             }*/
+            
+            /* Contract Service */
+            dispatch_group_enter(webServiceGroup)
+            FacadeLayer.sharedinstance.requestContractData({ (status, data, error) -> Void in
+                if status == 1 && error == nil {
+                    contractData = data!
+                }else{
+                    serviceError = error
+                }
+                print("contract service completed")
+                dispatch_group_leave(webServiceGroup)
+            })
             
             dispatch_group_enter(webServiceGroup)
             FacadeLayer.sharedinstance.requestRecentTripData({ (status, data, error) -> Void in
