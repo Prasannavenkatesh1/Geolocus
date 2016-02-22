@@ -32,8 +32,9 @@ class ReportsViewController: BaseViewController {
     var scoreType: ReportDetails.ScoreType = ReportDetails.ScoreType.speed
     
     override func viewDidLoad() {
+        
         self.startLoading()
-        FacadeLayer.sharedinstance.fetchReportData(timeFrame: ReportDetails.TimeFrameType.monthly, scoreType: ReportDetails.ScoreType.speed, completionHandler: { (success, error, result) -> Void in
+        FacadeLayer.sharedinstance.fetchInitialReportData(timeFrame: ReportDetails.TimeFrameType.weekly, scoreType: ReportDetails.ScoreType.speed) { (success, error, result) -> Void in
             if success == true {
                 if let resultObj = result {
                     self.report = resultObj
@@ -42,7 +43,7 @@ class ReportsViewController: BaseViewController {
                 }
             }
             self.stopLoading()
-        })
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -166,6 +167,7 @@ class ReportsViewController: BaseViewController {
         if groupBarVC != nil {
             chartData.removeAll()
             self.filterPopUpView.hidden = true
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: StringConstants.REPORT_SYNCHRONISATION)
             self.startLoading()
             FacadeLayer.sharedinstance.fetchReportData(timeFrame: timeFrameType, scoreType: scoreType, completionHandler: { (success, error, result) -> Void in
                 if success == true {

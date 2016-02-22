@@ -738,11 +738,12 @@ class DatabaseActions: NSObject {
                 }
             }
             
-            let reportManagedObj = results.first as! Reports
-            if let totalPoints = reportManagedObj.totalcontractpoints, distanceTravelled = reportManagedObj.distancetravelled, totalTrips = reportManagedObj.totaltrip {
-                
-                let report = Report(reportDetail: reportDetails, totalPoints: totalPoints.integerValue, distanceTravelled: distanceTravelled.integerValue, totalTrips: totalTrips.integerValue)
-                return report
+            if let reportManagedObj = results.first as? Reports {
+                if let totalPoints = reportManagedObj.totalcontractpoints, distanceTravelled = reportManagedObj.distancetravelled, totalTrips = reportManagedObj.totaltrip {
+                    
+                    let report = Report(reportDetail: reportDetails, totalPoints: totalPoints.integerValue, distanceTravelled: distanceTravelled.integerValue, totalTrips: totalTrips.integerValue)
+                    return report
+                }
             }
         }
         return nil
