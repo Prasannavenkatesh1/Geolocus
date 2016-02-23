@@ -271,7 +271,7 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                     self.badgeNotEarnedArray.append(badge)
                 }
                 
-                for var index = 0; index < self.plistBadgeArray.count; index++ {
+                for var index = 0; index < self.plistLevelArray.count; index++ {
                     
                     let level = Badge(withIcon: self.plistLevelArray[index]["icon_not_earned"] as! String, badgeTitle: self.plistLevelArray[index]["title"] as! String, badgeDescription: self.plistLevelArray[index]["criteria"] as! String, isEarned: false, orderIndex: Int(self.plistLevelArray[index]["index"] as! String)!, badgeType: Badge.BadgesType.Level, additionalMsg: " ")
                     

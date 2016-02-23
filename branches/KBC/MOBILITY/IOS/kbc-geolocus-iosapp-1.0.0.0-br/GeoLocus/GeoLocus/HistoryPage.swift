@@ -175,7 +175,7 @@ class HistoryPage: BaseViewController {
                 self.tripMapEvents = data.events!
                 
                 if self.tripMapEvents != nil {
-                    for var index = 0; index < self.tripMapEvents?.count; index++ {
+                    for var index = 0; index < tripMapEvents?.count; index++ {
                         let eventObj = tripMapEvents![index] as Event
                         let eventAnnotation = EventAnnotation(coordinate: CLLocationCoordinate2D(latitude: eventObj.location.latitude, longitude: eventObj
                             .location.longitude), annotationID: index)

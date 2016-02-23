@@ -14,11 +14,17 @@ class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var speedingArcView          : ArcGraphicsController!
     @IBOutlet weak var ecoArcView               : ArcGraphicsController!
     @IBOutlet weak var totalDistTravelledLabel  : UILabel!
-    @IBOutlet weak var drivingDummyView         : ArcGraphicsController!
-    @IBOutlet weak var drivingDummySecView      : ArcGraphicsController!
     @IBOutlet weak var attentionView            : UIView!
     @IBOutlet weak var scrollContentView        : UIView!
     @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var drivingBehaviourLabel: UILabel!
+    @IBOutlet weak var speedingLabel: UILabel!
+    @IBOutlet weak var ecoLabel: UILabel!
+    @IBOutlet weak var attentionLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var overallScoreLabel: UILabel!
+    
     
     var driveBehTapGestureRecognizer    : UITapGestureRecognizer!
     var speedingTapGestureRecognizer    : UITapGestureRecognizer!
@@ -91,20 +97,6 @@ class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
             self.attentionView.addGestureRecognizer(self.attentionTapGestureRecognizer)
             
         }
-        
-        //dummy view
-        self.drivingDummyView.foreGroundArcWidth = 0
-        self.drivingDummyView.backGroundArcWidth = 0
-        self.drivingDummyView.ringLayer.strokeColor = UIColor.clearColor().CGColor
-        self.drivingDummyView.animateScale = 0.0
-        self.drivingDummyView.setNeedsDisplay()
-        
-        //dummy view
-        self.drivingDummySecView.foreGroundArcWidth = 0
-        self.drivingDummySecView.backGroundArcWidth = 0
-        self.drivingDummySecView.ringLayer.strokeColor = UIColor.clearColor().CGColor
-        self.drivingDummySecView.animateScale = 0.0
-        self.drivingDummySecView.setNeedsDisplay()
     }
     /**
      Get data from DB and reload the page
