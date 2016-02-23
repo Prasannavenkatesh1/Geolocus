@@ -27,6 +27,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var passwordText: UITextField!
+    @IBOutlet weak var termsAndConditionsLabel: UILabel!
     
     /* Variable declarations */
     var isChecked = false
@@ -71,8 +72,17 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
                 appDelegate.requestAndSaveAppData()
             }
             else{
-                let alertView = UIAlertController(title: StringConstants.ERROR, message: error?.description, preferredStyle: UIAlertControllerStyle.Alert)
-                alertView.addAction(UIAlertAction(title: StringConstants.OK, style: UIAlertActionStyle.Default, handler: nil))
+                let alertView = UIAlertController(title: StringConstants.ERROR, message: error?.domain, preferredStyle: UIAlertControllerStyle.Alert)
+                alertView.addAction(UIAlertAction(title: StringConstants.OK, style: UIAlertActionStyle.Default) {(alertAction) in
+                    if(error?.domain == ErrorConstants.InvalidLogin){
+                        self.userNameText.text = ""
+                        self.passwordText.text = ""
+                        self.checkButton.setImage(UIImage(named:StringConstants.CHECK_BOX_UNSELECTED), forState: UIControlState.Normal)
+                        self.loginButton.enabled = false
+                        self.loginButton.backgroundColor = UIColor(red: 247.0/255.0, green: 249.0/255.0, blue: 251.0/255.0, alpha: 1.0)
+                        self.loginButton.setTitleColor(UIColor.lightGrayColor(),forState: UIControlState.Normal)
+                    }
+                })
                 self.presentViewController(alertView, animated: true, completion: nil)
             }
         }
@@ -107,12 +117,12 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
         userNameText.delegate = self
         passwordText.delegate = self
         
+        self.setTitlesForButtonsAndTextFields()
         self.registerForKeyboardNotifications()
         self.setConstraintsForDevice()
         self.customizeTextField()
         self.customizeButton()
         self.termsAndConditionsURL()
-        self.loginButton.setTitle(LocalizationConstants.Login_LoginTitle.localized(), forState: UIControlState.Normal)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -121,6 +131,18 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
   
     // MARK: - Custom Methods
 
+    /* set titles for Buttons and textfields to localize */
+    func setTitlesForButtonsAndTextFields(){
+        self.userNameText.attributedPlaceholder = NSAttributedString(string:LocalizationConstants.Username_PlaceholderText.localized(),
+            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
+        self.passwordText.attributedPlaceholder = NSAttributedString(string:LocalizationConstants.Password_PlaceholderText.localized(),
+            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
+        self.termsAndConditionsLabel.text = LocalizationConstants.Terms_And_Conditions_Title.localized()
+        self.loginButton.setTitle(LocalizationConstants.Login_Title.localized(), forState: UIControlState.Normal)
+        self.registerNowButton.setTitle(LocalizationConstants.RegisterNow_Title.localized(), forState: UIControlState.Normal)
+        self.needHelpButton.setTitle(LocalizationConstants.NeedHelp_Title.localized(), forState: UIControlState.Normal)
+    }
+    
     /* function to validate for required fields */
     func validate(){
         if !(userNameText.text!.isEmpty) && !(passwordText.text!.isEmpty) && (isChecked == true) {
@@ -136,7 +158,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
                 self.termsAndConditionsString = NSString(data: response!, encoding: NSUTF8StringEncoding) as String!
             }
             else{
-                let alertView = UIAlertController(title: StringConstants.ERROR, message: error?.description, preferredStyle: UIAlertControllerStyle.Alert)
+                let alertView = UIAlertController(title: StringConstants.ERROR.localized(), message: error?.description.localized(), preferredStyle: UIAlertControllerStyle.Alert)
                 alertView.addAction(UIAlertAction(title: StringConstants.OK, style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alertView, animated: true, completion: nil)
             }
@@ -168,14 +190,14 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
     
     /* setting constraints based on device height */
     func setConstraintsForDevice(){
-        if(StringConstants.SCREEN_HEIGHT < 568){
+        if(StringConstants.SCREEN_HEIGHT < Resolution.height.iPhone5){
             layoutConstraintTop.constant = 40
             layoutConstraintVerticalUserNameTop.constant = 10
             layoutConstraintLoginTop.constant = 10
             layoutConstraintCheckBoxTop.constant = 10
             layoutConstraintNeedHelpTop.constant = 5
         }
-        if(StringConstants.SCREEN_HEIGHT == 568){
+        if(StringConstants.SCREEN_HEIGHT == Resolution.height.iPhone5){
             layoutConstraintTop.constant = 80
             layoutConstraintLoginTop.constant = 30
         }

@@ -27,8 +27,6 @@ class WelcomePageViewController: BaseViewController,UIPageViewControllerDataSour
         tap.numberOfTapsRequired = 2
         self.pageViewController.view.addGestureRecognizer(tap)
         
-        FacadeLayer.sharedinstance.requestContractData{ (status, data, error) -> Void in
-        }
     }
     
     /* This method creates different pages and adds those pages as child view */

@@ -7,3 +7,26 @@
 */
 
 "Hello" = "Dutch";
+
+"German" = "Duits";
+"French" = "Frans";
+"English" = "Engels";
+"Dutch" = "Nederlands";
+
+"Username" = "Gebruikersnaam";
+"Password" = "Wachtwoord";
+"I agree to Terms & Conditions" = "Ik ga akkoord met Algemene voorwaarden";
+"Login" = "Log in";
+"Register Now" = "Schrijf u nu in";
+"Need help?" = "Hulp nodig?";
+
+"OK" = "OK";
+
+"Add Picture of your goal here..." = "Voeg foto van je doel hier...";
+"Your Goal" = "Jou doel";
+"TOTAL POINTS" = "PUNTENTOTAAL";
+"Speed Points" = "Speed Points";
+"Eco Points" = "Eco Points";
+"Bonus Points" = "bonuspunten";
+
+"You have achieved your target on %@. Contact parents to redeem points." = "Je hebt je doel bereikt op %@. Neem contact op met de ouders om punten inwisselen ";

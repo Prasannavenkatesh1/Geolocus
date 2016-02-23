@@ -25,6 +25,7 @@ class TermsAndConditionsViewController : UIViewController{
     
     //MARK: View Methods
     override func viewDidLoad() {
+        self.okButton.setTitle(LocalizationConstants.Ok_title.localized(), forState: UIControlState.Normal)
         termsAndConditionsWebView.loadHTMLString(termsAndConditionsContent, baseURL: nil)
         [self.termsAndConditionsWebView.bringSubviewToFront(okButton)]
     }
