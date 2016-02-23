@@ -5,6 +5,7 @@
 import UIKit
 import CoreData
 
+
 enum Actions:String{
   case yes = "YES"
   case no = "NO"
@@ -322,6 +323,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         
         var badgeData = [Badge]()
         var historyData = [History]()
+        var dashboardData = DashboardModel?()
         var overallScore = OverallScores?()
         var contractData = ContractModel?()
         var reportData = Report?()
@@ -354,6 +356,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                 dispatch_group_leave(webServiceGroup)
             })
 
+            
+            
             dispatch_group_enter(webServiceGroup)
             FacadeLayer.sharedinstance.requestRecentTripData({ (status, data, error) -> Void in
                 if status == 1 && error == nil {
@@ -363,6 +367,18 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                 }
                 print("history service finished...")
                 dispatch_group_leave(webServiceGroup)
+            })
+            
+            dispatch_group_enter(webServiceGroup)
+            FacadeLayer.sharedinstance.requestDashboardData({ (status, data, error) -> Void in
+                if status == 1 && error == nil {
+                    dashboardData = data!
+                }else{
+                    serviceError = error
+                }
+                print("Dashboard service finished...")
+                dispatch_group_leave(webServiceGroup)
+            
             })
             
             dispatch_group_enter(webServiceGroup)
@@ -384,6 +400,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                 dispatch_group_leave(webServiceGroup)
             })
             dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
+            
+            
         }
         
         let dbOperation = NSBlockOperation {
@@ -402,6 +420,13 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                 }
                 dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
                 */
+                //                            self.dbactions.removeData("Dashboard")
+                //                            self.dbactions.saveDashboardData(dashboard, completionhandler: { (status) -> Void in
+                //                                if status{
+                //                                    completionHandler(status: 1, data: dashboard, error: nil)
+                //                                }else{
+                //                                    completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                //                                }
                 dispatch_group_enter(webServiceGroup)
                 FacadeLayer.sharedinstance.removeData("Trip_Detail")
                 FacadeLayer.sharedinstance.saveTripDetail(historyData, completionhandler: { (status) -> Void in
@@ -411,6 +436,19 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                         dbStatus = false
                     }
                     print("historyData save finished...")
+                    dispatch_group_leave(webServiceGroup)
+                })
+                dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
+                
+                dispatch_group_enter(webServiceGroup)
+                FacadeLayer.sharedinstance.removeData("Dashboard")
+                FacadeLayer.sharedinstance.saveDashBoardData(dashboardData!, completionhandler: { (status) -> Void in
+                    if status{
+                        dbStatus = true
+                    }else{
+                        dbStatus = false
+                    }
+                    print("Dashboard Save finished")
                     dispatch_group_leave(webServiceGroup)
                 })
                 dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
@@ -456,6 +494,12 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         
         operationQueue.addOperations([serviceOperation, dbOperation, completionOperation], waitUntilFinished: false)
     }
+    
+//    func isConnectedToNetwork() -> Bool{
+//        let reachability: Reachability = try! Reachability.reachabilityForInternetConnection()
+//        let networkStatus: String = reachability.currentReachabilityStatus.description
+//        return !(networkStatus == "No Connection")
+//    }
     
     
     

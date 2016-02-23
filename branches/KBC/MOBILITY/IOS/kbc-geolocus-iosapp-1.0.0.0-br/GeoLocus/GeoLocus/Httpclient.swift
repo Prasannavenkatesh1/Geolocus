@@ -183,21 +183,55 @@ class Httpclient: NSObject,NSURLSessionDelegate {
     }
     
     //MARK: - Dashboard data
-    func requestDashboardData(URL:String, completionHandler:(response: NSURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
-        let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
+    func requestDashboardData(URL:String, completionHandler:(success: Bool?, data: NSData?) -> Void) -> Void{
         
-        let request = NSMutableURLRequest(URL: NSURL(string: FacadeLayer.sharedinstance.webService.dashboardServiceURL!)!)
-        request.HTTPMethod = "GET"
+        let manager = Alamofire.Manager.sharedInstance
+        manager.delegate.sessionDidReceiveChallenge = { session, challenge in
+            var disposition: NSURLSessionAuthChallengeDisposition = .PerformDefaultHandling
+            var credential: NSURLCredential?
+            if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+                if challenge.protectionSpace.host == "ec2-52-9-107-182.us-west-1.compute.amazonaws.com" {
+                    disposition = NSURLSessionAuthChallengeDisposition.UseCredential
+                    
+                    credential = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!)
+                }
+            }
+            return (disposition, credential)
+        }
         
-        let authValue = "SWs5cVUyeUFDTDg5bnhMMnZaOWVLUT09Om16Vm01Q3pPVHErZXJyUUV3ZHMyM3c9PQ"
-        request.setValue(authValue, forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
+        let reportRequest = NSMutableURLRequest(URL: NSURL(string: FacadeLayer.sharedinstance.webService.dashboardServiceURL!)!)
+        reportRequest.HTTPMethod = "GET"
+        reportRequest.setValue(NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.TOKEN_ID), forHTTPHeaderField: StringConstants.SPRING_SECURITY_COOKIE)
         
-        _ = session.dataTaskWithRequest(request) {(let data, let response, let error) in
-            
-            completionHandler(response: response, data: data, error: error)
-            
+        Alamofire.request(reportRequest)
+            .responseJSON { (responseJSON) -> Void in
+                if let dashboardsData = responseJSON.data{
+                    completionHandler(success: true, data: dashboardsData)
+                    return
+                }
+                completionHandler(success: false, data: nil)
             }.resume()
+
+        
+        
+        
+        
+        
+        
+//        let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+//        let session = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
+//        
+//        let request = NSMutableURLRequest(URL: NSURL(string: FacadeLayer.sharedinstance.webService.dashboardServiceURL!)!)
+//        request.HTTPMethod = "GET"
+//        
+//        let authValue = NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.TOKEN_ID)
+//        request.setValue(authValue, forHTTPHeaderField: StringConstants.SPRING_SECURITY_COOKIE)
+//        
+//        _ = session.dataTaskWithRequest(request) {(let data, let response, let error) in
+//            
+//            completionHandler(response: response, data: data, error: error)
+//            
+//            }.resume()
     }
     
     //MARK: - Badges services

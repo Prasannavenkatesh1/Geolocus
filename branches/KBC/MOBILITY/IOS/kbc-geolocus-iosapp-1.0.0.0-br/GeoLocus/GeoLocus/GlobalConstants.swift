@@ -47,6 +47,7 @@ struct StringConstants {
     static let PageViewController = "PageViewController"
     static let LanguageSelectionViewController = "LanguageSelectionViewController"
     static let SettingsLanguageViewController = "SettingsLanguageViewController"
+    static let SnoozingViewController         = "SnoozingController"
     
     static let MOTIONTYPE_NOTMOVING = "Not Moving"
     static let MOTIONTYPE_NONVEHICLE = "Walking or Running"

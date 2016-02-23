@@ -171,7 +171,7 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csG-jv-cli">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csG-jv-cli" customClass="CustomButton" customModule="GeoLocus" customModuleProvider="target">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <color key="backgroundColor" red="0.32549019607843138" green="0.69803921568627447" blue="0.38431372549019605" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -409,10 +409,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gvx-kZ-L3t">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="252" image="thumb_down" translatesAutoresizingMaskIntoConstraints="NO" id="hlu-eZ-nID">
-                                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Trip Behaviour" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXt-dx-59b">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Trip Behaviour" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="mXt-dx-59b">
                                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="42" id="46S-fA-Gqg"/>
@@ -440,6 +437,9 @@
                                                     </mask>
                                                 </variation>
                                             </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="252" image="thumb_down" translatesAutoresizingMaskIntoConstraints="NO" id="hlu-eZ-nID">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -454,12 +454,6 @@
                                             <constraint firstAttribute="height" constant="116" id="IBZ-W3-eAW">
                                                 <variation key="heightClass=regular-widthClass=compact" constant="112"/>
                                             </constraint>
-                                            <constraint firstItem="mXt-dx-59b" firstAttribute="height" secondItem="Gvx-kZ-L3t" secondAttribute="height" multiplier="0.25" id="eQk-Dq-56c">
-                                                <variation key="heightClass=regular-widthClass=compact" constant="-15.25"/>
-                                            </constraint>
-                                            <constraint firstItem="mXt-dx-59b" firstAttribute="width" secondItem="Gvx-kZ-L3t" secondAttribute="width" multiplier="0.25" id="ke9-sq-Gkz">
-                                                <variation key="heightClass=regular-widthClass=compact" constant="34"/>
-                                            </constraint>
                                             <constraint firstItem="hlu-eZ-nID" firstAttribute="width" secondItem="Gvx-kZ-L3t" secondAttribute="width" multiplier="0.4" id="nJw-gI-jCA"/>
                                             <constraint firstItem="hlu-eZ-nID" firstAttribute="height" secondItem="Gvx-kZ-L3t" secondAttribute="height" multiplier="0.4" id="ngE-Qa-vTm"/>
                                             <constraint firstItem="hlu-eZ-nID" firstAttribute="centerX" secondItem="Gvx-kZ-L3t" secondAttribute="centerX" id="wni-jx-s7o">
@@ -468,16 +462,14 @@
                                         </constraints>
                                         <variation key="default">
                                             <mask key="subviews">
-                                                <exclude reference="hlu-eZ-nID"/>
                                                 <exclude reference="mXt-dx-59b"/>
+                                                <exclude reference="hlu-eZ-nID"/>
                                             </mask>
                                             <mask key="constraints">
                                                 <exclude reference="6FO-5C-P5c"/>
                                                 <exclude reference="IBZ-W3-eAW"/>
                                                 <exclude reference="6Xu-lt-G2M"/>
                                                 <exclude reference="Ayc-8x-SKB"/>
-                                                <exclude reference="eQk-Dq-56c"/>
-                                                <exclude reference="ke9-sq-Gkz"/>
                                                 <exclude reference="73j-Zg-Oxp"/>
                                                 <exclude reference="nJw-gI-jCA"/>
                                                 <exclude reference="ngE-Qa-vTm"/>
@@ -486,16 +478,14 @@
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=compact">
                                             <mask key="subviews">
-                                                <include reference="hlu-eZ-nID"/>
                                                 <include reference="mXt-dx-59b"/>
+                                                <include reference="hlu-eZ-nID"/>
                                             </mask>
                                             <mask key="constraints">
                                                 <exclude reference="6FO-5C-P5c"/>
                                                 <exclude reference="IBZ-W3-eAW"/>
                                                 <include reference="6Xu-lt-G2M"/>
                                                 <include reference="Ayc-8x-SKB"/>
-                                                <exclude reference="eQk-Dq-56c"/>
-                                                <exclude reference="ke9-sq-Gkz"/>
                                                 <include reference="73j-Zg-Oxp"/>
                                                 <include reference="nJw-gI-jCA"/>
                                                 <include reference="ngE-Qa-vTm"/>
@@ -508,8 +498,8 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ij6-R8-zbg" secondAttribute="height" multiplier="1:1" id="7mh-fe-Pea"/>
                                     <constraint firstItem="Gvx-kZ-L3t" firstAttribute="centerX" secondItem="ij6-R8-zbg" secondAttribute="centerX" id="8g0-Mo-cPj"/>
-                                    <constraint firstItem="Gvx-kZ-L3t" firstAttribute="height" secondItem="ij6-R8-zbg" secondAttribute="height" multiplier="0.5" id="Ach-mM-yt2"/>
-                                    <constraint firstItem="Gvx-kZ-L3t" firstAttribute="width" secondItem="ij6-R8-zbg" secondAttribute="width" multiplier="0.5" id="BK6-b0-OnN"/>
+                                    <constraint firstItem="Gvx-kZ-L3t" firstAttribute="height" secondItem="ij6-R8-zbg" secondAttribute="height" multiplier="0.6" id="Ach-mM-yt2"/>
+                                    <constraint firstItem="Gvx-kZ-L3t" firstAttribute="width" secondItem="ij6-R8-zbg" secondAttribute="width" multiplier="0.6" id="BK6-b0-OnN"/>
                                     <constraint firstItem="Gvx-kZ-L3t" firstAttribute="centerY" secondItem="ij6-R8-zbg" secondAttribute="centerY" id="r5m-97-fdc"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -610,6 +600,7 @@
                         <outlet property="levelName" destination="eR2-7Q-ZBi" id="Mo2-he-3pQ"/>
                         <outlet property="pointsAchievedProgressView" destination="9KS-jV-HYj" id="IxB-bd-F4P"/>
                         <outlet property="startStopButton" destination="csG-jv-cli" id="Znx-jx-XfX"/>
+                        <outlet property="tripStatusImage" destination="hlu-eZ-nID" id="wi4-UJ-Lk1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eF6-dj-zJH" userLabel="First Responder" sceneMemberID="firstResponder"/>

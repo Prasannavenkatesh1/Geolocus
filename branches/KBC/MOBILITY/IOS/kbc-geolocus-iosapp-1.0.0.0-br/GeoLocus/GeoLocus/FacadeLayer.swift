@@ -555,10 +555,10 @@ class FacadeLayer{
 
     //MARK: - Dashboard Service
     
-    func fetchDashboardData(completionHandler:(status: Int, data: DashboardModel?, error: NSError?) -> Void) -> Void{
+    func requestDashboardData(completionHandler:(status: Int, data: DashboardModel?, error: NSError?) -> Void) -> Void{
         
-        httpclient.requestDashboardData("URL") { (response, data, error) -> Void in
-            if error == nil {
+        httpclient.requestDashboardData("URL") { (success, data) -> Void in
+            if success == true {
                 var dashboard : DashboardModel
                 
                 if let result = data {
@@ -598,16 +598,16 @@ class FacadeLayer{
                             
                             dashboard = DashboardModel(score: score!, levelName: level!, levelMessage: nextLevelMessage!, distanceTravelled: distanceTravelled!, totalPoints:totalPoints!, pointsAchieved: pointsAchieved!, scoreMessage: scoreMessage!, tripStatus: tripStatus!)
                             
-                            self.dbactions.removeData("Dashboard")
-                            self.dbactions.saveDashboardData(dashboard, completionhandler: { (status) -> Void in
-                                if status{
-                                    completionHandler(status: 1, data: dashboard, error: nil)
-                                }else{
-                                    completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
-                                }
-                            })
+//                            self.dbactions.removeData("Dashboard")
+//                            self.dbactions.saveDashboardData(dashboard, completionhandler: { (status) -> Void in
+//                                if status{
+//                                    completionHandler(status: 1, data: dashboard, error: nil)
+//                                }else{
+//                                    completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+//                                }
+//                            })
 
-                            //completionHandler(status: 1, data: dashboard, error: nil)
+                            completionHandler(status: 1, data: dashboard, error: nil)
                         }else{
                             //something went wrong
                             completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
@@ -628,6 +628,26 @@ class FacadeLayer{
         }
         
     }
+    
+    func saveDashBoardData(dashboardData:DashboardModel, completionhandler:(status: Bool)-> Void){
+        
+        self.dbactions.saveDashboardData(dashboardData, completionhandler: { (status) -> Void in
+            if status {
+                completionhandler(status: true)
+            }else{
+                completionhandler(status: false)
+            }
+        })
+    }
+    
+    func fetchDashboardData(completionHandler:(status: Int, data: DashboardModel?, error: NSError?) -> Void) -> Void{
+        
+        dbactions.fetchDashboardData { (status, response, error) -> Void in
+            completionHandler(status: status, data: response, error: error)
+        }
+    }
+    
+
     
     
     //MARK: - Badge service

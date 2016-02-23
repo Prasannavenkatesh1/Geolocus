@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class BaseViewController: UIViewController {
 
     var activityIndicatorView = UIActivityIndicatorView()
@@ -55,6 +56,12 @@ class BaseViewController: UIViewController {
     func stopLoading(){
         self.shouldShowActivtyOnView(false)
     }
+    
+//    func isConnectedToNetwork() -> Bool{
+//        let reachability: Reachability = try! Reachability.reachabilityForInternetConnection()
+//        let networkStatus: String = reachability.currentReachabilityStatus.description
+//        return !(networkStatus == "No Connection")
+//    }
     
     
     func displayActivityView(title: String, detail: String, imageInfo: Dictionary<String, String>, shareOption: ShareTemplate.ShareOption){
