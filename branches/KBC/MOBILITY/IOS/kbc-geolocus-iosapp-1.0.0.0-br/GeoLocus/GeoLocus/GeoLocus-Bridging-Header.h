@@ -31,4 +31,5 @@
 
 #import "SWRevealViewController.h"
 #import "HMSegmentedControl.h"
+#import "Reachability.h"
 
