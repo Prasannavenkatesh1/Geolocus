@@ -181,6 +181,7 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
             let cell = tableView.dequeueReusableCellWithIdentifier(popUpCellIdentifier, forIndexPath: indexPath) as! popUpCustomCell
             if popUpType == popUpTypes.ChooseLanguage{
                     cell.popUpDataUploadOrLanguageTypeLabel.text = popUpChooseLanguageFieldType.popUpChooseLanguageFieldTypeTitles[indexPath.row]
+                    cell.popUpDataUploadOrLanguageTypeButton.tag = row
                 let selectedLanguage = defaults.objectForKey("ChoosenLanguage") as? String
                 if selectedLanguage == popUpChooseLanguageFieldType.popUpChooseLanguageFieldTypeTitles[indexPath.row]{
                     if let image = UIImage(named: "Radio-Button_Checked.png") {
@@ -191,8 +192,11 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
                         cell.popUpDataUploadOrLanguageTypeButton.setImage(image, forState: .Normal)
                     }
                 }
+                cell.popUpDataUploadOrLanguageTypeButton .addTarget(self, action: "chooseLanguageValueChanged:", forControlEvents: .TouchUpInside)
+                
             }else if popUpType == popUpTypes.DataUpload {
                     cell.popUpDataUploadOrLanguageTypeLabel.text = popUpDataUploadFieldType.popUpDataUploadFieldTypeTitles[indexPath.row]
+                    cell.popUpDataUploadOrLanguageTypeButton.tag = row
                 let selectedDataUploadType = defaults.objectForKey("DataUploadType") as? String
                 if selectedDataUploadType == popUpDataUploadFieldType.popUpDataUploadFieldTypeTitles[indexPath.row]{
                     if let image = UIImage(named: "Radio-Button_Checked.png") {
@@ -203,6 +207,7 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
                         cell.popUpDataUploadOrLanguageTypeButton.setImage(image, forState: .Normal)
                     }
                 }
+                cell.popUpDataUploadOrLanguageTypeButton .addTarget(self, action: "dataUploadValueChanged:", forControlEvents: .TouchUpInside)
             }
             return cell
         }
@@ -275,6 +280,16 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
        
         self.dismissViewControllerAnimated(true, completion: nil)
         
+    }
+    
+    func dataUploadValueChanged(sender :AnyObject){
+        let indexPath : NSIndexPath = NSIndexPath(forRow: sender.tag, inSection: 0)
+        self.tableView(self.popUpTableView, didSelectRowAtIndexPath: indexPath)
+    }
+    
+    func chooseLanguageValueChanged(sender:AnyObject){
+        let indexPath : NSIndexPath = NSIndexPath(forRow: sender.tag, inSection: 0)
+        self.tableView(self.popUpTableView, didSelectRowAtIndexPath: indexPath)
     }
     
     func switchValueChanged(settingsSwitch : UISwitch){

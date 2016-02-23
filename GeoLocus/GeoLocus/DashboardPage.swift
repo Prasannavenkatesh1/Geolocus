@@ -23,6 +23,9 @@ import UIKit
     @IBOutlet weak var distanceTravelledLabel: UILabel!
     @IBOutlet weak var tripStatusImage: UIImageView!
     
+    var plistLevelArray     = []
+    var snoozingViewController : UIViewController!
+    
     @IBAction func startStopButtonTapped(sender: AnyObject) {
         
         if(sender.currentTitle == "Start" ){
@@ -46,7 +49,7 @@ import UIKit
         self.presentViewController(alertView, animated: true, completion: nil)
     }
     
-    var snoozingViewController : UIViewController!
+    
     
     
     //MARK: System Delegates
@@ -54,14 +57,14 @@ import UIKit
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.handleGetDashboardDetails()
+       self.handleGetDashboardDetails()
 //        snoozingViewController = UIStoryboard(name: "Storyboard", bundle: nil).instantiateViewControllerWithIdentifier("SnoozingController")
 //        //snoozeController.view.frame = CGRectMake(10, 40, 280, 295)
 //        snoozingViewController.view.frame = CGRectMake(10, 40, 280, 295)
 //        self.presentPopUpController(snoozingViewController)
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -92,6 +95,11 @@ import UIKit
                 default:
                     self.tripStatusImage.hidden = true
                 }
+                
+                //1. Get data from plist
+                let path                = NSBundle.mainBundle().pathForResource("BadgesDetails", ofType: "plist")
+                let dataDict            = NSDictionary(contentsOfFile: path!)
+                self.plistLevelArray    = (dataDict?.valueForKey("level"))! as! NSArray
             
                 self.customiseProgressView()
                 //  customColorAndFontSetup()
