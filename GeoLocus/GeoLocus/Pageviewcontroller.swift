@@ -19,7 +19,6 @@ class Pageviewcontroller: UIPageViewController,UIPageViewControllerDataSource,UI
   var historyscore:HistoryScorePage!
   
 
-  
 
     override func viewDidLoad() {
         super.viewDidLoad()
