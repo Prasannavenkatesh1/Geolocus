@@ -175,7 +175,7 @@ class HistoryPage: BaseViewController {
                 self.tripMapEvents = data.events!
                 
                 if self.tripMapEvents != nil {
-                    for var index = 0; index < tripMapEvents?.count; index++ {
+                    for var index = 0; index < self.tripMapEvents?.count; index++ {
                         let eventObj = tripMapEvents![index] as Event
                         let eventAnnotation = EventAnnotation(coordinate: CLLocationCoordinate2D(latitude: eventObj.location.latitude, longitude: eventObj
                             .location.longitude), annotationID: index)
@@ -186,6 +186,9 @@ class HistoryPage: BaseViewController {
                 
             //}else{
                 self.tripZones = data.speedZones
+            self.tripZones = self.tripZones!.sort({ (trip1, trip2) -> Bool in
+                 trip1.maxSpeed.integerValue < trip2.maxSpeed.integerValue
+            })
            // }
             //3
         }
@@ -466,10 +469,9 @@ extension HistoryPage: UITableViewDelegate {
         }
     }
     
-    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        var rowHeight:CGFloat = 75.0       //row height for recent trips by default
+        var rowHeight:CGFloat = 75.0       //default
         
         if indexPath.section == 0{
             if StringConstants.SCREEN_HEIGHT <= Resolution.height.iPhone4 {
@@ -502,10 +504,8 @@ extension HistoryPage: UITableViewDelegate {
                 }
             }
         }
-        
         return CGFloat(rowHeight)
     }
-    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
@@ -581,9 +581,15 @@ extension HistoryPage: MapViewDelegate {
         
         let annotationID = annotation.annotationID
         var messageString = String()
-        messageString = "Message as per annoatation ID: \(annotationID)"
+        
+        if let message = self.tripMapEvents![annotationID].message {
+             messageString = message                                    //consider localization
+        }else{
+            messageString = "Message not available"                     //consider localization
+        }
+    
         let alert = UIAlertController(title: nil, message:messageString , preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))        //consider localization
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
@@ -599,10 +605,10 @@ extension HistoryPage: SpeedZoneCellDelegate {
     func severeViolationViewTapped() {
         var messageString = String()
         
-        messageString = "<Severe Violation message for the trip>"
+        messageString = "<Severe Violation message for the trip>" //consider localization
         
         let alert = UIAlertController(title: nil, message:messageString, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))        //consider localization
         self.presentViewController(alert, animated: true, completion: nil)
     }
     

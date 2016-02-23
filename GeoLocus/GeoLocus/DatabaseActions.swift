@@ -380,7 +380,13 @@ class DatabaseActions: NSObject {
                 for zoneObject in tripManagedObj.speedZones! {
                     let zonemanagedObject = zoneObject as! Trip_Speed_Zone
                     
-                    let speedZone = SpeedZone(speedScore: zonemanagedObject.speedScore!, maxSpeed: zonemanagedObject.maxSpeed!, aboveSpeed: zonemanagedObject.aboveSpeed!, withinSpeed: zonemanagedObject.withinSpeed!, violationCount: zonemanagedObject.violationCount!, speedBehaviour: zonemanagedObject.speedBehaviour!, distanceTravelled: zonemanagedObject.distanceTravelled!)
+                    let speedZone = SpeedZone(speedScore: zonemanagedObject.speedScore!,
+                        maxSpeed: zonemanagedObject.maxSpeed!,
+                        aboveSpeed: zonemanagedObject.aboveSpeed!,
+                        withinSpeed: zonemanagedObject.withinSpeed!,
+                        violationCount: zonemanagedObject.violationCount!,
+                        speedBehaviour: zonemanagedObject.speedBehaviour!,
+                        distanceTravelled: Utility.roundToDecimal(zonemanagedObject.distanceTravelled!.doubleValue / 1000.0, place: 0))
                     
                     speedZonesObj.append(speedZone)
                 }
@@ -390,7 +396,17 @@ class DatabaseActions: NSObject {
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "dd-MM-yyyy"
                 
-                let trip = History(tripid: tripManagedObj.tripId!, tripDate:dateFormatter.stringFromDate(tripManagedObj.date!), distance: tripManagedObj.distance!, tripPoints: tripManagedObj.tripPoints!, tripDuration: tripManagedObj.duration!,speedingMessage: tripManagedObj.speedingMessage,ecoMessage:tripManagedObj.ecoMessage, dataUsageMessage: tripManagedObj.dataUsageMessage, tripScore: tripScore, events: eventsObj, speedZones: speedZonesObj)
+                let trip = History(tripid: tripManagedObj.tripId!,
+                    tripDate:dateFormatter.stringFromDate(tripManagedObj.date!),
+                    distance: Utility.roundToDecimal(tripManagedObj.distance!.doubleValue / 1000.0, place: 0),
+                    tripPoints: tripManagedObj.tripPoints!,
+                    tripDuration: tripManagedObj.duration!,
+                    speedingMessage: tripManagedObj.speedingMessage,
+                    ecoMessage:tripManagedObj.ecoMessage,
+                    dataUsageMessage: tripManagedObj.dataUsageMessage,
+                    tripScore: tripScore,
+                    events: eventsObj,
+                    speedZones: speedZonesObj)
                 
                 trips.append(trip)
             }
@@ -404,7 +420,7 @@ class DatabaseActions: NSObject {
     }
     
     
-    //MARK: - Badges Methods--------------------------------------------------------------------------------------
+    //MARK: - Badges Methods
     
     func saveBadge(badges: [Badge], completionhandler:(status: Bool)-> Void) {
         
@@ -519,7 +535,7 @@ class DatabaseActions: NSObject {
     }
     
     
-    //MARK: - Overall Score methods-------------------------------------------------------------------------------------
+    //MARK: - Overall Score methods
     
     func saveOverallScore(overallScore: OverallScores, completionhandler:(status: Bool)-> Void){
         let overallScoreRow = NSEntityDescription.insertNewObjectForEntityForName("OverallScore",inManagedObjectContext: self.privateManagedObjectContext) as! OverallScore
@@ -527,7 +543,7 @@ class DatabaseActions: NSObject {
         overallScoreRow.speeding            = overallScore.speedingScore
         overallScoreRow.eco                 = overallScore.ecoScore
         overallScoreRow.attention           = overallScore.attentionScore
-        overallScoreRow.distance            = overallScore.distanceTravelled
+        overallScoreRow.distance            = Utility.roundToDecimal(overallScore.distanceTravelled.doubleValue / 1000.0, place: 0)
         overallScoreRow.dataUsageMessage    = overallScore.dataUsageMsg
         overallScoreRow.overallMessage      = overallScore.overallmessage
         overallScoreRow.speedingMessage     = overallScore.speedingMessage
