@@ -269,6 +269,7 @@
 		BF5437B71C58FEA7009D2343 /* TimeSeriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5437B61C58FEA7009D2343 /* TimeSeriesModel.swift */; };
 		BF5A55391C7C23260090E40F /* TripMeasurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5A55381C7C23260090E40F /* TripMeasurements.swift */; };
 		BF5A553B1C7C23370090E40F /* DataUsageCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5A553A1C7C23370090E40F /* DataUsageCalculation.swift */; };
+		BF5A553D1C7C5B0F0090E40F /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BF5A553C1C7C5B0F0090E40F /* Location.gpx */; };
 		BF5D3AAD1C4E1E3000DDFDC1 /* Datausage.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */; };
 		BF6FA2A11C55F6880038DBDF /* CoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6FA2A01C55F6880038DBDF /* CoreLocation.swift */; };
 		BF7336FD1C3F929A006094C0 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF7336FC1C3F929A006094C0 /* Storyboard.storyboard */; };
@@ -617,6 +618,7 @@
 		BF5437B61C58FEA7009D2343 /* TimeSeriesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSeriesModel.swift; sourceTree = "<group>"; };
 		BF5A55381C7C23260090E40F /* TripMeasurements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripMeasurements.swift; sourceTree = "<group>"; };
 		BF5A553A1C7C23370090E40F /* DataUsageCalculation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataUsageCalculation.swift; sourceTree = "<group>"; };
+		BF5A553C1C7C5B0F0090E40F /* Location.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		BF5D3AAB1C4E1E3000DDFDC1 /* Datausage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Datausage.h; sourceTree = "<group>"; };
 		BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Datausage.m; sourceTree = "<group>"; };
 		BF5D3AB11C4E4E9600DDFDC1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
@@ -762,6 +764,7 @@
 		635194731AD3AAC7002ED1D0 /* GeoLocus */ = {
 			isa = PBXGroup;
 			children = (
+				BF5A553C1C7C5B0F0090E40F /* Location.gpx */,
 				BF7336F81C3F9243006094C0 /* New */,
 				BF7336F61C3F9142006094C0 /* Old */,
 				6351947D1AD3AAC7002ED1D0 /* Images.xcassets */,
@@ -1405,6 +1408,7 @@
 				63955CA11AD7A593006A1B04 /* jquery.knob.js in Resources */,
 				6352C42E1AD694A500E11D3A /* icon.png in Resources */,
 				633764ED1AE53DE9005D6597 /* Roboto-ThinItalic.ttf in Resources */,
+				BF5A553D1C7C5B0F0090E40F /* Location.gpx in Resources */,
 				28800A641C6DA4EE00550064 /* badges.json in Resources */,
 				63955C851AD7A581006A1B04 /* BrakingIndicator.html in Resources */,
 				633764E71AE53DE9005D6597 /* Roboto-Light.ttf in Resources */,

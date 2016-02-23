@@ -58,8 +58,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       object: nil)
     
     self.locationmanager.delegate = self
-    // self.locationmanager.desiredAccuracy = kCLLocationAccuracyBestForNavigation //kCLLocationAccuracyBest
-    self.locationmanager.desiredAccuracy = kCLLocationAccuracyBest //kCLLocationAccuracyBest
+    self.locationmanager.desiredAccuracy = kCLLocationAccuracyBest
     self.locationmanager.activityType = CLActivityType.AutomotiveNavigation
     if #available(iOS 9.0, *) {
       self.locationmanager.allowsBackgroundLocationUpdates = true
@@ -292,7 +291,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       schedule: NSDate(),
       tripstatus: false)
     print("stop trip notification fired")
-//    getdetails()
+    getdetails()
     
   }
   

@@ -33,7 +33,7 @@ class RootViewController: BaseViewController {
         self.segmentControl.reloadInputViews()
 
      
-        FacadeLayer.sharedinstance.corelocation.initLocationManager()
+        
       
         let notifyfullView=UIView(frame: CGRectMake(0, 0, 50, 40))
         notifyfullView.backgroundColor=UIColor.clearColor()
