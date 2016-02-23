@@ -15,13 +15,11 @@ public class ShareTemplate {
         case NONE
         case TRIP_DETAIL
         case BADGES
-        
     }
     
     func createShareTemplateImage(title: String, detail: String, imageInfo: Dictionary<String, String>, shareOption: ShareOption, complitionHandler:(image: UIImage)->Void)-> Void{
         
         let drawingRect = CGRectMake(0, 0, 485, 192)
-        
         
         //---------------title text--------------------
         let titleFont                   = UIFont(name:Font.HELVETICA_NEUE_MEDIUM, size: 16)
@@ -37,8 +35,6 @@ public class ShareTemplate {
         let paraAttr                    = [NSFontAttributeName: paraFont!, NSParagraphStyleAttributeName: paragraphStyle, NSForegroundColorAttributeName:UIColor(netHex: 0x181f29)]
         let paraText:String             = detail
         
-        
-        
         //-------------info text------------------
         let infoFont                    = UIFont(name: Font.HELVETICA_NEUE, size: 12)
         let infoParagraphStyle          = NSMutableParagraphStyle()
@@ -50,13 +46,10 @@ public class ShareTemplate {
         UIGraphicsBeginImageContextWithOptions(drawingRect.size, false, 5.0)
         
         let context = UIGraphicsGetCurrentContext()
-        
         CGContextSetFillColorWithColor(context, UIColor.whiteColor().CGColor)
         CGContextFillRect(context, drawingRect)
         
-        
         //--------- image -------
-        
         switch shareOption {
         case ShareOption.TRIP_DETAIL:
             let scoreViewFrame = CGRectMake(0, 0, 78, 78)
@@ -118,9 +111,7 @@ public class ShareTemplate {
             iconImage!.drawInRect(imageRect)
         default:
             print("none")
-            
         }
-        
         
         //-------separator line vertical--------
         CGContextSetFillColorWithColor(context, UIColor(netHex: 0x4c7394).CGColor)
@@ -130,7 +121,6 @@ public class ShareTemplate {
         let kbcIcon = UIImage(named: "KBCIcon.png")
         let kbcIconRect = CGRectMake(440, 5, 35, 32)
         kbcIcon!.drawInRect(kbcIconRect)
-        
         
         //----------drawing text-------------
         let titleTextRect = CGRectMake(204, 19, 269, 21)
@@ -148,7 +138,6 @@ public class ShareTemplate {
         
         complitionHandler(image: image)
     }
-    
     
     func getImage(view: UIView) -> UIImage {
         

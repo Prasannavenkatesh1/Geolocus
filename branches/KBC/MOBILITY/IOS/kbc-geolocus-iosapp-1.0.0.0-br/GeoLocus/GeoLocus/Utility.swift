@@ -43,4 +43,11 @@ class Utility {
             return EventType.None
         }
     }
+    
+    static func roundToDecimal(value: Double, place: Double) -> Double {
+    
+        let multiplier = pow(10.0, place)
+        let rounded = round(value * multiplier) / multiplier
+        return rounded
+    }
 }
