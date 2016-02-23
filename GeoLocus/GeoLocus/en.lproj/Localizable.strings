@@ -6,7 +6,21 @@
   Copyright © 2016 Cognizant. All rights reserved.
 */
 
+
 "Hello" = "English";
+
+//MARK: - Overall Score page
+"Overall_Score" = "Overall Score";
+"Driving_Behavior" = "Driving Behavior";
+"Speeding" = "Speeding";
+"Eco" = "Eco";
+"Attention" = "Attention";
+"Distance_Travelled" = "Total Distance Travelled";
+
+//MARK: - Badges & Levels Page
+"Badges_to_be_Earned" = "Badges to be Earned";
+"Badges_Earned" = "Badges Earned";
+"Levels" = "Levels";
 
 "German" = "German";
 "French" = "French";
@@ -30,3 +44,4 @@
 "Bonus Points" = "Bonus Points";
 
 "You have achieved your target on %@. Contact parents to redeem points." = "You have achieved your target on %@. Contact parents to redeem points.";
+
