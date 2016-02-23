@@ -1109,16 +1109,16 @@ class FacadeLayer{
     userdetails["channelVersion"] =  UIDevice.currentDevice().systemVersion;
     
     var TripJson = Dictionary<String,AnyObject>()
-    TripJson["tripSummary"] = userdetails
+    TripJson["userdetails"] = userdetails
     TripJson["tripSummary"] = summaryJson
     TripJson["tripTimeSeries"] = timeseriesJson
     
-    print("Whole: \(TripJson)")
+//    print("Whole: \(TripJson)")
     
     var error : NSError?
     if let data = try? NSJSONSerialization.dataWithJSONObject(TripJson, options: []) {
       let dataString = NSString(data: data, encoding: NSUTF8StringEncoding)!
-      print(dataString)
+      print("Trip Json Structure\(dataString)")
       
       // do other stuff on success
       

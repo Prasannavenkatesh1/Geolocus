@@ -12,7 +12,6 @@ struct TripMeasurements {
   var oldlocation:CLLocation
   var newlocation:CLLocation
   var oldlocspeed:CLLocationSpeed
-
   
   init(oldlocation:CLLocation, newlocation:CLLocation, oldlocspeed:CLLocationSpeed){
     self.oldlocation = oldlocation

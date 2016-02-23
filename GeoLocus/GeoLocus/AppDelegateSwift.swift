@@ -32,7 +32,6 @@ enum LocalizeLanguageCode: String {
     case Nederlands = "nl"
 }
 
-
 enum Service: Int {
     case CALLED
     case CALLING
@@ -87,7 +86,6 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
 //    NSNotificationCenter.defaultCenter().postNotificationName("tipended", object: nil)
     
       //
-        
         self.service = .NONE
 
     registerNotification()
@@ -97,6 +95,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     if( defaults.boolForKey("isFirstTime") == false){
       defaults.setBool(true, forKey: "isFirstTime")
       defaults.setBool(false, forKey: "isStarted")
+      defaults.setValue("", forKey: "motionlat")
+      
       defaults.setValue("", forKey: StringConstants.TOKEN_ID)
 
       
@@ -284,6 +284,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         let checkUserLogin : Bool = self.checkUserDetails()
         //checkUserLogin = false
         if(!checkUserLogin){
+          FacadeLayer.sharedinstance.corelocation.initLocationManager()
+
             let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
             self.window?.rootViewController = dashboardPage
             self.window?.makeKeyAndVisible()
