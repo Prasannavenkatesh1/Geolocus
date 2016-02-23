@@ -25,6 +25,13 @@ enum Language : String{
     case Dutch = " Dutch"
 }
 
+enum LocalizeLanguageCode: String {
+    case English = "en"
+    case French = "fr"
+    case German = "de"
+    case Nederlands = "nl"
+}
+
 @UIApplicationMain
 class AppDelegateSwift: UIResponder, UIApplicationDelegate {
   
