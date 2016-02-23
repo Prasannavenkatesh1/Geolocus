@@ -8,6 +8,16 @@
 
 import UIKit
 
+public extension String {
+    
+    func localized() -> String {
+        let languageCodeStr = NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.SELECTED_LOCALIZE_LANGUAGE_CODE)
+        if let path = NSBundle.mainBundle().pathForResource(languageCodeStr?.characters.count > 0 ? languageCodeStr : "en", ofType: "lproj"), bundle = NSBundle(path: path) {
+            return bundle.localizedStringForKey(self, value: nil, table: nil)
+        }
+        return self
+    }
+}
 
 class BaseViewController: UIViewController {
 
@@ -55,16 +65,6 @@ class BaseViewController: UIViewController {
     /* stop animating */
     func stopLoading(){
         self.shouldShowActivtyOnView(false)
-    }
-    
-    //MARK:- Custom Methods
-    
-    func localizableString(str: String) -> String {
-        let languageCodeStr = NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.SELECTED_LOCALIZE_LANGUAGE_CODE)
-        if let path = NSBundle.mainBundle().pathForResource(languageCodeStr?.characters.count > 0 ? languageCodeStr : "en", ofType: "lproj"), bundle = NSBundle(path: path) {
-            return bundle.localizedStringForKey(str, value: nil, table: nil)
-        }
-        return str
     }
 
     func isConnectedToNetwork() -> Bool{
