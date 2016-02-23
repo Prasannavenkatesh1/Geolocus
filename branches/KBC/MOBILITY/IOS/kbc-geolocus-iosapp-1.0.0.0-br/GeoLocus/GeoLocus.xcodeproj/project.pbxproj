@@ -267,6 +267,8 @@
 		BF4F8D9A1C43CA8D00895640 /* Httpclient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D991C43CA8D00895640 /* Httpclient.swift */; };
 		BF4F8D9C1C43CA9D00895640 /* DatabaseActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */; };
 		BF5437B71C58FEA7009D2343 /* TimeSeriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5437B61C58FEA7009D2343 /* TimeSeriesModel.swift */; };
+		BF5A55391C7C23260090E40F /* TripMeasurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5A55381C7C23260090E40F /* TripMeasurements.swift */; };
+		BF5A553B1C7C23370090E40F /* DataUsageCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5A553A1C7C23370090E40F /* DataUsageCalculation.swift */; };
 		BF5D3AAD1C4E1E3000DDFDC1 /* Datausage.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */; };
 		BF6FA2A11C55F6880038DBDF /* CoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6FA2A01C55F6880038DBDF /* CoreLocation.swift */; };
 		BF7336FD1C3F929A006094C0 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF7336FC1C3F929A006094C0 /* Storyboard.storyboard */; };
@@ -613,6 +615,8 @@
 		BF4F8D991C43CA8D00895640 /* Httpclient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Httpclient.swift; sourceTree = "<group>"; };
 		BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseActions.swift; sourceTree = "<group>"; };
 		BF5437B61C58FEA7009D2343 /* TimeSeriesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSeriesModel.swift; sourceTree = "<group>"; };
+		BF5A55381C7C23260090E40F /* TripMeasurements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripMeasurements.swift; sourceTree = "<group>"; };
+		BF5A553A1C7C23370090E40F /* DataUsageCalculation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataUsageCalculation.swift; sourceTree = "<group>"; };
 		BF5D3AAB1C4E1E3000DDFDC1 /* Datausage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Datausage.h; sourceTree = "<group>"; };
 		BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Datausage.m; sourceTree = "<group>"; };
 		BF5D3AB11C4E4E9600DDFDC1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
@@ -1178,6 +1182,11 @@
 			children = (
 				BF5D3AAB1C4E1E3000DDFDC1 /* Datausage.h */,
 				BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */,
+				BF5437B61C58FEA7009D2343 /* TimeSeriesModel.swift */,
+				BF6FA2A01C55F6880038DBDF /* CoreLocation.swift */,
+				BF2D457E1C6C81070017EBB0 /* SummaryModel.swift */,
+				BF5A553A1C7C23370090E40F /* DataUsageCalculation.swift */,
+				BF5A55381C7C23260090E40F /* TripMeasurements.swift */,
 				28CD01E01C69A42300EEC94A /* DetectingVechile.swift */,
 				B640F0DD1C621C9E0051864F /* CALayer+UIColor.swift */,
 				28F38A091C61EB3900A02E93 /* Badge.swift */,
@@ -1185,7 +1194,6 @@
 				28F38A0A1C61EB3900A02E93 /* HistoryData.swift */,
 				6CCAF90F1C4E20D500484056 /* ErrorHandler.swift */,
 				6CCAF9031C4E036200484056 /* GlobalConstants.swift */,
-				BF5437B61C58FEA7009D2343 /* TimeSeriesModel.swift */,
 				BF43B34F1C61D25900710E22 /* TripNotify.swift */,
 				BF4BA0E11C5F661F0028D79B /* Thresholds.swift */,
 				BF87B26E1C6A0D5600DA6000 /* ConfigurationModel.swift */,
@@ -1193,9 +1201,7 @@
 				F5CADFFE1C6C9B5900070044 /* NotificationModel.swift */,
 				6C34EA531C69F8A0000A0A0D /* DashboardModel.swift */,
 				2840EFDD1C6B20F10020B8FF /* Extensions.swift */,
-				BF6FA2A01C55F6880038DBDF /* CoreLocation.swift */,
 				BFE454751C64DCD6003BC0F2 /* TripSummaryModel.swift */,
-				BF2D457E1C6C81070017EBB0 /* SummaryModel.swift */,
 				B6AC7CC21C73134800CD8B02 /* ContractModel.swift */,
 				282FAB5B1C75929F00AEDB63 /* Utility.swift */,
 				3AD32B931C7B2622006CC374 /* CustomButton.swift */,
@@ -1329,7 +1335,7 @@
 				TargetAttributes = {
 					635194701AD3AAC7002ED1D0 = {
 						CreatedOnToolsVersion = 6.0.1;
-						DevelopmentTeam = Z726Q8WU78;
+						DevelopmentTeam = 6568GSFQF5;
 					};
 					635194851AD3AAC7002ED1D0 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -1683,6 +1689,7 @@
 				283C04961C74A24D0096358C /* OverallScore.swift in Sources */,
 				63D086AF1B0478B700BDD656 /* HeadphonesDetector.m in Sources */,
 				B636D54B1C6C8DF10067C7B8 /* SettingsCustomViewCell.swift in Sources */,
+				BF5A553B1C7C23370090E40F /* DataUsageCalculation.swift in Sources */,
 				6C44D6691C59E55F0055916B /* LeftViewController.swift in Sources */,
 				6384523A1B0353AE00E895F7 /* DashboardController.m in Sources */,
 				BF87B26F1C6A0D5600DA6000 /* ConfigurationModel.swift in Sources */,
@@ -1713,6 +1720,7 @@
 				B648C20D1C58B83000EE52C3 /* PageContentViewController.swift in Sources */,
 				B6AC7CC31C73134800CD8B02 /* ContractModel.swift in Sources */,
 				28F38A141C61EBB300A02E93 /* HistoryTripDetailCell.swift in Sources */,
+				BF5A55391C7C23260090E40F /* TripMeasurements.swift in Sources */,
 				638451F61B0353A000E895F7 /* CoreLocationController.m in Sources */,
 				638451EF1B0353A000E895F7 /* FMDatabase.m in Sources */,
 				63AAE5D31AE90C470013987F /* EmergencyViewController.swift in Sources */,
@@ -1798,8 +1806,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -1822,7 +1830,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_MODULE_NAME = "";
-				PROVISIONING_PROFILE = "a18e379c-24f0-4596-bb0d-04cac6586511";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1847,8 +1855,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -1864,7 +1872,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_MODULE_NAME = "";
-				PROVISIONING_PROFILE = "a18e379c-24f0-4596-bb0d-04cac6586511";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -1878,7 +1886,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
@@ -1891,7 +1899,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ctstest.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cstest.com;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1908,7 +1916,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: SATHISH NATARAJAN (HZZ47E5BFN)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
@@ -1921,7 +1929,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ctstest.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cstest.com;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

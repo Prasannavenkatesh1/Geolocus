@@ -10,22 +10,20 @@ import Foundation
 
 //struct SummaryModel{
 //  let datausage     :NSNumber
-//  
+//
 //  init(datausage:NSNumber){
-//    
+//
 //  }
 //}
 
 struct SummaryModel{
   
-  let datausage     :NSNumber
-  let tripid        :String
-  let tripstarttime :NSDate
-  let tripendtime   :NSDate
-  let timezone      :String
-  let timezoneid    :String
-//  let totalduration :String
-  
+  let datausage         :NSNumber
+  let tripid            :String
+  let tripstarttime     :NSDate
+  let tripendtime       :NSDate
+  let timezone          :String
+  let timezoneid        :String
   var attentionscore    :NSNumber   = 0
   var brakingcount      :NSNumber   = FacadeLayer.sharedinstance.dbactions.fetchEventCount(Events.EventType.BRAKING)
   var accelerationcount :NSNumber   = FacadeLayer.sharedinstance.dbactions.fetchEventCount(Events.EventType.ACCELERATION)
@@ -37,7 +35,7 @@ struct SummaryModel{
     self.tripstarttime = tripstarttime
     self.tripendtime = tripendtime
     self.timezone = timezone
-    self.timezoneid =  timezoneid    
+    self.timezoneid =  timezoneid
   }
   
   var totalduration :NSInteger {
@@ -45,7 +43,7 @@ struct SummaryModel{
       return getDuration(tripstarttime, eDate: tripendtime)
     }
   }
-
+  
   
   //           Braking score = 1-(((number of Braking Events in Trip x weightage)/distance in kms))*100
   var brakingscore:NSNumber
@@ -72,7 +70,7 @@ struct SummaryModel{
       return ascore
     }
   }
-
+  
   //            Eco score = (Braking score * W1 + Acceleration score * W2)
   var ecoscore:NSNumber
     {
@@ -84,7 +82,7 @@ struct SummaryModel{
       return escore
     }
   }
-    
+  
 }
 
 

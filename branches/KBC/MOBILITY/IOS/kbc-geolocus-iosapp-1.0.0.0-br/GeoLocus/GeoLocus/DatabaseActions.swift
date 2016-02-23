@@ -210,16 +210,16 @@ class DatabaseActions: NSObject {
     
   }
   
-  func reterive(){
+  func reteriveTimeSeries() -> [Trip_timeseries]{
     var locations  = [Trip_timeseries]()
     
     let fetchRequest = NSFetchRequest(entityName: "Trip_timeseries")
     do{
       
-       locations =  try self.managedObjectContext.executeFetchRequest(fetchRequest) as! [Trip_timeseries]
-      
+      locations =  try self.managedObjectContext.executeFetchRequest(fetchRequest) as! [Trip_timeseries]
+      let defaultsTripID = String(NSUserDefaults.standardUserDefaults().valueForKey(StringConstants.TOKEN_ID))
       for triptimeseries in locations {
-        let timeseries:TimeSeriesModel = TimeSeriesModel.init(ctime: triptimeseries.currenttime!,
+        let timeseries:TimeSeriesModel = TimeSeriesModel.init(tripid: defaultsTripID + "1", ctime: triptimeseries.currenttime!,
           lat: triptimeseries.latitude!,
           longt: triptimeseries.longitude!,
           speedval: triptimeseries.speed!,
@@ -233,8 +233,53 @@ class DatabaseActions: NSObject {
     }catch{
       fatalError("reterive error")
     }
-  }
     
+    return locations
+  }
+  
+  func reteriveConfiguration(tripid:String) -> ConfigurationModel{
+    
+    let fetchRequest = NSFetchRequest(entityName: "Configurations")
+    do{
+      let configdata:Configurations =  try (self.managedObjectContext.executeFetchRequest(fetchRequest))[0] as! Configurations
+      
+      var configmodeldata:ConfigurationModel    = ConfigurationModel()
+      configmodeldata.thresholds_brake          = configdata.thresholds_brake
+      configmodeldata.thresholds_acceleration   = configdata.thresholds_acceleration
+      configmodeldata.thresholds_autotrip       = configdata.thresholds_autotrip
+      configmodeldata.weightage_braking         = configdata.weightage_braking
+      configmodeldata.weightage_acceleration    = configdata.weightage_acceleration
+      configmodeldata.weightage_speed           = configdata.weightage_speed
+      configmodeldata.weightage_severevoilation = configdata.weightage_severevoilation
+      configmodeldata.ecoweightage_braking      = configdata.ecoweightage_braking
+      configmodeldata.ecoweightage_acceleration = configdata.ecoweightage_acceleration
+      
+      return configmodeldata
+      
+    }catch{
+      fatalError("reterive error")
+    }
+  }
+  
+  func reteriveTripSummary(tripid:String) -> SummaryModel{
+    var summarymodeldata:SummaryModel
+    let fetchRequest = NSFetchRequest(entityName: "TripSummary")
+    do{
+      
+      let tripsummary:TripSummary = try (self.managedObjectContext.executeFetchRequest(fetchRequest))[0] as! TripSummary
+      summarymodeldata  = SummaryModel(datausage: tripsummary.datausage!,
+        tripid: tripsummary.tripid!,
+        tripstarttime: tripsummary.tripstarttime!,
+        tripendtime: tripsummary.tripendtime!,
+        timezone:tripsummary.timezone!,
+        timezoneid: tripsummary.timezone!)
+      
+    }catch{
+      fatalError("reterive error")
+    }
+    return summarymodeldata
+  }
+  
     
     //MARK: - History Methods
   
