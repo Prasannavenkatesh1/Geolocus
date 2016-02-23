@@ -105,6 +105,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
         self.customizeTextField()
         self.customizeButton()
         self.termsAndConditionsURL()
+        self.loginButton.setTitle(self.localizableString(LocalizationConstants.Login_LoginTitle), forState: UIControlState.Normal)
     }
     
     override func viewWillDisappear(animated: Bool) {

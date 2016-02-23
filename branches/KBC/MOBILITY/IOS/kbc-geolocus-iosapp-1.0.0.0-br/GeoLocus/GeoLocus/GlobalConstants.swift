@@ -58,6 +58,7 @@ struct StringConstants {
     
     static let LOGINVIEW_STORYBOARD_SEGUE = "loginView"
     static let SELECTED_LANGUAGE_USERDEFAULT_KEY = "selectedLanguage"
+    static let SELECTED_LOCALIZE_LANGUAGE_CODE = "userSelectedLanguage"
     
     /* Login View Controller */
     static let USERNAME_IMAGE = "username.png"
@@ -204,4 +205,9 @@ struct BadgeKey {
     static let DESC   = "badge_description"
     static let EARNED = "isEarned"
     static let INDEX  = "order_index"
+}
+
+struct LocalizationConstants {
+    
+    static let Login_LoginTitle = "Hello"
 }
