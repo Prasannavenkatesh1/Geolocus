@@ -62,6 +62,8 @@ class HistoryPage: BaseViewController {
         super.viewDidLoad()
     }
     
+    //MARK: - Viewcontroller Delegate Methods
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.scoreRefreshRequired = true
@@ -81,6 +83,11 @@ class HistoryPage: BaseViewController {
     
     //MARK: - Custom Methods
     
+    /**
+        called when 'By Map' tab is pressed
+    
+        - Parameter sender:   UIButton type
+    */
     func byMapButtonPressed(sender: UIButton!) {
         
         if self.tabSelected == MapZoneTab.MapSelected {
@@ -97,6 +104,11 @@ class HistoryPage: BaseViewController {
         
     }
     
+    /**
+        Called when 'By Speeding Zone' tab is pressed
+     
+        - Parameter sender:   UIButton type
+     */
     func bySpeedingZoneButtonPressed(sender: UIButton!) {
         
         if self.tabSelected == MapZoneTab.ZoneSelected {
@@ -111,12 +123,18 @@ class HistoryPage: BaseViewController {
         self.tripHistoryTableView.reloadSections(section, withRowAnimation: .Automatic)
         self.tripHistoryTableView.endUpdates()
     }
+    /**
+     Reload the data source and reload page
+     */
     
     func reload() {
         reloadTableViewData(self.tripDetailRowSelected!)
         [self.tripHistoryTableView.reloadData()]
     }
     
+    /**
+        Get data form the DB and reload the page
+     */
     func loadData() {
 
         FacadeLayer.sharedinstance.fetchtripDetailData { (status, data, error) -> Void in
@@ -128,6 +146,9 @@ class HistoryPage: BaseViewController {
         }
     }
     
+    /**
+     Reload the data source
+     */
     func reloadTableViewData(index: Int){
         
         self.tripScores     = []
@@ -170,7 +191,10 @@ class HistoryPage: BaseViewController {
         }
     }
     
-    
+    /**
+        Reload the Map view and Zone view
+        - Parameter indexPath: Indexpath of the row to be loaded
+     */
     func animateZoneRow(indexPath: NSIndexPath) {
         
         if self.zoneSelectedIndexPath != nil && self.zoneSelectedIndexPath == indexPath {
@@ -502,6 +526,11 @@ extension HistoryPage: UITableViewDelegate {
 
 extension HistoryPage: ScoreCellDelegate {
     
+    /**
+     Called when score view is tapped. This will display the messages to user as per the score of the trip.
+     
+     - Parameter tag: Tag of the score view which is tapped
+     */
     func scoreViewTapped(tag: Int) {
         
         if self.historyData?.count > 0 {
@@ -509,11 +538,17 @@ extension HistoryPage: ScoreCellDelegate {
             
             switch tag {
             case 1 :
-                messageString = self.historyData![self.tripDetailRowSelected!].speedingMessage
+                if let message = self.historyData![self.tripDetailRowSelected!].speedingMessage {
+                    messageString = message
+                }
             case 2:
-                messageString = self.historyData![self.tripDetailRowSelected!].ecoMessage
+                if let message = self.historyData![self.tripDetailRowSelected!].ecoMessage {
+                    messageString = message
+                }
             case 3:
-                messageString = self.historyData![self.tripDetailRowSelected!].dataUsageMessage
+                if let message = self.historyData![self.tripDetailRowSelected!].dataUsageMessage {
+                     messageString = message
+                }
             default:
                 print("default in cell")
             }
@@ -524,6 +559,10 @@ extension HistoryPage: ScoreCellDelegate {
         }
     }
     
+    /**
+     Check if score view need to be refreshed
+     Return: Bool
+     */
     func scoreCellRefreshRequired() -> Bool {
         return self.scoreRefreshRequired
     }
@@ -531,6 +570,13 @@ extension HistoryPage: ScoreCellDelegate {
 
 extension HistoryPage: MapViewDelegate {
     
+    /**
+     Tells the delegate that which annotation of map view has been tapped
+     
+     - Parameter:
+        - mapView: Mapview instance
+        - annotation: annotation instance which is tapped. 'annotationID' form the instance may bw used to know which annotation is tapped
+    */
     func mapView(mapView: MKMapView!, didSelectAnnotation annotation: EventAnnotation) {
         
         let annotationID = annotation.annotationID
@@ -547,7 +593,9 @@ extension HistoryPage: MapViewDelegate {
 }
 
 extension HistoryPage: SpeedZoneCellDelegate {
-    
+    /**
+     Called when Severe violation view is tapped. It displays the message for the severe violations during the trip
+     */
     func severeViolationViewTapped() {
         var messageString = String()
         
@@ -564,7 +612,10 @@ extension HistoryPage: SpeedZoneCellDelegate {
 }
 
 extension HistoryPage: TripDetailCellDelegate {
-    
+    /**
+     Called when share button of the recent trip is tapped.
+     - Parameter cell: this will get the information of the trip details
+     */
     func shareButtonTapped(cell: HistoryTripDetailCell) {
         let indexpath   = self.tripHistoryTableView.indexPathForCell(cell)
         let speedScore  = (self.tripScores?[indexpath!.row].speedScore.integerValue)!

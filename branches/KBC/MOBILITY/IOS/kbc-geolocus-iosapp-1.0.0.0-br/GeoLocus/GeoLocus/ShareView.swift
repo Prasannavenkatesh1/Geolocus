@@ -24,14 +24,14 @@ public class ShareTemplate {
         
         
         //---------------title text--------------------
-        let titleFont                   = UIFont(name:"HelveticaNeue-Medium", size: 16)
+        let titleFont                   = UIFont(name:Font.HELVETICA_NEUE_MEDIUM, size: 16)
         let titleParagraphStyle         = NSMutableParagraphStyle()
         titleParagraphStyle.alignment   = .Left
         let titleAttr                   = [NSFontAttributeName: titleFont!, NSParagraphStyleAttributeName: titleParagraphStyle, NSForegroundColorAttributeName:UIColor(netHex: 0x003665)]
         let titleText:String            =  title
         
         //-------------para text------------------
-        let paraFont                    = UIFont(name: "HelveticaNeue", size: 15)
+        let paraFont                    = UIFont(name: Font.HELVETICA_NEUE, size: 15)
         let paragraphStyle              = NSMutableParagraphStyle()
         paragraphStyle.alignment        = .Left
         let paraAttr                    = [NSFontAttributeName: paraFont!, NSParagraphStyleAttributeName: paragraphStyle, NSForegroundColorAttributeName:UIColor(netHex: 0x181f29)]
@@ -40,7 +40,7 @@ public class ShareTemplate {
         
         
         //-------------info text------------------
-        let infoFont                    = UIFont(name: "HelveticaNeue", size: 12)
+        let infoFont                    = UIFont(name: Font.HELVETICA_NEUE, size: 12)
         let infoParagraphStyle          = NSMutableParagraphStyle()
         infoParagraphStyle.alignment    = .Left
         let infoAttr                    = [NSFontAttributeName: infoFont!, NSParagraphStyleAttributeName: infoParagraphStyle, NSForegroundColorAttributeName:UIColor(netHex: 0x4c7394)]
@@ -78,7 +78,7 @@ public class ShareTemplate {
             let speedIconRect = CGRectMake(12 + 20, 65 + 23, 38, 33)
             speedIcon!.drawInRect(speedIconRect)
             
-            let speedTitleFont                   = UIFont(name:"HelveticaNeue", size: 15)
+            let speedTitleFont                   = UIFont(name:Font.HELVETICA_NEUE, size: 15)
             let speedTtileParaStyle         = NSMutableParagraphStyle()
             speedTtileParaStyle.alignment   = .Center
             let speedTitleAttr                   = [NSFontAttributeName: speedTitleFont!, NSParagraphStyleAttributeName: speedTtileParaStyle, NSForegroundColorAttributeName:UIColor(netHex: 0x181f29)]
@@ -103,7 +103,7 @@ public class ShareTemplate {
             let ecoIconRect = CGRectMake(speedScoreRect.size.width + 12 + 12 + 22, 65 + 21, 33, 35)
             ecoIcon!.drawInRect(ecoIconRect)
             
-            let ecoTitleFont                   = UIFont(name:"HelveticaNeue", size: 15)
+            let ecoTitleFont                   = UIFont(name:Font.HELVETICA_NEUE, size: 15)
             let ecoTtileParaStyle         = NSMutableParagraphStyle()
             ecoTtileParaStyle.alignment   = .Center
             let ecoTitleAttr                   = [NSFontAttributeName: ecoTitleFont!, NSParagraphStyleAttributeName: ecoTtileParaStyle, NSForegroundColorAttributeName:UIColor(netHex: 0x181f29)]

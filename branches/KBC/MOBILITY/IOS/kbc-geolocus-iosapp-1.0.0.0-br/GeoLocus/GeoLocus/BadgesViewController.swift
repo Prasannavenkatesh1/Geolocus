@@ -27,6 +27,7 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
     var sahredObject        = FacadeLayer()
     let NUM_OF_SECTION = 3
     
+    //MARK: - Viewcontroller methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -118,7 +119,6 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
         return max(CGFloat(otherContentHeight + stringHeight), CGFloat(114))
     }
     
-    
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         var titleView = UIView(frame: CGRectZero)
@@ -162,7 +162,7 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
         self.plistBadgeArray    = (dataDict?.valueForKey("badge"))! as! NSArray
         self.plistLevelArray    = (dataDict?.valueForKey("level"))! as! NSArray
         
-        //filtering then ordering each array
+        //filtering each array
         
         self.badgeNotEarnedArray    = []
         self.badgeEarnedArray       = []
@@ -189,6 +189,7 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                     badge1.orderIndex < badge2.orderIndex
                 })
                 
+                //mapping icons
                 
                 for var index = 0; index < self.badgeNotEarnedArray.count; index++ {
                     
@@ -245,6 +246,7 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                     }
                 }
                 
+                //ordering arrays
                 self.badgeNotEarnedArray = self.badgeNotEarnedArray.sort({ (badge1, badge2) -> Bool in
                     badge1.orderIndex < badge2.orderIndex
                 })

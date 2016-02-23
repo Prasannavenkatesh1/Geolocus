@@ -120,6 +120,38 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         }        
     }
     
+    //MARK:- Generic GET Request Method
+    
+    func requestGETService(URL: String, headers: Dictionary<String, String>?, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
+        
+        let manager = Alamofire.Manager.sharedInstance
+        manager.delegate.sessionDidReceiveChallenge = { session, challenge in
+            var disposition: NSURLSessionAuthChallengeDisposition = .PerformDefaultHandling
+            var credential: NSURLCredential?
+            if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+                if challenge.protectionSpace.host == "ec2-52-9-107-182.us-west-1.compute.amazonaws.com" {
+                    disposition = NSURLSessionAuthChallengeDisposition.UseCredential
+                    
+                    credential = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!)
+                }
+            }
+            return (disposition, credential)
+        }
+        
+        let badgesRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
+        badgesRequest.HTTPMethod = "GET"
+        
+        if let headerDict = headers{
+            for(headerKey, headerValue) in headerDict {
+                badgesRequest.setValue(headerValue, forHTTPHeaderField: headerKey)
+            }
+        }
+        
+        manager.request(badgesRequest).response { (Request, response, data, error) -> Void in
+            completionHandler(response: response, data: data, error: error)
+        }
+    }
+    
     //MARK:- Report Service
     func requestReportData(URL:String, completionHandler:(success: Bool?, data: NSData?) -> Void) -> Void{
         
@@ -156,7 +188,34 @@ class Httpclient: NSObject,NSURLSessionDelegate {
     //MARK: - History services
     func requestRecentTripData(URL: String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
         
-        if let filePath = NSBundle.mainBundle().pathForResource("trip_details", ofType: "json"), data = NSData(contentsOfFile: filePath) {
+        
+        let manager = Alamofire.Manager.sharedInstance
+        manager.delegate.sessionDidReceiveChallenge = { session, challenge in
+            var disposition: NSURLSessionAuthChallengeDisposition = .PerformDefaultHandling
+            var credential: NSURLCredential?
+            if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+                if challenge.protectionSpace.host == "ec2-52-9-107-182.us-west-1.compute.amazonaws.com" {
+                    disposition = NSURLSessionAuthChallengeDisposition.UseCredential
+                    
+                    credential = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!)
+                }
+            }
+            return (disposition, credential)
+        }
+        
+        let badgesRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
+        badgesRequest.HTTPMethod = "GET"
+        badgesRequest.setValue(NSUserDefaults.standardUserDefaults().valueForKey( StringConstants.TOKEN_ID) as? String, forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
+        
+        manager.request(badgesRequest).response { (Request, response, data, error) -> Void in
+            completionHandler(response: response, data: data, error: error)
+        }
+        
+        
+        
+        
+        
+        /*if let filePath = NSBundle.mainBundle().pathForResource("trip_details", ofType: "json"), data = NSData(contentsOfFile: filePath) {
             do {
                 let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
                 print(json)
@@ -179,7 +238,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             catch {
                 //Handle error
             }
-        }
+        }*/
     }
     
     //MARK: - Dashboard data
@@ -253,7 +312,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         
         let badgesRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
         badgesRequest.HTTPMethod = "GET"
-        badgesRequest.setValue("QTRORndhWUxMSUpEditZQVJYVlNrdz09OnhZTEFXVEFPK1BSSmlQVGhxYytrZ0E9PQ", forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
+        badgesRequest.setValue(NSUserDefaults.standardUserDefaults().valueForKey( StringConstants.TOKEN_ID) as? String, forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
         
         manager.request(badgesRequest).response { (Request, response, data, error) -> Void in
              completionHandler(response: response, data: data, error: error)
@@ -281,6 +340,30 @@ class Httpclient: NSObject,NSURLSessionDelegate {
     func requestOverallScoreData(URL:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
         
         
+        
+        let manager = Alamofire.Manager.sharedInstance
+        manager.delegate.sessionDidReceiveChallenge = { session, challenge in
+            var disposition: NSURLSessionAuthChallengeDisposition = .PerformDefaultHandling
+            var credential: NSURLCredential?
+            if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+                if challenge.protectionSpace.host == "ec2-52-9-107-182.us-west-1.compute.amazonaws.com" {
+                    disposition = NSURLSessionAuthChallengeDisposition.UseCredential
+                    
+                    credential = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!)
+                }
+            }
+            return (disposition, credential)
+        }
+        
+        let badgesRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
+        badgesRequest.HTTPMethod = "GET"
+        badgesRequest.setValue(NSUserDefaults.standardUserDefaults().valueForKey( StringConstants.TOKEN_ID) as? String, forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
+        
+        manager.request(badgesRequest).response { (Request, response, data, error) -> Void in
+            completionHandler(response: response, data: data, error: error)
+        }
+        
+        /*
         if let filePath = NSBundle.mainBundle().pathForResource("overallscore", ofType: "json"), data = NSData(contentsOfFile: filePath) {
             do {
                 let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
@@ -303,7 +386,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             catch {
                 //Handle error
             }
-        }
+        }*/
     }
     
     //MARK: - Notification
@@ -378,7 +461,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         
         let acceptNotificationRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
         acceptNotificationRequest.HTTPMethod = "POST"
-        acceptNotificationRequest.setValue("SWs5cVUyeUFDTDg5bnhMMnZaOWVLUT09Om16Vm01Q3pPVHErZXJyUUV3ZHMyM3c9PQ", forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
+        acceptNotificationRequest.setValue("U285VzFuVnZCdDBYekRneHhDUWNSQT09OldSa1ZGYnYycFpCMjdqK0Q5YzQrRmc9PQ", forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
         
         manager.request(acceptNotificationRequest).response { (Request, response, data, error) -> Void in
             completionHandler(response: response, data: data, error: error)

@@ -27,11 +27,11 @@ class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
     var overallScores                   = OverallScores?()
     
     
+    //MARK: - Viewcontroller methods
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -49,6 +49,9 @@ class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
         super.viewWillLayoutSubviews()
     }
     
+    /**
+     Reload Overallscore page.
+    */
     func reloadView() {
         if self.overallScores != nil {
             self.drivingBehaviorArcView.foreGroundArcWidth = Arc.FOREGROUND_WIDTH
@@ -103,7 +106,9 @@ class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
         self.drivingDummySecView.animateScale = 0.0
         self.drivingDummySecView.setNeedsDisplay()
     }
-    
+    /**
+     Get data from DB and reload the page
+     */
     func reloadData() {
         
         FacadeLayer.sharedinstance.fetchOverallScoreData { (status, data, error) -> Void in
@@ -115,7 +120,9 @@ class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
             }
         }
     }
-    
+    /**
+     Setter for the height of the scroll view
+     */
     func setContentHeight() {
         
         if StringConstants.SCREEN_HEIGHT == 480 {
@@ -129,22 +136,41 @@ class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
         }
     }
     
+    /**
+     Called when driving behaviour view is tapped
+     - Parameter gestureRecognizer: To get the data of gesture used
+     */
     func drivingBehaviourViewTapped(gestureRecognizer: UITapGestureRecognizer){
         scoreViewTapped(1)
     }
     
+    /**
+     Called when speeding view is tapped
+     - Parameter gestureRecognizer: To get the data of gesture used
+     */
     func speedingViewTapped(gestureRecognizer: UITapGestureRecognizer){
         scoreViewTapped(2)
     }
     
+    /**
+     Called when eco view is tapped
+     - Parameter gestureRecognizer: To get the data of gesture used
+     */
     func ecoViewTapped(gestureRecognizer: UITapGestureRecognizer){
         scoreViewTapped(3)
     }
     
+    /**
+     Called when attention view is tapped
+     - Parameter gestureRecognizer: To get the data of gesture used
+     */
     func attentionViewTapped(gestureRecognizer: UITapGestureRecognizer){
         scoreViewTapped(4)
     }
     
+    /**
+     Aggregate function for scoreview tapped
+     */
     func scoreViewTapped(tag: Int) {
         
         var messageString = String()
