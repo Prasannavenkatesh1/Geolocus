@@ -370,7 +370,7 @@ class DatabaseActions: NSObject {
                     
                     let eventLocation = EventLocation(latitude: eventManagedObject.latitude!.doubleValue, longitude: eventManagedObject.longitude!.doubleValue)
                     
-                    let event = Event(location: eventLocation, type:EventType(rawValue: eventManagedObject.eventType!.integerValue)! , message: eventManagedObject.eventMessage!)
+                    let event = Event(location: eventLocation, type:EventType(rawValue: eventManagedObject.eventType!.integerValue)! , message: eventManagedObject.eventMessage)
                     eventsObj.append(event)
                     
                 }
@@ -390,7 +390,7 @@ class DatabaseActions: NSObject {
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "dd-MM-yyyy"
                 
-                let trip = History(tripid: tripManagedObj.tripId!, tripDate:dateFormatter.stringFromDate(tripManagedObj.date!), distance: tripManagedObj.distance!, tripPoints: tripManagedObj.tripPoints!, tripDuration: tripManagedObj.duration!,speedingMessage: tripManagedObj.speedingMessage!,ecoMessage:tripManagedObj.ecoMessage!, dataUsageMessage: tripManagedObj.dataUsageMessage!, tripScore: tripScore, events: eventsObj, speedZones: speedZonesObj)
+                let trip = History(tripid: tripManagedObj.tripId!, tripDate:dateFormatter.stringFromDate(tripManagedObj.date!), distance: tripManagedObj.distance!, tripPoints: tripManagedObj.tripPoints!, tripDuration: tripManagedObj.duration!,speedingMessage: tripManagedObj.speedingMessage,ecoMessage:tripManagedObj.ecoMessage, dataUsageMessage: tripManagedObj.dataUsageMessage, tripScore: tripScore, events: eventsObj, speedZones: speedZonesObj)
                 
                 trips.append(trip)
             }

@@ -66,6 +66,9 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
             if(error == nil){
                 let welcomeScreenViewController = self.storyboard!.instantiateViewControllerWithIdentifier(StringConstants.WelcomePageViewController) as! WelcomePageViewController
                 self.presentViewController(welcomeScreenViewController, animated: true, completion: nil)
+                
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegateSwift
+                appDelegate.requestAndSaveAppData()
             }
             else{
                 let alertView = UIAlertController(title: StringConstants.ERROR, message: error?.description, preferredStyle: UIAlertControllerStyle.Alert)
@@ -105,7 +108,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
         self.customizeTextField()
         self.customizeButton()
         self.termsAndConditionsURL()
-        self.loginButton.setTitle(self.localizableString(LocalizationConstants.Login_LoginTitle), forState: UIControlState.Normal)
+       // self.loginButton.setTitle(self.localizableString(LocalizationConstants.Login_LoginTitle), forState: UIControlState.Normal)
     }
     
     override func viewWillDisappear(animated: Bool) {

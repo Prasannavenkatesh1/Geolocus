@@ -8,13 +8,26 @@
 
 import Foundation
 
+/**
+ Types of event during driving.
+ 
+    - Acceleration:     Acceleration Event
+    - Breaking:         Breaking event
+    - Speeding:         Speeding event
+    - None:             No event
+ */
 enum EventType: Int {
   case Acceleration
   case Breaking
   case Speeding
   case None
 }
-
+/**
+ Store event location
+    
+    - latitude:         Latitude of location
+    - longitude:        Longitude of location
+*/
 class EventLocation {
     
     let latitude    : CLLocationDegrees
@@ -26,19 +39,37 @@ class EventLocation {
     }
 }
 
+/**
+ Store events occured during driving
+ 
+    - location:         Location of event
+    - type:             Typre of event
+    - message:          Message to user for that event
+ */
 class Event {
     
     let location    : EventLocation
     let type        : EventType
-    let message     : String
+    let message     : String?
     
-    init(location : EventLocation, type : EventType, message : String){
+    init(location : EventLocation, type : EventType, message : String?){
         self.location = location
         self.type     = type
         self.message  = message
     }
 }
 
+/**
+ Store details of trip as per speed zone defined
+ 
+    - speedScore:           Speed score to the trip
+    - maxSpeed:             Max permissible speed of the trip
+    - aboveSpeed:           Number of times user drived beyond max speed
+    - withinSpeed:          Number of times user drived within max speed
+    - violationCount:       Count of violations
+    - speedBehaviour:       SpeedBehaviour of trip
+    - distanceTravelled:    Distance travelled in trip
+ */
 class SpeedZone {
     
     let speedScore          : NSNumber
@@ -61,6 +92,14 @@ class SpeedZone {
     }
 }
 
+/**
+ Store trip scores
+ 
+    - overallScore:         Overall Score of trip
+    - speedScore:           Speed Score of trip
+    - ecoScore:             Eco score of trip
+    - attentionScore:       Attention score of the trip. Not measured for iOS devices. Instead use 'dataUsageMessage' from 'History'
+ */
 class TripScore {
     
     let overallScore    : NSNumber
@@ -77,6 +116,8 @@ class TripScore {
     }
 }
 
+
+///History class encapsulate all the trip related detais of the user. Used for Dashboard History page
 class History {
     
     let tripId          : String
@@ -84,14 +125,31 @@ class History {
     let distance        : NSNumber
     let tripPoints      : NSNumber
     let tripDuration    : NSNumber
-    let speedingMessage : String
-    let ecoMessage      : String
-    let dataUsageMessage: String
+    let speedingMessage : String?
+    let ecoMessage      : String?
+    let dataUsageMessage: String?
     let tripScore       : TripScore
     let events          : [Event]?
     let speedZones      : [SpeedZone]
     
-    init(tripid: String, tripDate: String, distance: NSNumber, tripPoints: NSNumber, tripDuration: NSNumber, speedingMessage: String, ecoMessage: String, dataUsageMessage: String, tripScore: TripScore,events: [Event]?, speedZones: [SpeedZone]) {
+    /**
+     Initializes a new history trip with the provided info.
+     
+     - Parameters:
+        - tripId:              Unique Id of trip
+        - tripdDate:           Date of trip
+        - distance:            Distance travelled in trip
+        - tripDuration:        Duration of trip
+        - speedingMessage:     Message to user as per the speed score
+        - ecoMessage :         Message to user as per Eco score
+        - dataUsageMessage:    Instead of Attention message, user will get message regarding data usage during trip
+        - tripScore:           All scores of a trip
+        - events:              List of events in the trip. This is displayed in the map
+        - speedZones:          Inforamtion of trip as speed zones
+     
+     - Returns: Instance of trip details
+     */
+    init(tripid: String, tripDate: String, distance: NSNumber, tripPoints: NSNumber, tripDuration: NSNumber, speedingMessage: String?, ecoMessage: String?, dataUsageMessage: String?, tripScore: TripScore,events: [Event]?, speedZones: [SpeedZone]) {
         
         self.tripId             = tripid
         self.tripdDate          = tripDate
@@ -106,5 +164,4 @@ class History {
         self.speedZones         = speedZones
         
     }
-    
 }
