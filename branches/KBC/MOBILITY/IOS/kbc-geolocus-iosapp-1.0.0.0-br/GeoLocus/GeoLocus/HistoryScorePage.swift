@@ -17,13 +17,12 @@ class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var attentionView            : UIView!
     @IBOutlet weak var scrollContentView        : UIView!
     @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var drivingBehaviourLabel: UILabel!
-    @IBOutlet weak var speedingLabel: UILabel!
-    @IBOutlet weak var ecoLabel: UILabel!
-    @IBOutlet weak var attentionLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var overallScoreLabel: UILabel!
+    @IBOutlet weak var drivingBehaviourLabel    : UILabel!
+    @IBOutlet weak var speedingLabel            : UILabel!
+    @IBOutlet weak var ecoLabel                 : UILabel!
+    @IBOutlet weak var attentionLabel           : UILabel!
+    @IBOutlet weak var distanceLabel            : UILabel!
+    @IBOutlet weak var overallScoreLabel        : UILabel!
     
     
     var driveBehTapGestureRecognizer    : UITapGestureRecognizer!
@@ -60,6 +59,14 @@ class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
     */
     func reloadView() {
         if self.overallScores != nil {
+            
+            self.overallScoreLabel.text     = LocalizationConstants.OverallScore.Score_Title.localized()
+            self.drivingBehaviourLabel.text = LocalizationConstants.OverallScore.Driving_Behavior.localized()
+            self.speedingLabel.text         = LocalizationConstants.OverallScore.Speeding.localized()
+            self.ecoLabel.text              = LocalizationConstants.OverallScore.Eco.localized()
+            self.attentionLabel.text        = LocalizationConstants.OverallScore.Attention.localized()
+            self.distanceLabel.text         = LocalizationConstants.OverallScore.Distance_Travelled.localized()
+            
             self.drivingBehaviorArcView.foreGroundArcWidth = Arc.FOREGROUND_WIDTH
             self.drivingBehaviorArcView.backGroundArcWidth = Arc.BACKGROUND_WIDTH
             self.drivingBehaviorArcView.ringLayer.strokeColor = UIColor(range: (self.overallScores?.overallScore.integerValue)!).CGColor

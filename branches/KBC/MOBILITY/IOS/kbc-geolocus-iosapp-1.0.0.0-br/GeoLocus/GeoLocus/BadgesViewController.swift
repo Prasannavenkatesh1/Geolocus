@@ -23,7 +23,7 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
     var levelArray          = [Badge]()
     var plistBadgeArray     = []
     var plistLevelArray     = []
-    var badgesSpecification = ["Badges to be Earned", "Badges Earned", "Levels"]  //consider Localization
+    var badgesSpecification = [LocalizationConstants.Badge.Badges_to_be_Earned.localized(),LocalizationConstants.Badge.Badges_Earned.localized(), LocalizationConstants.Badge.Levels.localized()]  //consider Localization
     var sahredObject        = FacadeLayer()
     let NUM_OF_SECTION = 3
     

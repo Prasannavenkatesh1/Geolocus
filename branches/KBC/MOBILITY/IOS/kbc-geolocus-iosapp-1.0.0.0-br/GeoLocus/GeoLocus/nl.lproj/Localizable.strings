@@ -6,7 +6,22 @@
   Copyright © 2016 Cognizant. All rights reserved.
 */
 
+
 "Hello" = "Dutch";
+
+//MARK: - Overall Score page
+"Overall_Score" = "Totaalscore";
+"Driving_Behavior" = "Rijgedrag";
+"Speeding" = "snelheid";
+"Eco" = "Eco";
+"Attention" = "Aandacht";
+"Distance_Travelled" = "Totale afgelegde afstand";
+
+//MARK: - Badges & Levels Page
+"Badges_to_be_Earned" = "Badges te verdienen";
+"Badges_Earned" = "Badges verdiend";
+"Levels" = "Niveau";
+
 
 "German" = "Duits";
 "French" = "Frans";

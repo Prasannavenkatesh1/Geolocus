@@ -232,4 +232,20 @@ struct LocalizationConstants {
     static let EcoPoints_Title = "Eco Points"
     static let BonusPoints_Title = "Bonus Points"
     static let CONTRACT_POINTS_ACHIEVED_MESSAGE = "You have achieved your target on %@. Contact parents to redeem points."
+    
+    struct OverallScore {
+        static let Score_Title          = "Overall_Score"
+        static let Driving_Behavior     = "Driving_Behavior"
+        static let Speeding             = "Speeding"
+        static let Eco                  = "Eco"
+        static let Attention            = "Attention"
+        static let Distance_Travelled   = "Distance_Travelled"
+    }
+    
+    struct Badge {
+        static let Badges_to_be_Earned  = "Badges_to_be_Earned"
+        static let Badges_Earned        = "Badges_Earned"
+        static let Levels               = "Levels"
+    }
+    
 }
