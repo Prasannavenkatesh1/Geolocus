@@ -69,13 +69,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
   
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
       
-        //      UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert , .Sound, .Badge], categories: nil))
-      
-      // Testing Calculation Part
-//      Insert Weightage values
-      
-      
-//    NSNotificationCenter.defaultCenter().postNotificationName("tipended", object: nil)
+      //    NSNotificationCenter.defaultCenter().postNotificationName("tipended", object: nil)
     
       //
 
@@ -108,11 +102,11 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
 
     self.loadInitialViewController()
       
-        // Push notification
-        let settings = UIUserNotificationSettings(forTypes: UIUserNotificationType([.Alert, .Badge, .Sound]), categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings);
-        UIApplication.sharedApplication().registerForRemoteNotifications();
-        
+//        // Push notification
+//        let settings = UIUserNotificationSettings(forTypes: UIUserNotificationType([.Alert, .Badge, .Sound]), categories: nil)
+//        UIApplication.sharedApplication().registerUserNotificationSettings(settings);
+//        UIApplication.sharedApplication().registerForRemoteNotifications();
+      
         return true
     }
 
@@ -191,6 +185,9 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     let types: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Sound]
     let settings = UIUserNotificationSettings(forTypes: types, categories: NSSet(object: counterCategory) as? Set<UIUserNotificationCategory>)
     UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+    
+    //      UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert , .Sound, .Badge], categories: nil))
+
   }
   
   

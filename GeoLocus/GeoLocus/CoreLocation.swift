@@ -53,7 +53,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     
     NSNotificationCenter.defaultCenter().addObserver(
       self,
-      selector: "getdetails:",
+      selector: "getdetails",
       name: "tipended",
       object: nil)
     
@@ -291,7 +291,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       schedule: NSDate(),
       tripstatus: false)
     print("stop trip notification fired")
-    getdetails()
+//    getdetails()
     
   }
   
@@ -308,7 +308,6 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     var aid = defaults.integerForKey("tripautoincr") + 1
     defaults.setInteger(aid, forKey: "tripautoincr")
     let defaultsTripAutoID = String(aid)
-    
     
     let tokenid:String = defaultsTripID + defaultsTripAutoID // (defaults.integerForKey("tripautoincr") as! String" + defaults.valueForKey(StringConstants.TOKEN_ID) as! String
     let summarymodal:SummaryModel = SummaryModel(datausage: NSNumber(integer: dataUsageFinalValue ?? 0),
