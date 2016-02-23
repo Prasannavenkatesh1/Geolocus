@@ -18,7 +18,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   var locSpeedArray         :[String]?
   var motiontype            :String?
   var speedArray            :[String]?
-  var fltDistanceTravelled  :Double?
+  var fltDistanceTravelled  :Double
   var distance              :Double?
   var creationTime          :Double?
   var eventtypes            :Events.EventType?
@@ -26,13 +26,22 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   var startdate             :NSDate?
   var enddate               :NSDate?
   var timezoneid            :String?
+  var datausagecalc         :DataUsageCalculation?
+  //  var tripmeasurement       :TripMeasurements?
+  
   var currentCountForDataUsageCalc :Int?
   var dataUsageArray        :[AnyObject]?
   var finalDataUsageArray   :[AnyObject]?
-
+  
+  var oldlocspeed           :CLLocationSpeed = 0
+  var oldLocation           :CLLocation!
+  
+  
+  var teststr :String?
   
   override init() {
     locationmanager =  CLLocationManager()
+    fltDistanceTravelled = 0
   }
   
   func initLocationManager() {
@@ -47,18 +56,20 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       selector: "getdetails:",
       name: "tipended",
       object: nil)
-
+    
     self.locationmanager.delegate = self
-    self.locationmanager.desiredAccuracy = kCLLocationAccuracyBest
+    // self.locationmanager.desiredAccuracy = kCLLocationAccuracyBestForNavigation //kCLLocationAccuracyBest
+    self.locationmanager.desiredAccuracy = kCLLocationAccuracyBest //kCLLocationAccuracyBest
+    self.locationmanager.activityType = CLActivityType.AutomotiveNavigation
     if #available(iOS 9.0, *) {
-        self.locationmanager.allowsBackgroundLocationUpdates = true
+      self.locationmanager.allowsBackgroundLocationUpdates = true
     } else {
-        // Fallback on earlier versions
+      // Fallback on earlier versions
       
     }
     self.locationmanager.requestAlwaysAuthorization()
     self.locationmanager.requestWhenInUseAuthorization()
-
+    
     locSpeedArray = [String]()
     speedArray    = [String]()
     eventtypes    = Events.EventType.NONE
@@ -73,55 +84,47 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     self.locationmanager.stopUpdatingLocation()
   }
   
+  func speedTravelledFromLocation(newLocation:CLLocation , oldLocation:CLLocation) -> CLLocationSpeed{
+    let timeElapsed:NSTimeInterval!  = newLocation.timestamp.timeIntervalSinceDate(oldLocation.timestamp)
+    let distance:Double = newLocation.distanceFromLocation(oldLocation)
+    let tempspeed:Double = distance / timeElapsed
+    return tempspeed
+  }
+  
   func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-//    locationmanager.stopUpdatingLocation()
-//    if (error!) {
-      print("err \(error)")
-//    }
+    //    locationmanager.stopUpdatingLocation()
+    //    if (error!) {
+    print("err \(error)")
+    //    }
   }
   
   var tempvar = -1
-  
+  var check = -1
+  var autostartstate:Bool = false
   func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     
-    let newLocation:CLLocation! = locations.last;
-    var oldLocation:CLLocation!
-    if (locations.count > 1) {
-      oldLocation = locations[locations.count - 2];
-    }
-    
+    let newLocation:CLLocation! = locations.last
     let coord = newLocation.coordinate
-    
-    let mainDelegate:AppDelegateSwift = UIApplication.sharedApplication().delegate as! AppDelegateSwift
-    
-    print(coord.latitude)
-    print(coord.longitude)
-    print(newLocation.speed)
-    
-    // Reteiving the datausage within this speed
-    let datausagedict:Dictionary = Datausage.getDatas()
-    print("datausagedict :%@",datausagedict)
-    
-    if currentCountForDataUsageCalc == 2 {
-        self.calculateDataUsage()
-        currentCountForDataUsageCalc = 1
-        dataUsageArray?.removeAtIndex(0)
-    }
-    
-    if currentCountForDataUsageCalc < 2 {
-        
-        print("array :%@",dataUsageArray)
-        dataUsageArray!.append(datausagedict)
-        if let currentCount = currentCountForDataUsageCalc {
-        currentCountForDataUsageCalc = currentCount + 1
-        }
-    }
-    
+    var locspeed:CLLocationSpeed = 0
+    var tripmeasurement:TripMeasurements?
     let latitude:Double = coord.latitude
     let longitude:Double = coord.longitude
     
+    
+    if  let oldLoc = oldLocation {
+      tripmeasurement = TripMeasurements(oldlocation: oldLoc,
+        newlocation: newLocation,
+        oldlocspeed: oldlocspeed)
+      if  let tripmeasurement = tripmeasurement {
+        locspeed = tripmeasurement.currentlocspeed }
+      //      locspeed = newLocation.speed
+    }
+    
+    // Get currnt and previous Data used by teen
+    datausagecalc?.getCurrentAndPreviousDataUsed()
+    
     //Calculation for autotrip detection
-    locSpeedArray!.append(String(format:"%.2f", newLocation.speed * 3.6))
+    locSpeedArray!.append(String(format:"%.2f", locspeed * 3.6))
     
     var newlocspeed:Float = 0.0
     var newlocsum:Float = 0.0
@@ -129,21 +132,19 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     for i in 0..<locSpeedArray!.count{
       newlocsum += Float(locSpeedArray![i])!
     }
-    print("newlocsum = \(newlocsum)")
     
     if(locSpeedArray!.count == 5){
       newlocspeed = newlocsum / Float(locSpeedArray!.count)
       locSpeedArray!.removeAll();
     }
-    self.motiontype = ""
     
-//    if(newLocation.speed * 3.6 <= 2.8 || newLocation.coordinate.latitude == oldLocation.coordinate.latitude && newLocation.coordinate.longitude == oldLocation.coordinate.longitude){
-//      //motion type not moving
-//      self.motiontype = StringConstants.MOTIONTYPE_NOTMOVING
-//      
-//    }
+    if(locspeed * 3.6 <= 2.8 || newLocation.coordinate.latitude == oldLocation.coordinate.latitude && newLocation.coordinate.longitude == oldLocation.coordinate.longitude){
+      //motion type not moving
+      self.motiontype = StringConstants.MOTIONTYPE_NOTMOVING
+      
+    }
     
-    if(newlocspeed >= configmodel?.thresholds_autotrip as! Float){//if(newlocspeed >= 7.0){
+    if(newlocspeed >= configmodel?.thresholds_autotrip as! Float){
       // motion ype automotive
       self.motiontype = StringConstants.MOTIONTYPE_AUTOMOTIVE
       if ((hasBeenRun == nil)) // hasBeenRun is a boolean intance variable
@@ -154,17 +155,21 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     }
     
     //Auto trip start
-    if(self.motiontype == StringConstants.MOTIONTYPE_AUTOMOTIVE && self.autoStartState == false && mainDelegate.globalAutoTrip == true) {
-        self.autoStartState = true
-        mainDelegate.globalAutoTrip = false
+    
+    if(self.motiontype == StringConstants.MOTIONTYPE_AUTOMOTIVE && autostartstate == false) {
+      
       startdate = newLocation.timestamp
+      autostartstate = true
+      //      if check == -1 {
       TripNotify.init(title: "Do you want to start the trip",
         UUID: NSUUID().UUIDString,
         schedule: NSDate(),
         tripstatus: true)
-        
-        //Data Usage
-        finalDataUsageArray?.removeAll(keepCapacity: true)
+      print("start trip notification fired")
+      //Data Usage
+      datausagecalc?.finalDataUsageArray.removeAll(keepCapacity: true)
+      //        check++
+      //      }
     }
     
     //Auto trip stop
@@ -172,225 +177,171 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       // stop the trip
       if (hasBeenRun == true) // hasBeenRun is a boolean instance variable
       {
-        hasBeenRun = false;
+        hasBeenRun = false
+        autostartstate = false
         enddate = newLocation.timestamp
-        self.performSelector("notMoving", withObject: nil, afterDelay: 900)
+        self.performSelector("notMoving", withObject: nil, afterDelay: 10) //900 - 15 mins | 30 - .5
       }
-        
-        let tempDataUsageArray = finalDataUsageArray
-        var dataUsageFinalValue : Int = 0
-        if let tempDataUsageArr = tempDataUsageArray {
-            if let thresholdValue = tempDataUsageArray?.first {
-                for var i = 1; i < tempDataUsageArr.count; i++ {
-                    let dataUsageDifference = (tempDataUsageArr[i] as! Int) - (thresholdValue as! Int)
-                    if dataUsageDifference > 0 {
-                        dataUsageFinalValue = dataUsageFinalValue + dataUsageDifference
-                    }
-                }
-            }
-        }
+      
     }
     
     //********************End auto trip detection
     
-    //Calculate time interval based on location change
-    var timeElapsed:NSTimeInterval!
-    
-    if(oldLocation != nil){
-      timeElapsed = newLocation.timestamp.timeIntervalSinceDate(oldLocation.timestamp)
-    }else
-    {
-      timeElapsed = 1.0
-    }
-    
-    //Speed Difference
-    var speedDifference:Double = 0.0
-    if (oldLocation != nil) {
-      //Speed difference
-      let oldSpeed:Double = oldLocation.speed;
-      let newSpeed:Double = newLocation.speed;
-      speedDifference = (newSpeed - oldSpeed) * 3.6;
-    }
-    
-    var eventval:Double = 0.0
-    
-    //Calculate Braking
-    var brakingvalue:Double = 0.0
-    var braking:String = String(format:"%.1f",0.0) as String
-    speedArray!.append(String(format: "%.2f", newLocation.speed * 3.6))
-    
-    if(speedArray!.count == 10){
-      speedArray!.removeAll()
-    }
-    
-    brakingvalue = fabs(speedDifference)
-    
-    var avgSum:Float = 0.0
-    if (speedDifference < 0)
-    {
+    if let tripmeasurement = tripmeasurement {
+      //Calculate time interval based on location change
+      let timeElapsed:NSTimeInterval = tripmeasurement.getTimeElapsed()
       
-      var sumForBraking:Float = 0.0
-      for i in 0..<speedArray!.count{
-        sumForBraking += Float(speedArray![i])!
+      //Speed Difference
+      var speedDifference:Double = tripmeasurement.speedDifference()
+      
+      var eventval:Double = 0.0
+      var iseventval = 0
+      
+      //Calculate Braking
+      var brakingvalue:Double = 0.0
+      var braking:String = String(format:"%.1f",0.0) as String
+      speedArray!.append(String(format: "%.2f", locspeed * 3.6))
+      if(speedArray!.count == 10){
+        speedArray!.removeAll()
+      }
+      brakingvalue = fabs(speedDifference)
+      let isBraking = tripmeasurement.brakingCalculation(speedArray!, speedDifference: speedDifference, thresholdBrake: configmodel?.thresholds_brake as! Double)
+      if (isBraking) {
+        eventtypes = Events.EventType.BRAKING
+        eventval = brakingvalue
+        braking = String(format: "%f", brakingvalue)
+        iseventval = 1
+      }else{
+        brakingvalue = 0
+        eventval = 0
       }
       
-      avgSum = Float(sumForBraking) / Float(speedArray!.count);
+      // Calculate Acceleration
+      var acceleration:Double = 0.0
+      var accele:String = ""
+      accele = String(format: "%.1f", 0.0)
       
-        if (brakingvalue > configmodel?.thresholds_brake as! Double) {//      if (brakingvalue > 7.0) {
-//        if (avgSum > 30.0 && brakAlert == true) {
-        
-          eventtypes = Events.EventType.BRAKING
-          eventval = brakingvalue
-          braking = String(format: "%f", brakingvalue)
-          brakAlert = false;
-          
-//        }
-      }
-    }else{
-      brakAlert = true
-    }
-    
-    // Calculate Acceleration
-    var acceleration:Double = 0.0
-    var accele:String = ""
-    accele = String(format: "%.1f", 0.0)
-    
-    if(speedDifference > 0){
-      acceleration = Double(speedDifference) / Double(timeElapsed)
+      acceleration = Double(speedDifference) / Double(tripmeasurement.getTimeElapsed())
+      let isAcceleration = tripmeasurement.accelerationCalculation(speedArray!, speedDifference: speedDifference, thresholdAcceleration: configmodel?.thresholds_acceleration as! Double)
       
-      var avgSpeed:Float = 0.0;
-      var sum:Float = 0;
-      for i in 0..<speedArray!.count{
-        sum += Float(speedArray![i])!
+      if(isAcceleration){
+        eventtypes = Events.EventType.ACCELERATION
+        eventval = acceleration
+        accele = String(format: "%f", acceleration)
+        iseventval = 1
+      }else{
+        acceleration = 0
+        eventval = 0
       }
       
-      avgSpeed = Float(sum)/Float(speedArray!.count)
-      print("average speed\(avgSpeed)")
       
-      if (acceleration > configmodel?.thresholds_acceleration as! Double) {
-//        if (avgSpeed > 35.0 && acclAlert == true){
-        
-          eventtypes = Events.EventType.ACCELERATION
-          eventval = acceleration
-          accele = String(format: "%f", acceleration)
-          acclAlert = false
-          
-//        }
+      
+      var currentdistance:Double = 0
+      
+      //Calculate distance
+      if(newLocation != nil && oldLocation != nil){
+        currentdistance = tripmeasurement.getDistanceInKm(newLocation, oldLocation: oldLocation)
+        fltDistanceTravelled += currentdistance
+        distance = fltDistanceTravelled
+      }else
+      {
+        distance = 0.0;
       }
-    }else
-    {
-      acclAlert = true
-    }
-    
-    //Calculate Over Speed
-    var speedValue = "0.0"
-    
-    if (newLocation.speed * 3.6 >=  Double(mainDelegate.speedLimit)) {
-//      speedValue = [NSString stringWithFormat:@"%.1f", newLocation.speed*3.6f];
-      speedValue = String(format: "%.1", newLocation.speed*3.6)
-    }
-  
-    //Calculate distance
-    if(newLocation != nil && oldLocation != nil){
-      fltDistanceTravelled? += self.getDistanceInKm(newLocation, oldLocation: oldLocation)
-      distance = fltDistanceTravelled
       
-      var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-      defaults.setDouble(fltDistanceTravelled!, forKey: "distanceTravelled")
-    }else
-    {
-      distance = 0.0;
+      let str = String(format:"\n ********** \n latitude:\(latitude) \n longitude: \(longitude) \n time: \(newLocation.timestamp) \n calcsped: \(locspeed) \n speed: \(newLocation.speed) \n Acceleration: \(acceleration) \n Braking: \(brakingvalue) \n Motiontype: \(self.motiontype) \n C_Distance: \(currentdistance) \n cumm_D: \(fltDistanceTravelled)" )
+      
+      let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+      var getstr = defaults.objectForKey("motionlat") as! String
+      getstr = getstr + str
+      defaults.setObject(getstr, forKey: "motionlat")
+      teststr = getstr as String
+      
+      NSNotificationCenter.defaultCenter().postNotificationName("tracktestinglocation", object: nil)
+      
+      //Update to DB
+      
+      //    /*    Testing
+      
+      //    testing(latitude, longitude: longitude, newLocation: newLocation)
+      
+      //*/
+      
+      let defaultsTripID = String(NSUserDefaults.standardUserDefaults().valueForKey(StringConstants.TOKEN_ID))
+      let tseries:TimeSeriesModel = TimeSeriesModel.init(tripid:"\(defaultsTripID)" + "1", ctime: newLocation.timestamp,
+        lat: latitude,
+        longt: longitude,
+        speedval: locspeed,
+        datausage: 0,
+        iseventval: NSNumber(integer: iseventval),
+        evetype: NSNumber(integer: eventtypes!.rawValue),
+        eveval: NSNumber(double: eventval),
+        distance: distance!)
+      FacadeLayer.sharedinstance.dbactions.saveTimeSeries(tseries)
+      
     }
+    oldLocation = newLocation
+    oldlocspeed = locspeed
     
-    //Update to DB
-    
-//    /*    Testing
-    
-//    testing(latitude, longitude: longitude, newLocation: newLocation)
-
-//*/
-  
-//     let tseries:TimeSeriesModel = TimeSeriesModel.init(ctime: newLocation.timestamp,
-//      lat: latitude,
-//      longt: longitude,
-//      speedval: newLocation.speed*3.6,
-//      datausage: 0,
-//      iseventval: NSNumber(integer: iseventval),
-//      evetype: NSNumber(integer: eventtypes!.rawValue),
-//      eveval: NSNumber(double: eventval),
-//      distance: distance!)
-//    
-//      FacadeLayer.sharedinstance.dbactions.saveTimeSeries(tseries)
     
   }
+  
+  func notMoving(){
+    //Interactive notifications
+    TripNotify(title: "Do you want to stop the trip",
+      UUID: NSUUID().UUIDString,
+      schedule: NSDate(),
+      tripstatus: false)
+    print("stop trip notification fired")
+//    getdetails()
     
+  }
+  
+  func getdetails(){
     
-    func calculateDataUsage(){
-        print(dataUsageArray)
-        var dataSentWAN : Int = 0
-        var dataReceivedWAN : Int = 0
-        var dataSentWIFI : Int = 0
-        var dataReceivedWIFI :Int = 0
-        var dataSent : Int = 0
-        var dataReceived :Int = 0
-        var tempDict = [String: Int]()
-        var tempArray = [AnyObject]()
-        
-        for dataUsage in dataUsageArray! {
-            
-            for (key,value) in dataUsage as! NSDictionary{
-                print(key)
-                print(value)
-                if key as! String == "WWANReceived"{
-                    if let datareceived = dataUsage["WWANReceived"]{
-                        dataReceivedWAN = (datareceived as! Int)
-                    }
-                }
-                else if key as! String == "WWANSent"{
-                    if let dataSent  = dataUsage["WWANSent"] {
-                        dataSentWAN  = (dataSent as! Int)
-                    }
-                }
-                else if key as! String == "WiFiReceived"{
-                    if let datareceived  = dataUsage["WiFiReceived"] {
-                        dataReceivedWIFI  = (datareceived as! Int)
-                    }
-                }
-                else if key as! String == "WiFiSent"{
-                    if let datasent  = dataUsage["WiFiSent"] {
-                        dataSentWIFI  = (datasent as! Int)
-                    }
-                }
-                
-            }
-            dataSent = dataSentWAN + dataSentWIFI
-            dataReceived = dataReceivedWAN + dataReceivedWIFI
-            tempDict["dataSent"] = dataSent
-            tempDict["dataReceived"] = dataReceived
-            tempArray.append(tempDict)
-        }
-        
-        var previousDataUsageDict = tempArray[0] as! Dictionary<String,Int>
-        var currentDataUsageDict  = tempArray[1] as! Dictionary<String,Int>
-        
-        var finalDataSent     = currentDataUsageDict["dataSent"]! - previousDataUsageDict["dataSent"]!
-        var finalDataReceived = currentDataUsageDict["dataReceived"]! - previousDataUsageDict["dataReceived"]!
-        finalDataUsageArray?.append(finalDataSent+finalDataReceived)
+    var dataUsageFinalValue: Int?
+    if let data  = datausagecalc?.reteriveTotalDatasConsumed() {
+      dataUsageFinalValue = data
     }
+    
+    let defaults = NSUserDefaults.standardUserDefaults()
+    let stringval:String = String(format: "\(NSTimeZone.localTimeZone())")
+    let defaultsTripID = String(defaults.valueForKey(StringConstants.TOKEN_ID))
+    var aid = defaults.integerForKey("tripautoincr") + 1
+    defaults.setInteger(aid, forKey: "tripautoincr")
+    let defaultsTripAutoID = String(aid)
+    
+    
+    let tokenid:String = defaultsTripID + defaultsTripAutoID // (defaults.integerForKey("tripautoincr") as! String" + defaults.valueForKey(StringConstants.TOKEN_ID) as! String
+    let summarymodal:SummaryModel = SummaryModel(datausage: NSNumber(integer: dataUsageFinalValue ?? 0),
+      tripid: tokenid,  // TokenID + Autoincrement
+      tripstarttime: startdate!,
+      tripendtime: enddate!,
+      timezone:stringval,
+      timezoneid:"temp")
+    // print(SummaryModel)
+    print("summarymodal: \(summarymodal.brakingscore), \(summarymodal.accelerationscore), \(summarymodal.ecoscore),\(summarymodal.totalduration)")
+    
+    FacadeLayer.sharedinstance.dbactions.saveTripSummary(summarymodal)
+    
+    //
+    
+    FacadeLayer.sharedinstance.reteriveTripdetails("")
+    
+  }
   
   func testing(latitude:Double,longitude:Double, newLocation:CLLocation){
     
     var eventval:Double = 0.0
-    
+    let defaultsTripID = NSUserDefaults.standardUserDefaults().valueForKey(StringConstants.TOKEN_ID)
     if(tempvar == -1){
       startdate = newLocation.timestamp
       distance = 10
       eventtypes =  Events.EventType.STARTTRIP
-      TripNotify.init(title: "Do you want to start the trip",
-        UUID: NSUUID().UUIDString,
-        schedule: NSDate(),
-        tripstatus: true)
-      let tseries:TimeSeriesModel = TimeSeriesModel.init(ctime: newLocation.timestamp,
+      //      TripNotify.init(title: "Do you want to start the trip",
+      //        UUID: NSUUID().UUIDString,
+      //        schedule: NSDate(),
+      //        tripstatus: true)
+      let tseries:TimeSeriesModel = TimeSeriesModel.init(tripid:"\(defaultsTripID)" + "1", ctime: newLocation.timestamp,
         lat: latitude,
         longt: longitude,
         speedval: newLocation.speed*3.6,
@@ -406,7 +357,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       distance = 20
       eventtypes =  Events.EventType.TIMESERIES
       eventval = 0
-      let tseries:TimeSeriesModel = TimeSeriesModel.init(ctime: newLocation.timestamp,
+      let tseries:TimeSeriesModel = TimeSeriesModel.init(tripid:"\(defaultsTripID)" + "1",ctime: newLocation.timestamp,
         lat: latitude,
         longt: longitude,
         speedval: newLocation.speed*3.6,
@@ -422,7 +373,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       distance = 30
       eventval = 12
       eventtypes =  Events.EventType.ACCELERATION
-      let tseries:TimeSeriesModel = TimeSeriesModel.init(ctime: newLocation.timestamp,
+      let tseries:TimeSeriesModel = TimeSeriesModel.init(tripid:"\(defaultsTripID)" + "1",ctime: newLocation.timestamp,
         lat: latitude,
         longt: longitude,
         speedval: newLocation.speed*3.6,
@@ -438,7 +389,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       distance = 30
       eventval = 10
       eventtypes =  Events.EventType.ACCELERATION
-      let tseries:TimeSeriesModel = TimeSeriesModel.init(ctime: newLocation.timestamp,
+      let tseries:TimeSeriesModel = TimeSeriesModel.init(tripid:"\(defaultsTripID)" + "1",ctime: newLocation.timestamp,
         lat: latitude,
         longt: longitude,
         speedval: newLocation.speed*3.6,
@@ -453,7 +404,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       distance = 40
       eventval = 15
       eventtypes =  Events.EventType.BRAKING
-      let tseries:TimeSeriesModel = TimeSeriesModel.init(ctime: newLocation.timestamp,
+      let tseries:TimeSeriesModel = TimeSeriesModel.init(tripid:"\(defaultsTripID)" + "1",ctime: newLocation.timestamp,
         lat: latitude,
         longt: longitude,
         speedval: newLocation.speed*3.6,
@@ -466,53 +417,16 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       FacadeLayer.sharedinstance.dbactions.saveTimeSeries(tseries)
     }else if(tempvar == 10){
       eventval = 0
-//      tempvar = 0
+      //      tempvar = 0
       enddate = newLocation.timestamp
       eventtypes =  Events.EventType.TIMESERIES
-      TripNotify.init(title: "Do you want to stop the trip",
-        UUID: NSUUID().UUIDString,
-        schedule: NSDate(),
-        tripstatus: false)
+      //      TripNotify.init(title: "Do you want to stop the trip",
+      //        UUID: NSUUID().UUIDString,
+      //        schedule: NSDate(),
+      //        tripstatus: false)
     }
     tempvar++
   }
-  
-  func notMoving(){
-    //Interactive notifications
-    TripNotify.init(title: "Do you want to stop the trip",
-      UUID: NSUUID().UUIDString,
-      schedule: NSDate(),
-      tripstatus: false)
-  }
-  
-  func getdetails(notification: NSNotification){
-    let alert: UIAlertView = UIAlertView()
-    alert.delegate = self
-    
-    alert.title = "Message"
-    alert.message = "Calculation is in progressing"
-    alert.addButtonWithTitle("OK")
-    
-    alert.show()
-    
-
-
-    let stringval:String = String(format: "\(NSTimeZone.localTimeZone())")
-    let summarymodal:SummaryModel = SummaryModel(datausage: NSNumber(integer: 0),
-      tripid: "qwqw",
-      tripstarttime: startdate!,
-      tripendtime: enddate!,
-      timezone:stringval,
-      timezoneid:"temp")
-    
-    print("summarymodal: \(summarymodal)")
-    
-    // calculation needs to be done
-    FacadeLayer.sharedinstance.dbactions.reterive()
-    
-  }
-  
- 
   
   func locationManager(manager: CLLocationManager,
     didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -589,48 +503,9 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   }
   
   
-  func getDistanceInKm(newLocation:CLLocation,oldLocation:CLLocation) -> Double{
-    var lat1,lon1,lat2,lon2: Double;
-    
-    lat1 = newLocation.coordinate.latitude  * M_PI / 180;
-    lon1 = newLocation.coordinate.longitude * M_PI / 180;
-    
-    lat2 = oldLocation.coordinate.latitude  * M_PI / 180;
-    lon2 = oldLocation.coordinate.longitude * M_PI / 180;
-    
-    let R:Double = 6371; // km
-    let dLat:Double = lat2-lat1;
-    let dLon:Double = lon2-lon1;
-    
-    let a:Double = sin(dLat/2) * sin(dLat/2) + cos(lat1) * cos(lat2) * sin(dLon/2) * sin(dLon/2);
-    let c:Double = 2 * atan2(sqrt(a), sqrt(1-a));
-    let d:Double = R * c;
-    
-    return d;
-  }
   
-  func getDistanceInMiles(newLocation:CLLocation,oldLocation:CLLocation) -> Double{
-    var lat1,lon1,lat2,lon2: Double;
-    lat1 = newLocation.coordinate.latitude  * M_PI / 180;
-    lon1 = newLocation.coordinate.longitude * M_PI / 180;
-    
-    lat2 = oldLocation.coordinate.latitude  * M_PI / 180;
-    lon2 = oldLocation.coordinate.longitude * M_PI / 180;
-    
-    let R:Double = 3963; // km
-    let dLat:Double = lat2-lat1;
-    let dLon:Double = lon2-lon1;
-    
-    let a:Double = sin(dLat/2) * sin(dLat/2) + cos(lat1) * cos(lat2) * sin(dLon/2) * sin(dLon/2);
-    let c:Double = 2 * atan2(sqrt(a), sqrt(1-a));
-    let d:Double = R * c;
-    
-    return d
-  }
   
 }
-
-
 
 
 

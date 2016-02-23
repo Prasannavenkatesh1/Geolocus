@@ -9,6 +9,7 @@
 import Foundation
 
 struct TimeSeriesModel {
+  let tripid :String
   let currenttime: NSDate
   let latitude: NSNumber
   let longitude: NSNumber
@@ -19,7 +20,8 @@ struct TimeSeriesModel {
   let eventtype: NSNumber
   let eventvalue: NSNumber
   
-  init(ctime:NSDate, lat:NSNumber, longt:NSNumber, speedval:NSNumber, datausage:NSNumber, iseventval:NSNumber, evetype:NSNumber, eveval:NSNumber, distance:NSNumber){
+  init(tripid: String,ctime:NSDate, lat:NSNumber, longt:NSNumber, speedval:NSNumber, datausage:NSNumber, iseventval:NSNumber, evetype:NSNumber, eveval:NSNumber, distance:NSNumber){
+    self.tripid = tripid
     self.currenttime = ctime
     self.latitude = lat
     self.longitude = longt

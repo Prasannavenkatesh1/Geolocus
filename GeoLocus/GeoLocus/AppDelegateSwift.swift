@@ -115,11 +115,6 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
 
     }
       
-//      FacadeLayer.sharedinstance.dbactions.reterive()
-      
-      print("ACCELERATION \(FacadeLayer.sharedinstance.dbactions.fetchEventCount(Events.EventType.ACCELERATION))")
-      
-      print("BRAKING \(FacadeLayer.sharedinstance.dbactions.fetchEventCount(Events.EventType.BRAKING))")
 
 
     self.loadInitialViewController()
@@ -160,7 +155,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         {
             var alertMsg = info["alert"] as! String
             var alert: UIAlertView!
-            alert = UIAlertView(title: "", message: alertMsg, delegate: nil, cancelButtonTitle: "OK")
+            alert = UIAlertView(title: "push", message: alertMsg, delegate: nil, cancelButtonTitle: "OK")
             alert.show()
         }
     }
