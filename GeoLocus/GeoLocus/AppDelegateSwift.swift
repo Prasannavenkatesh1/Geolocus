@@ -352,63 +352,66 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
             }*/
             
             /* Contract Service */
-             dispatch_group_enter(webServiceGroup)
-            FacadeLayer.sharedinstance.requestContractData({ (status, data, error) -> Void in
-                if status == 1 && error == nil {
-                    contractData = data!
-                }else{
-                    serviceError = error
-                }
-                print("contract service completed")
-                dispatch_group_leave(webServiceGroup)
-            })
-
             
-            
-            dispatch_group_enter(webServiceGroup)
-            FacadeLayer.sharedinstance.requestRecentTripData({ (status, data, error) -> Void in
-                if status == 1 && error == nil {
-                    historyData = data!
-                }else{
-                    serviceError = error
-                }
-                print("history service finished...")
-                dispatch_group_leave(webServiceGroup)
-            })
-            
-            dispatch_group_enter(webServiceGroup)
-            FacadeLayer.sharedinstance.requestDashboardData({ (status, data, error) -> Void in
-                if status == 1 && error == nil {
-                    dashboardData = data!
-                }else{
-                    serviceError = error
-                }
-                print("Dashboard service finished...")
-                dispatch_group_leave(webServiceGroup)
-            
-            })
-            
-            dispatch_group_enter(webServiceGroup)
-            FacadeLayer.sharedinstance.requestOverallScoreData({ (status, data, error) -> Void in
-                if status == 1 && error == nil {
-                    overallScore  = data!
-                }else{
-                    serviceError = error
-                }
-                print("overall score service finished...")
-                dispatch_group_leave(webServiceGroup)
-            })
-            
-            dispatch_group_enter(webServiceGroup)
-            FacadeLayer.sharedinstance.requestInitialReportData(timeFrame: ReportDetails.TimeFrameType.weekly, scoreType: ReportDetails.ScoreType.speed, completionHandler: { (success, error, result) -> Void in
-                if success && error == nil {
-                    reportData = result
-                }
-                dispatch_group_leave(webServiceGroup)
-            })
-            dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
-            
-            
+            if self.isConnectedToNetwork(){
+                dispatch_group_enter(webServiceGroup)
+                FacadeLayer.sharedinstance.requestContractData({ (status, data, error) -> Void in
+                    if status == 1 && error == nil {
+                        contractData = data!
+                    }else{
+                        serviceError = error
+                    }
+                    print("contract service completed")
+                    dispatch_group_leave(webServiceGroup)
+                })
+                
+                
+                
+                dispatch_group_enter(webServiceGroup)
+                FacadeLayer.sharedinstance.requestRecentTripData({ (status, data, error) -> Void in
+                    if status == 1 && error == nil {
+                        historyData = data!
+                    }else{
+                        serviceError = error
+                    }
+                    print("history service finished...")
+                    dispatch_group_leave(webServiceGroup)
+                })
+                
+                dispatch_group_enter(webServiceGroup)
+                FacadeLayer.sharedinstance.requestDashboardData({ (status, data, error) -> Void in
+                    if status == 1 && error == nil {
+                        dashboardData = data!
+                    }else{
+                        serviceError = error
+                    }
+                    print("Dashboard service finished...")
+                    dispatch_group_leave(webServiceGroup)
+                    
+                })
+                
+                dispatch_group_enter(webServiceGroup)
+                FacadeLayer.sharedinstance.requestOverallScoreData({ (status, data, error) -> Void in
+                    if status == 1 && error == nil {
+                        overallScore  = data!
+                    }else{
+                        serviceError = error
+                    }
+                    print("overall score service finished...")
+                    dispatch_group_leave(webServiceGroup)
+                })
+                
+                dispatch_group_enter(webServiceGroup)
+                FacadeLayer.sharedinstance.requestInitialReportData(timeFrame: ReportDetails.TimeFrameType.weekly, scoreType: ReportDetails.ScoreType.speed, completionHandler: { (success, error, result) -> Void in
+                    if success && error == nil {
+                        reportData = result
+                    }
+                    dispatch_group_leave(webServiceGroup)
+                })
+                dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
+            }else{
+                print("Not Connected to network")
+            }
         }
         
         let dbOperation = NSBlockOperation {
@@ -502,11 +505,11 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         operationQueue.addOperations([serviceOperation, dbOperation, completionOperation], waitUntilFinished: false)
     }
     
-//    func isConnectedToNetwork() -> Bool{
-//        let reachability: Reachability = try! Reachability.reachabilityForInternetConnection()
-//        let networkStatus: String = reachability.currentReachabilityStatus.description
-//        return !(networkStatus == "No Connection")
-//    }
+    func isConnectedToNetwork() -> Bool{
+        var reachability: Reachability = Reachability.reachabilityForInternetConnection()
+        var networkStatus : NetworkStatus = reachability.currentReachabilityStatus()
+        return !(networkStatus == NotReachable);
+    }
     
     
     

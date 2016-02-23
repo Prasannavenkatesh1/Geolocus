@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class BaseViewController: UIViewController {
 
     var activityIndicatorView = UIActivityIndicatorView()
@@ -56,16 +57,13 @@ class BaseViewController: UIViewController {
         self.shouldShowActivtyOnView(false)
     }
     
-    //MARK:- Custom Methods
-    
-    func localizableString(str: String) -> String {
-        let languageCodeStr = NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.SELECTED_LOCALIZE_LANGUAGE_CODE)
-        if let path = NSBundle.mainBundle().pathForResource(languageCodeStr?.characters.count > 0 ? languageCodeStr : "en", ofType: "lproj"), bundle = NSBundle(path: path) {
-            return bundle.localizedStringForKey(str, value: nil, table: nil)
-        }
-        return str
+    func isConnectedToNetwork() -> Bool{
+        var reachability: Reachability = Reachability.reachabilityForInternetConnection()
+        var networkStatus : NetworkStatus = reachability.currentReachabilityStatus()
+        return !(networkStatus == NotReachable);
     }
-
+    
+    
     func displayActivityView(title: String, detail: String, imageInfo: Dictionary<String, String>, shareOption: ShareTemplate.ShareOption){
         
         let shareTemplate = ShareTemplate()
