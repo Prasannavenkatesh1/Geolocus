@@ -42,6 +42,13 @@ class NotificationViewController: BaseViewController,UITableViewDataSource, UITa
         self.navigationItem.setLeftBarButtonItems([backButtonItem,kbcIconItem], animated:true)
         
         //notificationCountURL()
+        FacadeLayer.sharedinstance.requestNotificationListData { (status, data, error) -> Void in
+            if(status == 1) {
+                
+            }
+            //self.hideActivityIndicator()
+            
+        }
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool) {
@@ -178,13 +185,17 @@ class NotificationViewController: BaseViewController,UITableViewDataSource, UITa
     func requestNotificationListData(completionHandler:(status: Int, data: NotificationListModel?, error: NSError?) -> Void) -> Void{
         
         FacadeLayer.sharedinstance.requestNotificationListData { (status, data, error) -> Void in
-            completionHandler(status: status, data: data, error: error)
+            if(status == 1) {
+                self.notificationListTableView.reloadData()
+                
+            }
         }
     }
     func requestNotificationDetailsData(completionHandler:(status: Int, data: NotificationDetailsModel?, error: NSError?) -> Void) -> Void{
         
         FacadeLayer.sharedinstance.requestNotificationDetailsData { (status, data, error) -> Void in
-            completionHandler(status: status, data: data, error: error)
+            
+            
         }
     }
     /*
