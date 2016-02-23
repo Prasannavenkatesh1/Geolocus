@@ -9,7 +9,6 @@
 import UIKit
 
 
-
  class DashboardPage: BaseViewController {
 
     
@@ -22,6 +21,7 @@ import UIKit
     @IBOutlet weak var startStopButton: UIButton!
     @IBOutlet weak var contractsPointsEarnedValue: UILabel!
     @IBOutlet weak var distanceTravelledLabel: UILabel!
+    @IBOutlet weak var tripStatusImage: UIImageView!
     
     @IBAction func startStopButtonTapped(sender: AnyObject) {
         
@@ -69,48 +69,81 @@ import UIKit
     
     func handleGetDashboardDetails(){
         self.startLoading()
-        FacadeLayer.sharedinstance.fetchDashboardData{ (status, data, error) -> Void in
-            if(status == 1 && error == nil) {
+        
+        FacadeLayer.sharedinstance.fetchDashboardData { (status, data, error) -> Void in
+            if (status == 1 && error == nil){
                 self.stopLoading()
-                print(data)
                 let dashboardData :DashboardModel = data!
                 self.levelName.text = dashboardData.levelName
                 self.distanceTravelledValue.text = dashboardData.distanceTravelled
-                 var score = Int(dashboardData.score)
+                var score = Int(dashboardData.score)
                 
+                var tripStatus = dashboardData.tripStatus
+                
+                switch tripStatus {
+                case "EQUAL", "equal":
+                    self.tripStatusImage.hidden = true
+                case "UP", "up", "Up":
+                    self.tripStatusImage.hidden = false
+                    self.tripStatusImage.image = UIImage(named:"thumb_up.png")
+                case "DOWN","down","Down":
+                    self.tripStatusImage.hidden = false
+                    self.tripStatusImage.image = UIImage(named:"thumb_down.png")
+                default:
+                    self.tripStatusImage.hidden = true
+                }
+            
                 self.customiseProgressView()
                 //  customColorAndFontSetup()
-                self.startStopButton.layer.cornerRadius = 15.0
+                //self.startStopButton.layer.cornerRadius = 15.0
                 // Do any additional setup after loading the view.
-                self.arcView.ringLayer.strokeColor = UIColor.redColor().CGColor
+                if let dashboardScore = score{
+                     self.arcView.ringLayer.strokeColor = UIColor(range: dashboardScore).CGColor
+                }
                 self.arcView.foreGroundArcWidth = 10.0
                 if let dashboardScore = score{
                     self.arcView.animateScale = Double(dashboardScore)/100
                 }
                 self.arcView.setNeedsDisplay()
-
             }else{
-                //something went wrong
-                self.stopLoading()
-                
+                //something went bad
             }
-            //self.hideActivityIndicator()
         }
 
         
         
+//        FacadeLayer.sharedinstance.fetchDashboardData{ (status, data, error) -> Void in
+//            if(status == 1 && error == nil) {
+//                self.stopLoading()
+//                print(data)
+//                let dashboardData :DashboardModel = data!
+//                self.levelName.text = dashboardData.levelName
+//                self.distanceTravelledValue.text = dashboardData.distanceTravelled
+//                 var score = Int(dashboardData.score)
+//                
+//                self.customiseProgressView()
+//                //  customColorAndFontSetup()
+//                self.startStopButton.layer.cornerRadius = 15.0
+//                // Do any additional setup after loading the view.
+//                self.arcView.ringLayer.strokeColor = UIColor.redColor().CGColor
+//                self.arcView.foreGroundArcWidth = 10.0
+//                if let dashboardScore = score{
+//                    self.arcView.animateScale = Double(dashboardScore)/100
+//                }
+//                self.arcView.setNeedsDisplay()
+//
+//            }else{
+//                //something went wrong
+//                self.stopLoading()
+//                
+//            }
+//            //self.hideActivityIndicator()
+//        }
+
+        
+        
         
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }
 
 //All internal methods are written inside dashboardpage extension

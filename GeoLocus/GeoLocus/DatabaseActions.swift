@@ -317,6 +317,8 @@ class DatabaseActions: NSObject {
         }
     }
     
+    
+    
     func fetchtripDetailData(completionHandler:(status : Int, response: [History]?, error: NSError?) -> Void) -> Void{
         // Initialize Fetch Request
         let fetchRequest = NSFetchRequest(entityName: "Trip_Detail")
@@ -543,6 +545,55 @@ class DatabaseActions: NSObject {
                 
             }
         }
+        
+    }
+    
+    func fetchDashboardData(completionHandler:(status : Int, response: DashboardModel?, error: NSError?) -> Void) -> Void{
+        // Initialize Fetch Request
+        let fetchRequest = NSFetchRequest(entityName: "Dashboard")
+        // Initialize Asynchronous Fetch Request
+        let asyncFetchRequest = NSAsynchronousFetchRequest(fetchRequest: fetchRequest){(asynchronousFetchResult) -> Void in
+         
+            dispatch_async(dispatch_get_main_queue(),{ () -> Void in
+                let dashboardData = self.processDashboardDataResult(asynchronousFetchResult)
+                if dashboardData != nil {
+                    completionHandler(status: 1, response: dashboardData, error: nil)
+                }else{
+                    completionHandler(status: 0, response: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                }
+            })
+        }
+        
+        do {
+            // Execute Asynchronous Fetch Request
+            let asynchronousFetchResult = try managedObjectContext.executeRequest(asyncFetchRequest)
+            
+            print(asynchronousFetchResult)
+            
+        } catch {
+            let fetchError = error as NSError
+            print("\(fetchError), \(fetchError.userInfo)")
+        }
+
+        
+    }
+    
+    func processDashboardDataResult(asynchronousFetchResult: NSAsynchronousFetchResult) -> DashboardModel?{
+        
+        if let results = asynchronousFetchResult.finalResult {
+            
+            if let dashboardData = results.first {
+                let dashboardObj = dashboardData as! Dashboard
+                
+                return DashboardModel(score: dashboardObj.scorerange!, levelName: dashboardObj.levelname!, levelMessage: dashboardObj.nextlevelmessage!, distanceTravelled: dashboardObj.distancetravelled!, totalPoints: dashboardObj.totalpoints!, pointsAchieved: dashboardObj.pointsachieved!, scoreMessage: dashboardObj.scoremessage!, tripStatus: dashboardObj.tripstatus!)
+            }else{
+                return nil
+            }
+        }else{
+            
+            return nil
+        }
+
         
     }
     

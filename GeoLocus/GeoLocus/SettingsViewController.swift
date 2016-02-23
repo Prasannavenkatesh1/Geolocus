@@ -73,6 +73,7 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
     var settingsFields :[settingsFieldType] = []
     var popUpType : popUpTypes = popUpTypes.ChooseLanguage
     let defaults = NSUserDefaults.standardUserDefaults()
+    var snoozingViewController : UIViewController!
     
     
     override func viewDidLoad() {
@@ -222,6 +223,9 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
                 self.popUpTableView.tableFooterView = UIView(frame: CGRectZero)
                 
             }else if row == settingsFieldType.SnoozeStart.rawValue{
+                snoozingViewController = UIStoryboard(name: StringConstants.StoryBoardIdentifier, bundle: nil).instantiateViewControllerWithIdentifier(StringConstants.SnoozingViewController)
+                snoozingViewController.view.frame = CGRectMake(10, 40, 280, 295)
+                self.presentPopUpController(snoozingViewController)
                 
             }else if row == settingsFieldType.AutoTripStart.rawValue{
                 
