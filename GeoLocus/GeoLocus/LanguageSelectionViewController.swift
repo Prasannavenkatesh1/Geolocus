@@ -18,6 +18,12 @@ class LanguageSelectionViewController: UIViewController{
     /* Outlets for the constraints in the view */
     @IBOutlet weak var layoutConstraintTop: NSLayoutConstraint!
     
+    /* Outlets for buttons in the view */
+    @IBOutlet weak var germanButton: UIButton!
+    @IBOutlet weak var dutchButton: UIButton!
+    @IBOutlet weak var englishButton: UIButton!
+    @IBOutlet weak var frenchButton: UIButton!
+    
     /* button action for any of the language chosen */
     @IBAction func languageSelectedButton(sender: UIButton) {
         
@@ -54,9 +60,21 @@ class LanguageSelectionViewController: UIViewController{
     
     // MARK: - View Methods
     override func viewDidLoad() {
-        if(UIScreen.mainScreen().bounds.size.height < 568){
+        
+        self.setTitleForButtons()
+        
+        /* setting constraint for device height less than 568 */
+        if(StringConstants.SCREEN_HEIGHT < Resolution.height.iPhone5){
             layoutConstraintTop.constant = 121
         }
+    }
+    
+    /* setting localized string for title of the buttons */
+    func setTitleForButtons(){
+        self.germanButton.setTitle(LocalizationConstants.Language_German.localized(), forState: UIControlState.Normal)
+        self.frenchButton.setTitle(LocalizationConstants.Language_French.localized(), forState: UIControlState.Normal)
+        self.englishButton.setTitle(LocalizationConstants.Language_English.localized(), forState: UIControlState.Normal)
+        self.dutchButton.setTitle(LocalizationConstants.Language_Dutch.localized(), forState: UIControlState.Normal)
     }
 }
 

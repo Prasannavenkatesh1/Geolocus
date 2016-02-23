@@ -7,3 +7,26 @@
 */
 
 "Hello" = "German";
+
+"German" = "Deutsche";
+"French" = "Französisch";
+"English" = "Englisch";
+"Dutch" = "niederländisch";
+
+"Username" = "Benutzername";
+"Password" = "Passwort";
+"I agree to Terms & Conditions" = "Ich stimme den Allgemeinen Geschäftsbedingungen";
+"Login" = "Anmeldung";
+"Register Now" = "Jetzt registrieren";
+"Need help?" = "Brauche Hilfe?";
+
+"OK" = "OK";
+
+"Add Picture of your goal here..." = "In Bild von Ihrem Ziel hier...";
+"Your Goal" = "Dein Ziel";
+"TOTAL POINTS" = "GESAMTPUNKTZAHL";
+"Speed Points" = "Drehzahlpunkte";
+"Eco Points" = "Eco Punkte";
+"Bonus Points" = "Bonuspunkte";
+
+"You have achieved your target on %@. Contact parents to redeem points." = "Sie haben Ihr Ziel erreicht: %@. Kontakt Eltern einzulösen Punkte";

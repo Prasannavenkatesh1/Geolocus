@@ -178,7 +178,7 @@ class FacadeLayer{
                     }
                 }
                 
-                if(data != nil){
+                if(data != nil && data?.length != 0){
                     if let result = data{
                         do{
                             if let jsonData = try! NSJSONSerialization.JSONObjectWithData(result, options: []) as? NSDictionary{
@@ -192,27 +192,27 @@ class FacadeLayer{
                             }
                             else{
                                 //something went wrong
-                                completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                                completionHandler(status: 0, data: nil, error:  NSError.init(domain: "\(error)", code: 0, userInfo: nil))
                             }
                         }
                         catch let error as NSError{
-                            print(error)
+                            print("\(error)")
                         }
                     }
                     else{
                         //something went wrong
-                        completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                        completionHandler(status: 0, data: nil, error:  NSError.init(domain: "\(error)", code: 0, userInfo: nil))
                     }
                 }
                 
                 else{
                     //something went wrong
-                    completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                    completionHandler(status: 0, data: nil, error:  NSError.init(domain: ErrorConstants.InvalidLogin, code: 0, userInfo: nil))
                 }
             }
             else{
                 //something went wrong
-                completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                completionHandler(status: 0, data: nil, error: NSError.init(domain: "\(error)", code: 0, userInfo: nil))
             }
         }
     }
@@ -245,26 +245,36 @@ class FacadeLayer{
                                     completionHandler(status: 1, data: contractData, error: nil)
                                 }
                                 else{
-                                    completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                                    completionHandler(status: 0, data: nil, error:  NSError.init(domain: "\(error)", code: 0, userInfo: nil))
                                 }
                             })
                         }
                         else{
                             //something went wrong
-                            completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                            completionHandler(status: 0, data: nil, error:  NSError.init(domain: "\(error)", code: 0, userInfo: nil))
                         }
                     }
                     else{
                         //something went wrong
-                        completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                        completionHandler(status: 0, data: nil, error:  NSError.init(domain: "\(error)", code: 0, userInfo: nil))
                     }
                 }
                 else{
                     //something went wrong
-                    completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                    completionHandler(status: 0, data: nil, error:  NSError.init(domain: "\(error)", code: 0, userInfo: nil))
                 }
             }
         }
+    }
+    
+    func saveContractData(contractData: ContractModel, completionHandler:(status: Bool)-> Void){
+        self.dbactions.saveContractData(contractData, completionHandler: { (status) -> Void in
+            if status {
+                completionHandler(status: true)
+            }else{
+                completionHandler(status: false)
+            }
+        })
     }
     
     //MARK: - History service

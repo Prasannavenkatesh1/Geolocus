@@ -100,7 +100,6 @@ struct StringConstants {
     
     static let ERROR = "Error"
     static let OK = "OK"
-    static let CONTRACT_POINTS_ACHIEVED_MESSAGE = "You have achieved your target on %@. Contact parents to redeem points."
     
     static let REPORT_SYNCHRONISATION = "ReportData_Synchronised"
     
@@ -209,5 +208,28 @@ struct BadgeKey {
 
 struct LocalizationConstants {
     
-    static let Login_LoginTitle = "Hello"
+    /* Language Selection View Controller */
+    static let Language_German = "German"
+    static let Language_French = "French"
+    static let Language_English = "English"
+    static let Language_Dutch = "Dutch"
+    
+    /* Login View Controller */
+    static let Username_PlaceholderText = "Username"
+    static let Password_PlaceholderText = "Password"
+    static let Terms_And_Conditions_Title = "I agree to Terms & Conditions"
+    static let Login_Title = "Login"
+    static let RegisterNow_Title = "Register Now"
+    static let NeedHelp_Title = "Need help?"
+    
+    static let Ok_title = "OK"
+    
+    /* Contract Page Label */
+    static let AddPicture_Title = "Add Picture of your goal here..."
+    static let YourGoal_Title = "Your Goal"
+    static let TotalPoints_Title = "TOTAL POINTS"
+    static let SpeedPoints_Title = "Speed Points"
+    static let EcoPoints_Title = "Eco Points"
+    static let BonusPoints_Title = "Bonus Points"
+    static let CONTRACT_POINTS_ACHIEVED_MESSAGE = "You have achieved your target on %@. Contact parents to redeem points."
 }

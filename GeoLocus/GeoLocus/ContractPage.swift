@@ -29,7 +29,6 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
     
     /* Outlets for the label and other controls in the view */
     @IBOutlet weak var speedPointsView: UIView!
-    @IBOutlet weak var totalPointsLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var cameraButton: UIButton!
@@ -41,11 +40,20 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
     @IBOutlet weak var bonusPointsLabel: UILabel!
     @IBOutlet weak var ecoPointsLabel: UILabel!
     @IBOutlet weak var speedPointsLabel: UILabel!
+    @IBOutlet weak var yourGoalLabel: UILabel!
     
+    @IBOutlet weak var bonusPointsTitleLabel: UILabel!
+    @IBOutlet weak var ecoPointsTitleLabel: UILabel!
+    @IBOutlet weak var speedPointsTitleLabel: UILabel!
+    @IBOutlet weak var totalPointsTitleLabel: UILabel!
     //MARK: View Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        FacadeLayer.sharedinstance.requestContractData{ (status, data, error) -> Void in
+        }
+        
+        self.setTitleForLabels()
         self.fetchContractDataFromDatabase()
         self.setConstraintsForDifferentDevices()
         self.customiseProgressView()
@@ -64,6 +72,16 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
     }
     
     //MARK: Custom Methods
+    
+    /* setting localized string for title of the labels */
+    func setTitleForLabels(){
+        self.yourGoalLabel.text = LocalizationConstants.YourGoal_Title.localized()
+        self.messageLabel.text = LocalizationConstants.AddPicture_Title.localized()
+        self.totalPointsTitleLabel.text = LocalizationConstants.TotalPoints_Title.localized()
+        self.speedPointsTitleLabel.text = LocalizationConstants.SpeedPoints_Title.localized()
+        self.ecoPointsTitleLabel.text = LocalizationConstants.EcoPoints_Title.localized()
+        self.bonusPointsTitleLabel.text = LocalizationConstants.BonusPoints_Title.localized()
+    }
     
     /*set constraints for different device screen size */
     func setConstraintsForDifferentDevices(){
@@ -149,7 +167,7 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
                 dateFormatter.dateFormat = "dd-MM-yyyy"
                 let contractAchievedDate = dateFormatter.dateFromString(contractData.contractAchievedDate)
                 
-                let contractAchievedMessage = contractAchievedDate != nil ? String(format: StringConstants.CONTRACT_POINTS_ACHIEVED_MESSAGE, contractAchievedDate!) : ""
+                let contractAchievedMessage = contractAchievedDate != nil ? String(format: LocalizationConstants.CONTRACT_POINTS_ACHIEVED_MESSAGE.localized(), contractAchievedDate!) : ""
                 let pointsAchieved = (self.contractPointsAchieved as NSString).floatValue
                 let totalPoints = (self.totalContractPoints as NSString).floatValue
                 let progressValue = (pointsAchieved/totalPoints)
@@ -158,7 +176,7 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
                 
                 if(pointsAchieved == totalPoints){
                     let alertView = UIAlertController(title: "", message: contractAchievedMessage, preferredStyle: UIAlertControllerStyle.Alert)
-                    alertView.addAction(UIAlertAction(title: StringConstants.OK, style: UIAlertActionStyle.Default, handler: nil))
+                    alertView.addAction(UIAlertAction(title: LocalizationConstants.Ok_title.localized(), style: UIAlertActionStyle.Default, handler: nil))
                     self.presentViewController(alertView, animated: true, completion: nil)
                 }
             }

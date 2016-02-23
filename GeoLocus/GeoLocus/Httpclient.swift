@@ -37,38 +37,23 @@ class Httpclient: NSObject,NSURLSessionDelegate {
     }
     
     /* Login Service call */
-    
-    /*func requestLoginData(URL:String, parametersHTTPBody : [String:String!]){
-        let loginRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
-        loginRequest.HTTPMethod = "POST"
-       // loginRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        //loginRequest.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(parametersHTTPBody, options: [])
-        Alamofire.request(loginRequest)
-            .validate()
-            .responseJSON{ responseJSON in
-                switch responseJSON.result {
-                    case .Failure(let error):
-                        print(error)
-                    case .Success(let responseObject):
-                        print(responseObject)
-                        
-                        let tokenID = responseJSON.response?.allHeaderFields["SPRING_SECURITY_REMEMBER_ME_COOKIE"]//SPRING_SECURITY_REMEMBER_ME_COOKIE
-                        print(tokenID)
-                        NSUserDefaults.standardUserDefaults().setValue(tokenID, forKey: StringConstants.TOKEN_ID)
-                        
-                        let responseJSON = responseObject as! NSDictionary
-                        let userID = responseJSON.objectForKey("userID")
-                        print(userID)
-                }
-        }.resume()
-    }*/
-    
-    /* Login Service call */
 
     func requestLoginData(parameterString : String, completionHandler:(response:NSHTTPURLResponse?, data : NSData?, error : NSError?) -> Void) -> Void{
         
-        let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
+        let manager = Alamofire.Manager.sharedInstance
+        manager.delegate.sessionDidReceiveChallenge = { session, challenge in
+            var disposition: NSURLSessionAuthChallengeDisposition = .PerformDefaultHandling
+            var credential: NSURLCredential?
+            if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+                if challenge.protectionSpace.host == "ec2-52-9-107-182.us-west-1.compute.amazonaws.com" {
+                    disposition = NSURLSessionAuthChallengeDisposition.UseCredential
+                    
+                    credential = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!)
+                }
+            }
+            return (disposition, credential)
+        }
+        
         let loginURL : NSURL = NSURL(string : FacadeLayer.sharedinstance.webService.loginServiceURL!)!
         
         let loginRequest = NSMutableURLRequest(URL : loginURL)
@@ -76,16 +61,9 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         
         loginRequest.HTTPBody = parameterString.dataUsingEncoding(NSUTF8StringEncoding)
         
-        let task = session.dataTaskWithRequest(loginRequest) {
-            (let data, let response, let error) in
-            
-            guard let data = data , let response = response as? NSHTTPURLResponse where error == nil else {
-                print("error")
-                return
-            }
+        manager.request(loginRequest).response { (Request, response, data, error) -> Void in
             completionHandler(response: response, data: data, error: error)
         }
-        task.resume()
     }
     
     /* Contract Service call */
@@ -527,7 +505,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
     //TODO: Remove this
     //MARK: Delegate Methods
     
-    func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+    /*func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
         
         if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
             if challenge.protectionSpace.host == "ec2-52-9-107-182.us-west-1.compute.amazonaws.com" {
@@ -535,7 +513,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
                 completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credential)
             }
         }
-    }
+    }*/
 }
 
 

@@ -7,3 +7,26 @@
 */
 
 "Hello" = "English";
+
+"German" = "German";
+"French" = "French";
+"English" = "English";
+"Dutch" = "Dutch";
+
+"Username" = "Username";
+"Password" = "Password";
+"I agree to Terms & Conditions" = "I agree to Terms & Conditions";
+"Login" = "Login";
+"Register Now" = "Register Now";
+"Need help?" = "Need help?";
+
+"OK" = "OK";
+
+"Add Picture of your goal here..." = "Add Picture of your goal here...";
+"Your Goal" = "Your Goal";
+"TOTAL POINTS" = "TOTAL POINTS";
+"Speed Points" = "Speed Points";
+"Eco Points" = "Eco Points";
+"Bonus Points" = "Bonus Points";
+
+"You have achieved your target on %@. Contact parents to redeem points." = "You have achieved your target on %@. Contact parents to redeem points.";
