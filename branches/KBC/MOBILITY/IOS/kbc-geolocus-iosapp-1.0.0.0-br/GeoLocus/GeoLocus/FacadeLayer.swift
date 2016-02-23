@@ -1211,21 +1211,20 @@ class FacadeLayer{
     return arrTimeseries
     
   }
-  
-  
+ 
   
   func summarymodelDictionary(tripsummarymodel: SummaryModel) -> [Dictionary<String, AnyObject>] {
     var arrsummary: [Dictionary<String, AnyObject>] = []
     
-    let dictsummary = ["thresholds_brake":  tripsummarymodel.datausage,
-      "thresholds_acceleration":  tripsummarymodel.tripid,
-      "thresholds_autotrip": tripsummarymodel.tripstarttime.description,
-      "weightage_braking": tripsummarymodel.tripendtime.description,
-      "weightage_acceleration": tripsummarymodel.timezone,
-      "weightage_speed": tripsummarymodel.timezoneid,
-      "weightage_severevoilation": tripsummarymodel.attentionscore,
-      "ecoweightage_braking": tripsummarymodel.brakingcount,
-      "ecoweightage_acceleration": tripsummarymodel.accelerationcount,
+    let dictsummary = ["datausage":  tripsummarymodel.datausage,
+      "tripid":  tripsummarymodel.tripid,
+      "tripstarttime": tripsummarymodel.tripstarttime.description,
+      "tripendtime": tripsummarymodel.tripendtime.description,
+      "timezone": tripsummarymodel.timezone,
+      "timezoneid": tripsummarymodel.timezoneid,
+      "attentionscore": tripsummarymodel.attentionscore,
+      "brakingcount": tripsummarymodel.brakingcount,
+      "accelerationcount": tripsummarymodel.accelerationcount,
       "totaldistance": tripsummarymodel.totaldistance,
       "totalduration": tripsummarymodel.totalduration,
       "ecoscore": tripsummarymodel.ecoscore,
