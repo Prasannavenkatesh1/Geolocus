@@ -35,9 +35,9 @@
 	<key>RegisterDeviceTokenServiceURL</key>
 	<string></string>
 	<key>NotificationListServiceURL</key>
-	<string></string>
+	<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/notification/getnotificationlist?userId=1</string>
 	<key>NotificationDetailsServiceURL</key>
-	<string></string>
+	<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/notification/getnotificationdetails?userId=1&amp;notificationId=1&amp;type=Promotion</string>
 	<key>DeleteNotificationServiceURL</key>
 	<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/notification/delete?userId=7&amp;notificationId=14&amp;type=Promotion</string>
 	<key>CompetitionAcceptanceServiceURL</key>

@@ -1022,7 +1022,7 @@ class FacadeLayer{
 
     func requestNotificationListData(completionHandler:(status: Int, data: NotificationListModel?, error: NSError?) -> Void) -> Void{
         
-        httpclient.requestNotificationListData("") { (response, data, error) -> Void in
+        httpclient.requestNotificationListData(webService.notificationListServiceURL!) { (response, data, error) -> Void in
             if error == nil {
                 if let result = data {
                     var jsonData = JSON(data: result)
@@ -1051,7 +1051,7 @@ class FacadeLayer{
     
     func requestNotificationDetailsData(completionHandler:(status: Int, data: NotificationDetailsModel?, error: NSError?) -> Void) -> Void{
         
-        httpclient.requestNotificationDetailsData("") { (response, data, error) -> Void in
+        httpclient.requestNotificationDetailsData(webService.notificationDetailsServiceURL!) { (response, data, error) -> Void in
             if error == nil {
                 if let result = data {
                     var jsonData = JSON(data: result)

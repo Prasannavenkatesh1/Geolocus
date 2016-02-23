@@ -409,8 +409,8 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         
         let notificationCountRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
         notificationCountRequest.HTTPMethod = "GET"
-        notificationCountRequest.setValue("SWs5cVUyeUFDTDg5bnhMMnZaOWVLUT09Om16Vm01Q3pPVHErZXJyUUV3ZHMyM3c9PQ", forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
-        
+        let tokenID = defaults.valueForKey(StringConstants.TOKEN_ID) as? String
+        notificationCountRequest.setValue(tokenID, forHTTPHeaderField: StringConstants.SPRING_SECURITY_COOKIE)
         manager.request(notificationCountRequest).response { (Request, response, data, error) -> Void in
             completionHandler(response: response, data: data, error: error)
         }
@@ -435,8 +435,8 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         
         let deleteNotificationRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
         deleteNotificationRequest.HTTPMethod = "POST"
-        deleteNotificationRequest.setValue("SWs5cVUyeUFDTDg5bnhMMnZaOWVLUT09Om16Vm01Q3pPVHErZXJyUUV3ZHMyM3c9PQ", forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
-        
+        let tokenID = defaults.valueForKey(StringConstants.TOKEN_ID) as? String
+        deleteNotificationRequest.setValue(tokenID, forHTTPHeaderField: StringConstants.SPRING_SECURITY_COOKIE)
         manager.request(deleteNotificationRequest).response { (Request, response, data, error) -> Void in
             completionHandler(response: response, data: data, error: error)
         }
@@ -461,8 +461,8 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         
         let acceptNotificationRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
         acceptNotificationRequest.HTTPMethod = "POST"
-        acceptNotificationRequest.setValue("U285VzFuVnZCdDBYekRneHhDUWNSQT09OldSa1ZGYnYycFpCMjdqK0Q5YzQrRmc9PQ", forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
-        
+        let tokenID = defaults.valueForKey(StringConstants.TOKEN_ID) as? String
+        acceptNotificationRequest.setValue(tokenID, forHTTPHeaderField: StringConstants.SPRING_SECURITY_COOKIE)
         manager.request(acceptNotificationRequest).response { (Request, response, data, error) -> Void in
             completionHandler(response: response, data: data, error: error)
         }
@@ -471,62 +471,57 @@ class Httpclient: NSObject,NSURLSessionDelegate {
     
     func requestNotificationListData(URL:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
         
-        
-        if let filePath = NSBundle.mainBundle().pathForResource("NotificationList", ofType: "json"), data = NSData(contentsOfFile: filePath) {
-            do {
-                let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
-                print(json)
-                
-                //****************************************//
-                
-                let parameters = ["userId":"<user id>","tokenId":"<get from server>","channel_type":StringConstants.CHANNEL_TYPE,"language_code":"en_be"]
-                
-                if let notificationListServiceURL = FacadeLayer.sharedinstance.webService.notificationListServiceURL{
+        let manager = Alamofire.Manager.sharedInstance
+        manager.delegate.sessionDidReceiveChallenge = { session, challenge in
+            var disposition: NSURLSessionAuthChallengeDisposition = .PerformDefaultHandling
+            var credential: NSURLCredential?
+            if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+                if challenge.protectionSpace.host == "ec2-52-9-107-182.us-west-1.compute.amazonaws.com" {
+                    disposition = NSURLSessionAuthChallengeDisposition.UseCredential
                     
-                    Alamofire.request(.POST, notificationListServiceURL, parameters: json as? Dictionary, encoding: .JSON, headers: nil).response{ (request, response, data, error) -> Void in
-                        
-                        completionHandler(response: response, data: data, error: error)
-                        
-                    }
+                    credential = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!)
                 }
-                
-                //*****************************************//
-                
             }
-            catch {
-                //Handle error
-            }
+            return (disposition, credential)
         }
+        
+        
+        let notificationListRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
+        notificationListRequest.HTTPMethod = "GET"
+        let tokenID = defaults.valueForKey(StringConstants.TOKEN_ID) as? String
+        notificationListRequest.setValue(tokenID, forHTTPHeaderField: StringConstants.SPRING_SECURITY_COOKIE)
+        manager.request(notificationListRequest).response { (Request, response, data, error) -> Void in
+            completionHandler(response: response, data: data, error: error)
+        }
+        
     }
     
     
     func requestNotificationDetailsData(URL:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
         
-        
-        if let filePath = NSBundle.mainBundle().pathForResource("NotificationDetails", ofType: "json"), data = NSData(contentsOfFile: filePath) {
-            do {
-                let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
-                print(json)
-                //****************************************//
-                
-                let parameters = ["userId":"<user id>","tokenId":"<get from server>","channel_type":StringConstants.CHANNEL_TYPE,"language_code":"en_be"]
-                
-                if let notificationDetailsServiceURL = FacadeLayer.sharedinstance.webService.notificationDetailsServiceURL{
+        let manager = Alamofire.Manager.sharedInstance
+        manager.delegate.sessionDidReceiveChallenge = { session, challenge in
+            var disposition: NSURLSessionAuthChallengeDisposition = .PerformDefaultHandling
+            var credential: NSURLCredential?
+            if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+                if challenge.protectionSpace.host == "ec2-52-9-107-182.us-west-1.compute.amazonaws.com" {
+                    disposition = NSURLSessionAuthChallengeDisposition.UseCredential
                     
-                    Alamofire.request(.POST, notificationDetailsServiceURL, parameters: json as? Dictionary, encoding: .JSON, headers: nil).response{ (request, response, data, error) -> Void in
-                        
-                        completionHandler(response: response, data: data, error: error)
-                        
-                    }
+                    credential = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!)
                 }
-                
-                //*****************************************//
-                
             }
-            catch {
-                //Handle error
-            }
+            return (disposition, credential)
         }
+        
+        
+        let notificationDetailRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
+        notificationDetailRequest.HTTPMethod = "GET"
+        let tokenID = defaults.valueForKey(StringConstants.TOKEN_ID) as? String
+        notificationDetailRequest.setValue(tokenID, forHTTPHeaderField: StringConstants.SPRING_SECURITY_COOKIE)
+        manager.request(notificationDetailRequest).response { (Request, response, data, error) -> Void in
+            completionHandler(response: response, data: data, error: error)
+        }
+        
     }
     
     //TODO: Remove this
