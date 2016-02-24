@@ -24,7 +24,8 @@ class ReportsViewController: BaseViewController {
     @IBOutlet weak var distance: UILabel!
     @IBOutlet weak var totalPoints: UILabel!
     @IBOutlet weak var totalTrips: UILabel!
-    
+    @IBOutlet weak var reportsNavigationItem: UINavigationItem!
+
     var groupBarVC: GroupBarViewController?
     var report: Report?
     var chartData = [(title: String, [(min: Double, max: Double)])]()
@@ -33,6 +34,7 @@ class ReportsViewController: BaseViewController {
     
     override func viewDidLoad() {
         
+        self.navigationItemSetUp()
         self.startLoading()
         FacadeLayer.sharedinstance.fetchInitialReportData(timeFrame: ReportDetails.TimeFrameType.weekly, scoreType: ReportDetails.ScoreType.speed) { (success, error, result) -> Void in
             if success == true {
@@ -91,14 +93,32 @@ class ReportsViewController: BaseViewController {
         }
     }
     
-    //MARK:- UIButton Actions
+    //MARK: - Custom Methods
     
-    @IBAction func backButtonTapped(sender: AnyObject) {
+    func navigationItemSetUp() {
+        let backButton = UIButton()
+        backButton.setImage(UIImage(named: "BackButton"), forState: .Normal)
+        backButton.frame = CGRectMake(0, 0, 12, 21)
+        backButton.addTarget(self, action: Selector("backButtonTapped:"), forControlEvents: .TouchUpInside)
+        
+        let kbcicon = UIImageView()
+        kbcicon.image=UIImage(named: "KBCIcon")
+        kbcicon.frame = CGRectMake(0, 0, 35, 32)
+        let backButtonItem:UIBarButtonItem = UIBarButtonItem(customView: backButton)
+        let kbcIconItem:UIBarButtonItem = UIBarButtonItem(customView: kbcicon)
+        
+        self.reportsNavigationItem.setLeftBarButtonItems([backButtonItem,kbcIconItem], animated:true)
+    }
+    
+    func backButtonTapped(sender: UIButton) {
+        
         let storyBoard = UIStoryboard(name: StringConstants.StoryBoardIdentifier, bundle: nil)
         let rootView = storyBoard.instantiateViewControllerWithIdentifier(StringConstants.RootViewController)
         let navigationView = UINavigationController(rootViewController: rootView)
         self.revealViewController().setFrontViewController(navigationView, animated: true)
     }
+
+    //MARK:- UIButton Actions
     
     @IBAction func didTapOnFilterBtn(sender: UIButton) {
         okBtn.layer.cornerRadius = 15.0
