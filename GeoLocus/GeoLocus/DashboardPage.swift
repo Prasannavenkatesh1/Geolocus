@@ -8,8 +8,7 @@
 
 import UIKit
 
-
- class DashboardPage: BaseViewController {
+ class DashboardPage: BaseViewController,UIGestureRecognizerDelegate {
 
     
  //MARK: IBOutlets
@@ -24,6 +23,8 @@ import UIKit
     @IBOutlet weak var tripStatusImage: UIImageView!
     
     var plistLevelArray     = []
+    var scoreMessage :String = String()
+    var nextLevelMessage :String = String()
     var snoozingViewController : UIViewController!
     
     @IBAction func startStopButtonTapped(sender: AnyObject) {
@@ -41,8 +42,9 @@ import UIKit
         
         let alertView = UIAlertController(title: "", message: alertTitle , preferredStyle: UIAlertControllerStyle.Alert)
         alertView.addAction(UIAlertAction(title: firstButtonTitle, style: UIAlertActionStyle.Default, handler: nil))
-        alertView.addAction(UIAlertAction(title: secondButtonTitle, style: UIAlertActionStyle.Default, handler: nil))
-        
+        if !(secondButtonTitle.isEmpty){
+            alertView.addAction(UIAlertAction(title: secondButtonTitle, style: UIAlertActionStyle.Default, handler: nil))
+        }
         if(thirdButtonTitle != ""){
             alertView.addAction(UIAlertAction(title: thirdButtonTitle, style: UIAlertActionStyle.Default, handler: nil))
         }
@@ -56,7 +58,6 @@ import UIKit
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
        self.handleGetDashboardDetails()
 //        snoozingViewController = UIStoryboard(name: "Storyboard", bundle: nil).instantiateViewControllerWithIdentifier("SnoozingController")
 //        //snoozeController.view.frame = CGRectMake(10, 40, 280, 295)
@@ -78,10 +79,11 @@ import UIKit
                 self.stopLoading()
                 let dashboardData :DashboardModel = data!
                 self.levelName.text = dashboardData.levelName
-                self.distanceTravelledValue.text = dashboardData.distanceTravelled
-                var score = Int(dashboardData.score)
-                
-                var tripStatus = dashboardData.tripStatus
+                self.distanceTravelledValue.text = dashboardData.distanceTravelled + " km"
+                let score = Int(dashboardData.score)
+                let tripStatus = dashboardData.tripStatus
+                self.scoreMessage = dashboardData.scoreMessage
+                self.nextLevelMessage = dashboardData.levelMessage
                 
                 switch tripStatus {
                 case "EQUAL", "equal":
@@ -96,11 +98,43 @@ import UIKit
                     self.tripStatusImage.hidden = true
                 }
                 
+                let arcViewTap = UITapGestureRecognizer(target: self, action: Selector("handleTapOnArcView:"))
+                arcViewTap.delegate = self
+                self.arcView.addGestureRecognizer(arcViewTap)
+                
+                let levelMessageTap = UITapGestureRecognizer(target: self, action: Selector("handleTapOnLevelMessage:"))
+                levelMessageTap.delegate = self
+                self.levelName.addGestureRecognizer(levelMessageTap)
+                
+                //var attributedString : NSMutableAttributedString = NSMutableAttributedString(string:"Contracts points earned:"+dashboardData.pointsAchieved)
+                var attributedString : NSMutableAttributedString = NSMutableAttributedString(string: "Contracts points earned:"+dashboardData.pointsAchieved, attributes: [NSFontAttributeName:UIFont(name: "Helvetica Neue Medium",size: 16.0)!])
+                attributedString.addAttribute(NSForegroundColorAttributeName,value: UIColor(netHex: 0x181F29),
+                                                                             range: NSRange(location:0,length:24))
+                attributedString.addAttribute(NSForegroundColorAttributeName,value: UIColor(netHex: 0x00ACEF),
+                    range: NSRange(location:25,length:attributedString.length - 25))
+                self.contractsPointsEarnedValue.attributedText = attributedString
+                
+                
                 //1. Get data from plist
                 let path                = NSBundle.mainBundle().pathForResource("BadgesDetails", ofType: "plist")
                 let dataDict            = NSDictionary(contentsOfFile: path!)
                 self.plistLevelArray    = (dataDict?.valueForKey("level"))! as! NSArray
-            
+                
+                for levelDict in self.plistLevelArray {
+                    let levelName = levelDict.objectForKey("title")
+                    if levelName?.lowercaseString == dashboardData.levelName.lowercaseString{
+                        let levelImageName = levelDict.objectForKey("icon_not_earned") as! String
+                        self.levelImage.image = UIImage(named:levelImageName)
+                        break
+                    }
+                }
+                 
+                if !(dashboardData.totalPoints.isEmpty) && !(dashboardData.pointsAchieved.isEmpty){
+                    let totalPoints = Float(dashboardData.totalPoints)
+                    let pointsAchieved = Float(dashboardData.pointsAchieved)
+                    let progressFraction = Float(totalPoints!/pointsAchieved!)
+                    self.pointsAchievedProgressView.setProgress(1/progressFraction, animated: false)
+                }
                 self.customiseProgressView()
                 //  customColorAndFontSetup()
                 //self.startStopButton.layer.cornerRadius = 15.0
@@ -115,6 +149,7 @@ import UIKit
                 self.arcView.setNeedsDisplay()
             }else{
                 //something went bad
+                self.stopLoading()
             }
         }
 
@@ -152,7 +187,17 @@ import UIKit
         
         
     }
+    
+    func handleTapOnArcView(sender:AnyObject){
+        self.createAlertView(self.scoreMessage, firstButtonTitle: StringConstants.OK, secondButtonTitle: "", thirdButtonTitle: "")
+    }
+    
+    func handleTapOnLevelMessage(sender:AnyObject){
+        self.createAlertView(self.nextLevelMessage, firstButtonTitle: StringConstants.OK, secondButtonTitle: "", thirdButtonTitle: "")
+    }
 }
+
+
 
 //All internal methods are written inside dashboardpage extension
 extension DashboardPage {
