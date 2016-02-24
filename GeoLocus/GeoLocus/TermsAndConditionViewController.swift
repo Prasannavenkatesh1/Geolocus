@@ -10,13 +10,36 @@ import UIKit
 
 class TermsAndConditionViewController: BaseViewController {
 
+    @IBOutlet weak var termsNavigationItem: UINavigationItem!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.navigationItemSetUp()
+    }
     
-    @IBAction func backButtonTapped(sender: AnyObject) {
+    //MARK: - Custom Methods
+    
+    func navigationItemSetUp() {
+        let backButton = UIButton()
+        backButton.setImage(UIImage(named: "BackButton"), forState: .Normal)
+        backButton.frame = CGRectMake(0, 0, 12, 21)
+        backButton.addTarget(self, action: Selector("backButtonTapped:"), forControlEvents: .TouchUpInside)
+        
+        let kbcicon = UIImageView()
+        kbcicon.image=UIImage(named: "KBCIcon")
+        kbcicon.frame = CGRectMake(0, 0, 35, 32)
+        let backButtonItem:UIBarButtonItem = UIBarButtonItem(customView: backButton)
+        let kbcIconItem:UIBarButtonItem = UIBarButtonItem(customView: kbcicon)
+        
+        self.termsNavigationItem.setLeftBarButtonItems([backButtonItem,kbcIconItem], animated:true)
+    }
+
+    func backButtonTapped(sender: UIButton) {
+        
         let storyBoard = UIStoryboard(name: StringConstants.StoryBoardIdentifier, bundle: nil)
         let rootView = storyBoard.instantiateViewControllerWithIdentifier(StringConstants.RootViewController)
         let navigationView = UINavigationController(rootViewController: rootView)
         self.revealViewController().setFrontViewController(navigationView, animated: true)
     }
-
-
 }

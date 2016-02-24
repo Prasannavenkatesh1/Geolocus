@@ -63,7 +63,7 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var popUpView : UIView!
     @IBOutlet weak var popUpTableView : UITableView!
     @IBOutlet weak var popUpTitleLabel : UILabel!
-    
+    @IBOutlet weak var settingsNavigationItem: UINavigationItem!
 
     let settingsCellTitles = ["Data Upload Type","Snooze the start","Auto trip Start","Notification","Share data with parent","Choose your Language","Reset Password","Coach's Username"]
     let settingsHeaderTitle = "Customer Settings"
@@ -79,15 +79,32 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItemSetUp()
         settingsTableView.delegate = self
         settingsTableView.dataSource = self
         self.popUpTableView.separatorStyle = UITableViewCellSeparatorStyle.None
         settingsFields = settingsFieldType.allFieldType
         popUpView.hidden = true
-        
     }
     
-    @IBAction func backButtonTapped(sender: AnyObject) {
+    //MARK: - Custom Methods 
+    
+    func navigationItemSetUp() {
+        let backButton = UIButton()
+        backButton.setImage(UIImage(named: "BackButton"), forState: .Normal)
+        backButton.frame = CGRectMake(0, 0, 12, 21)
+        backButton.addTarget(self, action: Selector("backButtonTapped:"), forControlEvents: .TouchUpInside)
+        
+        let kbcicon = UIImageView()
+        kbcicon.image=UIImage(named: "KBCIcon")
+        kbcicon.frame = CGRectMake(0, 0, 35, 32)
+        let backButtonItem:UIBarButtonItem = UIBarButtonItem(customView: backButton)
+        let kbcIconItem:UIBarButtonItem = UIBarButtonItem(customView: kbcicon)
+        
+        self.settingsNavigationItem.setLeftBarButtonItems([backButtonItem,kbcIconItem], animated:true)
+    }
+
+    func backButtonTapped(sender: UIButton) {
         
         let storyBoard = UIStoryboard(name: StringConstants.StoryBoardIdentifier, bundle: nil)
         let rootView = storyBoard.instantiateViewControllerWithIdentifier(StringConstants.RootViewController)

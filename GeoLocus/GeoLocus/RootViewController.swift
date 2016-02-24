@@ -12,19 +12,20 @@ import CoreMotion
 class RootViewController: BaseViewController {
   
     @IBOutlet var segmentControl: HMSegmentedControl!
-    @IBOutlet var sideMenuButton: UIBarButtonItem!
     var labelNotificationCount:UILabel?
     var categories = [String]()
     let activitymanager = CMMotionActivityManager()
     var currentSelectedIndex : NSNumber!
-
+    var menuBtn: UIButton?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
       
       self.edgesForExtendedLayout = .None;
       self.extendedLayoutIncludesOpaqueBars = false;
       self.automaticallyAdjustsScrollViewInsets = false;
-      
+      self.navigationItemSetUp()
+        
         currentSelectedIndex = 1
         self.getCustomizedSegmentedControl(self.segmentControl)
         self.segmentControl.addTarget(self, action: "segmentedControlChangedValue:", forControlEvents: UIControlEvents.ValueChanged)
@@ -92,13 +93,13 @@ class RootViewController: BaseViewController {
             object: nil)
         
         //attributes for SWrevealController framework
-        if revealViewController() != nil {
-            //            revealViewController().rearViewRevealWidth = 62
-            sideMenuButton.target = revealViewController()
-            sideMenuButton.action = "revealToggle:"
-            view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-            
-        }
+//        if revealViewController() != nil {
+//            //            revealViewController().rearViewRevealWidth = 62
+//            sideMenuButton.target = revealViewController()
+//            sideMenuButton.action = "revealToggle:"
+//            view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+//            
+//        }
         notificationCountURL()
         
         NSNotificationCenter.defaultCenter().addObserver(
@@ -110,6 +111,28 @@ class RootViewController: BaseViewController {
       //Motion detect
 //       self.showSnoozingPop()
     }
+    
+    //MARK:- Custom Methods
+    
+    func navigationItemSetUp() {
+
+        if menuBtn == nil && revealViewController() != nil {
+            menuBtn = UIButton()
+            menuBtn!.setImage(UIImage(named: "menu"), forState: .Normal)
+            menuBtn!.frame = CGRectMake(0, 0, 20, 20)
+            menuBtn!.addTarget(revealViewController(), action: Selector("revealToggle:"), forControlEvents: .TouchUpInside)
+            view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
+        
+        let kbcicon = UIImageView()
+        kbcicon.image=UIImage(named: "KBCIcon")
+        kbcicon.frame = CGRectMake(0, 0, 35, 32)
+        let backButtonItem:UIBarButtonItem = UIBarButtonItem(customView: menuBtn!)
+        let kbcIconItem:UIBarButtonItem = UIBarButtonItem(customView: kbcicon)
+        
+        self.navigationItem.setLeftBarButtonItems([backButtonItem,kbcIconItem], animated:true)
+    }
+    
     func notificationCountURL(){
         //self.showActivityIndicator()
         FacadeLayer.sharedinstance.fetchNotificationCount { (status, data, error) -> Void in

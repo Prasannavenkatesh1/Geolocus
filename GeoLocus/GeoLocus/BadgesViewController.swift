@@ -16,7 +16,8 @@ protocol BadgesDelegate {
 class BadgesViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var badgeTableView: UITableView!
-
+    @IBOutlet weak var badgesNavigationItem: UINavigationItem!
+    
     var myActivityIndicator : UIActivityIndicatorView?
     var badgeNotEarnedArray = [Badge]()
     var badgeEarnedArray    = [Badge]()
@@ -31,6 +32,7 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItemSetUp()
         self.badgeTableView.backgroundColor = UIColor.clearColor()
         reloadDataSource()
     }
@@ -141,7 +143,7 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
     
     //MARK:- Navigation methods
     
-    @IBAction func backButtonTapped(sender: AnyObject) {
+    func backButtonTapped(sender: UIButton) {
         
         let storyBoard      = UIStoryboard(name: StringConstants.StoryBoardIdentifier, bundle: nil)
         let rootView        = storyBoard.instantiateViewControllerWithIdentifier(StringConstants.RootViewController)
@@ -281,6 +283,21 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
             }
             //self.stopLoading()
         }
+    }
+    
+    func navigationItemSetUp() {
+        let backButton = UIButton()
+        backButton.setImage(UIImage(named: "BackButton"), forState: .Normal)
+        backButton.frame = CGRectMake(0, 0, 12, 21)
+        backButton.addTarget(self, action: Selector("backButtonTapped:"), forControlEvents: .TouchUpInside)
+        
+        let kbcicon = UIImageView()
+        kbcicon.image=UIImage(named: "KBCIcon")
+        kbcicon.frame = CGRectMake(0, 0, 35, 32)
+        let backButtonItem:UIBarButtonItem = UIBarButtonItem(customView: backButton)
+        let kbcIconItem:UIBarButtonItem = UIBarButtonItem(customView: kbcicon)
+        
+        self.badgesNavigationItem.setLeftBarButtonItems([backButtonItem,kbcIconItem], animated:true)
     }
 }
 
