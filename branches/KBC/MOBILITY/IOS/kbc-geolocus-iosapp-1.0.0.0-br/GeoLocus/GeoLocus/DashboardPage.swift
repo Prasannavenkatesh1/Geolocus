@@ -25,6 +25,8 @@ import UIKit
     
     var plistLevelArray     = []
     var snoozingViewController : UIViewController!
+    var scoreMessage :String = String()
+    var nextLevelMessage :String = String()
     
     @IBAction func startStopButtonTapped(sender: AnyObject) {
         
@@ -71,15 +73,17 @@ import UIKit
     }
     
     func handleGetDashboardDetails(){
-        self.startLoading()
+       // self.startLoading()
         
         FacadeLayer.sharedinstance.fetchDashboardData { (status, data, error) -> Void in
             if (status == 1 && error == nil){
-                self.stopLoading()
+               //  self.stopLoading()
                 let dashboardData :DashboardModel = data!
                 self.levelName.text = dashboardData.levelName
                 self.distanceTravelledValue.text = dashboardData.distanceTravelled
                 var score = Int(dashboardData.score)
+                self.scoreMessage = dashboardData.scoreMessage
+                self.nextLevelMessage = dashboardData.levelMessage
                 
                 var tripStatus = dashboardData.tripStatus
                 
@@ -96,11 +100,43 @@ import UIKit
                     self.tripStatusImage.hidden = true
                 }
                 
+//                                let arcViewTap = UITapGestureRecognizer(target: self, action: Selector("handleTapOnArcView:"))
+//                                arcViewTap.delegate = self
+//                                self.arcView.addGestureRecognizer(arcViewTap)
+//                
+//                                let levelMessageTap = UITapGestureRecognizer(target: self, action: Selector("handleTapOnLevelMessage:"))
+//                                levelMessageTap.delegate = self
+//                                self.levelName.addGestureRecognizer(levelMessageTap)
+                
+                var attributedString : NSMutableAttributedString = NSMutableAttributedString(string: "Contracts points earned:"+dashboardData.pointsAchieved, attributes: [NSFontAttributeName:UIFont(name: "Helvetica Neue Medium",size: 16.0)!])
+                attributedString.addAttribute(NSForegroundColorAttributeName,value: UIColor(netHex: 0x181F29),
+                    range: NSRange(location:0,length:24))
+                attributedString.addAttribute(NSForegroundColorAttributeName,value: UIColor(netHex: 0x00ACEF),
+                    range: NSRange(location:25,length:attributedString.length - 25))
+                self.contractsPointsEarnedValue.attributedText = attributedString
+
+                
                 //1. Get data from plist
                 let path                = NSBundle.mainBundle().pathForResource("BadgesDetails", ofType: "plist")
                 let dataDict            = NSDictionary(contentsOfFile: path!)
                 self.plistLevelArray    = (dataDict?.valueForKey("level"))! as! NSArray
-            
+                
+                for levelDict in self.plistLevelArray {
+                    let levelName = levelDict.objectForKey("title")
+                    if levelName?.lowercaseString == dashboardData.levelName.lowercaseString{
+                        let levelImageName = levelDict.objectForKey("icon_not_earned") as! String
+                        self.levelImage.image = UIImage(named:levelImageName)
+                        break
+                    }
+                }
+                
+                if !(dashboardData.totalPoints.isEmpty) && !(dashboardData.pointsAchieved.isEmpty){
+                    let totalPoints = Float(dashboardData.totalPoints)
+                    let pointsAchieved = Float(dashboardData.pointsAchieved)
+                    let progressFraction = Float(totalPoints!/pointsAchieved!)
+                    self.pointsAchievedProgressView.setProgress(1/progressFraction, animated: false)
+                }
+
                 self.customiseProgressView()
                 //  customColorAndFontSetup()
                 //self.startStopButton.layer.cornerRadius = 15.0
@@ -148,9 +184,14 @@ import UIKit
 //            //self.hideActivityIndicator()
 //        }
 
-        
-        
-        
+    }
+    
+    func handleTapOnArcView(sender:AnyObject){
+        self.createAlertView(self.scoreMessage, firstButtonTitle: StringConstants.OK, secondButtonTitle: "", thirdButtonTitle: "")
+    }
+    
+    func handleTapOnLevelMessage(sender:AnyObject){
+        self.createAlertView(self.nextLevelMessage, firstButtonTitle: StringConstants.OK, secondButtonTitle: "", thirdButtonTitle: "")
     }
 }
 
