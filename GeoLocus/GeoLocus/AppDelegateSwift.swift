@@ -31,12 +31,6 @@ enum LocalizeLanguageCode: String {
     case Nederlands = "nl"
 }
 
-enum Service: Int {
-    case CALLED
-    case CALLING
-    case NONE
-}
-
 @UIApplicationMain
 class AppDelegateSwift: UIResponder, UIApplicationDelegate {
   
@@ -52,7 +46,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     var logoView:UIImageView?
     var bgView:UIImageView?
     var backgroundUpdateTask:UIBackgroundTaskIdentifier?
-    var serviceState : Service
+
 
   
     override init() {
@@ -64,7 +58,6 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         countryCode = nil
         setSettings = "0"
         iPhoneSize = "iPhone5"
-        serviceState  = .NONE
 //        autoButtonChange = "Disabled"
       
 //        let settings : GeolocusDashboard = GeolocusDashboard()
@@ -79,8 +72,6 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       //    NSNotificationCenter.defaultCenter().postNotificationName("tipended", object: nil)
     
       //
-        
-        self.serviceState = .NONE
 
     registerNotification()
 
@@ -90,7 +81,6 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       defaults.setBool(true, forKey: "isFirstTime")
       defaults.setBool(false, forKey: "isStarted")
       defaults.setValue("", forKey: StringConstants.TOKEN_ID)
-      defaults.setValue("", forKey: "motionlat")
 
       
       //  Insert Weightage values for testing
@@ -277,7 +267,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     func loadInitialViewController(){
       
         let storyboard: UIStoryboard = UIStoryboard(name: "Storyboard", bundle: NSBundle.mainBundle())
-        var checkUserLogin : Bool = self.checkUserDetails()
+        let checkUserLogin : Bool = self.checkUserDetails()
         //checkUserLogin = false
         if(!checkUserLogin){
             let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
@@ -326,164 +316,156 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     
     func requestAndSaveAppData(){
         
+        var serviceError: NSError!
+        var dbStatus = false
         
-        if self.checkUserDetails() {
-            return
+        var badgeData = [Badge]()
+        var historyData = [History]()
+        var overallScore = OverallScores?()
+        var contractData = ContractModel?()
+        var reportData = Report?()
+        
+        let webServiceGroup = dispatch_group_create();
+        let operationQueue = NSOperationQueue()
+        
+        let serviceOperation = NSBlockOperation{        //TODO: uncomment this and below save method
+            /* dispatch_group_enter(webServiceGroup)
+            FacadeLayer.sharedinstance.requestBadgesData { (status, data, error) -> Void in
+            
+            if status == 1 && error == nil {
+            badgeData = data!
+            }else{
+            serviceError = error
+            }
+            print("badge service finished...")
+            dispatch_group_leave(webServiceGroup)
+            }*/
+            
+            /* Contract Service */
+             dispatch_group_enter(webServiceGroup)
+            FacadeLayer.sharedinstance.requestContractData({ (status, data, error) -> Void in
+                if status == 1 && error == nil {
+                    contractData = data!
+                }else{
+                    serviceError = error
+                }
+                print("contract service completed")
+                dispatch_group_leave(webServiceGroup)
+            })
+
+            dispatch_group_enter(webServiceGroup)
+            FacadeLayer.sharedinstance.requestRecentTripData({ (status, data, error) -> Void in
+                if status == 1 && error == nil {
+                    historyData = data!
+                }else{
+                    serviceError = error
+                }
+                print("history service finished...")
+                dispatch_group_leave(webServiceGroup)
+            })
+            
+            dispatch_group_enter(webServiceGroup)
+            FacadeLayer.sharedinstance.requestOverallScoreData({ (status, data, error) -> Void in
+                if status == 1 && error == nil {
+                    overallScore  = data!
+                }else{
+                    serviceError = error
+                }
+                print("overall score service finished...")
+                dispatch_group_leave(webServiceGroup)
+            })
+            
+            dispatch_group_enter(webServiceGroup)
+            FacadeLayer.sharedinstance.requestInitialReportData(timeFrame: ReportDetails.TimeFrameType.weekly, scoreType: ReportDetails.ScoreType.speed, completionHandler: { (success, error, result) -> Void in
+                if success && error == nil {
+                    reportData = result
+                }
+                dispatch_group_leave(webServiceGroup)
+            })
+            dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
         }
         
-        //TODO: Check internet connectivity
-        if self.serviceState == .NONE {
-            var serviceError: NSError!
-            var dbStatus = false
+        let dbOperation = NSBlockOperation {
             
-            var badgeData = [Badge]()
-            var historyData = [History]()
-            var overallScore = OverallScores?()
-            var contractData = ContractModel?()
-            var reportData = Report?()
-            
-            let webServiceGroup = dispatch_group_create();
-            let operationQueue = NSOperationQueue()
-            
-            let serviceOperation = NSBlockOperation{
-                dispatch_group_enter(webServiceGroup)
-                FacadeLayer.sharedinstance.requestBadgesData { (status, data, error) -> Void in
-                    
-                    if status == 1 && error == nil {
-                        badgeData = data!
-                    }else{
-                        serviceError = error
-                    }
-                    print("badge service finished...")
-                    dispatch_group_leave(webServiceGroup)
+            if serviceError == nil {
+                /* dispatch_group_enter(webServiceGroup)
+                FacadeLayer.sharedinstance.removeData("Trip_Badge")
+                FacadeLayer.sharedinstance.saveBadge(badgeData) { (status) -> Void in
+                if status {
+                dbStatus = true
+                }else{
+                dbStatus = false
                 }
-                
-                /* Contract Service */
+                print("badgeData save finished...")
+                dispatch_group_leave(webServiceGroup)
+                }
+                dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
+                */
                 dispatch_group_enter(webServiceGroup)
-                FacadeLayer.sharedinstance.requestContractData({ (status, data, error) -> Void in
-                    if status == 1 && error == nil {
-                        contractData = data!
+                FacadeLayer.sharedinstance.removeData("Trip_Detail")
+                FacadeLayer.sharedinstance.saveTripDetail(historyData, completionhandler: { (status) -> Void in
+                    if status {
+                        dbStatus = true
                     }else{
-                        serviceError = error
+                        dbStatus = false
                     }
-                    print("contract service completed")
-                    dispatch_group_leave(webServiceGroup)
-                })
-                
-                dispatch_group_enter(webServiceGroup)
-                FacadeLayer.sharedinstance.requestRecentTripData({ (status, data, error) -> Void in
-                    if status == 1 && error == nil {
-                        historyData = data!
-                    }else{
-                        serviceError = error
-                    }
-                    print("history service finished...")
-                    dispatch_group_leave(webServiceGroup)
-                })
-                
-                dispatch_group_enter(webServiceGroup)
-                FacadeLayer.sharedinstance.requestOverallScoreData({ (status, data, error) -> Void in
-                    if status == 1 && error == nil {
-                        overallScore  = data!
-                    }else{
-                        serviceError = error
-                    }
-                    print("overall score service finished...")
-                    dispatch_group_leave(webServiceGroup)
-                })
-                
-                dispatch_group_enter(webServiceGroup)
-                FacadeLayer.sharedinstance.requestInitialReportData(timeFrame: ReportDetails.TimeFrameType.weekly, scoreType: ReportDetails.ScoreType.speed, completionHandler: { (success, error, result) -> Void in
-                    if success && error == nil {
-                        reportData = result
-                    }
+                    print("historyData save finished...")
                     dispatch_group_leave(webServiceGroup)
                 })
                 dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
-            }
-            
-            let dbOperation = NSBlockOperation {
                 
-                if serviceError == nil {
-                    dispatch_group_enter(webServiceGroup)
-                    FacadeLayer.sharedinstance.removeData("Trip_Badge")
-                    FacadeLayer.sharedinstance.saveBadge(badgeData) { (status) -> Void in
-                        if status {
-                            dbStatus = true
-                        }else{
-                            dbStatus = false
-                        }
-                        print("badgeData save finished...")
-                        dispatch_group_leave(webServiceGroup)
+                dispatch_group_enter(webServiceGroup)
+                FacadeLayer.sharedinstance.removeData("Contract")
+                FacadeLayer.sharedinstance.saveContractData(contractData!, completionHandler: { (status) -> Void in
+                    if status {
+                        dbStatus = true
+                    }else{
+                        dbStatus = false
                     }
-                    dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
-                    
-                    dispatch_group_enter(webServiceGroup)
-                    FacadeLayer.sharedinstance.removeData("Trip_Detail")
-                    FacadeLayer.sharedinstance.saveTripDetail(historyData, completionhandler: { (status) -> Void in
-                        if status {
-                            dbStatus = true
-                        }else{
-                            dbStatus = false
-                        }
-                        print("historyData save finished...")
-                        dispatch_group_leave(webServiceGroup)
-                    })
-                    dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
-                    
-                    dispatch_group_enter(webServiceGroup)
-                    FacadeLayer.sharedinstance.removeData("Contract")
-                    FacadeLayer.sharedinstance.saveContractData(contractData!, completionHandler: { (status) -> Void in
-                        if status {
-                            dbStatus = true
-                        }else{
-                            dbStatus = false
-                        }
-                        print("contract save finished...")
-                        dispatch_group_leave(webServiceGroup)
-                    })
-                     dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
-                    
-                    dispatch_group_enter(webServiceGroup)
-                    FacadeLayer.sharedinstance.removeData("OverallScore")
-                    FacadeLayer.sharedinstance.saveOverallScore(overallScore!, completionhandler: { (status) -> Void in
-                        if status {
-                            dbStatus = true
-                        }else{
-                            dbStatus = false
-                        }
-                        print("overallScore save finished...")
-                        dispatch_group_leave(webServiceGroup)
-                    })
-                     dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
-                    
-                    dispatch_group_enter(webServiceGroup)
-                    FacadeLayer.sharedinstance.removeData("Reports")
-                    if let reportData = reportData {
-                        FacadeLayer.sharedinstance.saveInitialReportData(reportData, completionHandler: { (status) -> Void in
-                            dbStatus = status
-                            print("report data finished")
-                            dispatch_group_leave(webServiceGroup)
-                        })
+                    print("contract save finished...")
+                    dispatch_group_leave(webServiceGroup)
+                })
+
+                dispatch_group_enter(webServiceGroup)
+                FacadeLayer.sharedinstance.removeData("OverallScore")
+                FacadeLayer.sharedinstance.saveOverallScore(overallScore!, completionhandler: { (status) -> Void in
+                    if status {
+                        dbStatus = true
+                    }else{
+                        dbStatus = false
                     }
-                    dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
+                    print("overallScore save finished...")
+                    dispatch_group_leave(webServiceGroup)
+                })
+                
+                dispatch_group_enter(webServiceGroup)
+                FacadeLayer.sharedinstance.removeData("Reports")
+                if let reportData = reportData {
+                    FacadeLayer.sharedinstance.saveInitialReportData(reportData, completionHandler: { (status) -> Void in
+                        dbStatus = status
+                        print("report data finished")
+                        dispatch_group_leave(webServiceGroup)
+                    })
                 }
+                dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
             }
-            
-            let completionOperation = NSBlockOperation {
-                if ((dbStatus) && (serviceError == nil)) {
-                    print("success...")
-                }else{
-                    print("failure")
-                }
-                self.serviceState = .CALLED
-            }
-            
-            dbOperation.addDependency(serviceOperation)
-            completionOperation.addDependency(dbOperation)
-            
-            operationQueue.addOperations([serviceOperation, dbOperation, completionOperation], waitUntilFinished: false)
         }
+        
+        let completionOperation = NSBlockOperation {
+            
+            if ((dbStatus) && (serviceError == nil)) {
+                print("success...")
+            }else{
+                print("failure")
+            }
+            
+        }
+        
+        // configuring interoperation dependencies
+        dbOperation.addDependency(serviceOperation)
+        completionOperation.addDependency(dbOperation)
+        
+        operationQueue.addOperations([serviceOperation, dbOperation, completionOperation], waitUntilFinished: false)
     }
     
     

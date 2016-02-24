@@ -494,13 +494,7 @@ class FacadeLayer{
     }
     
     func requestInitialReportData(timeFrame timeFrame: ReportDetails.TimeFrameType, scoreType: ReportDetails.ScoreType, completionHandler:(success: Bool, error: NSError?, result: Report?) -> Void) -> Void {
-        
-        var userId: String = ""
-        if let id = NSUserDefaults.standardUserDefaults().valueForKey(StringConstants.USER_ID) {
-            userId = id as! String
-        }
-        
-        httpclient.requestReportData(StringConstants.REPORT_SERVICE_URL + "userId=\(userId)&timeFrame=\(timeFrame)&scoreType=\(scoreType)", completionHandler: { (success, data) -> Void in
+        httpclient.requestReportData(StringConstants.REPORT_SERVICE_URL + "userId=9&timeFrame=\(timeFrame)&scoreType=\(scoreType)", completionHandler: { (success, data) -> Void in
             if let result = data {
                 
                 var reportDetails = [ReportDetails]()
@@ -549,13 +543,7 @@ class FacadeLayer{
                 }
             })
         }else{
-            
-            var userId: String = ""
-            if let id = NSUserDefaults.standardUserDefaults().valueForKey(StringConstants.USER_ID) {
-                userId = id as! String
-            }
-
-            httpclient.requestReportData(StringConstants.REPORT_SERVICE_URL + "userId=\(userId)&timeFrame=\(timeFrame)&scoreType=\(scoreType)", completionHandler: { (success, data) -> Void in
+            httpclient.requestReportData(StringConstants.REPORT_SERVICE_URL + "userId=9&timeFrame=\(timeFrame)&scoreType=\(scoreType)", completionHandler: { (success, data) -> Void in
                 if let result = data {
                     
                     var reportDetails = [ReportDetails]()

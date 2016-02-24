@@ -46,7 +46,6 @@ class ReportsViewController: BaseViewController {
             }
             self.stopLoading()
         }
-        
     }
     
     override func viewWillAppear(animated: Bool) {
