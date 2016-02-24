@@ -10,9 +10,12 @@ import UIKit
 
 class HistoryTripScoreCell: UITableViewCell {
 
-    @IBOutlet weak var speedingView : ArcGraphicsController!
-    @IBOutlet weak var ecoView      : ArcGraphicsController!
-    @IBOutlet weak var attentionView: UIView!
+    @IBOutlet weak var speedingView   : ArcGraphicsController!
+    @IBOutlet weak var ecoView        : ArcGraphicsController!
+    @IBOutlet weak var attentionView  : UIView!
+    @IBOutlet weak var speedingLabel  : UILabel!
+    @IBOutlet weak var ecoLabel       : UILabel!
+    @IBOutlet weak var attentionLabel : UILabel!
     
     var speedingTapGestureRecognizer  : UITapGestureRecognizer!
     var ecoTapGestureRecognizer       : UITapGestureRecognizer!
@@ -56,6 +59,7 @@ class HistoryTripScoreCell: UITableViewCell {
 extension HistoryTripScoreCell {
     
     func configure(tripScore: TripScore?) -> Void {
+        
         self.speedingView.foreGroundArcWidth = Arc.FOREGROUND_WIDTH
         self.speedingView.backGroundArcWidth = Arc.BACKGROUND_WIDTH
         self.ecoView.foreGroundArcWidth      = Arc.FOREGROUND_WIDTH
@@ -69,6 +73,9 @@ extension HistoryTripScoreCell {
         }
         
         if let del = self.delegate {
+            
+            del.localizeTripScore(self)
+            
             if del.scoreCellRefreshRequired() {
                 self.speedingView.setNeedsDisplay()
                 self.ecoView.setNeedsDisplay()

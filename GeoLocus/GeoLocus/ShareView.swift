@@ -21,21 +21,21 @@ public class ShareTemplate {
         
         let drawingRect = CGRectMake(0, 0, 485, 192)
         
-        //---------------title text--------------------
+        //---------------title text--------
         let titleFont                   = UIFont(name:Font.HELVETICA_NEUE_MEDIUM, size: 16)
         let titleParagraphStyle         = NSMutableParagraphStyle()
         titleParagraphStyle.alignment   = .Left
         let titleAttr                   = [NSFontAttributeName: titleFont!, NSParagraphStyleAttributeName: titleParagraphStyle, NSForegroundColorAttributeName:UIColor(netHex: 0x003665)]
         let titleText:String            =  title
         
-        //-------------para text------------------
+        //-------------para text-----------
         let paraFont                    = UIFont(name: Font.HELVETICA_NEUE, size: 15)
         let paragraphStyle              = NSMutableParagraphStyle()
         paragraphStyle.alignment        = .Left
         let paraAttr                    = [NSFontAttributeName: paraFont!, NSParagraphStyleAttributeName: paragraphStyle, NSForegroundColorAttributeName:UIColor(netHex: 0x181f29)]
         let paraText:String             = detail
         
-        //-------------info text------------------
+        //-------------info text-----------
         let infoFont                    = UIFont(name: Font.HELVETICA_NEUE, size: 12)
         let infoParagraphStyle          = NSMutableParagraphStyle()
         infoParagraphStyle.alignment    = .Left
@@ -49,7 +49,7 @@ public class ShareTemplate {
         CGContextSetFillColorWithColor(context, UIColor.whiteColor().CGColor)
         CGContextFillRect(context, drawingRect)
         
-        //--------- image -------
+        //------------- image ------------
         switch shareOption {
         case ShareOption.TRIP_DETAIL:
             let scoreViewFrame = CGRectMake(0, 0, 78, 78)
@@ -71,11 +71,11 @@ public class ShareTemplate {
             let speedIconRect = CGRectMake(12 + 20, 65 + 23, 38, 33)
             speedIcon!.drawInRect(speedIconRect)
             
-            let speedTitleFont                   = UIFont(name:Font.HELVETICA_NEUE, size: 15)
+            let speedTitleFont              = UIFont(name:Font.HELVETICA_NEUE, size: 15)
             let speedTtileParaStyle         = NSMutableParagraphStyle()
             speedTtileParaStyle.alignment   = .Center
-            let speedTitleAttr                   = [NSFontAttributeName: speedTitleFont!, NSParagraphStyleAttributeName: speedTtileParaStyle, NSForegroundColorAttributeName:UIColor(netHex: 0x181f29)]
-            let speedTitleText:String            =  "Speeding"
+            let speedTitleAttr              = [NSFontAttributeName: speedTitleFont!, NSParagraphStyleAttributeName: speedTtileParaStyle, NSForegroundColorAttributeName:UIColor(netHex: 0x181f29)]
+            let speedTitleText:String       =  "Speeding"
             
             let speedTitleRect = CGRectMake(12, 145, 78, 21)
             speedTitleText.drawWithRect(speedTitleRect, options: .UsesLineFragmentOrigin, attributes: speedTitleAttr, context: nil)
@@ -88,7 +88,7 @@ public class ShareTemplate {
             ecoArcView.animateScale = Double(imageInfo["ecoScore"]!)!/100.0
             ecoArcView.backgroundColor = UIColor.whiteColor()
             ecoArcView.setNeedsDisplay()
-            let ecoImage = getImage(ecoArcView)
+            let ecoImage     = getImage(ecoArcView)
             let ecoScoreRect = CGRectMake(speedScoreRect.size.width + 12 + 12, speedScoreRect.origin.y, speedScoreRect.size.width, speedScoreRect.size.height)
             ecoImage.drawInRect(ecoScoreRect)
             
@@ -96,11 +96,11 @@ public class ShareTemplate {
             let ecoIconRect = CGRectMake(speedScoreRect.size.width + 12 + 12 + 22, 65 + 21, 33, 35)
             ecoIcon!.drawInRect(ecoIconRect)
             
-            let ecoTitleFont                   = UIFont(name:Font.HELVETICA_NEUE, size: 15)
+            let ecoTitleFont              = UIFont(name:Font.HELVETICA_NEUE, size: 15)
             let ecoTtileParaStyle         = NSMutableParagraphStyle()
             ecoTtileParaStyle.alignment   = .Center
-            let ecoTitleAttr                   = [NSFontAttributeName: ecoTitleFont!, NSParagraphStyleAttributeName: ecoTtileParaStyle, NSForegroundColorAttributeName:UIColor(netHex: 0x181f29)]
-            let ecoTitleText:String            =  "Eco"
+            let ecoTitleAttr              = [NSFontAttributeName: ecoTitleFont!, NSParagraphStyleAttributeName: ecoTtileParaStyle, NSForegroundColorAttributeName:UIColor(netHex: 0x181f29)]
+            let ecoTitleText:String       =  "Eco"
             
             let ecoTitleRect = CGRectMake(speedScoreRect.size.width + 12 + 12, 145, 78, 21)
             ecoTitleText.drawWithRect(ecoTitleRect, options: .UsesLineFragmentOrigin, attributes: ecoTitleAttr, context: nil)
@@ -113,16 +113,16 @@ public class ShareTemplate {
             print("none")
         }
         
-        //-------separator line vertical--------
+        //------- separator line vertical --------
         CGContextSetFillColorWithColor(context, UIColor(netHex: 0x4c7394).CGColor)
         CGContextFillRect(context, CGRectMake(192, 19, 1, 161))
         
-        //--------KBC Icon -------------
+        //-------- KBC Icon -------------
         let kbcIcon = UIImage(named: "KBCIcon.png")
         let kbcIconRect = CGRectMake(440, 5, 35, 32)
         kbcIcon!.drawInRect(kbcIconRect)
         
-        //----------drawing text-------------
+        //---------- drawing text -------------
         let titleTextRect = CGRectMake(204, 19, 269, 21)
         titleText.drawWithRect(titleTextRect, options: .UsesLineFragmentOrigin, attributes: titleAttr, context: nil)
         let paraHeight = CGFloat((shareOption == ShareOption.TRIP_DETAIL) ? 75.0 : 60.0)

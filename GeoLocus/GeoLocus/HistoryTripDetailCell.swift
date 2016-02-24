@@ -15,6 +15,8 @@ class HistoryTripDetailCell: UITableViewCell {
     @IBOutlet weak var tripDistanceLabel: UILabel!
     @IBOutlet weak var tripPointsLabel  : UILabel!
     @IBOutlet weak var tripShareButton  : UIButton!
+    @IBOutlet weak var distanceLabel    : UILabel!
+    @IBOutlet weak var pointsLabel      : UILabel!
 
     @IBOutlet weak var distanceConstraint   : NSLayoutConstraint!
     @IBOutlet weak var tripPointsConstraint : NSLayoutConstraint!
@@ -69,6 +71,10 @@ extension HistoryTripDetailCell {
             self.tripShareButton.hidden = true
         }else{
             self.tripShareButton.hidden = false
+        }
+        
+        if let del = self.delegate {
+            del.localizeTripDetails(self)
         }
     }
 }

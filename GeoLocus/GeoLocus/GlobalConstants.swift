@@ -235,11 +235,11 @@ struct LocalizationConstants {
     
     struct OverallScore {
         static let Score_Title          = "Overall_Score"
-        static let Driving_Behavior     = "Driving_Behavior"
-        static let Speeding             = "Speeding"
-        static let Eco                  = "Eco"
-        static let Attention            = "Attention"
-        static let Distance_Travelled   = "Distance_Travelled"
+        static let Driving_Behavior     = "Overall_Score_Driving_Behavior"
+        static let Speeding             = "Overall_Score_Speeding"
+        static let Eco                  = "Overall_Score_Eco"
+        static let Attention            = "Overall_Score_Attention"
+        static let Distance_Travelled   = "Overall_Score_Distance_Travelled"
     }
     
     struct Badge {
@@ -248,4 +248,42 @@ struct LocalizationConstants {
         static let Levels               = "Levels"
     }
     
+    struct History{
+        struct Score {
+            static let ScoreTitle           = "History_TS_Trip_Score"
+            static let Speeding             = "History_TS_Speeding"
+            static let Eco                  = "History_TS_Eco"
+            static let Attention            = "History_TS_Attention"
+        }
+        
+        struct View {
+            static let Map                  = "History_Map"
+            static let Speeding_Zone        = "History_Speeding_Zone"
+            static let Speeding             = "History_SZ_Speeding"
+            static let Severe_Violation     = "History_SZ_Severe_Violation"
+            static let Distance             = "History_SZ_Distance"
+            static let Within_Max_Speed     = "History_SZ_Within_Max_Speed"
+            static let Above_Max_Limit      = "History_SZ_Above_Max_Speed"
+        }
+        
+        struct TripDetails {
+            static let Trip_Details         = "History_TD_Trip_Details"
+            static let Distance             = "History_TD_Distance"
+            static let Trip_Points          = "History_TD_Trip_Points"
+        }
+    }
+    
+    struct Share {
+        static let AppInfo                  = "Share_Info_Text"
+        
+        struct Trip {
+            static let Title                = "Share_Trip_Score"
+            static let Info                 = "Share_Trip_Info"
+        }
+        
+        struct Badge {
+            static let Info                 = "Share_Badge_Info"
+        }
+        
+    }
 }
