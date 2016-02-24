@@ -10,17 +10,39 @@
 "Hello" = "English";
 
 //MARK: - Overall Score page
-"Overall_Score" = "Overall Score";
-"Driving_Behavior" = "Driving Behavior";
-"Speeding" = "Speeding";
-"Eco" = "Eco";
-"Attention" = "Attention";
-"Distance_Travelled" = "Total Distance Travelled";
+"Overall_Score"                     = "Overall Score";
+"Overall_Score_Driving_Behavior"    = "Driving Behavior";
+"Overall_Score_Speeding"            = "Speeding";
+"Overall_Score_Eco"                 = "Eco";
+"Overall_Score_Attention"           = "Attention";
+"Overall_Score_Distance_Travelled"  = "Total Distance Travelled";
 
 //MARK: - Badges & Levels Page
-"Badges_to_be_Earned" = "Badges to be Earned";
-"Badges_Earned" = "Badges Earned";
-"Levels" = "Levels";
+"Badges_to_be_Earned"               = "Badges to be Earned";
+"Badges_Earned"                     = "Badges Earned";
+"Levels"                            = "Levels";
+
+//MARK: - History TripScore
+"History_TS_Trip_Score"             = "Trip Score";
+"History_TS_Speeding"               = "Speeding";
+"History_TS_Eco"                    = "Eco";
+"History_TS_Attention"              = "Attention";
+
+//MARK: - History
+"History_Map"                       = "By Map";
+"History_Speeding_Zone"             = "By Speeding Zone";
+
+//MARK: - History Speeding Zone
+"History_SZ_Speeding"               = "Speeding";
+"History_SZ_Severe_Violation"       = "Severe Violation";
+"History_SZ_Distance"               = "Distance";
+"History_SZ_Within_Max_Speed"       = "Within Max Speed";
+"History_SZ_Above_Max_Speed"        = "Above Max Speed";
+
+//MARK: - History Trip Details
+"History_TD_Trip_Details"           = "Trip Details";
+"History_TD_Distance"               = "Distance";
+"History_TD_Trip_Points"            = "Trip Points";
 
 "German" = "German";
 "French" = "French";
