@@ -81,6 +81,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       defaults.setBool(true, forKey: "isFirstTime")
       defaults.setBool(false, forKey: "isStarted")
       defaults.setValue("", forKey: StringConstants.TOKEN_ID)
+      defaults.setValue("", forKey: "motionlat")
 
       
       //  Insert Weightage values for testing
@@ -267,7 +268,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     func loadInitialViewController(){
       
         let storyboard: UIStoryboard = UIStoryboard(name: "Storyboard", bundle: NSBundle.mainBundle())
-        let checkUserLogin : Bool = self.checkUserDetails()
+        var checkUserLogin : Bool = self.checkUserDetails()
         //checkUserLogin = false
         if(!checkUserLogin){
             let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
@@ -324,6 +325,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         var overallScore = OverallScores?()
         var contractData = ContractModel?()
         var reportData = Report?()
+        var dashboardData = DashboardModel?()
         
         let webServiceGroup = dispatch_group_create();
         let operationQueue = NSOperationQueue()
@@ -351,6 +353,18 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                 }
                 print("contract service completed")
                 dispatch_group_leave(webServiceGroup)
+            })
+            
+            dispatch_group_enter(webServiceGroup)
+            FacadeLayer.sharedinstance.requestDashboardData({ (status, data, error) -> Void in
+                if status == 1 && error == nil {
+                    dashboardData = data!
+                }else{
+                    serviceError = error
+                }
+                print("Dashboard service finished...")
+                dispatch_group_leave(webServiceGroup)
+                
             })
 
             dispatch_group_enter(webServiceGroup)
@@ -415,6 +429,19 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                 dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
                 
                 dispatch_group_enter(webServiceGroup)
+                FacadeLayer.sharedinstance.removeData("Dashboard")
+                FacadeLayer.sharedinstance.saveDashBoardData(dashboardData!, completionhandler: { (status) -> Void in
+                    if status{
+                        dbStatus = true
+                    }else{
+                        dbStatus = false
+                    }
+                    print("Dashboard Save finished")
+                    dispatch_group_leave(webServiceGroup)
+                })
+                dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
+                
+                dispatch_group_enter(webServiceGroup)
                 FacadeLayer.sharedinstance.removeData("Contract")
                 FacadeLayer.sharedinstance.saveContractData(contractData!, completionHandler: { (status) -> Void in
                     if status {
@@ -425,6 +452,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                     print("contract save finished...")
                     dispatch_group_leave(webServiceGroup)
                 })
+                dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
 
                 dispatch_group_enter(webServiceGroup)
                 FacadeLayer.sharedinstance.removeData("OverallScore")
@@ -437,7 +465,9 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                     print("overallScore save finished...")
                     dispatch_group_leave(webServiceGroup)
                 })
+                dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
                 
+               
                 dispatch_group_enter(webServiceGroup)
                 FacadeLayer.sharedinstance.removeData("Reports")
                 if let reportData = reportData {
