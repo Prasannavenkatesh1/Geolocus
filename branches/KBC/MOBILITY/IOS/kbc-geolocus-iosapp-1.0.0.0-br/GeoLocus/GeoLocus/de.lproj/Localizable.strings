@@ -10,18 +10,44 @@
 "Hello" = "German";
 
 //MARK: - Overall Score page
-"Overall_Score" = "Gesamtpunktzahl";
-"Driving_Behavior" = "Fahrverhalten";
-"Speeding" = "Geschwindigkeitsüberschreitung";
-"Eco" = "Öko";
-"Attention" = "Aufmerksamkeit";
-"Distance_Travelled" = "Gesamtstrecke Gereist";
+"Overall_Score"                     = "Gesamtpunktzahl";
+"Overall_Score_Driving_Behavior"    = "Fahrverhalten";
+"Overall_Score_Speeding"            = "Geschwindigkeitsüberschreitung";
+"Overall_Score_Eco"                 = "Öko";
+"Overall_Score_Attention"           = "Aufmerksamkeit";
+"Overall_Score_Distance_Travelled"  = "Gesamtstrecke Gereist";
 
 //MARK: - Badges & Levels Page
-"Badges_to_be_Earned" = "Abzeichen zu verdienen";
-"Badges_Earned" = "Abzeichen verdient";
-"Levels" = "Ebenen";
+"Badges_to_be_Earned"               = "Abzeichen zu verdienen";
+"Badges_Earned"                     = "Abzeichen verdient";
+"Levels"                            = "Ebenen";
 
+//MARK: - History TripScore
+"History_TS_Trip_Score"             = "Reise Punktzahl";
+"History_TS_Speeding"               = "Geschwindigkeitsüberschreitung";
+"History_TS_Eco"                    = "Öko";
+"History_TS_Attention"              = "Aufmerksamkeit";
+
+//MARK: - History
+"History_Map"                       = "durch die Karte";
+"History_Speeding_Zone"             = "Durch die Beschleunigung Zone";
+
+//MARK: - History Speeding Zone
+"History_SZ_Speeding"               = "Geschwindigkeitsüberschreitung";
+"History_SZ_Severe_Violation"       = "schwere Verletzung";
+"History_SZ_Distance"               = "Entfernung";
+"History_SZ_Within_Max_Speed"       = "Innerhalb Höchstgeschwindigkeit";
+"History_SZ_Above_Max_Speed"        = "Vor Höchstgeschwindigkeit";
+
+//MARK: - History Trip Details
+"History_TD_Trip_Details"           = "Reisedetails";
+"History_TD_Distance"               = "Entfernung";
+"History_TD_Trip_Points"            = "Schaltpunkte";
+
+//MARK: - Share to social media
+"Share_Info_Text"                   = "";
+"Share_Trip_Info"                   = "";
+"Share_Badge_Info"                  = "";
 
 "German" = "Deutsche";
 "French" = "Französisch";
