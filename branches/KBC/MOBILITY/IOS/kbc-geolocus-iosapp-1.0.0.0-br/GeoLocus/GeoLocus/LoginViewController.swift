@@ -106,9 +106,6 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
     
     // MARK: - View Methods
   
-
-
-  
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -8,6 +8,15 @@
 
 import UIKit
 
+extension NSCache {
+    class var sharedInstance : NSCache {
+        struct Static {
+            static let instance : NSCache = NSCache()
+        }
+        return Static.instance
+    }
+}
+
 /* This view loads the contract points for the user based on the values from the server */
 
 class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
@@ -50,25 +59,23 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FacadeLayer.sharedinstance.requestContractData{ (status, data, error) -> Void in
-        }
-        
         self.setTitleForLabels()
         self.fetchContractDataFromDatabase()
         self.setConstraintsForDifferentDevices()
         self.customiseProgressView()
         self.addDashedBorderToImageView()
         self.addViewBorder()
+        self.setCachedImage()
         
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
-        imageView.userInteractionEnabled = true
-        imageView.addGestureRecognizer(tapGestureRecognizer)
+        self.imageView.userInteractionEnabled = true
+        self.imageView.addGestureRecognizer(tapGestureRecognizer)
     }
     
     override func viewWillLayoutSubviews() {
-        imageViewBorder.path = UIBezierPath(roundedRect: imageView.bounds, cornerRadius:2).CGPath
-        imageViewBorder.frame = imageView.bounds
-        bottomBorder.frame = CGRect(x: speedPointsView.bounds.origin.x, y: speedPointsView.bounds.height, width: speedPointsView.bounds.width , height: 1.0)
+        self.imageViewBorder.path = UIBezierPath(roundedRect: self.imageView.bounds, cornerRadius:2).CGPath
+        self.imageViewBorder.frame = self.imageView.bounds
+        bottomBorder.frame = CGRect(x: self.speedPointsView.bounds.origin.x, y: self.speedPointsView.bounds.height, width: self.speedPointsView.bounds.width , height: 1.0)
     }
     
     //MARK: Custom Methods
@@ -103,8 +110,24 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
     
     /* customize progress view */
     func customiseProgressView(){
-        progressView.transform = CGAffineTransformScale(progressView.transform, 1, 5)
+        self.progressView.transform = CGAffineTransformScale(progressView.transform, 1, 5)
         
+    }
+    
+    /* set image in the view stored in the cache when view is loaded again */
+    func setCachedImage(){
+        if let cachedImage = NSCache.sharedInstance.objectForKey("contractImage") as? UIImage {
+            self.imageView.image = cachedImage
+            self.hideImageViewBorder()
+        }
+    }
+    
+    /* hides imageview border, camera icon and label if image is present in the imageview */
+    func hideImageViewBorder(){
+        self.imageViewBorder.strokeColor = UIColor.clearColor().CGColor
+        self.messageLabel.hidden = true
+        self.cameraButton.hidden = true
+        self.transparentView.hidden = false
     }
     
     /* adding border between the points view */
@@ -118,12 +141,12 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
     
     /* Adding Border to ImageView */
     func addDashedBorderToImageView(){
-        imageViewBorder = CAShapeLayer()
+        self.imageViewBorder = CAShapeLayer()
         
-        imageViewBorder.strokeColor = UIColor(red: 76.0/255.0, green: 115.0/255.0, blue: 148.0/255.0, alpha: 1.0).CGColor
-        imageViewBorder.fillColor = nil
-        imageViewBorder.lineDashPattern = [6, 6]
-        imageView.layer.addSublayer(imageViewBorder)
+        self.imageViewBorder.strokeColor = UIColor(red: 76.0/255.0, green: 115.0/255.0, blue: 148.0/255.0, alpha: 1.0).CGColor
+        self.imageViewBorder.fillColor = nil
+        self.imageViewBorder.lineDashPattern = [6, 6]
+        self.imageView.layer.addSublayer(imageViewBorder)
     }
     
     /* image tapped action - open the device gallery */
@@ -163,21 +186,21 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
                 self.contractPointsAchievedLabel.text = self.contractPointsAchieved
                 self.bonusPointsLabel.text = contractData.bonusPoints
                 
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "dd-MM-yyyy"
-                let contractAchievedDate = dateFormatter.dateFromString(contractData.contractAchievedDate)
+                let contractAchievedDate = contractData.contractAchievedDate
                 
-                let contractAchievedMessage = contractAchievedDate != nil ? String(format: LocalizationConstants.CONTRACT_POINTS_ACHIEVED_MESSAGE.localized(), contractAchievedDate!) : ""
-                let pointsAchieved = (self.contractPointsAchieved as NSString).floatValue
-                let totalPoints = (self.totalContractPoints as NSString).floatValue
+                let contractAchievedMessage = String(format: LocalizationConstants.CONTRACT_POINTS_ACHIEVED_MESSAGE.localized(), contractAchievedDate)
+                let pointsAchieved = /*Float(100) */(self.contractPointsAchieved as NSString).floatValue
+                let totalPoints = /*Float(2)*/(self.totalContractPoints as NSString).floatValue
                 let progressValue = (pointsAchieved/totalPoints)
                 
-                self.progressView.setProgress(progressValue, animated: true)
-                
-                if(pointsAchieved == totalPoints){
-                    let alertView = UIAlertController(title: "", message: contractAchievedMessage, preferredStyle: UIAlertControllerStyle.Alert)
-                    alertView.addAction(UIAlertAction(title: LocalizationConstants.Ok_title.localized(), style: UIAlertActionStyle.Default, handler: nil))
-                    self.presentViewController(alertView, animated: true, completion: nil)
+                if !(isnan(progressValue)){
+                    self.progressView.setProgress(progressValue, animated: true)
+                    
+                    if (pointsAchieved == totalPoints){
+                        let alertView = UIAlertController(title: "", message: contractAchievedMessage, preferredStyle: UIAlertControllerStyle.Alert)
+                        alertView.addAction(UIAlertAction(title: LocalizationConstants.Ok_title.localized(), style: UIAlertActionStyle.Default, handler: nil))
+                        self.presentViewController(alertView, animated: true, completion: nil)
+                    }
                 }
             }
             else{
@@ -190,10 +213,8 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
         self.dismissViewControllerAnimated(true, completion:nil)
-        imageView.image = resizeImage(image, imageSize: CGSizeMake(imageView.bounds.width, imageView.bounds.height))
-        imageViewBorder.strokeColor = UIColor.clearColor().CGColor
-        messageLabel.hidden = true
-        cameraButton.hidden = true
-        transparentView.hidden = false
+        self.imageView.image = resizeImage(image, imageSize: CGSizeMake(self.imageView.bounds.width, self.imageView.bounds.height))
+        NSCache.sharedInstance.setObject(self.imageView.image!, forKey: "contractImage")
+        self.hideImageViewBorder()
     }
 }
