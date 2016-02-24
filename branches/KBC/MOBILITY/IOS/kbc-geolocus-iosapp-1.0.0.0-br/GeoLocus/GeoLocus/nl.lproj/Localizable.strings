@@ -10,17 +10,39 @@
 "Hello" = "Dutch";
 
 //MARK: - Overall Score page
-"Overall_Score" = "Totaalscore";
-"Driving_Behavior" = "Rijgedrag";
-"Speeding" = "snelheid";
-"Eco" = "Eco";
-"Attention" = "Aandacht";
-"Distance_Travelled" = "Totale afgelegde afstand";
+"Overall_Score"                         = "Totaalscore";
+"Overall_Score_Driving_Behavior"        = "Rijgedrag";
+"Overall_Score_Speeding"                = "snelheid";
+"Overall_Score_Eco"                     = "Eco";
+"Overall_Score_Attention"               = "Aandacht";
+"Overall_Score_Distance_Travelled"      = "Totale afgelegde afstand";
 
 //MARK: - Badges & Levels Page
-"Badges_to_be_Earned" = "Badges te verdienen";
-"Badges_Earned" = "Badges verdiend";
-"Levels" = "Niveau";
+"Badges_to_be_Earned"                   = "Badges te verdienen";
+"Badges_Earned"                         = "Badges verdiend";
+"Levels"                                = "Niveau";
+
+//MARK: - History TripScore
+"History_TS_Trip_Score"                 = "trip score";
+"History_TS_Speeding"                   = "snelheid";
+"History_TS_Eco"                        = "Eco";
+"History_TS_Attention"                  = "Aandacht";
+
+//MARK: - History
+"History_Map"                           = "Via de kaart";
+"History_Speeding_Zone"                 = "Door te hard rijden zone";
+
+//MARK: - History Speeding Zone
+"History_SZ_Speeding"                   = "snelheid";
+"History_SZ_Severe_Violation"           = "ernstige schending";
+"History_SZ_Distance"                   = "Afstand";
+"History_SZ_Within_Max_Speed"           = "Binnen max snelheid";
+"History_SZ_Above_Max_Speed"            = "Boven max snelheid";
+
+//MARK: - History Trip Details
+"History_TD_Trip_Details"               = "Reisgegevens";
+"History_TD_Distance"                   = "Afstand";
+"History_TD_Trip_Points"                = "Trip punten";
 
 
 "German" = "Duits";

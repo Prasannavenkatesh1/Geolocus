@@ -4848,8 +4848,11 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="attentionLabel" destination="cQY-c9-lqq" id="uIz-mZ-HvH"/>
                                             <outlet property="attentionView" destination="NHL-6M-wDD" id="h1h-wS-Dar"/>
+                                            <outlet property="ecoLabel" destination="xJV-qR-fys" id="npq-mG-1te"/>
                                             <outlet property="ecoView" destination="7m3-og-H8U" id="S79-ky-MzE"/>
+                                            <outlet property="speedingLabel" destination="A00-0v-TDs" id="vVn-ua-hdJ"/>
                                             <outlet property="speedingView" destination="rCb-qN-qaT" id="jgf-Oz-g1P"/>
                                         </connections>
                                     </tableViewCell>
@@ -5591,14 +5594,19 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <outlet property="aboveMaxSpeedLabel" destination="aeM-az-OYU" id="Hqe-Ga-7zz"/>
-                                            <outlet property="distanceLabel" destination="BNk-q7-h7M" id="ECa-nM-yt7"/>
+                                            <outlet property="aboveMaxSpeed" destination="aeM-az-OYU" id="Ux0-EG-Afo"/>
+                                            <outlet property="aboveMaxSpeedLabel" destination="GkV-5A-7uz" id="JBm-qu-Qdw"/>
+                                            <outlet property="distanceLabel" destination="TIx-u5-ARX" id="lc8-UM-cU8"/>
+                                            <outlet property="distanceTravelled" destination="BNk-q7-h7M" id="1lW-c5-sRF"/>
                                             <outlet property="indicatorButton" destination="9DG-fA-wWl" id="1OG-HE-84m"/>
                                             <outlet property="maxSpeedLimit" destination="9XJ-Bp-dOO" id="cbu-9n-lF5"/>
-                                            <outlet property="severeViolationLabel" destination="npn-dP-W4m" id="RhA-ka-Bet"/>
+                                            <outlet property="severeViolation" destination="npn-dP-W4m" id="vGW-KG-Phx"/>
+                                            <outlet property="severeViolationLabel" destination="hRl-J1-CfU" id="4d2-7I-GBC"/>
                                             <outlet property="severeViolationView" destination="rQL-BS-ig4" id="tqi-35-fL4"/>
+                                            <outlet property="speedingLabel" destination="z8W-Cd-FUy" id="oWd-Av-1Um"/>
                                             <outlet property="speedingView" destination="fne-fJ-F5N" id="Paq-aa-zk9"/>
-                                            <outlet property="withinMaxSpeedLabel" destination="Nsd-1n-mbE" id="fYN-NB-tsr"/>
+                                            <outlet property="withinMaxSpeed" destination="Nsd-1n-mbE" id="8Bd-BE-UPx"/>
+                                            <outlet property="withinMaxSpeedLabel" destination="S96-CC-uYy" id="RWp-AT-TAx"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HTDCell" rowHeight="75" id="MzP-tw-uhM" customClass="HistoryTripDetailCell" customModule="GeoLocus" customModuleProvider="target">
@@ -5856,6 +5864,8 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="distanceConstraint" destination="O2B-Nf-lsC" id="X3E-hw-aso"/>
+                                            <outlet property="distanceLabel" destination="8Vn-Ke-nKF" id="BYh-uE-Ju1"/>
+                                            <outlet property="pointsLabel" destination="HVT-79-MaF" id="54b-Su-i1F"/>
                                             <outlet property="tripDateLabel" destination="3tf-cN-UyG" id="q58-EN-Tap"/>
                                             <outlet property="tripDistanceLabel" destination="6Gp-uq-WFK" id="hy2-ba-pFk"/>
                                             <outlet property="tripDurationLabel" destination="e3E-wq-eWO" id="Qem-80-B0a"/>
@@ -5910,7 +5920,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RT4-rm-ytF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="269" y="-1711"/>
+            <point key="canvasLocation" x="289.5" y="-1755"/>
         </scene>
         <!--History Score Page-->
         <scene sceneID="Ufk-Ak-c0U">
@@ -6733,7 +6743,8 @@
                                                             <exclude reference="eFm-Gx-cJC"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="144" y="10" width="68" height="18"/>
                                                         <mask key="constraints">
                                                             <include reference="eFm-Gx-cJC"/>
                                                         </mask>
@@ -6744,6 +6755,9 @@
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                     <color key="textColor" red="0.094117647060000004" green="0.1215686275" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="144" y="35" width="68" height="210"/>
+                                                    </variation>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yB3-qE-cEA">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -6765,8 +6779,9 @@
                                                             <exclude reference="oXf-Hu-GdM"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                        <rect key="frame" x="144" y="248" width="34" height="15"/>
                                                         <mask key="constraints">
                                                             <include reference="ROd-jE-Kz0"/>
                                                             <include reference="oXf-Hu-GdM"/>
@@ -8720,6 +8735,9 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R0E-U7-fNb">
                                                     <rect key="frame" x="-25" y="-15" width="51" height="31"/>
                                                     <color key="onTintColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="181" y="22" width="51" height="31"/>
+                                                    </variation>
                                                 </switch>
                                             </subviews>
                                             <constraints>
