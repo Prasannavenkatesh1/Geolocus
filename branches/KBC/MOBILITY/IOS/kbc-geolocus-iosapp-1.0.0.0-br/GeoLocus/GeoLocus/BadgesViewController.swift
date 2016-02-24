@@ -31,6 +31,7 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
     //MARK: - Viewcontroller methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.navigationItemSetUp()
         self.badgeTableView.backgroundColor = UIColor.clearColor()
         reloadDataSource()

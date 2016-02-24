@@ -12,7 +12,6 @@ import MapKit
 protocol ScoreCellDelegate {
     func scoreViewTapped(tag : Int)
     func scoreCellRefreshRequired() -> Bool
-    func localizeTripScore(cell: HistoryTripScoreCell)
 }
 
 protocol MapViewDelegate {
@@ -23,12 +22,10 @@ protocol MapViewDelegate {
 protocol SpeedZoneCellDelegate {
     func severeViolationViewTapped()
     func zoneCellRefreshRequired() -> Bool
-    func localizeMapZone(cell: HistoryZoneViewCell)
 }
 
 protocol TripDetailCellDelegate {
     func shareButtonTapped(cell: HistoryTripDetailCell)
-    func localizeTripDetails(cell: HistoryTripDetailCell)
 }
 
 class HistoryPage: BaseViewController {
@@ -104,6 +101,7 @@ class HistoryPage: BaseViewController {
         let section = NSIndexSet(indexesInRange: range)
         self.tripHistoryTableView.reloadSections(section, withRowAnimation: .Automatic)
         self.tripHistoryTableView.endUpdates()
+        
     }
     
     /**
@@ -265,6 +263,30 @@ extension HistoryPage: UITableViewDataSource {
             let rowIndex = self.tripDetailRowSelected
             
             self.tripScores?.count > 0 ? cell.configure(self.tripScores?[rowIndex!]) : cell.configure(nil)
+            
+            
+            /*cell.speedingView.foreGroundArcWidth = Arc.FOREGROUND_WIDTH
+            cell.speedingView.backGroundArcWidth = Arc.BACKGROUND_WIDTH
+            
+            if self.tripScores?.count > 0 {
+                cell.speedingView.ringLayer.strokeColor = UIColor(range: (self.tripScores?[rowIndex!].speedScore.integerValue)!).CGColor
+                cell.speedingView.animateScale = (self.tripScores?[rowIndex!].speedScore.doubleValue)!/100.0
+            }
+            if self.scoreRefreshRequired {
+                cell.speedingView.setNeedsDisplay()
+            }
+            
+            cell.ecoView.foreGroundArcWidth = Arc.FOREGROUND_WIDTH
+            cell.ecoView.backGroundArcWidth = Arc.BACKGROUND_WIDTH
+            
+            if self.tripScores?.count > 0 {
+                cell.ecoView.ringLayer.strokeColor = UIColor(range: (self.tripScores?[rowIndex!].ecoScore.integerValue)!).CGColor
+                cell.ecoView.animateScale = (self.tripScores?[rowIndex!].ecoScore.doubleValue)!/100.0
+            }
+            if self.scoreRefreshRequired {
+                cell.ecoView.setNeedsDisplay()
+            }*/
+            
             self.scoreRefreshRequired = false
             
             return cell
@@ -288,6 +310,29 @@ extension HistoryPage: UITableViewDataSource {
                 cell.delegate = self
                 
                 self.tripScores?.count > 0 ? cell.configure(self.self.tripZones![indexPath.row]) : cell.configure(nil)
+                
+                /*cell.speedingView.foreGroundArcWidth = Arc.FOREGROUND_WIDTH
+                cell.speedingView.backGroundArcWidth = Arc.BACKGROUND_WIDTH
+                
+                if self.tripZones?.count > 0 {
+                    cell.speedingView.ringLayer.strokeColor = UIColor(range: (self.tripZones?[indexPath.row].speedBehaviour.integerValue)!).CGColor
+                    cell.speedingView.animateScale = (self.tripZones?[indexPath.row].speedBehaviour.doubleValue)!/100.0
+                }
+                
+                if self.zoneRefreshRequired {
+                    cell.speedingView.setNeedsDisplay()
+                }
+                if tripZones?.count > 0 {
+                    cell.severeViolationLabel.text  = String(self.tripZones![indexPath.row].violationCount)
+                    cell.distanceLabel.text         = String("\(self.tripZones![indexPath.row].distanceTravelled) km")
+                    cell.maxSpeedLimit.text         = String("\(self.tripZones![indexPath.row].maxSpeed) km/h")
+                    cell.withinMaxSpeedLabel.text   = String("\(self.tripZones![indexPath.row].withinSpeed) km")
+                    cell.aboveMaxSpeedLabel.text    = String("\(self.tripZones![indexPath.row].aboveSpeed) km")
+                }
+                
+                cell.indicatorButton.selected = false*/
+                
+                
                 self.zoneRefreshRequired = false
                 
                 return cell
@@ -297,9 +342,28 @@ extension HistoryPage: UITableViewDataSource {
             cell.delegate = self
             cell.configure(self.historyData![indexPath.row])
             
+           /* let dateFormatter           = NSDateFormatter()
+            dateFormatter.dateFormat    = "dd-MM-yyyy"
+            let tripDate                = dateFormatter.dateFromString(self.historyData![indexPath.row].tripdDate)
+            let unitFlags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
+            let components              = NSCalendar.currentCalendar().components(unitFlags, fromDate: tripDate!)
+            
+            //consider Localization
+            cell.tripDateLabel.text     = String("\(components.day)th \(Utility.getMonthString(components.month)) \(components.year)")
+            cell.tripDurationLabel.text = String("\(self.historyData![indexPath.row].tripDuration) Hrs")
+            cell.tripDistanceLabel.text = String("\(self.historyData![indexPath.row].distance) km")
+            cell.tripPointsLabel.text   = String(self.historyData![indexPath.row].tripPoints)
+            
+            if (UIColor(range: (self.historyData![indexPath.row].tripScore.speedScore.integerValue)) == UIColor(netHex: 0xff3b3b)) || (UIColor(range: (self.historyData![indexPath.row].tripScore.ecoScore.integerValue)) == UIColor(netHex: 0xff3b3b)) || (UIColor(range: (self.historyData![indexPath.row].tripScore.overallScore.integerValue)) == UIColor(netHex: 0xff3b3b)) {
+                
+                cell.tripShareButton.hidden = true
+            }else{
+                cell.tripShareButton.hidden = false
+            }*/
+            
             return cell
         }else {
-            let cell = tableView.dequeueReusableCellWithIdentifier(CellID.HISTORY_DETAIL, forIndexPath: indexPath) as! HistoryTripDetailCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(CellID.HISTORY_DETAIL, forIndexPath: indexPath) as! HistoryTripDetailCell  //remove this
             return cell
         }
     }
@@ -334,7 +398,7 @@ extension HistoryPage: UITableViewDelegate {
             let titleLabel              = UILabel()
             titleLabel.frame            = CGRectMake(20, 7, tableView.frame.width, 20)
             titleLabel.backgroundColor  = UIColor.clearColor()
-            titleLabel.text             = LocalizationConstants.History.Score.ScoreTitle.localized()
+            titleLabel.text             = "Trip Score"      //consider Localization
             titleLabel.font             = UIFont(name: Font.HELVETICA_NEUE_MEDIUM, size: 15.0)
             titleLabel.textColor        = UIColor(netHex: 0x003665)
             titleView.addSubview(titleLabel)
@@ -347,7 +411,7 @@ extension HistoryPage: UITableViewDelegate {
             self.mapButton                  = nil
             self.mapButton                  = UIButton()
             self.mapButton?.frame           = CGRectMake(0, 0, tabView.frame.width/2, tabView.frame.height - 5/*bottom border padding*/)
-            self.mapButton?.setTitle(LocalizationConstants.History.View.Map.localized(), forState: .Normal)
+            self.mapButton?.setTitle("By Map", forState: .Normal)       //consider Localization
             self.mapButton?.addTarget(self, action: "byMapButtonPressed:", forControlEvents: .TouchUpInside)
             self.mapButton?.backgroundColor = UIColor.clearColor()
             tabView.addSubview(self.mapButton!)
@@ -360,7 +424,7 @@ extension HistoryPage: UITableViewDelegate {
             self.zoneButton                 = nil
             self.zoneButton                 = UIButton()
             self.zoneButton?.frame          = CGRectMake(tabView.frame.width/2, 0, tabView.frame.width/2, tabView.frame.height - 5/*bottom border padding*/)
-            self.zoneButton?.setTitle(LocalizationConstants.History.View.Speeding_Zone.localized(), forState: .Normal)
+            self.zoneButton?.setTitle("By Speeding Zone", forState: .Normal)        //consider Localization
             self.zoneButton?.addTarget(self, action: "bySpeedingZoneButtonPressed:", forControlEvents: .TouchUpInside)
             self.zoneButton?.backgroundColor = UIColor.clearColor()
             tabView.addSubview(self.zoneButton!)
@@ -397,7 +461,7 @@ extension HistoryPage: UITableViewDelegate {
             sectionView.backgroundColor = UIColor(netHex: 0xF6F8FA)
             let tripDetailLabel         = UILabel()
             tripDetailLabel.frame       = CGRectMake(20, 0, sectionView.frame.width/2, sectionView.frame.height)
-            tripDetailLabel.text        = LocalizationConstants.History.TripDetails.Trip_Details.localized()
+            tripDetailLabel.text        = "Trip Details"           //consider Localization
             tripDetailLabel.font        = UIFont(name: Font.HELVETICA_NEUE_MEDIUM, size: 15.0)
             tripDetailLabel.textColor   = UIColor(netHex: 0x003665)
             sectionView.addSubview(tripDetailLabel)
@@ -463,17 +527,8 @@ extension HistoryPage: UITableViewDelegate {
 extension HistoryPage: ScoreCellDelegate {
     
     /**
-     Localize the `HistoryTripScoreCell` cell
-     - Parameter cell: cell instance of the tableview
-     */
-    func localizeTripScore(cell: HistoryTripScoreCell) {
-        cell.speedingLabel.text = LocalizationConstants.History.Score.Speeding.localized()
-        cell.ecoLabel.text  = LocalizationConstants.History.Score.Eco.localized()
-        cell.attentionLabel.text = LocalizationConstants.History.Score.Attention.localized()
-    }
-    
-    /**
      Called when score view is tapped. This will display the messages to user as per the score of the trip.
+     
      - Parameter tag: Tag of the score view which is tapped
      */
     func scoreViewTapped(tag: Int) {
@@ -506,7 +561,7 @@ extension HistoryPage: ScoreCellDelegate {
     
     /**
      Check if score view need to be refreshed
-        - Returns: Bool
+     Return: Bool
      */
     func scoreCellRefreshRequired() -> Bool {
         return self.scoreRefreshRequired
@@ -544,19 +599,6 @@ extension HistoryPage: MapViewDelegate {
 }
 
 extension HistoryPage: SpeedZoneCellDelegate {
-    
-    /**
-     Localize the `HistoryZoneViewCell` cell
-     - Parameter cell: cell instance of the tableview
-     */
-    func localizeMapZone(cell: HistoryZoneViewCell) {
-        cell.speedingLabel.text = LocalizationConstants.History.View.Speeding.localized()
-        cell.severeViolationLabel.text = LocalizationConstants.History.View.Severe_Violation.localized()
-        cell.distanceLabel.text = LocalizationConstants.History.View.Distance.localized()
-        cell.withinMaxSpeedLabel.text = LocalizationConstants.History.View.Within_Max_Speed.localized()
-        cell.aboveMaxSpeedLabel.text = LocalizationConstants.History.View.Above_Max_Limit.localized()
-    }
-    
     /**
      Called when Severe violation view is tapped. It displays the message for the severe violations during the trip
      */
@@ -576,16 +618,6 @@ extension HistoryPage: SpeedZoneCellDelegate {
 }
 
 extension HistoryPage: TripDetailCellDelegate {
-    
-    /**
-     Localize the `HistoryTripDetailCell` cell
-     - Parameter cell: cell instance of the tableview
-     */
-    func localizeTripDetails(cell: HistoryTripDetailCell) {
-        cell.distanceLabel.text = LocalizationConstants.History.TripDetails.Distance.localized()
-        cell.pointsLabel.text = LocalizationConstants.History.TripDetails.Trip_Points.localized()
-    }
-    
     /**
      Called when share button of the recent trip is tapped.
      - Parameter cell: this will get the information of the trip details

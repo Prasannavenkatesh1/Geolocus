@@ -562,13 +562,13 @@
                                 <exclude reference="XE0-Kv-tiK"/>
                                 <exclude reference="q06-U7-l3I"/>
                                 <exclude reference="kyW-1w-je3"/>
+                                <exclude reference="zJz-ml-gSh"/>
                                 <exclude reference="4lN-Je-Xbr"/>
                                 <exclude reference="Anb-Xf-miW"/>
                                 <exclude reference="WjP-J5-0gg"/>
                                 <exclude reference="J5P-WU-Wih"/>
                                 <exclude reference="Vsx-iW-8OQ"/>
                                 <exclude reference="WdZ-fB-qZf"/>
-                                <exclude reference="zJz-ml-gSh"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -581,13 +581,13 @@
                                 <include reference="XE0-Kv-tiK"/>
                                 <include reference="q06-U7-l3I"/>
                                 <exclude reference="kyW-1w-je3"/>
+                                <exclude reference="zJz-ml-gSh"/>
                                 <include reference="4lN-Je-Xbr"/>
                                 <include reference="Anb-Xf-miW"/>
                                 <include reference="WjP-J5-0gg"/>
                                 <include reference="J5P-WU-Wih"/>
                                 <include reference="Vsx-iW-8OQ"/>
                                 <include reference="WdZ-fB-qZf"/>
-                                <exclude reference="zJz-ml-gSh"/>
                             </mask>
                         </variation>
                     </view>
@@ -667,13 +667,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NcH-Oj-D2c">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
-                                    <navigationItem title="Reports View" id="5es-sZ-66h">
-                                        <barButtonItem key="leftBarButtonItem" image="BackButton" id="E1c-cg-Vhd">
-                                            <connections>
-                                                <action selector="backButtonTapped:" destination="O7u-oV-hX8" id="WBw-zX-YWT"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem id="5es-sZ-66h"/>
                                 </items>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
@@ -1553,6 +1547,7 @@
                         <outlet property="monthlyBtn" destination="sOj-NZ-owY" id="S82-TI-rWO"/>
                         <outlet property="okBtn" destination="Y9q-oA-LQC" id="YFI-ja-4tn"/>
                         <outlet property="overallScoreBtn" destination="hu7-ax-Hs6" id="Vf6-oH-7SC"/>
+                        <outlet property="reportsNavigationItem" destination="5es-sZ-66h" id="Tt8-Do-QxN"/>
                         <outlet property="speedBtn" destination="zKf-Zi-bku" id="JH2-Eb-HuR"/>
                         <outlet property="totalPoints" destination="1xp-l4-NCf" id="Ru8-Y2-Ea2"/>
                         <outlet property="totalTrips" destination="AH8-sx-6oB" id="xeV-qR-JkC"/>
@@ -1801,16 +1796,13 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KGB-1q-jmO">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
-                                    <navigationItem title="Terms &amp; Condition" id="8a3-Cr-WDv">
-                                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="gPF-U2-MVd">
-                                            <connections>
-                                                <action selector="backButtonTapped:" destination="bHj-zP-I9Q" id="wLQ-s7-7rf"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem id="8a3-Cr-WDv"/>
                                 </items>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="20" width="400" height="44"/>
                                 </variation>
                             </navigationBar>
                         </subviews>
@@ -1828,6 +1820,9 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="termsNavigationItem" destination="8a3-Cr-WDv" id="4cd-ko-gXo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4uU-Q5-utQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3041,12 +3036,9 @@
                         </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" id="BSm-jy-Fp7">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="tdp-wg-rfA"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="BSm-jy-Fp7"/>
                     <connections>
                         <outlet property="segmentControl" destination="Zqm-Sn-NVv" id="7O8-Op-YUN"/>
-                        <outlet property="sideMenuButton" destination="tdp-wg-rfA" id="7wb-Wu-gaf"/>
                         <segue destination="HbJ-mu-jex" kind="show" identifier="Notificationsegue" id="SfU-G1-tXh"/>
                     </connections>
                 </viewController>
@@ -4848,11 +4840,8 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <outlet property="attentionLabel" destination="cQY-c9-lqq" id="uIz-mZ-HvH"/>
                                             <outlet property="attentionView" destination="NHL-6M-wDD" id="h1h-wS-Dar"/>
-                                            <outlet property="ecoLabel" destination="xJV-qR-fys" id="npq-mG-1te"/>
                                             <outlet property="ecoView" destination="7m3-og-H8U" id="S79-ky-MzE"/>
-                                            <outlet property="speedingLabel" destination="A00-0v-TDs" id="vVn-ua-hdJ"/>
                                             <outlet property="speedingView" destination="rCb-qN-qaT" id="jgf-Oz-g1P"/>
                                         </connections>
                                     </tableViewCell>
@@ -4872,8 +4861,7 @@
                                                             <exclude reference="lny-1l-glF"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="20" y="15" width="200" height="282"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="lny-1l-glF"/>
                                                         </mask>
@@ -5594,19 +5582,14 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <outlet property="aboveMaxSpeed" destination="aeM-az-OYU" id="Ux0-EG-Afo"/>
-                                            <outlet property="aboveMaxSpeedLabel" destination="GkV-5A-7uz" id="JBm-qu-Qdw"/>
-                                            <outlet property="distanceLabel" destination="TIx-u5-ARX" id="lc8-UM-cU8"/>
-                                            <outlet property="distanceTravelled" destination="BNk-q7-h7M" id="1lW-c5-sRF"/>
+                                            <outlet property="aboveMaxSpeedLabel" destination="aeM-az-OYU" id="Hqe-Ga-7zz"/>
+                                            <outlet property="distanceLabel" destination="BNk-q7-h7M" id="ECa-nM-yt7"/>
                                             <outlet property="indicatorButton" destination="9DG-fA-wWl" id="1OG-HE-84m"/>
                                             <outlet property="maxSpeedLimit" destination="9XJ-Bp-dOO" id="cbu-9n-lF5"/>
-                                            <outlet property="severeViolation" destination="npn-dP-W4m" id="vGW-KG-Phx"/>
-                                            <outlet property="severeViolationLabel" destination="hRl-J1-CfU" id="4d2-7I-GBC"/>
+                                            <outlet property="severeViolationLabel" destination="npn-dP-W4m" id="RhA-ka-Bet"/>
                                             <outlet property="severeViolationView" destination="rQL-BS-ig4" id="tqi-35-fL4"/>
-                                            <outlet property="speedingLabel" destination="z8W-Cd-FUy" id="oWd-Av-1Um"/>
                                             <outlet property="speedingView" destination="fne-fJ-F5N" id="Paq-aa-zk9"/>
-                                            <outlet property="withinMaxSpeed" destination="Nsd-1n-mbE" id="8Bd-BE-UPx"/>
-                                            <outlet property="withinMaxSpeedLabel" destination="S96-CC-uYy" id="RWp-AT-TAx"/>
+                                            <outlet property="withinMaxSpeedLabel" destination="Nsd-1n-mbE" id="fYN-NB-tsr"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HTDCell" rowHeight="75" id="MzP-tw-uhM" customClass="HistoryTripDetailCell" customModule="GeoLocus" customModuleProvider="target">
@@ -5864,8 +5847,6 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="distanceConstraint" destination="O2B-Nf-lsC" id="X3E-hw-aso"/>
-                                            <outlet property="distanceLabel" destination="8Vn-Ke-nKF" id="BYh-uE-Ju1"/>
-                                            <outlet property="pointsLabel" destination="HVT-79-MaF" id="54b-Su-i1F"/>
                                             <outlet property="tripDateLabel" destination="3tf-cN-UyG" id="q58-EN-Tap"/>
                                             <outlet property="tripDistanceLabel" destination="6Gp-uq-WFK" id="hy2-ba-pFk"/>
                                             <outlet property="tripDurationLabel" destination="e3E-wq-eWO" id="Qem-80-B0a"/>
@@ -5920,7 +5901,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RT4-rm-ytF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="289.5" y="-1755"/>
+            <point key="canvasLocation" x="269" y="-1711"/>
         </scene>
         <!--History Score Page-->
         <scene sceneID="Ufk-Ak-c0U">
@@ -6685,14 +6666,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IW9-fr-MW3">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
-                                    <navigationItem title="Badges View" id="Iq1-e4-WQr">
-                                        <barButtonItem key="leftBarButtonItem" image="BackButton" id="9qX-FA-q7f">
-                                            <inset key="imageInsets" minX="-6" minY="0.0" maxX="0.0" maxY="-1"/>
-                                            <connections>
-                                                <action selector="backButtonTapped:" destination="rZ5-JM-cbb" id="LoQ-CJ-iju"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem id="Iq1-e4-WQr"/>
                                 </items>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
@@ -6743,8 +6717,7 @@
                                                             <exclude reference="eFm-Gx-cJC"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="144" y="10" width="68" height="18"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="eFm-Gx-cJC"/>
                                                         </mask>
@@ -6755,9 +6728,6 @@
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                     <color key="textColor" red="0.094117647060000004" green="0.1215686275" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="144" y="35" width="68" height="210"/>
-                                                    </variation>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yB3-qE-cEA">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -6779,9 +6749,8 @@
                                                             <exclude reference="oXf-Hu-GdM"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                                        <rect key="frame" x="144" y="248" width="34" height="15"/>
                                                         <mask key="constraints">
                                                             <include reference="ROd-jE-Kz0"/>
                                                             <include reference="oXf-Hu-GdM"/>
@@ -6914,6 +6883,7 @@
                     </view>
                     <connections>
                         <outlet property="badgeTableView" destination="PSZ-nQ-5X0" id="yyw-oG-iP6"/>
+                        <outlet property="badgesNavigationItem" destination="Iq1-e4-WQr" id="dPh-UZ-NJc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zPy-6c-jTJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -7216,7 +7186,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2pg-Ut-MVx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1113" y="-740.25"/>
+            <point key="canvasLocation" x="1104" y="-867"/>
         </scene>
         <!--Notification Details View Controller-->
         <scene sceneID="ZCg-Mb-o4t">
@@ -7320,8 +7290,7 @@
                                                         <exclude reference="lRg-zC-flg"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="1" y="5" width="85" height="30"/>
+                                                <variation key="heightClass=regular-widthClass=compact">
                                                     <mask key="constraints">
                                                         <include reference="HBF-Vc-dl0"/>
                                                         <include reference="lRg-zC-flg"/>
@@ -7345,9 +7314,6 @@
                                                         <integer key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
-                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="101" y="5" width="85" height="30"/>
-                                                </variation>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -8643,7 +8609,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SIA-2b-JdM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1773" y="-740.25"/>
+            <point key="canvasLocation" x="1759.5" y="-867"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="xTl-6X-1X1">
@@ -8659,20 +8625,24 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbN-Ho-B5m">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="hR9-B6-Ijd"/>
+                                </constraints>
                                 <items>
-                                    <navigationItem title="Title" id="fsu-e7-HDj">
-                                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="l8Z-2H-XNZ">
-                                            <connections>
-                                                <action selector="backButtonTapped:" destination="zgX-dH-5LM" id="j7f-rH-PSM"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem id="fsu-e7-HDj"/>
                                 </items>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="hR9-B6-Ijd"/>
+                                    </mask>
+                                </variation>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="hR9-B6-Ijd"/>
+                                    </mask>
                                 </variation>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c1z-ev-o3L">
@@ -8735,9 +8705,6 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R0E-U7-fNb">
                                                     <rect key="frame" x="-25" y="-15" width="51" height="31"/>
                                                     <color key="onTintColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="181" y="22" width="51" height="31"/>
-                                                    </variation>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -8881,9 +8848,6 @@
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                                     <color key="textColor" red="0.094117647058823528" green="0.12156862745098039" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
-                                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                        <rect key="frame" x="61" y="13" width="171" height="21"/>
-                                                                    </variation>
                                                                 </label>
                                                             </subviews>
                                                             <constraints>
@@ -8891,7 +8855,9 @@
                                                                 <constraint firstItem="8qe-Ab-2WO" firstAttribute="leading" secondItem="6ut-s7-0Do" secondAttribute="trailing" constant="9" id="9vg-YP-Sj0"/>
                                                                 <constraint firstAttribute="bottom" secondItem="6ut-s7-0Do" secondAttribute="bottom" constant="13" id="C2c-Dz-jOS"/>
                                                                 <constraint firstItem="6ut-s7-0Do" firstAttribute="leading" secondItem="aq1-0d-ydB" secondAttribute="leading" constant="30" id="G6a-pH-121"/>
-                                                                <constraint firstAttribute="trailing" secondItem="8qe-Ab-2WO" secondAttribute="trailing" constant="8" id="e8a-d9-1aq"/>
+                                                                <constraint firstAttribute="trailing" secondItem="8qe-Ab-2WO" secondAttribute="trailing" constant="8" id="e8a-d9-1aq">
+                                                                    <variation key="heightClass=regular-widthClass=compact" constant="43"/>
+                                                                </constraint>
                                                                 <constraint firstItem="6ut-s7-0Do" firstAttribute="top" secondItem="aq1-0d-ydB" secondAttribute="top" constant="12" id="qLQ-SO-scz"/>
                                                                 <constraint firstItem="8qe-Ab-2WO" firstAttribute="top" secondItem="aq1-0d-ydB" secondAttribute="top" constant="13" id="znV-i3-MMD"/>
                                                             </constraints>
@@ -9029,15 +8995,14 @@
                                 </variation>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="hbN-Ho-B5m" firstAttribute="leading" secondItem="jrZ-rx-Wxg" secondAttribute="leading" id="2Ul-UB-7fk"/>
                             <constraint firstItem="wLK-ws-eUZ" firstAttribute="top" secondItem="1in-vf-rsm" secondAttribute="bottom" id="6NR-wa-wEj"/>
                             <constraint firstItem="c1z-ev-o3L" firstAttribute="leading" secondItem="jrZ-rx-Wxg" secondAttribute="leading" id="AjJ-ff-sRY">
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
-                            <constraint firstItem="c1z-ev-o3L" firstAttribute="top" secondItem="BtE-oS-dTK" secondAttribute="bottom" constant="222" id="M0O-Zi-rsa">
-                                <variation key="heightClass=regular-widthClass=compact" constant="25"/>
-                            </constraint>
+                            <constraint firstItem="c1z-ev-o3L" firstAttribute="top" secondItem="hbN-Ho-B5m" secondAttribute="bottom" id="N0U-ir-uZh"/>
                             <constraint firstItem="wLK-ws-eUZ" firstAttribute="top" secondItem="c1z-ev-o3L" secondAttribute="bottom" id="PeX-UA-jTJ">
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
@@ -9047,6 +9012,8 @@
                             <constraint firstAttribute="trailing" secondItem="c1z-ev-o3L" secondAttribute="trailing" id="ipc-Ek-oQQ">
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
+                            <constraint firstAttribute="trailing" secondItem="hbN-Ho-B5m" secondAttribute="trailing" id="otz-SR-9h9"/>
+                            <constraint firstItem="hbN-Ho-B5m" firstAttribute="top" secondItem="BtE-oS-dTK" secondAttribute="bottom" id="qlg-Iv-M26"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -9055,14 +9022,17 @@
                                 <exclude reference="1in-vf-rsm"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="6NR-wa-wEj"/>
-                                <exclude reference="PeX-UA-jTJ"/>
                                 <exclude reference="UCp-s2-yTS"/>
                                 <exclude reference="VdT-b0-T59"/>
                                 <exclude reference="dXW-Lg-cgf"/>
+                                <exclude reference="2Ul-UB-7fk"/>
+                                <exclude reference="otz-SR-9h9"/>
+                                <exclude reference="qlg-Iv-M26"/>
                                 <exclude reference="AjJ-ff-sRY"/>
-                                <exclude reference="M0O-Zi-rsa"/>
+                                <exclude reference="N0U-ir-uZh"/>
                                 <exclude reference="ipc-Ek-oQQ"/>
+                                <exclude reference="6NR-wa-wEj"/>
+                                <exclude reference="PeX-UA-jTJ"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -9076,14 +9046,17 @@
                                 <include reference="1in-vf-rsm"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="6NR-wa-wEj"/>
-                                <include reference="PeX-UA-jTJ"/>
                                 <include reference="UCp-s2-yTS"/>
                                 <include reference="VdT-b0-T59"/>
                                 <include reference="dXW-Lg-cgf"/>
+                                <include reference="2Ul-UB-7fk"/>
+                                <include reference="otz-SR-9h9"/>
+                                <include reference="qlg-Iv-M26"/>
                                 <include reference="AjJ-ff-sRY"/>
-                                <include reference="M0O-Zi-rsa"/>
+                                <include reference="N0U-ir-uZh"/>
                                 <include reference="ipc-Ek-oQQ"/>
+                                <include reference="6NR-wa-wEj"/>
+                                <include reference="PeX-UA-jTJ"/>
                             </mask>
                         </variation>
                     </view>
@@ -9092,6 +9065,7 @@
                         <outlet property="popUpTableView" destination="F8d-IZ-37x" id="7PD-W6-Ava"/>
                         <outlet property="popUpTitleLabel" destination="jol-6w-Fel" id="rdf-7Z-byM"/>
                         <outlet property="popUpView" destination="1in-vf-rsm" id="fRR-qk-QgJ"/>
+                        <outlet property="settingsNavigationItem" destination="fsu-e7-HDj" id="sSi-g3-juV"/>
                         <outlet property="settingsTableView" destination="c1z-ev-o3L" id="vQQ-rN-TZJ"/>
                     </connections>
                 </viewController>
@@ -9102,7 +9076,6 @@
     </scenes>
     <resources>
         <image name="Above_max_speed" width="56" height="48"/>
-        <image name="BackButton" width="12" height="21"/>
         <image name="DeleteIcon" width="18" height="21"/>
         <image name="Distance" width="56" height="48"/>
         <image name="Driving_Behavior" width="45" height="45"/>

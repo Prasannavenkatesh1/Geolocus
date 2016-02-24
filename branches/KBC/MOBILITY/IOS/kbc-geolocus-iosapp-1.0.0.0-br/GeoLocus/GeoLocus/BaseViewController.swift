@@ -81,8 +81,8 @@ class BaseViewController: UIViewController {
     }
 
     func isConnectedToNetwork() -> Bool{
-        let reachability: Reachability = Reachability.reachabilityForInternetConnection()
-        let networkStatus : NetworkStatus = reachability.currentReachabilityStatus()
+        var reachability: Reachability = Reachability.reachabilityForInternetConnection()
+        var networkStatus : NetworkStatus = reachability.currentReachabilityStatus()
         return !(networkStatus == NotReachable);
     }
     

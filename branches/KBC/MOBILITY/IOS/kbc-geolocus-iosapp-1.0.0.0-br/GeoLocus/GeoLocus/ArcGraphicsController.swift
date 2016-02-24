@@ -89,26 +89,26 @@ let π: CGFloat = CGFloat(M_PI)
         
         if isThumbImageAvailable {
             
-//            thumbImage.image = UIImage(named: "meter_tip")
-//            thumbLayer.contents = thumbImage.image?.CGImage
-//            thumbLayer.anchorPoint = CGPoint(x: 0.5,y: 0.5)
-//            thumbLayer.frame = CGRectMake(0.0, 0.0, thumbImage.image!.size.width, thumbImage.image!.size.height)
-//            
-//            layer.addSublayer(thumbLayer)
-//            
-//            let pathAnimation: CAKeyframeAnimation  = CAKeyframeAnimation(keyPath: "position")
-//            pathAnimation.duration = 2.0
-//            pathAnimation.path = arcPath.CGPath;
-//             pathAnimation.removedOnCompletion = false
-//     
-//            pathAnimation.calculationMode = kCAAnimationLinear
-//            thumbLayer.addAnimation(pathAnimation, forKey: "movingMeterTip")
-//            
-//
-//            
-//            UIView.animateWithDuration(2.0, animations: { () -> Void in
-//                self.thumbImage.transform = CGAffineTransformMakeRotation(CGFloat(0.25 * M_PI))
-//            })
+            thumbImage.image = UIImage(named: "meter_tip")
+            thumbLayer.contents = thumbImage.image?.CGImage
+            thumbLayer.anchorPoint = CGPoint(x: 0.5,y: 0.5)
+            thumbLayer.frame = CGRectMake(0.0, 0.0, thumbImage.image!.size.width, thumbImage.image!.size.height)
+            
+            layer.addSublayer(thumbLayer)
+            
+            let pathAnimation: CAKeyframeAnimation  = CAKeyframeAnimation(keyPath: "position")
+            pathAnimation.duration = 2.0
+            pathAnimation.path = arcPath.CGPath;
+             pathAnimation.removedOnCompletion = false
+     
+            pathAnimation.calculationMode = kCAAnimationLinear
+            thumbLayer.addAnimation(pathAnimation, forKey: "movingMeterTip")
+            
+
+            
+            UIView.animateWithDuration(2.0, animations: { () -> Void in
+                self.thumbImage.transform = CGAffineTransformMakeRotation(CGFloat(0.25 * M_PI))
+            })
             
         }
         

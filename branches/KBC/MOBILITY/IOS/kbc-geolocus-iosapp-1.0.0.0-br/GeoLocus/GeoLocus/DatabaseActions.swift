@@ -410,32 +410,30 @@ class DatabaseActions: NSObject {
                 var speedZonesObj = [SpeedZone]()
                 
                 //Event array
-                if let eventSet = tripManagedObj.events {
-                    for eventObj in eventSet  {
-                        let eventManagedObject = eventObj as! Trip_Event
-                        
-                        let eventLocation = EventLocation(latitude: eventManagedObject.latitude!.doubleValue, longitude: eventManagedObject.longitude!.doubleValue)
-                        
-                        let event = Event(location: eventLocation, type:EventType(rawValue: eventManagedObject.eventType!.integerValue)! , message: eventManagedObject.eventMessage)
-                        eventsObj.append(event)
-                    }
+                for eventObj in tripManagedObj.events!  {
+                    let eventManagedObject = eventObj as! Trip_Event
+                    
+                    let eventLocation = EventLocation(latitude: eventManagedObject.latitude!.doubleValue, longitude: eventManagedObject.longitude!.doubleValue)
+                    
+                    let event = Event(location: eventLocation, type:EventType(rawValue: eventManagedObject.eventType!.integerValue)! , message: eventManagedObject.eventMessage)
+                    eventsObj.append(event)
+                    
                 }
                 
                 //Speedzone array
-                if let zoneSet = tripManagedObj.speedZones {
-                    for zoneObject in  zoneSet {
-                        let zonemanagedObject = zoneObject as! Trip_Speed_Zone
-                        
-                        let speedZone = SpeedZone(speedScore: zonemanagedObject.speedScore!,
-                            maxSpeed: zonemanagedObject.maxSpeed!,
-                            aboveSpeed: zonemanagedObject.aboveSpeed!,
-                            withinSpeed: zonemanagedObject.withinSpeed!,
-                            violationCount: zonemanagedObject.violationCount!,
-                            speedBehaviour: zonemanagedObject.speedBehaviour!,
-                            distanceTravelled: Utility.roundToDecimal(zonemanagedObject.distanceTravelled!.doubleValue / 1000.0, place: 0))
-                        
-                        speedZonesObj.append(speedZone)
-                    }
+                
+                for zoneObject in tripManagedObj.speedZones! {
+                    let zonemanagedObject = zoneObject as! Trip_Speed_Zone
+                    
+                    let speedZone = SpeedZone(speedScore: zonemanagedObject.speedScore!,
+                        maxSpeed: zonemanagedObject.maxSpeed!,
+                        aboveSpeed: zonemanagedObject.aboveSpeed!,
+                        withinSpeed: zonemanagedObject.withinSpeed!,
+                        violationCount: zonemanagedObject.violationCount!,
+                        speedBehaviour: zonemanagedObject.speedBehaviour!,
+                        distanceTravelled: Utility.roundToDecimal(zonemanagedObject.distanceTravelled!.doubleValue / 1000.0, place: 0))
+                    
+                    speedZonesObj.append(speedZone)
                 }
                 
                 let tripScore = TripScore(overallScore: 70,speedScore: tripManagedObj.speedScore!, ecoScore: tripManagedObj.ecoScore!, attentionScore: nil)
@@ -724,27 +722,13 @@ class DatabaseActions: NSObject {
         contractDataValues.rewardsDescription = contractData.rewardsDescription
         contractDataValues.contractPointsAchieved = contractData.contractPointsAchieved
         
-        
-        self.privateManagedObjectContext.performBlockAndWait { () -> Void in
-            do{
-                try self.privateManagedObjectContext.save()
-                //add check
-                print("saved")
-                completionHandler(status: true)
-            }catch{
-                completionHandler(status: false)
-                fatalError("not iserted")
-                
-            }
-        }
-        /*
         do{
             try self.managedObjectContext.save()
             completionHandler(status: true)
         }
         catch{
             completionHandler(status: false)
-        }*/
+        }
     }
     
     /* fetch contract data stored in the core data */
@@ -813,27 +797,13 @@ class DatabaseActions: NSObject {
             report.totaltrip = reportData.totalTrips
         }
         
-        self.privateManagedObjectContext.performBlockAndWait { () -> Void in
-            do{
-                try self.privateManagedObjectContext.save()
-                //add check
-                print("saved")
-                completionHandler(status: true)
-            }catch{
-                completionHandler(status: false)
-                fatalError("not iserted")
-                
-            }
-        }
-        
-        /*
         do{
             try self.managedObjectContext.save()
             completionHandler(status: true)
         }
         catch{
             completionHandler(status: false)
-        }*/
+        }
     }
     
     func fetchReportData(completionHandler:(success : Bool, error: NSError?, result: Report?) -> Void) -> Void{
