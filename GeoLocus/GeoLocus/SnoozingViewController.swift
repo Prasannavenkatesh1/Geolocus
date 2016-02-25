@@ -12,10 +12,11 @@ class SnoozingViewController : BaseViewController,UIPickerViewDelegate,UIPickerV
     
     //MARK: IBOutlets
     @IBOutlet weak var snoozeDateTimePicker: UIPickerView!
+    @IBOutlet weak var snoozePickerTitleLabel: UILabel!
     var hoursArray :[Int] = (1...24).map { $0 }
     var minutesArray : [Int] = (1...60).map{$0}
     var daysArray : [Int] = (1...30).map{$0}
-    var timeArray = ["Hours","Minutes","Days"]
+    var timeArray = [LocalizationConstants.Settings.Snooze.Hours.localized(),LocalizationConstants.Settings.Snooze.Minutes.localized(),LocalizationConstants.Settings.Snooze.Days.localized()]
     var snoozingPickerLeftComponentDataSource : [AnyObject] = [AnyObject]()
     var snoozingPickerLeftComponentDictionary : Dictionary<String,[AnyObject]> =  Dictionary<String, [AnyObject]>()
     
@@ -23,9 +24,10 @@ class SnoozingViewController : BaseViewController,UIPickerViewDelegate,UIPickerV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        snoozingPickerLeftComponentDictionary["Hours"] = hoursArray
-        snoozingPickerLeftComponentDictionary["Minutes"] = minutesArray
-        snoozingPickerLeftComponentDictionary["Days"] = daysArray
+        snoozePickerTitleLabel.text = LocalizationConstants.Settings.Snooze.AskMeAgain_Title.localized()
+        snoozingPickerLeftComponentDictionary[LocalizationConstants.Settings.Snooze.Hours.localized()] = hoursArray
+        snoozingPickerLeftComponentDictionary[LocalizationConstants.Settings.Snooze.Minutes.localized()] = minutesArray
+        snoozingPickerLeftComponentDictionary[LocalizationConstants.Settings.Snooze.Days.localized()] = daysArray
         snoozingPickerLeftComponentDataSource = hoursArray
         
     }

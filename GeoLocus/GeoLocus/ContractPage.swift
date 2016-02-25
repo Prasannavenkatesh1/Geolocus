@@ -89,7 +89,7 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
     
     /*set constraints for different device screen size */
     func setConstraintsForDifferentDevices(){
-        if(StringConstants.SCREEN_HEIGHT < 568){
+        if(StringConstants.SCREEN_HEIGHT < Resolution.height.iPhone5){
             self.layoutConstraintBonusPointsTop.constant = 10
             self.layoutConstraintEcoPointsViewHeight.constant = 35
             self.layoutConstraintSpeedPointsViewHeight.constant = 35
@@ -97,7 +97,7 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
             self.layoutConstraintPointsViewHeight.constant = 70
             self.layoutConstraintPlusImageLeading.constant = 15
         }
-        if(StringConstants.SCREEN_HEIGHT == 568){
+        if(StringConstants.SCREEN_HEIGHT == Resolution.height.iPhone5){
             self.layoutConstraintEcoPointsViewHeight.constant = 55
             self.layoutConstraintSpeedPointsViewHeight.constant = 55
             self.layoutConstraintPointsViewHeight.constant = 110

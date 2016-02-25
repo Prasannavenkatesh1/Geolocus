@@ -49,11 +49,13 @@
 "Share_Trip_Info"                   = "On %@, I travelled with distance of %@’s over a period of %@ and achieved above scores using my KBC First 10,000KM app.";
 "Share_Badge_Info"                  = "";
 
+//MARK: Language selection
 "German" = "German";
 "French" = "French";
 "English" = "English";
 "Dutch" = "Dutch";
 
+//MARK: Login
 "Username" = "Username";
 "Password" = "Password";
 "I agree to Terms & Conditions" = "I agree to Terms & Conditions";
@@ -63,6 +65,7 @@
 
 "OK" = "OK";
 
+//MARK: Contract
 "Add Picture of your goal here..." = "Add Picture of your goal here...";
 "Your Goal" = "Your Goal";
 "TOTAL POINTS" = "TOTAL POINTS";
@@ -72,3 +75,22 @@
 
 "You have achieved your target on %@. Contact parents to redeem points." = "You have achieved your target on %@. Contact parents to redeem points.";
 
+//MARK: Settings
+"Customer Settings" = "Customer Settings";
+"Choose your Language" = "Choose your Language";
+"Data Upload Type" = "Data Upload Type";
+"Snooze the start" = "Snooze the start";
+"Auto trip Start" = "Auto trip Start";
+"Notification" = "Notification";
+"Share data with parent" = "Share data with parent";
+"Reset Password" = "Reset Password";
+"Coach's Username" = "Coach's Username";
+
+"Choose Data Upload Type" = "Choose Data Upload Type";
+"Cellular"= "Cellular";
+"Wifi" = "Wifi";
+"Cellular and Wifi" = "Cellular and Wifi";
+"Ask me again in" = "Ask me again in";
+"Hours" = "Hours";
+"Minutes" = "Minutes";
+"Days" = "Days";
