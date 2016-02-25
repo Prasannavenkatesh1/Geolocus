@@ -12,9 +12,15 @@ import UIKit
 class LeftViewController: UIViewController {
     
     @IBOutlet var menuTableView: UITableView!
+    let menuCellIdentifier = "MenuCellIdentifier"
     
     override func viewDidLoad() {
-        
+        super.viewDidLoad()
+        self.edgesForExtendedLayout = .None;
+        self.extendedLayoutIncludesOpaqueBars = false;
+        self.automaticallyAdjustsScrollViewInsets = false;
+        self.menuTableView.tableFooterView = UIView(frame: CGRectZero)
+
     }
 
 }
@@ -35,15 +41,20 @@ extension LeftViewController {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let identifier = StringConstants.MenuCellIdentifier
-        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
+        //let identifier = StringConstants.MenuCellIdentifier
+        let cell = tableView.dequeueReusableCellWithIdentifier(menuCellIdentifier, forIndexPath: indexPath) as! MenuCustomCell
+        //let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
         
         guard let menuText = ArrayConstants.MenuList?[indexPath.row] else {
-            cell.textLabel?.text = StringConstants.MenuCellIdentifier
+            //cell.textLabel?.text = StringConstants.MenuCellIdentifier
+            cell.titleLabel.text = StringConstants.MenuCellIdentifier
             return cell
         }
-        cell.textLabel?.text = NSLocalizedString(menuText, comment: "Text for menu item")
-        cell.textLabel?.textAlignment = .Left
+//        print(menuText.localized())
+//        cell.titleLabel.text = "ewrw"
+        cell.titleLabel.text =  menuText.localized()  //NSLocalizedString(menuText, comment: "Text for menu item")
+        //cell.textLabel?.text = NSLocalizedString(menuText, comment: "Text for menu item")
+        //cell.textLabel?.textAlignment = .Left
         return cell
         
     }

@@ -37,6 +37,7 @@
 		28F38A161C61EBB300A02E93 /* HistoryZoneViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F38A111C61EBB300A02E93 /* HistoryZoneViewCell.swift */; };
 		3A58EE361C74564C006CCF6D /* SnoozingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A58EE351C74564C006CCF6D /* SnoozingViewController.swift */; };
 		3A655ADF1C76DB2600C1D7AA /* popUpCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A655ADE1C76DB2600C1D7AA /* popUpCustomCell.swift */; };
+		3A9655B91C7EE5F600161A4E /* MenuCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9655B81C7EE5F600161A4E /* MenuCustomCell.swift */; };
 		3AD32B941C7B2622006CC374 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD32B931C7B2622006CC374 /* CustomButton.swift */; };
 		430CAB4C1C71F7790055C220 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430CAB4B1C71F7790055C220 /* Report.swift */; };
 		437119851C7C222C00C6F48C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 437119871C7C222C00C6F48C /* Localizable.strings */; };
@@ -336,6 +337,7 @@
 		28F38A111C61EBB300A02E93 /* HistoryZoneViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryZoneViewCell.swift; sourceTree = "<group>"; };
 		3A58EE351C74564C006CCF6D /* SnoozingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnoozingViewController.swift; sourceTree = "<group>"; };
 		3A655ADE1C76DB2600C1D7AA /* popUpCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = popUpCustomCell.swift; sourceTree = "<group>"; };
+		3A9655B81C7EE5F600161A4E /* MenuCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCustomCell.swift; sourceTree = "<group>"; };
 		3AD32B931C7B2622006CC374 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		430CAB4B1C71F7790055C220 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		437119861C7C222C00C6F48C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1139,6 +1141,7 @@
 				BF4F8D971C43845000895640 /* CategoryCell.swift */,
 				B636D54A1C6C8DF10067C7B8 /* SettingsCustomViewCell.swift */,
 				3A655ADE1C76DB2600C1D7AA /* popUpCustomCell.swift */,
+				3A9655B81C7EE5F600161A4E /* MenuCustomCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1726,6 +1729,7 @@
 				283C04921C7484F10096358C /* Trip_Detail.swift in Sources */,
 				6384523D1B0353AE00E895F7 /* RegistrationController.m in Sources */,
 				638451F21B0353A000E895F7 /* FMDatabasePool.m in Sources */,
+				3A9655B91C7EE5F600161A4E /* MenuCustomCell.swift in Sources */,
 				6384523F1B0353AE00E895F7 /* SendingEmergencyInfo.m in Sources */,
 				63061B511BA03CD3006BF223 /* MapView.swift in Sources */,
 				638451F41B0353A000E895F7 /* GeoLocusAppDelegate.m in Sources */,
