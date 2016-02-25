@@ -118,6 +118,7 @@ struct StringConstants {
     static let CONTINUE = "Continue"
     static let START_TRIP_MESSAGE = "Do you want to start the trip"
     static let STOP_TRIP_MESSAGE = "Do you want to stop the trip"
+    
   
   /* Default settings*/
   static let Thresholds_Brake = "thresholds_brake"
@@ -246,6 +247,11 @@ struct LocalizationConstants {
     static let EcoPoints_Title = "Eco Points"
     static let BonusPoints_Title = "Bonus Points"
     static let CONTRACT_POINTS_ACHIEVED_MESSAGE = "You have achieved your target on %@. Contact parents to redeem points."
+    
+    /*DashboardPage Label*/
+    
+    static let Contracts_Points_Earned = "Contracts points earned"
+    static let Distance_Travelled      = "Distance Travelled"
     
     struct OverallScore {
         static let Score_Title          = "Overall_Score"

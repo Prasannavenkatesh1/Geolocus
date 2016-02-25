@@ -22,6 +22,10 @@
 "Badges_Earned"                         = "Badges verdiend";
 "Levels"                                = "Niveau";
 
+//MARK: - Dashboard Page
+"Contracts points earned"               = "Contracten punten verdiend";
+"Distance Travelled"                    = "Afstand Travelled";
+
 //MARK: - History TripScore
 "History_TS_Trip_Score"                 = "trip score";
 "History_TS_Speeding"                   = "snelheid";

@@ -22,6 +22,10 @@
 "Badges_Earned"                     = "Abzeichen verdient";
 "Levels"                            = "Ebenen";
 
+//MARK: - Dashboard Page
+"Contracts points earned"           = "Verträge Punkte erhalten";
+"Distance Travelled"                = "Entfernung Gereist";
+
 //MARK: - History TripScore
 "History_TS_Trip_Score"             = "Reise Punktzahl";
 "History_TS_Speeding"               = "Geschwindigkeitsüberschreitung";
