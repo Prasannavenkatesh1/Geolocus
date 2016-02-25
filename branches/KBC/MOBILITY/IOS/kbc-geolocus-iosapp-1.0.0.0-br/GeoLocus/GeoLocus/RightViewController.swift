@@ -13,6 +13,7 @@ class RightViewController: UIViewController {
     @IBOutlet var menuTableView: UITableView!
     
     
+    
     override func viewDidLoad() {
         
     }
