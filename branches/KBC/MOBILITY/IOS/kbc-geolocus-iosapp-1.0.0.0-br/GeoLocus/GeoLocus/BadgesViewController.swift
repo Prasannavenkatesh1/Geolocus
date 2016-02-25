@@ -160,7 +160,8 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
         
         //1. Get data from plist
         let path                = NSBundle.mainBundle().pathForResource("BadgesDetails", ofType: "plist")
-        let dataDict            = NSDictionary(contentsOfFile: path!)
+        let langDict            = NSDictionary(contentsOfFile: path!)
+        let dataDict            = langDict?.valueForKey(NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.SELECTED_LOCALIZE_LANGUAGE_CODE)!)
         self.plistBadgeArray    = (dataDict?.valueForKey("badge"))! as! NSArray
         self.plistLevelArray    = (dataDict?.valueForKey("level"))! as! NSArray
         
@@ -325,7 +326,7 @@ extension BadgesViewController: BadgesDelegate {
             
             //TODO: Delete this
             title = self.badgeNotEarnedArray[clickedRowIndexPath!.row].badgeTitle
-            details = self.badgeNotEarnedArray[clickedRowIndexPath!.row].additionalMsg!
+            details = self.badgeNotEarnedArray[clickedRowIndexPath!.row].badgeDescription
             icon = self.badgeNotEarnedArray[clickedRowIndexPath!.row].badgeIcon
         }else if clickedRowIndexPath?.section == 2 {     //levels
             title = self.levelArray[clickedRowIndexPath!.row].badgeTitle

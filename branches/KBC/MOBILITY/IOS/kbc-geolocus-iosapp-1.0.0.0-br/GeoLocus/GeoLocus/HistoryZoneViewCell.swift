@@ -40,7 +40,7 @@ class HistoryZoneViewCell: UITableViewCell {
     }
     
     func severeViolationViewTapped(gestureRecognizer: UITapGestureRecognizer) {
-        self.delegate?.severeViolationViewTapped()
+        self.delegate?.severeViolationViewTapped(self)
     }
 }
 

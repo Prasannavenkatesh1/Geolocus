@@ -80,9 +80,12 @@
     <entity name="Trip_Event" representedClassName=".Trip_Event" syncable="YES">
         <attribute name="eventMessage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="eventValue" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="fineMessage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isSevere" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="thresholdSpeed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="threshold" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="eventTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip_Detail" inverseName="events" inverseEntity="Trip_Detail" syncable="YES"/>
     </entity>
     <entity name="Trip_Speed_Zone" representedClassName=".Trip_Speed_Zone" syncable="YES">
@@ -142,7 +145,7 @@
         <element name="Reports" positionX="1429" positionY="354" width="128" height="150"/>
         <element name="Trip_Badge" positionX="1843" positionY="-153" width="128" height="120"/>
         <element name="Trip_Detail" positionX="1663" positionY="-153" width="128" height="255"/>
-        <element name="Trip_Event" positionX="1996" positionY="123" width="128" height="135"/>
+        <element name="Trip_Event" positionX="1996" positionY="123" width="128" height="180"/>
         <element name="Trip_Speed_Zone" positionX="1719" positionY="189" width="128" height="163"/>
         <element name="Trip_timeseries" positionX="826" positionY="-252" width="128" height="208"/>
         <element name="Trips" positionX="826" positionY="8" width="128" height="163"/>

@@ -2,7 +2,7 @@
 //  Trip_Event.swift
 //  GeoLocus
 //
-//  Created by CTS MAC on 04/02/16.
+//  Created by CTS MAC on 25/02/16.
 //  Copyright © 2016 Cognizant. All rights reserved.
 //
 

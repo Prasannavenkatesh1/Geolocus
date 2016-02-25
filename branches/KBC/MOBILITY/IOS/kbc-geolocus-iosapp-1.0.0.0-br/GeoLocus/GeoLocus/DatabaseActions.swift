@@ -90,7 +90,7 @@ class DatabaseActions: NSObject {
   //MARK:- TripTimeSeries
   
   func saveTimeSeries(timeseriesmodel:TimeSeriesModel){
-    let timeseries = NSEntityDescription.insertNewObjectForEntityForName("Trip_timeseries",inManagedObjectContext: self.managedObjectContext) as! Trip_timeseries
+    let timeseries = NSEntityDescription.insertNewObjectForEntityForName("Trip_timeseries",inManagedObjectContext: self.privateManagedObjectContext) as! Trip_timeseries
     timeseries.tripid       = timeseriesmodel.tripid
     timeseries.isEvent      = timeseriesmodel.isEvent
     timeseries.eventtype    = timeseriesmodel.eventtype
@@ -103,15 +103,27 @@ class DatabaseActions: NSObject {
     timeseries.currenttime  = timeseriesmodel.currenttime
     timeseries.isvalidtrip  = timeseriesmodel.isvalidtrip
     
+    
+    self.privateManagedObjectContext.performBlockAndWait { () -> Void in
+        do{
+            try self.privateManagedObjectContext.save()
+            //add check
+            print("saved")
+        }catch{
+            fatalError("not iserted")
+            
+        }
+    }
+    /*
     do{
       try self.managedObjectContext.save()
     }catch{
       fatalError("not iserted")
-    }
+    }*/
  }
   
   func saveTripSummary(summarymodel:SummaryModel){
-    let tripsummary = NSEntityDescription.insertNewObjectForEntityForName("TripSummary",inManagedObjectContext: self.managedObjectContext) as! TripSummary
+    let tripsummary = NSEntityDescription.insertNewObjectForEntityForName("TripSummary",inManagedObjectContext: self.privateManagedObjectContext) as! TripSummary
     tripsummary.accelerationcount = summarymodel.accelerationcount
     tripsummary.attentionscore    = summarymodel.attentionscore
     tripsummary.brakingcount      = summarymodel.brakingcount
@@ -127,12 +139,22 @@ class DatabaseActions: NSObject {
     tripsummary.tripstarttime     = summarymodel.tripstarttime
     tripsummary.isSync            = summarymodel.isSync
     
-    
+    self.privateManagedObjectContext.performBlockAndWait { () -> Void in
+        do{
+            try self.privateManagedObjectContext.save()
+            //add check
+            print("saved")
+        }catch{
+            fatalError("not iserted")
+            
+        }
+    }
+    /*
     do{
       try self.managedObjectContext.save()
     }catch{
       fatalError("not iserted")
-    }
+    }*/
   }
  
   
@@ -150,11 +172,22 @@ class DatabaseActions: NSObject {
     configthresholds.thresholds_minimumspeed      = configmodel.thresholds_minimumspeed
     configthresholds.tripid                       = configmodel.tripid
     
+    self.privateManagedObjectContext.performBlockAndWait { () -> Void in
+        do{
+            try self.privateManagedObjectContext.save()
+            //add check
+            print("saved")
+        }catch{
+            fatalError("not iserted")
+            
+        }
+    }
+    /*
     do{
       try self.managedObjectContext.save()
     }catch{
       fatalError("not iserted")
-    }
+    }*/
   }
   
   func saveTripMaster(tripmodel:TripModel){
@@ -164,12 +197,22 @@ class DatabaseActions: NSObject {
     tripsdatas.userid           = tripmodel.userid
     tripsdatas.tokenid          = tripmodel.tokenid
     tripsdatas.channelversion   = tripmodel.channelversion
-    
+    self.privateManagedObjectContext.performBlockAndWait { () -> Void in
+        do{
+            try self.privateManagedObjectContext.save()
+            //add check
+            print("saved")
+        }catch{
+            fatalError("not iserted")
+            
+        }
+    }
+    /*
     do{
       try self.managedObjectContext.save()
     }catch{
       fatalError("not inserted")
-    }
+    }*/
   }
   
   func deleteTrip(){
@@ -401,6 +444,10 @@ class DatabaseActions: NSObject {
                         event.longitude     = tripEvent.location.longitude
                         event.eventType     = tripEvent.type.rawValue
                         event.eventMessage  = tripEvent.message
+                        event.eventValue    = tripEvent.value
+                        event.fineMessage   = tripEvent.fineMessage
+                        event.isSevere      = tripEvent.isSevere
+                        event.threshold     = tripEvent.threshold
                         event.eventTrip     = tripDetailRow
                         
                         events.addObject(event)
@@ -515,7 +562,8 @@ class DatabaseActions: NSObject {
                         
                         let eventLocation = EventLocation(latitude: eventManagedObject.latitude!.doubleValue, longitude: eventManagedObject.longitude!.doubleValue)
                         
-                        let event = Event(location: eventLocation, type:EventType(rawValue: eventManagedObject.eventType!.integerValue)! , message: eventManagedObject.eventMessage)
+                        let event = Event(location: eventLocation, type: EventType(rawValue: eventManagedObject.eventType!.integerValue)! , value: eventManagedObject.eventValue!, message: eventManagedObject.eventMessage, fineMessage: eventManagedObject.fineMessage, threshold: eventManagedObject.threshold!, isSevere: eventManagedObject.isSevere!)
+                        
                         eventsObj.append(event)
                     }
                 }

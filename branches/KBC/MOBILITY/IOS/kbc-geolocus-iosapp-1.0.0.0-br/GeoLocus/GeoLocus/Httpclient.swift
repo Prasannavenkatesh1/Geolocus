@@ -187,35 +187,6 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         manager.request(badgesRequest).response { (Request, response, data, error) -> Void in
             completionHandler(response: response, data: data, error: error)
         }
-        
-        
-        
-        
-        
-        /*if let filePath = NSBundle.mainBundle().pathForResource("trip_details", ofType: "json"), data = NSData(contentsOfFile: filePath) {
-            do {
-                let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
-                print(json)
-                
-                //****************************************//
-                
-                
-                if let historyServiceURL = FacadeLayer.sharedinstance.webService.historyServiceURL{
-                    
-                    Alamofire.request(.POST, historyServiceURL, parameters: json as? Dictionary, encoding: .JSON, headers: nil).response{ (request, response, data, error) -> Void in
-                        
-                        completionHandler(response: response, data: data, error: error)
-                        
-                    }
-                }
-                
-                //*****************************************//
-                
-            }
-            catch {
-                //Handle error
-            }
-        }*/
     }
     
     //MARK: - Dashboard data
@@ -295,23 +266,6 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         manager.request(badgesRequest).response { (Request, response, data, error) -> Void in
              completionHandler(response: response, data: data, error: error)
         }
-
-        /*
-        
-        let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
-        
-        let request = NSMutableURLRequest(URL: NSURL(string: FacadeLayer.sharedinstance.webService.badgeServiceURL!)!)
-        request.HTTPMethod = "GET"
-        
-        let authValue = "SWs5cVUyeUFDTDg5bnhMMnZaOWVLUT09Om16Vm01Q3pPVHErZXJyUUV3ZHMyM3c9PQ"
-        request.setValue(authValue, forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
-        
-        _ = session.dataTaskWithRequest(request) {(let data, let response, let error) in
-            
-            completionHandler(response: response, data: data, error: error)
-            
-        }.resume()*/
     }
 
     //MARK: - Overall services
@@ -340,31 +294,6 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         manager.request(badgesRequest).response { (Request, response, data, error) -> Void in
             completionHandler(response: response, data: data, error: error)
         }
-        
-        /*
-        if let filePath = NSBundle.mainBundle().pathForResource("overallscore", ofType: "json"), data = NSData(contentsOfFile: filePath) {
-            do {
-                let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
-                print(json)
-                
-                //****************************************//
-                
-                if let overallScoreServiceURL = FacadeLayer.sharedinstance.webService.overallServiceURL{
-                    
-                    Alamofire.request(.POST, overallScoreServiceURL, parameters: json as? Dictionary, encoding: .JSON, headers: nil).response{ (request, response, data, error) -> Void in
-                        
-                        completionHandler(response: response, data: data, error: error)
-                        
-                    }
-                }
-                
-                //*****************************************//
-                
-            }
-            catch {
-                //Handle error
-            }
-        }*/
     }
     
     //MARK: - Notification
@@ -501,19 +430,6 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         }
         
     }
-    
-    //TODO: Remove this
-    //MARK: Delegate Methods
-    
-    /*func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
-        
-        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-            if challenge.protectionSpace.host == "ec2-52-9-107-182.us-west-1.compute.amazonaws.com" {
-                let credential = NSURLCredential(trust: challenge.protectionSpace.serverTrust!)
-                completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credential)
-            }
-        }
-    }*/
 }
 
 

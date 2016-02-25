@@ -281,103 +281,6 @@ class FacadeLayer{
         self.dbactions.fetchtripDetailData({ (status, response, error) -> Void in
             completionHandler(status: status, data: response, error: error)
         })
-        
-        
-        
-        /*let defaults = NSUserDefaults.standardUserDefaults()
-        
-        if defaults.boolForKey("History_Page_Synced") {
-            //get from DB and reload table
-            
-            self.dbactions.fetchtripDetailData({ (status, response, error) -> Void in
-                completionHandler(status: status, data: response, error: error)
-            })
-        }else{
-            //call services...get data...parse
-            //store data in DB
-            //reload table
-            httpclient.requestRecentTripData ("url"){ (response, data, error) -> Void in
-                
-                if error == nil {
-                    
-                    var tripArray = [History]()
-                    
-                    if let result = data {
-                        var jsonData = JSON(data: result)
-                        
-                        if let tripDetails = jsonData["with"]["content"]["tripdetails"].array {
-                            //print(tripDetails)
-                            
-                            for tripObj in tripDetails {
-                                let trip = tripObj.dictionaryValue
-                                
-                                var eventsObj = [Event]()
-                                var speedZonesObj = [SpeedZone]()
-                                
-                                let tripScore = TripScore(overallScore: trip["tripOverallScore"]!.doubleValue,speedScore: trip["speedscore"]!.doubleValue, ecoScore: trip["ecoscore"]!.doubleValue, attentionScore: nil)
-                                
-                                //Event array
-                                
-                                for (_,subJson):(String, JSON) in trip["event"]! {
-                                    let eventDict = subJson.dictionaryValue
-                                    let eventLocation = EventLocation(latitude: Double(eventDict["lat"]!.stringValue)!, longitude:Double(eventDict["long"]!.stringValue)!)
-                                    let event = Event(location: eventLocation, type:Helper.getEventType(eventDict["event_type"]!.string!) , message: eventDict["eventMessage"]!.string!)
-                                    
-                                    eventsObj.append(event)
-                                }
-                                
-                                //Speedzone array
-                                
-                                for (_,subjson):(String, JSON) in trip["speed_zone"]! {
-                                    let zoneDict = subjson.dictionaryValue
-                                    let speedZone = SpeedZone(speedScore: Double(zoneDict["speedScore"]!.stringValue)!,
-                                        maxSpeed: Double(zoneDict["max_speed"]!.stringValue)!,
-                                        aboveSpeed: Double(zoneDict["Above_maxspeed"]!.stringValue)!,
-                                        withinSpeed: Double(zoneDict["within_maxspeed"]!.stringValue)!,
-                                        violationCount: Double(zoneDict["violation_count"]!.stringValue)!,
-                                        speedBehaviour: Double(zoneDict["speedbehaviour"]!.stringValue)!,
-                                        distanceTravelled: Double(zoneDict["distance_travelled"]!.stringValue)!)
-                                    
-                                    speedZonesObj.append(speedZone)
-                                }
-                                
-                                let dateFormatter = NSDateFormatter()
-                                dateFormatter.dateFormat = "dd-MM-yyyy"
-                                
-                                let tripDetail = History(tripid:  trip["tripId"]!.string!, tripDate: dateFormatter.stringFromDate(NSDate(jsonDate: trip["date"]!.string!)!), distance: Double(trip["distance"]!.stringValue)!, tripPoints: Int(trip["trippoints"]!.stringValue)!, tripDuration:  Double(trip["hours"]!.stringValue)!, speedingMessage: trip["speedingMessage"]!.string!, ecoMessage: trip["ecoMessage"]!.string!, dataUsageMessage: trip["dataUsageMsg"]!.string!, tripScore: tripScore, events: eventsObj, speedZones: speedZonesObj)
-                                
-                                tripArray.append(tripDetail)
-                                
-                            }
-                            
-                            //delete the data
-                            //insert new data
-                            //return
-                            
-                            self.dbactions.removeData("Trip_Detail")
-                            self.dbactions.saveTripDetail(tripArray, completionhandler: { (status) -> Void in
-                                if status {
-                                    defaults.setBool(true, forKey: "History_Page_Synced")
-                                    completionHandler(status: 1, data: tripArray, error: nil)
-                                }else{
-                                    defaults.setBool(false, forKey: "History_Page_Synced")
-                                    completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
-                                }
-                            })
-                        }else{
-                            defaults.setBool(false, forKey: "History_Page_Synced")
-                            completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
-                        }
-                    }else{
-                        defaults.setBool(false, forKey: "History_Page_Synced")
-                        completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
-                    }
-                }else{
-                    defaults.setBool(false, forKey: "History_Page_Synced")
-                    completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
-                }
-            }
-        }*/
     }
     
     
@@ -407,9 +310,14 @@ class FacadeLayer{
                                 for (_,subJson):(String, JSON) in trip["event"]! {
                                     let eventDict = subJson.dictionaryValue
                                     let eventLocation = EventLocation(latitude: Double(eventDict["latitude"]!.stringValue)!, longitude:Double(eventDict["longitude"]!.stringValue)!)
+                                    
                                     let event = Event(location: eventLocation,
-                                        type:Utility.getEventType(eventDict["eventType"]!.string!) ,
-                                        message: eventDict["eventMessage"]?.string)
+                                        type: Utility.getEventType(eventDict["eventType"]!.string!),
+                                        value: eventDict["eventValue"]!.doubleValue,
+                                        message: eventDict["eventMessage"]?.string,
+                                        fineMessage: eventDict["fineMessage"]?.string,
+                                        threshold: eventDict["threshold"]!.doubleValue,
+                                        isSevere: eventDict["isSevere"]!.stringValue)
                                     
                                     eventsObj.append(event)
                                 }
@@ -469,7 +377,6 @@ class FacadeLayer{
     
     func saveTripDetail(tripDetails: [History], completionhandler:(status: Bool)-> Void) {
         
-        //self.dbactions.removeData("Trip_Detail")
         self.dbactions.saveTripDetail(tripDetails, completionhandler: { (status) -> Void in
             if status {
                 completionhandler(status: true)
@@ -683,80 +590,6 @@ class FacadeLayer{
         dbactions.fetchBadgeData({ (status, data, error) -> Void in
             completionHandler(status: status, data: data, error: error)
         })
-        
-        
-        /*let defaults = NSUserDefaults.standardUserDefaults()
-        
-        if defaults.boolForKey("Badges_Page_Synced") {
-           
-            dbactions.fetchBadgeData({ (status, data, error) -> Void in
-                completionHandler(status: status, data: data, error: error)
-            })
-            
-        }else{
-            httpclient.requestBadgesData(webService.badgeServiceURL!) { (response, data, error) -> Void in
-                if error == nil {
-                    var badges = [Badge]()
-                    
-                    if let result = data {
-                        var jsonData = JSON(data: result)
-                        
-                        if jsonData["statusCode"].intValue == 1{
-                            if let badgesList = jsonData["badges"].array {
-                                print(badges)
-                                for badgeObj in badgesList {
-                                    let badgeDict = badgeObj.dictionaryValue
-                                    
-                                    let badge = Badge(withIcon: " ", badgeTitle: badgeDict["badge_title"]!.stringValue, badgeDescription: badgeDict["badge_description"]!.stringValue, isEarned: Bool(badgeDict["isEarned"]!.intValue), orderIndex: badgeDict["order_index"]!.intValue, badgeType: Badge.BadgesType.Badge, additionalMsg: nil)
-                                    
-                                    badges.append(badge)
-                                }
-                            }
-                            
-                            if let levelList = jsonData["levels"].array {
-                                print(levelList)
-                                for badgeObj in levelList {
-                                    let badgeDict = badgeObj.dictionaryValue
-                                    
-                                    let badge = Badge(withIcon: " ", badgeTitle: badgeDict["badge_title"]!.stringValue, badgeDescription: badgeDict["badge_description"]!.stringValue, isEarned: Bool(badgeDict["isEarned"]!.intValue), orderIndex: badgeDict["order_index"]!.intValue, badgeType: Badge.BadgesType.Level, additionalMsg: nil)
-                                    
-                                    badges.append(badge)
-                                }
-                                
-                                //delete
-                                //save
-                                //return
-                                self.dbactions.removeData("Trip_Badge")
-                                self.dbactions.saveBadge(badges, completionhandler: { (status) -> Void in
-                                    if status{
-                                        defaults.setBool(true, forKey: "Badges_Page_Synced")
-                                        completionHandler(status: 1, data: badges, error: nil)
-                                    }else{
-                                        defaults.setBool(false, forKey: "Badges_Page_Synced")
-                                        completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
-                                    }
-                                })
-                            }else{
-                                defaults.setBool(false, forKey: "Badges_Page_Synced")
-                                completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
-                            }
-                        }else{
-                            defaults.setBool(false, forKey: "Badges_Page_Synced")
-                            //something went wrong
-                            completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
-                        }
-                    }else{
-                        defaults.setBool(false, forKey: "Badges_Page_Synced")
-                        //something went wrong
-                        completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
-                    }
-                }else {
-                    defaults.setBool(false, forKey: "Badges_Page_Synced")
-                    //something went wrong
-                    completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
-                }
-            }
-        }*/
     }
     
     
@@ -820,18 +653,11 @@ class FacadeLayer{
                     completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
                 }
             })
-            
-            
-            /*
-            httpclient.requestBadgesData(serviceURL) { (response, data, error) -> Void in
-                
-            }*/
         }
     }
     
     func saveBadge(badges:[Badge], completionhandler:(status: Bool)-> Void) {
-        //delete...save...return
-        //self.dbactions.removeData("Trip_Badge")
+
         self.dbactions.saveBadge(badges, completionhandler: { (status) -> Void in
             if status{
                 completionhandler(status: true)
@@ -849,52 +675,6 @@ class FacadeLayer{
         dbactions.fetchOverallScoreData({ (status, response, error) -> Void in
             completionHandler(status: status, data: response, error: error)
         })
-        
-        /*if StringConstants.appDataSynced {
-            //get from DB and reload table
-            dbactions.fetchOverallScoreData({ (status, response, error) -> Void in
-                completionHandler(status: status, data: response, error: error)
-            })
-            
-        }else{
-            //call services...get data...parse
-            //store data in DB
-            //reload table
-            
-            httpclient.requestOverallScoreData("") { (response, data, error) -> Void in
-                if error == nil {
-                    if let result = data {
-                        var jsonData = JSON(data: result)
-                        
-                        if let scores = jsonData["with"]["content"].dictionary {
-                            
-                            let overallScore = OverallScores(overallScore: Double(scores["overallScore"]!.stringValue)!, speedingScore: Double(scores["overallSpeedingScore"]!.stringValue)!, ecoScore: Double(scores["overallEcoScore"]!.stringValue)!, distanceTravelled: Double(scores["distanceTravelled"]!.stringValue)!, dataUsageMsg: scores["dataUsageMsg"]!.stringValue, overallmessage: scores["OverallScoremessage"]!.stringValue, speedingMessage: scores["OverallspeedingMessage"]!.stringValue, ecoMessage: scores["OverallecoMessage"]!.stringValue)
-                            
-                            self.dbactions.removeData("OverallScore")
-                            //store to DB
-                            self.dbactions.saveOverallScore(overallScore, completionhandler: { (status) -> Void in
-                                if status {
-                                    //return
-                                    completionHandler(status: 1, data: overallScore, error: nil)
-                                }else{
-                                    //something went wrong
-                                    completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
-                                }
-                            })
-                        }else{
-                            //something went wrong
-                            completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
-                        }
-                    }else{
-                        //something went wrong
-                        completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
-                    }
-                }else {
-                    //something went wrong
-                    completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
-                }
-            }
-        }*/
     }
     
     func requestOverallScoreData(completionHandler:(status: Int, data: OverallScores?, error: NSError?) -> Void) -> Void{
@@ -1274,7 +1054,7 @@ class FacadeLayer{
         
         if  let  serviceURL = self.webService.overallServiceURL {
             if let tokenID = NSUserDefaults.standardUserDefaults().valueForKey( StringConstants.USER_ID) {
-                url = ("\(serviceURL)?userId=\(7)&channel_type=IOS")
+                url = ("\(serviceURL)?userId=\(7)")
             }
         }
         return url

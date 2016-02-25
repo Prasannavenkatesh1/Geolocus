@@ -62,13 +62,13 @@ extension HistoryTripDetailCell {
         let components              = NSCalendar.currentCalendar().components(unitFlags, fromDate: tripDate!)
         
         //consider Localization
-        self.tripDateLabel.text     = String("\(components.day)th \(Utility.getMonthString(components.month)) \(components.year)")
-        self.tripDurationLabel.text = String("\(detail.tripDuration) Hrs")
+        self.tripDateLabel.text     = String("\(components.day)\(components.day.suffix()) \(Utility.getMonthString(components.month)) \(components.year)")
+        self.tripDurationLabel.text = String("\(detail.tripDuration.integerValue / 60).\(detail.tripDuration.integerValue % 60) Hrs")
         self.tripDistanceLabel.text = String("\(detail.distance) km")
         self.tripPointsLabel.text   = String(detail.tripPoints)
         
         if (UIColor(range:detail.tripScore.speedScore.integerValue) == UIColor(netHex: 0xff3b3b)) || (UIColor(range: detail.tripScore.ecoScore.integerValue) == UIColor(netHex: 0xff3b3b)) || (UIColor(range: detail.tripScore.overallScore.integerValue) == UIColor(netHex: 0xff3b3b)) {
-            self.tripShareButton.hidden = true
+            self.tripShareButton.hidden = false      //TODO: make this true
         }else{
             self.tripShareButton.hidden = false
         }

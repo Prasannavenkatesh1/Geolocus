@@ -19,8 +19,6 @@ public class ShareTemplate {
     
     func createShareTemplateImage(title: String, detail: String, imageInfo: Dictionary<String, String>, shareOption: ShareOption, complitionHandler:(image: UIImage)->Void)-> Void{
         
-        let drawingRect = CGRectMake(0, 0, 485, 192)
-        
         //---------------title text--------
         let titleFont                   = UIFont(name:Font.HELVETICA_NEUE_MEDIUM, size: 16)
         let titleParagraphStyle         = NSMutableParagraphStyle()
@@ -40,7 +38,19 @@ public class ShareTemplate {
         let infoParagraphStyle          = NSMutableParagraphStyle()
         infoParagraphStyle.alignment    = .Left
         let infoAttr                    = [NSFontAttributeName: infoFont!, NSParagraphStyleAttributeName: infoParagraphStyle, NSForegroundColorAttributeName:UIColor(netHex: 0x4c7394)]
-        let infoText:String             = "Pssst...you can track your driving behaviour using the KBC 10,000 KM app! You can download it from the app store."
+        let infoText:String             = LocalizationConstants.Share.AppInfo.localized()
+        
+        //______________text bound sizes_____________________
+        
+        let paraSize = paraText.boundingRectWithSize(CGSize(width: 269, height: 999), options: .UsesLineFragmentOrigin, attributes: paraAttr, context: nil)
+        print("para size = \(paraSize)")
+        
+        let infoSize = infoText.boundingRectWithSize(CGSize(width: 269, height: 999), options: .UsesLineFragmentOrigin, attributes: infoAttr, context: nil)
+        print("para text size: \(infoSize)")
+        //___________________________________
+        
+        let drawingHeight = ShareView.Margin.top + 21 + ShareView.Para.Padding.top + paraSize.height + ShareView.Para.Padding.bottom + infoSize.height + ShareView.Margin.bottom
+        let drawingRect = CGRectMake(0, 0, 485, drawingHeight < 192 ? 192 : drawingHeight)       //192 height
         
         //--------start context ----------
         UIGraphicsBeginImageContextWithOptions(drawingRect.size, false, 5.0)
@@ -55,11 +65,11 @@ public class ShareTemplate {
             let scoreViewFrame = CGRectMake(0, 0, 78, 78)
             
             //--------speed score---------
-            let speedScoreRect = CGRectMake(12, 65, 78, 78)
+            let speedScoreRect = CGRectMake(ShareView.Icon.TripPadding.left, ShareView.Icon.TripPadding.top, 78, 78)
             
             let speedArcView = ArcGraphicsController(frame: scoreViewFrame)
-            speedArcView.foreGroundArcWidth = 8
-            speedArcView.backGroundArcWidth = 8
+            speedArcView.foreGroundArcWidth = Arc.FOREGROUND_WIDTH
+            speedArcView.backGroundArcWidth = Arc.BACKGROUND_WIDTH
             speedArcView.ringLayer.strokeColor = UIColor(range: Int(imageInfo["speedScore"]!)!).CGColor
             speedArcView.animateScale = Double(imageInfo["speedScore"]!)!/100.0
             speedArcView.backgroundColor = UIColor.whiteColor()
@@ -68,22 +78,25 @@ public class ShareTemplate {
             speedImage.drawInRect(speedScoreRect)
             
             let speedIcon = UIImage(named: "meter.png")            
-            let speedIconRect = CGRectMake(12 + 20, 65 + 23, 38, 33)
+            let speedIconRect = CGRectMake(ShareView.Icon.TripPadding.left + 20, ShareView.Icon.TripPadding.top + 23, 38, 33)
             speedIcon!.drawInRect(speedIconRect)
             
             let speedTitleFont              = UIFont(name:Font.HELVETICA_NEUE, size: 15)
             let speedTtileParaStyle         = NSMutableParagraphStyle()
             speedTtileParaStyle.alignment   = .Center
             let speedTitleAttr              = [NSFontAttributeName: speedTitleFont!, NSParagraphStyleAttributeName: speedTtileParaStyle, NSForegroundColorAttributeName:UIColor(netHex: 0x181f29)]
-            let speedTitleText:String       =  "Speeding"
+            let speedTitleText:String       =  LocalizationConstants.History.Score.Speeding.localized()
             
-            let speedTitleRect = CGRectMake(12, 145, 78, 21)
+            let speedTitleSize = speedTitleText.boundingRectWithSize(CGSize(width: 78, height: 999), options: .UsesLineFragmentOrigin, attributes: speedTitleAttr, context: nil)
+            print("para text size: \(infoSize)")
+            
+            let speedTitleRect = CGRectMake(ShareView.Icon.TripPadding.left, ShareView.Icon.TripPadding.top + 78 + ShareView.Icon.TripPadding.bottom, 78, speedTitleSize.height)    //21 height
             speedTitleText.drawWithRect(speedTitleRect, options: .UsesLineFragmentOrigin, attributes: speedTitleAttr, context: nil)
             
             //--------eco score---------
             let ecoArcView = ArcGraphicsController(frame: scoreViewFrame)
-            ecoArcView.foreGroundArcWidth = 8
-            ecoArcView.backGroundArcWidth = 8
+            ecoArcView.foreGroundArcWidth = Arc.FOREGROUND_WIDTH
+            ecoArcView.backGroundArcWidth = Arc.BACKGROUND_WIDTH
             ecoArcView.ringLayer.strokeColor = UIColor(range: Int(imageInfo["ecoScore"]!)!).CGColor
             ecoArcView.animateScale = Double(imageInfo["ecoScore"]!)!/100.0
             ecoArcView.backgroundColor = UIColor.whiteColor()
@@ -100,7 +113,7 @@ public class ShareTemplate {
             let ecoTtileParaStyle         = NSMutableParagraphStyle()
             ecoTtileParaStyle.alignment   = .Center
             let ecoTitleAttr              = [NSFontAttributeName: ecoTitleFont!, NSParagraphStyleAttributeName: ecoTtileParaStyle, NSForegroundColorAttributeName:UIColor(netHex: 0x181f29)]
-            let ecoTitleText:String       =  "Eco"
+            let ecoTitleText:String       =  LocalizationConstants.History.Score.Eco.localized()
             
             let ecoTitleRect = CGRectMake(speedScoreRect.size.width + 12 + 12, 145, 78, 21)
             ecoTitleText.drawWithRect(ecoTitleRect, options: .UsesLineFragmentOrigin, attributes: ecoTitleAttr, context: nil)
@@ -115,7 +128,7 @@ public class ShareTemplate {
         
         //------- separator line vertical --------
         CGContextSetFillColorWithColor(context, UIColor(netHex: 0x4c7394).CGColor)
-        CGContextFillRect(context, CGRectMake(192, 19, 1, 161))
+        CGContextFillRect(context, CGRectMake(192, ShareView.Margin.top, 1, drawingRect.height - ShareView.Margin.bottom - ShareView.Margin.top))
         
         //-------- KBC Icon -------------
         let kbcIcon = UIImage(named: "KBCIcon.png")
@@ -123,13 +136,13 @@ public class ShareTemplate {
         kbcIcon!.drawInRect(kbcIconRect)
         
         //---------- drawing text -------------
-        let titleTextRect = CGRectMake(204, 19, 269, 21)
+        let titleTextRect = CGRectMake(204, ShareView.Margin.top, 269, 21)
         titleText.drawWithRect(titleTextRect, options: .UsesLineFragmentOrigin, attributes: titleAttr, context: nil)
-        let paraHeight = CGFloat((shareOption == ShareOption.TRIP_DETAIL) ? 75.0 : 60.0)
-        let paraTextRect = CGRectMake(204, titleTextRect.origin.y + titleTextRect.size.height + 8, 269, paraHeight)
+        //let paraHeight = CGFloat((shareOption == ShareOption.TRIP_DETAIL) ? 75.0 : 60.0)
+        let paraTextRect = CGRectMake(204, titleTextRect.origin.y + titleTextRect.size.height + 8, 269, paraSize.height/*paraHeight*/)
         paraText.drawWithRect(paraTextRect, options: .UsesLineFragmentOrigin, attributes: paraAttr, context: nil)
         
-        let infoTextRect = CGRectMake(204, paraTextRect.origin.y + paraTextRect.size.height + 5, 269, 80)
+        let infoTextRect = CGRectMake(204, paraTextRect.origin.y + paraTextRect.size.height + 5, 269, infoSize.height)     //80 height
         infoText.drawWithRect(infoTextRect, options: .UsesLineFragmentOrigin, attributes: infoAttr, context: nil)
         
         let image = UIGraphicsGetImageFromCurrentImageContext();

@@ -49,8 +49,9 @@
 "History_TD_Trip_Points"            = "Schaltpunkte";
 
 //MARK: - Share to social media
-"Share_Info_Text"                   = "";
-"Share_Trip_Info"                   = "";
+"Share_Trip_Score"                  = "Reise Punktzahl";
+"Share_Info_Text"                   = "Psst ... Sie können Ihr Fahrverhalten mit der KBC 10.000 KM App verfolgen! Sie können es aus dem App Store herunterladen";
+"Share_Trip_Info"                   = "Am %@ fuhr ich mit Abstand von %@ die über einen Zeitraum von %@ und über Noten mit meinem KBC Erste 10.000km App erreicht";
 "Share_Badge_Info"                  = "";
 
 //MARK: Language selection

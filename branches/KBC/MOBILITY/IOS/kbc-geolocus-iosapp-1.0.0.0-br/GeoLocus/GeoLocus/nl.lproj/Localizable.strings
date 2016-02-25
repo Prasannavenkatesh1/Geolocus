@@ -49,8 +49,9 @@
 "History_TD_Trip_Points"                = "Trip punten";
 
 //MARK: - Share to social media
-"Share_Info_Text"                   = "";
-"Share_Trip_Info"                   = "";
+"Share_Trip_Score"                  = "trip score";
+"Share_Info_Text"                   = "Psst ... kunt u uw rijgedrag te volgen met behulp van de KBC 10.000 KM app! U kunt het downloaden van de app store";
+"Share_Trip_Info"                   = "Op %@, Ik reisde met een afstand van %@ over een periode van %@ en boven scores behaald met mijn KBC First 10,000km app";
 "Share_Badge_Info"                  = "";
 
 //MARK: Language selection
