@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EDY-1L-EKK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EDY-1L-EKK">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -2203,7 +2203,9 @@
                                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                                             </constraint>
                                             <constraint firstItem="iN2-fb-ZnH" firstAttribute="leading" secondItem="Jhl-cm-Wri" secondAttribute="leading" id="Xz1-lv-u5D"/>
-                                            <constraint firstAttribute="height" constant="225" id="Zra-S8-Qpy"/>
+                                            <constraint firstAttribute="height" constant="225" id="Zra-S8-Qpy">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="205"/>
+                                            </constraint>
                                             <constraint firstAttribute="trailing" secondItem="y7v-9W-9zp" secondAttribute="trailing" id="pNb-Sv-VwW"/>
                                             <constraint firstItem="y7v-9W-9zp" firstAttribute="top" secondItem="iN2-fb-ZnH" secondAttribute="bottom" id="v1t-kF-vrm"/>
                                         </constraints>
@@ -2935,6 +2937,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="bonusPointsLabel" destination="UWi-YX-ekP" id="vf5-W8-9hZ"/>
                         <outlet property="bonusPointsTitleLabel" destination="Gcm-bR-0FJ" id="f45-6s-MSt"/>
@@ -4336,7 +4339,10 @@
                             </webView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4PC-Ps-mnm">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.68235294117647061" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="okButtonTapped:" destination="TwQ-L5-Rlv" eventType="touchUpInside" id="qKt-RZ-FgK"/>
                                 </connections>

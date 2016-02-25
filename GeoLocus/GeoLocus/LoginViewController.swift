@@ -154,7 +154,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
                 self.termsAndConditionsString = NSString(data: response!, encoding: NSUTF8StringEncoding) as String!
             }
             else{
-                let alertView = UIAlertController(title: StringConstants.ERROR.localized(), message: error?.description.localized(), preferredStyle: UIAlertControllerStyle.Alert)
+                let alertView = UIAlertController(title: StringConstants.ERROR.localized(), message: error?.domain.localized(), preferredStyle: UIAlertControllerStyle.Alert)
                 alertView.addAction(UIAlertAction(title: StringConstants.OK, style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alertView, animated: true, completion: nil)
             }

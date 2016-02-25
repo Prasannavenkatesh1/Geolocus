@@ -25,7 +25,13 @@ class TermsAndConditionsViewController : UIViewController{
     
     //MARK: View Methods
     override func viewDidLoad() {
+        self.termsAndConditionsWebView.layer.cornerRadius = 10
+        self.termsAndConditionsWebView.clipsToBounds = true
+        
         self.okButton.setTitle(LocalizationConstants.Ok_title.localized(), forState: UIControlState.Normal)
+        self.okButton.layer.cornerRadius = 10
+        self.okButton.clipsToBounds = true
+        
         termsAndConditionsWebView.loadHTMLString(termsAndConditionsContent, baseURL: nil)
         [self.termsAndConditionsWebView.bringSubviewToFront(okButton)]
     }
