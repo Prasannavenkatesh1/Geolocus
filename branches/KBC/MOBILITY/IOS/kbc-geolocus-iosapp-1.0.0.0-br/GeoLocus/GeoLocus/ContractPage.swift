@@ -8,15 +8,6 @@
 
 import UIKit
 
-extension NSCache {
-    class var sharedInstance : NSCache {
-        struct Static {
-            static let instance : NSCache = NSCache()
-        }
-        return Static.instance
-    }
-}
-
 /* This view loads the contract points for the user based on the values from the server */
 
 class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
@@ -28,6 +19,9 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
     var contractPointsAchieved = String()
     var totalContractPoints = String()
     
+    let myImageName = "ContractImage.png"
+    var imagePath = String()
+
     /* Outlets for the constraints created in the view */
     @IBOutlet weak var layoutConstraintPlusImageLeading: NSLayoutConstraint!
     @IBOutlet weak var layoutConstraintBonusPointsTop: NSLayoutConstraint!
@@ -55,9 +49,12 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
     @IBOutlet weak var ecoPointsTitleLabel: UILabel!
     @IBOutlet weak var speedPointsTitleLabel: UILabel!
     @IBOutlet weak var totalPointsTitleLabel: UILabel!
+    
     //MARK: View Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+            
+        imagePath = fileInDocumentsDirectory(myImageName)
         
         self.setTitleForLabels()
         self.fetchContractDataFromDatabase()
@@ -65,7 +62,7 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
         self.customiseProgressView()
         self.addDashedBorderToImageView()
         self.addViewBorder()
-        self.setCachedImage()
+        self.loadImageInView()
         
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
         self.imageView.userInteractionEnabled = true
@@ -114,12 +111,43 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
         
     }
     
-    /* set image in the view stored in the cache when view is loaded again */
-    func setCachedImage(){
-        if let cachedImage = NSCache.sharedInstance.objectForKey("contractImage") as? UIImage {
-            self.imageView.image = cachedImage
+    /* load image in the view */
+    func loadImageInView(){
+        if let loadedImage = loadImageFromPath(imagePath) {
+            self.imageView.image = loadedImage
             self.hideImageViewBorder()
         }
+        else {
+            print("Error in loading image")
+        }
+    }
+    
+    /* get documents path where the image is stored */
+    func getDocumentsURL() -> NSURL {
+        let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+        return documentsURL
+    }
+    
+    /* get name of the file from the Documents Directory */
+    func fileInDocumentsDirectory(filename: String) -> String {
+        let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
+        return fileURL.path!
+    }
+    
+    /* save the image in png format and writing to the documents directory with a file name */
+    func saveImage (image: UIImage, path: String ) -> Bool{
+        let pngImageData = UIImagePNGRepresentation(image)
+        let result = pngImageData!.writeToFile(path, atomically: true)
+        return result
+    }
+    
+    /* load image from the documents directory */
+    func loadImageFromPath(path: String) -> UIImage? {
+        let image = UIImage(contentsOfFile: path)
+        if image == nil {
+            print("Missing image at: \(path)")
+        }
+        return image
     }
     
     /* hides imageview border, camera icon and label if image is present in the imageview */
@@ -214,7 +242,13 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
         self.dismissViewControllerAnimated(true, completion:nil)
         self.imageView.image = resizeImage(image, imageSize: CGSizeMake(self.imageView.bounds.width, self.imageView.bounds.height))
-        NSCache.sharedInstance.setObject(self.imageView.image!, forKey: "contractImage")
+        
+        // Save image to Document directory
+        if let image = imageView.image {
+            saveImage(image, path: imagePath)
+        } else {
+            print("Error in saving image..")
+        }
         self.hideImageViewBorder()
     }
 }

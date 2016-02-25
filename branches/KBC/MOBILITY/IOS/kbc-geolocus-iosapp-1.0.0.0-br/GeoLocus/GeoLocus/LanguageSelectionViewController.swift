@@ -71,10 +71,10 @@ class LanguageSelectionViewController: UIViewController{
     
     /* setting localized string for title of the buttons */
     func setTitleForButtons(){
-        self.germanButton.setTitle(LocalizationConstants.Language_German.localized(), forState: UIControlState.Normal)
+        self.germanButton.setTitle(LocalizationConstants.Language_Dutch.localized(), forState: UIControlState.Normal)
         self.frenchButton.setTitle(LocalizationConstants.Language_French.localized(), forState: UIControlState.Normal)
         self.englishButton.setTitle(LocalizationConstants.Language_English.localized(), forState: UIControlState.Normal)
-        self.dutchButton.setTitle(LocalizationConstants.Language_Dutch.localized(), forState: UIControlState.Normal)
+        self.dutchButton.setTitle(LocalizationConstants.Language_German.localized(), forState: UIControlState.Normal)
     }
 }
 
