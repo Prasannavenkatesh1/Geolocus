@@ -1087,6 +1087,16 @@ class FacadeLayer{
 //  #MARK - Trip Json Creation
   
   func reteriveTripdetails(tripid:String){
+    
+    //Userdetails
+    let userdetaildatas = FacadeLayer.sharedinstance.dbactions.reteriveTrips()
+    let userdata = userdetaildatas.last
+    
+    
+//    for userdata in userdetaildatas{
+//      
+//    }
+    
     //timeseries
     let timeseriesdatas = FacadeLayer.sharedinstance.dbactions.reteriveTimeSeries(tripid)
     
@@ -1095,6 +1105,8 @@ class FacadeLayer{
     
     //tripsummary
     let tripsummarydatas = FacadeLayer.sharedinstance.dbactions.reteriveTripSummary(tripid)
+    
+    
     
     //Convert to Dictionaries
     let timeseriesJson = timeseriesToDictionary(timeseriesdatas)
@@ -1105,10 +1117,10 @@ class FacadeLayer{
     //    print("configJson \(configJson)")
     //    print("summaryJson \(summaryJson)")
     var userdetails = Dictionary<String,AnyObject>()
-    userdetails["userId"]         = StringConstants.USER_ID
-    userdetails["tokenId"]        = StringConstants.TOKEN_ID
-    userdetails["channelId"]      = StringConstants.CHANNEL_TYPE
-    userdetails["channelVersion"] =  UIDevice.currentDevice().systemVersion;
+    userdetails["userId"]         = userdata?.userid
+    userdetails["tokenId"]        = userdata?.tokenid
+    userdetails["channelId"]      = userdata?.channelid
+    userdetails["channelVersion"] =  userdata?.channelversion
     
     var TripJson = Dictionary<String,AnyObject>()
     TripJson["userdetails"] = userdetails

@@ -355,11 +355,22 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       schedule: NSDate(),
       tripstatus: false)
     print("stop trip notification fired")
+    
+    self.performSelector("deleteTripDatas", withObject: nil, afterDelay: 5) //900 - 15 mins | 30 - .5
+  }
+  
+  func deleteTripDatas(){
+    print("delete trip datas")
+    
+    
   }
   
   func getdetails(){
     
 //    isVechileMoving = false // re_setting the vechile to not moving stage
+    
+    // to cancel the timer while not tapping the notification
+    NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: "deleteTripDatas", object: nil)
     
     var dataUsageFinalValue: Int = 0
     if let data  = datausagecalc?.reteriveTotalDatasConsumed() {
@@ -375,13 +386,12 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       tripendtime: enddate!,
       timezone:stringval,
       timezoneid:"temp")
-    // print(SummaryModel)
-//    print("summarymodal: \(summarymodal.brakingscore), \(summarymodal.accelerationscore), \(summarymodal.ecoscore),\(summarymodal.totalduration)")
     
     FacadeLayer.sharedinstance.dbactions.saveTripSummary(summarymodal)
     
-    //
+    // Convert to Json and send to Server
     FacadeLayer.sharedinstance.reteriveTripdetails(defaultsTripID)
+    
     
   }
   

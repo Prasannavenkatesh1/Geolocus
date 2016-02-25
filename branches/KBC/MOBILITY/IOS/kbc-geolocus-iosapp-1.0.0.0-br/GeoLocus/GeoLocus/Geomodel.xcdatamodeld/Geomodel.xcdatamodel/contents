@@ -114,9 +114,9 @@
         <attribute name="tokenid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tripid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="triptoconfig" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Configurations" syncable="YES"/>
-        <relationship name="triptosummary" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TripSummary" syncable="YES"/>
-        <relationship name="triptotimeseries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Trip_timeseries" syncable="YES"/>
+        <relationship name="triptoconfig" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Configurations" syncable="YES"/>
+        <relationship name="triptosummary" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="TripSummary" syncable="YES"/>
+        <relationship name="triptotimeseries" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Trip_timeseries" syncable="YES"/>
     </entity>
     <entity name="TripSummary" representedClassName=".TripSummary" syncable="YES">
         <attribute name="accelerationcount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -145,7 +145,7 @@
         <element name="Trip_Event" positionX="1996" positionY="123" width="128" height="135"/>
         <element name="Trip_Speed_Zone" positionX="1719" positionY="189" width="128" height="163"/>
         <element name="Trip_timeseries" positionX="826" positionY="-252" width="128" height="208"/>
-        <element name="TripSummary" positionX="1098" positionY="-90" width="128" height="253"/>
         <element name="Trips" positionX="826" positionY="8" width="128" height="163"/>
+        <element name="TripSummary" positionX="1098" positionY="-90" width="128" height="253"/>
     </elements>
 </model>
