@@ -44,6 +44,7 @@ class WelcomePageViewController: BaseViewController,UIPageViewControllerDataSour
     
     /* on double tapping the pages, navigates to contract page */
     func doubleTapped() {
+      FacadeLayer.sharedinstance.corelocation.initLocationManager()
         self.pageViewController.view.removeFromSuperview()
         [self.pageViewController.removeFromParentViewController()]
         

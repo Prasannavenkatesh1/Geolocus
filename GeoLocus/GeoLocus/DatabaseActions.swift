@@ -86,22 +86,12 @@ class DatabaseActions: NSObject {
     }
   }
     
-//    private func savePrivateManagedObjectContext() {
-//        
-//        self.privateManagedObjectContext.performBlock { () -> Void in
-//            do {
-//                try self.privateManagedObjectContext.save()
-//            } catch {
-//                let saveError = error as NSError
-//                print("\(saveError), \(saveError.userInfo)")
-//            }
-//        }
-//    }
-  
+ 
   //MARK:- TripTimeSeries
   
   func saveTimeSeries(timeseriesmodel:TimeSeriesModel){
     let timeseries = NSEntityDescription.insertNewObjectForEntityForName("Trip_timeseries",inManagedObjectContext: self.managedObjectContext) as! Trip_timeseries
+    timeseries.tripid       = timeseriesmodel.tripid
     timeseries.isEvent      = timeseriesmodel.isEvent
     timeseries.eventtype    = timeseriesmodel.eventtype
     timeseries.eventvalue   = timeseriesmodel.eventvalue
@@ -111,6 +101,7 @@ class DatabaseActions: NSObject {
     timeseries.datausage    = timeseriesmodel.datausage
     timeseries.distance     = timeseriesmodel.distance
     timeseries.currenttime  = timeseriesmodel.currenttime
+    timeseries.isvalidtrip  = timeseriesmodel.isvalidtrip
     
     do{
       try self.managedObjectContext.save()
@@ -121,19 +112,19 @@ class DatabaseActions: NSObject {
   
   func saveTripSummary(summarymodel:SummaryModel){
     let tripsummary = NSEntityDescription.insertNewObjectForEntityForName("TripSummary",inManagedObjectContext: self.managedObjectContext) as! TripSummary
-    tripsummary.accelerationcount             = summarymodel.accelerationcount
-    tripsummary.attentionscore = summarymodel.attentionscore
-    tripsummary.brakingcount = summarymodel.brakingcount
-    tripsummary.brakingscore = summarymodel.brakingscore
-    tripsummary.datausage = summarymodel.datausage
-    tripsummary.ecoscore = summarymodel.ecoscore
-    tripsummary.timezone = summarymodel.timezone
-//    tripsummary.timezoneid = summarymodel.timezoneid
-    tripsummary.totaldistance = summarymodel.totaldistance
-    tripsummary.totalduration = summarymodel.totalduration
-    tripsummary.tripendtime = summarymodel.tripendtime
-    tripsummary.tripid = summarymodel.tripid
-    tripsummary.tripstarttime = summarymodel.tripstarttime
+    tripsummary.accelerationcount = summarymodel.accelerationcount
+    tripsummary.attentionscore    = summarymodel.attentionscore
+    tripsummary.brakingcount      = summarymodel.brakingcount
+    tripsummary.brakingscore      = summarymodel.brakingscore
+    tripsummary.datausage         = summarymodel.datausage
+    tripsummary.ecoscore          = summarymodel.ecoscore
+    tripsummary.timezone          = summarymodel.timezone
+    tripsummary.timezoneid        = summarymodel.timezoneid
+    tripsummary.totaldistance     = summarymodel.totaldistance
+    tripsummary.totalduration     = summarymodel.totalduration
+    tripsummary.tripendtime       = summarymodel.tripendtime
+    tripsummary.tripid            = summarymodel.tripid
+    tripsummary.tripstarttime     = summarymodel.tripstarttime
     
     
     do{
@@ -155,6 +146,8 @@ class DatabaseActions: NSObject {
     configthresholds.weightage_severevoilation    = configmodel.weightage_severevoilation
     configthresholds.ecoweightage_braking         = configmodel.ecoweightage_braking
     configthresholds.ecoweightage_acceleration    = configmodel.ecoweightage_acceleration
+    configthresholds.thresholds_minimumspeed      = configmodel.thresholds_minimumspeed
+    configthresholds.tripid                       = configmodel.tripid
     
     do{
       try self.managedObjectContext.save()
@@ -163,43 +156,68 @@ class DatabaseActions: NSObject {
     }
   }
   
-  func getConfiguration() -> ConfigurationModel{
+  func saveTripMaster(tripmodel:TripModel){
+    let tripsdatas = NSEntityDescription.insertNewObjectForEntityForName("Trips",inManagedObjectContext: self.managedObjectContext) as! Trips
+    tripsdatas.tripid           = tripmodel.tripid
+    tripsdatas.channelid        = tripmodel.channelid
+    tripsdatas.userid           = tripmodel.userid
+    tripsdatas.tokenid          = tripmodel.tokenid
+    tripsdatas.channelversion   = tripmodel.channelversion
+    
+    do{
+      try self.managedObjectContext.save()
+    }catch{
+      fatalError("not inserted")
+    }
+  }
+  
+  func getConfiguration(tripid:String) -> ConfigurationModel?{
     
     let fetchRequest = NSFetchRequest(entityName: "Configurations")
+    let predicate = NSPredicate(format: "tripid = %@",tripid)
+    fetchRequest.predicate = predicate
     do{
-       let configdata:Configurations =  try (self.managedObjectContext.executeFetchRequest(fetchRequest))[0] as! Configurations
+      let configs = try (self.managedObjectContext.executeFetchRequest(fetchRequest))
+      if configs.count > 0{
+        let configdata:Configurations =  configs[0] as! Configurations
+        
+        var configmodeldata:ConfigurationModel    = ConfigurationModel()
+        configmodeldata.thresholds_brake          = configdata.thresholds_brake
+        configmodeldata.thresholds_acceleration   = configdata.thresholds_acceleration
+        configmodeldata.thresholds_autotrip       = configdata.thresholds_autotrip
+        configmodeldata.weightage_braking         = configdata.weightage_braking
+        configmodeldata.weightage_acceleration    = configdata.weightage_acceleration
+        configmodeldata.weightage_speed           = configdata.weightage_speed
+        configmodeldata.weightage_severevoilation = configdata.weightage_severevoilation
+        configmodeldata.ecoweightage_braking      = configdata.ecoweightage_braking
+        configmodeldata.ecoweightage_acceleration = configdata.ecoweightage_acceleration
+        configmodeldata.thresholds_minimumspeed   = configdata.thresholds_minimumspeed
+        configmodeldata.tripid                    = configdata.tripid
+        
+        
+         return configmodeldata
+      }
+      return nil
       
-      var configmodeldata:ConfigurationModel    = ConfigurationModel()
-      configmodeldata.thresholds_brake          = configdata.thresholds_brake
-      configmodeldata.thresholds_acceleration   = configdata.thresholds_acceleration
-      configmodeldata.thresholds_autotrip       = configdata.thresholds_autotrip
-      configmodeldata.weightage_braking         = configdata.weightage_braking
-      configmodeldata.weightage_acceleration    = configdata.weightage_acceleration
-      configmodeldata.weightage_speed           = configdata.weightage_speed
-      configmodeldata.weightage_severevoilation = configdata.weightage_severevoilation
-      configmodeldata.ecoweightage_braking      = configdata.ecoweightage_braking
-      configmodeldata.ecoweightage_acceleration = configdata.ecoweightage_acceleration
-      
-      return configmodeldata
-
     }catch{
       fatalError("reterive error")
     }
   }
   
-  func fetchEventCount(eventtype:Events.EventType) -> NSNumber{
+  func fetchEventCount(eventtype:Events.EventType, tripid:String) -> NSNumber{
     
     let fetchRequest = NSFetchRequest(entityName: "Trip_timeseries")
-    let predicate = NSPredicate(format: "eventtype = %d AND isEvent == 1",eventtype.rawValue)
+    let predicate = NSPredicate(format: "eventtype = %d AND isEvent == 1 AND tripid = %@",eventtype.rawValue,tripid)
     fetchRequest.predicate = predicate
     let count = self.managedObjectContext.countForFetchRequest(fetchRequest, error: nil)
     return NSNumber(integer: count)
     
   }
   
-  func fetchTotalDistance() -> NSNumber{
+  func fetchTotalDistance(tripid:String) -> NSNumber{
     
     let fetchRequest = NSFetchRequest(entityName: "Trip_timeseries")
+   
     let timseries:Trip_timeseries
     do{
       timseries = try (self.managedObjectContext.executeFetchRequest(fetchRequest)).last as! Trip_timeseries
@@ -210,16 +228,19 @@ class DatabaseActions: NSObject {
     
   }
   
-  func reteriveTimeSeries() -> [Trip_timeseries]{
+  func reteriveTimeSeries(tripid:String) -> [Trip_timeseries]{
     var locations  = [Trip_timeseries]()
     
     let fetchRequest = NSFetchRequest(entityName: "Trip_timeseries")
+    let predicate = NSPredicate(format: "tripid = %@",tripid)
+    fetchRequest.predicate = predicate
     do{
       
       locations =  try self.managedObjectContext.executeFetchRequest(fetchRequest) as! [Trip_timeseries]
-      let defaultsTripID = String(NSUserDefaults.standardUserDefaults().valueForKey(StringConstants.TOKEN_ID))
+      
       for triptimeseries in locations {
-        let timeseries:TimeSeriesModel = TimeSeriesModel.init(tripid: defaultsTripID + "1", ctime: triptimeseries.currenttime!,
+        let timeseries:TimeSeriesModel = TimeSeriesModel.init(tripid: tripid,
+          ctime: triptimeseries.currenttime!,
           lat: triptimeseries.latitude!,
           longt: triptimeseries.longitude!,
           speedval: triptimeseries.speed!,
@@ -227,8 +248,9 @@ class DatabaseActions: NSObject {
           iseventval: triptimeseries.isEvent!,
           evetype: triptimeseries.eventtype!,
           eveval: triptimeseries.eventvalue!,
-          distance: triptimeseries.distance!)
-        print(timeseries)
+          distance: triptimeseries.distance!,
+          isvalidtrip: triptimeseries.isvalidtrip!)
+//        print(timeseries)
       }
     }catch{
       fatalError("reterive error")
@@ -237,24 +259,33 @@ class DatabaseActions: NSObject {
     return locations
   }
   
-  func reteriveConfiguration(tripid:String) -> ConfigurationModel{
+  func reteriveConfiguration(tripid:String) -> ConfigurationModel?{
     
     let fetchRequest = NSFetchRequest(entityName: "Configurations")
+    let predicate = NSPredicate(format: "tripid = %@",tripid)
+    fetchRequest.predicate = predicate
+    
     do{
-      let configdata:Configurations =  try (self.managedObjectContext.executeFetchRequest(fetchRequest))[0] as! Configurations
-      
-      var configmodeldata:ConfigurationModel    = ConfigurationModel()
-      configmodeldata.thresholds_brake          = configdata.thresholds_brake
-      configmodeldata.thresholds_acceleration   = configdata.thresholds_acceleration
-      configmodeldata.thresholds_autotrip       = configdata.thresholds_autotrip
-      configmodeldata.weightage_braking         = configdata.weightage_braking
-      configmodeldata.weightage_acceleration    = configdata.weightage_acceleration
-      configmodeldata.weightage_speed           = configdata.weightage_speed
-      configmodeldata.weightage_severevoilation = configdata.weightage_severevoilation
-      configmodeldata.ecoweightage_braking      = configdata.ecoweightage_braking
-      configmodeldata.ecoweightage_acceleration = configdata.ecoweightage_acceleration
-      
-      return configmodeldata
+      let configarr = try (self.managedObjectContext.executeFetchRequest(fetchRequest))
+      if configarr.count > 0{
+        let configdata:Configurations =  configarr[0] as! Configurations
+        
+        var configmodeldata:ConfigurationModel    = ConfigurationModel()
+        configmodeldata.thresholds_brake          = configdata.thresholds_brake
+        configmodeldata.thresholds_acceleration   = configdata.thresholds_acceleration
+        configmodeldata.thresholds_autotrip       = configdata.thresholds_autotrip
+        configmodeldata.weightage_braking         = configdata.weightage_braking
+        configmodeldata.weightage_acceleration    = configdata.weightage_acceleration
+        configmodeldata.weightage_speed           = configdata.weightage_speed
+        configmodeldata.weightage_severevoilation = configdata.weightage_severevoilation
+        configmodeldata.ecoweightage_braking      = configdata.ecoweightage_braking
+        configmodeldata.ecoweightage_acceleration = configdata.ecoweightage_acceleration
+        configmodeldata.tripid                    = configdata.tripid
+        configmodeldata.thresholds_minimumspeed   = configdata.thresholds_minimumspeed
+        
+        return configmodeldata
+      }
+      return nil
       
     }catch{
       fatalError("reterive error")
@@ -264,6 +295,9 @@ class DatabaseActions: NSObject {
   func reteriveTripSummary(tripid:String) -> SummaryModel{
     var summarymodeldata:SummaryModel
     let fetchRequest = NSFetchRequest(entityName: "TripSummary")
+    let predicate = NSPredicate(format: "tripid = %@",tripid)
+    fetchRequest.predicate = predicate
+    
     do{
       
       let tripsummary:TripSummary = try (self.managedObjectContext.executeFetchRequest(fetchRequest))[0] as! TripSummary

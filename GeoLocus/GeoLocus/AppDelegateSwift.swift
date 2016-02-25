@@ -80,22 +80,24 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     if( defaults.boolForKey("isFirstTime") == false){
       defaults.setBool(true, forKey: "isFirstTime")
       defaults.setBool(false, forKey: "isStarted")
+      defaults.setInteger(1, forKey: "autoincr_tripid")
       defaults.setValue("", forKey: StringConstants.TOKEN_ID)
-      defaults.setValue("", forKey: "motionlat")
+      defaults.setObject("", forKey: "motionlat")
 
       
       //  Insert Weightage values for testing
-      var conmodel:ConfigurationModel = ConfigurationModel()
-      conmodel.thresholds_brake = NSNumber(double: 7)
-      conmodel.thresholds_acceleration = NSNumber(double: 5)
-      conmodel.thresholds_autotrip = NSNumber(double: 7)
-      conmodel.weightage_braking = NSNumber(double: 0.9)
-      conmodel.weightage_acceleration = NSNumber(double: 1.2)
-      conmodel.weightage_speed = NSNumber(double: 1.6)
-      conmodel.weightage_severevoilation = NSNumber(double: 1.4)
-      conmodel.ecoweightage_braking = NSNumber(double: 0.5)
-      conmodel.ecoweightage_acceleration = NSNumber(double: 0.2)
-      FacadeLayer.sharedinstance.dbactions.saveConfiguration(conmodel)
+      
+      defaults.setDouble(7, forKey: StringConstants.Thresholds_Brake)
+      defaults.setDouble(5, forKey: StringConstants.Thresholds_Acceleration)
+      defaults.setDouble(7, forKey: StringConstants.Thresholds_Autotrip)
+      defaults.setDouble(40, forKey: StringConstants.Thresholds_Minimumspeed)
+      defaults.setDouble(0.9, forKey: StringConstants.Weightage_Braking)
+      defaults.setDouble(1.2, forKey: StringConstants.Weightage_Acceleration)
+      defaults.setDouble(1.6, forKey: StringConstants.Weightage_Speed)
+      defaults.setDouble(1.4, forKey: StringConstants.Weightage_Severevoilation)
+      defaults.setDouble(0.5, forKey: StringConstants.Ecoweightage_Braking)
+      defaults.setDouble(0.2, forKey: StringConstants.Ecoweightage_Acceleration)
+      
 
     }
       
@@ -271,6 +273,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         let checkUserLogin : Bool = self.checkUserDetails()
         //checkUserLogin = false
         if(!checkUserLogin){
+            FacadeLayer.sharedinstance.corelocation.initLocationManager()
+
             let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
             self.window?.rootViewController = dashboardPage
             self.window?.makeKeyAndVisible()
@@ -497,8 +501,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     }
     
     
-    
-    
+  
   //  MARK: - Background Task Identifier
   func applicationDidEnterBackground(application: UIApplication) {
 //    doBackgroundTask()

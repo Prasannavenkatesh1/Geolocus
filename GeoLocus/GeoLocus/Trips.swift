@@ -1,5 +1,5 @@
 //
-//  Trip_timeseries.swift
+//  Trips.swift
 //  GeoLocus
 //
 //  Created by Wearables Mac Mini on 24/02/16.
@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-class Trip_timeseries: NSManagedObject {
+class Trips: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 

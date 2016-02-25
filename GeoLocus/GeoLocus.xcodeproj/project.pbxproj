@@ -248,21 +248,24 @@
 		B6AC7CC31C73134800CD8B02 /* ContractModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AC7CC21C73134800CD8B02 /* ContractModel.swift */; };
 		B6AC7CCE1C7326BD00CD8B02 /* Contract.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AC7CCC1C7326BD00CD8B02 /* Contract.swift */; };
 		B6AC7CCF1C7326BD00CD8B02 /* Contract+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AC7CCD1C7326BD00CD8B02 /* Contract+CoreDataProperties.swift */; };
-		BF2AA3A41C6B0847000D9A67 /* Configurations+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2AA3A01C6B0847000D9A67 /* Configurations+CoreDataProperties.swift */; };
-		BF2AA3A51C6B0847000D9A67 /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2AA3A11C6B0847000D9A67 /* Configurations.swift */; };
 		BF2D457F1C6C81080017EBB0 /* SummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D457E1C6C81070017EBB0 /* SummaryModel.swift */; };
-		BF2D45821C6CC1E90017EBB0 /* TripSummary+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D45801C6CC1E90017EBB0 /* TripSummary+CoreDataProperties.swift */; };
-		BF2D45831C6CC1E90017EBB0 /* TripSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D45811C6CC1E90017EBB0 /* TripSummary.swift */; };
 		BF43B3501C61D25900710E22 /* TripNotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF43B34F1C61D25900710E22 /* TripNotify.swift */; };
 		BF44D27E1C6DBA9F00BFB1E2 /* Reports+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44D27A1C6DBA9F00BFB1E2 /* Reports+CoreDataProperties.swift */; };
 		BF44D27F1C6DBA9F00BFB1E2 /* Reports.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44D27B1C6DBA9F00BFB1E2 /* Reports.swift */; };
 		BF44D2801C6DBA9F00BFB1E2 /* Dashboard+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44D27C1C6DBA9F00BFB1E2 /* Dashboard+CoreDataProperties.swift */; };
 		BF44D2811C6DBA9F00BFB1E2 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44D27D1C6DBA9F00BFB1E2 /* Dashboard.swift */; };
 		BF44D2831C6DED3E00BFB1E2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44D2821C6DED3E00BFB1E2 /* BaseViewController.swift */; };
+		BF47FEF91C7DA2E8006244A2 /* Trips+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FEF11C7DA2E8006244A2 /* Trips+CoreDataProperties.swift */; };
+		BF47FEFA1C7DA2E8006244A2 /* Trips.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FEF21C7DA2E8006244A2 /* Trips.swift */; };
+		BF47FEFB1C7DA2E8006244A2 /* TripSummary+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FEF31C7DA2E8006244A2 /* TripSummary+CoreDataProperties.swift */; };
+		BF47FEFC1C7DA2E8006244A2 /* TripSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FEF41C7DA2E8006244A2 /* TripSummary.swift */; };
+		BF47FEFF1C7DA2E8006244A2 /* Configurations+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FEF71C7DA2E8006244A2 /* Configurations+CoreDataProperties.swift */; };
+		BF47FF001C7DA2E8006244A2 /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FEF81C7DA2E8006244A2 /* Configurations.swift */; };
+		BF47FF031C7DA6BB006244A2 /* Trip_timeseries+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FF011C7DA6BA006244A2 /* Trip_timeseries+CoreDataProperties.swift */; };
+		BF47FF041C7DA6BB006244A2 /* Trip_timeseries.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FF021C7DA6BB006244A2 /* Trip_timeseries.swift */; };
+		BF47FF061C7DCE28006244A2 /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FF051C7DCE28006244A2 /* TripModel.swift */; };
 		BF4BA0E21C5F661F0028D79B /* Thresholds.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4BA0E11C5F661F0028D79B /* Thresholds.swift */; };
 		BF4BA0E41C5F6CC70028D79B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4BA0E31C5F6CC70028D79B /* Config.swift */; };
-		BF4D23781C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4D23761C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift */; };
-		BF4D23791C5A0A8F00230355 /* Trip_timeseries.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4D23771C5A0A8F00230355 /* Trip_timeseries.swift */; };
 		BF4F8D981C43845000895640 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D971C43845000895640 /* CategoryCell.swift */; };
 		BF4F8D9A1C43CA8D00895640 /* Httpclient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D991C43CA8D00895640 /* Httpclient.swift */; };
 		BF4F8D9C1C43CA9D00895640 /* DatabaseActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */; };
@@ -597,21 +600,24 @@
 		B6AC7CC21C73134800CD8B02 /* ContractModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractModel.swift; sourceTree = "<group>"; };
 		B6AC7CCC1C7326BD00CD8B02 /* Contract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contract.swift; sourceTree = "<group>"; };
 		B6AC7CCD1C7326BD00CD8B02 /* Contract+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Contract+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		BF2AA3A01C6B0847000D9A67 /* Configurations+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Configurations+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		BF2AA3A11C6B0847000D9A67 /* Configurations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		BF2D457E1C6C81070017EBB0 /* SummaryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryModel.swift; sourceTree = "<group>"; };
-		BF2D45801C6CC1E90017EBB0 /* TripSummary+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TripSummary+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		BF2D45811C6CC1E90017EBB0 /* TripSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummary.swift; sourceTree = "<group>"; };
 		BF43B34F1C61D25900710E22 /* TripNotify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripNotify.swift; sourceTree = "<group>"; };
 		BF44D27A1C6DBA9F00BFB1E2 /* Reports+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reports+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BF44D27B1C6DBA9F00BFB1E2 /* Reports.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reports.swift; sourceTree = "<group>"; };
 		BF44D27C1C6DBA9F00BFB1E2 /* Dashboard+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dashboard+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BF44D27D1C6DBA9F00BFB1E2 /* Dashboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		BF44D2821C6DED3E00BFB1E2 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		BF47FEF11C7DA2E8006244A2 /* Trips+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trips+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BF47FEF21C7DA2E8006244A2 /* Trips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trips.swift; sourceTree = "<group>"; };
+		BF47FEF31C7DA2E8006244A2 /* TripSummary+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TripSummary+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BF47FEF41C7DA2E8006244A2 /* TripSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummary.swift; sourceTree = "<group>"; };
+		BF47FEF71C7DA2E8006244A2 /* Configurations+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Configurations+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BF47FEF81C7DA2E8006244A2 /* Configurations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
+		BF47FF011C7DA6BA006244A2 /* Trip_timeseries+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_timeseries+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BF47FF021C7DA6BB006244A2 /* Trip_timeseries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_timeseries.swift; sourceTree = "<group>"; };
+		BF47FF051C7DCE28006244A2 /* TripModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripModel.swift; sourceTree = "<group>"; };
 		BF4BA0E11C5F661F0028D79B /* Thresholds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thresholds.swift; sourceTree = "<group>"; };
 		BF4BA0E31C5F6CC70028D79B /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		BF4D23761C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_timeseries+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		BF4D23771C5A0A8F00230355 /* Trip_timeseries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_timeseries.swift; sourceTree = "<group>"; };
 		BF4F8D971C43845000895640 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		BF4F8D991C43CA8D00895640 /* Httpclient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Httpclient.swift; sourceTree = "<group>"; };
 		BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseActions.swift; sourceTree = "<group>"; };
@@ -1093,6 +1099,14 @@
 		BF4E0D391C4F701E00BF53FB /* DBModels */ = {
 			isa = PBXGroup;
 			children = (
+				BF47FEF11C7DA2E8006244A2 /* Trips+CoreDataProperties.swift */,
+				BF47FEF21C7DA2E8006244A2 /* Trips.swift */,
+				BF47FF011C7DA6BA006244A2 /* Trip_timeseries+CoreDataProperties.swift */,
+				BF47FF021C7DA6BB006244A2 /* Trip_timeseries.swift */,
+				BF47FEF31C7DA2E8006244A2 /* TripSummary+CoreDataProperties.swift */,
+				BF47FEF41C7DA2E8006244A2 /* TripSummary.swift */,
+				BF47FEF71C7DA2E8006244A2 /* Configurations+CoreDataProperties.swift */,
+				BF47FEF81C7DA2E8006244A2 /* Configurations.swift */,
 				283C04931C74A24D0096358C /* OverallScore+CoreDataProperties.swift */,
 				283C04941C74A24D0096358C /* OverallScore.swift */,
 				283C048F1C7484F10096358C /* Trip_Detail+CoreDataProperties.swift */,
@@ -1103,18 +1117,12 @@
 				BF44D27B1C6DBA9F00BFB1E2 /* Reports.swift */,
 				BF44D27C1C6DBA9F00BFB1E2 /* Dashboard+CoreDataProperties.swift */,
 				BF44D27D1C6DBA9F00BFB1E2 /* Dashboard.swift */,
-				BF2AA3A01C6B0847000D9A67 /* Configurations+CoreDataProperties.swift */,
-				BF2AA3A11C6B0847000D9A67 /* Configurations.swift */,
-				BF4D23761C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift */,
-				BF4D23771C5A0A8F00230355 /* Trip_timeseries.swift */,
 				283A2B351C65D7C700F6BD16 /* Trip_Badge+CoreDataProperties.swift */,
 				283A2B361C65D7C700F6BD16 /* Trip_Badge.swift */,
 				28398E4F1C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift */,
 				28398E501C637F32003D5BE5 /* Trip_Speed_Zone.swift */,
 				28398E531C637F32003D5BE5 /* Trip_Event+CoreDataProperties.swift */,
 				28398E541C637F32003D5BE5 /* Trip_Event.swift */,
-				BF2D45801C6CC1E90017EBB0 /* TripSummary+CoreDataProperties.swift */,
-				BF2D45811C6CC1E90017EBB0 /* TripSummary.swift */,
 			);
 			name = DBModels;
 			sourceTree = "<group>";
@@ -1208,6 +1216,7 @@
 				B6AC7CC21C73134800CD8B02 /* ContractModel.swift */,
 				282FAB5B1C75929F00AEDB63 /* Utility.swift */,
 				3AD32B931C7B2622006CC374 /* CustomButton.swift */,
+				BF47FF051C7DCE28006244A2 /* TripModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1597,12 +1606,14 @@
 				630C19D71AE7B2A8000B32CA /* Drawings.swift in Sources */,
 				63EA2C661B70DA4400ECC0E9 /* DashboardDB.m in Sources */,
 				28398E561C637F32003D5BE5 /* Trip_Speed_Zone.swift in Sources */,
+				BF47FEFB1C7DA2E8006244A2 /* TripSummary+CoreDataProperties.swift in Sources */,
 				2840EFDE1C6B20F10020B8FF /* Extensions.swift in Sources */,
 				B640F0DE1C621C9E0051864F /* CALayer+UIColor.swift in Sources */,
 				BF73374B1C3FBD9E006094C0 /* Pageviewcontroller.swift in Sources */,
 				6CCAF9081C4E062700484056 /* ReportsViewController.swift in Sources */,
 				3A58EE361C74564C006CCF6D /* SnoozingViewController.swift in Sources */,
 				638452361B0353AE00E895F7 /* GetQuoteDatabase.m in Sources */,
+				BF47FF041C7DA6BB006244A2 /* Trip_timeseries.swift in Sources */,
 				B6AC7CCE1C7326BD00CD8B02 /* Contract.swift in Sources */,
 				A6DB81471B7346AF008D3F33 /* DASHBOARD_PARAMETER.m in Sources */,
 				A6DB81441B734694008D3F33 /* TRIP_SUMMARY_COLLECTDATA.m in Sources */,
@@ -1616,6 +1627,7 @@
 				6CCAF9101C4E20D500484056 /* ErrorHandler.swift in Sources */,
 				638452391B0353AE00E895F7 /* RegistrationEntity.m in Sources */,
 				283C04911C7484F10096358C /* Trip_Detail+CoreDataProperties.swift in Sources */,
+				BF47FEFF1C7DA2E8006244A2 /* Configurations+CoreDataProperties.swift in Sources */,
 				638452301B0353AE00E895F7 /* LeaderBoardDatabase.m in Sources */,
 				630C1E8A1AD6653000C98857 /* ScorePageViewController.swift in Sources */,
 				BF5437B71C58FEA7009D2343 /* TimeSeriesModel.swift in Sources */,
@@ -1632,7 +1644,6 @@
 				6384522D1B0353AE00E895F7 /* ScoringEntity.m in Sources */,
 				638452381B0353AE00E895F7 /* GetQuoteController.m in Sources */,
 				B6AC7CCF1C7326BD00CD8B02 /* Contract+CoreDataProperties.swift in Sources */,
-				BF2AA3A41C6B0847000D9A67 /* Configurations+CoreDataProperties.swift in Sources */,
 				F55265661C522FD0002362F5 /* NotificationTableViewCell.swift in Sources */,
 				BF7337081C3F94A1006094C0 /* Geomodel.xcdatamodeld in Sources */,
 				63A93D5E1B8B24A10081C526 /* arcProgressView.swift in Sources */,
@@ -1649,22 +1660,21 @@
 				6C34EA541C69F8A0000A0A0D /* DashboardModel.swift in Sources */,
 				6C03B5D61C4D025500C938C6 /* SWRevealViewController.m in Sources */,
 				B63F53ED1C51EAFA0070002E /* LoginViewController.swift in Sources */,
-				BF4D23781C5A0A8F00230355 /* Trip_timeseries+CoreDataProperties.swift in Sources */,
 				28398E551C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift in Sources */,
 				6304FC1C1AD54B0D00734AEF /* DashboardViewController.swift in Sources */,
 				63014BB01B15C5290022FCC6 /* AppDelegate.m in Sources */,
 				638452371B0353AE00E895F7 /* LeaderBoardController.m in Sources */,
+				BF47FF061C7DCE28006244A2 /* TripModel.swift in Sources */,
 				F5CADFFF1C6C9B5900070044 /* NotificationModel.swift in Sources */,
 				BF7337531C3FC2BF006094C0 /* HistoryScorePage.swift in Sources */,
 				BF4BA0E21C5F661F0028D79B /* Thresholds.swift in Sources */,
 				638451F51B0353A000E895F7 /* GeoLocusViewController.m in Sources */,
 				6CCAF9041C4E036200484056 /* GlobalConstants.swift in Sources */,
 				F5B020451C60AA4B006C97E5 /* NotificationDetailsViewController.swift in Sources */,
-				BF2AA3A51C6B0847000D9A67 /* Configurations.swift in Sources */,
+				BF47FEF91C7DA2E8006244A2 /* Trips+CoreDataProperties.swift in Sources */,
 				BF4BA0E41C5F6CC70028D79B /* Config.swift in Sources */,
 				638451F01B0353A000E895F7 /* FMResultSet.m in Sources */,
 				28CD01E11C69A42300EEC94A /* DetectingVechile.swift in Sources */,
-				BF2D45821C6CC1E90017EBB0 /* TripSummary+CoreDataProperties.swift in Sources */,
 				28F38A0B1C61EB3900A02E93 /* Badge.swift in Sources */,
 				636EF44C1B062B67007AA706 /* RegistrationDatabase.m in Sources */,
 				217C9FF61C6B3FA1000BE567 /* GroupBarViewController.swift in Sources */,
@@ -1691,6 +1701,7 @@
 				635B88661ADBD90E00891EDE /* LeaderBoardViewController.swift in Sources */,
 				6C8ADBB71C6C69FD001BB5B9 /* HMSegmentedControl.m in Sources */,
 				283C04961C74A24D0096358C /* OverallScore.swift in Sources */,
+				BF47FF031C7DA6BB006244A2 /* Trip_timeseries+CoreDataProperties.swift in Sources */,
 				63D086AF1B0478B700BDD656 /* HeadphonesDetector.m in Sources */,
 				B636D54B1C6C8DF10067C7B8 /* SettingsCustomViewCell.swift in Sources */,
 				BF5A553B1C7C23370090E40F /* DataUsageCalculation.swift in Sources */,
@@ -1705,6 +1716,7 @@
 				BF73374D1C3FC278006094C0 /* ContractPage.swift in Sources */,
 				6389B2551B1C9AA600F2A18C /* SchedularViewController.m in Sources */,
 				6CEAF3251C4FBB2100F13379 /* ArcGraphicsController.swift in Sources */,
+				BF47FEFA1C7DA2E8006244A2 /* Trips.swift in Sources */,
 				BF7337491C3FBCF4006094C0 /* RootViewController.swift in Sources */,
 				6389B2511B1C9AA600F2A18C /* ListenerViewController.m in Sources */,
 				28F38A131C61EBB300A02E93 /* HistoryMapViewCell.swift in Sources */,
@@ -1713,12 +1725,12 @@
 				283A2B371C65D7C700F6BD16 /* Trip_Badge+CoreDataProperties.swift in Sources */,
 				283C04921C7484F10096358C /* Trip_Detail.swift in Sources */,
 				6384523D1B0353AE00E895F7 /* RegistrationController.m in Sources */,
-				BF2D45831C6CC1E90017EBB0 /* TripSummary.swift in Sources */,
 				638451F21B0353A000E895F7 /* FMDatabasePool.m in Sources */,
 				6384523F1B0353AE00E895F7 /* SendingEmergencyInfo.m in Sources */,
 				63061B511BA03CD3006BF223 /* MapView.swift in Sources */,
 				638451F41B0353A000E895F7 /* GeoLocusAppDelegate.m in Sources */,
 				283A2B381C65D7C700F6BD16 /* Trip_Badge.swift in Sources */,
+				BF47FF001C7DA2E8006244A2 /* Configurations.swift in Sources */,
 				63D086BE1B047D2A00BDD656 /* MLTableAlert.m in Sources */,
 				BF43B3501C61D25900710E22 /* TripNotify.swift in Sources */,
 				B648C20D1C58B83000EE52C3 /* PageContentViewController.swift in Sources */,
@@ -1727,8 +1739,8 @@
 				BF5A55391C7C23260090E40F /* TripMeasurements.swift in Sources */,
 				638451F61B0353A000E895F7 /* CoreLocationController.m in Sources */,
 				638451EF1B0353A000E895F7 /* FMDatabase.m in Sources */,
+				BF47FEFC1C7DA2E8006244A2 /* TripSummary.swift in Sources */,
 				63AAE5D31AE90C470013987F /* EmergencyViewController.swift in Sources */,
-				BF4D23791C5A0A8F00230355 /* Trip_timeseries.swift in Sources */,
 				6384523E1B0353AE00E895F7 /* GeolocusDashboard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

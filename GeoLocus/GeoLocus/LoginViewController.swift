@@ -64,7 +64,6 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
             self.stopLoading()
             //navigate to onboarding screen,if the login is valid, else display an alert
             if(error == nil){
-              FacadeLayer.sharedinstance.corelocation.initLocationManager()
                 let welcomeScreenViewController = self.storyboard!.instantiateViewControllerWithIdentifier(StringConstants.WelcomePageViewController) as! WelcomePageViewController
                 self.presentViewController(welcomeScreenViewController, animated: true, completion: nil)
                 

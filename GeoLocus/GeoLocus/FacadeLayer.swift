@@ -39,12 +39,8 @@ class FacadeLayer{
     var httpclient:Httpclient
     var corelocation:CoreLocation
     var webService: WebServiceURL
-    var configmodel :ConfigurationModel{
-      get{
-        return dbactions.getConfiguration()
-      }
-    }
-   var notificationCount:String?
+    var configmodel :ConfigurationModel?
+    var notificationCount:String?
     
   init(){
     dbactions = DatabaseActions()
@@ -1092,7 +1088,7 @@ class FacadeLayer{
   
   func reteriveTripdetails(tripid:String){
     //timeseries
-    let timeseriesdatas = FacadeLayer.sharedinstance.dbactions.reteriveTimeSeries()
+    let timeseriesdatas = FacadeLayer.sharedinstance.dbactions.reteriveTimeSeries(tripid)
     
     //configurations
     let configurationdatas = FacadeLayer.sharedinstance.dbactions.reteriveConfiguration(tripid)
@@ -1100,13 +1096,9 @@ class FacadeLayer{
     //tripsummary
     let tripsummarydatas = FacadeLayer.sharedinstance.dbactions.reteriveTripSummary(tripid)
     
-    //    print("timeseries \(timeseriesdatas)")
-    //    print("config \(configurationdatas)")
-    //    print("tripsummary \(tripsummarydatas)")
-    
     //Convert to Dictionaries
     let timeseriesJson = timeseriesToDictionary(timeseriesdatas)
-    let configJson = configurationToDictionary(configurationdatas)
+    let configJson = configurationToDictionary(configurationdatas!)
     let summaryJson = summarymodelDictionary(tripsummarydatas)
     
     //    print("timeseriesJson \(timeseriesJson)")
