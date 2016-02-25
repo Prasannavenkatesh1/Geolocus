@@ -125,6 +125,7 @@ class DatabaseActions: NSObject {
     tripsummary.tripendtime       = summarymodel.tripendtime
     tripsummary.tripid            = summarymodel.tripid
     tripsummary.tripstarttime     = summarymodel.tripstarttime
+    tripsummary.isSync            = summarymodel.isSync
     
     
     do{
@@ -169,6 +170,10 @@ class DatabaseActions: NSObject {
     }catch{
       fatalError("not inserted")
     }
+  }
+  
+  func deleteTrip(){
+    
   }
   
   func getConfiguration(tripid:String) -> ConfigurationModel?{
@@ -313,6 +318,66 @@ class DatabaseActions: NSObject {
     }
     return summarymodeldata
   }
+  
+  func reteriveTrips() -> [TripModel]{
+    
+    var tripsdata = [Trips]()
+    var tripsmodeldata = [TripModel]()
+    let fetchRequest = NSFetchRequest(entityName: "Trips")
+    
+    do{
+      tripsdata = try (self.managedObjectContext.executeFetchRequest(fetchRequest)) as! [Trips]
+      
+      for tripdata in tripsdata{
+        
+        var tripmodeldata = TripModel()
+        tripmodeldata.tripid = tripdata.tripid
+        tripmodeldata.channelid = tripdata.channelid
+        tripmodeldata.userid = tripdata.userid
+        tripmodeldata.tokenid = tripdata.tokenid
+        tripmodeldata.channelversion = tripdata.channelversion
+        tripsmodeldata.append(tripmodeldata)
+       
+      }
+      
+    return tripsmodeldata
+      
+    }catch{
+      fatalError("reterive error")
+    }
+  }
+  
+  
+//  func reteriveTrips -> [TripModel]{
+//    var locations  = [TripModel]()
+//    
+//    let fetchRequest = NSFetchRequest(entityName: "Trips")
+//    
+//    do{
+//      
+//      locations =  try self.managedObjectContext.executeFetchRequest(fetchRequest) as! [Trips]
+//      
+//      for triptimeseries in locations {
+//        let timeseries:TimeSeriesModel = TimeSeriesModel.init(tripid: tripid,
+//          ctime: triptimeseries.currenttime!,
+//          lat: triptimeseries.latitude!,
+//          longt: triptimeseries.longitude!,
+//          speedval: triptimeseries.speed!,
+//          datausage: triptimeseries.datausage!,
+//          iseventval: triptimeseries.isEvent!,
+//          evetype: triptimeseries.eventtype!,
+//          eveval: triptimeseries.eventvalue!,
+//          distance: triptimeseries.distance!,
+//          isvalidtrip: triptimeseries.isvalidtrip!)
+//        //        print(timeseries)
+//      }
+//    }catch{
+//      fatalError("reterive error")
+//    }
+//    
+//    return locations
+//  }
+
   
     
     //MARK: - History Methods
