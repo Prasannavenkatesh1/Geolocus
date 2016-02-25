@@ -18,8 +18,6 @@
 	<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/get/dashboard_details?userId=9</string>
 	<key>HistoryServiceURL</key>
 	<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/report/get/dashboard_history</string>
-	<key>BadgeServiceURL mock</key>
-	<string>https://dweet.io:443/dweet/for/badgesService</string>
 	<key>BadgeServiceURL</key>
 	<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/get/badges</string>
 	<key>OverallServiceURL</key>

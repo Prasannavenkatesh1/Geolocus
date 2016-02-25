@@ -21,7 +21,7 @@ protocol MapViewDelegate {
 }
 
 protocol SpeedZoneCellDelegate {
-    func severeViolationViewTapped()
+    func severeViolationViewTapped(cell: HistoryZoneViewCell)
     func zoneCellRefreshRequired() -> Bool
     func localizeMapZone(cell: HistoryZoneViewCell)
 }
@@ -287,7 +287,7 @@ extension HistoryPage: UITableViewDataSource {
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
                 cell.delegate = self
                 
-                self.tripScores?.count > 0 ? cell.configure(self.self.tripZones![indexPath.row]) : cell.configure(nil)
+                self.tripScores?.count > 0 ? cell.configure(self.tripZones![indexPath.row]) : cell.configure(nil)
                 self.zoneRefreshRequired = false
                 
                 return cell
@@ -498,6 +498,10 @@ extension HistoryPage: ScoreCellDelegate {
                 print("default in cell")
             }
             
+            if messageString.isEmpty {
+                messageString = "Message not available"
+            }
+            
             let alert = UIAlertController(title: nil, message:messageString , preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
@@ -560,10 +564,26 @@ extension HistoryPage: SpeedZoneCellDelegate {
     /**
      Called when Severe violation view is tapped. It displays the message for the severe violations during the trip
      */
-    func severeViolationViewTapped() {
+    func severeViolationViewTapped(cell: HistoryZoneViewCell) {
         var messageString = String()
+        let indexPath = self.tripHistoryTableView.indexPathForCell(cell)
+        let speedZone = self.tripZones![(indexPath?.row)!]
         
-        messageString = "<Severe Violation message for the trip>" //consider localization
+        let events = self.tripMapEvents!.filter({ (event) -> Bool in
+            event.isSevere == "1" && event.threshold == speedZone.maxSpeed
+        })
+        
+        for event in events {
+            if let message = event.message {
+                messageString += "\u{2022} \(message)"
+            }
+        }
+        
+        //messageString = "\u{2022} awdfaqferyewywey ety ewy eywey wey \n \u{2022} qerqawdqerwqwrqeqfaqf  eyew ewtewtyqeyqey qey ey\n \u{2022} dsfqwrqrqawdfawerqf qwt wtqteqye eqr qer qeryq eqyqyq qewrgqwrt ga eq qe qey qey qertyqw qrw\n" //"<Severe Violation message for the trip>" //consider localization
+        
+        if messageString.isEmpty {
+            messageString = "Message not available"
+        }
         
         let alert = UIAlertController(title: nil, message:messageString, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))        //consider localization
@@ -596,7 +616,12 @@ extension HistoryPage: TripDetailCellDelegate {
         let ecoScore    = (self.tripScores?[indexpath!.row].ecoScore.integerValue)!
         
         //consider localization
-        super.displayActivityView("Trip Score", detail: "On \((cell.tripDateLabel.text)!), I travelled with distance of \((cell.tripDistanceLabel.text)!)’s over a period of \((cell.tripDurationLabel.text)!) and achieved above scores using my KBC First 10,000KM app.", imageInfo: ["speedScore":String(speedScore), "ecoScore":String(ecoScore)], shareOption: ShareTemplate.ShareOption.TRIP_DETAIL)
+        
+        let shareDetails = String(format: LocalizationConstants.Share.Trip.Info.localized(),(cell.tripDateLabel.text)!, (cell.tripDistanceLabel.text)!, (cell.tripDurationLabel.text)!)
+        
+        displayActivityView(LocalizationConstants.Share.Trip.Title.localized(), detail: shareDetails, imageInfo: ["speedScore":String(speedScore), "ecoScore":String(ecoScore)], shareOption: ShareTemplate.ShareOption.TRIP_DETAIL)
+        
+        //super.displayActivityView("Trip Score", detail: "On \((cell.tripDateLabel.text)!), I travelled with distance of \((cell.tripDistanceLabel.text)!)’s over a period of \((cell.tripDurationLabel.text)!) and achieved above scores using my KBC First 10,000KM app.", imageInfo: ["speedScore":String(speedScore), "ecoScore":String(ecoScore)], shareOption: ShareTemplate.ShareOption.TRIP_DETAIL)
     }
 }
 

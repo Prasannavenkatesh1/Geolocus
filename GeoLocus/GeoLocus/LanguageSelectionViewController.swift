@@ -35,8 +35,8 @@ class LanguageSelectionViewController: UIViewController{
         
         switch(sender.tag){
         case 1 :
-            selectedLanguage = LanguageCode.Nederlands.rawValue
-            userSelectedLanguage = LocalizeLanguageCode.Nederlands.rawValue
+            selectedLanguage = LanguageCode.Duits.rawValue
+            userSelectedLanguage = LocalizeLanguageCode.German.rawValue
         case 2 :
             selectedLanguage = LanguageCode.French.rawValue
             userSelectedLanguage = LocalizeLanguageCode.French.rawValue
@@ -44,8 +44,8 @@ class LanguageSelectionViewController: UIViewController{
             selectedLanguage = LanguageCode.English.rawValue
             userSelectedLanguage = LocalizeLanguageCode.English.rawValue
         case 4 :
-            selectedLanguage = LanguageCode.Duits.rawValue
-            userSelectedLanguage = LocalizeLanguageCode.German.rawValue
+            selectedLanguage = LanguageCode.Nederlands.rawValue
+            userSelectedLanguage = LocalizeLanguageCode.Nederlands.rawValue
         default:
             break
         }

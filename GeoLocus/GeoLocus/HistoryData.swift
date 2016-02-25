@@ -19,7 +19,7 @@ import Foundation
 enum EventType: Int {
   case Acceleration
   case Breaking
-  case Speeding
+  case Speed
   case None
 }
 /**
@@ -50,12 +50,20 @@ class Event {
     
     let location    : EventLocation
     let type        : EventType
+    let value       : NSNumber
     let message     : String?
+    let fineMessage : String?
+    var threshold   : NSNumber = 0
+    var isSevere    : String = "0"
     
-    init(location : EventLocation, type : EventType, message : String?){
+    init(location : EventLocation, type : EventType, value : NSNumber, message : String?, fineMessage: String?, threshold: NSNumber, isSevere : String){
         self.location = location
         self.type     = type
+        self.value    = value
         self.message  = message
+        self.fineMessage = fineMessage
+        self.threshold = threshold
+        self.isSevere = isSevere
     }
 }
 

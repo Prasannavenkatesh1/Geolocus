@@ -210,6 +210,41 @@ struct Resolution {
     }
 }
 
+struct ShareView {
+    static let defaultMargin = CGFloat(12)
+    
+    struct Margin {
+        static let top = CGFloat(19)
+        static let bottom = CGFloat(12)
+        static let right = CGFloat(12)
+        static let left = CGFloat(12)
+    }
+    
+    struct Icon {
+        struct TripPadding {
+            static let top = CGFloat(65)
+            static let bottom = CGFloat(5)
+            static let right = CGFloat(12)
+            static let left = CGFloat(12)
+        }
+        
+        struct BadgePadding {
+            static let top = CGFloat(18)
+            static let bottom = CGFloat(18)
+            static let right = CGFloat(18)
+            static let left = CGFloat(18)
+        }
+    }
+    
+    struct Para {
+        struct Padding {
+            static let top = CGFloat(8)
+            static let bottom = CGFloat(5)
+            static let left = CGFloat(12)
+        }
+    }
+}
+
 struct BadgeKey {
     static let S_CODE = "statusCode"
     static let S_MESSAGE = "statusMessage"

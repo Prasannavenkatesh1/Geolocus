@@ -49,6 +49,7 @@
 "History_TD_Trip_Points"            = "Trip Points";
 
 //MARK: - Share to social media
+"Share_Trip_Score"                  = "Trip Score";
 "Share_Info_Text"                   = "Psst...you can track your driving behaviour using the KBC 10,000 KM app! You can download it from the app store.";
 "Share_Trip_Info"                   = "On %@, I travelled with distance of %@’s over a period of %@ and achieved above scores using my KBC First 10,000KM app.";
 "Share_Badge_Info"                  = "";

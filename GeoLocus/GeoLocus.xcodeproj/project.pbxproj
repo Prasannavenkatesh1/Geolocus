@@ -11,12 +11,12 @@
 		1608FBA56C5E9967CC60F00B /* Pods_GeoLocus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED4E3C8C32FEC017B582B7 /* Pods_GeoLocus.framework */; };
 		217C9FF61C6B3FA1000BE567 /* GroupBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217C9FF51C6B3FA1000BE567 /* GroupBarViewController.swift */; };
 		280D592A1C6C7EE600270CDC /* trip_details.json in Resources */ = {isa = PBXBuildFile; fileRef = 280D59291C6C7EE600270CDC /* trip_details.json */; };
+		282EC8E01C7F1EF9001322B7 /* Trip_Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282EC8DE1C7F1EF9001322B7 /* Trip_Event+CoreDataProperties.swift */; };
+		282EC8E11C7F1EF9001322B7 /* Trip_Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282EC8DF1C7F1EF9001322B7 /* Trip_Event.swift */; };
 		282FAB5C1C75929F00AEDB63 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282FAB5B1C75929F00AEDB63 /* Utility.swift */; };
 		28328A381C646F58004E5F86 /* OverallScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28328A371C646F58004E5F86 /* OverallScores.swift */; };
 		28398E551C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E4F1C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift */; };
 		28398E561C637F32003D5BE5 /* Trip_Speed_Zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E501C637F32003D5BE5 /* Trip_Speed_Zone.swift */; };
-		28398E591C637F32003D5BE5 /* Trip_Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E531C637F32003D5BE5 /* Trip_Event+CoreDataProperties.swift */; };
-		28398E5A1C637F32003D5BE5 /* Trip_Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28398E541C637F32003D5BE5 /* Trip_Event.swift */; };
 		283A2B371C65D7C700F6BD16 /* Trip_Badge+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283A2B351C65D7C700F6BD16 /* Trip_Badge+CoreDataProperties.swift */; };
 		283A2B381C65D7C700F6BD16 /* Trip_Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283A2B361C65D7C700F6BD16 /* Trip_Badge.swift */; };
 		283C04911C7484F10096358C /* Trip_Detail+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283C048F1C7484F10096358C /* Trip_Detail+CoreDataProperties.swift */; };
@@ -307,12 +307,12 @@
 /* Begin PBXFileReference section */
 		217C9FF51C6B3FA1000BE567 /* GroupBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupBarViewController.swift; sourceTree = "<group>"; };
 		280D59291C6C7EE600270CDC /* trip_details.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = trip_details.json; sourceTree = "<group>"; };
+		282EC8DE1C7F1EF9001322B7 /* Trip_Event+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		282EC8DF1C7F1EF9001322B7 /* Trip_Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_Event.swift; sourceTree = "<group>"; };
 		282FAB5B1C75929F00AEDB63 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		28328A371C646F58004E5F86 /* OverallScores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverallScores.swift; sourceTree = "<group>"; };
 		28398E4F1C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_Speed_Zone+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		28398E501C637F32003D5BE5 /* Trip_Speed_Zone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_Speed_Zone.swift; sourceTree = "<group>"; };
-		28398E531C637F32003D5BE5 /* Trip_Event+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		28398E541C637F32003D5BE5 /* Trip_Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_Event.swift; sourceTree = "<group>"; };
 		283A2B351C65D7C700F6BD16 /* Trip_Badge+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_Badge+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		283A2B361C65D7C700F6BD16 /* Trip_Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_Badge.swift; sourceTree = "<group>"; };
 		283C048F1C7484F10096358C /* Trip_Detail+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_Detail+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -1090,6 +1090,8 @@
 		BF4E0D391C4F701E00BF53FB /* DBModels */ = {
 			isa = PBXGroup;
 			children = (
+				282EC8DE1C7F1EF9001322B7 /* Trip_Event+CoreDataProperties.swift */,
+				282EC8DF1C7F1EF9001322B7 /* Trip_Event.swift */,
 				BF47FEF11C7DA2E8006244A2 /* Trips+CoreDataProperties.swift */,
 				BF47FEF21C7DA2E8006244A2 /* Trips.swift */,
 				BF47FF011C7DA6BA006244A2 /* Trip_timeseries+CoreDataProperties.swift */,
@@ -1112,8 +1114,6 @@
 				283A2B361C65D7C700F6BD16 /* Trip_Badge.swift */,
 				28398E4F1C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift */,
 				28398E501C637F32003D5BE5 /* Trip_Speed_Zone.swift */,
-				28398E531C637F32003D5BE5 /* Trip_Event+CoreDataProperties.swift */,
-				28398E541C637F32003D5BE5 /* Trip_Event.swift */,
 			);
 			name = DBModels;
 			sourceTree = "<group>";
@@ -1603,7 +1603,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6384522A1B0353AE00E895F7 /* LeaderBoardEntity.m in Sources */,
-				28398E591C637F32003D5BE5 /* Trip_Event+CoreDataProperties.swift in Sources */,
 				28328A381C646F58004E5F86 /* OverallScores.swift in Sources */,
 				28F38A121C61EBB300A02E93 /* BadgeCell.swift in Sources */,
 				630C19D71AE7B2A8000B32CA /* Drawings.swift in Sources */,
@@ -1708,11 +1707,11 @@
 				63D086AF1B0478B700BDD656 /* HeadphonesDetector.m in Sources */,
 				B636D54B1C6C8DF10067C7B8 /* SettingsCustomViewCell.swift in Sources */,
 				BF5A553B1C7C23370090E40F /* DataUsageCalculation.swift in Sources */,
+				282EC8E01C7F1EF9001322B7 /* Trip_Event+CoreDataProperties.swift in Sources */,
 				6C44D6691C59E55F0055916B /* LeftViewController.swift in Sources */,
 				6384523A1B0353AE00E895F7 /* DashboardController.m in Sources */,
 				BF87B26F1C6A0D5600DA6000 /* ConfigurationModel.swift in Sources */,
 				BF44D2801C6DBA9F00BFB1E2 /* Dashboard+CoreDataProperties.swift in Sources */,
-				28398E5A1C637F32003D5BE5 /* Trip_Event.swift in Sources */,
 				63A0FE791AFA377E00EE7C46 /* LastTripViewController.swift in Sources */,
 				F574AFCA1C71D48D00FA0645 /* ShareView.swift in Sources */,
 				A68F05B31B147A73003D1D22 /* SettingsCustomCell.swift in Sources */,
@@ -1742,6 +1741,7 @@
 				28F38A141C61EBB300A02E93 /* HistoryTripDetailCell.swift in Sources */,
 				BF5A55391C7C23260090E40F /* TripMeasurements.swift in Sources */,
 				638451F61B0353A000E895F7 /* CoreLocationController.m in Sources */,
+				282EC8E11C7F1EF9001322B7 /* Trip_Event.swift in Sources */,
 				638451EF1B0353A000E895F7 /* FMDatabase.m in Sources */,
 				BF47FEFC1C7DA2E8006244A2 /* TripSummary.swift in Sources */,
 				63AAE5D31AE90C470013987F /* EmergencyViewController.swift in Sources */,

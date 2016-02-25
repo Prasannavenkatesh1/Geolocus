@@ -33,12 +33,12 @@ class Utility {
     
     static func getEventType(event:String) -> EventType{
         
-        if(event.caseInsensitiveCompare("Acceleration") == NSComparisonResult.OrderedSame){
+        if(event.caseInsensitiveCompare("acceleration") == NSComparisonResult.OrderedSame){
             return EventType.Acceleration
-        }else if (event.caseInsensitiveCompare("Breaking") == NSComparisonResult.OrderedSame) {
+        }else if (event.caseInsensitiveCompare("breaking") == NSComparisonResult.OrderedSame) {
             return EventType.Breaking
-        }else if (event.caseInsensitiveCompare("Speeding") == NSComparisonResult.OrderedSame) {
-            return EventType.Speeding
+        }else if (event.caseInsensitiveCompare("speed") == NSComparisonResult.OrderedSame) {
+            return EventType.Speed
         }else{
             return EventType.None
         }
