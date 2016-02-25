@@ -300,4 +300,33 @@ struct LocalizationConstants {
         }
         
     }
+    
+    struct Settings {
+        static let Settings_Title = "Customer Settings"
+        
+        struct SettingsCell {
+            static let Data_Upload_Title = "Data Upload Type"
+            static let Snooze_Title = "Snooze the start"
+            static let AutoTrip_Start_Title = "Auto trip Start"
+            static let Notification_Title = "Notification"
+            static let ShareData_Title = "Share data with parent"
+            static let Choose_Language_Title = "Choose your Language"
+            static let Reset_Password_Title = "Reset Password"
+            static let Coach_Username_Title = "Coach's Username"
+        }
+        
+        struct DataUploadType {
+            static let DataUploadType_Title = "Choose Data Upload Type"
+            static let Type_Cellular = "Cellular"
+            static let Type_Wifi = "Wifi"
+            static let Type_CellularWifi = "Cellular and Wifi"
+        }
+        
+        struct Snooze {
+            static let AskMeAgain_Title = "Ask me again in"
+            static let Hours = "Hours"
+            static let Minutes = "Minutes"
+            static let Days = "Days"
+        }
+    }
 }

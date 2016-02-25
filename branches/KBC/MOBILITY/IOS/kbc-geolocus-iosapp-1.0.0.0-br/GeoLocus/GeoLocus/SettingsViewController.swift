@@ -21,7 +21,8 @@ enum settingsFieldType : Int {
     }
     
     static var fieldTypeTitles : [String]{
-        return ["Data Upload Type","Snooze the start","Auto trip Start","Notification","Share data with parent","Choose your Language","Reset Password","Coach's Username"]
+        //return ["Data Upload Type","Snooze the start","Auto trip Start","Notification","Share data with parent","Choose your Language","Reset Password","Coach's Username"]
+        return [LocalizationConstants.Settings.SettingsCell.Data_Upload_Title.localized(),LocalizationConstants.Settings.SettingsCell.Snooze_Title.localized(),LocalizationConstants.Settings.SettingsCell.AutoTrip_Start_Title.localized(),LocalizationConstants.Settings.SettingsCell.Notification_Title.localized(),LocalizationConstants.Settings.SettingsCell.ShareData_Title.localized(),LocalizationConstants.Settings.SettingsCell.Choose_Language_Title.localized(),LocalizationConstants.Settings.SettingsCell.Reset_Password_Title.localized(),LocalizationConstants.Settings.SettingsCell.Coach_Username_Title.localized()]
     }
 }
 
@@ -32,7 +33,8 @@ enum popUpDataUploadFieldType : Int {
     case CellularAndWifi
     
     static var popUpDataUploadFieldTypeTitles : [String]{
-        return ["Cellular","Wifi","Cellular and Wifi"]
+        //return ["Cellular","Wifi","Cellular and Wifi"]
+        return [LocalizationConstants.Settings.DataUploadType.Type_Cellular.localized(),LocalizationConstants.Settings.DataUploadType.Type_Wifi.localized(),LocalizationConstants.Settings.DataUploadType.Type_CellularWifi.localized()]
     }
     
 }
@@ -45,7 +47,8 @@ enum popUpChooseLanguageFieldType : Int {
     case Dutch
     
     static var popUpChooseLanguageFieldTypeTitles : [String]{
-        return ["English","German","French","Dutch"]
+        //return ["English","German","French","Dutch"]
+        return [LocalizationConstants.Language_English.localized(),LocalizationConstants.Language_German.localized(),LocalizationConstants.Language_French.localized(),LocalizationConstants.Language_Dutch.localized()]
     }
     
 }
@@ -65,8 +68,7 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var popUpTitleLabel : UILabel!
     @IBOutlet weak var settingsNavigationItem: UINavigationItem!
 
-    let settingsCellTitles = ["Data Upload Type","Snooze the start","Auto trip Start","Notification","Share data with parent","Choose your Language","Reset Password","Coach's Username"]
-    let settingsHeaderTitle = "Customer Settings"
+    let settingsHeaderTitle = LocalizationConstants.Settings.Settings_Title.localized()
     let textCellIdentifier = "settingsCellIdentifier"
     let popUpCellIdentifier = "popUpCellIdentifier"
     
@@ -241,7 +243,7 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
                 self.popUpTableView.delegate = self
                 self.popUpTableView.dataSource = self
                 self.popUpTableView.reloadData()
-                self.popUpTitleLabel.text = "Choose Data Upload Type"
+                self.popUpTitleLabel.text = LocalizationConstants.Settings.DataUploadType.DataUploadType_Title.localized()
                 self.popUpTableView.tableFooterView = UIView(frame: CGRectZero)
                 
             }else if row == settingsFieldType.SnoozeStart.rawValue{
@@ -261,7 +263,7 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
                 self.popUpTableView.delegate = self
                 self.popUpTableView.dataSource = self
                 self.popUpTableView.reloadData()
-                self.popUpTitleLabel.text = "Choose your Language"
+                self.popUpTitleLabel.text = LocalizationConstants.Settings.SettingsCell.Choose_Language_Title.localized()
                 self.popUpTableView.tableFooterView = UIView(frame: CGRectZero)
 
             }else if row == settingsFieldType.ResetPassword.rawValue{

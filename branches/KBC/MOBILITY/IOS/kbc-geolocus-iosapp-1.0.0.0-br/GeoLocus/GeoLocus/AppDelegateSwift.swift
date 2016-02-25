@@ -83,7 +83,6 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       defaults.setInteger(1, forKey: "autoincr_tripid")
       defaults.setValue("", forKey: StringConstants.TOKEN_ID)
       defaults.setObject("", forKey: "motionlat")
-      NSCache.sharedInstance.setObject("", forKey: "contractImage")
 
       
       //  Insert Weightage values for testing

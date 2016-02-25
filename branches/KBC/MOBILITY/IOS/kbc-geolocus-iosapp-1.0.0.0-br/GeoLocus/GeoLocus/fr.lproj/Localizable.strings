@@ -49,11 +49,13 @@
 "Share_Trip_Info"                   = "";
 "Share_Badge_Info"                  = "";
 
+//MARK: Language selection
 "German" = "allemand";
 "French" = "français";
 "English" = "Anglais";
 "Dutch" = "néerlandais";
 
+//MARK: Login
 "Username" = "Nom d'utilisateur";
 "Password" = "Mot de passe";
 "I agree to Terms & Conditions" = "Je suis d'accord avec les Termes et Conditions";
@@ -63,6 +65,7 @@
 
 "OK" = "D'accord";
 
+//MARK: Contract
 "Add Picture of your goal here..." = "Ajouter une image de votre but ici...";
 "Your Goal" = "Ton but";
 "TOTAL POINTS" = "POINTS TOTAUX";
@@ -71,3 +74,23 @@
 "Bonus Points" = "Points bonus";
 
 "You have achieved your target on %@. Contact parents to redeem points." = "Vous avez atteint votre cible sur %@. Contactez les parents à échanger des points";
+
+//MARK: Settings
+"Customer Settings" = "Paramètres personnalisés";
+"Choose your Language" = "Choisissez votre langue";
+"Data Upload Type" = "Téléchargement de données de type";
+"Snooze the start" = "Sieste le début";
+"Auto trip Start" = "voyage Auto Start";
+"Notification" = "Notification";
+"Share data with parent" = "Partager les données avec parent";
+"Reset Password" = "réinitialiser le mot de passe";
+"Coach's Username" = "Coach Nom d'utilisateur";
+
+"Choose Data Upload Type" = "Choisissez le téléchargement des données de type";
+"Cellular"= "Cellulaire";
+"Wifi" = "Wifi";
+"Cellular and Wifi" = "Cellulaire et Wifi";
+"Ask me again in" = "Demandez-moi à nouveau dans";
+"Hours" = "Heures";
+"Minutes" = "Minutes";
+"Days" = "Journées";
