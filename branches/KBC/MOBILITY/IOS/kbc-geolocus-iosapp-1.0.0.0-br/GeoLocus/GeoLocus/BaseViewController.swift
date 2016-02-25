@@ -25,17 +25,6 @@ class BaseViewController: UIViewController {
     var activityView: UIView?
   
 
-//  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-//    super.init(nibName: nil, bundle: nil)
-//    FacadeLayer.sharedinstance.corelocation.initLocationManager()
-//  }
-//
-//  required init?(coder aDecoder: NSCoder) {
-//      fatalError("init(coder:) has not been implemented")
-//  }
-
-  
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

@@ -18,16 +18,17 @@ import Foundation
 
 struct SummaryModel{
   
-  let datausage         :NSNumber
-  let tripid            :String
-  let tripstarttime     :NSDate
-  let tripendtime       :NSDate
-  let timezone          :String
-  let timezoneid        :String
-  var attentionscore    :NSNumber   = 0
-  var brakingcount      :NSNumber   = FacadeLayer.sharedinstance.dbactions.fetchEventCount(Events.EventType.BRAKING)
-  var accelerationcount :NSNumber   = FacadeLayer.sharedinstance.dbactions.fetchEventCount(Events.EventType.ACCELERATION)
-  var totaldistance     :NSNumber   = FacadeLayer.sharedinstance.dbactions.fetchTotalDistance()
+  let datausage         : NSNumber
+  let tripid            : String
+  let tripstarttime     : NSDate
+  let tripendtime       : NSDate
+  let timezone          : String
+  let timezoneid        : String
+  var isSync            : NSNumber?
+  var attentionscore    : NSNumber   = 0
+  var brakingcount      : NSNumber
+  var accelerationcount : NSNumber
+  var totaldistance     : NSNumber
   
   init(datausage:NSNumber ,tripid:String,tripstarttime:NSDate, tripendtime:NSDate, timezone:String, timezoneid:String){
     self.datausage = datausage
@@ -36,7 +37,14 @@ struct SummaryModel{
     self.tripendtime = tripendtime
     self.timezone = timezone
     self.timezoneid =  timezoneid
+    
+    self.brakingcount      = FacadeLayer.sharedinstance.dbactions.fetchEventCount(Events.EventType.BRAKING,tripid:tripid)
+    self.accelerationcount = FacadeLayer.sharedinstance.dbactions.fetchEventCount(Events.EventType.ACCELERATION, tripid: tripid)
+    self.totaldistance     = FacadeLayer.sharedinstance.dbactions.fetchTotalDistance(tripid)
   }
+  
+ 
+
   
   var totalduration :NSInteger {
     get{
@@ -50,7 +58,7 @@ struct SummaryModel{
     {
     get
     {
-      let br:Double = FacadeLayer.sharedinstance.configmodel.weightage_braking as! Double
+      let br:Double = FacadeLayer.sharedinstance.configmodel!.weightage_braking as! Double
       let brc:Double = brakingcount as Double
       let tdistance = totaldistance as Double
       let bscore = 1 - ((brc * br) / tdistance) / 100
@@ -64,7 +72,7 @@ struct SummaryModel{
     get
     {
       let ac = accelerationcount as Double
-      let wc = FacadeLayer.sharedinstance.configmodel.weightage_acceleration as! Double
+      let wc = FacadeLayer.sharedinstance.configmodel!.weightage_acceleration as! Double
       let tdistance = totaldistance as Double
       let ascore = 1 - ((ac * wc) / tdistance) / 100
       return ascore
@@ -76,8 +84,8 @@ struct SummaryModel{
     {
     get
     {
-      let   BrakingSore_W  = (brakingscore as Double) * (FacadeLayer.sharedinstance.configmodel.ecoweightage_braking as! Double)
-      let   Acceleration_W = (accelerationscore as Double) * (FacadeLayer.sharedinstance.configmodel.ecoweightage_acceleration as! Double)
+      let   BrakingSore_W  = (brakingscore as Double) * (FacadeLayer.sharedinstance.configmodel!.ecoweightage_braking as! Double)
+      let   Acceleration_W = (accelerationscore as Double) * (FacadeLayer.sharedinstance.configmodel!.ecoweightage_acceleration as! Double)
       let   escore         = BrakingSore_W + Acceleration_W
       return escore
     }

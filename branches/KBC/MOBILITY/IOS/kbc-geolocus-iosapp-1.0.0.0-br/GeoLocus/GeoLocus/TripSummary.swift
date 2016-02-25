@@ -2,7 +2,7 @@
 //  TripSummary.swift
 //  GeoLocus
 //
-//  Created by Wearables Mac Mini on 11/02/16.
+//  Created by Wearables Mac Mini on 24/02/16.
 //  Copyright © 2016 Cognizant. All rights reserved.
 //
 

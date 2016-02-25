@@ -96,6 +96,7 @@ struct StringConstants {
     static let TOKEN_ID = "tokenID"
     static let USER_ID = "userId"
     static let USERNAME = "userName"
+    static let CHANNEL_ID = "iOS"
     static let SPRING_SECURITY_COOKIE = "SPRING_SECURITY_REMEMBER_ME_COOKIE"
     
     static let ERROR = "Error"
@@ -117,11 +118,24 @@ struct StringConstants {
     static let CONTINUE = "Continue"
     static let START_TRIP_MESSAGE = "Do you want to start the trip"
     static let STOP_TRIP_MESSAGE = "Do you want to stop the trip"
+  
+  /* Default settings*/
+  static let Thresholds_Brake = "thresholds_brake"
+  static let Thresholds_Acceleration = "thresholds_acceleration"
+  static let Thresholds_Autotrip = "thresholds_autotrip"
+  static let Weightage_Braking = "weightage_braking"
+  static let Weightage_Acceleration = "weightage_acceleration"
+  static let Weightage_Speed = "weightage_speed"
+  static let Weightage_Severevoilation = "weightage_severevoilation"
+  static let Ecoweightage_Braking = "ecoweightage_braking"
+  static let Ecoweightage_Acceleration = "ecoweightage_acceleration"
+  static let Thresholds_Minimumspeed = "thresholds_minimumspeed"
+  
 }
 
 
 struct Events {
-    
+  
   enum EventType: Int {
     case BRAKING = 1
     case ACCELERATION

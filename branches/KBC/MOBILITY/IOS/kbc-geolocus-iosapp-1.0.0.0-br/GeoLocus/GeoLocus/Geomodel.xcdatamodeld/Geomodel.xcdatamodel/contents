@@ -6,6 +6,8 @@
         <attribute name="thresholds_acceleration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="thresholds_autotrip" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="thresholds_brake" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="thresholds_minimumspeed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="tripid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weightage_acceleration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="weightage_braking" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="weightage_severevoilation" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -100,9 +102,21 @@
         <attribute name="eventtype" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="eventvalue" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="isEvent" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isvalidtrip" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="tripid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Trips" representedClassName=".Trips" syncable="YES">
+        <attribute name="channelid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="channelversion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tokenid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tripid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="triptoconfig" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Configurations" syncable="YES"/>
+        <relationship name="triptosummary" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TripSummary" syncable="YES"/>
+        <relationship name="triptotimeseries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Trip_timeseries" syncable="YES"/>
     </entity>
     <entity name="TripSummary" representedClassName=".TripSummary" syncable="YES">
         <attribute name="accelerationcount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -111,6 +125,7 @@
         <attribute name="brakingscore" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="datausage" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="ecoscore" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="isSync" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="timezone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timezoneid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="totaldistance" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -120,16 +135,17 @@
         <attribute name="tripstarttime" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Configurations" positionX="1305" positionY="63" width="189" height="178"/>
-        <element name="Contract" positionX="1503" positionY="-9" width="128" height="180"/>
-        <element name="Dashboard" positionX="1539" positionY="116" width="128" height="163"/>
+        <element name="Configurations" positionX="531" positionY="-136" width="189" height="208"/>
+        <element name="Contract" positionX="1584" positionY="341" width="128" height="163"/>
+        <element name="Dashboard" positionX="1546" positionY="134" width="128" height="163"/>
         <element name="OverallScore" positionX="1989" positionY="-153" width="128" height="180"/>
-        <element name="Reports" positionX="1332" positionY="261" width="128" height="150"/>
+        <element name="Reports" positionX="1429" positionY="354" width="128" height="150"/>
         <element name="Trip_Badge" positionX="1843" positionY="-153" width="128" height="120"/>
         <element name="Trip_Detail" positionX="1663" positionY="-153" width="128" height="255"/>
         <element name="Trip_Event" positionX="1996" positionY="123" width="128" height="135"/>
         <element name="Trip_Speed_Zone" positionX="1719" positionY="189" width="128" height="163"/>
-        <element name="Trip_timeseries" positionX="1368" positionY="-153" width="128" height="178"/>
-        <element name="TripSummary" positionX="1521" positionY="-144" width="128" height="238"/>
+        <element name="Trip_timeseries" positionX="826" positionY="-252" width="128" height="208"/>
+        <element name="TripSummary" positionX="1098" positionY="-90" width="128" height="253"/>
+        <element name="Trips" positionX="826" positionY="8" width="128" height="163"/>
     </elements>
 </model>

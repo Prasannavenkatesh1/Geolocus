@@ -19,6 +19,8 @@ struct  ConfigurationModel{
   var weightage_severevoilation : NSNumber?
   var ecoweightage_braking      : NSNumber?
   var ecoweightage_acceleration : NSNumber?
+  var thresholds_minimumspeed: NSNumber?
+  var tripid: String?
 
 }
 

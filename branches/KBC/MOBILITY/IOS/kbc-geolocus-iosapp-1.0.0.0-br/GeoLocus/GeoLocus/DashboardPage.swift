@@ -108,7 +108,7 @@ import UIKit
 //                                levelMessageTap.delegate = self
 //                                self.levelName.addGestureRecognizer(levelMessageTap)
                 
-                var attributedString : NSMutableAttributedString = NSMutableAttributedString(string: "Contracts points earned:"+dashboardData.pointsAchieved, attributes: [NSFontAttributeName:UIFont(name: "Helvetica Neue Medium",size: 16.0)!])
+                var attributedString : NSMutableAttributedString = NSMutableAttributedString(string: "Contracts points earned:"+dashboardData.pointsAchieved, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Medium",size: 16.0)!])
                 attributedString.addAttribute(NSForegroundColorAttributeName,value: UIColor(netHex: 0x181F29),
                     range: NSRange(location:0,length:24))
                 attributedString.addAttribute(NSForegroundColorAttributeName,value: UIColor(netHex: 0x00ACEF),

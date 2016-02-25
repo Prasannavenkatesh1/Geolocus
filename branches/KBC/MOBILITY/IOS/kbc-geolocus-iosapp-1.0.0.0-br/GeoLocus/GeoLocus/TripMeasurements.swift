@@ -12,12 +12,16 @@ struct TripMeasurements {
   var oldlocation:CLLocation
   var newlocation:CLLocation
   var oldlocspeed:CLLocationSpeed
+//  var currentlocspeed:CLLocationSpeed?
   
   init(oldlocation:CLLocation, newlocation:CLLocation, oldlocspeed:CLLocationSpeed){
     self.oldlocation = oldlocation
     self.newlocation = newlocation
     self.oldlocspeed = oldlocspeed
+    
+    
   }
+  
   
   var currentlocspeed:CLLocationSpeed
   {
@@ -28,9 +32,17 @@ struct TripMeasurements {
   }
 
   func speedTravelledFromLocation(newLocation:CLLocation , oldLocation:CLLocation) -> CLLocationSpeed{
-    let timeElapsed:NSTimeInterval!  = newLocation.timestamp.timeIntervalSinceDate(oldLocation.timestamp)
+    print(newLocation)
+    print(oldLocation)
+    
+    
+    let timeElapsed:NSTimeInterval  = newLocation.timestamp.timeIntervalSinceDate(oldLocation.timestamp)
     let distance:Double = newLocation.distanceFromLocation(oldLocation)
     let tempspeed:Double = distance / timeElapsed
+    
+    if tempspeed.isNaN {
+      return 0
+    }
     return tempspeed
   }
   

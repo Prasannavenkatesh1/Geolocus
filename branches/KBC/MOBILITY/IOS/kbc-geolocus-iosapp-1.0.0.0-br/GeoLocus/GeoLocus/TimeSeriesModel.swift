@@ -19,8 +19,9 @@ struct TimeSeriesModel {
   let isEvent: NSNumber
   let eventtype: NSNumber
   let eventvalue: NSNumber
+  var isvalidtrip: NSNumber
   
-  init(tripid: String,ctime:NSDate, lat:NSNumber, longt:NSNumber, speedval:NSNumber, datausage:NSNumber, iseventval:NSNumber, evetype:NSNumber, eveval:NSNumber, distance:NSNumber){
+  init(tripid: String,ctime:NSDate, lat:NSNumber, longt:NSNumber, speedval:NSNumber, datausage:NSNumber, iseventval:NSNumber, evetype:NSNumber, eveval:NSNumber, distance:NSNumber, isvalidtrip: NSNumber){
     self.tripid = tripid
     self.currenttime = ctime
     self.latitude = lat
@@ -31,6 +32,7 @@ struct TimeSeriesModel {
     self.isEvent = iseventval
     self.eventtype = evetype
     self.eventvalue = eveval
+    self.isvalidtrip = isvalidtrip
   }
 }
 
