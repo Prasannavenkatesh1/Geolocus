@@ -12,7 +12,7 @@ import UIKit
 class LeftViewController: UIViewController {
     
     @IBOutlet var menuTableView: UITableView!
-    let menuCellIdentifier = "MenuCellIdentifier"
+    let menuCellIdentifier = "MenuCustomCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,11 +52,16 @@ extension LeftViewController {
         }
 //        print(menuText.localized())
 //        cell.titleLabel.text = "ewrw"
-        cell.titleLabel.text =  menuText.localized()  //NSLocalizedString(menuText, comment: "Text for menu item")
+        cell.titleLabel.text =  menuText  //NSLocalizedString(menuText, comment: "Text for menu item")
         //cell.textLabel?.text = NSLocalizedString(menuText, comment: "Text for menu item")
         //cell.textLabel?.textAlignment = .Left
         return cell
         
+    }
+    
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
+        return 72
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
