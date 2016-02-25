@@ -32,8 +32,8 @@ struct TripMeasurements {
   }
 
   func speedTravelledFromLocation(newLocation:CLLocation , oldLocation:CLLocation) -> CLLocationSpeed{
-    print(newLocation)
-    print(oldLocation)
+//    print(newLocation)
+//    print(oldLocation)
     
     
     let timeElapsed:NSTimeInterval  = newLocation.timestamp.timeIntervalSinceDate(oldLocation.timestamp)

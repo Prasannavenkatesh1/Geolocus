@@ -35,12 +35,13 @@ struct WebServiceURL {
 class FacadeLayer{
 
     static let sharedinstance = FacadeLayer()
-    var dbactions:DatabaseActions
-    var httpclient:Httpclient
-    var corelocation:CoreLocation
-    var webService: WebServiceURL
-    var configmodel :ConfigurationModel?
-    var notificationCount:String?
+    var dbactions         : DatabaseActions
+    var httpclient        : Httpclient
+    var corelocation      : CoreLocation
+    var webService        : WebServiceURL
+    var configmodel       : ConfigurationModel?
+    var isMannualTrip     : Bool?
+    var notificationCount : String?
     
   init(){
     dbactions = DatabaseActions()

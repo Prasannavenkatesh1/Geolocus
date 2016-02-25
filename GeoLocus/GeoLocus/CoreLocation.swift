@@ -125,6 +125,17 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
 
   var autostartstate:Bool = false
   
+  func generateTipID(){
+    let defaults = NSUserDefaults.standardUserDefaults()
+    let tokenid = String(defaults.valueForKey(StringConstants.TOKEN_ID))
+    var defaultstripcount = defaults.integerForKey("autoincr_tripid")
+    
+    defaultsTripID = "\(tokenid) + \(defaultstripcount)"
+    
+    defaultstripcount = defaultstripcount + 1
+    defaults.setInteger(defaultstripcount, forKey: "autoincr_tripid")
+  }
+  
   
   func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
@@ -162,7 +173,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
 //        tripmeasurement.currentlocspeed = locspeed
         
         locspeed = tripmeasurement.currentlocspeed
-        print("***locspeed: \(locspeed)")
+//        print("***locspeed: \(locspeed)")
         
         //      locspeed = newLocation.speed
       }else{
@@ -203,16 +214,8 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         datausagecalc?.finalDataUsageArray.removeAll(keepCapacity: true)
         
         // create tripid and save configurations
-        
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let tokenid = String(defaults.valueForKey(StringConstants.TOKEN_ID))
-        var defaultstripcount = defaults.integerForKey("autoincr_tripid")
-        
-        defaultsTripID = "\(tokenid) + \(defaultstripcount)"
+        generateTipID()
         createTripConfigDatas(defaultsTripID)
-        
-        defaultstripcount = defaultstripcount + 1
-        defaults.setInteger(defaultstripcount, forKey: "autoincr_tripid")
         
       }
       
@@ -235,15 +238,17 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         if(self.motiontype == StringConstants.MOTIONTYPE_AUTOMOTIVE && autostartstate == false) {
           
           autostartstate = true
-          TripNotify.init(title: "Do you want to start the trip",
-            UUID: NSUUID().UUIDString,
-            schedule: NSDate(),
-            tripstatus: true)
-          print("start trip notification fired")
+          if FacadeLayer.sharedinstance.isMannualTrip == false{
+            TripNotify.init(title: "Do you want to start the trip",
+              UUID: NSUUID().UUIDString,
+              schedule: NSDate(),
+              tripstatus: true)
+            print("start trip notification fired")
+          }
           
         }
         
-        //Auto trip stop
+        //trip stop
         if(self.motiontype == StringConstants.MOTIONTYPE_NOTMOVING){
           // stop the trip
           if (hasBeenRun == true) // hasBeenRun is a boolean instance variable
@@ -255,7 +260,6 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
           }
           
         }
-        
         
         
         if let tripmeasurement = tripmeasurement {
@@ -372,6 +376,8 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     // to cancel the timer while not tapping the notification
     NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: "deleteTripDatas", object: nil)
     
+    FacadeLayer.sharedinstance.isMannualTrip = false
+    
     var dataUsageFinalValue: Int = 0
     if let data  = datausagecalc?.reteriveTotalDatasConsumed() {
       dataUsageFinalValue = data
@@ -391,7 +397,6 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     
     // Convert to Json and send to Server
     FacadeLayer.sharedinstance.reteriveTripdetails(defaultsTripID)
-    
     
   }
   
@@ -576,7 +581,6 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     locationmanager.startUpdatingLocation()
     locationmanager.startUpdatingHeading()
   }
-  
   
   
   
