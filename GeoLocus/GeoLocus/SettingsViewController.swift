@@ -34,7 +34,7 @@ enum popUpDataUploadFieldType : Int {
     
     static var popUpDataUploadFieldTypeTitles : [String]{
         //return ["Cellular","Wifi","Cellular and Wifi"]
-        return [LocalizationConstants.Settings.DataUploadType.Type_Cellular.localized(),LocalizationConstants.Settings.DataUploadType.Type_Wifi.localized(),LocalizationConstants.Settings.DataUploadType.Type_CellularWifi.localized()]
+        return [LocalizationConstants.Settings.DataUploadType.Type_Cellular.localized(),LocalizationConstants.Settings.DataUploadType.Type_Wifi.localized()]
     }
     
 }

@@ -25,7 +25,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   var startdate                   : NSDate?
   var enddate                     : NSDate?
   var timezoneid                  : String?
-  var datausagecalc               : DataUsageCalculation?
+  var datausagecalc               : DataUsageCalculation
   var currentCountForDataUsageCalc: Int?
   var dataUsageArray              : [AnyObject]?
   var finalDataUsageArray         : [AnyObject]?
@@ -40,6 +40,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   override init() {
     locationmanager =  CLLocationManager()
     fltDistanceTravelled = 0
+    datausagecalc = DataUsageCalculation()
   }
   
   func initLocationManager() {
@@ -181,7 +182,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       }
       
       // Get currnt and previous Data used by teen
-      datausagecalc?.getCurrentAndPreviousDataUsed()
+      datausagecalc.getCurrentAndPreviousDataUsed()
       
       locSpeedArray!.append(String(format:"%.2f", locspeed * 3.6))
       
@@ -211,7 +212,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         startdate = newLocation.timestamp
         
         //Data Usage
-        datausagecalc?.finalDataUsageArray.removeAll(keepCapacity: true)
+        datausagecalc.finalDataUsageArray.removeAll(keepCapacity: true)
         
         // create tripid and save configurations
         generateTipID()
@@ -328,7 +329,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
           //        NSNotificationCenter.defaultCenter().postNotificationName("tracktestinglocation", object: nil)
             
 //          let dataUsagePerMin = datausagecalc?.getDataUsagePerMin()
-          var dataUsagePerMin = datausagecalc?.getDataUsagePerMin()
+          var dataUsagePerMin = datausagecalc.getDataUsagePerMin()
             
           
           
@@ -336,7 +337,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
             lat: latitude,
             longt: longitude,
             speedval: locspeed,
-            datausage: 0,
+            datausage: dataUsagePerMin,
             iseventval: NSNumber(integer: iseventval),
             evetype: NSNumber(integer: eventtypes!.rawValue),
             eveval: NSNumber(double: eventval),
@@ -383,7 +384,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     FacadeLayer.sharedinstance.isMannualTrip = false
     
     var dataUsageFinalValue: Int = 0
-    if let data  = datausagecalc?.reteriveTotalDatasConsumed() {
+    if let data  = datausagecalc.reteriveTotalDatasConsumed() {
       dataUsageFinalValue = data
     }
     

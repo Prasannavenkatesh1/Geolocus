@@ -11,7 +11,7 @@ import Foundation
 class DataUsageCalculation {
   let datausagedict: NSDictionary = Datausage.getDatas()
   var currentCountForDataUsageCalc :Int?
-  var dataUsageArray        :[AnyObject]?
+  var dataUsageArray        :[AnyObject] = [AnyObject]()
   var finalDataUsageArray   :[AnyObject] = [AnyObject]()
   var defaults              : NSUserDefaults      = NSUserDefaults.standardUserDefaults()
   var dataUsagePerMin : Int?
@@ -25,12 +25,12 @@ extension DataUsageCalculation{
     if currentCountForDataUsageCalc == 2 {
       self.calculateDataUsage()
       currentCountForDataUsageCalc = 1
-      dataUsageArray?.removeAtIndex(0)
+      dataUsageArray.removeAtIndex(0)
     }
     
     if currentCountForDataUsageCalc < 2 {
       //        print("array :%@",dataUsageArray)
-      dataUsageArray!.append(datausagedict)
+      dataUsageArray.append(datausagedict)
       if let currentCount = currentCountForDataUsageCalc {
         currentCountForDataUsageCalc = currentCount + 1
       }
@@ -73,7 +73,6 @@ extension DataUsageCalculation{
             dataSent = dataSentWAN + dataSentWIFI
             dataReceived = dataReceivedWAN + dataReceivedWIFI
             return dataSent + dataReceived
-        
     }
 
    func calculateDataUsage(){
@@ -87,7 +86,7 @@ extension DataUsageCalculation{
     var tempDict                = [String: Int]()
     var tempArray               = [AnyObject]()
    
-    for dataUsage in dataUsageArray! {
+    for dataUsage in dataUsageArray {
       
       for (key,value) in dataUsage as! NSDictionary{
 //        print(key)
