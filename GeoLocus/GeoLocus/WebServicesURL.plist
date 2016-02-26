@@ -15,7 +15,7 @@
 	<key>ContractServiceURL</key>
 	<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/get/contract_details?userId=</string>
 	<key>DashboardServiceURL</key>
-	<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/get/dashboard_details?userId=9</string>
+	<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/get/dashboard_details?userId=7</string>
 	<key>HistoryServiceURL</key>
 	<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/report/get/dashboard_history</string>
 	<key>BadgeServiceURL</key>
