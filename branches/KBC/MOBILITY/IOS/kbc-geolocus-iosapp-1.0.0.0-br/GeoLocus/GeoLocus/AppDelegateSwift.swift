@@ -342,6 +342,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
             var overallScore = OverallScores?()
             var contractData = ContractModel?()
             var reportData = Report?()
+            var dashboardData = DashboardModel?()
             
             let webServiceGroup = dispatch_group_create();
             let operationQueue = NSOperationQueue()
@@ -369,6 +370,18 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                     }
                     print("contract service completed")
                     dispatch_group_leave(webServiceGroup)
+                })
+                
+                dispatch_group_enter(webServiceGroup)
+                FacadeLayer.sharedinstance.requestDashboardData({ (status, data, error) -> Void in
+                    if status == 1 && error == nil {
+                        dashboardData = data!
+                    }else{
+                        serviceError = error
+                    }
+                    print("Dashboard service finished...")
+                    dispatch_group_leave(webServiceGroup)
+                    
                 })
                 
                 dispatch_group_enter(webServiceGroup)
@@ -444,6 +457,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                         dispatch_group_leave(webServiceGroup)
                     })
                     
+
+                    
                     dispatch_group_enter(webServiceGroup)
                     FacadeLayer.sharedinstance.removeData("OverallScore")
                     FacadeLayer.sharedinstance.saveOverallScore(overallScore!, completionhandler: { (status) -> Void in
@@ -455,6 +470,19 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                         print("overallScore save finished...")
                         dispatch_group_leave(webServiceGroup)
                     })
+                    
+                    dispatch_group_enter(webServiceGroup)
+                    FacadeLayer.sharedinstance.removeData("Dashboard")
+                    FacadeLayer.sharedinstance.saveDashBoardData(dashboardData!, completionhandler: { (status) -> Void in
+                        if status{
+                            dbStatus = true
+                        }else{
+                            dbStatus = false
+                        }
+                        print("Dashboard Save finished")
+                        dispatch_group_leave(webServiceGroup)
+                    })
+
                     
                     dispatch_group_enter(webServiceGroup)
                     FacadeLayer.sharedinstance.removeData("Reports")
