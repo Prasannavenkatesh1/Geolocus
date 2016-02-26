@@ -104,7 +104,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       defaults.setDouble(1.4, forKey: StringConstants.Weightage_Severevoilation)
       defaults.setDouble(0.5, forKey: StringConstants.Ecoweightage_Braking)
       defaults.setDouble(0.2, forKey: StringConstants.Ecoweightage_Acceleration)
-      
+      defaults.setDouble(150.0, forKey: StringConstants.Thresholds_DataUsage)
 
     }
       

@@ -13,6 +13,8 @@ class DataUsageCalculation {
   var currentCountForDataUsageCalc :Int?
   var dataUsageArray        :[AnyObject]?
   var finalDataUsageArray   :[AnyObject] = [AnyObject]()
+  var defaults              : NSUserDefaults      = NSUserDefaults.standardUserDefaults()
+  var dataUsagePerMin : Int?
 }
 
 
@@ -34,6 +36,45 @@ extension DataUsageCalculation{
       }
     }
   }
+    
+    func getDataUsagePerMin() -> Int {
+        
+        var dataSentWAN       :Int  = 0
+        var dataReceivedWAN   :Int  = 0
+        var dataSentWIFI      :Int  = 0
+        var dataReceivedWIFI  :Int  = 0
+        var dataSent          :Int  = 0
+        var dataReceived      :Int  = 0
+            for (key,value) in datausagedict as! NSDictionary{
+                //        print(key)
+                //        print(value)
+                if key as! String == "WWANReceived"{
+                    if let datareceived = datausagedict["WWANReceived"]{
+                        dataReceivedWAN = (datareceived as! Int)
+                    }
+                }
+                else if key as! String == "WWANSent"{
+                    if let dataSent  = datausagedict["WWANSent"] {
+                        dataSentWAN  = (dataSent as! Int)
+                    }
+                }
+                else if key as! String == "WiFiReceived"{
+                    if let datareceived  = datausagedict["WiFiReceived"] {
+                        dataReceivedWIFI  = (datareceived as! Int)
+                    }
+                }
+                else if key as! String == "WiFiSent"{
+                    if let datasent  = datausagedict["WiFiSent"] {
+                        dataSentWIFI  = (datasent as! Int)
+                    }
+                }
+                
+            }
+            dataSent = dataSentWAN + dataSentWIFI
+            dataReceived = dataReceivedWAN + dataReceivedWIFI
+            return dataSent + dataReceived
+        
+    }
 
    func calculateDataUsage(){
 //    print(dataUsageArray)
@@ -85,6 +126,7 @@ extension DataUsageCalculation{
     
     var finalDataSent     = currentDataUsageDict["dataSent"]! - previousDataUsageDict["dataSent"]!
     var finalDataReceived = currentDataUsageDict["dataReceived"]! - previousDataUsageDict["dataReceived"]!
+    self.dataUsagePerMin = finalDataSent + finalDataReceived
     finalDataUsageArray.append(finalDataSent+finalDataReceived)
 //    print(finalDataUsageArray)
   }
@@ -93,7 +135,8 @@ extension DataUsageCalculation{
     let tempDataUsageArray = finalDataUsageArray
     var dataUsageFinalValue : Int = 0
     if  tempDataUsageArray.count > 0 {
-      if let thresholdValue = tempDataUsageArray.first {
+      if var thresholdValue = tempDataUsageArray.first {
+        thresholdValue = ((thresholdValue as! Double) * (defaults.doubleForKey(StringConstants.Thresholds_DataUsage)))/100
         for var i = 1; i < tempDataUsageArray.count; i++ {
           let dataUsageDifference = (tempDataUsageArray[i] as! Int) - (thresholdValue as! Int)
           if dataUsageDifference > 0 {

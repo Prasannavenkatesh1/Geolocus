@@ -131,6 +131,7 @@ struct StringConstants {
   static let Ecoweightage_Braking = "ecoweightage_braking"
   static let Ecoweightage_Acceleration = "ecoweightage_acceleration"
   static let Thresholds_Minimumspeed = "thresholds_minimumspeed"
+  static let Thresholds_DataUsage    = "thresholds_dataUsage"
   
 }
 

@@ -326,6 +326,10 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
           teststr = getstr as String
           
           //        NSNotificationCenter.defaultCenter().postNotificationName("tracktestinglocation", object: nil)
+            
+//          let dataUsagePerMin = datausagecalc?.getDataUsagePerMin()
+          var dataUsagePerMin = datausagecalc?.getDataUsagePerMin()
+            
           
           
           let tseries:TimeSeriesModel = TimeSeriesModel.init(tripid:defaultsTripID, ctime: newLocation.timestamp,
