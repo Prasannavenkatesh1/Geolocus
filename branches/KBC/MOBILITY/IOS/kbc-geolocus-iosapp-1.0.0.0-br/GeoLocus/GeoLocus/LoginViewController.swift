@@ -152,6 +152,7 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
         self.requestTermsAndConditionsData{ (status,response,error) -> Void in
             if(error == nil){
                 self.termsAndConditionsString = NSString(data: response!, encoding: NSUTF8StringEncoding) as String!
+                NSUserDefaults.standardUserDefaults().setValue(self.termsAndConditionsString, forKey: StringConstants.TERMS_AND_CONDITIONS_STRING)
             }
             else{
                 let alertView = UIAlertController(title: StringConstants.ERROR.localized(), message: error?.domain.localized(), preferredStyle: UIAlertControllerStyle.Alert)

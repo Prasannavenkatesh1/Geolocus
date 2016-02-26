@@ -55,27 +55,27 @@
 "Share_Badge_Info"                      = "";
 
 //MARK: Language selection
-"German" = "allemand";
-"French" = "français";
-"English" = "Anglais";
-"Dutch" = "néerlandais";
+"German" = "Deutsch";
+"French" = "Français";
+"English" = "English";
+"Dutch" = "Nederlands";
 
 //MARK: Login
 "Username" = "Nom d'utilisateur";
 "Password" = "Mot de passe";
-"I agree to Terms & Conditions" = "Je suis d'accord avec les Termes et Conditions";
-"Login" = "S'identifier";
-"Register Now" = "Inscrivez-vous maintenant";
+"I agree to Terms & Conditions" = "J'accepte les conditions d'utilisation";
+"Login" = "Connexion";
+"Register Now" = "Enregistrement";
 "Need help?" = "Besoin d'aide?";
 
 "OK" = "D'accord";
 
 //MARK: Contract
-"Add Picture of your goal here..." = "Ajouter une image de votre but ici...";
+"Add Picture of your goal here..." = "Ajoutez une photo de votre objectif";
 "Your Goal" = "Ton but";
-"TOTAL POINTS" = "POINTS TOTAUX";
-"Speed Points" = "Points de vitesse";
-"Eco Points" = "Eco Points";
+"TOTAL POINTS" = "TOTAL DE POINTS";
+"Speed Points" = "Points vitesse";
+"Eco Points" = "Points éco";
 "Bonus Points" = "Points bonus";
 
 "You have achieved your target on %@. Contact parents to redeem points." = "Vous avez atteint votre cible sur %@. Contactez les parents à échanger des points";
@@ -89,13 +89,13 @@
 "Notification" = "Notification";
 "Share data with parent" = "Partager les données avec parent";
 "Reset Password" = "réinitialiser le mot de passe";
-"Coach's Username" = "Coach Nom d'utilisateur";
+"Coach's Username" = "Nom d'utilisateur du Coach";
 
 "Choose Data Upload Type" = "Choisissez le téléchargement des données de type";
 "Cellular"= "Cellulaire";
 "Wifi" = "Wifi";
 "Cellular and Wifi" = "Cellulaire et Wifi";
-"Ask me again in" = "Demandez-moi à nouveau dans";
+"Ask me again in" = "Reposez-moi la question dans";
 "Hours" = "Heures";
 "Minutes" = "Minutes";
-"Days" = "Journées";
+"Days" = "Jour";

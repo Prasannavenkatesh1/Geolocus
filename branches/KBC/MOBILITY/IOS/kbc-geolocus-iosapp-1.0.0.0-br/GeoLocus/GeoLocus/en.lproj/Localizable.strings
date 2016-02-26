@@ -55,10 +55,10 @@
 "Share_Badge_Info"                  = "";
 
 //MARK: Language selection
-"German" = "German";
-"French" = "French";
+"German" = "Deutsch";
+"French" = "Français";
 "English" = "English";
-"Dutch" = "Dutch";
+"Dutch" = "Nederlands";
 
 //MARK: Login
 "Username" = "Username";

@@ -48,6 +48,7 @@ struct StringConstants {
     static let LanguageSelectionViewController = "LanguageSelectionViewController"
     static let SettingsLanguageViewController = "SettingsLanguageViewController"
     static let SnoozingViewController         = "SnoozingController"
+    static let LoginViewController = "LoginViewController"
     
     static let MOTIONTYPE_NOTMOVING = "Not Moving"
     static let MOTIONTYPE_NONVEHICLE = "Walking or Running"
@@ -59,6 +60,8 @@ struct StringConstants {
     static let LOGINVIEW_STORYBOARD_SEGUE = "loginView"
     static let SELECTED_LANGUAGE_USERDEFAULT_KEY = "selectedLanguage"
     static let SELECTED_LOCALIZE_LANGUAGE_CODE = "userSelectedLanguage"
+    
+    static let TERMS_AND_CONDITIONS_STRING = "TERMS_AND_CONDITIONS_STRING"
     
     /* Login View Controller */
     static let USERNAME_IMAGE = "username.png"
