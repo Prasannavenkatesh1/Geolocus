@@ -23,11 +23,17 @@ class BaseViewController: UIViewController {
 
     var activityIndicatorView = UIActivityIndicatorView()
     var activityView: UIView?
+    var snoozingpopup : UIViewController!
   
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+      
+      NSNotificationCenter.defaultCenter().addObserver(self,
+        selector: "showSnooze",
+        name: NotificationKey.SnoozingNotification,
+        object: nil)
       
     }
 
@@ -68,6 +74,13 @@ class BaseViewController: UIViewController {
     func stopLoading(){
         self.shouldShowActivtyOnView(false)
     }
+  
+  func showSnooze(){
+    self.snoozingpopup = UIStoryboard(name: "Storyboard", bundle: nil).instantiateViewControllerWithIdentifier("SnoozingController")
+    self.snoozingpopup.view.frame = CGRectMake(10, 40, 280, 295)
+    self.presentPopUpController(self.snoozingpopup)
+
+  }
 
     func isConnectedToNetwork() -> Bool{
         var reachability: Reachability = Reachability.reachabilityForInternetConnection()

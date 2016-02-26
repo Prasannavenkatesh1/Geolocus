@@ -18,8 +18,6 @@ struct TripMeasurements {
     self.oldlocation = oldlocation
     self.newlocation = newlocation
     self.oldlocspeed = oldlocspeed
-    
-    
   }
   
   

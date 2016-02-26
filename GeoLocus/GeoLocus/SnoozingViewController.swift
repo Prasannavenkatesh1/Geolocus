@@ -54,6 +54,7 @@ class SnoozingViewController : BaseViewController,UIPickerViewDelegate,UIPickerV
         }
         return nil
     }
+  
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 1{
             if row == 0{
@@ -69,10 +70,20 @@ class SnoozingViewController : BaseViewController,UIPickerViewDelegate,UIPickerV
         }
     }
     
-    @IBAction func closeButtonClicked(sender: AnyObject) {
-        
-        self.dismissPopUpController()
-    }
+  @IBAction func closeButtonClicked(sender: AnyObject) {
+      self.dismissPopUpController()
+  }
+  
+  @IBAction func okTapped(sender: AnyObject) {
+
+    let firstval = snoozingPickerLeftComponentDataSource[snoozeDateTimePicker.selectedRowInComponent(0)]
+    let secondval = timeArray[snoozeDateTimePicker.selectedRowInComponent(1)]
     
-    
+    print(firstval)
+    print(secondval)
+
+//      self.dismissPopUpController()
+  }
+  
+  
 }

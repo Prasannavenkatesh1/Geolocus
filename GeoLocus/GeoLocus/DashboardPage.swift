@@ -32,31 +32,75 @@ import UIKit
     var nextLevelMessage :String = String()
     var pointsEarnedString :String = String()
     
-    @IBAction func startStopButtonTapped(sender: AnyObject) {
-        
-        if(sender.currentTitle == "Start" ){
-            self.createAlertView(StringConstants.START_TRIP_MESSAGE, firstButtonTitle: StringConstants.YES, secondButtonTitle: StringConstants.NO, thirdButtonTitle: "")
-        }
-        else{
-            self.createAlertView(StringConstants.STOP_TRIP_MESSAGE, firstButtonTitle: StringConstants.STOP, secondButtonTitle: StringConstants.CANCEL, thirdButtonTitle: StringConstants.CONTINUE)
-        }
+  @IBAction func startStopButtonTapped(sender: AnyObject) {
+    if(sender.currentTitle == "Start" ){
+      
+      self.createAlertView(StringConstants.START_TRIP_MESSAGE, firstButtonTitle: StringConstants.YES, secondButtonTitle: StringConstants.NO, thirdButtonTitle: "", alerttag:100)
     }
-    
+    else{
+      
+      self.createAlertView(StringConstants.STOP_TRIP_MESSAGE, firstButtonTitle: StringConstants.STOP, secondButtonTitle: StringConstants.CANCEL, thirdButtonTitle: StringConstants.CONTINUE, alerttag:101)
+    }
+  }
+  
 
     
     /* passing button titles and alert title to alertview */
-    func createAlertView(alertTitle : String, firstButtonTitle : String, secondButtonTitle : String, thirdButtonTitle : String){
-        
-        let alertView = UIAlertController(title: "", message: alertTitle , preferredStyle: UIAlertControllerStyle.Alert)
-        alertView.addAction(UIAlertAction(title: firstButtonTitle, style: UIAlertActionStyle.Default, handler: nil))
-        alertView.addAction(UIAlertAction(title: secondButtonTitle, style: UIAlertActionStyle.Default, handler: nil))
-        
-        if(thirdButtonTitle != ""){
-            alertView.addAction(UIAlertAction(title: thirdButtonTitle, style: UIAlertActionStyle.Default, handler: nil))
-        }
-        self.presentViewController(alertView, animated: true, completion: nil)
-    }
+  func createAlertView(alertTitle : String, firstButtonTitle : String, secondButtonTitle : String, thirdButtonTitle : String , alerttag:Int){
     
+    let alertView = UIAlertController(title: "", message: alertTitle , preferredStyle: UIAlertControllerStyle.Alert)
+    
+    alertView.addAction(UIAlertAction(title: firstButtonTitle, style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction) in
+      if alerttag == 101
+      {
+        // stop and save trip in db
+        //          NSNotificationCenter.defaultCenter().postNotificationName("tipended", object: nil)
+        FacadeLayer.sharedinstance.isMannualTrip = false
+        self.startStopButton.setTitle("Start", forState: .Normal)
+        
+      }
+      else if alerttag == 100
+      {
+        FacadeLayer.sharedinstance.isMannualTrip = true
+        FacadeLayer.sharedinstance.corelocation.generateTipID()
+        self.startStopButton.setTitle("Stop", forState: .Normal)
+      }
+      
+    }))
+    
+    alertView.addAction(UIAlertAction(title: secondButtonTitle, style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction) in
+      if alerttag == 101
+      {
+        FacadeLayer.sharedinstance.isMannualTrip = false
+        self.startStopButton.setTitle("Start", forState: .Normal)
+        
+        // cancel the trip and delete the trip details in db
+        FacadeLayer.sharedinstance.corelocation.deleteTripDatas()
+        
+      }
+      else if alerttag == 100
+      {
+        
+        //No Tapped - present snooze
+        //          FacadeLayer.sharedinstance.isMannualTrip = true
+        //          FacadeLayer.sharedinstance.corelocation.generateTipID()
+        //          self.startStopButton.setTitle("Stop", forState: .Normal)
+        
+      }
+      
+      
+    }))
+    
+    if(thirdButtonTitle != ""){
+      alertView.addAction(UIAlertAction(title: thirdButtonTitle, style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction) in
+        print(thirdButtonTitle);
+        FacadeLayer.sharedinstance.isMannualTrip = true
+      }))
+      
+    }
+    self.presentViewController(alertView, animated: true, completion: nil)
+  }
+  
     
     
     
@@ -64,15 +108,17 @@ import UIKit
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       self.setTitleForLabels()
-       self.handleGetDashboardDetails()
+      self.setTitleForLabels()
+      self.handleGetDashboardDetails()
+      self.customiseProgressView()
+
 //        snoozingViewController = UIStoryboard(name: "Storyboard", bundle: nil).instantiateViewControllerWithIdentifier("SnoozingController")
 //        //snoozeController.view.frame = CGRectMake(10, 40, 280, 295)
 //        snoozingViewController.view.frame = CGRectMake(10, 40, 280, 295)
 //        self.presentPopUpController(snoozingViewController)
         
     }
-    
+  
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -104,17 +150,17 @@ import UIKit
                 let tripStatus = dashboardData.tripStatus
                 
                 switch tripStatus {
-                case "EQUAL", "equal":
-                    self.tripStatusImage.hidden = true
-                case "UP", "up", "Up":
-                    self.tripStatusImage.hidden = false
-                    self.tripStatusImage.image = UIImage(named:"thumb_up.png")
-                case "DOWN","down","Down":
-                    self.tripStatusImage.hidden = false
-                    self.tripStatusImage.image = UIImage(named:"thumb_down.png")
+                case "equal"://case "EQUAL", "equal":
+                  self.tripStatusImage.hidden = true
+                case "up"://case "UP", "up", "Up":
+                  self.tripStatusImage.hidden = false
+                  self.tripStatusImage.image = UIImage(named:"thumb_up.png")
+                case "down"://case "DOWN","down","Down":
+                  self.tripStatusImage.hidden = false
+                  self.tripStatusImage.image = UIImage(named:"thumb_down.png")
                 default:
-                    self.tripStatusImage.hidden = true
-                }
+                  self.tripStatusImage.hidden = true
+              }
                 
 //                                let arcViewTap = UITapGestureRecognizer(target: self, action: Selector("handleTapOnArcView:"))
 //                                arcViewTap.delegate = self
@@ -156,7 +202,6 @@ import UIKit
                     self.pointsAchievedProgressView.setProgress(1/progressFraction, animated: false)
                 }
 
-                self.customiseProgressView()
                 //  customColorAndFontSetup()
                 //self.startStopButton.layer.cornerRadius = 15.0
                 // Do any additional setup after loading the view.
@@ -205,13 +250,13 @@ import UIKit
 
     }
     
-    func handleTapOnArcView(sender:AnyObject){
-        self.createAlertView(self.scoreMessage, firstButtonTitle: StringConstants.OK, secondButtonTitle: "", thirdButtonTitle: "")
-    }
-    
-    func handleTapOnLevelMessage(sender:AnyObject){
-        self.createAlertView(self.nextLevelMessage, firstButtonTitle: StringConstants.OK, secondButtonTitle: "", thirdButtonTitle: "")
-    }
+  func handleTapOnArcView(sender:AnyObject){
+    self.createAlertView(self.scoreMessage, firstButtonTitle: StringConstants.OK, secondButtonTitle: "", thirdButtonTitle: "", alerttag:103)
+  }
+  
+  func handleTapOnLevelMessage(sender:AnyObject){
+    self.createAlertView(self.nextLevelMessage, firstButtonTitle: StringConstants.OK, secondButtonTitle: "", thirdButtonTitle: "", alerttag:103)
+  }
 }
 
 //All internal methods are written inside dashboardpage extension

@@ -219,14 +219,14 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         
       }
       
-      
+      print(newlocspeed)
       if isVechileMoving {
         
         if(newlocspeed  >=  defaults.doubleForKey(StringConstants.Thresholds_Autotrip)) {
           // motion ype automotive
           self.motiontype = StringConstants.MOTIONTYPE_AUTOMOTIVE
           isvalidtrip = true
-          if ((hasBeenRun == nil)) // hasBeenRun is a boolean intance variable
+          if (hasBeenRun == false) // hasBeenRun is a boolean intance variable
           {
             NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: "notMoving", object: nil)
             hasBeenRun = true;

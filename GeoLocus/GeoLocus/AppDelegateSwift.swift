@@ -91,7 +91,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       defaults.setInteger(1, forKey: "autoincr_tripid")
       defaults.setValue("", forKey: StringConstants.TOKEN_ID)
       defaults.setObject("", forKey: "motionlat")
-      
+      FacadeLayer.sharedinstance.isMannualTrip = false
       //  Insert Weightage values for testing
       
       defaults.setDouble(7, forKey: StringConstants.Thresholds_Brake)
@@ -105,10 +105,11 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       defaults.setDouble(0.5, forKey: StringConstants.Ecoweightage_Braking)
       defaults.setDouble(0.2, forKey: StringConstants.Ecoweightage_Acceleration)
       defaults.setDouble(150.0, forKey: StringConstants.Thresholds_DataUsage)
+      
+      
 
     }
       
-
 
     self.loadInitialViewController()
       
@@ -170,7 +171,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     let noAction = UIMutableUserNotificationAction()
     noAction.identifier = Actions.no.rawValue
     noAction.title = "NO"
-    noAction.activationMode = UIUserNotificationActivationMode.Background
+    noAction.activationMode = UIUserNotificationActivationMode.Foreground
     noAction.authenticationRequired = true
     noAction.destructive = false
     
@@ -212,7 +213,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         
         let action:Actions = Actions(rawValue: identifier!)!
         
-      
+        
         switch action{
           
         case Actions.yes:
@@ -222,12 +223,21 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
             if(triptype == false){
               print("trip stoped")
               NSNotificationCenter.defaultCenter().postNotificationName("tipended", object: nil)
-
+              
             }
           }
           
         case Actions.no:
           print("no")
+          
+          if let userinfo = notification.userInfo {
+            let triptype = userinfo["triptype"] as! Bool
+            if(triptype == true){
+              print("trip start")
+              NSNotificationCenter.defaultCenter().postNotificationName(NotificationKey.SnoozingNotification, object: nil)
+              
+            }
+          }
           
         }
       }
