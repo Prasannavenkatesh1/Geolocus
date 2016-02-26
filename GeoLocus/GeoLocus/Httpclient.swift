@@ -205,9 +205,9 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             }
             return (disposition, credential)
         }
-       // var urlString = FacadeLayer.sharedinstance.webService.dashboardServiceURL! + StringConstants.USER_ID
-        let reportRequest = NSMutableURLRequest(URL: NSURL(string: FacadeLayer.sharedinstance.webService.dashboardServiceURL!)!)
-       // let reportRequest = NSMutableURLRequest(URL: NSURL(string: urlString)!)
+        var urlString = FacadeLayer.sharedinstance.webService.dashboardServiceURL! + StringConstants.USER_ID
+       // let reportRequest = NSMutableURLRequest(URL: NSURL(string: FacadeLayer.sharedinstance.webService.dashboardServiceURL!)!)
+        let reportRequest = NSMutableURLRequest(URL: NSURL(string: urlString)!)
         reportRequest.HTTPMethod = "GET"
         reportRequest.setValue(NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.TOKEN_ID), forHTTPHeaderField: StringConstants.SPRING_SECURITY_COOKIE)
         

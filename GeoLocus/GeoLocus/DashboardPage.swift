@@ -184,7 +184,8 @@ import UIKit
                 //1. Get data from plist
                 let path                = NSBundle.mainBundle().pathForResource("BadgesDetails", ofType: "plist")
                 let dataDict            = NSDictionary(contentsOfFile: path!)
-                self.plistLevelArray    = (dataDict?.valueForKey("level"))! as! NSArray
+                let languageDictionary = (dataDict?.valueForKey("en")) as! NSDictionary
+                self.plistLevelArray    = (languageDictionary.valueForKey("level"))! as! NSArray
                 
                 for levelDict in self.plistLevelArray {
                     let levelName = levelDict.objectForKey("title")
