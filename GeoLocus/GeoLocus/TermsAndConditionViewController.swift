@@ -11,11 +11,17 @@ import UIKit
 class TermsAndConditionViewController: BaseViewController {
 
     @IBOutlet weak var termsNavigationItem: UINavigationItem!
-
+    @IBOutlet weak var termsAndConditionsWebView: UIWebView!
+    
+    var termsAndConditionsString = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItemSetUp()
+        
+        self.termsAndConditionsString = NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.TERMS_AND_CONDITIONS_STRING)!
+        self.termsAndConditionsWebView.loadHTMLString(self.termsAndConditionsString, baseURL: nil)
     }
     
     //MARK: - Custom Methods
