@@ -25,16 +25,16 @@ struct TripNotify {
   
   func setTripNotification(){
     
-    let fireDate = self.schedule.dateByAddingTimeInterval(1.0)
+    let fireDate = self.schedule //self.schedule.dateByAddingTimeInterval(0.1)
     let notification = UILocalNotification()
     notification.alertBody = self.title
     notification.alertAction = "open"
     notification.fireDate = fireDate
-    notification.repeatInterval = NSCalendarUnit.Day
+    notification.timeZone = NSTimeZone.systemTimeZone()
     notification.soundName = UILocalNotificationDefaultSoundName
     notification.userInfo = ["title": self.title, "UUID": self.UUID, "triptype":self.tripstatus]
     notification.category = categoryID
-    UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
     
   }
   

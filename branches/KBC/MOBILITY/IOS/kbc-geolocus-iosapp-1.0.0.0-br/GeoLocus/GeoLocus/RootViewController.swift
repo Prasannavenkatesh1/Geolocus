@@ -12,6 +12,7 @@ import CoreMotion
 class RootViewController: BaseViewController {
   
     @IBOutlet var segmentControl: HMSegmentedControl!
+    @IBOutlet var textview: UITextView!
     var labelNotificationCount:UILabel?
     var categories = [String]()
     let activitymanager = CMMotionActivityManager()
@@ -110,8 +111,43 @@ class RootViewController: BaseViewController {
         
       //Motion detect
 //       self.showSnoozingPop()
+      
+      NSNotificationCenter.defaultCenter().addObserver(
+        self,
+        selector: "updatetesttextview",
+        name: "tracktestinglocation",
+        object: nil)
+      
+      
     }
+  
+  func updatetesttextview(){
+    let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    var getstr = defaults.objectForKey("motionlat") as! String
+    print("content: \(getstr)")
+    self.textview.text = getstr
     
+    
+  }
+  
+  @IBAction func clearTapped(){
+    
+    let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    let alertView = UIAlertController(title: "", message: "Are you sure want to clear?" , preferredStyle: UIAlertControllerStyle.Alert)
+    
+    alertView.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction) in
+      defaults.setObject("", forKey: "motionlat")
+      self.textview.text = ""
+    }))
+    
+    alertView.addAction(UIAlertAction(title: "NO", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction) in
+      
+    }))
+    
+    self.presentViewController(alertView, animated: true, completion: nil)
+
+  }
+  
     //MARK:- Custom Methods
     
     func navigationItemSetUp() {

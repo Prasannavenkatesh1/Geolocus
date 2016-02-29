@@ -179,8 +179,7 @@ import UIKit
                     range:contractPointsString.rangeOfString("\(dashboardData.pointsAchieved)"))
                 
                 self.contractsPointsEarnedValue.attributedText = attributedString
-
-                
+              
                 //1. Get data from plist
                 let path                = NSBundle.mainBundle().pathForResource("BadgesDetails", ofType: "plist")
                 let dataDict            = NSDictionary(contentsOfFile: path!)

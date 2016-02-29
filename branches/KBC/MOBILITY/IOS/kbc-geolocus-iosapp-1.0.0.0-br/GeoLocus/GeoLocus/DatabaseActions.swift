@@ -108,7 +108,7 @@ class DatabaseActions: NSObject {
         do{
             try self.privateManagedObjectContext.save()
             //add check
-            print("saved")
+            print("saved saveTimeSeries")
         }catch{
             fatalError("not iserted")
             

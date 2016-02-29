@@ -83,7 +83,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             return (disposition, credential)
         }
         
-        let userID : String! = "9"//defaults.stringForKey(StringConstants.USER_ID)
+        let userID : String! = defaults.stringForKey(StringConstants.USER_ID) //"9"
         let contractServiceURL = FacadeLayer.sharedinstance.webService.contractServiceURL! + "\(userID)"
         
         let contractRequest = NSMutableURLRequest(URL: NSURL(string : contractServiceURL)!)

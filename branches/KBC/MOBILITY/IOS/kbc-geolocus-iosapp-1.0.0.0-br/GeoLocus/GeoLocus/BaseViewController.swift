@@ -35,6 +35,9 @@ class BaseViewController: UIViewController {
         name: NotificationKey.SnoozingNotification,
         object: nil)
       
+      self.snoozingpopup = UIStoryboard(name: "Storyboard", bundle: nil).instantiateViewControllerWithIdentifier("SnoozingController")
+
+      
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,7 +79,6 @@ class BaseViewController: UIViewController {
     }
   
   func showSnooze(){
-    self.snoozingpopup = UIStoryboard(name: "Storyboard", bundle: nil).instantiateViewControllerWithIdentifier("SnoozingController")
     self.snoozingpopup.view.frame = CGRectMake(10, 40, 280, 295)
     self.presentPopUpController(self.snoozingpopup)
 
