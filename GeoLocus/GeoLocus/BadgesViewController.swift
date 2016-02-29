@@ -316,18 +316,18 @@ extension BadgesViewController: BadgesDelegate {
         var details = String()
         var icon = String()
         
-        if clickedRowIndexPath?.section == 0 {    //badges earned
+        if clickedRowIndexPath?.section == 1 {    //badges earned
             //TODO: revert this and change section 0 to 1 above
-            /*
+            
             title = self.badgeEarnedArray[clickedRowIndexPath!.row].badgeTitle
             details = self.badgeEarnedArray[clickedRowIndexPath!.row].badgeDescription
             icon = self.badgeEarnedArray[clickedRowIndexPath!.row].badgeIcon
-            */
+
             
             //TODO: Delete this
-            title = self.badgeNotEarnedArray[clickedRowIndexPath!.row].badgeTitle
-            details = self.badgeNotEarnedArray[clickedRowIndexPath!.row].badgeDescription
-            icon = self.badgeNotEarnedArray[clickedRowIndexPath!.row].badgeIcon
+//            title = self.badgeNotEarnedArray[clickedRowIndexPath!.row].badgeTitle
+//            details = self.badgeNotEarnedArray[clickedRowIndexPath!.row].badgeDescription
+//            icon = self.badgeNotEarnedArray[clickedRowIndexPath!.row].badgeIcon
         }else if clickedRowIndexPath?.section == 2 {     //levels
             title = self.levelArray[clickedRowIndexPath!.row].badgeTitle
             details = self.levelArray[clickedRowIndexPath!.row].badgeDescription
