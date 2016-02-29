@@ -11,13 +11,14 @@ import UIKit
 
 public class ShareTemplate {
     
-    public enum ShareOption: Int {
-        case NONE
-        case TRIP_DETAIL
-        case BADGES
-    }
-    
-    func createShareTemplateImage(title: String, detail: String, imageInfo: Dictionary<String, String>, shareOption: ShareOption, complitionHandler:(image: UIImage)->Void)-> Void{
+  public enum ShareOption: Int {
+    case NONE
+    case TRIP_DETAIL
+    case BADGES
+    case REPORT
+  }
+  
+  func createShareTemplateImage(title: String, detail: String, imageInfo: Dictionary<String, String>, captureImage: UIImage, shareOption: ShareOption, complitionHandler:(image: UIImage)->Void)-> Void{
         
         //---------------title text--------
         let titleFont                   = UIFont(name:Font.HELVETICA_NEUE_MEDIUM, size: 16)
@@ -122,6 +123,10 @@ public class ShareTemplate {
             let iconImage = UIImage(named: imageInfo["icon"]!)
             let imageRect = CGRectMake(18, 18, 156, 156)
             iconImage!.drawInRect(imageRect)
+        case ShareOption.REPORT:
+          let iconImage = captureImage
+          let imageRect = CGRectMake(18, 18, 156, 156)
+          iconImage.drawInRect(imageRect)
         default:
             print("none")
         }

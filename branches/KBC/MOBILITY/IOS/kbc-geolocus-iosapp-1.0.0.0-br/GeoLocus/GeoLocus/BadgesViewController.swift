@@ -84,9 +84,9 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
         
         var headerHeight = 35
         
-        if (section == 0 && self.badgeNotEarnedArray.count == 0) || (section == 1 && self.badgeEarnedArray.count == 0) || (section == 2 && self.levelArray.count == 0) {
-            headerHeight = 1
-        }
+//        if (section == 0 && self.badgeNotEarnedArray.count == 0) || (section == 1 && self.badgeEarnedArray.count == 0) || (section == 2 && self.levelArray.count == 0) {
+//            headerHeight = 1
+//        }
     
         return CGFloat(headerHeight)
     }
@@ -125,7 +125,7 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
         
         var titleView = UIView(frame: CGRectZero)
         
-        if (section == 0 && self.badgeNotEarnedArray.count != 0) || (section == 1 && self.badgeEarnedArray.count != 0) || (section == 2 && self.levelArray.count != 0){
+        //if (section == 0 && self.badgeNotEarnedArray.count != 0) || (section == 1 && self.badgeEarnedArray.count != 0) || (section == 2 && self.levelArray.count != 0){
             
             titleView                   = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 35))
             titleView.backgroundColor   = UIColor(netHex: 0xF6F8FA)
@@ -137,7 +137,7 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
             titleLabel.font             = UIFont(name: Font.HELVETICA_NEUE_MEDIUM, size: 15.0)
             titleLabel.textColor        = UIColor(netHex: 0x003665)
             titleView.addSubview(titleLabel)
-        }
+       // }
             return titleView
     }
     
@@ -333,7 +333,7 @@ extension BadgesViewController: BadgesDelegate {
             details = self.levelArray[clickedRowIndexPath!.row].badgeDescription
             icon = self.levelArray[clickedRowIndexPath!.row].badgeIcon
         }
-        
-        super.displayActivityView(title, detail: details, imageInfo: ["icon":icon], shareOption: ShareTemplate.ShareOption.BADGES)
+      
+      super.displayActivityView(title, detail: details, imageInfo: ["icon":icon], captureImage: UIImage(), shareOption: ShareTemplate.ShareOption.BADGES)
     }
 }

@@ -122,10 +122,13 @@ import UIKit
     
     func setTitleForLabels(){
         pointsEarnedString = LocalizationConstants.Contracts_Points_Earned.localized()
+      
         let attributedString : NSMutableAttributedString = NSMutableAttributedString(string: pointsEarnedString)
         attributedString.addAttribute(NSForegroundColorAttributeName,value: UIColor(netHex: 0x181F29),
             range: NSRange(location:0,length:attributedString.length))
-        self.contractsPointsEarnedValue.attributedText = attributedString
+      
+      if pointsEarnedString == "" { self.contractsPointsEarnedValue.text = StringConstants.NO_CONTRACT }
+      else { self.contractsPointsEarnedValue.attributedText = attributedString }
         self.distanceTravelledTitle.text = LocalizationConstants.Distance_Travelled.localized()
         
     }
@@ -174,8 +177,9 @@ import UIKit
                 
                 attributedString.addAttribute(NSForegroundColorAttributeName,value: UIColor(netHex: 0x00ACEF),
                     range:contractPointsString.rangeOfString("\(dashboardData.pointsAchieved)"))
-                
-                self.contractsPointsEarnedValue.attributedText = attributedString
+              
+              if dashboardData.pointsAchieved == "" { self.contractsPointsEarnedValue.text = StringConstants.NO_CONTRACT  }
+              else {self.contractsPointsEarnedValue.attributedText = attributedString}
 
                 
                 //1. Get data from plist

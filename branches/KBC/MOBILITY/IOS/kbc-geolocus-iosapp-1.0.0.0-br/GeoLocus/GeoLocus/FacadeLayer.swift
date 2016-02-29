@@ -393,39 +393,53 @@ class FacadeLayer{
         dbactions.fetchReportData({ (success, error, result) -> Void in
             if success {
                 completionHandler(success: true, error: error, result: result)
-            }
+            }else{
+              completionHandler(success: false, error: error, result: nil)
+          }
         })
     }
     
-    func requestInitialReportData(timeFrame timeFrame: ReportDetails.TimeFrameType, scoreType: ReportDetails.ScoreType, completionHandler:(success: Bool, error: NSError?, result: Report?) -> Void) -> Void {
-        httpclient.requestReportData(StringConstants.REPORT_SERVICE_URL + "userId=9&timeFrame=\(timeFrame)&scoreType=\(scoreType)", completionHandler: { (success, data) -> Void in
-            if let result = data {
-                
-                var reportDetails = [ReportDetails]()
-                
-                let jsonData = JSON(data: result)
-//                print(jsonData)
-                if jsonData["statusCode"] == 1 {
-                    if let reportDetailArr = jsonData["reportDetails"].array {
-                        
-                        for reportDetailObj in reportDetailArr {
-                            let reportDetailDict = reportDetailObj.dictionaryValue
-                            
-                            let reportDetail = ReportDetails(timeFrame: ReportDetails.TimeFrameType.monthly, scoreType: ReportDetails.ScoreType.speed, myScore: (reportDetailDict["score"]?.intValue)!, poolAverage: (reportDetailDict["poolAverage"]?.intValue)!)
-                            reportDetails.append(reportDetail)
-                        }
-                    }
-                    if let overallScore = jsonData["overallscore"].dictionary {
-                        let report = Report(reportDetail: reportDetails, totalPoints: (overallScore["totalPoints"]?.intValue)!, distanceTravelled: (overallScore["distanceTravelled"]?.intValue)!, totalTrips: (overallScore["totalTrips"]?.intValue)!)
-                        completionHandler(success: true, error: nil, result: report)
-                    }
-                }
-            } else {
-                completionHandler(success: false, error: NSError(domain: "", code: 0, userInfo: nil), result: nil)
-            }
-        })
+  func requestInitialReportData(timeFrame timeFrame: ReportDetails.TimeFrameType, scoreType: ReportDetails.ScoreType, completionHandler:(success: Bool, error: NSError?, result: Report?) -> Void) -> Void {
+    
+    var userId = ""
+    if let id = NSUserDefaults.standardUserDefaults().valueForKey(StringConstants.USER_ID) as? String {
+      userId = id
     }
     
+    httpclient.requestReportData(StringConstants.REPORT_SERVICE_URL + "userId=\(userId)&timeFrame=\(timeFrame)&scoreType=\(scoreType)", completionHandler: { (success, data) -> Void in
+      if let result = data {
+        
+        var reportDetails = [ReportDetails]()
+        
+        let jsonData = JSON(data: result)
+        //                print(jsonData)
+        if jsonData["statusCode"] == 1 {
+          if let reportDetailArr = jsonData["reportDetails"].array {
+            
+            for reportDetailObj in reportDetailArr {
+              let reportDetailDict = reportDetailObj.dictionaryValue
+              
+              let reportDetail = ReportDetails(timeFrame: ReportDetails.TimeFrameType.monthly, scoreType: ReportDetails.ScoreType.speed, myScore: (reportDetailDict["score"]?.intValue)!, poolAverage: (reportDetailDict["poolAverage"]?.intValue)!)
+              reportDetails.append(reportDetail)
+            }
+          }else{
+            completionHandler(success: false, error: NSError(domain: "", code: 0, userInfo: nil), result: nil)
+          }
+          if let overallScore = jsonData["overallscore"].dictionary {
+            let report = Report(reportDetail: reportDetails, totalPoints: (overallScore["totalPoints"]?.intValue)!, distanceTravelled: (overallScore["distanceTravelled"]?.intValue)!, totalTrips: (overallScore["totalTrips"]?.intValue)!)
+            completionHandler(success: true, error: nil, result: report)
+          }else{
+            completionHandler(success: false, error: NSError(domain: "", code: 0, userInfo: nil), result: nil)
+          }
+        }else {
+          completionHandler(success: false, error: NSError(domain: "", code: 0, userInfo: nil), result: nil)
+        }
+      } else {
+        completionHandler(success: false, error: NSError(domain: "", code: 0, userInfo: nil), result: nil)
+      }
+    })
+  }
+  
     func saveInitialReportData(reportData : Report, completionHandler :(status : Bool) -> Void) {
         self.dbactions.removeData("Reports")
         self.dbactions.saveReportData(reportData, completionHandler: { (status) -> Void in
@@ -444,10 +458,18 @@ class FacadeLayer{
             dbactions.fetchReportData({ (success, error, result) -> Void in
                 if success {
                     completionHandler(success: true, error: error, result: result)
-                }
+                }else{
+                  completionHandler(success: false, error: error, result: nil)
+              }
             })
         }else{
-            httpclient.requestReportData(StringConstants.REPORT_SERVICE_URL + "userId=9&timeFrame=\(timeFrame)&scoreType=\(scoreType)", completionHandler: { (success, data) -> Void in
+          
+          var userId = ""
+          if let id = NSUserDefaults.standardUserDefaults().valueForKey(StringConstants.USER_ID) as? String {
+            userId = id
+          }
+
+            httpclient.requestReportData(StringConstants.REPORT_SERVICE_URL + "userId=\(userId)&timeFrame=\(timeFrame)&scoreType=\(scoreType)", completionHandler: { (success, data) -> Void in
                 if let result = data {
                     
                     var reportDetails = [ReportDetails]()
@@ -463,7 +485,9 @@ class FacadeLayer{
                                 let reportDetail = ReportDetails(timeFrame: ReportDetails.TimeFrameType.monthly, scoreType: ReportDetails.ScoreType.speed, myScore: (reportDetailDict["score"]?.intValue)!, poolAverage: (reportDetailDict["poolAverage"]?.intValue)!)
                                 reportDetails.append(reportDetail)
                             }
-                        }
+                        }else{
+                          completionHandler(success: false, error: NSError(domain: "", code: 0, userInfo: nil), result: nil)
+                      }
                         if let overallScore = jsonData["overallscore"].dictionary {
                             let report = Report(reportDetail: reportDetails, totalPoints: (overallScore["totalPoints"]?.intValue)!, distanceTravelled: (overallScore["distanceTravelled"]?.intValue)!, totalTrips: (overallScore["totalTrips"]?.intValue)!)
                             
@@ -477,8 +501,12 @@ class FacadeLayer{
                                     completionHandler(success: false, error: NSError(domain: "", code: 0, userInfo: nil), result: nil)
                                 }
                             })
-                        }
-                    }
+                        }else{
+                          completionHandler(success: false, error: NSError(domain: "", code: 0, userInfo: nil), result: nil)
+                      }
+                    }else{
+                      completionHandler(success: false, error: NSError(domain: "", code: 0, userInfo: nil), result: nil)
+                  }
                 } else {
                     completionHandler(success: false, error: NSError(domain: "", code: 0, userInfo: nil), result: nil)
                 }
@@ -1040,8 +1068,8 @@ class FacadeLayer{
         url = nil
         
         if  let  serviceURL = self.webService.historyServiceURL {
-            if let tokenID = NSUserDefaults.standardUserDefaults().valueForKey( StringConstants.USER_ID) {
-                url = ("\(serviceURL)?userId=\(7)")
+            if let userID = NSUserDefaults.standardUserDefaults().valueForKey( StringConstants.USER_ID) {
+                url = ("\(serviceURL)?userId=\(userID)")
             }
         }
         return url
@@ -1053,8 +1081,8 @@ class FacadeLayer{
         url = nil
         
         if  let  serviceURL = self.webService.overallServiceURL {
-            if let tokenID = NSUserDefaults.standardUserDefaults().valueForKey( StringConstants.USER_ID) {
-                url = ("\(serviceURL)?userId=\(7)")
+            if let userID = NSUserDefaults.standardUserDefaults().valueForKey( StringConstants.USER_ID) {
+                url = ("\(serviceURL)?userId=\(userID)")
             }
         }
         return url
@@ -1066,8 +1094,8 @@ class FacadeLayer{
         url = nil
         
         if  let  serviceURL = self.webService.badgeServiceURL {
-            if let tokenID = NSUserDefaults.standardUserDefaults().valueForKey( StringConstants.USER_ID) {
-                url = ("\(serviceURL)?userId=\(tokenID)")
+            if let userID = NSUserDefaults.standardUserDefaults().valueForKey( StringConstants.USER_ID) {
+                url = ("\(serviceURL)?userId=\(userID)")
             }
         }
         return url
