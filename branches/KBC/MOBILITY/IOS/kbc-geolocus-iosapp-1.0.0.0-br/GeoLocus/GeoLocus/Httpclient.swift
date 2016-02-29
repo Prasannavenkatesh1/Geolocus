@@ -205,7 +205,10 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             }
             return (disposition, credential)
         }
-        var urlString = FacadeLayer.sharedinstance.webService.dashboardServiceURL! + StringConstants.USER_ID
+      
+        let userID : String! = defaults.stringForKey(StringConstants.USER_ID)
+        let urlString = FacadeLayer.sharedinstance.webService.dashboardServiceURL! + userID
+      
        // let reportRequest = NSMutableURLRequest(URL: NSURL(string: FacadeLayer.sharedinstance.webService.dashboardServiceURL!)!)
         let reportRequest = NSMutableURLRequest(URL: NSURL(string: urlString)!)
         reportRequest.HTTPMethod = "GET"
