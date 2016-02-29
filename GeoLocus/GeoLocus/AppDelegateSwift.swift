@@ -53,6 +53,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     var bgView:UIImageView?
     var backgroundUpdateTask:UIBackgroundTaskIdentifier?
     var serviceState : Service
+    let base:BaseViewController = BaseViewController()
 
   
     override init() {
@@ -80,6 +81,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     
       //
         self.serviceState = .NONE
+      
 
     registerNotification()
 
@@ -296,7 +298,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         if(!checkUserLogin){
             FacadeLayer.sharedinstance.corelocation.initLocationManager()
 
-            let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
+            let dashboardPage = storyboard.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController          
             self.window?.rootViewController = dashboardPage
             self.window?.makeKeyAndVisible()
         }
@@ -345,7 +347,11 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
         if self.checkUserDetails() {
             return
         }
-        
+      
+      
+      var  isFailed:Bool = false
+      base.startLoading()
+      
         //TODO: Check internet connectivity
         if self.serviceState == .NONE {
             var serviceError: NSError!
@@ -360,7 +366,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
             
             let webServiceGroup = dispatch_group_create();
             let operationQueue = NSOperationQueue()
-            
+          
+          
             let serviceOperation = NSBlockOperation{
                 dispatch_group_enter(webServiceGroup)
                 FacadeLayer.sharedinstance.requestBadgesData { (status, data, error) -> Void in
@@ -369,6 +376,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                 badgeData = data!
                 }else{
                 serviceError = error
+                  isFailed = true
                 }
                 print("***badge service finished...\(badgeData)")
                 dispatch_group_leave(webServiceGroup)
@@ -381,6 +389,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                         contractData = data!
                     }else{
                         serviceError = error
+                      isFailed = true
                     }
                     print("***contract service completed :\(contractData)")
                     dispatch_group_leave(webServiceGroup)
@@ -392,6 +401,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                         dashboardData = data!
                     }else{
                         serviceError = error
+                      isFailed = true
                     }
                     print("***Dashboard service finished...: \(dashboardData)")
                     dispatch_group_leave(webServiceGroup)
@@ -404,6 +414,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                         historyData = data!
                     }else{
                         serviceError = error
+                      isFailed = true
                     }
                     print("***history service finished...\(historyData)")
                     dispatch_group_leave(webServiceGroup)
@@ -415,6 +426,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                         overallScore  = data!
                     }else{
                         serviceError = error
+                      isFailed = true
                     }
                     print("***overall score service finished... :\(overallScore)")
                     dispatch_group_leave(webServiceGroup)
@@ -424,9 +436,13 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                 FacadeLayer.sharedinstance.requestInitialReportData(timeFrame: ReportDetails.TimeFrameType.weekly, scoreType: ReportDetails.ScoreType.speed, completionHandler: { (success, error, result) -> Void in
                     if success && error == nil {
                         reportData = result
-                    }
+                    }else{
+                      serviceError = error
+                      isFailed = true
+                  }
                     dispatch_group_leave(webServiceGroup)
                 })
+              
                 dispatch_group_wait(webServiceGroup, DISPATCH_TIME_FOREVER)
             }
             
@@ -516,15 +532,41 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                     print("success...")
                 }else{
                     print("failure")
+//                  let alertView = UIAlertController(title: "", message: "Web Service Error" , preferredStyle: UIAlertControllerStyle.Alert)
+//                  
+//                  alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction) in
+//                  }))
+//                  
+//                  self.window?.rootViewController!.presentViewController(alertView, animated: true, completion: nil)
+//                  self.base.stopLoading()
                 }
                 self.serviceState = .CALLED
+              
+              dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.base.stopLoading()
+              })
+              
             }
-            
+          
+         
+          
             dbOperation.addDependency(serviceOperation)
             completionOperation.addDependency(dbOperation)
             
             operationQueue.addOperations([serviceOperation, dbOperation, completionOperation], waitUntilFinished: false)
         }
+      
+//      if isFailed {
+//        let alertView = UIAlertController(title: "", message: "Web Service Error" , preferredStyle: UIAlertControllerStyle.Alert)
+//        
+//        alertView.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction) in
+//        }))
+//        
+//        self.window?.rootViewController!.presentViewController(alertView, animated: true, completion: nil)
+//        
+//        self.base.stopLoading()
+//      }
+      
     }
     
     

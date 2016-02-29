@@ -154,11 +154,13 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         
         Alamofire.request(reportRequest)
             .responseJSON { (responseJSON) -> Void in
+              
                 if let contractData = responseJSON.data{
                     completionHandler(success: true, data: contractData)
                     return
                 }
                 completionHandler(success: false, data: nil)
+              
             }.resume()
     }
 
@@ -224,8 +226,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             }.resume()
 
         
-        
-        
+      
         
         
         

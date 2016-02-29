@@ -618,8 +618,8 @@ extension HistoryPage: TripDetailCellDelegate {
         //consider localization
         
         let shareDetails = String(format: LocalizationConstants.Share.Trip.Info.localized(),(cell.tripDateLabel.text)!, (cell.tripDistanceLabel.text)!, (cell.tripDurationLabel.text)!)
-        
-        displayActivityView(LocalizationConstants.Share.Trip.Title.localized(), detail: shareDetails, imageInfo: ["speedScore":String(speedScore), "ecoScore":String(ecoScore)], shareOption: ShareTemplate.ShareOption.TRIP_DETAIL)
+      
+      displayActivityView(LocalizationConstants.Share.Trip.Title.localized(), detail: shareDetails, imageInfo: ["speedScore":String(speedScore), "ecoScore":String(ecoScore)], captureImage: UIImage(), shareOption: ShareTemplate.ShareOption.TRIP_DETAIL)
         
         //super.displayActivityView("Trip Score", detail: "On \((cell.tripDateLabel.text)!), I travelled with distance of \((cell.tripDistanceLabel.text)!)’s over a period of \((cell.tripDurationLabel.text)!) and achieved above scores using my KBC First 10,000KM app.", imageInfo: ["speedScore":String(speedScore), "ecoScore":String(ecoScore)], shareOption: ShareTemplate.ShareOption.TRIP_DETAIL)
     }

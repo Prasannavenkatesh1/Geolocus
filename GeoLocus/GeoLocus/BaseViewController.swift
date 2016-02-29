@@ -35,10 +35,31 @@ class BaseViewController: UIViewController {
         name: NotificationKey.SnoozingNotification,
         object: nil)
       
+      NSNotificationCenter.defaultCenter().addObserver(self,
+        selector: "showSnooze",
+        name: NotificationKey.SnoozingNotification,
+        object: nil)
+      
+      NSNotificationCenter.defaultCenter().addObserver(
+        self,
+        selector: "initialLoading:",
+        name: NotificationKey.initialProgress,
+        object: nil)
+      
+      
       self.snoozingpopup = UIStoryboard(name: "Storyboard", bundle: nil).instantiateViewControllerWithIdentifier("SnoozingController")
 
       
     }
+  
+  func initialLoading(userdict:NSNotification){
+    var temp = userdict.userInfo!["getindex"] as! Int
+    if temp == 0{
+//      startLoading()
+    }else{
+//      stopLoading()
+    }
+  }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -57,7 +78,8 @@ class BaseViewController: UIViewController {
         activityIndicatorView.center = self.view.center
         activityIndicatorView.startAnimating()
         activityView!.addSubview(activityIndicatorView)
-        self.view.addSubview(activityView!)
+//        self.view.addSubview(activityView!)
+      UIApplication.sharedApplication().keyWindow?.addSubview(activityView!)
         activityView?.hidden = true
         self.view.bringSubviewToFront(activityIndicatorView)
     }
@@ -91,11 +113,11 @@ class BaseViewController: UIViewController {
     }
     
     
-    func displayActivityView(title: String, detail: String, imageInfo: Dictionary<String, String>, shareOption: ShareTemplate.ShareOption){
+  func displayActivityView(title: String, detail: String, imageInfo: Dictionary<String, String>, captureImage: UIImage, shareOption: ShareTemplate.ShareOption){
         
         let shareTemplate = ShareTemplate()
         
-        shareTemplate.createShareTemplateImage(title, detail: detail, imageInfo: imageInfo, shareOption: shareOption) { (image) -> Void in
+        shareTemplate.createShareTemplateImage(title, detail: detail, imageInfo: imageInfo, captureImage: captureImage, shareOption: shareOption) { (image) -> Void in
             
             let activityViewController : UIActivityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
            // activityViewController.excludedActivityTypes = [UIActivityTypePrint, UIActivityTypeCopyToPasteboard, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll, UIActivityTypeAirDrop]

@@ -121,6 +121,7 @@ struct StringConstants {
     static let CONTINUE           = "Continue"
     static let START_TRIP_MESSAGE = "Do you want to start the trip"
     static let STOP_TRIP_MESSAGE  = "Do you want to stop the trip"
+    static let  NO_CONTRACT = "You do not have any contract message"
     
     /* Default settings*/
     static let Thresholds_Brake             = "thresholds_brake"
@@ -189,6 +190,7 @@ struct NotificationKey {
     static let PageViewControllerIndexchangedNotification = "PageViewControllerIndexchangedNotification"
     static let CurrentPageControlIndexNotification        = "currentPageControlIndexNotification"
     static let SnoozingNotification                       = "snoozingwindow"
+    static let  initialProgress                            = "initialProgress"
   
 }
 

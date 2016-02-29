@@ -44,7 +44,10 @@ class ReportsViewController: BaseViewController {
                     self.groupBarVC?.showChart(horizontal: false, barChartData: self.chartData)
                 }
             }
+          dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.stopLoading()
+          })
+          
         }
     }
     
@@ -92,7 +95,15 @@ class ReportsViewController: BaseViewController {
             self.totalTrips.text = "\(trips)"
         }
     }
-    
+  
+  func captureReportScreen() -> UIImage {
+    UIGraphicsBeginImageContextWithOptions(groupBarView.bounds.size, groupBarView.opaque, 0.0)
+    groupBarView.drawViewHierarchyInRect(groupBarView.bounds, afterScreenUpdates: false)
+    let image = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return image
+  }
+  
     //MARK: - Custom Methods
     
     func navigationItemSetUp() {
@@ -197,9 +208,27 @@ class ReportsViewController: BaseViewController {
                         self.groupBarVC?.showChart(horizontal: false, barChartData: self.chartData)
                     }
                 }
+              dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.stopLoading()
+              })
             })
         }
     }
+  
+  @IBAction func didTapOnShare(sender: UIButton) {
     
+    var title = String()
+    var details = String()
+    
+    let image = captureReportScreen()
+    
+    title = "My" + "\(timeFrameType == ReportDetails.TimeFrameType.weekly ? ReportDetails.TimeFrameType.weekly : ReportDetails.TimeFrameType.monthly)" + "graph"
+    if let totaltrip = self.totalTrips.text, let distance = self.distance.text{
+    
+      details = "During the period last \(chartData.count) \(timeFrameType == ReportDetails.TimeFrameType.weekly ? "weeks" : "months"), I travelled \(totaltrip), with distance of \(distance). Checkout my \(timeFrameType == ReportDetails.TimeFrameType.weekly ? ReportDetails.TimeFrameType.weekly : ReportDetails.TimeFrameType.monthly) graph"
+    }
+    
+    super.displayActivityView(title, detail: details, imageInfo: ["icon":""], captureImage: image, shareOption: ShareTemplate.ShareOption.REPORT)
+  }
+  
 }

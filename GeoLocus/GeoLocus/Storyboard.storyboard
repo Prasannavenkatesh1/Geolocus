@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EDY-1L-EKK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EDY-1L-EKK">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -640,7 +640,6 @@
                                 <exclude reference="Pha-TL-q0y"/>
                                 <exclude reference="XE0-Kv-tiK"/>
                                 <exclude reference="q06-U7-l3I"/>
-                                <exclude reference="kyW-1w-je3"/>
                                 <exclude reference="zJz-ml-gSh"/>
                                 <exclude reference="4lN-Je-Xbr"/>
                                 <exclude reference="Anb-Xf-miW"/>
@@ -648,6 +647,7 @@
                                 <exclude reference="J5P-WU-Wih"/>
                                 <exclude reference="Vsx-iW-8OQ"/>
                                 <exclude reference="WdZ-fB-qZf"/>
+                                <exclude reference="kyW-1w-je3"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -659,7 +659,6 @@
                                 <include reference="Pha-TL-q0y"/>
                                 <include reference="XE0-Kv-tiK"/>
                                 <include reference="q06-U7-l3I"/>
-                                <exclude reference="kyW-1w-je3"/>
                                 <exclude reference="zJz-ml-gSh"/>
                                 <include reference="4lN-Je-Xbr"/>
                                 <include reference="Anb-Xf-miW"/>
@@ -667,6 +666,7 @@
                                 <include reference="J5P-WU-Wih"/>
                                 <include reference="Vsx-iW-8OQ"/>
                                 <include reference="WdZ-fB-qZf"/>
+                                <exclude reference="kyW-1w-je3"/>
                             </mask>
                         </variation>
                     </view>
@@ -974,6 +974,9 @@
                                                 <include reference="oqe-ab-TSU"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="didTapOnShare:" destination="O7u-oV-hX8" eventType="touchUpInside" id="bg7-sS-Jlq"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance Travelled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vvx-sW-gfM">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -6513,8 +6516,7 @@
                                                         <exclude reference="lRg-zC-flg"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="1" y="5" width="85" height="30"/>
+                                                <variation key="heightClass=regular-widthClass=compact">
                                                     <mask key="constraints">
                                                         <include reference="HBF-Vc-dl0"/>
                                                         <include reference="lRg-zC-flg"/>
@@ -6538,9 +6540,6 @@
                                                         <integer key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
-                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="101" y="5" width="85" height="30"/>
-                                                </variation>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
