@@ -13,7 +13,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
   var autoStartState              : Bool?
   var brakAlert                   : Bool?
   var acclAlert                   : Bool?
-  var hasBeenRun                  : Bool?
+  var hasBeenRun                  : Bool = true
   var locationmanager             : CLLocationManager
   var locSpeedArray               : [String]?
   var motiontype                  : String?
@@ -47,6 +47,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     dataUsageArray = [AnyObject]()
     finalDataUsageArray = [AnyObject]()
     currentCountForDataUsageCalc = 0
+    FacadeLayer.sharedinstance.isMannualTrip = false
     
     
     NSNotificationCenter.defaultCenter().addObserver(
@@ -199,31 +200,34 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       }
       
       // Vechile is Not Moving
-      if(locspeed * 3.6 <= defaults.doubleForKey(StringConstants.Thresholds_Minimumspeed) || newLocation.coordinate.latitude == oldLocation.coordinate.latitude && newLocation.coordinate.longitude == oldLocation.coordinate.longitude){
+      if(locspeed * 3.6 <= defaults.doubleForKey(StringConstants.Thresholds_Minimumspeed) * 3.6 || newLocation.coordinate.latitude == oldLocation.coordinate.latitude && newLocation.coordinate.longitude == oldLocation.coordinate.longitude){
         //motion type not moving
         self.motiontype = StringConstants.MOTIONTYPE_NOTMOVING
         
       }
       
       //Vechile is moving in Minimum speed
-      if(locspeed * 3.6 > defaults.doubleForKey(StringConstants.Thresholds_Minimumspeed) || newLocation.coordinate.latitude == oldLocation.coordinate.latitude && newLocation.coordinate.longitude == oldLocation.coordinate.longitude && isVechileMoving == false){
-        
-        isVechileMoving = true
-        startdate = newLocation.timestamp
-        
-        //Data Usage
-        datausagecalc.finalDataUsageArray.removeAll(keepCapacity: true)
-        
-        // create tripid and save configurations
-        generateTipID()
-        createTripConfigDatas(defaultsTripID)
-        
+      
+      if !isVechileMoving{
+        if(locspeed * 3.6 > defaults.doubleForKey(StringConstants.Thresholds_Minimumspeed) * 3.6){
+          
+          isVechileMoving = true
+          startdate = newLocation.timestamp
+          
+          //Data Usage
+          datausagecalc.finalDataUsageArray.removeAll(keepCapacity: true)
+          
+          // create tripid and save configurations
+          generateTipID()
+          createTripConfigDatas(defaultsTripID)
+          
+        }
       }
       
       print(newlocspeed)
       if isVechileMoving {
         
-        if(newlocspeed  >=  defaults.doubleForKey(StringConstants.Thresholds_Autotrip)) {
+        if(newlocspeed * 3.6  >=  defaults.doubleForKey(StringConstants.Thresholds_Autotrip) * 3.6) {
           // motion ype automotive
           self.motiontype = StringConstants.MOTIONTYPE_AUTOMOTIVE
           isvalidtrip = true
@@ -233,6 +237,8 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
             hasBeenRun = true;
           }
         }
+        
+        
         
         //Auto trip start
         
@@ -255,9 +261,9 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
           if (hasBeenRun == true) // hasBeenRun is a boolean instance variable
           {
             hasBeenRun = false
-            autostartstate = false
             enddate = newLocation.timestamp
-            self.performSelector("notMoving", withObject: nil, afterDelay: 10) //900 - 15 mins | 30 - .5
+            print("going to stop")
+            self.performSelector("notMoving", withObject: nil, afterDelay: defaults.doubleForKey(StringConstants.Thresholds_MinimumIdleTime)) //900 - 15 mins | 30 - .5
           }
           
         }
@@ -318,7 +324,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
             distance = 0.0;
           }
           
-          let str = String(format:"\n ********** \n latitude:\(latitude) \n longitude: \(longitude) \n time: \(newLocation.timestamp) \n calcsped: \(locspeed) \n speed: \(newLocation.speed) \n Acceleration: \(acceleration) \n Braking: \(brakingvalue) \n Motiontype: \(self.motiontype) \n C_Distance: \(currentdistance) \n cumm_D: \(fltDistanceTravelled)" )
+          let str = String(format:"\n ********** \n isVechileMoving: \(isVechileMoving) \n latitude:\(latitude) \n longitude: \(longitude) \n time: \(newLocation.timestamp) \n calcsped: \(locspeed) \n speed: \(newLocation.speed) \n Acceleration: \(acceleration) \n Braking: \(brakingvalue) \n Motiontype: \(self.motiontype) \n C_Distance: \(currentdistance) \n cumm_D: \(fltDistanceTravelled)" )
           
           let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
           var getstr = defaults.objectForKey("motionlat") as! String
@@ -326,8 +332,8 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
           defaults.setObject(getstr, forKey: "motionlat")
           teststr = getstr as String
           
-          //        NSNotificationCenter.defaultCenter().postNotificationName("tracktestinglocation", object: nil)
-            
+//        NSNotificationCenter.defaultCenter().postNotificationName("tracktestinglocation", object: nil)
+          
 //          let dataUsagePerMin = datausagecalc?.getDataUsagePerMin()
           var dataUsagePerMin = datausagecalc.getDataUsagePerMin()
             
@@ -365,18 +371,19 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       tripstatus: false)
     print("stop trip notification fired")
     
-    self.performSelector("deleteTripDatas", withObject: nil, afterDelay: 5) //900 - 15 mins | 30 - .5
+    var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    self.performSelector("deleteTripDatas", withObject: nil, afterDelay: defaults.doubleForKey(StringConstants.Thresholds_MaximumIdleTime)) //900 - 15 mins | 30 - .5
   }
   
   func deleteTripDatas(){
-    print("delete trip datas")
     
+    print("delete trip datas")
+    resetflags()
+    UIApplication.sharedApplication().cancelAllLocalNotifications()
     
   }
   
   func getdetails(){
-    
-//    isVechileMoving = false // re_setting the vechile to not moving stage
     
     // to cancel the timer while not tapping the notification
     NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: "deleteTripDatas", object: nil)
@@ -403,6 +410,14 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     // Convert to Json and send to Server
     FacadeLayer.sharedinstance.reteriveTripdetails(defaultsTripID)
     
+    resetflags()
+
+ }
+  
+  func resetflags(){
+    // re_setting the vechile to not moving stage
+    isVechileMoving = false
+    autostartstate = false
   }
   
   /*

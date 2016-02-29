@@ -85,56 +85,58 @@ struct StringConstants {
     static let BADGE_CELL_LEFT_MARGIN = 20.0
     static let BADGE_CELL_RIGHT_MARGIN = 20.0
     
-    static let BADGE_CONTENT_TITLE_HEIGHT = CGFloat(18.0)
-    static let BADGE_CONTENT_TITLE_BOTTOM_PADDING = 10.0
-    static let BADGE_CONTENT_DESCRIPTION_BOTTOM_PADDING = 5.0
-    static let BADGE_CONTENT_SHARE_BUTTON_HEIGHT = 15.0
-    static let BADGE_CONTENT_ICON_LEFT_PADDING = 10.0
-    static let BADGE_CONTENT_ICON_RIGHT_PADDING = 30.0
-    static let BADGE_CONTENT_ICON_WIDTH = 84.0
+    static let BADGE_CONTENT_TITLE_HEIGHT                 = CGFloat(18.0)
+    static let BADGE_CONTENT_TITLE_BOTTOM_PADDING         = 10.0
+    static let BADGE_CONTENT_DESCRIPTION_BOTTOM_PADDING   = 5.0
+    static let BADGE_CONTENT_SHARE_BUTTON_HEIGHT          = 15.0
+    static let BADGE_CONTENT_ICON_LEFT_PADDING            = 10.0
+    static let BADGE_CONTENT_ICON_RIGHT_PADDING           = 30.0
+    static let BADGE_CONTENT_ICON_WIDTH                   = 84.0
     
     static var appDataSynced = false
     
-    static let CHANNEL_TYPE = "channel_type"
-    static let TOKEN_ID = "tokenID"
-    static let USER_ID = "userId"
-    static let USERNAME = "userName"
-    static let CHANNEL_ID = "iOS"
+    static let CHANNEL_TYPE           = "channel_type"
+    static let TOKEN_ID               = "tokenID"
+    static let USER_ID                = "userId"
+    static let USERNAME               = "userName"
+    static let CHANNEL_ID             = "iOS"
     static let SPRING_SECURITY_COOKIE = "SPRING_SECURITY_REMEMBER_ME_COOKIE"
     
-    static let ERROR = "Error"
-    static let OK = "OK"
+    static let ERROR  = "Error"
+    static let OK     = "OK"
     
     static let REPORT_SYNCHRONISATION = "ReportData_Synchronised"
     
     /* Settings View Controller */
     
-    static let RADIO_BUTTON_UNSELECTED = "Radio-Button_Unchecked.png"
-    static let RADIO_BUTTON_SELECTED = "Radio-Button_Checked.png"
+    static let RADIO_BUTTON_UNSELECTED  = "Radio-Button_Unchecked.png"
+    static let RADIO_BUTTON_SELECTED    = "Radio-Button_Checked.png"
     
     /* Dashboard View Controller */
     
-    static let YES = "Yes"
-    static let NO = "No"
-    static let STOP = "Stop"
-    static let CANCEL = "Cancel"
-    static let CONTINUE = "Continue"
+    static let YES                = "Yes"
+    static let NO                 = "No"
+    static let STOP               = "Stop"
+    static let CANCEL             = "Cancel"
+    static let CONTINUE           = "Continue"
     static let START_TRIP_MESSAGE = "Do you want to start the trip"
-    static let STOP_TRIP_MESSAGE = "Do you want to stop the trip"
+    static let STOP_TRIP_MESSAGE  = "Do you want to stop the trip"
     
-  
-  /* Default settings*/
-  static let Thresholds_Brake = "thresholds_brake"
-  static let Thresholds_Acceleration = "thresholds_acceleration"
-  static let Thresholds_Autotrip = "thresholds_autotrip"
-  static let Weightage_Braking = "weightage_braking"
-  static let Weightage_Acceleration = "weightage_acceleration"
-  static let Weightage_Speed = "weightage_speed"
-  static let Weightage_Severevoilation = "weightage_severevoilation"
-  static let Ecoweightage_Braking = "ecoweightage_braking"
-  static let Ecoweightage_Acceleration = "ecoweightage_acceleration"
-  static let Thresholds_Minimumspeed = "thresholds_minimumspeed"
-  static let Thresholds_DataUsage    = "thresholds_dataUsage"
+    /* Default settings*/
+    static let Thresholds_Brake             = "thresholds_brake"
+    static let Thresholds_Acceleration      = "thresholds_acceleration"
+    static let Thresholds_Autotrip          = "thresholds_autotrip"
+    static let Weightage_Braking            = "weightage_braking"
+    static let Weightage_Acceleration       = "weightage_acceleration"
+    static let Weightage_Speed              = "weightage_speed"
+    static let Weightage_Severevoilation    = "weightage_severevoilation"
+    static let Ecoweightage_Braking         = "ecoweightage_braking"
+    static let Ecoweightage_Acceleration    = "ecoweightage_acceleration"
+    static let Thresholds_Minimumspeed      = "thresholds_minimumspeed"
+    static let Thresholds_DataUsage         = "thresholds_dataUsage"
+    static let Thresholds_Minimumdistance   = "thresholds_minimumdistance"
+    static let Thresholds_MinimumIdleTime   = "thresholds_minimumidletime"
+    static let Thresholds_MaximumIdleTime   = "thresholds_maximumidletime"
   
 }
 

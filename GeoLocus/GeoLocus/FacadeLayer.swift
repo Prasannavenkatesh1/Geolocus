@@ -387,7 +387,7 @@ class FacadeLayer{
     }
     
     
-    //MARK:- Reoport service
+    //MARK:- Report service
 
     func fetchInitialReportData(timeFrame timeFrame: ReportDetails.TimeFrameType, scoreType: ReportDetails.ScoreType, completionHandler:(success: Bool, error: NSError?, result: Report?) -> Void) -> Void {
         dbactions.fetchReportData({ (success, error, result) -> Void in
@@ -404,7 +404,7 @@ class FacadeLayer{
                 var reportDetails = [ReportDetails]()
                 
                 let jsonData = JSON(data: result)
-                print(jsonData)
+//                print(jsonData)
                 if jsonData["statusCode"] == 1 {
                     if let reportDetailArr = jsonData["reportDetails"].array {
                         
@@ -453,7 +453,7 @@ class FacadeLayer{
                     var reportDetails = [ReportDetails]()
                     
                     let jsonData = JSON(data: result)
-                    print(jsonData)
+//                    print(jsonData)
                     if jsonData["statusCode"] == 1 {
                         if let reportDetailArr = jsonData["reportDetails"].array {
                             
@@ -498,8 +498,8 @@ class FacadeLayer{
                     var jsonData = JSON(data: result)
                     
                     if jsonData["statusCode"].intValue == 1{
-                        print(jsonData)
-                        
+//                        print(jsonData)
+                      
                         var score             : String?
                         var level             : String?
                         var nextLevelMessage  : String?
@@ -605,7 +605,7 @@ class FacadeLayer{
                         
                         if jsonData[BadgeKey.S_CODE].intValue == 1 {
                             if let badgesList = jsonData[BadgeKey.BADGES].array {
-                                print(badges)
+//                                print(badges)
                                 for badgeObj in badgesList {
                                     let badgeDict = badgeObj.dictionaryValue
                                     
@@ -622,7 +622,7 @@ class FacadeLayer{
                             }
                             
                             if let levelList = jsonData[BadgeKey.LEVELS].array {
-                                print(levelList)
+//                                print(levelList)
                                 for badgeObj in levelList {
                                     let badgeDict = badgeObj.dictionaryValue
                                     

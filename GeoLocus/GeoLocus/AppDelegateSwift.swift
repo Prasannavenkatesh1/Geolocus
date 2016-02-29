@@ -92,12 +92,12 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       defaults.setValue("", forKey: StringConstants.TOKEN_ID)
       defaults.setObject("", forKey: "motionlat")
       FacadeLayer.sharedinstance.isMannualTrip = false
-      //  Insert Weightage values for testing
       
+      //  Insert Weightage values for testing
       defaults.setDouble(7, forKey: StringConstants.Thresholds_Brake)
       defaults.setDouble(5, forKey: StringConstants.Thresholds_Acceleration)
-      defaults.setDouble(7, forKey: StringConstants.Thresholds_Autotrip)
-      defaults.setDouble(40, forKey: StringConstants.Thresholds_Minimumspeed)
+      defaults.setDouble(10, forKey: StringConstants.Thresholds_Autotrip)
+      defaults.setDouble(5, forKey: StringConstants.Thresholds_Minimumspeed)
       defaults.setDouble(0.9, forKey: StringConstants.Weightage_Braking)
       defaults.setDouble(1.2, forKey: StringConstants.Weightage_Acceleration)
       defaults.setDouble(1.6, forKey: StringConstants.Weightage_Speed)
@@ -107,7 +107,11 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       defaults.setDouble(150.0, forKey: StringConstants.Thresholds_DataUsage)
       
       
-
+      // Needs to add fields in config db
+      defaults.setDouble(150.0, forKey: StringConstants.Thresholds_Minimumdistance)
+      defaults.setDouble(10.0, forKey: StringConstants.Thresholds_MinimumIdleTime)
+      defaults.setDouble(5.0, forKey: StringConstants.Thresholds_MaximumIdleTime)
+                
     }
       
 
@@ -366,7 +370,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                 }else{
                 serviceError = error
                 }
-                print("badge service finished...")
+                print("***badge service finished...\(badgeData)")
                 dispatch_group_leave(webServiceGroup)
                 }
                 
@@ -378,7 +382,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                     }else{
                         serviceError = error
                     }
-                    print("contract service completed")
+                    print("***contract service completed :\(contractData)")
                     dispatch_group_leave(webServiceGroup)
                 })
                 
@@ -389,7 +393,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                     }else{
                         serviceError = error
                     }
-                    print("Dashboard service finished...")
+                    print("***Dashboard service finished...: \(dashboardData)")
                     dispatch_group_leave(webServiceGroup)
                     
                 })
@@ -401,7 +405,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                     }else{
                         serviceError = error
                     }
-                    print("history service finished...")
+                    print("***history service finished...\(historyData)")
                     dispatch_group_leave(webServiceGroup)
                 })
                 
@@ -412,7 +416,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                     }else{
                         serviceError = error
                     }
-                    print("overall score service finished...")
+                    print("***overall score service finished... :\(overallScore)")
                     dispatch_group_leave(webServiceGroup)
                 })
                 

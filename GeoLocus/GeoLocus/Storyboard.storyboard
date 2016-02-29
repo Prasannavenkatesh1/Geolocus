@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EDY-1L-EKK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EDY-1L-EKK">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -3136,17 +3136,76 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oug-6x-Vx6">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aj4-Wf-xzz">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <state key="normal" title="clear"/>
+                                        <connections>
+                                            <action selector="clearTapped" destination="gbb-ju-gE6" eventType="touchUpInside" id="PNA-yk-jRC"/>
+                                        </connections>
+                                    </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ny3-f5-bWC">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.28398539039999998" green="0.93827746599999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Ny3-f5-bWC" secondAttribute="bottom" id="CAz-1W-Qpm"/>
+                                    <constraint firstItem="Ny3-f5-bWC" firstAttribute="leading" secondItem="oug-6x-Vx6" secondAttribute="leading" id="hYM-JV-Av3"/>
+                                    <constraint firstAttribute="trailing" secondItem="aj4-Wf-xzz" secondAttribute="trailing" constant="14" id="hkt-G5-M14"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ny3-f5-bWC" secondAttribute="trailing" id="hyp-TV-SMd"/>
+                                    <constraint firstItem="aj4-Wf-xzz" firstAttribute="top" secondItem="oug-6x-Vx6" secondAttribute="top" constant="8" id="ndr-p8-eSE"/>
+                                    <constraint firstItem="Ny3-f5-bWC" firstAttribute="top" secondItem="aj4-Wf-xzz" secondAttribute="bottom" constant="22" id="uyu-Dj-0WD"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="aj4-Wf-xzz"/>
+                                        <exclude reference="Ny3-f5-bWC"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="hkt-G5-M14"/>
+                                        <exclude reference="ndr-p8-eSE"/>
+                                        <exclude reference="CAz-1W-Qpm"/>
+                                        <exclude reference="hYM-JV-Av3"/>
+                                        <exclude reference="hyp-TV-SMd"/>
+                                        <exclude reference="uyu-Dj-0WD"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="aj4-Wf-xzz"/>
+                                        <include reference="Ny3-f5-bWC"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="hkt-G5-M14"/>
+                                        <include reference="ndr-p8-eSE"/>
+                                        <include reference="CAz-1W-Qpm"/>
+                                        <include reference="hYM-JV-Av3"/>
+                                        <include reference="hyp-TV-SMd"/>
+                                        <include reference="uyu-Dj-0WD"/>
+                                    </mask>
+                                </variation>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="oug-6x-Vx6" firstAttribute="leading" secondItem="CyA-gu-262" secondAttribute="leading" constant="2" id="2Sa-aR-eEV"/>
                             <constraint firstAttribute="bottom" secondItem="Zkb-ef-cXj" secondAttribute="bottom" constant="2" id="7o2-Q4-mkg">
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
+                            <constraint firstItem="oug-6x-Vx6" firstAttribute="top" secondItem="Zqm-Sn-NVv" secondAttribute="bottom" constant="10" id="AwG-E5-6Hh"/>
                             <constraint firstAttribute="trailing" secondItem="Zqm-Sn-NVv" secondAttribute="trailing" id="DMd-KI-cr1"/>
+                            <constraint firstItem="dzq-EY-7OI" firstAttribute="top" secondItem="oug-6x-Vx6" secondAttribute="bottom" id="GZn-Wf-rpp"/>
                             <constraint firstItem="Zkb-ef-cXj" firstAttribute="top" secondItem="Zqm-Sn-NVv" secondAttribute="bottom" id="Jle-AU-YDu">
                                 <variation key="heightClass=regular-widthClass=compact" constant="10"/>
                             </constraint>
                             <constraint firstItem="Zqm-Sn-NVv" firstAttribute="leading" secondItem="CyA-gu-262" secondAttribute="leading" id="LeV-iM-5Xd"/>
+                            <constraint firstAttribute="trailing" secondItem="oug-6x-Vx6" secondAttribute="trailing" constant="1" id="dgv-CN-Je0"/>
                             <constraint firstItem="Zkb-ef-cXj" firstAttribute="leading" secondItem="CyA-gu-262" secondAttribute="leading" id="gmt-dt-sep"/>
                             <constraint firstItem="Zqm-Sn-NVv" firstAttribute="top" secondItem="3NA-S4-x5j" secondAttribute="bottom" id="loK-at-3oa"/>
                             <constraint firstAttribute="trailing" secondItem="Zkb-ef-cXj" secondAttribute="trailing" id="ovO-i6-Qtd"/>
@@ -3155,8 +3214,10 @@
                             <mask key="subviews">
                                 <exclude reference="Zkb-ef-cXj"/>
                                 <exclude reference="Zqm-Sn-NVv"/>
+                                <exclude reference="oug-6x-Vx6"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="GZn-Wf-rpp"/>
                                 <exclude reference="7o2-Q4-mkg"/>
                                 <exclude reference="Jle-AU-YDu"/>
                                 <exclude reference="gmt-dt-sep"/>
@@ -3164,14 +3225,19 @@
                                 <exclude reference="DMd-KI-cr1"/>
                                 <exclude reference="LeV-iM-5Xd"/>
                                 <exclude reference="loK-at-3oa"/>
+                                <exclude reference="2Sa-aR-eEV"/>
+                                <exclude reference="AwG-E5-6Hh"/>
+                                <exclude reference="dgv-CN-Je0"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="Zkb-ef-cXj"/>
                                 <include reference="Zqm-Sn-NVv"/>
+                                <include reference="oug-6x-Vx6"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="GZn-Wf-rpp"/>
                                 <include reference="7o2-Q4-mkg"/>
                                 <include reference="Jle-AU-YDu"/>
                                 <include reference="gmt-dt-sep"/>
@@ -3179,6 +3245,9 @@
                                 <include reference="DMd-KI-cr1"/>
                                 <include reference="LeV-iM-5Xd"/>
                                 <include reference="loK-at-3oa"/>
+                                <include reference="2Sa-aR-eEV"/>
+                                <include reference="AwG-E5-6Hh"/>
+                                <include reference="dgv-CN-Je0"/>
                             </mask>
                         </variation>
                     </view>
@@ -3186,6 +3255,7 @@
                     <navigationItem key="navigationItem" id="BSm-jy-Fp7"/>
                     <connections>
                         <outlet property="segmentControl" destination="Zqm-Sn-NVv" id="7O8-Op-YUN"/>
+                        <outlet property="textview" destination="Ny3-f5-bWC" id="V8D-Ea-F0e"/>
                         <segue destination="HbJ-mu-jex" kind="show" identifier="Notificationsegue" id="SfU-G1-tXh"/>
                     </connections>
                 </viewController>
