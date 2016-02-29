@@ -9,7 +9,7 @@
 import UIKit
 
 
- class DashboardPage: BaseViewController {
+ class DashboardPage: BaseViewController, UIGestureRecognizerDelegate {
 
     
  //MARK: IBOutlets
@@ -23,6 +23,7 @@ import UIKit
     @IBOutlet weak var distanceTravelledLabel: UILabel!
     @IBOutlet weak var tripStatusImage: UIImageView!
     
+    @IBOutlet weak var levelView: UIView!
     @IBOutlet weak var distanceTravelledTitle : UILabel!
     
     
@@ -68,6 +69,7 @@ import UIKit
       
     }))
     
+    if secondButtonTitle != "" {
     alertView.addAction(UIAlertAction(title: secondButtonTitle, style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction) in
       if alerttag == 101
       {
@@ -89,7 +91,7 @@ import UIKit
       }
       
       
-    }))
+    })) }
     
     if(thirdButtonTitle != ""){
       alertView.addAction(UIAlertAction(title: thirdButtonTitle, style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction) in
@@ -97,7 +99,7 @@ import UIKit
         FacadeLayer.sharedinstance.isMannualTrip = true
       }))
       
-    }
+        }
     self.presentViewController(alertView, animated: true, completion: nil)
   }
   
@@ -111,12 +113,6 @@ import UIKit
       self.setTitleForLabels()
       self.handleGetDashboardDetails()
       self.customiseProgressView()
-
-//        snoozingViewController = UIStoryboard(name: "Storyboard", bundle: nil).instantiateViewControllerWithIdentifier("SnoozingController")
-//        //snoozeController.view.frame = CGRectMake(10, 40, 280, 295)
-//        snoozingViewController.view.frame = CGRectMake(10, 40, 280, 295)
-//        self.presentPopUpController(snoozingViewController)
-        
     }
   
     override func didReceiveMemoryWarning() {
@@ -149,7 +145,7 @@ import UIKit
                 
                 let tripStatus = dashboardData.tripStatus
                 
-                switch tripStatus {
+                switch tripStatus.lowercaseString {
                 case "equal"://case "EQUAL", "equal":
                   self.tripStatusImage.hidden = true
                 case "up"://case "UP", "up", "Up":
@@ -162,13 +158,14 @@ import UIKit
                   self.tripStatusImage.hidden = true
               }
                 
-//                                let arcViewTap = UITapGestureRecognizer(target: self, action: Selector("handleTapOnArcView:"))
-//                                arcViewTap.delegate = self
-//                                self.arcView.addGestureRecognizer(arcViewTap)
-//                
-//                                let levelMessageTap = UITapGestureRecognizer(target: self, action: Selector("handleTapOnLevelMessage:"))
-//                                levelMessageTap.delegate = self
-//                                self.levelName.addGestureRecognizer(levelMessageTap)
+                                let arcViewTap = UITapGestureRecognizer(target: self, action: Selector("handleTapOnArcView:"))
+                                arcViewTap.delegate = self
+                                self.arcView.addGestureRecognizer(arcViewTap)
+                
+                                let levelMessageTap = UITapGestureRecognizer(target: self, action: Selector("handleTapOnLevelMessage:"))
+                                levelMessageTap.delegate = self
+                                self.levelView.addGestureRecognizer(levelMessageTap)
+                
                 let contractPointsString = self.pointsEarnedString + ":" + dashboardData.pointsAchieved as NSString
                 let attributedString : NSMutableAttributedString = NSMutableAttributedString(string: contractPointsString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Medium",size: 16.0)!])
                 
@@ -179,21 +176,30 @@ import UIKit
                     range:contractPointsString.rangeOfString("\(dashboardData.pointsAchieved)"))
                 
                 self.contractsPointsEarnedValue.attributedText = attributedString
-              
+
+                
                 //1. Get data from plist
                 let path                = NSBundle.mainBundle().pathForResource("BadgesDetails", ofType: "plist")
                 let dataDict            = NSDictionary(contentsOfFile: path!)
-                let languageDictionary = (dataDict?.valueForKey("en")) as! NSDictionary
-                self.plistLevelArray    = (languageDictionary.valueForKey("level"))! as! NSArray
                 
-                for levelDict in self.plistLevelArray {
-                    let levelName = levelDict.objectForKey("title")
-                    if levelName?.lowercaseString == dashboardData.levelName.lowercaseString{
-                        let levelImageName = levelDict.objectForKey("icon_not_earned") as! String
-                        self.levelImage.image = UIImage(named:levelImageName)
-                        break
+                
+                if let validDict = dataDict![NSUserDefaults.standardUserDefaults().objectForKey(StringConstants.SELECTED_LOCALIZE_LANGUAGE_CODE) as! String] {
+                    
+                    self.plistLevelArray    = (validDict.valueForKey("level"))! as! NSArray
+                    
+                    for levelDict in self.plistLevelArray {
+                        let levelName = levelDict.objectForKey("title")
+                        if levelName?.lowercaseString == dashboardData.levelName.lowercaseString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()){
+                            let levelImageName = levelDict.objectForKey("icon") as! String
+                            self.levelImage.image = UIImage(named:levelImageName)
+                            break
+                        }
                     }
                 }
+                
+
+                
+          
                 
                 if !(dashboardData.totalPoints.isEmpty) && !(dashboardData.pointsAchieved.isEmpty){
                     let totalPoints = Float(dashboardData.totalPoints)
