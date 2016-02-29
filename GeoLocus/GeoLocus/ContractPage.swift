@@ -246,9 +246,11 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
         // Save image to Document directory
         if let image = imageView.image {
             saveImage(image, path: imagePath)
-        } else {
+        }
+        else {
             print("Error in saving image..")
         }
+        
         self.hideImageViewBorder()
     }
 }
