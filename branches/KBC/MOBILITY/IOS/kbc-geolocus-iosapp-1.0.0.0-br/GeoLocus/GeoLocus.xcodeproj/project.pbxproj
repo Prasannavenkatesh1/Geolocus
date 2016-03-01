@@ -260,13 +260,13 @@
 		BF47FEFA1C7DA2E8006244A2 /* Trips.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FEF21C7DA2E8006244A2 /* Trips.swift */; };
 		BF47FEFB1C7DA2E8006244A2 /* TripSummary+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FEF31C7DA2E8006244A2 /* TripSummary+CoreDataProperties.swift */; };
 		BF47FEFC1C7DA2E8006244A2 /* TripSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FEF41C7DA2E8006244A2 /* TripSummary.swift */; };
-		BF47FEFF1C7DA2E8006244A2 /* Configurations+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FEF71C7DA2E8006244A2 /* Configurations+CoreDataProperties.swift */; };
-		BF47FF001C7DA2E8006244A2 /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FEF81C7DA2E8006244A2 /* Configurations.swift */; };
 		BF47FF031C7DA6BB006244A2 /* Trip_timeseries+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FF011C7DA6BA006244A2 /* Trip_timeseries+CoreDataProperties.swift */; };
 		BF47FF041C7DA6BB006244A2 /* Trip_timeseries.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FF021C7DA6BB006244A2 /* Trip_timeseries.swift */; };
 		BF47FF061C7DCE28006244A2 /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF47FF051C7DCE28006244A2 /* TripModel.swift */; };
 		BF4BA0E21C5F661F0028D79B /* Thresholds.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4BA0E11C5F661F0028D79B /* Thresholds.swift */; };
 		BF4BA0E41C5F6CC70028D79B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4BA0E31C5F6CC70028D79B /* Config.swift */; };
+		BF4E31CE1C855474006B371E /* Configurations+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4E31CC1C855474006B371E /* Configurations+CoreDataProperties.swift */; };
+		BF4E31CF1C855474006B371E /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4E31CD1C855474006B371E /* Configurations.swift */; };
 		BF4F8D981C43845000895640 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D971C43845000895640 /* CategoryCell.swift */; };
 		BF4F8D9A1C43CA8D00895640 /* Httpclient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D991C43CA8D00895640 /* Httpclient.swift */; };
 		BF4F8D9C1C43CA9D00895640 /* DatabaseActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */; };
@@ -614,13 +614,13 @@
 		BF47FEF21C7DA2E8006244A2 /* Trips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trips.swift; sourceTree = "<group>"; };
 		BF47FEF31C7DA2E8006244A2 /* TripSummary+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TripSummary+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BF47FEF41C7DA2E8006244A2 /* TripSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummary.swift; sourceTree = "<group>"; };
-		BF47FEF71C7DA2E8006244A2 /* Configurations+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Configurations+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		BF47FEF81C7DA2E8006244A2 /* Configurations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		BF47FF011C7DA6BA006244A2 /* Trip_timeseries+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trip_timeseries+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BF47FF021C7DA6BB006244A2 /* Trip_timeseries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip_timeseries.swift; sourceTree = "<group>"; };
 		BF47FF051C7DCE28006244A2 /* TripModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripModel.swift; sourceTree = "<group>"; };
 		BF4BA0E11C5F661F0028D79B /* Thresholds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thresholds.swift; sourceTree = "<group>"; };
 		BF4BA0E31C5F6CC70028D79B /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		BF4E31CC1C855474006B371E /* Configurations+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Configurations+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BF4E31CD1C855474006B371E /* Configurations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		BF4F8D971C43845000895640 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		BF4F8D991C43CA8D00895640 /* Httpclient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Httpclient.swift; sourceTree = "<group>"; };
 		BF4F8D9B1C43CA9D00895640 /* DatabaseActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseActions.swift; sourceTree = "<group>"; };
@@ -1098,8 +1098,6 @@
 				BF47FF021C7DA6BB006244A2 /* Trip_timeseries.swift */,
 				BF47FEF31C7DA2E8006244A2 /* TripSummary+CoreDataProperties.swift */,
 				BF47FEF41C7DA2E8006244A2 /* TripSummary.swift */,
-				BF47FEF71C7DA2E8006244A2 /* Configurations+CoreDataProperties.swift */,
-				BF47FEF81C7DA2E8006244A2 /* Configurations.swift */,
 				283C04931C74A24D0096358C /* OverallScore+CoreDataProperties.swift */,
 				283C04941C74A24D0096358C /* OverallScore.swift */,
 				283C048F1C7484F10096358C /* Trip_Detail+CoreDataProperties.swift */,
@@ -1114,6 +1112,8 @@
 				283A2B361C65D7C700F6BD16 /* Trip_Badge.swift */,
 				28398E4F1C637F32003D5BE5 /* Trip_Speed_Zone+CoreDataProperties.swift */,
 				28398E501C637F32003D5BE5 /* Trip_Speed_Zone.swift */,
+				BF4E31CC1C855474006B371E /* Configurations+CoreDataProperties.swift */,
+				BF4E31CD1C855474006B371E /* Configurations.swift */,
 			);
 			name = DBModels;
 			sourceTree = "<group>";
@@ -1629,7 +1629,6 @@
 				6CCAF9101C4E20D500484056 /* ErrorHandler.swift in Sources */,
 				638452391B0353AE00E895F7 /* RegistrationEntity.m in Sources */,
 				283C04911C7484F10096358C /* Trip_Detail+CoreDataProperties.swift in Sources */,
-				BF47FEFF1C7DA2E8006244A2 /* Configurations+CoreDataProperties.swift in Sources */,
 				638452301B0353AE00E895F7 /* LeaderBoardDatabase.m in Sources */,
 				630C1E8A1AD6653000C98857 /* ScorePageViewController.swift in Sources */,
 				BF5437B71C58FEA7009D2343 /* TimeSeriesModel.swift in Sources */,
@@ -1676,6 +1675,7 @@
 				BF47FEF91C7DA2E8006244A2 /* Trips+CoreDataProperties.swift in Sources */,
 				BF4BA0E41C5F6CC70028D79B /* Config.swift in Sources */,
 				638451F01B0353A000E895F7 /* FMResultSet.m in Sources */,
+				BF4E31CE1C855474006B371E /* Configurations+CoreDataProperties.swift in Sources */,
 				28CD01E11C69A42300EEC94A /* DetectingVechile.swift in Sources */,
 				28F38A0B1C61EB3900A02E93 /* Badge.swift in Sources */,
 				636EF44C1B062B67007AA706 /* RegistrationDatabase.m in Sources */,
@@ -1724,6 +1724,7 @@
 				28F38A131C61EBB300A02E93 /* HistoryMapViewCell.swift in Sources */,
 				A6D52F881B6F454900855DDB /* TripSummaryDB.m in Sources */,
 				63C2094F1B0B0BF8009DF880 /* AppDelegateSwift.swift in Sources */,
+				BF4E31CF1C855474006B371E /* Configurations.swift in Sources */,
 				283A2B371C65D7C700F6BD16 /* Trip_Badge+CoreDataProperties.swift in Sources */,
 				283C04921C7484F10096358C /* Trip_Detail.swift in Sources */,
 				6384523D1B0353AE00E895F7 /* RegistrationController.m in Sources */,
@@ -1733,7 +1734,6 @@
 				63061B511BA03CD3006BF223 /* MapView.swift in Sources */,
 				638451F41B0353A000E895F7 /* GeoLocusAppDelegate.m in Sources */,
 				283A2B381C65D7C700F6BD16 /* Trip_Badge.swift in Sources */,
-				BF47FF001C7DA2E8006244A2 /* Configurations.swift in Sources */,
 				63D086BE1B047D2A00BDD656 /* MLTableAlert.m in Sources */,
 				BF43B3501C61D25900710E22 /* TripNotify.swift in Sources */,
 				B648C20D1C58B83000EE52C3 /* PageContentViewController.swift in Sources */,

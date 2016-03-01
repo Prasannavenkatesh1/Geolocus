@@ -2,7 +2,7 @@
 //  Configurations.swift
 //  GeoLocus
 //
-//  Created by Wearables Mac Mini on 24/02/16.
+//  Created by Wearables Mac Mini on 01/03/16.
 //  Copyright © 2016 Cognizant. All rights reserved.
 //
 
