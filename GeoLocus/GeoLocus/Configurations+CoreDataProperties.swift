@@ -2,7 +2,7 @@
 //  Configurations+CoreDataProperties.swift
 //  GeoLocus
 //
-//  Created by Wearables Mac Mini on 24/02/16.
+//  Created by Wearables Mac Mini on 01/03/16.
 //  Copyright © 2016 Cognizant. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -19,11 +19,14 @@ extension Configurations {
     @NSManaged var thresholds_acceleration: NSNumber?
     @NSManaged var thresholds_autotrip: NSNumber?
     @NSManaged var thresholds_brake: NSNumber?
+    @NSManaged var thresholds_minimumspeed: NSNumber?
+    @NSManaged var tripid: String?
     @NSManaged var weightage_acceleration: NSNumber?
     @NSManaged var weightage_braking: NSNumber?
     @NSManaged var weightage_severevoilation: NSNumber?
     @NSManaged var weightage_speed: NSNumber?
-    @NSManaged var thresholds_minimumspeed: NSNumber?
-    @NSManaged var tripid: String?
+    @NSManaged var thresholds_minimumdistance: NSNumber?
+    @NSManaged var thresholds_maximumIdletime: NSNumber?
+    @NSManaged var thresholds_minimumsIdletime: NSNumber?
 
 }

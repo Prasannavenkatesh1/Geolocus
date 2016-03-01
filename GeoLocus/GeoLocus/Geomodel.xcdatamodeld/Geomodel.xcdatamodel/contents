@@ -6,6 +6,9 @@
         <attribute name="thresholds_acceleration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="thresholds_autotrip" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="thresholds_brake" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="thresholds_maximumIdletime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="thresholds_minimumdistance" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="thresholds_minimumsIdletime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="thresholds_minimumspeed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="tripid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weightage_acceleration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -138,7 +141,7 @@
         <attribute name="tripstarttime" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Configurations" positionX="531" positionY="-136" width="189" height="208"/>
+        <element name="Configurations" positionX="531" positionY="-136" width="189" height="255"/>
         <element name="Contract" positionX="1584" positionY="341" width="128" height="163"/>
         <element name="Dashboard" positionX="1546" positionY="134" width="128" height="163"/>
         <element name="OverallScore" positionX="1989" positionY="-153" width="128" height="180"/>

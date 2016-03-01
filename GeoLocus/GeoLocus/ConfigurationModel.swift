@@ -20,6 +20,10 @@ struct  ConfigurationModel{
   var ecoweightage_braking      : NSNumber?
   var ecoweightage_acceleration : NSNumber?
   var thresholds_minimumspeed: NSNumber?
+  
+  var thresholds_minimumdistance: NSNumber?
+  var thresholds_maximumIdletime: NSNumber?
+  var thresholds_minimumsIdletime: NSNumber?
   var tripid: String?
 
 }
