@@ -97,17 +97,23 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     
     let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var conmodel:ConfigurationModel = ConfigurationModel()
-    conmodel.tripid = tripid
-    conmodel.thresholds_brake           = NSNumber(double: defaults.doubleForKey(StringConstants.Thresholds_Brake))
-    conmodel.thresholds_acceleration    = NSNumber(double: defaults.doubleForKey(StringConstants.Thresholds_Acceleration))
-    conmodel.thresholds_autotrip        = NSNumber(double: defaults.doubleForKey(StringConstants.Thresholds_Autotrip))
-    conmodel.thresholds_minimumspeed    = NSNumber(double: defaults.doubleForKey(StringConstants.Thresholds_Minimumspeed))
-    conmodel.weightage_braking          = NSNumber(double: defaults.doubleForKey(StringConstants.Weightage_Braking))
-    conmodel.weightage_acceleration     = NSNumber(double: defaults.doubleForKey(StringConstants.Weightage_Acceleration))
-    conmodel.weightage_speed            = NSNumber(double: defaults.doubleForKey(StringConstants.Weightage_Speed))
-    conmodel.weightage_severevoilation  = NSNumber(double: defaults.doubleForKey(StringConstants.Weightage_Severevoilation))
-    conmodel.ecoweightage_braking       = NSNumber(double: defaults.doubleForKey(StringConstants.Ecoweightage_Braking))
-    conmodel.ecoweightage_acceleration  = NSNumber(double: defaults.doubleForKey(StringConstants.Ecoweightage_Acceleration))
+    
+    conmodel.tripid                       = tripid
+    conmodel.thresholds_brake             = NSNumber(double: defaults.doubleForKey(StringConstants.Thresholds_Brake))
+    conmodel.thresholds_acceleration      = NSNumber(double: defaults.doubleForKey(StringConstants.Thresholds_Acceleration))
+    conmodel.thresholds_autotrip          = NSNumber(double: defaults.doubleForKey(StringConstants.Thresholds_Autotrip))
+    conmodel.thresholds_minimumspeed      = NSNumber(double: defaults.doubleForKey(StringConstants.Thresholds_Minimumspeed))
+    conmodel.thresholds_minimumdistance   = NSNumber(double: defaults.doubleForKey(StringConstants.Thresholds_Minimumdistance))
+    conmodel.thresholds_minimumsIdletime  = NSNumber(double: defaults.doubleForKey(StringConstants.Thresholds_MinimumIdleTime))
+    conmodel.thresholds_maximumIdletime   = NSNumber(double: defaults.doubleForKey(StringConstants.Thresholds_MaximumIdleTime))
+    conmodel.weightage_braking            = NSNumber(double: defaults.doubleForKey(StringConstants.Weightage_Braking))
+    conmodel.weightage_acceleration       = NSNumber(double: defaults.doubleForKey(StringConstants.Weightage_Acceleration))
+    conmodel.weightage_speed              = NSNumber(double: defaults.doubleForKey(StringConstants.Weightage_Speed))
+    conmodel.weightage_severevoilation    = NSNumber(double: defaults.doubleForKey(StringConstants.Weightage_Severevoilation))
+    conmodel.ecoweightage_braking         = NSNumber(double: defaults.doubleForKey(StringConstants.Ecoweightage_Braking))
+    conmodel.ecoweightage_acceleration    = NSNumber(double: defaults.doubleForKey(StringConstants.Ecoweightage_Acceleration))
+    
+    
     FacadeLayer.sharedinstance.dbactions.saveConfiguration(conmodel)
     
     //Insert Master Trip Details
@@ -200,7 +206,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       }
       
       // Vechile is Not Moving
-      if(locspeed * 3.6 <= defaults.doubleForKey(StringConstants.Thresholds_Minimumspeed) * 3.6 || newLocation.coordinate.latitude == oldLocation.coordinate.latitude && newLocation.coordinate.longitude == oldLocation.coordinate.longitude){
+      if(locspeed * 3.6 <= defaults.doubleForKey(StringConstants.Thresholds_Minimumspeed) || newLocation.coordinate.latitude == oldLocation.coordinate.latitude && newLocation.coordinate.longitude == oldLocation.coordinate.longitude){
         //motion type not moving
         self.motiontype = StringConstants.MOTIONTYPE_NOTMOVING
         
@@ -209,7 +215,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       //Vechile is moving in Minimum speed
       
       if !isVechileMoving{
-        if(locspeed * 3.6 > defaults.doubleForKey(StringConstants.Thresholds_Minimumspeed) * 3.6){
+        if(locspeed * 3.6 > defaults.doubleForKey(StringConstants.Thresholds_Minimumspeed)){
           
           isVechileMoving = true
           startdate = newLocation.timestamp
@@ -227,7 +233,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
       print(newlocspeed)
       if isVechileMoving {
         
-        if(newlocspeed * 3.6  >=  defaults.doubleForKey(StringConstants.Thresholds_Autotrip) * 3.6) {
+        if(newlocspeed * 3.6  >=  defaults.doubleForKey(StringConstants.Thresholds_Autotrip)) {
           // motion ype automotive
           self.motiontype = StringConstants.MOTIONTYPE_AUTOMOTIVE
           isvalidtrip = true
@@ -242,7 +248,7 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
         
         //Auto trip start
         
-        if(self.motiontype == StringConstants.MOTIONTYPE_AUTOMOTIVE && autostartstate == false) {
+        if(self.motiontype == StringConstants.MOTIONTYPE_AUTOMOTIVE && autostartstate == false && defaults.boolForKey(StringConstants.isSnoozeEnabled)) {
           
           autostartstate = true
           if FacadeLayer.sharedinstance.isMannualTrip == false{
@@ -263,7 +269,9 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
             hasBeenRun = false
             enddate = newLocation.timestamp
             print("going to stop")
-            self.performSelector("notMoving", withObject: nil, afterDelay: defaults.doubleForKey(StringConstants.Thresholds_MinimumIdleTime)) //900 - 15 mins | 30 - .5
+            let minimumidletime:Int = Int(defaults.doubleForKey(StringConstants.Thresholds_MinimumIdleTime))
+            self.performSelector("notMoving", withObject: nil, afterDelay: minimumidletime.milliSecondsToSeconds)
+            //900 - 15 mins | 30 - .5
           }
           
         }
@@ -372,13 +380,15 @@ class CoreLocation: NSObject,CLLocationManagerDelegate {
     print("stop trip notification fired")
     
     var defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-    self.performSelector("deleteTripDatas", withObject: nil, afterDelay: defaults.doubleForKey(StringConstants.Thresholds_MaximumIdleTime)) //900 - 15 mins | 30 - .5
+    let maximumidletime:Int = Int(defaults.doubleForKey(StringConstants.Thresholds_MaximumIdleTime))
+    self.performSelector("deleteTripDatas", withObject: nil, afterDelay: maximumidletime.milliSecondsToSeconds) //900 - 15 mins | 30 - .5
   }
   
   func deleteTripDatas(){
     
     print("delete trip datas")
     resetflags()
+    FacadeLayer.sharedinstance.dbactions.deleteTrip(defaultsTripID)
     UIApplication.sharedApplication().cancelAllLocalNotifications()
     
   }

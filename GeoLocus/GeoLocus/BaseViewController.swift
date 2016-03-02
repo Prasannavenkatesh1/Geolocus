@@ -47,7 +47,7 @@ class BaseViewController: UIViewController {
         object: nil)
       
       
-      self.snoozingpopup = UIStoryboard(name: "Storyboard", bundle: nil).instantiateViewControllerWithIdentifier("SnoozingController")
+      
 
       
     }
@@ -101,6 +101,7 @@ class BaseViewController: UIViewController {
     }
   
   func showSnooze(){
+    self.snoozingpopup = UIStoryboard(name: "Storyboard", bundle: nil).instantiateViewControllerWithIdentifier("SnoozingController")
     self.snoozingpopup.view.frame = CGRectMake(10, 40, 280, 295)
     self.presentPopUpController(self.snoozingpopup)
 
@@ -176,7 +177,8 @@ class BaseViewController: UIViewController {
         
         
         overLayView.addSubview(popUpView)
-        sourceView.addSubview(overLayView)
+//        sourceView.addSubview(overLayView)
+        UIApplication.sharedApplication().keyWindow?.addSubview(overLayView)
         sourceView.bringSubviewToFront(popUpView)
         
     }

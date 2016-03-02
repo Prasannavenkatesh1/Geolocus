@@ -88,6 +88,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     let defaults = NSUserDefaults.standardUserDefaults()
 //    defaults.setBool(false, forKey: "isFirstTime")
     if( defaults.boolForKey("isFirstTime") == false){
+      
       defaults.setBool(true, forKey: "isFirstTime")
       defaults.setBool(false, forKey: "isStarted")
       defaults.setInteger(1, forKey: "autoincr_tripid")
@@ -96,24 +97,38 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       FacadeLayer.sharedinstance.isMannualTrip = false
       
       //  Insert Weightage values for testing
+      /*
+      
       defaults.setDouble(7, forKey: StringConstants.Thresholds_Brake)
-      defaults.setDouble(5, forKey: StringConstants.Thresholds_Acceleration)
-      defaults.setDouble(10, forKey: StringConstants.Thresholds_Autotrip)
-      defaults.setDouble(5, forKey: StringConstants.Thresholds_Minimumspeed)
+      defaults.setDouble(9, forKey: StringConstants.Thresholds_Acceleration)
+      defaults.setDouble(40, forKey: StringConstants.Thresholds_Autotrip)
+      defaults.setDouble(20, forKey: StringConstants.Thresholds_Minimumspeed)
+      defaults.setDouble(150.0, forKey: StringConstants.Thresholds_DataUsage)
+      defaults.setDouble(10.0, forKey: StringConstants.Thresholds_Minimumdistance)
+      defaults.setDouble(10000.0, forKey: StringConstants.Thresholds_MinimumIdleTime)
+      defaults.setDouble(5000.0, forKey: StringConstants.Thresholds_MaximumIdleTime)
+      
+      */
+      
+      defaults.setDouble(7, forKey: StringConstants.Thresholds_Brake)
+      defaults.setDouble(9, forKey: StringConstants.Thresholds_Acceleration)
+      defaults.setDouble(40, forKey: StringConstants.Thresholds_Autotrip)
+      defaults.setDouble(20, forKey: StringConstants.Thresholds_Minimumspeed)
+      defaults.setDouble(150.0, forKey: StringConstants.Thresholds_DataUsage)
+      defaults.setDouble(10.0, forKey: StringConstants.Thresholds_Minimumdistance)
+      defaults.setDouble(10000.0, forKey: StringConstants.Thresholds_MinimumIdleTime)
+      defaults.setDouble(5000.0, forKey: StringConstants.Thresholds_MaximumIdleTime)
+      
       defaults.setDouble(0.9, forKey: StringConstants.Weightage_Braking)
       defaults.setDouble(1.2, forKey: StringConstants.Weightage_Acceleration)
       defaults.setDouble(1.6, forKey: StringConstants.Weightage_Speed)
       defaults.setDouble(1.4, forKey: StringConstants.Weightage_Severevoilation)
       defaults.setDouble(0.5, forKey: StringConstants.Ecoweightage_Braking)
       defaults.setDouble(0.2, forKey: StringConstants.Ecoweightage_Acceleration)
-      defaults.setDouble(150.0, forKey: StringConstants.Thresholds_DataUsage)
       
-      
-      // Needs to add fields in config db
-      defaults.setDouble(150.0, forKey: StringConstants.Thresholds_Minimumdistance)
-      defaults.setDouble(10.0, forKey: StringConstants.Thresholds_MinimumIdleTime)
-      defaults.setDouble(5.0, forKey: StringConstants.Thresholds_MaximumIdleTime)
-                
+      defaults.setBool(true, forKey: StringConstants.isSnoozeEnabled)
+
+                      
     }
       
 
@@ -240,7 +255,8 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
             let triptype = userinfo["triptype"] as! Bool
             if(triptype == true){
               print("trip start")
-              NSNotificationCenter.defaultCenter().postNotificationName(NotificationKey.SnoozingNotification, object: nil)
+              //NSNotificationCenter.defaultCenter().postNotificationName(NotificationKey.SnoozingNotification, object: nil)
+              self.base.showSnooze()
               
             }
           }
@@ -294,7 +310,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       
         let storyboard: UIStoryboard = UIStoryboard(name: "Storyboard", bundle: NSBundle.mainBundle())
         let checkUserLogin : Bool = self.checkUserDetails()
-        //checkUserLogin = false
+//        checkUserLogin = false
         if(!checkUserLogin){
             FacadeLayer.sharedinstance.corelocation.initLocationManager()
 

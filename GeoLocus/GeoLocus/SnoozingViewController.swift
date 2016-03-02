@@ -23,6 +23,7 @@ class SnoozingViewController : BaseViewController,UIPickerViewDelegate,UIPickerV
     //var pickerDataSource  = [["1","2","3"],["Hours","Minutes","Days"]]
     
     override func viewDidLoad() {
+      
         super.viewDidLoad()
         snoozePickerTitleLabel.text = LocalizationConstants.Settings.Snooze.AskMeAgain_Title.localized()
         snoozingPickerLeftComponentDictionary[LocalizationConstants.Settings.Snooze.Hours.localized()] = hoursArray
@@ -81,8 +82,34 @@ class SnoozingViewController : BaseViewController,UIPickerViewDelegate,UIPickerV
     
     print(firstval)
     print(secondval)
+    
+    //3 * 24 * 60 * 60  -> Days
+    //3 * 60 * 60       -> Hours
+    //3 * 60            -> Minutes
+    let indexofTimeArr  = timeArray.indexOf(secondval)
+    var snoozingSeconds:NSTimeInterval = 0
+    
+    if let selval = firstval as? Double {
+      
+      if indexofTimeArr == 0{
+        snoozingSeconds = selval * 60 * 60        // Hours
+      }else if indexofTimeArr == 1{
+        snoozingSeconds = selval * 60             // Minutes
+      }else if indexofTimeArr == 2{
+        snoozingSeconds = selval * 24 * 60 * 60   // Days
+      }
+      
+    }
+    
+    NSUserDefaults.standardUserDefaults().setBool(false, forKey: StringConstants.isSnoozeEnabled)
+    self.performSelector("triggersnooze", withObject: nil, afterDelay: snoozingSeconds)
+    
 
-//      self.dismissPopUpController()
+    self.dismissPopUpController()
+  }
+
+  func triggersnooze(){
+    NSUserDefaults.standardUserDefaults().setBool(true, forKey: StringConstants.isSnoozeEnabled)
   }
   
   

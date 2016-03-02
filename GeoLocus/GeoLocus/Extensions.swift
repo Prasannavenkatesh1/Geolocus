@@ -11,6 +11,15 @@ import Foundation
 //MARK: - Extensions
 
 
+
+extension Int {
+  var milliSecondsToSeconds: Double {
+    return Double(self) / 1000
+  }
+}
+
+
+
 extension NSDate {
     convenience init?(jsonDate: String) {
     

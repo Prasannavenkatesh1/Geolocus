@@ -139,6 +139,9 @@ struct StringConstants {
     static let Thresholds_MinimumIdleTime   = "thresholds_minimumidletime"
     static let Thresholds_MaximumIdleTime   = "thresholds_maximumidletime"
   
+  /*  Core Location */
+    static let isSnoozeEnabled   = "Snoozing enabled"
+  
 }
 
 
