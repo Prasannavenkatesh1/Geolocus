@@ -10,7 +10,12 @@ import Foundation
 
 struct Portal {
   
+  // SIT
   static let baseurl = " https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/"
+  
+  // Production
+//  static let baseurl = " https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/"
+  
   static let login = "\(baseurl)ubi-sei-web/j_spring_security_check?"
 
 }
