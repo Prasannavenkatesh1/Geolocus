@@ -51,7 +51,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       //
         self.serviceState = .NONE
       
-      print(Portal.login)
+     // print(Portal.login)
       
 
     registerNotification()
@@ -341,6 +341,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       
         //TODO: Check internet connectivity
         if self.serviceState == .NONE {
+            self.serviceState = .CALLING
             var serviceError: NSError!
             var dbStatus = false
             

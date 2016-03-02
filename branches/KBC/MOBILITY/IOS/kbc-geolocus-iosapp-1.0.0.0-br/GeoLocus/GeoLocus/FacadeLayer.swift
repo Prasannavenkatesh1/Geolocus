@@ -56,88 +56,96 @@ class FacadeLayer{
     
     func getWebServiceURL(){
         
-        if let path = NSBundle.mainBundle().pathForResource("WebServicesURL", ofType: "plist") {
-            if let dataDict = NSDictionary(contentsOfFile: path){
-                print(dataDict)
-                if let loginServiceURL = dataDict["BaseURL"] {
-                    self.webService.loginServiceURL = loginServiceURL as? String
+        if let infoPlist = NSBundle.mainBundle().infoDictionary,
+         let appENV = infoPlist["APP_ENV"] as? String {
+            if let path = NSBundle.mainBundle().pathForResource("WebServicesURL", ofType: "plist") {
+                
+                if let envDict = NSDictionary(contentsOfFile: path) {
+                    if let dataDict = envDict[appENV]{
+                        print(dataDict)
+                        if let loginServiceURL = dataDict["BaseURL"] {
+                            self.webService.loginServiceURL = loginServiceURL as? String
+                        }
+                        
+                        if let loginServiceURL = dataDict["LoginServiceURL"] {
+                            self.webService.loginServiceURL = loginServiceURL as? String
+                        }
+                        
+                        if let registrationServiceURL = dataDict["RegistrationServiceURL"] {
+                            self.webService.registrationServiceURL = registrationServiceURL as? String
+                        }
+                        
+                        if let termConditionsServiceURL = dataDict["TermConditionsServiceURL"] {
+                            self.webService.termConditionsServiceURL = termConditionsServiceURL as? String
+                        }
+                        
+                        if let needHelpServiceURL = dataDict["NeedHelpServiceURL"] {
+                            self.webService.needHelpServiceURL = needHelpServiceURL as? String
+                        }
+                        
+                        if let contractServiceURL = dataDict["ContractServiceURL"] {
+                            self.webService.contractServiceURL = contractServiceURL as? String
+                        }
+                        
+                        if let dashboardServiceURL = dataDict["DashboardServiceURL"] {
+                            self.webService.dashboardServiceURL = dashboardServiceURL as? String
+                        }
+                        
+                        if let historyServiceURL = dataDict["HistoryServiceURL"] {
+                            self.webService.historyServiceURL = historyServiceURL as? String
+                        }
+                        
+                        if let badgeServiceURL = dataDict["BadgeServiceURL"] {
+                            self.webService.badgeServiceURL = badgeServiceURL as? String
+                        }
+                        
+                        if let overallServiceURL = dataDict["OverallServiceURL"] {
+                            self.webService.overallServiceURL = overallServiceURL as? String
+                        }
+                        
+                        if let reportServiceURL = dataDict["ReportServiceURL"] {
+                            self.webService.reportServiceURL = reportServiceURL as? String
+                        }
+                        
+                        if let tripServiceURL = dataDict["TripServiceURL"] {
+                            self.webService.tripServiceURL = tripServiceURL as? String
+                        }
+                        
+                        if let configurationServiceURL = dataDict["ConfigurationServiceURL"] {
+                            self.webService.configurationServiceURL = configurationServiceURL as? String
+                        }
+                        
+                        if let registerPNURL = dataDict["RegisterPNURL"] {
+                            self.webService.registerPNURL = registerPNURL as? String
+                        }
+                        
+                        if let registerDeviceTokenServiceURL = dataDict["RegisterDeviceTokenServiceURL"] {
+                            self.webService.registerDeviceTokenServiceURL = registerDeviceTokenServiceURL as? String
+                        }
+                        
+                        if let notificationCountServiceURL = dataDict["NotificationCountsServiceURL"] {
+                            self.webService.notificationCountServiceURL = notificationCountServiceURL as? String
+                        }
+                        
+                        if let notificationListServiceURL = dataDict["NotificationListServiceURL"] {
+                            self.webService.notificationListServiceURL = notificationListServiceURL as? String
+                        }
+                        
+                        if let notificationDetailsServiceURL = dataDict["NotificationDetailsServiceURL"] {
+                            self.webService.notificationDetailsServiceURL = notificationDetailsServiceURL as? String
+                        }
+                        
+                        if let deleteNotificationServiceURL = dataDict["DeleteNotificationServiceURL"] {
+                            self.webService.deleteNotificationServiceURL = deleteNotificationServiceURL as? String
+                        }
+                        
+                        if let competitionAcceptanceServiceURL = dataDict["CompetitionAcceptanceServiceURL"] {
+                            self.webService.competitionAcceptanceServiceURL = competitionAcceptanceServiceURL as? String
+                        }
+                    }
                 }
                 
-                if let loginServiceURL = dataDict["LoginServiceURL"] {
-                    self.webService.loginServiceURL = loginServiceURL as? String
-                }
-                
-                if let registrationServiceURL = dataDict["RegistrationServiceURL"] {
-                    self.webService.registrationServiceURL = registrationServiceURL as? String
-                }
-                
-                if let termConditionsServiceURL = dataDict["TermConditionsServiceURL"] {
-                    self.webService.termConditionsServiceURL = termConditionsServiceURL as? String
-                }
-                
-                if let needHelpServiceURL = dataDict["NeedHelpServiceURL"] {
-                    self.webService.needHelpServiceURL = needHelpServiceURL as? String
-                }
-                
-                if let contractServiceURL = dataDict["ContractServiceURL"] {
-                    self.webService.contractServiceURL = contractServiceURL as? String
-                }
-                
-                if let dashboardServiceURL = dataDict["DashboardServiceURL"] {
-                    self.webService.dashboardServiceURL = dashboardServiceURL as? String
-                }
-                
-                if let historyServiceURL = dataDict["HistoryServiceURL"] {
-                    self.webService.historyServiceURL = historyServiceURL as? String
-                }
-                
-                if let badgeServiceURL = dataDict["BadgeServiceURL"] {
-                    self.webService.badgeServiceURL = badgeServiceURL as? String
-                }
-                
-                if let overallServiceURL = dataDict["OverallServiceURL"] {
-                    self.webService.overallServiceURL = overallServiceURL as? String
-                }
-                
-                if let reportServiceURL = dataDict["ReportServiceURL"] {
-                    self.webService.reportServiceURL = reportServiceURL as? String
-                }
-                
-                if let tripServiceURL = dataDict["TripServiceURL"] {
-                    self.webService.tripServiceURL = tripServiceURL as? String
-                }
-                
-                if let configurationServiceURL = dataDict["ConfigurationServiceURL"] {
-                    self.webService.configurationServiceURL = configurationServiceURL as? String
-                }
-                
-                if let registerPNURL = dataDict["RegisterPNURL"] {
-                    self.webService.registerPNURL = registerPNURL as? String
-                }
-                
-                if let registerDeviceTokenServiceURL = dataDict["RegisterDeviceTokenServiceURL"] {
-                    self.webService.registerDeviceTokenServiceURL = registerDeviceTokenServiceURL as? String
-                }
-                
-                if let notificationCountServiceURL = dataDict["NotificationCountsServiceURL"] {
-                    self.webService.notificationCountServiceURL = notificationCountServiceURL as? String
-                }
-                
-                if let notificationListServiceURL = dataDict["NotificationListServiceURL"] {
-                    self.webService.notificationListServiceURL = notificationListServiceURL as? String
-                }
-                
-                if let notificationDetailsServiceURL = dataDict["NotificationDetailsServiceURL"] {
-                    self.webService.notificationDetailsServiceURL = notificationDetailsServiceURL as? String
-                }
-                
-                if let deleteNotificationServiceURL = dataDict["DeleteNotificationServiceURL"] {
-                    self.webService.deleteNotificationServiceURL = deleteNotificationServiceURL as? String
-                }
-                
-                if let competitionAcceptanceServiceURL = dataDict["CompetitionAcceptanceServiceURL"] {
-                    self.webService.competitionAcceptanceServiceURL = competitionAcceptanceServiceURL as? String
-                }
+
             }
         }
     }
