@@ -163,6 +163,9 @@ class DatabaseActions: NSObject {
     configthresholds.thresholds_brake             = configmodel.thresholds_brake
     configthresholds.thresholds_acceleration      = configmodel.thresholds_acceleration
     configthresholds.thresholds_autotrip          = configmodel.thresholds_autotrip
+    configthresholds.thresholds_minimumsIdletime  = configmodel.thresholds_minimumsIdletime
+    configthresholds.thresholds_maximumIdletime   = configmodel.thresholds_maximumIdletime
+    configthresholds.thresholds_minimumdistance   = configmodel.thresholds_minimumdistance
     configthresholds.weightage_braking            = configmodel.weightage_braking
     configthresholds.weightage_acceleration       = configmodel.weightage_acceleration
     configthresholds.weightage_speed              = configmodel.weightage_speed
@@ -188,6 +191,29 @@ class DatabaseActions: NSObject {
     }catch{
       fatalError("not iserted")
     }*/
+  }
+  
+  func deleteTrip(tripid:String){
+    let fetchRequest = NSFetchRequest(entityName: "Trips")
+    fetchRequest.includesPropertyValues = false
+    let predicate = NSPredicate(format: "tripid = %@",tripid)
+    fetchRequest.predicate = predicate
+    
+    do{
+      if let results = try self.managedObjectContext.executeFetchRequest(fetchRequest) as? [NSManagedObject] {
+        for result in results {
+          self.managedObjectContext.deleteObject(result)
+        }
+        
+        do{
+          try self.managedObjectContext.save()
+        }catch{
+          fatalError("not removed")
+        }
+      }
+    }catch{
+      fatalError("not removed")
+    }
   }
   
   func saveTripMaster(tripmodel:TripModel){
