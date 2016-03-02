@@ -275,6 +275,7 @@
 		BF5A553B1C7C23370090E40F /* DataUsageCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5A553A1C7C23370090E40F /* DataUsageCalculation.swift */; };
 		BF5A553D1C7C5B0F0090E40F /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BF5A553C1C7C5B0F0090E40F /* Location.gpx */; };
 		BF5D3AAD1C4E1E3000DDFDC1 /* Datausage.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */; };
+		BF694F7E1C86B061004FE0F9 /* EnumMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF694F7D1C86B061004FE0F9 /* EnumMaster.swift */; };
 		BF6FA2A11C55F6880038DBDF /* CoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6FA2A01C55F6880038DBDF /* CoreLocation.swift */; };
 		BF7336FD1C3F929A006094C0 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF7336FC1C3F929A006094C0 /* Storyboard.storyboard */; };
 		BF7337021C3F9387006094C0 /* FacadeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7337011C3F9387006094C0 /* FacadeLayer.swift */; };
@@ -632,6 +633,7 @@
 		BF5D3AAC1C4E1E3000DDFDC1 /* Datausage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Datausage.m; sourceTree = "<group>"; };
 		BF5D3AB11C4E4E9600DDFDC1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		BF5D3AB21C4E4E9600DDFDC1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main4s.strings; sourceTree = "<group>"; };
+		BF694F7D1C86B061004FE0F9 /* EnumMaster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumMaster.swift; sourceTree = "<group>"; };
 		BF6FA2A01C55F6880038DBDF /* CoreLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreLocation.swift; sourceTree = "<group>"; };
 		BF7336FC1C3F929A006094C0 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		BF7337011C3F9387006094C0 /* FacadeLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacadeLayer.swift; sourceTree = "<group>"; };
@@ -1209,6 +1211,7 @@
 				282FAB5B1C75929F00AEDB63 /* Utility.swift */,
 				3AD32B931C7B2622006CC374 /* CustomButton.swift */,
 				BF47FF051C7DCE28006244A2 /* TripModel.swift */,
+				BF694F7D1C86B061004FE0F9 /* EnumMaster.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1741,6 +1744,7 @@
 				28F38A141C61EBB300A02E93 /* HistoryTripDetailCell.swift in Sources */,
 				BF5A55391C7C23260090E40F /* TripMeasurements.swift in Sources */,
 				638451F61B0353A000E895F7 /* CoreLocationController.m in Sources */,
+				BF694F7E1C86B061004FE0F9 /* EnumMaster.swift in Sources */,
 				282EC8E11C7F1EF9001322B7 /* Trip_Event.swift in Sources */,
 				638451EF1B0353A000E895F7 /* FMDatabase.m in Sources */,
 				BF47FEFC1C7DA2E8006244A2 /* TripSummary.swift in Sources */,
