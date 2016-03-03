@@ -9,6 +9,7 @@
 import UIKit
 import Foundation
 import Alamofire
+import Zip
 
 class Httpclient: NSObject,NSURLSessionDelegate {
     var delegate = self
@@ -448,6 +449,63 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         }
         
     }
+  
+  // MARK: - Trip Data
+  func postTripDataToServer(URL:String, uploadString:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void {
+    
+    let manager = Alamofire.Manager.sharedInstance
+    manager.delegate.sessionDidReceiveChallenge = { session, challenge in
+      var disposition: NSURLSessionAuthChallengeDisposition = .PerformDefaultHandling
+      var credential: NSURLCredential?
+      if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+        if challenge.protectionSpace.host == "ec2-52-9-107-182.us-west-1.compute.amazonaws.com" {
+          disposition = NSURLSessionAuthChallengeDisposition.UseCredential
+          
+          credential = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!)
+        }
+      }
+      return (disposition, credential)
+    }
+    
+    let fileURL: NSURL? = {
+      
+      do {
+        let rawFilePath = try createAndWriteToJsonFileForTripData(uploadString)
+        if  let zippedFilePath = zipTripFile(rawFilePath!) { return zippedFilePath }
+      }
+      catch {
+        print("Something went wrong")
+      }
+      return nil
+    }()
+    
+    guard let filepath = fileURL else { return }
+    
+    manager.upload(
+      .POST,
+      URL,
+      multipartFormData: {
+        multipartFormData in
+        multipartFormData.appendBodyPart(fileURL: filepath, name: "Tripfilename")
+        //      multipartFormData.appendBodyPart(data: "Alamofire test title".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "title")
+        //      multipartFormData.appendBodyPart(data: "test content".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "content")
+        //      multipartFormData.appendBodyPart(data: "1".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "type")
+      },
+      encodingCompletion: {
+        encodingResult in
+        switch encodingResult {
+          
+        case .Success(let request, _, _):
+          print(request)
+          
+          
+        case .Failure(let encodingError):
+          print("Failure")
+          print(encodingError)
+        }
+      }
+    )
+  }
 }
 
 

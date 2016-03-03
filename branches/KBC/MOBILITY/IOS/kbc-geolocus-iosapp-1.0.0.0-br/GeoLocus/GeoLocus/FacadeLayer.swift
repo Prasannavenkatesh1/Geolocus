@@ -951,7 +951,7 @@ class FacadeLayer{
     
     //Userdetails
     let userdetaildatas = FacadeLayer.sharedinstance.dbactions.reteriveTrips()
-    let userdata = userdetaildatas.last
+    let userdata =  userdetaildatas.last
     
     
 //    for userdata in userdetaildatas{
@@ -986,6 +986,7 @@ class FacadeLayer{
     var TripJson = Dictionary<String,AnyObject>()
     TripJson["userdetails"] = userdetails
     TripJson["tripSummary"] = summaryJson
+    TripJson["weightage"] = configJson
     TripJson["tripTimeSeries"] = timeseriesJson
     
 //    print("Whole: \(TripJson)")
@@ -1029,9 +1030,9 @@ class FacadeLayer{
         optional8: dictTimeseries.longitude,
         optional9: dictTimeseries.speed){
           
-          let dicttime = ["currenttime":  currenttime,
+          let dicttime = ["timeStamp":  currenttime,
             "datausage":  datausage,
-            "distance": distance,
+            "cumulativeDistance": distance,
             "eventtype": eventtype,
             "eventvalue": eventvalue,
             "isEvent": isevent,
@@ -1077,24 +1078,24 @@ class FacadeLayer{
     
   }
  
-  
   func summarymodelDictionary(tripsummarymodel: SummaryModel) -> [Dictionary<String, AnyObject>] {
     var arrsummary: [Dictionary<String, AnyObject>] = []
     
-    let dictsummary = ["datausage":  tripsummarymodel.datausage,
-      "tripid":  tripsummarymodel.tripid,
+    let dictsummary = ["tripid":  tripsummarymodel.tripid,
+      "ecoscore": tripsummarymodel.ecoscore,
+      "brakingscore": tripsummarymodel.brakingscore,
+      "accelerationscore": tripsummarymodel.accelerationscore,
+      "attentionscore": tripsummarymodel.attentionscore,
+      "brakingcount": tripsummarymodel.brakingcount,
+      "accelerationcount": tripsummarymodel.accelerationcount,
+      "datausage":  tripsummarymodel.datausage,
       "tripstarttime": tripsummarymodel.tripstarttime.description,
       "tripendtime": tripsummarymodel.tripendtime.description,
       "timezone": tripsummarymodel.timezone,
       "timezoneid": tripsummarymodel.timezoneid,
-      "attentionscore": tripsummarymodel.attentionscore,
-      "brakingcount": tripsummarymodel.brakingcount,
-      "accelerationcount": tripsummarymodel.accelerationcount,
       "totaldistance": tripsummarymodel.totaldistance,
-      "totalduration": tripsummarymodel.totalduration,
-      "ecoscore": tripsummarymodel.ecoscore,
-      "brakingscore": tripsummarymodel.brakingscore,
-      "accelerationscore": tripsummarymodel.accelerationscore
+      "totalduration": tripsummarymodel.totalduration
+     
     ]
     arrsummary.append(dictsummary)
     
@@ -1214,5 +1215,15 @@ class FacadeLayer{
         }
         return url
     }
+  
+  func postZiptoRemote(){
+    
+    httpclient.postTripDataToServer("http://ec2-52-9-108-237.us-west-1.compute.amazonaws.com:28080",
+      uploadString: "This is the text file") { (response, data, error) -> Void in
+        print("response: \(response)")
+        print("error: \(error)")
+    }
+    
+  }
   
 }
