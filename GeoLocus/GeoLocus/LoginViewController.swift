@@ -40,13 +40,15 @@ class LoginViewController: BaseViewController,UITextFieldDelegate {
     /* Register Now button action */
     @IBAction func registerNowButtonTapped(sender: AnyObject) {
         var registerNowURL : String!
-        registerNowURL = FacadeLayer.sharedinstance.webService.registrationServiceURL! + "\(self.selectedLanguageCode)"
+//        registerNowURL = FacadeLayer.sharedinstance.webService.registrationServiceURL! + "\(self.selectedLanguageCode)"
+        registerNowURL = Portal.RegistrationServiceURL + "\(self.selectedLanguageCode)"
         UIApplication.sharedApplication().openURL(NSURL(string:registerNowURL)!)
     }
     
     /* Need help button action */
     @IBAction func needHelpButtonTapped(sender: AnyObject) {
-        UIApplication.sharedApplication().openURL(NSURL(string: FacadeLayer.sharedinstance.webService.needHelpServiceURL!)!)
+//        UIApplication.sharedApplication().openURL(NSURL(string: FacadeLayer.sharedinstance.webService.needHelpServiceURL!)!)
+      UIApplication.sharedApplication().openURL(NSURL(string: Portal.NeedHelpServiceURL)!)
     }
     
     /* Login button action */
