@@ -144,14 +144,12 @@ class FacadeLayer{
                         }
                     }
                 }
-                
-
             }
         }
     }
     
     
-    //DB Method
+    //MARK: Delete data
     func removeData(entity: String) {
         self.dbactions.removeData(entity)
     }
@@ -299,8 +297,8 @@ class FacadeLayer{
     func requestRecentTripData(completionHandler:(status: Int, data: [History]?, error: NSError?) -> Void) -> Void {
         
         if let serviceURL = historyServiceURL() {
-            httpclient.requestRecentTripData (serviceURL){ (response, data, error) -> Void in
-                
+            
+            httpclient.requestGETService(serviceURL, headers: headers(), completionHandler: { (response, data, error) -> Void in
                 if error == nil {
                     
                     var tripArray = [History]()
@@ -308,7 +306,7 @@ class FacadeLayer{
                     if let result = data {
                         var jsonData = JSON(data: result)
                         
-                        if let tripDetails = jsonData["tripDetails"].array {
+                        if let tripDetails = jsonData[HistoryKey.Trip.DETAILS].array {
                             
                             for tripObj in tripDetails {
                                 let trip = tripObj.dictionaryValue
@@ -316,39 +314,39 @@ class FacadeLayer{
                                 var eventsObj = [Event]()
                                 var speedZonesObj = [SpeedZone]()
                                 
-                                let tripScore = TripScore(overallScore: trip["tripOverallScore"]!.doubleValue,speedScore: trip["speedScore"]!.doubleValue, ecoScore: trip["ecoScore"]!.doubleValue, attentionScore: nil)
+                                let tripScore = TripScore(overallScore: trip[HistoryKey.Trip.Score.OVERALL]!.doubleValue,speedScore: trip[HistoryKey.Trip.Score.SPEEDING]!.doubleValue, ecoScore: trip[HistoryKey.Trip.Score.ECO]!.doubleValue, attentionScore: nil)
                                 
                                 //Event array
-                                for (_,subJson):(String, JSON) in trip["event"]! {
+                                for (_,subJson):(String, JSON) in trip[HistoryKey.Trip.Event.EVENT]! {
                                     let eventDict = subJson.dictionaryValue
-                                    let eventLocation = EventLocation(latitude: Double(eventDict["latitude"]!.stringValue)!, longitude:Double(eventDict["longitude"]!.stringValue)!)
+                                    let eventLocation = EventLocation(latitude: Double(eventDict[HistoryKey.Trip.Event.LATITUDE]!.stringValue)!, longitude:Double(eventDict[HistoryKey.Trip.Event.LONGITUDE]!.stringValue)!)
                                     
                                     let event = Event(location: eventLocation,
-                                        type: Utility.getEventType(eventDict["eventType"]!.string!),
-                                        value: eventDict["eventValue"]!.doubleValue,
-                                        message: eventDict["eventMessage"]?.string,
-                                        fineMessage: eventDict["fineMessage"]?.string,
-                                        threshold: eventDict["threshold"]!.doubleValue,
-                                        isSevere: eventDict["isSevere"]!.stringValue)
+                                        type: Utility.getEventType(eventDict[HistoryKey.Trip.Event.TYPE]!.string!),
+                                        value: eventDict[HistoryKey.Trip.Event.VALUE]!.doubleValue,
+                                        message: eventDict[HistoryKey.Trip.Event.MESSAGE]?.string,
+                                        fineMessage: eventDict[HistoryKey.Trip.Event.FINE_MSG]?.string,
+                                        threshold: eventDict[HistoryKey.Trip.Event.THRESHOLD]!.doubleValue,
+                                        isSevere: eventDict[HistoryKey.Trip.Event.IS_SEVERE]!.stringValue)
                                     
                                     eventsObj.append(event)
                                 }
                                 
                                 //Speedzone array
-                                for (_,subjson):(String, JSON) in trip["speedZone"]! {
+                                for (_,subjson):(String, JSON) in trip[HistoryKey.Trip.Speedzone.SPEED_ZONE]! {
                                     let zoneDict = subjson.dictionaryValue
-                                    let speedZone = SpeedZone(speedScore: Double(zoneDict["speedingScore"]!.stringValue)!,
-                                        maxSpeed: Double(zoneDict["maxSpeed"]!.stringValue)!,
-                                        aboveSpeed: Double(zoneDict["aboveMaxspeed"]!.stringValue)!,
-                                        withinSpeed: Double(zoneDict["withinMaxspeed"]!.stringValue)!,
-                                        violationCount: Double(zoneDict["violationCount"]!.stringValue)!,
-                                        speedBehaviour: Double(zoneDict["speedBehaviour"]!.stringValue)!,
-                                        distanceTravelled: Double(zoneDict["distanceTravelled"]!.stringValue)!)
+                                    let speedZone = SpeedZone(speedScore: Double(zoneDict[HistoryKey.Trip.Speedzone.SPEEDING_SCORE]!.stringValue)!,
+                                        maxSpeed: Double(zoneDict[HistoryKey.Trip.Speedzone.MAX_SPEED]!.stringValue)!,
+                                        aboveSpeed: Double(zoneDict[HistoryKey.Trip.Speedzone.ABOVE_MAX_SPEED]!.stringValue)!,
+                                        withinSpeed: Double(zoneDict[HistoryKey.Trip.Speedzone.WITHIN_MAX_SPEED]!.stringValue)!,
+                                        violationCount: Double(zoneDict[HistoryKey.Trip.Speedzone.VIOLATION]!.stringValue)!,
+                                        speedBehaviour: Double(zoneDict[HistoryKey.Trip.Speedzone.SPEED_BEHAVIOUR]!.stringValue)!,
+                                        distanceTravelled: Double(zoneDict[HistoryKey.Trip.Speedzone.DISTANCE]!.stringValue)!)
                                     
                                     speedZonesObj.append(speedZone)
                                 }
                                 
-                                let durationArray = trip["totalDuration"]!.stringValue.componentsSeparatedByString(":")
+                                let durationArray = trip[HistoryKey.Trip.DURATION]!.stringValue.componentsSeparatedByString(":")
                                 
                                 let dateFormatter = NSDateFormatter()
                                 dateFormatter.dateFormat = "dd-MM-yyyy"
@@ -358,14 +356,14 @@ class FacadeLayer{
                                 let second = Double(durationArray[2])
                                 let durationSec =  hour! * 3600 + minute! * 60 + second!
                                 
-                                let tripDetail = History(tripid:  trip["tripId"]!.stringValue,
-                                    tripDate: dateFormatter.stringFromDate(NSDate(jsonDate: String(trip["date"]!))!),
-                                    distance: Double(trip["distance"]!.stringValue)!,
-                                    tripPoints: Int(trip["tripPoints"]!.stringValue)!,
+                                let tripDetail = History(tripid:  trip[HistoryKey.Trip.ID]!.stringValue,
+                                    tripDate: dateFormatter.stringFromDate(NSDate(jsonDate: String(trip[HistoryKey.Trip.DATE]!))!),
+                                    distance: Double(trip[HistoryKey.Trip.DISTANCE]!.stringValue)!,
+                                    tripPoints: Int(trip[HistoryKey.Trip.POINTS]!.stringValue)!,
                                     tripDuration:  durationSec,
-                                    speedingMessage: trip["speedScoreMessage"]?.string,
-                                    ecoMessage: trip["ecoScoreMessage"]!.string,
-                                    dataUsageMessage: trip["dataUsageMsg"]?.string,
+                                    speedingMessage: trip[HistoryKey.Trip.SPEED_MSG]?.string,
+                                    ecoMessage: trip[HistoryKey.Trip.ECO_MSG]!.string,
+                                    dataUsageMessage: trip[HistoryKey.Trip.DATA_USAGE_MSG]?.string,
                                     tripScore: tripScore,
                                     events: eventsObj,
                                     speedZones: speedZonesObj)
@@ -382,7 +380,12 @@ class FacadeLayer{
                 }else{
                     completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
                 }
-            }
+            })
+            
+            
+//            httpclient.requestRecentTripData (serviceURL){ (response, data, error) -> Void in
+//    
+//            }
         }
     }
     
@@ -657,13 +660,15 @@ class FacadeLayer{
                                 for badgeObj in badgesList {
                                     let badgeDict = badgeObj.dictionaryValue
                                     
+                                    let dist_Covered = ((badgeDict[BadgeKey.DIST_COVERED]?.string) != nil) ? Int((badgeDict[BadgeKey.DIST_COVERED]?.string)!)! : 0
+                                    
                                     let badge = Badge(withIcon: " ",
                                         badgeTitle: badgeDict[BadgeKey.TITLE]!.stringValue,
                                         badgeDescription: badgeDict[BadgeKey.DESC]!.stringValue,
                                         isEarned: Bool(badgeDict[BadgeKey.EARNED]!.intValue),
                                         orderIndex: badgeDict[BadgeKey.INDEX]!.intValue,
                                         badgeType: Badge.BadgesType.Badge,
-                                        additionalMsg: nil)
+                                        additionalMsg: nil, distanceCovered: dist_Covered, shareMsg: " ")
                                     
                                     badges.append(badge)
                                 }
@@ -677,10 +682,10 @@ class FacadeLayer{
                                     let badge = Badge(withIcon: " ",
                                         badgeTitle: badgeDict[BadgeKey.TITLE]!.stringValue,
                                         badgeDescription: badgeDict[BadgeKey.DESC]!.stringValue,
-                                        isEarned: Bool(badgeDict[BadgeKey.EARNED]!.intValue),
+                                        isEarned: Bool(badgeDict[BadgeKey.EARNED]!.stringValue.toBool()),
                                         orderIndex: badgeDict[BadgeKey.INDEX]!.intValue,
                                         badgeType: Badge.BadgesType.Level,
-                                        additionalMsg: nil)
+                                        additionalMsg: nil, distanceCovered: 0, shareMsg: " ")
                                     
                                     badges.append(badge)
                                 }
@@ -728,16 +733,24 @@ class FacadeLayer{
     func requestOverallScoreData(completionHandler:(status: Int, data: OverallScores?, error: NSError?) -> Void) -> Void{
         
         if let serviceURL = overallServiceURL() {
-            httpclient.requestOverallScoreData(serviceURL) { (response, data, error) -> Void in
+            
+            httpclient.requestGETService(serviceURL, headers: headers(), completionHandler: { (response, data, error) -> Void in
                 if error == nil {
                     if let result = data {
                         let jsonData = JSON(data: result)
                         
                         if let scores = jsonData.dictionary {
                             
-                            let overallScore = OverallScores(overallScore: Double(scores["totalScore"]!.intValue), speedingScore: Double(scores["speedingScore"]!.intValue), ecoScore: Double(scores["ecoScore"]!.intValue), distanceTravelled: Double(scores["distance"]!.intValue), dataUsageMsg: scores["dataUsagemessage"]!.stringValue, overallmessage: scores["totalScoreMessage"]!.stringValue, speedingMessage: scores["speedingScoreMessage"]!.stringValue, ecoMessage: scores["ecoScoreMessage"]!.stringValue)
+                            let overallScore = OverallScores(overallScore: Double(scores[OverallScoreKey.TOTAL]!.intValue),
+                                speedingScore: Double(scores[OverallScoreKey.SPEEDING]!.intValue),
+                                ecoScore: Double(scores[OverallScoreKey.ECO]!.intValue),
+                                distanceTravelled: Double(scores[OverallScoreKey.DISTANCE]!.intValue),
+                                dataUsageMsg: scores[OverallScoreKey.DATA_USAGE_MSG]!.stringValue,
+                                overallmessage: scores[OverallScoreKey.TOTAL_MSG]!.stringValue,
+                                speedingMessage: scores[OverallScoreKey.SPEED_MSG]!.stringValue,
+                                ecoMessage: scores[OverallScoreKey.ECO_MSG]!.stringValue)
                             
-                           completionHandler(status: 1, data: overallScore, error: nil)
+                            completionHandler(status: 1, data: overallScore, error: nil)
                         }else{
                             //something went wrong
                             completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
@@ -750,7 +763,12 @@ class FacadeLayer{
                     //something went wrong
                     completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
                 }
-            }
+            })
+            
+            
+//            httpclient.requestOverallScoreData(serviceURL) { (response, data, error) -> Void in
+//                
+//            }
         }
     }
     
@@ -1101,11 +1119,11 @@ class FacadeLayer{
         var url = String?()
         url = nil
         
-        if  let  serviceURL = self.webService.historyServiceURL {
-            if let userID = NSUserDefaults.standardUserDefaults().valueForKey( StringConstants.USER_ID) {
-                url = ("\(serviceURL)?userId=\(userID)")
+       // if  let  serviceURL = self.webService.historyServiceURL {
+            if let userID = NSUserDefaults.standardUserDefaults().valueForKey(StringConstants.USER_ID) {
+                url = ("\(Portal.HistoryServiceURL)?userId=\(userID)")
             }
-        }
+        //}
         return url
     }
     
@@ -1114,11 +1132,11 @@ class FacadeLayer{
         var url = String?()
         url = nil
         
-        if  let  serviceURL = self.webService.overallServiceURL {
-            if let userID = NSUserDefaults.standardUserDefaults().valueForKey( StringConstants.USER_ID) {
-                url = ("\(serviceURL)?userId=\(userID)")
+        //if  let  serviceURL = self.webService.overallServiceURL {
+            if let userID = NSUserDefaults.standardUserDefaults().valueForKey(StringConstants.USER_ID) {
+                url = ("\(Portal.OverallServiceURL)?userId=\(userID)")
             }
-        }
+        //}
         return url
     }
     
@@ -1127,11 +1145,11 @@ class FacadeLayer{
         var url = String?()
         url = nil
         
-        if  let  serviceURL = self.webService.badgeServiceURL {
-            if let userID = NSUserDefaults.standardUserDefaults().valueForKey( StringConstants.USER_ID) {
-                url = ("\(serviceURL)?userId=\(userID)")
+        //if  let  serviceURL = self.webService.badgeServiceURL {
+            if let userID = NSUserDefaults.standardUserDefaults().valueForKey(StringConstants.USER_ID) {
+                url = ("\(Portal.BadgeServiceURL)?userId=\(userID)")
             }
-        }
+        //}
         return url
     }
     

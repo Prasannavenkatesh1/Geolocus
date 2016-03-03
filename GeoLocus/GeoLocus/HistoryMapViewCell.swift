@@ -74,8 +74,16 @@ extension HistoryMapViewCell: MKMapViewDelegate {
     
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        
+        //print("selected....:\(view)")
         let annotation = view.annotation as! EventAnnotation
+      
+        let selectedAnnotation = mapView.selectedAnnotations
+        
+        for annotation in selectedAnnotation {
+            let ann = annotation as MKAnnotation
+            mapView.deselectAnnotation(ann, animated: false)
+        }
+        
         delegate?.mapView(self.historyMapView, didSelectAnnotation: annotation)
     }
     
@@ -89,6 +97,5 @@ extension HistoryMapViewCell: MKMapViewDelegate {
         
         return MKCoordinateRegionForMapRect(rect)
     }
-    
 }
 

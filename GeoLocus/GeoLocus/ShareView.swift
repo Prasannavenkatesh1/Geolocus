@@ -44,14 +44,14 @@ public class ShareTemplate {
         //______________text bound sizes_____________________
         
         let paraSize = paraText.boundingRectWithSize(CGSize(width: 269, height: 999), options: .UsesLineFragmentOrigin, attributes: paraAttr, context: nil)
-        print("para size = \(paraSize)")
+        //print("para size = \(paraSize)")
         
         let infoSize = infoText.boundingRectWithSize(CGSize(width: 269, height: 999), options: .UsesLineFragmentOrigin, attributes: infoAttr, context: nil)
-        print("para text size: \(infoSize)")
+        //print("para text size: \(infoSize)")
         //___________________________________
         
         let drawingHeight = ShareView.Margin.top + 21 + ShareView.Para.Padding.top + paraSize.height + ShareView.Para.Padding.bottom + infoSize.height + ShareView.Margin.bottom
-        let drawingRect = CGRectMake(0, 0, 485, drawingHeight < 192 ? 192 : drawingHeight)       //192 height
+        let drawingRect = CGRectMake(0, 0, 485, drawingHeight < 192 ? 192 : drawingHeight)
         
         //--------start context ----------
         UIGraphicsBeginImageContextWithOptions(drawingRect.size, false, 5.0)
@@ -89,9 +89,9 @@ public class ShareTemplate {
             let speedTitleText:String       =  LocalizationConstants.History.Score.Speeding.localized()
             
             let speedTitleSize = speedTitleText.boundingRectWithSize(CGSize(width: 78, height: 999), options: .UsesLineFragmentOrigin, attributes: speedTitleAttr, context: nil)
-            print("para text size: \(infoSize)")
+            //print("para text size: \(infoSize)")
             
-            let speedTitleRect = CGRectMake(ShareView.Icon.TripPadding.left, ShareView.Icon.TripPadding.top + 78 + ShareView.Icon.TripPadding.bottom, 78, speedTitleSize.height)    //21 height
+            let speedTitleRect = CGRectMake(ShareView.Icon.TripPadding.left, ShareView.Icon.TripPadding.top + 78 + ShareView.Icon.TripPadding.bottom, 78, speedTitleSize.height)    
             speedTitleText.drawWithRect(speedTitleRect, options: .UsesLineFragmentOrigin, attributes: speedTitleAttr, context: nil)
             
             //--------eco score---------
@@ -143,11 +143,11 @@ public class ShareTemplate {
         //---------- drawing text -------------
         let titleTextRect = CGRectMake(204, ShareView.Margin.top, 269, 21)
         titleText.drawWithRect(titleTextRect, options: .UsesLineFragmentOrigin, attributes: titleAttr, context: nil)
-        //let paraHeight = CGFloat((shareOption == ShareOption.TRIP_DETAIL) ? 75.0 : 60.0)
-        let paraTextRect = CGRectMake(204, titleTextRect.origin.y + titleTextRect.size.height + 8, 269, paraSize.height/*paraHeight*/)
+    
+        let paraTextRect = CGRectMake(204, titleTextRect.origin.y + titleTextRect.size.height + 8, 269, paraSize.height)
         paraText.drawWithRect(paraTextRect, options: .UsesLineFragmentOrigin, attributes: paraAttr, context: nil)
         
-        let infoTextRect = CGRectMake(204, paraTextRect.origin.y + paraTextRect.size.height + 5, 269, infoSize.height)     //80 height
+        let infoTextRect = CGRectMake(204, paraTextRect.origin.y + paraTextRect.size.height + 5, 269, infoSize.height)
         infoText.drawWithRect(infoTextRect, options: .UsesLineFragmentOrigin, attributes: infoAttr, context: nil)
         
         let image = UIGraphicsGetImageFromCurrentImageContext();

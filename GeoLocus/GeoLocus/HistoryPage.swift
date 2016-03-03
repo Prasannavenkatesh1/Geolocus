@@ -273,8 +273,8 @@ extension HistoryPage: UITableViewDataSource {
             if self.tabSelected == MapZoneTab.MapSelected {
                 let cell = tableView.dequeueReusableCellWithIdentifier(CellID.HISTORY_MAP, forIndexPath: indexPath) as! HistoryMapViewCell
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
-                
                 cell.delegate = self
+                
                 if self.mapRefreshRequired {
                     if self.tripAnnotation?.count > 0 {
                         cell.showMapAnnotations(self.tripAnnotation!)
@@ -352,9 +352,9 @@ extension HistoryPage: UITableViewDelegate {
             self.mapButton?.backgroundColor = UIColor.clearColor()
             tabView.addSubview(self.mapButton!)
             
-            self.mapBorder          = nil
-            self.mapBorder          = UIView()
-            self.mapBorder?.frame   = CGRectMake((self.mapBorder?.frame.origin.x)!, self.mapButton!.frame.size.height, self.mapButton!.frame.width, 5)
+            self.mapBorder                  = nil
+            self.mapBorder                  = UIView()
+            self.mapBorder?.frame           = CGRectMake((self.mapBorder?.frame.origin.x)!, self.mapButton!.frame.size.height, self.mapButton!.frame.width, 5)
             tabView.addSubview(self.mapBorder!)
             
             self.zoneButton                 = nil
@@ -467,9 +467,9 @@ extension HistoryPage: ScoreCellDelegate {
      - Parameter cell: cell instance of the tableview
      */
     func localizeTripScore(cell: HistoryTripScoreCell) {
-        cell.speedingLabel.text = LocalizationConstants.History.Score.Speeding.localized()
-        cell.ecoLabel.text  = LocalizationConstants.History.Score.Eco.localized()
-        cell.attentionLabel.text = LocalizationConstants.History.Score.Attention.localized()
+        cell.speedingLabel.text     = LocalizationConstants.History.Score.Speeding.localized()
+        cell.ecoLabel.text          = LocalizationConstants.History.Score.Eco.localized()
+        cell.attentionLabel.text    = LocalizationConstants.History.Score.Attention.localized()
     }
     
     /**
@@ -528,13 +528,15 @@ extension HistoryPage: MapViewDelegate {
     */
     func mapView(mapView: MKMapView!, didSelectAnnotation annotation: EventAnnotation) {
         
-        let annotationID = annotation.annotationID
-        var messageString = String()
+        let annotationID    = annotation.annotationID
+        var messageString   = String()
         
-        if let message = self.tripMapEvents![annotationID].message {
-             messageString = message                                    //consider localization
-        }else{
-            messageString = "Message not available"                     //consider localization
+        if let eventMsg = self.tripMapEvents![annotationID].message {
+             messageString = eventMsg                                    //consider localization
+        }
+        
+        if let fineMsg = self.tripMapEvents![annotationID].fineMessage {
+            messageString += "\n\(fineMsg)"
         }
     
         let alert = UIAlertController(title: nil, message:messageString , preferredStyle: UIAlertControllerStyle.Alert)
@@ -554,20 +556,20 @@ extension HistoryPage: SpeedZoneCellDelegate {
      - Parameter cell: cell instance of the tableview
      */
     func localizeMapZone(cell: HistoryZoneViewCell) {
-        cell.speedingLabel.text = LocalizationConstants.History.View.Speeding.localized()
-        cell.severeViolationLabel.text = LocalizationConstants.History.View.Severe_Violation.localized()
-        cell.distanceLabel.text = LocalizationConstants.History.View.Distance.localized()
-        cell.withinMaxSpeedLabel.text = LocalizationConstants.History.View.Within_Max_Speed.localized()
-        cell.aboveMaxSpeedLabel.text = LocalizationConstants.History.View.Above_Max_Limit.localized()
+        cell.speedingLabel.text         = LocalizationConstants.History.View.Speeding.localized()
+        cell.severeViolationLabel.text  = LocalizationConstants.History.View.Severe_Violation.localized()
+        cell.distanceLabel.text         = LocalizationConstants.History.View.Distance.localized()
+        cell.withinMaxSpeedLabel.text   = LocalizationConstants.History.View.Within_Max_Speed.localized()
+        cell.aboveMaxSpeedLabel.text    = LocalizationConstants.History.View.Above_Max_Limit.localized()
     }
     
     /**
      Called when Severe violation view is tapped. It displays the message for the severe violations during the trip
      */
     func severeViolationViewTapped(cell: HistoryZoneViewCell) {
-        var messageString = String()
-        let indexPath = self.tripHistoryTableView.indexPathForCell(cell)
-        let speedZone = self.tripZones![(indexPath?.row)!]
+        var messageString   = String()
+        let indexPath       = self.tripHistoryTableView.indexPathForCell(cell)
+        let speedZone       = self.tripZones![(indexPath?.row)!]
         
         let events = self.tripMapEvents!.filter({ (event) -> Bool in
             event.isSevere == "1" && event.threshold == speedZone.maxSpeed
@@ -578,8 +580,6 @@ extension HistoryPage: SpeedZoneCellDelegate {
                 messageString += "\u{2022} \(message)"
             }
         }
-        
-        //messageString = "\u{2022} awdfaqferyewywey ety ewy eywey wey \n \u{2022} qerqawdqerwqwrqeqfaqf  eyew ewtewtyqeyqey qey ey\n \u{2022} dsfqwrqrqawdfawerqf qwt wtqteqye eqr qer qeryq eqyqyq qewrgqwrt ga eq qe qey qey qertyqw qrw\n" //"<Severe Violation message for the trip>" //consider localization
         
         if messageString.isEmpty {
             messageString = "Message not available"
@@ -603,7 +603,7 @@ extension HistoryPage: TripDetailCellDelegate {
      */
     func localizeTripDetails(cell: HistoryTripDetailCell) {
         cell.distanceLabel.text = LocalizationConstants.History.TripDetails.Distance.localized()
-        cell.pointsLabel.text = LocalizationConstants.History.TripDetails.Trip_Points.localized()
+        cell.pointsLabel.text   = LocalizationConstants.History.TripDetails.Trip_Points.localized()
     }
     
     /**
@@ -611,17 +611,12 @@ extension HistoryPage: TripDetailCellDelegate {
      - Parameter cell: this will get the information of the trip details
      */
     func shareButtonTapped(cell: HistoryTripDetailCell) {
-        let indexpath   = self.tripHistoryTableView.indexPathForCell(cell)
-        let speedScore  = (self.tripScores?[indexpath!.row].speedScore.integerValue)!
-        let ecoScore    = (self.tripScores?[indexpath!.row].ecoScore.integerValue)!
-        
-        //consider localization
-        
+        let indexpath    = self.tripHistoryTableView.indexPathForCell(cell)
+        let speedScore   = (self.tripScores?[indexpath!.row].speedScore.integerValue)!
+        let ecoScore     = (self.tripScores?[indexpath!.row].ecoScore.integerValue)!
         let shareDetails = String(format: LocalizationConstants.Share.Trip.Info.localized(),(cell.tripDateLabel.text)!, (cell.tripDistanceLabel.text)!, (cell.tripDurationLabel.text)!)
       
       displayActivityView(LocalizationConstants.Share.Trip.Title.localized(), detail: shareDetails, imageInfo: ["speedScore":String(speedScore), "ecoScore":String(ecoScore)], captureImage: UIImage(), shareOption: ShareTemplate.ShareOption.TRIP_DETAIL)
-        
-        //super.displayActivityView("Trip Score", detail: "On \((cell.tripDateLabel.text)!), I travelled with distance of \((cell.tripDistanceLabel.text)!)’s over a period of \((cell.tripDurationLabel.text)!) and achieved above scores using my KBC First 10,000KM app.", imageInfo: ["speedScore":String(speedScore), "ecoScore":String(ecoScore)], shareOption: ShareTemplate.ShareOption.TRIP_DETAIL)
     }
 }
 

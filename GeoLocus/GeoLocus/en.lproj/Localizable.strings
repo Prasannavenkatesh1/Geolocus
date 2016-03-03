@@ -21,6 +21,10 @@
 "Badges_to_be_Earned"               = "Badges to be Earned";
 "Badges_Earned"                     = "Badges Earned";
 "Levels"                            = "Levels";
+"AddMsg1"                           = "You have already driven %dkms with no speeding violation";
+"AddMsg2"                           = "You have already driven %dkms in a city center";
+"AddMsg3"                           = "You have already driven %dkms with eco score was dark green";
+"AddMsg4"                           = "You have already driven %dkms on autoroute";
 
 //MARK: - Dashboard Page
 "Contracts points earned"           = "Contracts points earned";
