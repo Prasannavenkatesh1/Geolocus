@@ -21,6 +21,10 @@
 "Badges_to_be_Earned"                   = "Insignes d'être gagnés";
 "Badges_Earned"                         = "Insignes Gagné";
 "Levels"                                = "Niveaux";
+"AddMsg1"                               = " ";
+"AddMsg2"                               = " ";
+"AddMsg3"                               = " ";
+"AddMsg4"                               = " ";
 
 //MARK: - Dashboard Page
 "Contracts points earned"               = "Contrats points gagnés";

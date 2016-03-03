@@ -67,40 +67,40 @@ class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
             self.attentionLabel.text        = LocalizationConstants.OverallScore.Attention.localized()
             self.distanceLabel.text         = LocalizationConstants.OverallScore.Distance_Travelled.localized()
             
-            self.drivingBehaviorArcView.foreGroundArcWidth = Arc.FOREGROUND_WIDTH
-            self.drivingBehaviorArcView.backGroundArcWidth = Arc.BACKGROUND_WIDTH
-            self.drivingBehaviorArcView.ringLayer.strokeColor = UIColor(range: (self.overallScores?.overallScore.integerValue)!).CGColor
-            self.drivingBehaviorArcView.animateScale = (self.overallScores?.overallScore.doubleValue)!/100.0
+            self.drivingBehaviorArcView.foreGroundArcWidth      = Arc.FOREGROUND_WIDTH
+            self.drivingBehaviorArcView.backGroundArcWidth      = Arc.BACKGROUND_WIDTH
+            self.drivingBehaviorArcView.ringLayer.strokeColor   = UIColor(range: (self.overallScores?.overallScore.integerValue)!).CGColor
+            self.drivingBehaviorArcView.animateScale            = (self.overallScores?.overallScore.doubleValue)!/100.0
             self.drivingBehaviorArcView.setNeedsDisplay()
             
-            self.speedingArcView.foreGroundArcWidth = Arc.FOREGROUND_WIDTH
-            self.speedingArcView.backGroundArcWidth = Arc.BACKGROUND_WIDTH
-            self.speedingArcView.ringLayer.strokeColor = UIColor(range: (self.overallScores?.speedingScore.integerValue)!).CGColor
-            self.speedingArcView.animateScale = (self.overallScores?.speedingScore.doubleValue)!/100.0
+            self.speedingArcView.foreGroundArcWidth             = Arc.FOREGROUND_WIDTH
+            self.speedingArcView.backGroundArcWidth             = Arc.BACKGROUND_WIDTH
+            self.speedingArcView.ringLayer.strokeColor          = UIColor(range: (self.overallScores?.speedingScore.integerValue)!).CGColor
+            self.speedingArcView.animateScale                   = (self.overallScores?.speedingScore.doubleValue)!/100.0
             self.speedingArcView.setNeedsDisplay()
             
-            self.ecoArcView.foreGroundArcWidth = Arc.FOREGROUND_WIDTH
-            self.ecoArcView.backGroundArcWidth = Arc.BACKGROUND_WIDTH
-            self.ecoArcView.ringLayer.strokeColor = UIColor(range: (self.overallScores?.ecoScore.integerValue)!).CGColor
-            self.ecoArcView.animateScale = (self.overallScores?.ecoScore.doubleValue)!/100.0
+            self.ecoArcView.foreGroundArcWidth                  = Arc.FOREGROUND_WIDTH
+            self.ecoArcView.backGroundArcWidth                  = Arc.BACKGROUND_WIDTH
+            self.ecoArcView.ringLayer.strokeColor               = UIColor(range: (self.overallScores?.ecoScore.integerValue)!).CGColor
+            self.ecoArcView.animateScale                        = (self.overallScores?.ecoScore.doubleValue)!/100.0
             self.ecoArcView.setNeedsDisplay()
             
-            self.totalDistTravelledLabel.text = String("\(self.overallScores!.distanceTravelled) km")
+            self.totalDistTravelledLabel.text                   = String("\(self.overallScores!.distanceTravelled) km")
             
-            self.driveBehTapGestureRecognizer = UITapGestureRecognizer(target: self, action: "drivingBehaviourViewTapped:")
-            self.driveBehTapGestureRecognizer.delegate = self
+            self.driveBehTapGestureRecognizer                   = UITapGestureRecognizer(target: self, action: "drivingBehaviourViewTapped:")
+            self.driveBehTapGestureRecognizer.delegate          = self
             self.drivingBehaviorArcView.addGestureRecognizer(self.driveBehTapGestureRecognizer)
             
-            self.speedingTapGestureRecognizer = UITapGestureRecognizer(target: self, action: "speedingViewTapped:")
-            self.speedingTapGestureRecognizer.delegate = self
+            self.speedingTapGestureRecognizer                   = UITapGestureRecognizer(target: self, action: "speedingViewTapped:")
+            self.speedingTapGestureRecognizer.delegate          = self
             self.speedingArcView.addGestureRecognizer(self.speedingTapGestureRecognizer)
             
-            self.ecoTapGestureRecognizer = UITapGestureRecognizer(target: self, action: "ecoViewTapped:")
-            self.ecoTapGestureRecognizer.delegate = self
+            self.ecoTapGestureRecognizer                        = UITapGestureRecognizer(target: self, action: "ecoViewTapped:")
+            self.ecoTapGestureRecognizer.delegate               = self
             self.ecoArcView.addGestureRecognizer(self.ecoTapGestureRecognizer)
             
-            self.attentionTapGestureRecognizer = UITapGestureRecognizer(target: self, action: "attentionViewTapped:")
-            self.attentionTapGestureRecognizer.delegate = self
+            self.attentionTapGestureRecognizer                  = UITapGestureRecognizer(target: self, action: "attentionViewTapped:")
+            self.attentionTapGestureRecognizer.delegate         = self
             self.attentionView.addGestureRecognizer(self.attentionTapGestureRecognizer)
             
         }
@@ -175,16 +175,16 @@ class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
         var messageString = String()
         
         switch tag {
-        case 1 :
-            messageString = self.overallScores!.overallmessage
-        case 2 :
-            messageString = self.overallScores!.speedingMessage
-        case 3:
-            messageString = self.overallScores!.ecoMessage
-        case 4:
-            messageString = self.overallScores!.dataUsageMsg
-        default:
-            messageString = " "
+            case 1 :
+                messageString = self.overallScores!.overallmessage
+            case 2 :
+                messageString = self.overallScores!.speedingMessage
+            case 3:
+                messageString = self.overallScores!.ecoMessage
+            case 4:
+                messageString = self.overallScores!.dataUsageMsg
+            default:
+                messageString = " "
         }
         
         let alert = UIAlertController(title: nil, message:messageString , preferredStyle: UIAlertControllerStyle.Alert)

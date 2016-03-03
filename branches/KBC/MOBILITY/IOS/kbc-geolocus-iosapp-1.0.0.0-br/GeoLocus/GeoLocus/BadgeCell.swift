@@ -48,7 +48,12 @@ extension BadgeCell {
         
         self.badgeIcon.image        = UIImage(named: badge.badgeIcon)
         self.badgeTitle.text        = badge.badgeTitle
-        self.badgeDescription.text  = badge.badgeDescription
+        
+        if let addMsg = badge.additionalMsg {
+            self.badgeDescription.text  = badge.badgeDescription + "\n" + addMsg
+        }else{
+            self.badgeDescription.text  = badge.badgeDescription
+        }
         
         let attributes      = [NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
         let attributedText  = NSAttributedString(string: self.shareButton.currentTitle!, attributes: attributes)

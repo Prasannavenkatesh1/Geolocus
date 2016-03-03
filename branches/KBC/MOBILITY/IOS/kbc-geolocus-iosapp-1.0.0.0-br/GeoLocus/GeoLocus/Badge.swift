@@ -23,8 +23,10 @@ struct Badge {
     var orderIndex          : Int
     var badgeType           : BadgesType
     var additionalMsg       : String?
+    var distanceCovered     : Int
+    var shareMsg            : String
     
-    init(withIcon badgeIcon: String, badgeTitle: String, badgeDescription: String, isEarned: Bool, orderIndex: Int, badgeType: BadgesType, additionalMsg : String?) {
+    init(withIcon badgeIcon: String, badgeTitle: String, badgeDescription: String, isEarned: Bool, orderIndex: Int, badgeType: BadgesType, additionalMsg : String?, distanceCovered: Int, shareMsg: String) {
         self.badgeIcon          = badgeIcon
         self.badgeTitle         = badgeTitle
         self.badgeDescription   = badgeDescription
@@ -32,5 +34,7 @@ struct Badge {
         self.orderIndex         = orderIndex
         self.badgeType          = badgeType
         self.additionalMsg      = additionalMsg
+        self.distanceCovered    = distanceCovered
+        self.shareMsg           = shareMsg
     }
 }

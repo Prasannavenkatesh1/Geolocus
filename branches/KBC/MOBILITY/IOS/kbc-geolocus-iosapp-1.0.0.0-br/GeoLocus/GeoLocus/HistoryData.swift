@@ -101,7 +101,7 @@ class SpeedZone {
 }
 
 /**
- Store trip scores
+ Store scores of a trip
  
     - overallScore:         Overall Score of trip
     - speedScore:           Speed Score of trip
@@ -125,7 +125,7 @@ class TripScore {
 }
 
 
-///History class encapsulate all the trip related detais of the user. Used for Dashboard History page
+///History class encapsulate all the trip related details of the user. It is used as data model for Dashboard History page
 class History {
     
     let tripId          : String

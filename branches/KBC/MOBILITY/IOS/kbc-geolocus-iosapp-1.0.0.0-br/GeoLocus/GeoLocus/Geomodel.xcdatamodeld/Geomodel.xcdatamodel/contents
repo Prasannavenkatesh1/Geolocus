@@ -59,6 +59,7 @@
     </entity>
     <entity name="Trip_Badge" representedClassName=".Trip_Badge" syncable="YES">
         <attribute name="badgeDescription" attributeType="String" syncable="YES"/>
+        <attribute name="distanceCovered" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="isEarned" attributeType="Boolean" syncable="YES"/>
         <attribute name="orderIndex" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
@@ -146,7 +147,7 @@
         <element name="Dashboard" positionX="1546" positionY="134" width="128" height="163"/>
         <element name="OverallScore" positionX="1989" positionY="-153" width="128" height="180"/>
         <element name="Reports" positionX="1429" positionY="354" width="128" height="150"/>
-        <element name="Trip_Badge" positionX="1843" positionY="-153" width="128" height="120"/>
+        <element name="Trip_Badge" positionX="1843" positionY="-153" width="128" height="135"/>
         <element name="Trip_Detail" positionX="1663" positionY="-153" width="128" height="255"/>
         <element name="Trip_Event" positionX="1996" positionY="123" width="128" height="180"/>
         <element name="Trip_Speed_Zone" positionX="1719" positionY="189" width="128" height="163"/>

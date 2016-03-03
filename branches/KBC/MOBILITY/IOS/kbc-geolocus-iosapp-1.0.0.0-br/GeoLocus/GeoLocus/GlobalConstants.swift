@@ -281,7 +281,70 @@ struct BadgeKey {
     static let DESC   = "badge_description"
     static let EARNED = "isEarned"
     static let INDEX  = "order_index"
+    static let DIST_COVERED = "distanceCovered"
 }
+
+
+struct HistoryKey {
+    struct  Trip {
+        static let ID = "tripId"
+        static let DATE = "date"
+        static let DISTANCE = "distance"
+        static let DURATION = "totalDuration"
+        static let DETAILS = "tripDetails"
+        static let POINTS = "tripPoints"
+        static let SPEED_MSG = "speedScoreMessage"
+        static let ECO_MSG = "ecoScoreMessage"
+        static let ATTENETION_MSG = "attentionScoreMessage"
+        static let DATA_USAGE_MSG = "dataUsageMsg"
+        
+        struct Score {
+            static let OVERALL  = "tripOverallScore"
+            static let SPEEDING = "speedScore"
+            static let ECO = "ecoScore"
+            static let ATTENTION = "attentionScore"
+        }
+        
+        struct Event {
+            static let EVENT = "event"
+            static let TYPE = "eventType"
+            static let VALUE = "eventValue"
+            static let IS_SEVERE = "isSevere"
+            static let LONGITUDE = "longitude"
+            static let LATITUDE = "latitude"
+            static let MESSAGE = "eventMessage"
+            static let FINE_MSG = "fineMessage"
+            static let THRESHOLD = "threshold"
+        }
+        
+        struct Speedzone {
+            static let SPEED_ZONE = "speedZone"
+            static let DISTANCE = "distanceTravelled"
+            static let SPEEDING_SCORE = "speedingScore"
+            static let VIOLATION = "violationCount"
+            static let MAX_SPEED = "maxSpeed"
+            static let ABOVE_MAX_SPEED = "aboveMaxspeed"
+            static let WITHIN_MAX_SPEED = "withinMaxspeed"
+            static let SPEED_BEHAVIOUR = "speedBehaviour"
+        }
+    }
+}
+
+
+struct OverallScoreKey {
+    static let TOTAL = "totalScore"
+    static let SPEEDING = "speedingScore"
+    static let ECO = "ecoScore"
+    static let ATTENTION = "attentionScore"
+    static let DISTANCE = "distance"
+    static let VIOLATION = "severeViolation"
+    static let TOTAL_MSG = "totalScoreMessage"
+    static let SPEED_MSG = "speedingScoreMessage"
+    static let ECO_MSG = "ecoScoreMessage"
+    static let DATA_USAGE_MSG = "dataUsagemessage"
+    static let ATTENTION_MSG = "attentionScoreMessage"
+}
+
 
 struct LocalizationConstants {
     
@@ -329,6 +392,10 @@ struct LocalizationConstants {
         static let Badges_to_be_Earned  = "Badges_to_be_Earned"
         static let Badges_Earned        = "Badges_Earned"
         static let Levels               = "Levels"
+        static let AddMsg1              = "AddMsg1"
+        static let AddMsg2              = "AddMsg2"
+        static let AddMsg3              = "AddMsg3"
+        static let AddMsg4              = "AddMsg4"
     }
     
     struct History{

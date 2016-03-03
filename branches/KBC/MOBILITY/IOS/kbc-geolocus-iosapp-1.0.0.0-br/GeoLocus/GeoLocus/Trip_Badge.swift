@@ -2,7 +2,7 @@
 //  Trip_Badge.swift
 //  GeoLocus
 //
-//  Created by CTS MAC on 06/02/16.
+//  Created by CTS MAC on 03/03/16.
 //  Copyright © 2016 Cognizant. All rights reserved.
 //
 

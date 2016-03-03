@@ -112,6 +112,17 @@ extension String {
         
         return boundingBox.height
     }
+    
+    func toBool() -> Bool {
+        switch self {
+        case "True", "TRUE", "true", "yes", "YES", "1":
+            return true
+        case "False", "FALSE", "false", "no", "NO", "0":
+            return false
+        default:
+            return false
+        }
+    }
 }
 
 

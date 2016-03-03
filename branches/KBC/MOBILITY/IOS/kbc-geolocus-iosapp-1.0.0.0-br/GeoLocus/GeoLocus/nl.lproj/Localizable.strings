@@ -21,6 +21,10 @@
 "Badges_to_be_Earned"                   = "Badges te verdienen";
 "Badges_Earned"                         = "Badges verdiend";
 "Levels"                                = "Niveau";
+"AddMsg1"                               = " ";
+"AddMsg2"                               = " ";
+"AddMsg3"                               = " ";
+"AddMsg4"                               = " ";
 
 //MARK: - Dashboard Page
 "Contracts points earned"               = "Contracten punten verdiend";

@@ -655,6 +655,7 @@ class DatabaseActions: NSObject {
                 badgeRow.isEarned           = badge.isEarned
                 badgeRow.type               = badge.badgeType.rawValue
                 badgeRow.orderIndex         = badge.orderIndex
+                badgeRow.distanceCovered    = badge.distanceCovered
                 
                 self.privateManagedObjectContext.performBlockAndWait({ () -> Void in
                     do{
@@ -741,7 +742,7 @@ class DatabaseActions: NSObject {
                 for item in results {
                     
                     let badgemanagedObj = item as! Trip_Badge
-                    let badge = Badge(withIcon: "", badgeTitle: badgemanagedObj.title!, badgeDescription:badgemanagedObj.badgeDescription! , isEarned: badgemanagedObj.isEarned!.boolValue, orderIndex: badgemanagedObj.orderIndex!.integerValue, badgeType:Badge.BadgesType(rawValue: badgemanagedObj.type!.integerValue)! , additionalMsg:nil)
+                    let badge = Badge(withIcon: "", badgeTitle: badgemanagedObj.title!, badgeDescription:badgemanagedObj.badgeDescription! , isEarned: badgemanagedObj.isEarned!.boolValue, orderIndex: badgemanagedObj.orderIndex!.integerValue, badgeType:Badge.BadgesType(rawValue: badgemanagedObj.type!.integerValue)! , additionalMsg:nil, distanceCovered: badgemanagedObj.distanceCovered!.integerValue, shareMsg: " ")
                     badges.append(badge)
                 }
                 return badges

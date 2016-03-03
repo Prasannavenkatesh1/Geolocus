@@ -21,6 +21,10 @@
 "Badges_to_be_Earned"               = "Abzeichen zu verdienen";
 "Badges_Earned"                     = "Abzeichen verdient";
 "Levels"                            = "Ebenen";
+"AddMsg1"                               = " ";
+"AddMsg2"                               = " ";
+"AddMsg3"                               = " ";
+"AddMsg4"                               = " ";
 
 //MARK: - Dashboard Page
 "Contracts points earned"           = "Verträge Punkte erhalten";

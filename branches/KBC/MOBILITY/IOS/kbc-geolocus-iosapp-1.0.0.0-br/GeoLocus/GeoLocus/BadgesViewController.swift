@@ -152,8 +152,11 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
          
     }
     
-    //MARK:- Custom Methods
+    //MARK:- Custom Datasource Methods
     
+    /**
+        Fetch data from database and load to data structure. It also fetch data from plist file for matching the title and assigning the appropiate icon for the badges and levels.
+    */
     func reloadDataSource(){
         
         //self.startLoading()
@@ -161,7 +164,8 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
         //1. Get data from plist
         let path                = NSBundle.mainBundle().pathForResource("BadgesDetails", ofType: "plist")
         let langDict            = NSDictionary(contentsOfFile: path!)
-        let dataDict            = langDict?.valueForKey(NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.SELECTED_LOCALIZE_LANGUAGE_CODE)!)
+//        let dataDict            = langDict?.valueForKey(NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.SELECTED_LOCALIZE_LANGUAGE_CODE)!)
+        let dataDict            = langDict?.valueForKey("en")
         self.plistBadgeArray    = (dataDict?.valueForKey("badge"))! as! NSArray
         self.plistLevelArray    = (dataDict?.valueForKey("level"))! as! NSArray
         
@@ -207,7 +211,7 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                             self.badgeNotEarnedArray[index].badgeIcon = isEarned ? self.plistBadgeArray[pIndex]["icon"] as! String: self.plistBadgeArray[pIndex]["icon_not_earned"] as! String
                             
                             self.badgeNotEarnedArray[index].orderIndex = Int(self.plistBadgeArray[pIndex]["index"] as! String)!
-                            self.badgeNotEarnedArray[index].additionalMsg = self.plistBadgeArray[pIndex]["message"] as? String
+                            self.badgeNotEarnedArray[index].additionalMsg = self.additionalBadgeMessage(title, distanceCovered: self.badgeNotEarnedArray[index].distanceCovered)
                         }
                     }
                 }
@@ -226,7 +230,7 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                             self.badgeEarnedArray[index].badgeIcon = isEarned ? self.plistBadgeArray[pIndex]["icon"] as! String: self.plistBadgeArray[pIndex]["icon_not_earned"] as! String
                             
                             self.badgeEarnedArray[index].orderIndex = Int(self.plistBadgeArray[pIndex]["index"] as! String)!
-                            self.badgeEarnedArray[index].additionalMsg = self.plistBadgeArray[pIndex]["message"] as? String
+                            self.badgeEarnedArray[index].shareMsg = (self.plistBadgeArray[pIndex]["message"] as? String)!
                         }
                     }
                 }
@@ -244,7 +248,7 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                             self.levelArray[index].badgeIcon = isEarned ? self.plistLevelArray[pIndex]["icon"] as! String: self.plistLevelArray[pIndex]["icon_not_earned"] as! String
                             
                             self.levelArray[index].orderIndex = Int(self.plistLevelArray[pIndex]["index"] as! String)!
-                            self.levelArray[index].additionalMsg = self.plistBadgeArray[pIndex]["message"] as? String
+                            self.levelArray[index].shareMsg = (self.plistBadgeArray[pIndex]["message"] as? String)!
                         }
                     }
                 }
@@ -269,14 +273,14 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
                 
                 for var index = 0; index < self.plistBadgeArray.count; index++ {
                     
-                    let badge = Badge(withIcon: self.plistBadgeArray[index]["icon_not_earned"] as! String, badgeTitle: self.plistBadgeArray[index]["title"] as! String, badgeDescription: self.plistBadgeArray[index]["criteria"] as! String, isEarned: false, orderIndex: Int(self.plistBadgeArray[index]["index"] as! String)!, badgeType: Badge.BadgesType.Badge, additionalMsg: " ")
+                    let badge = Badge(withIcon: self.plistBadgeArray[index]["icon_not_earned"] as! String, badgeTitle: self.plistBadgeArray[index]["title"] as! String, badgeDescription: self.plistBadgeArray[index]["criteria"] as! String, isEarned: false, orderIndex: Int(self.plistBadgeArray[index]["index"] as! String)!, badgeType: Badge.BadgesType.Badge, additionalMsg: self.additionalBadgeMessage(self.plistBadgeArray[index]["title"] as! String, distanceCovered: 0), distanceCovered: 0, shareMsg: " ")
                     
                     self.badgeNotEarnedArray.append(badge)
                 }
                 
                 for var index = 0; index < self.plistLevelArray.count; index++ {
                     
-                    let level = Badge(withIcon: self.plistLevelArray[index]["icon_not_earned"] as! String, badgeTitle: self.plistLevelArray[index]["title"] as! String, badgeDescription: self.plistLevelArray[index]["criteria"] as! String, isEarned: false, orderIndex: Int(self.plistLevelArray[index]["index"] as! String)!, badgeType: Badge.BadgesType.Level, additionalMsg: " ")
+                    let level = Badge(withIcon: self.plistLevelArray[index]["icon_not_earned"] as! String, badgeTitle: self.plistLevelArray[index]["title"] as! String, badgeDescription: self.plistLevelArray[index]["criteria"] as! String, isEarned: false, orderIndex: Int(self.plistLevelArray[index]["index"] as! String)!, badgeType: Badge.BadgesType.Level, additionalMsg: " ", distanceCovered: 0, shareMsg: " ")
                     
                     self.levelArray.append(level)
                 }
@@ -286,6 +290,33 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    
+    func additionalBadgeMessage(title: String, distanceCovered: Int) -> String? {
+        
+        var text = String?()
+        
+        switch title.lowercaseString {
+            case "Marathoner Badge".lowercaseString:
+                text = String(format: LocalizationConstants.Badge.AddMsg1.localized(), distanceCovered)
+            case "Roadie Candidate Badge".lowercaseString:
+                text = String(format: LocalizationConstants.Badge.AddMsg1.localized(), distanceCovered)
+            case "Rock star of Road Badge".lowercaseString:
+                text = String(format: LocalizationConstants.Badge.AddMsg1.localized(), distanceCovered)
+            case "Eco Driver Badge".lowercaseString:
+                text = String(format: LocalizationConstants.Badge.AddMsg3.localized(), distanceCovered)
+            case "Highway Driver Badge".lowercaseString:
+                text = String(format: LocalizationConstants.Badge.AddMsg4.localized(), distanceCovered)
+            case "King of the City Badge".lowercaseString:
+                text = String(format: LocalizationConstants.Badge.AddMsg2.localized(), distanceCovered)
+            default: text = nil
+        }
+        return text
+    }
+    
+    
+    /**
+     Set up the back button for the view
+     */
     func navigationItemSetUp() {
         let backButton = UIButton()
         backButton.setImage(UIImage(named: "BackButton"), forState: .Normal)
@@ -303,7 +334,9 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
 }
 
 extension BadgesViewController: BadgesDelegate {
-    
+    /**
+     This method is called when share button is tapped in the earned badges section. This method faclitates the sharing of badges earned to the social media, like facebook, Twitter and others if it is installed in users mobile.
+     */
     func shareButtonTapped(sender: UIButton!){
         
         let touchPoint = sender?.convertPoint(CGPointZero, toView: self.badgeTableView)
