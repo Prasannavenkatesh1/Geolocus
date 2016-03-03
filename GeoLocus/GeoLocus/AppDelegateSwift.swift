@@ -347,10 +347,13 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       
       
       var  isFailed:Bool = false
-      base.startLoading()
+      
       
         //TODO: Check internet connectivity
         if self.serviceState == .NONE {
+          
+            base.startLoading()
+          
             var serviceError: NSError!
             var dbStatus = false
             
@@ -581,8 +584,14 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
     
   func applicationDidBecomeActive(application: UIApplication) {
     // End the background task.
-    self.endBackgroundUpdateTask()
+//    self.endBackgroundUpdateTask()
     requestAndSaveAppData()
+
+    
+  }
+  
+  func applicationWillResignActive(application: UIApplication) {
+    
   }
   
   

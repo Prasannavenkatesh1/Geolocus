@@ -155,6 +155,9 @@ struct StringConstants {
   /*  Core Location */
     static let isSnoozeEnabled   = "Snoozing enabled"
   
+    /*TripData */
+    static let TRIP_FILE           = "finaltrip.json"
+  
     
 }
 
@@ -197,9 +200,22 @@ struct ArrayConstants {
 }
 
 struct ErrorConstants {
-    static let InvalidLogin = NSLocalizedString("Invalid login credentials", comment: "Login Error")
-    
+  
+  
+  // Login error handling
+  static let InvalidLogin = "Invalid login credentials".localized()
+  
+  
+  // File handling errors
+  static let FILE_CREATE_ERROR    = "Couldn't create the file.".localized()
+  static let FILE_READ_ERROR      = "Couldn't read the file.".localized()
+  static let FILE_WRITE_ERROR     = "Couldn't write to file.".localized()
+  static let FILE_INVALID_ERROR   = "The file may be courrupt.Invalid File".localized()
+  
+  
+  
 }
+
 
 struct NotificationKey {
     
