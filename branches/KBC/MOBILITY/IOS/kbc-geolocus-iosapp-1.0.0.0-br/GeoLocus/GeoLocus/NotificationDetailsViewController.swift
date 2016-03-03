@@ -9,7 +9,7 @@
 import UIKit
 
 class NotificationDetailsViewController: BaseViewController {
-
+    
     @IBOutlet weak var notificationDescription: UILabel!
     @IBOutlet weak var competitionAcceptanceView: UIView!
     @IBOutlet weak var competitionScoresView: UIView!
@@ -38,7 +38,9 @@ class NotificationDetailsViewController: BaseViewController {
         notificationDescription.text = "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files , to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions"
         declineButton.layer.borderColor = UIColor(red:240/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).CGColor
         //competitionAcceptanceView.hidden = true
-        competitionScoresView.hidden = true
+        //competitionScoresView.hidden = true
+        
+        //self.setTitleForLabels()
         
         reloadView()
         
@@ -57,7 +59,7 @@ class NotificationDetailsViewController: BaseViewController {
         let kbcIconItem:UIBarButtonItem = UIBarButtonItem(customView: kbcicon)
         
         self.navigationItem.setLeftBarButtonItems([backButtonItem,kbcIconItem], animated:true)
-
+        
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(animated: Bool) {
@@ -70,7 +72,14 @@ class NotificationDetailsViewController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    //    func setTitleForLabels(){
+    //        self.yourGoalLabel.text = LocalizationConstants.YourGoal_Title.localized()
+    //        self.messageLabel.text = LocalizationConstants.AddPicture_Title.localized()
+    //        self.totalPointsTitleLabel.text = LocalizationConstants.TotalPoints_Title.localized()
+    //        self.speedPointsTitleLabel.text = LocalizationConstants.SpeedPoints_Title.localized()
+    //        self.ecoPointsTitleLabel.text = LocalizationConstants.EcoPoints_Title.localized()
+    //        self.bonusPointsTitleLabel.text = LocalizationConstants.BonusPoints_Title.localized()
+    //    }
     func backButtonPressed(sender:UIButton) {
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -118,39 +127,39 @@ class NotificationDetailsViewController: BaseViewController {
             self.ecoScoreArc.ringLayer.strokeColor = UIColor.greenColor().CGColor
             self.ecoScoreArc.animateScale = 60/100.0
             self.ecoScoreArc.setNeedsDisplay()
-//            self.ecoScoreArc.ringLayer.strokeColor = UIColor(range: (self.notificationDetailsModel?.competition_ecoscore.integerValue)!).CGColor
-//            self.ecoScoreArc.animateScale = (self.notificationDetailsModel?.competition_ecoscore.doubleValue)!/100.0
-//            self.ecoScoreArc.setNeedsDisplay()
-//            
-//            self.overallScoreArc.foreGroundArcWidth = 4
-//            self.overallScoreArc.backGroundArcWidth = 4
-//            self.overallScoreArc.ringLayer.strokeColor = UIColor(range: (self.notificationDetailsModel?.competition_overallscore.integerValue)!).CGColor
-//            self.overallScoreArc.animateScale = (self.notificationDetailsModel?.competition_overallscore.doubleValue)!/100.0
-//            self.overallScoreArc.setNeedsDisplay()
-//            
-//            speedingScoreArc.foreGroundArcWidth = 4
-//            speedingScoreArc.backGroundArcWidth = 4
-//            speedingScoreArc.ringLayer.strokeColor = UIColor(range: (self.notificationDetailsModel?.competition_speedscore.integerValue)!).CGColor
-//            speedingScoreArc.animateScale = (self.notificationDetailsModel?.competition_speedscore.doubleValue)!/100.0
-//            speedingScoreArc.setNeedsDisplay()
+            //            self.ecoScoreArc.ringLayer.strokeColor = UIColor(range: (self.notificationDetailsModel?.competition_ecoscore.integerValue)!).CGColor
+            //            self.ecoScoreArc.animateScale = (self.notificationDetailsModel?.competition_ecoscore.doubleValue)!/100.0
+            //            self.ecoScoreArc.setNeedsDisplay()
+            //
+            //            self.overallScoreArc.foreGroundArcWidth = 4
+            //            self.overallScoreArc.backGroundArcWidth = 4
+            //            self.overallScoreArc.ringLayer.strokeColor = UIColor(range: (self.notificationDetailsModel?.competition_overallscore.integerValue)!).CGColor
+            //            self.overallScoreArc.animateScale = (self.notificationDetailsModel?.competition_overallscore.doubleValue)!/100.0
+            //            self.overallScoreArc.setNeedsDisplay()
+            //
+            //            speedingScoreArc.foreGroundArcWidth = 4
+            //            speedingScoreArc.backGroundArcWidth = 4
+            //            speedingScoreArc.ringLayer.strokeColor = UIColor(range: (self.notificationDetailsModel?.competition_speedscore.integerValue)!).CGColor
+            //            speedingScoreArc.animateScale = (self.notificationDetailsModel?.competition_speedscore.doubleValue)!/100.0
+            //            speedingScoreArc.setNeedsDisplay()
             
-           // self.totalDistTravelledLabel.text = String("\(self.overallScores!.distanceTravelled) km")
+            // self.totalDistTravelledLabel.text = String("\(self.overallScores!.distanceTravelled) km")
             
         }
         
         //dummy view
-//        self.drivingDummyView.foreGroundArcWidth = 0
-//        self.drivingDummyView.backGroundArcWidth = 0
-//        self.drivingDummyView.ringLayer.strokeColor = self.view.backgroundColor!.CGColor
-//        self.drivingDummyView.animateScale = 0.0
-//        self.drivingDummyView.setNeedsDisplay()
-//        
-//        //dummy view
-//        self.drivingDummySecView.foreGroundArcWidth = 0
-//        self.drivingDummySecView.backGroundArcWidth = 0
-//        self.drivingDummySecView.ringLayer.strokeColor = self.view.backgroundColor!.CGColor
-//        self.drivingDummySecView.animateScale = 0.0
-//        self.drivingDummySecView.setNeedsDisplay()
+        //        self.drivingDummyView.foreGroundArcWidth = 0
+        //        self.drivingDummyView.backGroundArcWidth = 0
+        //        self.drivingDummyView.ringLayer.strokeColor = self.view.backgroundColor!.CGColor
+        //        self.drivingDummyView.animateScale = 0.0
+        //        self.drivingDummyView.setNeedsDisplay()
+        //
+        //        //dummy view
+        //        self.drivingDummySecView.foreGroundArcWidth = 0
+        //        self.drivingDummySecView.backGroundArcWidth = 0
+        //        self.drivingDummySecView.ringLayer.strokeColor = self.view.backgroundColor!.CGColor
+        //        self.drivingDummySecView.animateScale = 0.0
+        //        self.drivingDummySecView.setNeedsDisplay()
     }
     @IBAction func didTapOnAccept(sender: AnyObject) {
         //https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/notification/delete?userId=7&notificationId=14&type=Promotion
@@ -158,19 +167,20 @@ class NotificationDetailsViewController: BaseViewController {
         //FacadeLayer.sharedinstance.httpclient.requestDeleteNotification(StringConstants.LOGIN_URL,parameterString: parameterString)
         
         let userID = "7"
-        let notificationId = "14"
+        let notificationId = 14
         let type = "Promotion"
         
-        let parameterString = String(format: StringConstants.NOTIFICATION_DELETE_PARAMETERS, userID, notificationId, type)
+        //        var notificationObj = NotificationDetailsModel?()
+        //        notificationObj = self.notificationList[deleteRow]
         
-        FacadeLayer.sharedinstance.postAcceptedNotification { (status, data, error) -> Void in
+        FacadeLayer.sharedinstance.postAcceptedNotification(notificationId, status: "Y") { (status, data, error) -> Void in
             if(status == 1) {
                 self.competitionAcceptanceView.hidden = true
                 self.competitionScoresView.hidden = false
-
+                
                 self.userDistance.text = ""
                 self.userViolationScore.text = ""
-
+                
                 self.competitionDistance.text = ""
                 self.competitionViolationScore.text = ""
                 
@@ -183,7 +193,7 @@ class NotificationDetailsViewController: BaseViewController {
                 }))
                 
                 self.presentViewController(alert, animated: true, completion: nil)
-
+                
             }
         }
         
@@ -194,16 +204,16 @@ class NotificationDetailsViewController: BaseViewController {
     }
     @IBAction func didTapOnShareWithKBC(sender: AnyObject) {
     }
-
-
+    
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
