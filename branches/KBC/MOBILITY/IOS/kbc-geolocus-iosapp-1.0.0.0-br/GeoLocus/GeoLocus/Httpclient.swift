@@ -38,12 +38,13 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         }
         
         let selectedLanguageCode : String! = defaults.stringForKey(StringConstants.SELECTED_LANGUAGE_USERDEFAULT_KEY)
-        let termsAndConditionsURL = FacadeLayer.sharedinstance.webService.termConditionsServiceURL! + "\(selectedLanguageCode)"
-        
-        manager.request(.GET, termsAndConditionsURL)
-            .response { (request, response, data, error) -> Void in
-                completionHandler(response: response, data: data, error: error)
-        }
+//        let termsAndConditionsURL = FacadeLayer.sharedinstance.webService.termConditionsServiceURL! + "\(selectedLanguageCode)"
+      let termsAndConditionsURL = Portal.TermConditionsServiceURL + "\(selectedLanguageCode)"
+      
+            manager.request(.GET, termsAndConditionsURL)
+                    .response { (request, response, data, error) -> Void in
+                        completionHandler(response: response, data: data, error: error)
+            }
     }
     
     /* Login Service call */
@@ -64,7 +65,8 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             return (disposition, credential)
         }
         
-        let loginURL : NSURL = NSURL(string : FacadeLayer.sharedinstance.webService.loginServiceURL!)!
+//        let loginURL : NSURL = NSURL(string : FacadeLayer.sharedinstance.webService.loginServiceURL!)!
+        let loginURL : NSURL = NSURL(string : Portal.LoginServiceURL)!
         let loginRequest = NSMutableURLRequest(URL : loginURL)
         loginRequest.HTTPMethod = "POST"
         
@@ -93,9 +95,10 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             return (disposition, credential)
         }
         
-        let userID : String! = defaults.stringForKey(StringConstants.USER_ID)
-        let contractServiceURL = FacadeLayer.sharedinstance.webService.contractServiceURL! + "\(userID)"
-        
+        let userID : String! = defaults.stringForKey(StringConstants.USER_ID) //"9"
+//        let contractServiceURL = FacadeLayer.sharedinstance.webService.contractServiceURL! + "\(userID)"
+        let contractServiceURL = Portal.ContractServiceURL + "\(userID)"
+      
         let contractRequest = NSMutableURLRequest(URL: NSURL(string : contractServiceURL)!)
         contractRequest.HTTPMethod = "GET"
         
@@ -219,9 +222,10 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         }
         
         let userID : String! = defaults.stringForKey(StringConstants.USER_ID)
-        let urlString = FacadeLayer.sharedinstance.webService.dashboardServiceURL! + userID
-        
-        // let reportRequest = NSMutableURLRequest(URL: NSURL(string: FacadeLayer.sharedinstance.webService.dashboardServiceURL!)!)
+//        let urlString = FacadeLayer.sharedinstance.webService.dashboardServiceURL! + userID
+        let urlString = Portal.DashboardServiceURL + userID
+      
+       // let reportRequest = NSMutableURLRequest(URL: NSURL(string: FacadeLayer.sharedinstance.webService.dashboardServiceURL!)!)
         let reportRequest = NSMutableURLRequest(URL: NSURL(string: urlString)!)
         reportRequest.HTTPMethod = "GET"
         reportRequest.setValue(NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.TOKEN_ID), forHTTPHeaderField: StringConstants.SPRING_SECURITY_COOKIE)
