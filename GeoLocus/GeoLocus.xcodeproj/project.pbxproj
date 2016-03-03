@@ -286,7 +286,7 @@
 		BF73374F1C3FC29A006094C0 /* DashboardPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF73374E1C3FC29A006094C0 /* DashboardPage.swift */; };
 		BF7337511C3FC2AE006094C0 /* HistoryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7337501C3FC2AE006094C0 /* HistoryPage.swift */; };
 		BF7337531C3FC2BF006094C0 /* HistoryScorePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7337521C3FC2BF006094C0 /* HistoryScorePage.swift */; };
-		BF75C8541C883F8400040817 /* ZipController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF75C8531C883F8400040817 /* ZipController.swift */; };
+		BF75C8561C885ACD00040817 /* ZipController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF75C8551C885ACD00040817 /* ZipController.swift */; };
 		BF87B26F1C6A0D5600DA6000 /* ConfigurationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF87B26E1C6A0D5600DA6000 /* ConfigurationModel.swift */; };
 		F55265641C522F3E002362F5 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55265631C522F3E002362F5 /* NotificationViewController.swift */; };
 		F55265661C522FD0002362F5 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55265651C522FD0002362F5 /* NotificationTableViewCell.swift */; };
@@ -645,7 +645,7 @@
 		BF73374E1C3FC29A006094C0 /* DashboardPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardPage.swift; sourceTree = "<group>"; };
 		BF7337501C3FC2AE006094C0 /* HistoryPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryPage.swift; sourceTree = "<group>"; };
 		BF7337521C3FC2BF006094C0 /* HistoryScorePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryScorePage.swift; sourceTree = "<group>"; };
-		BF75C8531C883F8400040817 /* ZipController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZipController.swift; sourceTree = "<group>"; };
+		BF75C8551C885ACD00040817 /* ZipController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZipController.swift; sourceTree = "<group>"; };
 		BF87B26E1C6A0D5600DA6000 /* ConfigurationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationModel.swift; sourceTree = "<group>"; };
 		BFE454751C64DCD6003BC0F2 /* TripSummaryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryModel.swift; sourceTree = "<group>"; };
 		F55265631C522F3E002362F5 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
@@ -1229,6 +1229,7 @@
 		BF7336FB1C3F9266006094C0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				BF75C8551C885ACD00040817 /* ZipController.swift */,
 				F574AFC91C71D48D00FA0645 /* ShareView.swift */,
 				BF4F8D961C43840500895640 /* Cells */,
 				BF7337481C3FBCF4006094C0 /* RootViewController.swift */,
@@ -1254,7 +1255,6 @@
 				6C44D6681C59E55F0055916B /* LeftViewController.swift */,
 				BF44D2821C6DED3E00BFB1E2 /* BaseViewController.swift */,
 				3A58EE351C74564C006CCF6D /* SnoozingViewController.swift */,
-				BF75C8531C883F8400040817 /* ZipController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1746,8 +1746,8 @@
 				28F38A141C61EBB300A02E93 /* HistoryTripDetailCell.swift in Sources */,
 				BF5A55391C7C23260090E40F /* TripMeasurements.swift in Sources */,
 				638451F61B0353A000E895F7 /* CoreLocationController.m in Sources */,
-				BF75C8541C883F8400040817 /* ZipController.swift in Sources */,
 				BF694F7E1C86B061004FE0F9 /* EnumMaster.swift in Sources */,
+				BF75C8561C885ACD00040817 /* ZipController.swift in Sources */,
 				282EC8E11C7F1EF9001322B7 /* Trip_Event.swift in Sources */,
 				2840453D1C881A3400820F6C /* Trip_Badge.swift in Sources */,
 				638451EF1B0353A000E895F7 /* FMDatabase.m in Sources */,
