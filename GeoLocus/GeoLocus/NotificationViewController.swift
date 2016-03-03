@@ -9,7 +9,7 @@
 import UIKit
 
 class NotificationViewController: BaseViewController,UITableViewDataSource, UITableViewDelegate{
-    // var notificationListModel = NotificationListModel?()
+    var notificationDetailModelObj = NotificationDetailsModel?()
     var notificationList = [NotificationListModel]()
     
     var myActivityIndicator: UIActivityIndicatorView?
@@ -162,8 +162,9 @@ class NotificationViewController: BaseViewController,UITableViewDataSource, UITa
         
         FacadeLayer.sharedinstance.requestNotificationDetailsData((notificationObj?.notificationID)!, type: (notificationObj?.notificationType)!) { (status, data, error) -> Void in
             if(status == 1) {
-                self.performSegueWithIdentifier("Notificationsegue", sender: self);
-                
+                self.notificationDetailModelObj = data! as NotificationDetailsModel
+
+                self.performSegueWithIdentifier("NotificationDetailssegue", sender: self);
                 
             }
             else{
@@ -179,13 +180,13 @@ class NotificationViewController: BaseViewController,UITableViewDataSource, UITa
             
         }
         
-        self.performSegueWithIdentifier("NotificationDetailssegue", sender: self)
+        //self.performSegueWithIdentifier("NotificationDetailssegue", sender: self)
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "NotificationDetailssegue") {
             // pass data to next view
-            //let notify:NotificationViewController = segue.destinationViewController as! NotificationViewController
-            //notify.razorSharpTeeth
+            let notify:NotificationDetailsViewController = segue.destinationViewController as! NotificationDetailsViewController
+            notify.notificationDetailsModel=self.notificationDetailModelObj
             
         }
         

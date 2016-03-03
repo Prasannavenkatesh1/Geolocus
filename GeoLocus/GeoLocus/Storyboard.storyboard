@@ -7783,18 +7783,33 @@
                         <outlet property="baseScrollView" destination="PkE-nR-72U" id="GUf-LZ-jjN"/>
                         <outlet property="competitionAcceptanceView" destination="ehE-ct-NT9" id="1Ur-2i-bIR"/>
                         <outlet property="competitionDistance" destination="Una-UE-Z0J" id="Mur-gy-ibo"/>
+                        <outlet property="competitionDistanceHeader" destination="T9l-XL-hx9" id="qKc-UQ-8gX"/>
+                        <outlet property="competitionEcoHeader" destination="DmR-bL-NGt" id="NzD-SJ-q3x"/>
+                        <outlet property="competitionOverallScoreHeader" destination="xMy-X4-Nex" id="vHX-f8-BKh"/>
                         <outlet property="competitionScoresView" destination="UdS-ge-kJh" id="78R-Tl-jN6"/>
+                        <outlet property="competitionSpeedingHeader" destination="5a4-Bk-r2W" id="c44-R9-juY"/>
+                        <outlet property="competitionViolationHeader" destination="vp9-dg-keU" id="rMI-an-uX1"/>
                         <outlet property="competitionViolationScore" destination="Hlm-C6-eiD" id="ndN-Uc-dJe"/>
                         <outlet property="declineButton" destination="Ecx-mw-bMq" id="idt-ZY-hb9"/>
                         <outlet property="ecoScoreArc" destination="VgZ-Au-kQf" id="cX5-YR-uMS"/>
-                        <outlet property="notificationDescription" destination="lb1-u4-5eZ" id="oTV-mJ-hOD"/>
+                        <outlet property="labelCompetitionCriteria" destination="QVI-ia-t3n" id="K6b-mU-ux7"/>
+                        <outlet property="labelYourLevel" destination="Ucr-9W-dHr" id="n6m-LM-Zm7"/>
+                        <outlet property="notificationDate" destination="Kwd-h0-XrA" id="4g8-l1-8bu"/>
+                        <outlet property="notificationImageView" destination="nyp-Wn-Rmo" id="Bpa-JH-UeU"/>
+                        <outlet property="notificationMessage" destination="lb1-u4-5eZ" id="1wy-gs-lwe"/>
+                        <outlet property="notificationTitle" destination="w7z-UC-pJ8" id="DmX-bY-6Ag"/>
                         <outlet property="overallScoreArc" destination="Ulg-2C-XwB" id="nfV-ia-NCg"/>
                         <outlet property="shareTextfield" destination="Jj3-A1-yyR" id="hSr-jf-qsx"/>
                         <outlet property="speedingScoreArc" destination="dDv-Yv-4iD" id="r1P-4z-EF6"/>
                         <outlet property="userDistance" destination="zCH-GT-o8m" id="uAu-Mz-hvB"/>
+                        <outlet property="userDistanceHeader" destination="N2b-X8-TL7" id="VBt-sG-VYG"/>
+                        <outlet property="userEcoHeader" destination="AOQ-YI-ZLG" id="7cc-re-xQ4"/>
                         <outlet property="userEcoScoreArc" destination="SFN-cs-bto" id="T0q-aa-e4d"/>
                         <outlet property="userOverallScoreArc" destination="IVe-Ll-3HR" id="ez3-5o-MQL"/>
+                        <outlet property="userOverallScoreHeader" destination="QIV-Dc-BN4" id="LIR-sC-KtV"/>
+                        <outlet property="userSpeedingHeader" destination="jYl-ez-cyu" id="dZN-py-uIR"/>
                         <outlet property="userSpeedingScoreArc" destination="Xtg-rg-DDe" id="T0b-cJ-eCH"/>
+                        <outlet property="userViolationHeader" destination="obn-Bz-Tml" id="jLy-01-pNt"/>
                         <outlet property="userViolationScore" destination="kfm-5K-fJE" id="caF-2h-Ffa"/>
                     </connections>
                 </viewController>

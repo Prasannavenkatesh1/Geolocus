@@ -10,14 +10,30 @@ import UIKit
 
 class NotificationDetailsViewController: BaseViewController {
     
-    @IBOutlet weak var notificationDescription: UILabel!
     @IBOutlet weak var competitionAcceptanceView: UIView!
     @IBOutlet weak var competitionScoresView: UIView!
     @IBOutlet weak var baseScrollView: UIScrollView!
     
+    @IBOutlet weak var notificationImageView: UIImageView!
+    @IBOutlet weak var notificationTitle: UILabel!
+    @IBOutlet weak var notificationDate: UILabel!
+    @IBOutlet weak var notificationMessage: UILabel!
+    
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var declineButton: UIButton!
     @IBOutlet weak var ShareWithKBCButton: UIButton!
+    @IBOutlet weak var labelCompetitionCriteria: UILabel!
+    @IBOutlet weak var labelYourLevel: UILabel!
+    @IBOutlet weak var competitionDistanceHeader: UILabel!
+    @IBOutlet weak var userDistanceHeader: UILabel!
+    @IBOutlet weak var competitionViolationHeader: UILabel!
+    @IBOutlet weak var userViolationHeader: UILabel!
+    @IBOutlet weak var competitionEcoHeader: UILabel!
+    @IBOutlet weak var userEcoHeader: UILabel!
+    @IBOutlet weak var competitionOverallScoreHeader: UILabel!
+    @IBOutlet weak var userOverallScoreHeader: UILabel!
+    @IBOutlet weak var competitionSpeedingHeader: UILabel!
+    @IBOutlet weak var userSpeedingHeader: UILabel!
     
     @IBOutlet weak var ecoScoreArc: ArcGraphicsController!
     @IBOutlet weak var overallScoreArc: ArcGraphicsController!
@@ -35,12 +51,12 @@ class NotificationDetailsViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        notificationDescription.text = "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files , to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions"
+        
         declineButton.layer.borderColor = UIColor(red:240/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).CGColor
         //competitionAcceptanceView.hidden = true
         //competitionScoresView.hidden = true
         
-        //self.setTitleForLabels()
+        self.setTitleForLabels()
         
         reloadView()
         
@@ -72,14 +88,30 @@ class NotificationDetailsViewController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    //    func setTitleForLabels(){
-    //        self.yourGoalLabel.text = LocalizationConstants.YourGoal_Title.localized()
-    //        self.messageLabel.text = LocalizationConstants.AddPicture_Title.localized()
-    //        self.totalPointsTitleLabel.text = LocalizationConstants.TotalPoints_Title.localized()
-    //        self.speedPointsTitleLabel.text = LocalizationConstants.SpeedPoints_Title.localized()
-    //        self.ecoPointsTitleLabel.text = LocalizationConstants.EcoPoints_Title.localized()
-    //        self.bonusPointsTitleLabel.text = LocalizationConstants.BonusPoints_Title.localized()
-    //    }
+    func setTitleForLabels(){
+        //let notificationObj = NotificationDetailsModel?()
+        self.notificationTitle.text = notificationDetailsModel!.title
+        self.notificationDate.text = notificationDetailsModel!.date
+        self.notificationMessage.text = notificationDetailsModel!.message
+        self.notificationImageView.image = UIImage(named: "NotificationDetailImage")
+        //self.notificationImageView.image = UIImage(named: "BackButton")
+
+//        notificationMessage.text = "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files , to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions"
+        
+        self.labelCompetitionCriteria.text = LocalizationConstants.Notification.Competition_Criteria.localized()
+        self.labelYourLevel.text = LocalizationConstants.Notification.Your_Level.localized()
+        self.competitionDistanceHeader.text = LocalizationConstants.Notification.Distance.localized()
+        self.userDistanceHeader.text = LocalizationConstants.Notification.Distance.localized()
+        self.competitionViolationHeader.text = LocalizationConstants.Notification.Severe_Violation.localized()
+        self.userViolationHeader.text = LocalizationConstants.Notification.Severe_Violation.localized()
+        
+        self.competitionEcoHeader.text = LocalizationConstants.Notification.Eco_Score.localized()
+        self.userEcoHeader.text = LocalizationConstants.Notification.Eco_Score.localized()
+        self.competitionOverallScoreHeader.text = LocalizationConstants.Notification.Overall_Score.localized()
+        self.userOverallScoreHeader.text = LocalizationConstants.Notification.Overall_Score.localized()
+        self.competitionSpeedingHeader.text = LocalizationConstants.Notification.Speeding_Score.localized()
+        self.userSpeedingHeader.text = LocalizationConstants.Notification.Speeding_Score.localized()
+    }
     func backButtonPressed(sender:UIButton) {
         self.navigationController?.popViewControllerAnimated(true)
     }

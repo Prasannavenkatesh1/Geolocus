@@ -482,4 +482,20 @@ struct LocalizationConstants {
             static let Days = "Days"
         }
     }
+    
+    struct Notification {
+        static let Notification = "Notification"
+        static let Alert_Yes = "Yes"
+        static let Alert_No = "No"
+        static let Delete_Message = "Are you sure you want to delete this?"
+        static let Accept = "Accept"
+        static let Decline = "Decline"
+        static let Distance = "Distance"
+        static let Competition_Criteria = "Competition Criteria"
+        static let Your_Level = "Your Level"
+        static let Speeding_Score = "Speeding"
+        static let Overall_Score = "Overall score"
+        static let Eco_Score = "Eco"
+        static let Severe_Violation = "Severe Violation"
+    }
 }
