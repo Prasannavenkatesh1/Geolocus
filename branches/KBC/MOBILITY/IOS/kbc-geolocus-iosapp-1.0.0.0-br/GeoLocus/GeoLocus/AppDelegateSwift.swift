@@ -94,9 +94,22 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       defaults.setDouble(0.5, forKey: StringConstants.Ecoweightage_Braking)
       defaults.setDouble(0.2, forKey: StringConstants.Ecoweightage_Acceleration)
       
+      // Needs to add fields in config db
+      defaults.setDouble(150.0, forKey: StringConstants.Thresholds_Minimumdistance)
+      defaults.setDouble(10.0, forKey: StringConstants.Thresholds_MinimumIdleTime)
+      defaults.setDouble(5.0, forKey: StringConstants.Thresholds_MaximumIdleTime)
+        
+        //snoozing picker values
+      defaults.setValue("", forKey: StringConstants.PICKER_LEFT_VALUE)
+      defaults.setObject("", forKey: StringConstants.PICKER_RIGHT_VALUE)
+                
       defaults.setBool(true, forKey: StringConstants.isSnoozeEnabled)
+       
+     // settings switch value
+      defaults.setBool(true, forKey: StringConstants.AUTO_TRIP_START)
+      defaults.setBool(true, forKey: StringConstants.NOTIFICATION)
+      defaults.setBool(true, forKey: StringConstants.SHARE_DATA_WITH_PARENT)
 
-                      
     }
       
 
@@ -278,7 +291,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       
         let storyboard: UIStoryboard = UIStoryboard(name: "Storyboard", bundle: NSBundle.mainBundle())
         let checkUserLogin : Bool = self.checkUserDetails()
-//        checkUserLogin = false
+        //checkUserLogin = false
         if(!checkUserLogin){
             FacadeLayer.sharedinstance.corelocation.initLocationManager()
 

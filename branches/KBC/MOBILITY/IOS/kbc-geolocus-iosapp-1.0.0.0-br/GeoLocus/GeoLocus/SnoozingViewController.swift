@@ -13,6 +13,7 @@ class SnoozingViewController : BaseViewController,UIPickerViewDelegate,UIPickerV
     //MARK: IBOutlets
     @IBOutlet weak var snoozeDateTimePicker: UIPickerView!
     @IBOutlet weak var snoozePickerTitleLabel: UILabel!
+   
     var hoursArray :[Int] = (1...24).map { $0 }
     var minutesArray : [Int] = (1...60).map{$0}
     var daysArray : [Int] = (1...30).map{$0}
@@ -23,7 +24,7 @@ class SnoozingViewController : BaseViewController,UIPickerViewDelegate,UIPickerV
     //var pickerDataSource  = [["1","2","3"],["Hours","Minutes","Days"]]
     
     override func viewDidLoad() {
-      
+        
         super.viewDidLoad()
         snoozePickerTitleLabel.text = LocalizationConstants.Settings.Snooze.AskMeAgain_Title.localized()
         snoozingPickerLeftComponentDictionary[LocalizationConstants.Settings.Snooze.Hours.localized()] = hoursArray
@@ -39,7 +40,7 @@ class SnoozingViewController : BaseViewController,UIPickerViewDelegate,UIPickerV
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == 0{
-                return snoozingPickerLeftComponentDataSource.count
+            return snoozingPickerLeftComponentDataSource.count
         }else if component == 1{
             return timeArray.count
         }
@@ -48,14 +49,14 @@ class SnoozingViewController : BaseViewController,UIPickerViewDelegate,UIPickerV
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
-                return String(snoozingPickerLeftComponentDataSource[row])
+            return String(snoozingPickerLeftComponentDataSource[row])
         }
         else if component == 1{
             return timeArray[row]
         }
         return nil
     }
-  
+    
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 1{
             if row == 0{
@@ -71,46 +72,50 @@ class SnoozingViewController : BaseViewController,UIPickerViewDelegate,UIPickerV
         }
     }
     
-  @IBAction func closeButtonClicked(sender: AnyObject) {
-      self.dismissPopUpController()
-  }
-  
-  @IBAction func okTapped(sender: AnyObject) {
-
-    let firstval = snoozingPickerLeftComponentDataSource[snoozeDateTimePicker.selectedRowInComponent(0)]
-    let secondval = timeArray[snoozeDateTimePicker.selectedRowInComponent(1)]
-    
-    print(firstval)
-    print(secondval)
-    
-    //3 * 24 * 60 * 60  -> Days
-    //3 * 60 * 60       -> Hours
-    //3 * 60            -> Minutes
-    let indexofTimeArr  = timeArray.indexOf(secondval)
-    var snoozingSeconds:NSTimeInterval = 0
-    
-    if let selval = firstval as? Double {
-      
-      if indexofTimeArr == 0{
-        snoozingSeconds = selval * 60 * 60        // Hours
-      }else if indexofTimeArr == 1{
-        snoozingSeconds = selval * 60             // Minutes
-      }else if indexofTimeArr == 2{
-        snoozingSeconds = selval * 24 * 60 * 60   // Days
-      }
-      
+    @IBAction func closeButtonClicked(sender: AnyObject) {
+        self.dismissPopUpController()
     }
     
-    NSUserDefaults.standardUserDefaults().setBool(false, forKey: StringConstants.isSnoozeEnabled)
-    self.performSelector("triggersnooze", withObject: nil, afterDelay: snoozingSeconds)
+    @IBAction func okTapped(sender: AnyObject) {
+        
+        let firstval = snoozingPickerLeftComponentDataSource[snoozeDateTimePicker.selectedRowInComponent(0)]
+        let secondval = timeArray[snoozeDateTimePicker.selectedRowInComponent(1)] as String
+        
+        NSUserDefaults.standardUserDefaults().setValue(firstval, forKey: "LeftPickerValue")
+        NSUserDefaults.standardUserDefaults().setObject(secondval, forKey: "RightPickerValue")
+        
+        print(firstval)
+        print(secondval)
+        
+        self.dismissPopUpController()
+        
+        //3 * 24 * 60 * 60  -> Days
+        //3 * 60 * 60       -> Hours
+        //3 * 60            -> Minutes
+        let indexofTimeArr  = timeArray.indexOf(secondval)
+        var snoozingSeconds:NSTimeInterval = 0
+        
+        if let selval = firstval as? Double {
+            
+            if indexofTimeArr == 0{
+                snoozingSeconds = selval * 60 * 60        // Hours
+            }else if indexofTimeArr == 1{
+                snoozingSeconds = selval * 60             // Minutes
+            }else if indexofTimeArr == 2{
+                snoozingSeconds = selval * 24 * 60 * 60   // Days
+            }
+            
+        }
+        
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: StringConstants.isSnoozeEnabled)
+        self.performSelector("triggersnooze", withObject: nil, afterDelay: snoozingSeconds)
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("snoozeValueChanged", object: nil, userInfo: nil)
+    }
     
-
-    self.dismissPopUpController()
-  }
-
-  func triggersnooze(){
-    NSUserDefaults.standardUserDefaults().setBool(true, forKey: StringConstants.isSnoozeEnabled)
-  }
-  
-  
+    func triggersnooze(){
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: StringConstants.isSnoozeEnabled)
+    }
+    
+    
 }

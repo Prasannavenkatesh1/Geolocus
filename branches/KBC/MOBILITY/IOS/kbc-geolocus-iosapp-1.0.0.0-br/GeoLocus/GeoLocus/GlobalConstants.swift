@@ -101,6 +101,7 @@ struct StringConstants {
     static let USERNAME               = "userName"
     static let CHANNEL_ID             = "iOS"
     static let SPRING_SECURITY_COOKIE = "SPRING_SECURITY_REMEMBER_ME_COOKIE"
+    static let PARENT_USERNAME = "parentName"
     
     static let ERROR  = "Error"
     static let OK     = "OK"
@@ -111,6 +112,18 @@ struct StringConstants {
     
     static let RADIO_BUTTON_UNSELECTED  = "Radio-Button_Unchecked.png"
     static let RADIO_BUTTON_SELECTED    = "Radio-Button_Checked.png"
+    
+    static let AUTO_TRIP_START = "AutoTripStart"
+    static let NOTIFICATION = "Notification"
+    static let SHARE_DATA_WITH_PARENT = "ShareDataWithParent"
+    
+    static let ENABLED = "Enabled"
+    static let DISABLED = "Disabled"
+    
+    static let DATA_UPLOAD_TYPE = "DataUploadType"
+    static let PICKER_LEFT_VALUE = "LeftPickerValue"
+    static let PICKER_RIGHT_VALUE = "RightPickerValue"
+    static let SETTINGS_LANGUAGE_CHOSEN = "ChoosenLanguage"
     
     /* Dashboard View Controller */
     
@@ -142,6 +155,7 @@ struct StringConstants {
   /*  Core Location */
     static let isSnoozeEnabled   = "Snoozing enabled"
   
+    
 }
 
 
@@ -294,6 +308,7 @@ struct LocalizationConstants {
     static let SpeedPoints_Title = "Speed Points"
     static let EcoPoints_Title = "Eco Points"
     static let BonusPoints_Title = "Bonus Points"
+    static let No_Contract = "You do not have any Contract"
     static let CONTRACT_POINTS_ACHIEVED_MESSAGE = "You have achieved your target on %@. Contact parents to redeem points."
     
     /*DashboardPage Label*/

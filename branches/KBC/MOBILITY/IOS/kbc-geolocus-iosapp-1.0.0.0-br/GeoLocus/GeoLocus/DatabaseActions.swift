@@ -942,6 +942,7 @@ class DatabaseActions: NSObject {
         do{
             // Execute Asynchronous Fetch Request
             let asynchronousFetchResult = try managedObjectContext.executeRequest(asyncFetchRequest)
+            print(asynchronousFetchResult)
         }
         catch{
             let fetchError = error as NSError

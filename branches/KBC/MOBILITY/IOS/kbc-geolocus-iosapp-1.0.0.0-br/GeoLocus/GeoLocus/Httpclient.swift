@@ -13,41 +13,41 @@ import Alamofire
 class Httpclient: NSObject,NSURLSessionDelegate {
     var delegate = self
     let defaults = NSUserDefaults.standardUserDefaults()
-  /*
-  {(parameters) -> returntype in
-  
-  }
-*/
-  
+    /*
+    {(parameters) -> returntype in
+    
+    }
+    */
+    
     /* Terms and Conditions Service call */
     
     func requestTermsAndConditionsData(completionHandler: (response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
-      
-      let manager = Alamofire.Manager.sharedInstance
-      manager.delegate.sessionDidReceiveChallenge = { session, challenge in
-        var disposition: NSURLSessionAuthChallengeDisposition = .PerformDefaultHandling
-        var credential: NSURLCredential?
-        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-          if challenge.protectionSpace.host == "ec2-52-9-107-182.us-west-1.compute.amazonaws.com" {
-            disposition = NSURLSessionAuthChallengeDisposition.UseCredential
-            
-            credential = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!)
-          }
+        
+        let manager = Alamofire.Manager.sharedInstance
+        manager.delegate.sessionDidReceiveChallenge = { session, challenge in
+            var disposition: NSURLSessionAuthChallengeDisposition = .PerformDefaultHandling
+            var credential: NSURLCredential?
+            if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+                if challenge.protectionSpace.host == "ec2-52-9-107-182.us-west-1.compute.amazonaws.com" {
+                    disposition = NSURLSessionAuthChallengeDisposition.UseCredential
+                    
+                    credential = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!)
+                }
+            }
+            return (disposition, credential)
         }
-        return (disposition, credential)
-      }
-      
+        
         let selectedLanguageCode : String! = defaults.stringForKey(StringConstants.SELECTED_LANGUAGE_USERDEFAULT_KEY)
         let termsAndConditionsURL = FacadeLayer.sharedinstance.webService.termConditionsServiceURL! + "\(selectedLanguageCode)"
         
-            manager.request(.GET, termsAndConditionsURL)
-                    .response { (request, response, data, error) -> Void in
-                        completionHandler(response: response, data: data, error: error)
-            }
+        manager.request(.GET, termsAndConditionsURL)
+            .response { (request, response, data, error) -> Void in
+                completionHandler(response: response, data: data, error: error)
+        }
     }
     
     /* Login Service call */
-
+    
     func requestLoginData(parameterString : String, completionHandler:(response:NSHTTPURLResponse?, data : NSData?, error : NSError?) -> Void) -> Void{
         
         let manager = Alamofire.Manager.sharedInstance
@@ -93,7 +93,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             return (disposition, credential)
         }
         
-        let userID : String! = defaults.stringForKey(StringConstants.USER_ID) //"9"
+        let userID : String! = defaults.stringForKey(StringConstants.USER_ID)
         let contractServiceURL = FacadeLayer.sharedinstance.webService.contractServiceURL! + "\(userID)"
         
         let contractRequest = NSMutableURLRequest(URL: NSURL(string : contractServiceURL)!)
@@ -104,7 +104,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         
         manager.request(contractRequest).response { (Request, response, data, error) -> Void in
             completionHandler(response: response, data: data, error: error)
-        }        
+        }
     }
     
     //MARK:- Generic GET Request Method
@@ -155,7 +155,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             }
             return (disposition, credential)
         }
-
+        
         let reportRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
         reportRequest.HTTPMethod = "GET"
         if let tokenId: String = NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.TOKEN_ID) {
@@ -164,16 +164,16 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         
         Alamofire.request(reportRequest)
             .responseJSON { (responseJSON) -> Void in
-              
+                
                 if let contractData = responseJSON.data{
                     completionHandler(success: true, data: contractData)
                     return
                 }
                 completionHandler(success: false, data: nil)
-              
+                
             }.resume()
     }
-
+    
     //MARK: - History services
     func requestRecentTripData(URL: String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
         
@@ -217,11 +217,11 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             }
             return (disposition, credential)
         }
-      
+        
         let userID : String! = defaults.stringForKey(StringConstants.USER_ID)
         let urlString = FacadeLayer.sharedinstance.webService.dashboardServiceURL! + userID
-      
-       // let reportRequest = NSMutableURLRequest(URL: NSURL(string: FacadeLayer.sharedinstance.webService.dashboardServiceURL!)!)
+        
+        // let reportRequest = NSMutableURLRequest(URL: NSURL(string: FacadeLayer.sharedinstance.webService.dashboardServiceURL!)!)
         let reportRequest = NSMutableURLRequest(URL: NSURL(string: urlString)!)
         reportRequest.HTTPMethod = "GET"
         reportRequest.setValue(NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.TOKEN_ID), forHTTPHeaderField: StringConstants.SPRING_SECURITY_COOKIE)
@@ -234,31 +234,31 @@ class Httpclient: NSObject,NSURLSessionDelegate {
                 }
                 completionHandler(success: false, data: nil)
             }.resume()
-
-        
-      
         
         
         
-//        let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
-//        let session = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
-//        
-//        let request = NSMutableURLRequest(URL: NSURL(string: FacadeLayer.sharedinstance.webService.dashboardServiceURL!)!)
-//        request.HTTPMethod = "GET"
-//        
-//        let authValue = NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.TOKEN_ID)
-//        request.setValue(authValue, forHTTPHeaderField: StringConstants.SPRING_SECURITY_COOKIE)
-//        
-//        _ = session.dataTaskWithRequest(request) {(let data, let response, let error) in
-//            
-//            completionHandler(response: response, data: data, error: error)
-//            
-//            }.resume()
+        
+        
+        
+        //        let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        //        let session = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
+        //
+        //        let request = NSMutableURLRequest(URL: NSURL(string: FacadeLayer.sharedinstance.webService.dashboardServiceURL!)!)
+        //        request.HTTPMethod = "GET"
+        //
+        //        let authValue = NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.TOKEN_ID)
+        //        request.setValue(authValue, forHTTPHeaderField: StringConstants.SPRING_SECURITY_COOKIE)
+        //
+        //        _ = session.dataTaskWithRequest(request) {(let data, let response, let error) in
+        //
+        //            completionHandler(response: response, data: data, error: error)
+        //
+        //            }.resume()
     }
     
     //MARK: - Badges services
     func requestBadgesData(URL:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
-    
+        
         let manager = Alamofire.Manager.sharedInstance
         manager.delegate.sessionDidReceiveChallenge = { session, challenge in
             var disposition: NSURLSessionAuthChallengeDisposition = .PerformDefaultHandling
@@ -278,10 +278,10 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         badgesRequest.setValue(NSUserDefaults.standardUserDefaults().valueForKey( StringConstants.TOKEN_ID) as? String, forHTTPHeaderField: "SPRING_SECURITY_REMEMBER_ME_COOKIE")
         
         manager.request(badgesRequest).response { (Request, response, data, error) -> Void in
-             completionHandler(response: response, data: data, error: error)
+            completionHandler(response: response, data: data, error: error)
         }
     }
-
+    
     //MARK: - Overall services
     func requestOverallScoreData(URL:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
         

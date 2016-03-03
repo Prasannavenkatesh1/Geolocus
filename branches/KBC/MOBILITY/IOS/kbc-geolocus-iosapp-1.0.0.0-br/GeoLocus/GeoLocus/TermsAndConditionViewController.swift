@@ -20,8 +20,10 @@ class TermsAndConditionViewController: BaseViewController {
         
         self.navigationItemSetUp()
         
-        self.termsAndConditionsString = NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.TERMS_AND_CONDITIONS_STRING)!
-        self.termsAndConditionsWebView.loadHTMLString(self.termsAndConditionsString, baseURL: nil)
+        if let termsAndConditionsContent = NSUserDefaults.standardUserDefaults().stringForKey(StringConstants.TERMS_AND_CONDITIONS_STRING){
+            self.termsAndConditionsString = termsAndConditionsContent
+            self.termsAndConditionsWebView.loadHTMLString(self.termsAndConditionsString, baseURL: nil)
+        }
     }
     
     //MARK: - Custom Methods
