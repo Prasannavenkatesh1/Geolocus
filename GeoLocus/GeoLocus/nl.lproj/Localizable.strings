@@ -11,16 +11,17 @@
 
 //MARK: - Overall Score page
 "Overall_Score"                         = "Totaalscore";
-"Overall_Score_Driving_Behavior"        = "Rijgedrag";
-"Overall_Score_Speeding"                = "snelheid";
+"Overall_Score_Driving_Behavior"        = "Rijstijl";
+"Overall_Score_Speeding"                = "Snelheid";
 "Overall_Score_Eco"                     = "Eco";
 "Overall_Score_Attention"               = "Aandacht";
-"Overall_Score_Distance_Travelled"      = "Totale afgelegde afstand";
+"Overall_Score_Distance_Travelled"      = "Afgelegde kilometers";
+"Overall_Score_Attention_Message"       = " ";
 
 //MARK: - Badges & Levels Page
-"Badges_to_be_Earned"                   = "Badges te verdienen";
-"Badges_Earned"                         = "Badges verdiend";
-"Levels"                                = "Niveau";
+"Badges_to_be_Earned"                   = "Te behalen badges";
+"Badges_Earned"                         = "Behaalde badges";
+"Levels"                                = "Level";
 "AddMsg1"                               = " ";
 "AddMsg2"                               = " ";
 "AddMsg3"                               = " ";
@@ -31,26 +32,27 @@
 "Distance Travelled"                    = "Afstand Travelled";
 
 //MARK: - History TripScore
-"History_TS_Trip_Score"                 = "trip score";
-"History_TS_Speeding"                   = "snelheid";
+"History_TS_Trip_Score"                 = "Trip Score";
+"History_TS_Speeding"                   = "Snelheid";
 "History_TS_Eco"                        = "Eco";
 "History_TS_Attention"                  = "Aandacht";
 
 //MARK: - History
-"History_Map"                           = "Via de kaart";
-"History_Speeding_Zone"                 = "Door te hard rijden zone";
+"History_Map"                           = "Kaart";
+"History_Speeding_Zone"                 = "Snelheidszones";
 
 //MARK: - History Speeding Zone
-"History_SZ_Speeding"                   = "snelheid";
-"History_SZ_Severe_Violation"           = "ernstige schending";
+"History_SZ_Speeding"                   = "Snelheid";
+"History_SZ_Severe_Violation"           = "Zware overtreding";
 "History_SZ_Distance"                   = "Afstand";
-"History_SZ_Within_Max_Speed"           = "Binnen max snelheid";
-"History_SZ_Above_Max_Speed"            = "Boven max snelheid";
+"History_SZ_Within_Max_Speed"           = "Binnen snelheidslimiet";
+"History_SZ_Above_Max_Speed"            = "Boven snelheidslimiet";
+"History_SZ_Violation_Msg"              = " ";
 
 //MARK: - History Trip Details
-"History_TD_Trip_Details"               = "Reisgegevens";
+"History_TD_Trip_Details"               = "Andere ritten";
 "History_TD_Distance"                   = "Afstand";
-"History_TD_Trip_Points"                = "Trip punten";
+"History_TD_Trip_Points"                = "Tokens";
 
 //MARK: - Share to social media
 "Share_Trip_Score"                  = "trip score";

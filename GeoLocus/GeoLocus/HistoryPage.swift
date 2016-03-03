@@ -576,9 +576,9 @@ extension HistoryPage: SpeedZoneCellDelegate {
         })
         
         for event in events {
-            if let message = event.message {
-                messageString += "\u{2022} \(message)"
-            }
+            
+            let message = String(format: LocalizationConstants.History.View.Severe_Violation_Msg.localized(), speedZone.maxSpeed, event.threshold)
+            messageString += "\u{2022} \(message)"
         }
         
         if messageString.isEmpty {

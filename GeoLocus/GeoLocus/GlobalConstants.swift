@@ -430,6 +430,7 @@ struct LocalizationConstants {
             static let Distance             = "History_SZ_Distance"
             static let Within_Max_Speed     = "History_SZ_Within_Max_Speed"
             static let Above_Max_Limit      = "History_SZ_Above_Max_Speed"
+            static let Severe_Violation_Msg = "History_SZ_Violation_Msg"
         }
         
         struct TripDetails {

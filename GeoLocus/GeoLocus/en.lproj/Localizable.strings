@@ -46,6 +46,7 @@
 "History_SZ_Distance"               = "Distance";
 "History_SZ_Within_Max_Speed"       = "Within Max Speed";
 "History_SZ_Above_Max_Speed"        = "Above Max Speed";
+"History_SZ_Violation_Msg"          = "You have violated the speed zone at %d km/h limit with %d km/h";
 
 //MARK: - History Trip Details
 "History_TD_Trip_Details"           = "Trip Details";
