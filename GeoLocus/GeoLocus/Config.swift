@@ -18,7 +18,7 @@ struct Portal {
   // Production
 //  static let baseurl = " "
   
-  
+  static let TermConditionsServiceURL         = "\(baseurl)ubi-driver-web/termsConditions?languageCode="
   
   static let LoginServiceURL                  = "\(baseurl)ubi-sei-web/j_spring_security_check?"
   
@@ -55,9 +55,5 @@ struct Portal {
   static let CompetitionAcceptanceServiceURL  = "\(baseurl)ubi-sei-web/domain/notification/acceptance?userId=9&notificationId=1&acceptance=Y"
   
   static let NotificationCountsServiceURL     = "\(baseurl)ubi-sei-web/domain/notification/getnotificationcount?userId=9"
-  
-  // Seperate Url for Terms
-  static let TermConditionsServiceURL         = "http://ec2-52-9-108-237.us-west-1.compute.amazonaws.com:8080/kbc-app-service/admin/get/terms_conditions?languageCode="
-
 
 }

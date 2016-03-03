@@ -21,7 +21,6 @@ enum settingsFieldType : Int {
     }
     
     static var fieldTypeTitles : [String]{
-        //return ["Data Upload Type","Snooze the start","Auto trip Start","Notification","Share data with parent","Choose your Language","Reset Password","Coach's Username"]
         return [LocalizationConstants.Settings.SettingsCell.Data_Upload_Title.localized(),LocalizationConstants.Settings.SettingsCell.Snooze_Title.localized(),LocalizationConstants.Settings.SettingsCell.AutoTrip_Start_Title.localized(),LocalizationConstants.Settings.SettingsCell.Notification_Title.localized(),LocalizationConstants.Settings.SettingsCell.ShareData_Title.localized(),LocalizationConstants.Settings.SettingsCell.Choose_Language_Title.localized(),LocalizationConstants.Settings.SettingsCell.Reset_Password_Title.localized(),LocalizationConstants.Settings.SettingsCell.Coach_Username_Title.localized()]
     }
 }
@@ -33,8 +32,7 @@ enum popUpDataUploadFieldType : Int {
     case CellularAndWifi
     
     static var popUpDataUploadFieldTypeTitles : [String]{
-        //return ["Cellular","Wifi","Cellular and Wifi"]
-        return [LocalizationConstants.Settings.DataUploadType.Type_Cellular.localized(),LocalizationConstants.Settings.DataUploadType.Type_Wifi.localized()]
+        return [LocalizationConstants.Settings.DataUploadType.Type_Cellular.localized(),LocalizationConstants.Settings.DataUploadType.Type_Wifi.localized(),LocalizationConstants.Settings.DataUploadType.Type_CellularWifi.localized()]
     }
     
 }
@@ -47,10 +45,20 @@ enum popUpChooseLanguageFieldType : Int {
     case Dutch
     
     static var popUpChooseLanguageFieldTypeTitles : [String]{
-        //return ["English","German","French","Dutch"]
         return [LocalizationConstants.Language_English.localized(),LocalizationConstants.Language_German.localized(),LocalizationConstants.Language_French.localized(),LocalizationConstants.Language_Dutch.localized()]
     }
     
+}
+
+enum popUpLocalizeLanguageCode: String {
+    case en
+    case de
+    case fr
+    case nl
+    
+    static var popUpLocalizeChosenLanguageFieldTypeTitles : [String]{
+        return ["en","de","fr","nl"]
+    }
 }
 
 enum popUpTypes{
@@ -58,16 +66,14 @@ enum popUpTypes{
     case DataUpload
 }
 
-
 class SettingsViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
-    
     
     @IBOutlet weak var settingsTableView: UITableView!
     @IBOutlet weak var popUpView : UIView!
     @IBOutlet weak var popUpTableView : UITableView!
     @IBOutlet weak var popUpTitleLabel : UILabel!
     @IBOutlet weak var settingsNavigationItem: UINavigationItem!
-
+    
     let settingsHeaderTitle = LocalizationConstants.Settings.Settings_Title.localized()
     let textCellIdentifier = "settingsCellIdentifier"
     let popUpCellIdentifier = "popUpCellIdentifier"
@@ -76,7 +82,6 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
     var popUpType : popUpTypes = popUpTypes.ChooseLanguage
     let defaults = NSUserDefaults.standardUserDefaults()
     var snoozingViewController : UIViewController!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,9 +92,17 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
         self.popUpTableView.separatorStyle = UITableViewCellSeparatorStyle.None
         settingsFields = settingsFieldType.allFieldType
         popUpView.hidden = true
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadTableViewValues:", name: "snoozeValueChanged", object: nil)
+        
     }
     
-    //MARK: - Custom Methods 
+    //MARK: - Custom Methods
+    
+    /* reloads the settings table when snnoze view controller is dismissed */
+    func reloadTableViewValues(notification: NSNotification) {
+        self.settingsTableView.reloadData()
+    }
     
     func navigationItemSetUp() {
         let backButton = UIButton()
@@ -105,7 +118,7 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
         
         self.settingsNavigationItem.setLeftBarButtonItems([backButtonItem,kbcIconItem], animated:true)
     }
-
+    
     func backButtonTapped(sender: UIButton) {
         
         let storyBoard = UIStoryboard(name: StringConstants.StoryBoardIdentifier, bundle: nil)
@@ -115,10 +128,8 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func popUpCloseButtonClicked(sender:AnyObject){
-        
         popUpView.hidden = true
     }
-
     
     //MARK : Tableview delegate and datasource methods
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -152,16 +163,48 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
         if tableView == settingsTableView{
             let cell = tableView.dequeueReusableCellWithIdentifier(textCellIdentifier, forIndexPath: indexPath) as! SettingsCustomViewCell
             
-            
-           // cell.primaryTextLabel.text = settingsCellTitles[row]
             cell.primaryTextLabel.text = settingsFieldType.fieldTypeTitles[row]
             switch(row){
-            case 0,1,5,7:
+            case 0 :
                 cell.settingsSwitch.hidden = true
-                //case 2,3,4:
-            case 6:
+                
+                if let labelString = defaults.objectForKey(StringConstants.DATA_UPLOAD_TYPE) as? String{
+                    cell.secondaryTextLabel.text = labelString
+                }
+            case 1 :
+                cell.settingsSwitch.hidden = true
+                
+                if let labelKeyString = defaults.valueForKey(StringConstants.PICKER_LEFT_VALUE){
+                    if let labelValueString = defaults.objectForKey(StringConstants.PICKER_RIGHT_VALUE) as? String{
+                        cell.secondaryTextLabel.text = String(labelKeyString) + " " + labelValueString
+                    }
+                }
+            case 2 :
+                let switchState : Bool = defaults.boolForKey(StringConstants.AUTO_TRIP_START)
+                cell.settingsSwitch.on = switchState
+                cell.secondaryTextLabel.text = switchState == true ? StringConstants.ENABLED : StringConstants.DISABLED
+            case 3 :
+                let switchState : Bool = defaults.boolForKey(StringConstants.NOTIFICATION)
+                cell.settingsSwitch.on = switchState
+                cell.secondaryTextLabel.text = switchState == true ? StringConstants.ENABLED : StringConstants.DISABLED
+            case 4 :
+                let switchState : Bool = defaults.boolForKey(StringConstants.SHARE_DATA_WITH_PARENT)
+                cell.settingsSwitch.on = switchState
+                cell.secondaryTextLabel.text = switchState == true ? StringConstants.ENABLED : StringConstants.DISABLED
+            case 5 :
+                cell.settingsSwitch.hidden = true
+                
+                if let labelString = defaults.objectForKey(StringConstants.SETTINGS_LANGUAGE_CHOSEN) as? String{
+                    cell.secondaryTextLabel.text = labelString
+                }
+            case 6 :
                 cell.settingsSwitch.hidden = true
                 cell.secondaryTextLabel.hidden = true
+            case 7 :
+                cell.settingsSwitch.hidden = true
+                if let labelString = defaults.valueForKey(StringConstants.PARENT_USERNAME) as? String{
+                    cell.secondaryTextLabel.text = labelString
+                }
             default:
                 break
             }
@@ -175,54 +218,40 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
             if cell.respondsToSelector("setPreservesSuperviewLayoutMargins:") {
                 cell.preservesSuperviewLayoutMargins = false
             }
-            
             cell.settingsSwitch.tag = row
             cell.settingsSwitch.addTarget(self, action: Selector("switchValueChanged:"), forControlEvents:UIControlEvents.ValueChanged)
             
-            /*if switchState[row] == "Enabled" {
-            
-            cell.secondaryTextLabel.text = switchStateEnabled[row]
-            cell.settingsSwitch.on = true
-            
-            }
-            else {
-            
-            cell.secondaryTextLabel.text = switchStateDisabled[row]
-            cell.settingsSwitch.on = false
-            
-            }*/
-            
             return cell
-
+            
         }
         else if tableView == popUpTableView{
             
             let cell = tableView.dequeueReusableCellWithIdentifier(popUpCellIdentifier, forIndexPath: indexPath) as! popUpCustomCell
             if popUpType == popUpTypes.ChooseLanguage{
-                    cell.popUpDataUploadOrLanguageTypeLabel.text = popUpChooseLanguageFieldType.popUpChooseLanguageFieldTypeTitles[indexPath.row]
-                    cell.popUpDataUploadOrLanguageTypeButton.tag = row
-                let selectedLanguage = defaults.objectForKey("ChoosenLanguage") as? String
+                cell.popUpDataUploadOrLanguageTypeLabel.text = popUpChooseLanguageFieldType.popUpChooseLanguageFieldTypeTitles[indexPath.row]
+                cell.popUpDataUploadOrLanguageTypeButton.tag = row
+                let selectedLanguage = defaults.objectForKey(StringConstants.SETTINGS_LANGUAGE_CHOSEN) as? String
                 if selectedLanguage == popUpChooseLanguageFieldType.popUpChooseLanguageFieldTypeTitles[indexPath.row]{
-                    if let image = UIImage(named: "Radio-Button_Checked.png") {
+                    if let image = UIImage(named: StringConstants.RADIO_BUTTON_SELECTED) {
                         cell.popUpDataUploadOrLanguageTypeButton.setImage(image, forState: .Normal)
                     }
                 }else {
-                    if let image = UIImage(named: "Radio-Button_Unchecked") {
+                    if let image = UIImage(named: StringConstants.RADIO_BUTTON_UNSELECTED) {
                         cell.popUpDataUploadOrLanguageTypeButton.setImage(image, forState: .Normal)
                     }
                 }
                 cell.popUpDataUploadOrLanguageTypeButton .addTarget(self, action: "chooseLanguageValueChanged:", forControlEvents: .TouchUpInside)
                 
             }else if popUpType == popUpTypes.DataUpload {
-                    cell.popUpDataUploadOrLanguageTypeLabel.text = popUpDataUploadFieldType.popUpDataUploadFieldTypeTitles[indexPath.row]
-                    cell.popUpDataUploadOrLanguageTypeButton.tag = row
-                let selectedDataUploadType = defaults.objectForKey("DataUploadType") as? String
+                cell.popUpDataUploadOrLanguageTypeLabel.text = popUpDataUploadFieldType.popUpDataUploadFieldTypeTitles[indexPath.row]
+                cell.popUpDataUploadOrLanguageTypeButton.tag = row
+                let selectedDataUploadType = defaults.objectForKey(StringConstants.DATA_UPLOAD_TYPE) as? String
                 if selectedDataUploadType == popUpDataUploadFieldType.popUpDataUploadFieldTypeTitles[indexPath.row]{
-                    if let image = UIImage(named: "Radio-Button_Checked.png") {
+                    if let image = UIImage(named: StringConstants.RADIO_BUTTON_SELECTED) {
                         cell.popUpDataUploadOrLanguageTypeButton.setImage(image, forState: .Normal)
                     }
                 }else {
-                    if let image = UIImage(named: "Radio-Button_Unchecked") {
+                    if let image = UIImage(named: StringConstants.RADIO_BUTTON_UNSELECTED) {
                         cell.popUpDataUploadOrLanguageTypeButton.setImage(image, forState: .Normal)
                     }
                 }
@@ -250,7 +279,6 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
                 snoozingViewController = UIStoryboard(name: StringConstants.StoryBoardIdentifier, bundle: nil).instantiateViewControllerWithIdentifier(StringConstants.SnoozingViewController)
                 snoozingViewController.view.frame = CGRectMake(10, 40, 280, 295)
                 self.presentPopUpController(snoozingViewController)
-                
             }else if row == settingsFieldType.AutoTripStart.rawValue{
                 
             }else if row == settingsFieldType.Notification.rawValue{
@@ -265,7 +293,7 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
                 self.popUpTableView.reloadData()
                 self.popUpTitleLabel.text = LocalizationConstants.Settings.SettingsCell.Choose_Language_Title.localized()
                 self.popUpTableView.tableFooterView = UIView(frame: CGRectZero)
-
+                
             }else if row == settingsFieldType.ResetPassword.rawValue{
                 
             }
@@ -273,19 +301,21 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
             
             if popUpType == popUpTypes.DataUpload{
                 let selectedDataUpload = popUpDataUploadFieldType.popUpDataUploadFieldTypeTitles[indexPath.row]
-                 defaults.setObject(selectedDataUpload, forKey: "DataUploadType")
-                 self.popUpTableView.reloadData()
-
+                defaults.setObject(selectedDataUpload, forKey: StringConstants.DATA_UPLOAD_TYPE)
+                self.popUpTableView.reloadData()
+                self.settingsTableView.reloadData()
                 
             }else if popUpType == popUpTypes.ChooseLanguage{
                 let selectedLanguage = popUpChooseLanguageFieldType.popUpChooseLanguageFieldTypeTitles[indexPath.row]
-                defaults.setObject(selectedLanguage, forKey: "ChoosenLanguage")
+                let userSelectedLanguage = popUpLocalizeLanguageCode.popUpLocalizeChosenLanguageFieldTypeTitles[indexPath.row]
+                defaults.setObject(selectedLanguage, forKey: StringConstants.SETTINGS_LANGUAGE_CHOSEN)
+                defaults.setObject(userSelectedLanguage, forKey: StringConstants.SELECTED_LOCALIZE_LANGUAGE_CODE)
                 self.popUpTableView.reloadData()
-
+                self.settingsTableView.reloadData()
+            }
         }
     }
-    }
-
+    
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if tableView == settingsTableView{
             let header = view as! UITableViewHeaderFooterView
@@ -294,9 +324,9 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
             header.textLabel?.font = UIFont(name: "Helvetica Neue", size: 15)
         }
     }
-
+    
     func backBtnTapped() {
-       
+        
         self.dismissViewControllerAnimated(true, completion: nil)
         
     }
@@ -312,11 +342,22 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
     }
     
     func switchValueChanged(settingsSwitch : UISwitch){
-        /*if(settingsSwitch.on){
-            switchState[settingsSwitch.tag] = "Enabled"
+        
+        var switchStateValue : Bool = false
+        
+        switch(settingsSwitch.tag){
+        case 2 :
+            switchStateValue = settingsSwitch.on
+            defaults.setBool(switchStateValue, forKey: StringConstants.AUTO_TRIP_START)
+        case 3 :
+            switchStateValue = settingsSwitch.on
+            defaults.setBool(switchStateValue, forKey: StringConstants.NOTIFICATION)
+        case 4 :
+            switchStateValue = settingsSwitch.on
+            defaults.setBool(switchStateValue, forKey: StringConstants.SHARE_DATA_WITH_PARENT)
+        default:
+            break
         }
-        else{
-            switchState[settingsSwitch.tag] = "Disabled"
-        }*/
+        self.settingsTableView.reloadData()
     }
 }

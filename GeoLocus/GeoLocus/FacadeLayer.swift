@@ -241,6 +241,10 @@ class FacadeLayer{
                         if (jsonData["statusCode"].intValue == 1) {
                             let contractData = ContractModel(parentUserName: (jsonData["parentUserName"].stringValue), attentionPoints: (jsonData["attentionPoints"].stringValue), speedPoints: (jsonData["speedPoints"].stringValue), ecoPoints: (jsonData["ecoPoints"].stringValue), bonusPoints: (jsonData["bonusPoints"].stringValue), totalContractPoints: (jsonData["totalContractPoints"].stringValue), contractPointsAchieved: (jsonData["contractPointsAchieved"].stringValue), rewardsDescription: (jsonData["rewardsDescription"].stringValue), contractAchievedDate: (jsonData["contractAchievedDate"].stringValue))
                             
+                            let parentUserName = jsonData["parentUserName"].stringValue
+                            
+                            NSUserDefaults.standardUserDefaults().setValue(parentUserName, forKey: StringConstants.PARENT_USERNAME)
+                            
                             self.dbactions.removeData("Contract")
                             
                             /* store data to DB */

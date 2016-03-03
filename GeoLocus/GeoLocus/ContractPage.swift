@@ -37,7 +37,9 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var transparentView: UIView!
+    @IBOutlet weak var contractView: UIView!
     
+    @IBOutlet weak var noContractLabel: UILabel!
     @IBOutlet weak var contractPointsAchievedLabel: UILabel!
     @IBOutlet weak var totalContractPointsLabel: UILabel!
     @IBOutlet weak var bonusPointsLabel: UILabel!
@@ -69,9 +71,9 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
         self.imageView.addGestureRecognizer(tapGestureRecognizer)
     }
   
-  override func viewWillAppear(animated: Bool) {
-    self.fetchContractDataFromDatabase()
-  }
+    override func viewWillAppear(animated: Bool) {
+        self.fetchContractDataFromDatabase()
+    }
     
     override func viewWillLayoutSubviews() {
         self.imageViewBorder.path = UIBezierPath(roundedRect: self.imageView.bounds, cornerRadius:2).CGPath
@@ -89,6 +91,7 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
         self.speedPointsTitleLabel.text = LocalizationConstants.SpeedPoints_Title.localized()
         self.ecoPointsTitleLabel.text = LocalizationConstants.EcoPoints_Title.localized()
         self.bonusPointsTitleLabel.text = LocalizationConstants.BonusPoints_Title.localized()
+        self.noContractLabel.text = LocalizationConstants.No_Contract.localized()
     }
     
     /*set constraints for different device screen size */
@@ -212,6 +215,10 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
                 self.contractPointsAchieved = contractData.contractPointsAchieved
                 self.totalContractPoints = contractData.totalContractPoints
                 
+                if(self.contractPointsAchieved == "" && self.totalContractPoints == ""){
+                    self.contractView.hidden = false
+                }
+                
                 self.speedPointsLabel.text = contractData.speedPoints
                 self.totalContractPointsLabel.text = self.totalContractPoints
                 self.ecoPointsLabel.text = contractData.ecoPoints
@@ -221,8 +228,8 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
                 let contractAchievedDate = contractData.contractAchievedDate
                 
                 let contractAchievedMessage = String(format: LocalizationConstants.CONTRACT_POINTS_ACHIEVED_MESSAGE.localized(), contractAchievedDate)
-                let pointsAchieved = /*Float(100) */(self.contractPointsAchieved as NSString).floatValue
-                let totalPoints = /*Float(2)*/(self.totalContractPoints as NSString).floatValue
+                let pointsAchieved = (self.contractPointsAchieved as NSString).floatValue
+                let totalPoints = (self.totalContractPoints as NSString).floatValue
                 let progressValue = (pointsAchieved/totalPoints)
                 
                 if !(isnan(progressValue)){

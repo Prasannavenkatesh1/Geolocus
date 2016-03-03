@@ -77,7 +77,7 @@
 "Speed Points" = "Points vitesse";
 "Eco Points" = "Points éco";
 "Bonus Points" = "Points bonus";
-
+"You do not have any Contract" = "";
 "You have achieved your target on %@. Contact parents to redeem points." = "Vous avez atteint votre cible sur %@. Contactez les parents à échanger des points";
 
 //MARK: Settings

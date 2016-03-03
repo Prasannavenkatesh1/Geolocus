@@ -77,7 +77,7 @@
 "Speed Points" = "Tokens Geschwindigkeit";
 "Eco Points" = "Tokens Eco";
 "Bonus Points" = "Bonustokens";
-
+"You do not have any Contract" = "";
 "You have achieved your target on %@. Contact parents to redeem points." = "Sie haben Ihr Ziel erreicht: %@. Kontakt Eltern einzulösen Punkte";
 
 //MARK: Settings
