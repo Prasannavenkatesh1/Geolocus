@@ -13,48 +13,51 @@ struct Portal {
   // SIT
   static let baseurl = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/"
   
+//  static let baseurl = "https:// ec2-52-9-107-182.us-west-1.compute.amazonaws.com:2443/"
+  
   // Production
 //  static let baseurl = " "
   
-  static let LoginServiceURL = "\(baseurl)ubi-sei-web/j_spring_security_check?"
   
-  static let RegistrationServiceURL = "\(baseurl)ubi-driver-web/login?channel_type=IOS&languageCode="
   
-  static let NeedHelpServiceURL = "\(baseurl)ubi-driver-web/needHelp"
+  static let LoginServiceURL                  = "\(baseurl)ubi-sei-web/j_spring_security_check?"
   
-  static let ContractServiceURL = "\(baseurl)ubi-sei-web/domain/get/contract_details?userId="
+  static let RegistrationServiceURL           = "\(baseurl)ubi-driver-web/login?channel_type=IOS&languageCode="
   
-  static let DashboardServiceURL = "\(baseurl)ubi-sei-web/domain/get/dashboard_details?userId="
+  static let NeedHelpServiceURL               = "\(baseurl)ubi-driver-web/needHelp"
   
-  static let HistoryServiceURL = "\(baseurl)ubi-sei-web/report/get/dashboard_history"
+  static let ContractServiceURL               = "\(baseurl)ubi-sei-web/domain/get/contract_details?userId="
   
-  static let BadgeServiceURL = "\(baseurl)ubi-sei-web/domain/get/badges"
+  static let DashboardServiceURL              = "\(baseurl)ubi-sei-web/domain/get/dashboard_details?userId="
   
-  static let OverallServiceURL = "\(baseurl)ubi-sei-web/report/get/overallScoreDetails"
+  static let HistoryServiceURL                = "\(baseurl)ubi-sei-web/report/get/dashboard_history"
   
-  static let ReportServiceURL = "\(baseurl)"
+  static let BadgeServiceURL                  = "\(baseurl)ubi-sei-web/domain/get/badges"
   
-  static let TripServiceURL = "\(baseurl)"
+  static let OverallServiceURL                = "\(baseurl)ubi-sei-web/report/get/overallScoreDetails"
   
-  static let ConfigurationServiceURL = "\(baseurl)"
+  static let ReportServiceURL                 = "\(baseurl)"
   
-  static let RegisterPNURL = "\(baseurl)"
+  static let TripServiceURL                   = "\(baseurl)"
   
-  static let RegisterDeviceTokenServiceURL = "\(baseurl)"
+  static let ConfigurationServiceURL          = "\(baseurl)"
   
-  static let NotificationListServiceURL = "\(baseurl)ubi-sei-web/domain/notification/getnotificationlist?userId=1"
+  static let RegisterPNURL                    = "\(baseurl)"
   
-  static let NotificationDetailsServiceURL = "\(baseurl)ubi-sei-web/domain/notification/getnotificationdetails?userId=1&notificationId=1&type=Promotion"
+  static let RegisterDeviceTokenServiceURL    = "\(baseurl)"
   
-  static let DeleteNotificationServiceURL = "\(baseurl)ubi-sei-web/domain/notification/delete?userId=7&notificationId=14&type=Promotion"
+  static let NotificationListServiceURL       = "\(baseurl)ubi-sei-web/domain/notification/getnotificationlist?userId=1"
   
-  static let CompetitionAcceptanceServiceURL = "\(baseurl)ubi-sei-web/domain/notification/acceptance?userId=9&notificationId=1&acceptance=Y"
+  static let NotificationDetailsServiceURL    = "\(baseurl)ubi-sei-web/domain/notification/getnotificationdetails?userId=1&notificationId=1&type=Promotion"
   
-  static let NotificationCountsServiceURL = "\(baseurl)ubi-sei-web/domain/notification/getnotificationcount?userId=9"
+  static let DeleteNotificationServiceURL     = "\(baseurl)ubi-sei-web/domain/notification/delete?userId=7&notificationId=14&type=Promotion"
   
+  static let CompetitionAcceptanceServiceURL  = "\(baseurl)ubi-sei-web/domain/notification/acceptance?userId=9&notificationId=1&acceptance=Y"
+  
+  static let NotificationCountsServiceURL     = "\(baseurl)ubi-sei-web/domain/notification/getnotificationcount?userId=9"
   
   // Seperate Url for Terms
-  static let TermConditionsServiceURL = "http://ec2-52-9-108-237.us-west-1.compute.amazonaws.com:8080/kbc-app-service/admin/get/terms_conditions?languageCode="
+  static let TermConditionsServiceURL         = "http://ec2-52-9-108-237.us-west-1.compute.amazonaws.com:8080/kbc-app-service/admin/get/terms_conditions?languageCode="
 
 
 }

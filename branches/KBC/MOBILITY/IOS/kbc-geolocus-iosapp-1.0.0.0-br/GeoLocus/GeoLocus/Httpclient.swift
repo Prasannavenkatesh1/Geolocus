@@ -18,19 +18,29 @@ class Httpclient: NSObject,NSURLSessionDelegate {
   
   }
 */
-  func tmp() {
-    Alamofire.request(.GET, "asd")
-    
-    }
-    
+  
     /* Terms and Conditions Service call */
     
     func requestTermsAndConditionsData(completionHandler: (response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
-        
+      
+      let manager = Alamofire.Manager.sharedInstance
+      manager.delegate.sessionDidReceiveChallenge = { session, challenge in
+        var disposition: NSURLSessionAuthChallengeDisposition = .PerformDefaultHandling
+        var credential: NSURLCredential?
+        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+          if challenge.protectionSpace.host == "ec2-52-9-107-182.us-west-1.compute.amazonaws.com" {
+            disposition = NSURLSessionAuthChallengeDisposition.UseCredential
+            
+            credential = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!)
+          }
+        }
+        return (disposition, credential)
+      }
+      
         let selectedLanguageCode : String! = defaults.stringForKey(StringConstants.SELECTED_LANGUAGE_USERDEFAULT_KEY)
         let termsAndConditionsURL = FacadeLayer.sharedinstance.webService.termConditionsServiceURL! + "\(selectedLanguageCode)"
         
-            Alamofire.request(.GET, termsAndConditionsURL)
+            manager.request(.GET, termsAndConditionsURL)
                     .response { (request, response, data, error) -> Void in
                         completionHandler(response: response, data: data, error: error)
             }

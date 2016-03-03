@@ -420,7 +420,7 @@ class FacadeLayer{
         var reportDetails = [ReportDetails]()
         
         let jsonData = JSON(data: result)
-        //                print(jsonData)
+        print("reports \(jsonData)")
         if jsonData["statusCode"] == 1 {
           if let reportDetailArr = jsonData["reportDetails"].array {
             
@@ -458,7 +458,14 @@ class FacadeLayer{
             }
         })
     }
-    
+  
+  func fetchConfigurations(){
+    var userId = ""
+    if let id = NSUserDefaults.standardUserDefaults().valueForKey(StringConstants.USER_ID) as? String {
+      userId = id
+    }
+  }
+  
     func fetchReportData(timeFrame timeFrame: ReportDetails.TimeFrameType, scoreType: ReportDetails.ScoreType, completionHandler:(success: Bool, error: NSError?, result: Report?) -> Void) -> Void{
         
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -484,6 +491,7 @@ class FacadeLayer{
                     
                     let jsonData = JSON(data: result)
 //                    print(jsonData)
+                  print("reports \(jsonData)")
                     if jsonData["statusCode"] == 1 {
                         if let reportDetailArr = jsonData["reportDetails"].array {
                             
