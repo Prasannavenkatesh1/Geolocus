@@ -961,7 +961,7 @@ class FacadeLayer{
     var error : NSError?
     if let data = try? NSJSONSerialization.dataWithJSONObject(TripJson, options: []) {
       let dataString = NSString(data: data, encoding: NSUTF8StringEncoding)!
-      print("Trip Json Structure\(dataString)")
+      print("Trip Json  Structure\(dataString)")
       
       // do other stuff on success
       
