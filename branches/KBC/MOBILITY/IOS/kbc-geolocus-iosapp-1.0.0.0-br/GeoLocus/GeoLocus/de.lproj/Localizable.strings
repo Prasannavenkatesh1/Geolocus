@@ -11,16 +11,17 @@
 
 //MARK: - Overall Score page
 "Overall_Score"                     = "Gesamtpunktzahl";
-"Overall_Score_Driving_Behavior"    = "Fahrverhalten";
-"Overall_Score_Speeding"            = "Geschwindigkeitsüberschreitung";
-"Overall_Score_Eco"                 = "Öko";
+"Overall_Score_Driving_Behavior"    = "Fahrstil";
+"Overall_Score_Speeding"            = "Geschwindigkeit";
+"Overall_Score_Eco"                 = "Eco";
 "Overall_Score_Attention"           = "Aufmerksamkeit";
-"Overall_Score_Distance_Travelled"  = "Gesamtstrecke Gereist";
+"Overall_Score_Distance_Travelled"  = "Zurückgelegte Kilometer";
+"Overall_Score_Attention_Message"   = " ";
 
 //MARK: - Badges & Levels Page
-"Badges_to_be_Earned"               = "Abzeichen zu verdienen";
-"Badges_Earned"                     = "Abzeichen verdient";
-"Levels"                            = "Ebenen";
+"Badges_to_be_Earned"               = "Zu erreichende Badges";
+"Badges_Earned"                     = "Erreichte Badges";
+"Levels"                            = "Level";
 "AddMsg1"                               = " ";
 "AddMsg2"                               = " ";
 "AddMsg3"                               = " ";
@@ -31,26 +32,27 @@
 "Distance Travelled"                = "Entfernung Gereist";
 
 //MARK: - History TripScore
-"History_TS_Trip_Score"             = "Reise Punktzahl";
-"History_TS_Speeding"               = "Geschwindigkeitsüberschreitung";
+"History_TS_Trip_Score"             = "Trip Score";
+"History_TS_Speeding"               = "Geschwindigkeit";
 "History_TS_Eco"                    = "Öko";
 "History_TS_Attention"              = "Aufmerksamkeit";
 
 //MARK: - History
-"History_Map"                       = "durch die Karte";
-"History_Speeding_Zone"             = "Durch die Beschleunigung Zone";
+"History_Map"                       = "Karte";
+"History_Speeding_Zone"             = "Tempozonen";
 
 //MARK: - History Speeding Zone
-"History_SZ_Speeding"               = "Geschwindigkeitsüberschreitung";
-"History_SZ_Severe_Violation"       = "schwere Verletzung";
-"History_SZ_Distance"               = "Entfernung";
-"History_SZ_Within_Max_Speed"       = "Innerhalb Höchstgeschwindigkeit";
-"History_SZ_Above_Max_Speed"        = "Vor Höchstgeschwindigkeit";
+"History_SZ_Speeding"               = "Geschwindigkeit";
+"History_SZ_Severe_Violation"       = "Schwere Übertretung";
+"History_SZ_Distance"               = "Wegstrecke";
+"History_SZ_Within_Max_Speed"       = "Unter Höchstgeschwindigkeit";
+"History_SZ_Above_Max_Speed"        = "Über Höchstgeschwindigkeit";
+"History_SZ_Violation_Msg"          = " ";
 
 //MARK: - History Trip Details
-"History_TD_Trip_Details"           = "Reisedetails";
-"History_TD_Distance"               = "Entfernung";
-"History_TD_Trip_Points"            = "Schaltpunkte";
+"History_TD_Trip_Details"           = "Andere Fahrten";
+"History_TD_Distance"               = "Wegstrecke";
+"History_TD_Trip_Points"            = "Tokens";
 
 //MARK: - Share to social media
 "Share_Trip_Score"                  = "Reise Punktzahl";

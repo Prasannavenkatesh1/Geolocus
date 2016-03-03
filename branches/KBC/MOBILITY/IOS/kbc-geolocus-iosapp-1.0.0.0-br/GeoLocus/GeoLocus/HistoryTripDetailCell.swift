@@ -26,13 +26,13 @@ class HistoryTripDetailCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        if StringConstants.SCREEN_HEIGHT == 480 {
+        if StringConstants.SCREEN_HEIGHT == Resolution.height.iPhone4 {
             distanceConstraint.constant   = 115
             tripPointsConstraint.constant = 180
-        }else if StringConstants.SCREEN_HEIGHT == 568 {
+        }else if StringConstants.SCREEN_HEIGHT == Resolution.height.iPhone5 {
             distanceConstraint.constant   = 115
             tripPointsConstraint.constant = 180
-        }else if StringConstants.SCREEN_HEIGHT == 667 {
+        }else if StringConstants.SCREEN_HEIGHT == Resolution.height.iPhone6 {
             distanceConstraint.constant   = 135
             tripPointsConstraint.constant = 220
         }else {

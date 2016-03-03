@@ -105,7 +105,12 @@ class BadgesViewController: BaseViewController, UITableViewDataSource, UITableVi
         var descString = ""
         
         if indexPath.section == 0 {
-            descString = self.badgeNotEarnedArray[indexPath.row].badgeDescription
+            
+            if let addMsg = self.badgeNotEarnedArray[indexPath.row].additionalMsg {
+                descString = self.badgeNotEarnedArray[indexPath.row].badgeDescription + addMsg
+            }else {
+                descString = self.badgeNotEarnedArray[indexPath.row].badgeDescription
+            }
         }else if indexPath.section == 1 {
             descString = self.badgeEarnedArray[indexPath.row].badgeDescription
         }else {
