@@ -78,15 +78,15 @@
 		<key>RegisterDeviceTokenServiceURL</key>
 		<string></string>
 		<key>NotificationListServiceURL</key>
-		<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/notification/getnotificationlist?userId=1</string>
+		<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/notification/getnotificationlist</string>
 		<key>NotificationDetailsServiceURL</key>
-		<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/notification/getnotificationdetails?userId=1&amp;notificationId=1&amp;type=Promotion</string>
+		<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/notification/getnotificationdetails</string>
 		<key>DeleteNotificationServiceURL</key>
-		<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/notification/delete?userId=7&amp;notificationId=14&amp;type=Promotion</string>
+		<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/notification/delete</string>
 		<key>CompetitionAcceptanceServiceURL</key>
-		<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/notification/acceptance?userId=9&amp;notificationId=1&amp;acceptance=Y</string>
+		<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/notification/acceptance</string>
 		<key>NotificationCountsServiceURL</key>
-		<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/notification/getnotificationcount?userId=9</string>
+		<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-sei-web/domain/notification/getnotificationcount</string>
 	</dict>
 </dict>
 </plist>

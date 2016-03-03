@@ -9,23 +9,25 @@
 import Foundation
 
 struct NotificationListModel {
-    let title: String
+    let title: String?
     let date: String
-    let day: String
+    //let day: String
     let notificationImage: String
     let message: String
     let notificationID: NSNumber
     let notificationStatus: String
+    let notificationType: String
     
-    init(title:String, date:String, day:String, notificationImage:String, message:String, notificationID:NSNumber, notificationStatus:String){
+    init(title:String, date:String, notificationImage:String, message:String, notificationID:NSNumber, notificationStatus:String, notificationType:String){
         
         self.title = title
         self.date = date
-        self.day = day
+        //self.day = day
         self.notificationImage = notificationImage
         self.message = message
         self.notificationID = notificationID
         self.notificationStatus = notificationStatus
+        self.notificationType = notificationType
     }
 }
 

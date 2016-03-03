@@ -769,149 +769,163 @@ class FacadeLayer{
     //MARK: Notification Services
     func fetchNotificationCount(completionHandler:(status : Int,data : NSData?, error : NSError?) -> Void) -> Void{
         
-        httpclient.requestNotificationCount(webService.notificationCountServiceURL!) { (response, data, error) -> Void in
-            if error == nil {
-                if let result = data {
-                    var jsonData = JSON(data: result)
-                    //self.notificationCount =  "22"
-
-                    if jsonData["status"].intValue == 1{
+        if let serviceURL = notificationCountServiceURL() {
+            httpclient.requestNotificationCount(serviceURL) { (response, data, error) -> Void in
+                if error == nil {
+                    if let result = data {
+                        var jsonData = JSON(data: result)
+                        //self.notificationCount =  "22"
                         
-                        self.notificationCount =  jsonData["count"].string!
-                        completionHandler(status: 1, data: data, error: NSError.init(domain: "", code: 0, userInfo: nil))
-
-
-                        //
+                        if jsonData["status"].intValue == 1{
+                            
+                            self.notificationCount =  jsonData["count"].string!
+                            completionHandler(status: 1, data: data, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                            
+                            
+                            //
+                        }else{
+                            //defaults.setBool(false, forKey: "Badges_Page_Synced")
+                            completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                        }
                     }else{
                         //defaults.setBool(false, forKey: "Badges_Page_Synced")
-                        completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
-                    }
-                }else{
-                    //defaults.setBool(false, forKey: "Badges_Page_Synced")
-                    //something went wrong
-                    completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
-                }
-            }else{
-                //defaults.setBool(false, forKey: "Badges_Page_Synced")
-                //something went wrong
-                completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
-            }
-        }
-    }
-    func postDeletedNotification(completionHandler:(status : Int,data : NSData?, error : NSError?) -> Void) -> Void{
-        
-        httpclient.postDeletedNotification(webService.deleteNotificationServiceURL!) { (response, data, error) -> Void in
-            if error == nil {
-                
-                if let result = data {
-                    var jsonData = JSON(data: result)
-                    
-                    if jsonData["status"].intValue == 1{
-                        completionHandler(status: 1, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
-                        //
-                    }else{
-                        //defaults.setBool(false, forKey: "Badges_Page_Synced")
-                        completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
-                    }
-                }else{
-                    //defaults.setBool(false, forKey: "Badges_Page_Synced")
-                    //something went wrong
-                    completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
-                }
-            }else{
-                //defaults.setBool(false, forKey: "Badges_Page_Synced")
-                //something went wrong
-                completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
-            }
-        }
-    }
-    
-    func postAcceptedNotification(completionHandler:(status : Int,data : NSData?, error : NSError?) -> Void) -> Void{
-        
-        httpclient.postAcceptedNotification(webService.competitionAcceptanceServiceURL!) { (response, data, error) -> Void in
-            if error == nil {
-                
-                if let result = data {
-                    var jsonData = JSON(data: result)
-                    
-                    if jsonData["status"].intValue == 1{
-                        completionHandler(status: 1, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
-
-                        //
-                    }else{
-                        //defaults.setBool(false, forKey: "Badges_Page_Synced")
-                        completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
-                    }
-                }else{
-                    //defaults.setBool(false, forKey: "Badges_Page_Synced")
-                    //something went wrong
-                    completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
-                }
-            }else{
-                //defaults.setBool(false, forKey: "Badges_Page_Synced")
-                //something went wrong
-                completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
-            }
-        }
-    }
-
-    func requestNotificationListData(completionHandler:(status: Int, data: NotificationListModel?, error: NSError?) -> Void) -> Void{
-        
-        httpclient.requestNotificationListData("") { (response, data, error) -> Void in
-            if error == nil {
-                if let result = data {
-                    var jsonData = JSON(data: result)
-                    
-                    if let notificationListData = jsonData["with"]["content"].dictionary {
-                        
-                        let notificationList = NotificationListModel(title: (notificationListData["Title"]!.stringValue), date: (notificationListData["Date"]!.stringValue), day: (notificationListData["Day"]!.stringValue), notificationImage: (notificationListData["NotificationImage"]!.stringValue), message: (notificationListData["message"]!.stringValue), notificationID: Double(notificationListData["Notification ID"]!.stringValue)!, notificationStatus: (notificationListData["Status"]!.stringValue))
-                        
-                        completionHandler(status: 1, data: notificationList, error: nil)
-                    }else{
                         //something went wrong
                         completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
                     }
                 }else{
+                    //defaults.setBool(false, forKey: "Badges_Page_Synced")
                     //something went wrong
                     completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
                 }
-            }else {
-                //something went wrong
-                completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
             }
+        }
+    }
+    func postDeletedNotification(notificationID: NSNumber, type: String, completionHandler:(status : Int,data : NSData?, error : NSError?) -> Void) -> Void{
+        if let serviceURL = notificationDeleteServiceURL(notificationID, type: type) {
+            httpclient.postDeletedNotification(serviceURL) { (response, data, error) -> Void in
+                if error == nil {
+                    
+                    if let result = data {
+                        var jsonData = JSON(data: result)
+                        
+                        if jsonData["status"].intValue == 1{
+                            completionHandler(status: 1, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                            //
+                        }else{
+                            //defaults.setBool(false, forKey: "Badges_Page_Synced")
+                            completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                        }
+                    }else{
+                        //defaults.setBool(false, forKey: "Badges_Page_Synced")
+                        //something went wrong
+                        completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                    }
+                }else{
+                    //defaults.setBool(false, forKey: "Badges_Page_Synced")
+                    //something went wrong
+                    completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                }
+            }
+        }
+    }
+    
+    func postAcceptedNotification(notificationID: NSNumber, status: String,completionHandler:(status : Int,data : NSData?, error : NSError?) -> Void) -> Void{
+        if let serviceURL = notificationAcceptanceServiceURL(notificationID, status: status) {
+            httpclient.postAcceptedNotification(serviceURL) { (response, data, error) -> Void in
+                if error == nil {
+                    
+                    if let result = data {
+                        var jsonData = JSON(data: result)
+                        
+                        if jsonData["status"].intValue == 1{
+                            completionHandler(status: 1, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                            
+                            //
+                        }else{
+                            //defaults.setBool(false, forKey: "Badges_Page_Synced")
+                            completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                        }
+                    }else{
+                        //defaults.setBool(false, forKey: "Badges_Page_Synced")
+                        //something went wrong
+                        completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                    }
+                }else{
+                    //defaults.setBool(false, forKey: "Badges_Page_Synced")
+                    //something went wrong
+                    completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                }
+            }
+        }
+    }
+    
+    func requestNotificationListData(completionHandler:(status: Int, data: [NotificationListModel]?, error: NSError?) -> Void) -> Void{
+        if let serviceURL = notificationListServiceURL() {
+            httpclient.requestNotificationListData(serviceURL) { (response, data, error) -> Void in
+                if error == nil {
+                    var notificationList = [NotificationListModel]()
+                    if let result = data {
+                        var jsonData = JSON(data: result)
+                        
+                        if let notificationListData = jsonData["notificationList"].array where jsonData["notificationList"].array?.count > 0 {
+                            
+                            
+                            for item in notificationListData {
+                                let notification = item.dictionaryValue
+                                //                            if  let (a,b) = unwrap(optional1: T1?, optional2: T2?, optional3: T3?, optional4: T4?, optional5: T5?, optional6: T6?, optional7: T7?, optional8: T8?, optional9: T9?) {}
+                                let notificationObj = NotificationListModel(title: (notification["title"]!.stringValue), date: (notification["startDate"]!.stringValue), notificationImage: (notification["notificationImage"]!.stringValue), message: (notification["notificationMessage"]!.stringValue), notificationID: Double(notification["notificationId"]!.stringValue)!, notificationStatus: (notification["status"]!.stringValue),notificationType: (notification["type"]!.stringValue))
+                                
+                                notificationList.append(notificationObj)
+                            }
+                            completionHandler(status: 1, data: notificationList, error: nil)
+                        }else{
+                            //something went wrong
+                            completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                        }
+                    }else{
+                        //something went wrong
+                        completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                    }
+                }else {
+                    //something went wrong
+                    completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
+                }
+                
+            }
+        }
+    }
+    
+    func requestNotificationDetailsData(notificationID: NSNumber, type: String, completionHandler:(status: Int, data: NotificationDetailsModel?, error: NSError?) -> Void) -> Void{
+        if let serviceURL = notificationDetailServiceURL(notificationID, type: type) {
             
-        }
-        
-    }
-    
-    func requestNotificationDetailsData(completionHandler:(status: Int, data: NotificationDetailsModel?, error: NSError?) -> Void) -> Void{
-        
-        httpclient.requestNotificationDetailsData("") { (response, data, error) -> Void in
-            if error == nil {
-                if let result = data {
-                    var jsonData = JSON(data: result)
-                    
-                    if let notificationDetailsData = jsonData["with"]["content"].dictionary {
+            httpclient.requestNotificationDetailsData(serviceURL) { (response, data, error) -> Void in
+                if error == nil {
+                    if let result = data {
+                        var jsonData = JSON(data: result)
                         
-                        // add new vars to get competition scores and user scores
-                        
-                        let notificationDetails = NotificationDetailsModel(title: (notificationDetailsData["Title"]!.stringValue), date: (notificationDetailsData["Date"]!.stringValue), day: (notificationDetailsData["Day"]!.stringValue), notificationImage: (notificationDetailsData["NotificationImage"]!.stringValue), message: (notificationDetailsData["message"]!.stringValue), notificationType:(notificationDetailsData["Type"]!.stringValue), competition_distance_score: Double(notificationDetailsData["distancescore"]!.stringValue)!, competition_violation: Double(notificationDetailsData["severevoilation"]!.stringValue)!, competition_ecoscore: Double(notificationDetailsData["ecoscore"]!.stringValue)!, competition_attentionscore: Double(notificationDetailsData["attentionscore"]!.stringValue)!, competition_overallscore: Double(notificationDetailsData["overallscore"]!.stringValue)!, competition_speedscore: Double(notificationDetailsData["speedscore"]!.stringValue)!, user_distance_score: Double(notificationDetailsData["distancescore"]!.stringValue)!, user_violation: Double(notificationDetailsData["severevoilation"]!.stringValue)!, user_ecoscore: Double(notificationDetailsData["ecoscore"]!.stringValue)!, user_attentionscore: Double(notificationDetailsData["attentionscore"]!.stringValue)!, user_overallscore: Double(notificationDetailsData["speedscore"]!.stringValue)!, user_speedscore: Double(notificationDetailsData["distancescore"]!.stringValue)!)
-                        
-                        completionHandler(status: 1, data: notificationDetails, error: nil)
+                        if let notificationDetailsData = jsonData["with"]["content"].dictionary {
+                            
+                            // add new vars to get competition scores and user scores
+                            
+                            let notificationDetails = NotificationDetailsModel(title: (notificationDetailsData["Title"]!.stringValue), date: (notificationDetailsData["Date"]!.stringValue), day: (notificationDetailsData["Day"]!.stringValue), notificationImage: (notificationDetailsData["NotificationImage"]!.stringValue), message: (notificationDetailsData["message"]!.stringValue), notificationType:(notificationDetailsData["Type"]!.stringValue), competition_distance_score: Double(notificationDetailsData["distancescore"]!.stringValue)!, competition_violation: Double(notificationDetailsData["severevoilation"]!.stringValue)!, competition_ecoscore: Double(notificationDetailsData["ecoscore"]!.stringValue)!, competition_attentionscore: Double(notificationDetailsData["attentionscore"]!.stringValue)!, competition_overallscore: Double(notificationDetailsData["overallscore"]!.stringValue)!, competition_speedscore: Double(notificationDetailsData["speedscore"]!.stringValue)!, user_distance_score: Double(notificationDetailsData["distancescore"]!.stringValue)!, user_violation: Double(notificationDetailsData["severevoilation"]!.stringValue)!, user_ecoscore: Double(notificationDetailsData["ecoscore"]!.stringValue)!, user_attentionscore: Double(notificationDetailsData["attentionscore"]!.stringValue)!, user_overallscore: Double(notificationDetailsData["speedscore"]!.stringValue)!, user_speedscore: Double(notificationDetailsData["distancescore"]!.stringValue)!)
+                            
+                            completionHandler(status: 1, data: notificationDetails, error: nil)
+                        }else{
+                            //something went wrong
+                            completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                        }
                     }else{
                         //something went wrong
                         completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
                     }
-                }else{
+                }else {
                     //something went wrong
-                    completionHandler(status: 0, data: nil, error:  NSError.init(domain: "", code: 0, userInfo: nil))
+                    completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
                 }
-            }else {
-                //something went wrong
-                completionHandler(status: 0, data: nil, error: NSError.init(domain: "", code: 0, userInfo: nil))
             }
         }
     }
+
   
 //  #MARK - Trip Json Creation
   
@@ -1116,6 +1130,68 @@ class FacadeLayer{
         if  let  serviceURL = self.webService.badgeServiceURL {
             if let userID = NSUserDefaults.standardUserDefaults().valueForKey( StringConstants.USER_ID) {
                 url = ("\(serviceURL)?userId=\(userID)")
+            }
+        }
+        return url
+    }
+    
+    func notificationCountServiceURL() -> String? {
+        
+        var url = String?()
+        url = nil
+        
+        if  let  serviceURL = self.webService.notificationCountServiceURL {
+            if let userID = NSUserDefaults.standardUserDefaults().valueForKey( StringConstants.USER_ID) {
+                url = ("\(serviceURL)?userId=\(userID)")
+            }
+        }
+        return url
+    }
+    func notificationListServiceURL() -> String? {
+        
+        var url = String?()
+        url = nil
+        
+        if  let  serviceURL = self.webService.notificationListServiceURL {
+            if let userID = NSUserDefaults.standardUserDefaults().valueForKey( StringConstants.USER_ID) {
+                url = ("\(serviceURL)?userId=\(userID)")
+            }
+        }
+        return url
+    }
+    func notificationDetailServiceURL(notificationID: NSNumber, type: String) -> String? {
+        
+        var url = String?()
+        url = nil
+        
+        if  let  serviceURL = self.webService.notificationDetailsServiceURL {
+            if let userID = NSUserDefaults.standardUserDefaults().valueForKey( StringConstants.USER_ID) {
+                url = ("\(serviceURL)?userId=\(userID)&notificationId=\(notificationID)&type=\(type)")
+                
+            }
+        }
+        return url
+    }
+    func notificationDeleteServiceURL(notificationID: NSNumber, type: String) -> String? {
+        
+        var url = String?()
+        url = nil
+        
+        if  let  serviceURL = self.webService.deleteNotificationServiceURL {
+            if let userID = NSUserDefaults.standardUserDefaults().valueForKey( StringConstants.USER_ID) {
+                url = ("\(serviceURL)?userId=\(userID)&notificationId=\(notificationID)&type=\(type)")
+            }
+        }
+        return url
+    }
+    func notificationAcceptanceServiceURL(notificationID: NSNumber, status: String) -> String? {
+        
+        var url = String?()
+        url = nil
+        
+        if  let  serviceURL = self.webService.competitionAcceptanceServiceURL {
+            if let userID = NSUserDefaults.standardUserDefaults().valueForKey( StringConstants.USER_ID) {
+                url = ("\(serviceURL)?userId=\(userID)&notificationId=\(notificationID)&acceptance=\(status)")
             }
         }
         return url
