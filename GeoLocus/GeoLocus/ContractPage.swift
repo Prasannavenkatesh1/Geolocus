@@ -57,7 +57,7 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
         imagePath = fileInDocumentsDirectory(myImageName)
         
         self.setTitleForLabels()
-        self.fetchContractDataFromDatabase()
+//        self.fetchContractDataFromDatabase()
         self.setConstraintsForDifferentDevices()
         self.customiseProgressView()
         self.addDashedBorderToImageView()
@@ -68,6 +68,10 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
         self.imageView.userInteractionEnabled = true
         self.imageView.addGestureRecognizer(tapGestureRecognizer)
     }
+  
+  override func viewWillAppear(animated: Bool) {
+    self.fetchContractDataFromDatabase()
+  }
     
     override func viewWillLayoutSubviews() {
         self.imageViewBorder.path = UIBezierPath(roundedRect: self.imageView.bounds, cornerRadius:2).CGPath

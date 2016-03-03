@@ -141,7 +141,7 @@ import UIKit
                //  self.stopLoading()
                 let dashboardData :DashboardModel = data!
                 self.levelName.text = dashboardData.levelName
-                self.distanceTravelledValue.text = dashboardData.distanceTravelled
+                self.distanceTravelledValue.text = dashboardData.distanceTravelled + " km"
                 let score = Int(dashboardData.score)
                 self.scoreMessage = dashboardData.scoreMessage
                 self.nextLevelMessage = dashboardData.levelMessage

@@ -11,7 +11,7 @@
 		<key>RegistrationServiceURL</key>
 		<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-driver-web/login?channel_type=IOS&amp;languageCode=</string>
 		<key>TermConditionsServiceURL</key>
-		<string>http://ec2-52-9-108-237.us-west-1.compute.amazonaws.com:8080/kbc-app-service/admin/get/terms_conditions?languageCode=</string>
+		<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-driver-web/termsConditions?languageCode=</string>
 		<key>NeedHelpServiceURL</key>
 		<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-driver-web/needHelp</string>
 		<key>ContractServiceURL</key>
@@ -54,7 +54,7 @@
 		<key>RegistrationServiceURL</key>
 		<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-driver-web/login?channel_type=IOS&amp;languageCode=</string>
 		<key>TermConditionsServiceURL</key>
-		<string>http://ec2-52-9-108-237.us-west-1.compute.amazonaws.com:8080/kbc-app-service/admin/get/terms_conditions?languageCode=</string>
+		<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-driver-web/termsConditions?languageCode=</string>
 		<key>NeedHelpServiceURL</key>
 		<string>https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/ubi-driver-web/needHelp</string>
 		<key>ContractServiceURL</key>

@@ -43,15 +43,12 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
 
 
   
-  
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
       
       //    NSNotificationCenter.defaultCenter().postNotificationName("tipended", object: nil)
     
       //
         self.serviceState = .NONE
-      
-     // print(Portal.login)
       
 
     registerNotification()
@@ -341,7 +338,6 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       
         //TODO: Check internet connectivity
         if self.serviceState == .NONE {
-            self.serviceState = .CALLING
             var serviceError: NSError!
             var dbStatus = false
             
@@ -428,6 +424,7 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
                       serviceError = error
                       isFailed = true
                   }
+                  print("***requestInitialReportData... :\(reportData)")
                     dispatch_group_leave(webServiceGroup)
                 })
               
