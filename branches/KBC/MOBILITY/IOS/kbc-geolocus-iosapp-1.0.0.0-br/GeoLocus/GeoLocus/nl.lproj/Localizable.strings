@@ -105,3 +105,18 @@
 "Hours" = "uren";
 "Minutes" = "minuten";
 "Days" = "dagen";
+
+//MARK: Notification
+"Yes" = "Ja";
+"No" = "Neen";
+"Delete_Message" = "Ben je zeker dat je dit wil verwijderen?";
+"Accept" = "Accepteren";
+"Decline" = "Weigeren";
+"Distance" = "Afstand";
+"Competition Criteria" = "Wedstrijd criteria";
+"Share with KBC" = "Deel met KBC";
+"No" = "No";
+"No" = "No";
+"No" = "No";
+"No" = "No";
+"No" = "No";

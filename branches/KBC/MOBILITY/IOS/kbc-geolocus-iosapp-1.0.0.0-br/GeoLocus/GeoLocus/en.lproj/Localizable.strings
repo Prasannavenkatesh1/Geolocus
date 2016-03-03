@@ -104,3 +104,18 @@
 "Hours" = "Hours";
 "Minutes" = "Minutes";
 "Days" = "Days";
+
+//MARK: Notification
+"Yes" = "Yes";
+"No" = "No";
+"Delete_Message" = "Are you sure you want to delete this?";
+"Accept" = "Accept";
+"Decline" = "Decline";
+"Distance" = "Distance";
+"Competition Criteria" = "Competition criteria";
+"Share with KBC" = "Share with KBC";
+"No" = "No";
+"No" = "No";
+"No" = "No";
+"No" = "No";
+"No" = "No";
