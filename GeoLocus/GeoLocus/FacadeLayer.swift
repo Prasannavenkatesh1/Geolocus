@@ -163,7 +163,7 @@ class FacadeLayer{
                 completionHandler(status: 1, data: data, error: nil)
             }
             else{
-                completionHandler(status: 0, data: nil, error: NSError.init(domain: "No Internet Connection", code: 0, userInfo: nil))
+                completionHandler(status: 0, data: nil, error: NSError.init(domain: "\(error?.domain)", code: 0, userInfo: nil))
             }
         }
     }

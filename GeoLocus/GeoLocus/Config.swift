@@ -13,7 +13,7 @@ struct Portal {
   // SIT
   static let baseurl = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com/"
   
-//  static let baseurl = "https:// ec2-52-9-107-182.us-west-1.compute.amazonaws.com:2443/"
+  //static let baseurl = "https://ec2-52-9-107-182.us-west-1.compute.amazonaws.com:2443/"
   
   // Production
 //  static let baseurl = " "
