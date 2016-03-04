@@ -451,6 +451,39 @@ class Httpclient: NSObject,NSURLSessionDelegate {
     }
   
   // MARK: - Trip Data
+  
+  func postJsonTripData(URL:String, uploadString:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void{
+    
+    let manager = Alamofire.Manager.sharedInstance
+    manager.delegate.sessionDidReceiveChallenge = { session, challenge in
+      var disposition: NSURLSessionAuthChallengeDisposition = .PerformDefaultHandling
+      var credential: NSURLCredential?
+      if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+        if challenge.protectionSpace.host == "ec2-52-9-107-182.us-west-1.compute.amazonaws.com" {
+          disposition = NSURLSessionAuthChallengeDisposition.UseCredential
+          
+          credential = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!)
+        }
+      }
+      return (disposition, credential)
+    }
+    
+    
+    let tripRequest = NSMutableURLRequest(URL: NSURL(string: URL)!)
+    tripRequest.HTTPMethod = "POST"
+    
+    tripRequest.HTTPBody = uploadString.dataUsingEncoding(NSUTF8StringEncoding)
+    
+//    let tokenID = defaults.valueForKey(StringConstants.TOKEN_ID) as? String
+//    notificationDetailRequest.setValue(tokenID, forHTTPHeaderField: StringConstants.SPRING_SECURITY_COOKIE)
+    manager.request(tripRequest).response { (Request, response, data, error) -> Void in
+      completionHandler(response: response, data: data, error: error)
+    }
+    
+  }
+  
+  
+  
   func postTripDataToServer(URL:String, uploadString:String, completionHandler:(response: NSHTTPURLResponse?, data: NSData?, error: NSError?) -> Void) -> Void {
     
     let manager = Alamofire.Manager.sharedInstance

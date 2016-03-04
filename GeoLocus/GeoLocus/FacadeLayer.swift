@@ -960,6 +960,7 @@ class FacadeLayer{
   
 //  #MARK - Trip Json Creation
   
+  
   func reteriveTripdetails(tripid:String){
     
     //Userdetails
@@ -980,12 +981,16 @@ class FacadeLayer{
     //tripsummary
     let tripsummarydatas = FacadeLayer.sharedinstance.dbactions.reteriveTripSummary(tripid)
     
-    
+//    TripJson["weightage"] = configJson
+//    TripJson["tripTimeSeries"] = timeseriesJson
+
     
     //Convert to Dictionaries
     let timeseriesJson = timeseriesToDictionary(timeseriesdatas)
     let configJson = configurationToDictionary(configurationdatas!)
-    let summaryJson = summarymodelDictionary(tripsummarydatas)
+    let summaryJson = summarymodelDictionary(tripsummarydatas,
+      config: configJson,
+      timeseries: timeseriesJson)
     
     //    print("timeseriesJson \(timeseriesJson)")
     //    print("configJson \(configJson)")
@@ -997,10 +1002,8 @@ class FacadeLayer{
     userdetails["channelVersion"] =  userdata?.channelversion
     
     var TripJson = Dictionary<String,AnyObject>()
-    TripJson["userdetails"] = userdetails
     TripJson["tripSummary"] = summaryJson
-    TripJson["weightage"] = configJson
-    TripJson["tripTimeSeries"] = timeseriesJson
+    TripJson["userDetails"] = userdetails
     
 //    print("Whole: \(TripJson)")
     
@@ -1008,13 +1011,12 @@ class FacadeLayer{
     if let data = try? NSJSONSerialization.dataWithJSONObject(TripJson, options: []) {
       let dataString = NSString(data: data, encoding: NSUTF8StringEncoding)!
       print("Trip Json  Structure\(dataString)")
-      
+      postZiptoRemote(dataString as String)
       // do other stuff on success
       
     } else {
       print("JSON serialization failed:  \(error)")
     }
-    
   }
   
   func unwrap<T1, T2, T3, T4, T5, T6, T7, T8, T9>(optional1: T1?, optional2: T2?, optional3: T3?, optional4: T4? ,optional5: T5?, optional6: T6?, optional7: T7?, optional8: T8?, optional9: T9?) -> (T1, T2, T3, T4,T5, T6, T7, T8, T9)? {
@@ -1025,11 +1027,11 @@ class FacadeLayer{
     default:
       return nil
     }
-    
   }
   
   func timeseriesToDictionary(locationseries: [Trip_timeseries]) -> [Dictionary<String, AnyObject>] {
     var arrTimeseries: [Dictionary<String, AnyObject>] = []
+    var tempevent:Events = Events()
     for dictTimeseries in locationseries {
       
       
@@ -1043,10 +1045,15 @@ class FacadeLayer{
         optional8: dictTimeseries.longitude,
         optional9: dictTimeseries.speed){
           
-          let dicttime = ["timeStamp":  currenttime,
+          var timestamp1: String {
+            return "\(dictTimeseries.currenttime!.timeIntervalSince1970 * 1000)"
+          }
+          
+//         var tempevent:Events.EventType = eventtype as Events.EventType
+          let dicttime = ["timeStamp":  timestamp1,
             "datausage":  datausage,
             "cumulativeDistance": distance,
-            "eventtype": eventtype,
+            "eventType": getEventName(eventtype),
             "eventvalue": eventvalue,
             "isEvent": isevent,
             "latitude": latitude,
@@ -1061,10 +1068,36 @@ class FacadeLayer{
     
   }
   
+  func getEventName(eventtype:NSNumber) -> String{
+    switch eventtype{
+    case 1:
+      return Events.BRAKING
+      
+    case 2:
+      return Events.ACCELERATION
+      
+    case 3:
+      return Events.TIMESERIES
+      
+    case 4:
+      return Events.STARTTRIP
+      
+    case 5:
+      return Events.SPEEDING
+      
+    case 6:
+      return Events.ENDTRIP
+      
+    default:
+      return Events.NONE
+      
+    }
+  }
   
   
-  func configurationToDictionary(configmodel: ConfigurationModel) -> [Dictionary<String, AnyObject>] {
-    var arrTimeseries: [Dictionary<String, AnyObject>] = []
+  
+  func configurationToDictionary(configmodel: ConfigurationModel) -> [String: AnyObject] {
+    var arrTimeseries: [String: AnyObject] = [String: AnyObject]()
     if let (thresholds_brake,thresholds_acceleration,thresholds_autotrip,weightage_braking,weightage_acceleration,weightage_speed,weightage_severevoilation,ecoweightage_braking,ecoweightage_acceleration) = unwrap(configmodel.thresholds_brake,
       optional2: configmodel.thresholds_acceleration,
       optional3: configmodel.thresholds_autotrip,
@@ -1085,14 +1118,23 @@ class FacadeLayer{
           "ecoweightage_braking": ecoweightage_braking,
           "ecoweightage_acceleration": ecoweightage_acceleration
         ]
-        arrTimeseries.append(dicttime)
+        arrTimeseries = dicttime
     }
     return arrTimeseries
     
   }
  
-  func summarymodelDictionary(tripsummarymodel: SummaryModel) -> [Dictionary<String, AnyObject>] {
+  func summarymodelDictionary(tripsummarymodel: SummaryModel, config:[String: AnyObject], timeseries:[Dictionary<String, AnyObject>]) -> [Dictionary<String, AnyObject>] {
     var arrsummary: [Dictionary<String, AnyObject>] = []
+    
+    
+    var starttimestamp: String {
+      return "\(tripsummarymodel.tripstarttime.timeIntervalSince1970 * 1000)"
+    }
+    
+    var endtimestamp: String {
+      return "\(tripsummarymodel.tripendtime.timeIntervalSince1970 * 1000)"
+    }
     
     let dictsummary = ["tripid":  tripsummarymodel.tripid,
       "ecoscore": tripsummarymodel.ecoscore,
@@ -1102,12 +1144,15 @@ class FacadeLayer{
       "brakingcount": tripsummarymodel.brakingcount,
       "accelerationcount": tripsummarymodel.accelerationcount,
       "datausage":  tripsummarymodel.datausage,
-      "tripstarttime": tripsummarymodel.tripstarttime.description,
-      "tripendtime": tripsummarymodel.tripendtime.description,
+      "tripstarttime": starttimestamp,
+      "tripendtime": endtimestamp,
       "timezone": tripsummarymodel.timezone,
       "timezoneid": tripsummarymodel.timezoneid,
       "totaldistance": tripsummarymodel.totaldistance,
-      "totalduration": tripsummarymodel.totalduration
+      "totalduration": tripsummarymodel.totalduration,
+      "thresholdValues": config,
+      "weightage":config,
+      "tripTimeSeries": timeseries
      
     ]
     arrsummary.append(dictsummary)
@@ -1229,10 +1274,19 @@ class FacadeLayer{
         return url
     }
   
-  func postZiptoRemote(){
+  func postZiptoRemote(uploaddata:String){
     
-    httpclient.postTripDataToServer("http://ec2-52-9-108-237.us-west-1.compute.amazonaws.com:28080",
-      uploadString: "This is the text file") { (response, data, error) -> Void in
+//    httpclient.postTripDataToServer("http://ec2-52-9-108-237.us-west-1.compute.amazonaws.com:28080",
+//      uploadString: "This is the text file") { (response, data, error) -> Void in
+//        print("response: \(response)")
+//        print("error: \(error)")
+//    }
+    
+    let parameterString = String(format: "processTrip=%@", uploaddata)
+
+    
+    httpclient.postJsonTripData("http://ec2-52-9-108-237.us-west-1.compute.amazonaws.com:28080/tripData",
+      uploadString: parameterString) { (response, data, error) -> Void in
         print("response: \(response)")
         print("error: \(error)")
     }
