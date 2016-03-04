@@ -156,9 +156,10 @@ struct StringConstants {
     static let isSnoozeEnabled   = "Snoozing enabled"
   
     /*TripData */
-    static let TRIP_FILE           = "finaltrip.json"
+  static let TRIP_FILE     = "finaltrip.json"
+ 
   
-    
+  
 }
 
 
@@ -170,7 +171,43 @@ struct Events {
     case TIMESERIES
     case STARTTRIP
     case SPEEDING
+    case ENDTRIP
     case NONE
+  }
+  
+  static let BRAKING       = "braking"
+  static let ACCELERATION  = "acceleration"
+  static let TIMESERIES    = "timeSeries"
+  static let STARTTRIP     = "tripStart"
+  static let SPEEDING      = "speeding"
+  static let ENDTRIP       = "tripEnd"
+  static let NONE          = "none"
+  
+//  func getEventName(eventtype:EventType) -> String{
+  func getEventName(eventtype:Events.EventType) -> String{
+    switch eventtype{
+      case EventType.BRAKING:
+        return Events.BRAKING
+
+    case EventType.ACCELERATION:
+      return Events.ACCELERATION
+
+    case EventType.TIMESERIES:
+      return Events.TIMESERIES
+    
+    case EventType.STARTTRIP:
+      return Events.STARTTRIP
+    
+    case EventType.SPEEDING:
+      return Events.SPEEDING
+      
+    case EventType.ENDTRIP:
+      return Events.ENDTRIP
+
+      default:
+        return Events.NONE
+      
+    }
   }
   
 }

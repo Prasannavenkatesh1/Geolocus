@@ -18,6 +18,13 @@ extension Int {
   }
 }
 
+//extension String {
+//  
+//  
+//  var Timestamp: String {
+//    return "\(NSDate().timeIntervalSince1970 * 1000)"
+//  }
+//}
 
 
 extension NSDate {

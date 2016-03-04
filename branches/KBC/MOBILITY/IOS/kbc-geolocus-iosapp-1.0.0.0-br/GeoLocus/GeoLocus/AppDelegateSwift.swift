@@ -96,9 +96,12 @@ class AppDelegateSwift: UIResponder, UIApplicationDelegate {
       
       // Needs to add fields in config db
       defaults.setDouble(150.0, forKey: StringConstants.Thresholds_Minimumdistance)
-      defaults.setDouble(10.0, forKey: StringConstants.Thresholds_MinimumIdleTime)
-      defaults.setDouble(5.0, forKey: StringConstants.Thresholds_MaximumIdleTime)
-        
+      defaults.setDouble(10000.0, forKey: StringConstants.Thresholds_MinimumIdleTime)
+      defaults.setDouble(5000.0, forKey: StringConstants.Thresholds_MaximumIdleTime)
+
+//      defaults.setDouble(15.0, forKey: StringConstants.Thresholds_MinimumIdleTime)
+//      defaults.setDouble(10.0, forKey: StringConstants.Thresholds_MaximumIdleTime)
+      
         //snoozing picker values
       defaults.setValue("", forKey: StringConstants.PICKER_LEFT_VALUE)
       defaults.setObject("", forKey: StringConstants.PICKER_RIGHT_VALUE)
