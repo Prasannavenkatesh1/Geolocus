@@ -16,7 +16,8 @@
 "Overall_Score_Eco"                     = "Eco";                                //
 "Overall_Score_Attention"               = "Attention";                          //
 "Overall_Score_Distance_Travelled"      = "Kilomètres parcourus";               //
-"Overall_Score_Attention_Message"       = " ";
+"Overall_Score_Attention_msg"           = " ";
+
 
 //MARK: - Badges & Levels Page
 "Badges_to_be_Earned"                   = "Badges à obtenir";                   //

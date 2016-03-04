@@ -50,7 +50,7 @@ extension HistoryZoneViewCell {
         
         self.speedingView.foreGroundArcWidth = Arc.FOREGROUND_WIDTH
         self.speedingView.backGroundArcWidth = Arc.BACKGROUND_WIDTH
-        self.indicatorButton.selected        = false
+        //self.indicatorButton.selected        = false
         
         if let zone = tripZone {
             self.speedingView.ringLayer.strokeColor = UIColor(range: (zone.speedBehaviour.integerValue)).CGColor
@@ -62,10 +62,9 @@ extension HistoryZoneViewCell {
             self.aboveMaxSpeed.text         = String("\(zone.aboveSpeed) km")
         }
         
-        if let del = delegate {
-            
+        if let del = self.delegate {
             del.localizeMapZone(self)
-            
+            //del.setIndicatorButton(self)
             if del.zoneCellRefreshRequired() {
                 self.speedingView.setNeedsDisplay()
             }

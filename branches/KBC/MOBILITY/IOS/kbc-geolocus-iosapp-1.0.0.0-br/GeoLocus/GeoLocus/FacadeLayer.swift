@@ -738,7 +738,7 @@ class FacadeLayer{
                 if error == nil {
                     if let result = data {
                         let jsonData = JSON(data: result)
-                        
+                        print("Overall Score data: \(jsonData)")
                         if let scores = jsonData.dictionary {
                             
                             let overallScore = OverallScores(overallScore: Double(scores[OverallScoreKey.TOTAL]!.intValue),

@@ -68,7 +68,7 @@ extension HistoryTripDetailCell {
         self.tripPointsLabel.text   = String(detail.tripPoints)
         
         if (UIColor(range:detail.tripScore.speedScore.integerValue) == UIColor(netHex: 0xff3b3b)) || (UIColor(range: detail.tripScore.ecoScore.integerValue) == UIColor(netHex: 0xff3b3b)) || (UIColor(range: detail.tripScore.overallScore.integerValue) == UIColor(netHex: 0xff3b3b)) {
-            self.tripShareButton.hidden = true      //TODO: make this true
+            self.tripShareButton.hidden = true     
         }else{
             self.tripShareButton.hidden = false
         }

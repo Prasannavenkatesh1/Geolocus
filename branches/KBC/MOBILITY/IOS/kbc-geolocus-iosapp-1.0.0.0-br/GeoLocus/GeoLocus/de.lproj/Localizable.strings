@@ -16,7 +16,7 @@
 "Overall_Score_Eco"                 = "Eco";
 "Overall_Score_Attention"           = "Aufmerksamkeit";
 "Overall_Score_Distance_Travelled"  = "Zurückgelegte Kilometer";
-"Overall_Score_Attention_Message"   = " ";
+"Overall_Score_Attention_msg"       = " ";
 
 //MARK: - Badges & Levels Page
 "Badges_to_be_Earned"               = "Zu erreichende Badges";
