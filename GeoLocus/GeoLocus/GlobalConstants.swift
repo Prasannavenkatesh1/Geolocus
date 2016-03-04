@@ -294,110 +294,125 @@ struct ShareView {
     static let defaultMargin = CGFloat(12)
     
     struct Margin {
-        static let top = CGFloat(19)
-        static let bottom = CGFloat(12)
-        static let right = CGFloat(12)
-        static let left = CGFloat(12)
+        static let top      = CGFloat(19)
+        static let bottom   = CGFloat(12)
+        static let right    = CGFloat(12)
+        static let left     = CGFloat(12)
     }
     
     struct Icon {
         struct TripPadding {
-            static let top = CGFloat(65)
-            static let bottom = CGFloat(5)
-            static let right = CGFloat(12)
-            static let left = CGFloat(12)
+            static let top      = CGFloat(65)
+            static let bottom   = CGFloat(5)
+            static let right    = CGFloat(12)
+            static let left     = CGFloat(12)
         }
         
         struct BadgePadding {
-            static let top = CGFloat(18)
-            static let bottom = CGFloat(18)
-            static let right = CGFloat(18)
-            static let left = CGFloat(18)
+            static let top      = CGFloat(18)
+            static let bottom   = CGFloat(18)
+            static let right    = CGFloat(18)
+            static let left     = CGFloat(18)
         }
     }
     
     struct Para {
         struct Padding {
-            static let top = CGFloat(8)
-            static let bottom = CGFloat(5)
-            static let left = CGFloat(12)
+            static let top      = CGFloat(8)
+            static let bottom   = CGFloat(5)
+            static let left     = CGFloat(12)
         }
     }
 }
 
+
+struct Tag {
+    struct OverallScore {
+        struct View {
+            static let driving      = 101
+            static let speeding     = 102
+            static let eco          = 103
+            static let attention    = 104
+        }
+    }
+}
+
+//MARK: - Web Services Constants
+
 struct BadgeKey {
-    static let S_CODE = "statusCode"
-    static let S_MESSAGE = "statusMessage"
-    static let BADGES = "badges"
-    static let LEVELS = "levels"
-    static let TITLE  = "badge_title"
-    static let DESC   = "badge_description"
-    static let EARNED = "isEarned"
-    static let INDEX  = "order_index"
+    static let S_CODE       = "statusCode"
+    static let S_MESSAGE    = "statusMessage"
+    static let BADGES       = "badges"
+    static let LEVELS       = "levels"
+    static let TITLE        = "badge_title"
+    static let DESC         = "badge_description"
+    static let EARNED       = "isEarned"
+    static let INDEX        = "order_index"
     static let DIST_COVERED = "distanceCovered"
 }
 
 
 struct HistoryKey {
     struct  Trip {
-        static let ID = "tripId"
-        static let DATE = "date"
-        static let DISTANCE = "distance"
-        static let DURATION = "totalDuration"
-        static let DETAILS = "tripDetails"
-        static let POINTS = "tripPoints"
-        static let SPEED_MSG = "speedScoreMessage"
-        static let ECO_MSG = "ecoScoreMessage"
-        static let ATTENETION_MSG = "attentionScoreMessage"
-        static let DATA_USAGE_MSG = "dataUsageMsg"
+        static let ID               = "tripId"
+        static let DATE             = "date"
+        static let DISTANCE         = "distance"
+        static let DURATION         = "totalDuration"
+        static let DETAILS          = "tripDetails"
+        static let POINTS           = "tripPoints"
+        static let SPEED_MSG        = "speedScoreMessage"
+        static let ECO_MSG          = "ecoScoreMessage"
+        static let ATTENETION_MSG   = "attentionScoreMessage"
+        static let DATA_USAGE_MSG   = "dataUsageMsg"
         
         struct Score {
-            static let OVERALL  = "tripOverallScore"
-            static let SPEEDING = "speedScore"
-            static let ECO = "ecoScore"
-            static let ATTENTION = "attentionScore"
+            static let OVERALL      = "tripOverallScore"
+            static let SPEEDING     = "speedScore"
+            static let ECO          = "ecoScore"
+            static let ATTENTION    = "attentionScore"
         }
         
         struct Event {
-            static let EVENT = "event"
-            static let TYPE = "eventType"
-            static let VALUE = "eventValue"
-            static let IS_SEVERE = "isSevere"
-            static let LONGITUDE = "longitude"
-            static let LATITUDE = "latitude"
-            static let MESSAGE = "eventMessage"
-            static let FINE_MSG = "fineMessage"
-            static let THRESHOLD = "threshold"
+            static let EVENT        = "event"
+            static let TYPE         = "eventType"
+            static let VALUE        = "eventValue"
+            static let IS_SEVERE    = "isSevere"
+            static let LONGITUDE    = "longitude"
+            static let LATITUDE     = "latitude"
+            static let MESSAGE      = "eventMessage"
+            static let FINE_MSG     = "fineMessage"
+            static let THRESHOLD    = "threshold"
         }
         
         struct Speedzone {
-            static let SPEED_ZONE = "speedZone"
-            static let DISTANCE = "distanceTravelled"
-            static let SPEEDING_SCORE = "speedingScore"
-            static let VIOLATION = "violationCount"
-            static let MAX_SPEED = "maxSpeed"
-            static let ABOVE_MAX_SPEED = "aboveMaxspeed"
+            static let SPEED_ZONE       = "speedZone"
+            static let DISTANCE         = "distanceTravelled"
+            static let SPEEDING_SCORE   = "speedingScore"
+            static let VIOLATION        = "violationCount"
+            static let MAX_SPEED        = "maxSpeed"
+            static let ABOVE_MAX_SPEED  = "aboveMaxspeed"
             static let WITHIN_MAX_SPEED = "withinMaxspeed"
-            static let SPEED_BEHAVIOUR = "speedBehaviour"
+            static let SPEED_BEHAVIOUR  = "speedBehaviour"
         }
     }
 }
 
 
 struct OverallScoreKey {
-    static let TOTAL = "totalScore"
-    static let SPEEDING = "speedingScore"
-    static let ECO = "ecoScore"
-    static let ATTENTION = "attentionScore"
-    static let DISTANCE = "distance"
-    static let VIOLATION = "severeViolation"
-    static let TOTAL_MSG = "totalScoreMessage"
-    static let SPEED_MSG = "speedingScoreMessage"
-    static let ECO_MSG = "ecoScoreMessage"
-    static let DATA_USAGE_MSG = "dataUsagemessage"
-    static let ATTENTION_MSG = "attentionScoreMessage"
+    static let TOTAL            = "totalScore"
+    static let SPEEDING         = "speedingScore"
+    static let ECO              = "ecoScore"
+    static let ATTENTION        = "attentionScore"
+    static let DISTANCE         = "distance"
+    static let VIOLATION        = "severeViolation"
+    static let TOTAL_MSG        = "totalScoreMessage"
+    static let SPEED_MSG        = "speedingScoreMessage"
+    static let ECO_MSG          = "ecoScoreMessage"
+    static let DATA_USAGE_MSG   = "dataUsagemessage"
+    static let ATTENTION_MSG    = "attentionScoreMessage"
 }
 
+//MARK: - Localization Constants
 
 struct LocalizationConstants {
     
@@ -439,6 +454,7 @@ struct LocalizationConstants {
         static let Eco                  = "Overall_Score_Eco"
         static let Attention            = "Overall_Score_Attention"
         static let Distance_Travelled   = "Overall_Score_Distance_Travelled"
+        static let Attention_Msg        = "Overall_Score_Attention_msg"
     }
     
     struct Badge {

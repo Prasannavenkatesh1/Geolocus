@@ -40,7 +40,7 @@ extension BadgeCell {
             self.badgeDescription.textColor = UIColor(netHex: 0x181F29)
             
         }else {
-            self.shareButton.hidden         = true         // TODO: make this true
+            self.shareButton.hidden         = true         
             self.badgeTitle.font            = UIFont(name: Font.HELVETICA_NEUE, size: 15.0)
             self.badgeTitle.textColor       = UIColor(netHex: 0x003665)
             self.badgeDescription.textColor = UIColor(netHex: 0x4c7394)

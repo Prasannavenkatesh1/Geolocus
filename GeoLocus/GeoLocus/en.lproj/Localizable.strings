@@ -16,6 +16,7 @@
 "Overall_Score_Eco"                 = "Eco";
 "Overall_Score_Attention"           = "Attention";
 "Overall_Score_Distance_Travelled"  = "Total Distance Travelled";
+"Overall_Score_Attention_msg"       = "Attention score will not be there for iOS mobile device";
 
 //MARK: - Badges & Levels Page
 "Badges_to_be_Earned"               = "Badges to be Earned";

@@ -30,7 +30,7 @@ class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
     var ecoTapGestureRecognizer         : UITapGestureRecognizer!
     var attentionTapGestureRecognizer   : UITapGestureRecognizer!
     var overallScores                   = OverallScores?()
-    
+    let scoreTapSelector                : Selector = "scoreViewTapped:"
     
     //MARK: - Viewcontroller methods
     override func viewDidLoad() {
@@ -54,6 +54,7 @@ class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
         super.viewWillLayoutSubviews()
     }
     
+    //MARK: - Reload Methods
     /**
      Reload Overallscore page.
     */
@@ -87,24 +88,28 @@ class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
             
             self.totalDistTravelledLabel.text                   = String("\(self.overallScores!.distanceTravelled) km")
             
-            self.driveBehTapGestureRecognizer                   = UITapGestureRecognizer(target: self, action: "drivingBehaviourViewTapped:")
+            self.driveBehTapGestureRecognizer                   = UITapGestureRecognizer(target: self, action: scoreTapSelector)
             self.driveBehTapGestureRecognizer.delegate          = self
             self.drivingBehaviorArcView.addGestureRecognizer(self.driveBehTapGestureRecognizer)
+            self.drivingBehaviorArcView.tag                     = Tag.OverallScore.View.driving
             
-            self.speedingTapGestureRecognizer                   = UITapGestureRecognizer(target: self, action: "speedingViewTapped:")
+            self.speedingTapGestureRecognizer                   = UITapGestureRecognizer(target: self, action: scoreTapSelector)
             self.speedingTapGestureRecognizer.delegate          = self
             self.speedingArcView.addGestureRecognizer(self.speedingTapGestureRecognizer)
+            self.speedingArcView.tag                            = Tag.OverallScore.View.speeding
             
-            self.ecoTapGestureRecognizer                        = UITapGestureRecognizer(target: self, action: "ecoViewTapped:")
+            self.ecoTapGestureRecognizer                        = UITapGestureRecognizer(target: self, action: scoreTapSelector)
             self.ecoTapGestureRecognizer.delegate               = self
             self.ecoArcView.addGestureRecognizer(self.ecoTapGestureRecognizer)
+            self.ecoArcView.tag                                 = Tag.OverallScore.View.eco
             
-            self.attentionTapGestureRecognizer                  = UITapGestureRecognizer(target: self, action: "attentionViewTapped:")
+            self.attentionTapGestureRecognizer                  = UITapGestureRecognizer(target: self, action: scoreTapSelector)
             self.attentionTapGestureRecognizer.delegate         = self
             self.attentionView.addGestureRecognizer(self.attentionTapGestureRecognizer)
-            
+            self.attentionView.tag                              = Tag.OverallScore.View.attention
         }
     }
+    
     /**
      Get data from DB and reload the page
      */
@@ -115,10 +120,11 @@ class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
                 self.overallScores = data
                 self.reloadView()
             }else{
-                //something went bad
+                //something went wrong
             }
         }
     }
+    
     /**
      Setter for the height of the scroll view
      */
@@ -135,53 +141,25 @@ class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    /**
-     Called when driving behaviour view is tapped
-     - Parameter gestureRecognizer: To get the data of gesture used
-     */
-    func drivingBehaviourViewTapped(gestureRecognizer: UITapGestureRecognizer){
-        scoreViewTapped(1)
-    }
+    //MARK: - Gesture Recognizer Methods
     
     /**
-     Called when speeding view is tapped
+     Called when score views are tapped
      - Parameter gestureRecognizer: To get the data of gesture used
      */
-    func speedingViewTapped(gestureRecognizer: UITapGestureRecognizer){
-        scoreViewTapped(2)
-    }
-    
-    /**
-     Called when eco view is tapped
-     - Parameter gestureRecognizer: To get the data of gesture used
-     */
-    func ecoViewTapped(gestureRecognizer: UITapGestureRecognizer){
-        scoreViewTapped(3)
-    }
-    
-    /**
-     Called when attention view is tapped
-     - Parameter gestureRecognizer: To get the data of gesture used
-     */
-    func attentionViewTapped(gestureRecognizer: UITapGestureRecognizer){
-        scoreViewTapped(4)
-    }
-    
-    /**
-     Aggregate function for scoreview tapped
-     */
-    func scoreViewTapped(tag: Int) {
+    func scoreViewTapped(gestureRecognizer: UITapGestureRecognizer) {
         
         var messageString = String()
-        
-        switch tag {
-            case 1 :
+        let view = gestureRecognizer.view! as UIView
+
+        switch view.tag {
+            case 101 :
                 messageString = self.overallScores!.overallmessage
-            case 2 :
+            case 102 :
                 messageString = self.overallScores!.speedingMessage
-            case 3:
+            case 103:
                 messageString = self.overallScores!.ecoMessage
-            case 4:
+            case 104:
                 messageString = self.overallScores!.dataUsageMsg
             default:
                 messageString = " "
@@ -191,6 +169,4 @@ class HistoryScorePage: BaseViewController, UIGestureRecognizerDelegate {
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
-    
-
 }

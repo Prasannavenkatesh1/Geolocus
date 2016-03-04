@@ -27,7 +27,6 @@ class HistoryMapViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         historyMapView.mapType              = .Standard;
         self.historyMapView.delegate        = self
         self.historyMapView.rotateEnabled   = false
@@ -46,7 +45,7 @@ class HistoryMapViewCell: UITableViewCell {
         
         let region = coordinateRegion(annotations)
         self.historyMapView.regionThatFits(region)
-        self.historyMapView.setRegion(region, animated: true)
+        //self.historyMapView.setRegion(region, animated: true)
     }
 }
 
@@ -94,6 +93,10 @@ extension HistoryMapViewCell: MKMapViewDelegate {
             let mapPoint = MKMapPointForCoordinate(event.coordinate)
             rect         = MKMapRectUnion(rect, MKMapRectMake(mapPoint.x, mapPoint.y, 0, 0))
         }
+
+        let mapOrigin = MKMapPoint(x: rect.origin.x - 10, y: rect.origin.y - 10)
+        rect = MKMapRectUnion(rect, MKMapRectMake(mapOrigin.x, mapOrigin.y, 0, 0))
+        
         
         return MKCoordinateRegionForMapRect(rect)
     }

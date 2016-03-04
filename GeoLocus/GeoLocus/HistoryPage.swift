@@ -24,6 +24,7 @@ protocol SpeedZoneCellDelegate {
     func severeViolationViewTapped(cell: HistoryZoneViewCell)
     func zoneCellRefreshRequired() -> Bool
     func localizeMapZone(cell: HistoryZoneViewCell)
+    //func setIndicatorButton(cell: HistoryZoneViewCell)
 }
 
 protocol TripDetailCellDelegate {
@@ -287,7 +288,25 @@ extension HistoryPage: UITableViewDataSource {
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
                 cell.delegate = self
                 
-                self.tripScores?.count > 0 ? cell.configure(self.tripZones![indexPath.row]) : cell.configure(nil)
+                //self.tripScores?.count > 0 ? cell.configure(self.tripZones![indexPath.row]) : cell.configure(nil)
+                
+                if self.tripScores?.count > 0 {
+                    cell.configure(self.tripZones![indexPath.row])
+                    
+                    if let selectedIndexPath = self.zoneSelectedIndexPath {
+                        if selectedIndexPath == indexPath {
+                            cell.indicatorButton.selected = true
+                        }else{
+                            cell.indicatorButton.selected = false
+                        }
+                    }else{
+                        cell.indicatorButton.selected = false
+                    }
+                    
+                }else{
+                    cell.configure(nil)
+                }
+    
                 self.zoneRefreshRequired = false
                 
                 return cell
@@ -570,6 +589,10 @@ extension HistoryPage: SpeedZoneCellDelegate {
         var messageString   = String()
         let indexPath       = self.tripHistoryTableView.indexPathForCell(cell)
         let speedZone       = self.tripZones![(indexPath?.row)!]
+        
+        if speedZone.violationCount.integerValue <= 0 {
+            return
+        }
         
         let events = self.tripMapEvents!.filter({ (event) -> Bool in
             event.isSevere == "1" && event.threshold == speedZone.maxSpeed
