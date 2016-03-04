@@ -74,7 +74,7 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var popUpTitleLabel : UILabel!
     @IBOutlet weak var settingsNavigationItem: UINavigationItem!
     
-    let settingsHeaderTitle = LocalizationConstants.Settings.Settings_Title.localized()
+    var settingsHeaderTitle = LocalizationConstants.Settings.Settings_Title.localized()
     let textCellIdentifier = "settingsCellIdentifier"
     let popUpCellIdentifier = "popUpCellIdentifier"
     
@@ -147,6 +147,7 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if tableView == settingsTableView{
+            self.settingsHeaderTitle = LocalizationConstants.Settings.Settings_Title.localized()
             return settingsHeaderTitle
         }
         return nil
@@ -312,6 +313,7 @@ class SettingsViewController: BaseViewController, UITableViewDelegate, UITableVi
                 defaults.setObject(userSelectedLanguage, forKey: StringConstants.SELECTED_LOCALIZE_LANGUAGE_CODE)
                 self.popUpTableView.reloadData()
                 self.settingsTableView.reloadData()
+                self.popUpTitleLabel.text = LocalizationConstants.Settings.SettingsCell.Choose_Language_Title.localized()
             }
         }
     }
