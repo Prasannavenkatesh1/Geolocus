@@ -59,7 +59,6 @@ class ContractPage: BaseViewController,UIImagePickerControllerDelegate,UINavigat
         imagePath = fileInDocumentsDirectory(myImageName)
         
         self.setTitleForLabels()
-//        self.fetchContractDataFromDatabase()
         self.setConstraintsForDifferentDevices()
         self.customiseProgressView()
         self.addDashedBorderToImageView()

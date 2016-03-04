@@ -38,8 +38,7 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             return (disposition, credential)
         }
         
-        let selectedLanguageCode : String! = defaults.stringForKey(StringConstants.SELECTED_LANGUAGE_USERDEFAULT_KEY)
-//        let termsAndConditionsURL = FacadeLayer.sharedinstance.webService.termConditionsServiceURL! + "\(selectedLanguageCode)"
+    let selectedLanguageCode : String! = defaults.stringForKey(StringConstants.SELECTED_LANGUAGE_USERDEFAULT_KEY)
       let termsAndConditionsURL = Portal.TermConditionsServiceURL + "\(selectedLanguageCode)"
       
             manager.request(.GET, termsAndConditionsURL)
@@ -66,7 +65,6 @@ class Httpclient: NSObject,NSURLSessionDelegate {
             return (disposition, credential)
         }
         
-//        let loginURL : NSURL = NSURL(string : FacadeLayer.sharedinstance.webService.loginServiceURL!)!
         let loginURL : NSURL = NSURL(string : Portal.LoginServiceURL)!
         let loginRequest = NSMutableURLRequest(URL : loginURL)
         loginRequest.HTTPMethod = "POST"
@@ -97,7 +95,6 @@ class Httpclient: NSObject,NSURLSessionDelegate {
         }
         
         let userID : String! = defaults.stringForKey(StringConstants.USER_ID) //"9"
-//        let contractServiceURL = FacadeLayer.sharedinstance.webService.contractServiceURL! + "\(userID)"
         let contractServiceURL = Portal.ContractServiceURL + "\(userID)"
       
         let contractRequest = NSMutableURLRequest(URL: NSURL(string : contractServiceURL)!)
